@@ -1,0 +1,19 @@
+{
+  "brand": "Nuacht Craic",
+  "tagline": "Mearaigh an nuacht, faigh an craic.",
+    "headline": "News Craic",
+  "shuffle": "Mearaigh",
+  "latest": "Is déanaí",
+  "sources": "Foinsí",
+  "disclaimer": "Déantar an clár seo a dháileadh leis an dóchas go mbeidh sé úsáideach, ach gan aon bharántas; gan fiú an bharántas intuigthe maidir le hinmhargaidheacht nó oiriúnacht chun críche áirithe. D’fhéadfadh roinnt naisc a bheith urraithe nó cleamhnaithe a thuilleann coimisiún. Úsáideann an suíomh seo fianáin agus rianaitheoirí anailíse agus tacaíonn fógraíocht leis. Cuirtear na naisc seo ar fáil mar áis agus chun críocha faisnéise amháin; ní hionann iad agus formhuiniú ná ceadú ná tuairimí na heagraíochta ná an duine aonair sin. Níl sé freagrach as cruinneas, dlíthiúlacht ná ábhar an tsuímh sheachtraigh ná as naisc ina dhiaidh sin. Téigh i dteagmháil leis an suíomh seachtrach le haghaidh freagraí ar cheisteanna maidir lena n-ábhar.",
+  "notfound": {
+    "title": "Leathanach gan aimsiú",
+    "message": "Tá brón orainn 😔, níor aimsíomar an rud a bhí á lorg agat.",
+    "gohome": "Fill abhaile"
+  },
+    "redirect": {
+    "heading": "Ag atreorú…",
+    "loading": "Á lódáil…",
+    "description": "Díreofar chugat go luath chuig:"
+  }
+}
