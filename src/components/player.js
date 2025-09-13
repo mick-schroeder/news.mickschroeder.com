@@ -25,8 +25,8 @@ const WebShufflePlayer = () => {
   };
 
   return (
-    <div className="flex-grow flex items-center justify-center px-2">
-      <Card className="w-full md:w-6/12 backdrop-blur">
+    <div className="flex items-center justify-center px-2 shrink-0">
+      <Card className="backdrop-blur w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px]">
         <CardContent className="p-2">
           <div className="flex flex-col items-center w-full">
           <h2 className="truncate text-sm text-center font-bold text-card-foreground">
@@ -40,7 +40,7 @@ const WebShufflePlayer = () => {
             </a>
           </h2>
           <p className="text-xs font-semibold text-muted-foreground">
-            <Button asChild variant="outline" aria-label={`Open site: ${nextSiteName}`}>
+            <Button asChild variant="link" aria-label={`Open site: ${nextSiteName}`}>
               <a
                 onClick={handleClick}
                 href={nextSite}

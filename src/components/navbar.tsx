@@ -91,9 +91,9 @@ export default function DefaultNavbar() {
           </div>
         </div>
 
-        <div className="flex items-center pb-2">
+        <div className="flex items-center justify-center gap-3 pb-2">
           <WebShufflePlayer />
-           <RedirectButton />
+          <RedirectButton />
         </div>
       </div>
     </nav>

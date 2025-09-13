@@ -17,7 +17,7 @@ const RedirectButton = () => {
     <Button
       type="button"
       onClick={handleClick}
-      className="inline-flex items-center py-3 px-5 font-bold shadow"
+      className="text-foreground inline-flex items-center py-3 px-5 font-bold shadow"
     >
       <img src={WebShuffleIcon} className="w-3.5 h-3.5 mr-2" alt="Website Icon" />
       <Trans i18nKey="shuffle" />

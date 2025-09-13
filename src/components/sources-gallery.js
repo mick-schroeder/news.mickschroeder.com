@@ -60,7 +60,7 @@ const SourcesGallery = ({ limit, sort }) => {
 
   return (
     <section id="sources-gallery" className="scroll-mt-24">
-      <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="gap-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3">
         {sortedSources.map(({ node }, idx) => {
           const image = getImage(node.screenshot);
           const eager = idx < 3 ? "eager" : "lazy";
