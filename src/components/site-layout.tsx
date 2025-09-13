@@ -3,9 +3,9 @@ import { NextSiteProvider } from "./next-site-context";
 import Navbar from "./navbar";
 import FooterBar from "./footer";
 
-const SiteLayout = ({ children }) => (
+const SiteLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
   <NextSiteProvider>
-    <div className="antialiased bg-background min-h-screen [--nav-h:120px] md:[--nav-h:120px]">
+    <div className="antialiased bg-background min-h-screen [--nav-h:120px] md:[--nav-h:128px]">
       {/* Body */}
       <div className="h-auto">
         {/* Header */}

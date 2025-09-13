@@ -12,9 +12,14 @@
     "message": "Tá brón orainn 😔, níor aimsíomar an rud a bhí á lorg agat.",
     "gohome": "Fill abhaile"
   },
-    "redirect": {
+  "redirect": {
     "heading": "Ag atreorú…",
     "loading": "Á lódáil…",
     "description": "Díreofar chugat go luath chuig:"
-  }
+  },
+  "home": "Baile",
+  "loading": "Á lódáil…",
+  "open_in_new_tab": "Oscail i gcluaisín nua",
+  "shuffle_next": "Mearaigh an chéad suíomh eile",
+  "open_site": "Oscail suíomh: {{name}}"
 }

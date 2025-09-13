@@ -34,7 +34,8 @@ export const NextSiteProvider = ({ children }) => {
       }
     }
   `);
-  const sources = data.allSourcesJson.nodes || [];
+  const nodes = data.allSourcesJson.nodes;
+  const sources = useMemo(() => nodes || [], [nodes]);
 
   const i18n = useI18next(); // { language: 'en-IE' | 'ga' | 'en-US', ... }
   const lang = i18n.language;

@@ -4,11 +4,12 @@ import { useNextSiteContext } from "./next-site-context";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
 import { ExternalLink, RefreshCw } from "lucide-react";
 
 //import { Link } from "gatsby";
 
-const WebShufflePlayer = () => {
+const WebShufflePlayer: React.FC = () => {
   const {
     nextSite,
     nextSiteName,
@@ -18,7 +19,9 @@ const WebShufflePlayer = () => {
     // nextSiteImage,
   } = useNextSiteContext();
 
-  const handleClick = (event) => {
+  const { t } = useTranslation();
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.open(nextSite, "_blank");
     refreshNextSite();
@@ -27,10 +30,10 @@ const WebShufflePlayer = () => {
   return (
     <div className="flex items-center justify-center px-2 shrink-0">
       <Card className="backdrop-blur w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px]">
-        <CardHeader className="p-2 pb-0">
+        <CardHeader className="p-2 pb-2">
           <div className="grid grid-cols-[2.25rem_1fr_2.25rem] items-center gap-2">
             <div className="w-9 h-9" aria-hidden="true" />
-            <div className="min-w-0 text-center pb-2">
+            <div className="min-w-0 text-center">
               <CardTitle className="truncate text-sm font-bold text-card-foreground text-center">
                 {nextSiteName ? (
                   <a
@@ -42,17 +45,18 @@ const WebShufflePlayer = () => {
                     {nextSiteName}
                   </a>
                 ) : (
-                  <span className="text-muted-foreground">Loading…</span>
+                  <span className="text-muted-foreground"><Trans i18nKey="loading" /></span>
                 )}
               </CardTitle>
               <CardDescription className="mt-0.5">
                 {nextSite ? (
-                  <Button asChild variant="link" aria-label={`Open site: ${nextSiteName}`} className="h-auto p-0">
+                  <Button asChild variant="link" className="h-auto p-0">
                     <a
                       onClick={handleClick}
                       href={nextSite}
                       target="_blank"
                       rel="noreferrer"
+                      aria-label={String(t("open_site", { name: nextSiteName || "" }))}
                       className="inline-flex items-center justify-center text-primary hover:text-primary truncate"
                     >
                       {nextSite.length > 48 ? nextSite.slice(0, 48) + "..." : nextSite}
@@ -76,7 +80,7 @@ const WebShufflePlayer = () => {
                     <RefreshCw className="w-5 h-5 text-muted-foreground" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Shuffle next site</TooltipContent>
+                <TooltipContent><Trans i18nKey="shuffle_next" /></TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>

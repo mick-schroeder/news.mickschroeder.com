@@ -6,11 +6,17 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./ui/card"
 import { AspectRatio } from "./ui/aspect-ratio";
 import { ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
+import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { Badge } from "./ui/badge";
 
-const SourcesGallery = ({ limit, sort }) => {
-  const data = useStaticQuery(graphql`
+type Props = {
+  limit?: number;
+  sort?: "random" | "alphabetical" | "rating";
+};
+
+const SourcesGallery: React.FC<Props> = ({ limit, sort }) => {
+  const data: any = useStaticQuery(graphql`
     query {
       allSourcesJson {
         edges {
@@ -40,20 +46,19 @@ const SourcesGallery = ({ limit, sort }) => {
   const { language } = useI18next();
   const sortedSources = useMemo(() => {
     const all = data.allSourcesJson.edges;
-    const localeMatches = (loc) =>
+    const localeMatches = (loc: string | string[]) =>
       Array.isArray(loc) ? loc.includes(language) : loc === language;
-    // Filter by current i18n language (locale codes like 'en-IE', 'ga', 'en-US')
-    const filtered = all.filter(({ node }) => localeMatches(node.locale));
+    const filtered = all.filter(({ node }: any) => localeMatches(node.locale));
     let list = [...filtered];
     switch (sort) {
       case "random":
         list.sort(() => 0.5 - Math.random());
         break;
       case "alphabetical":
-        list.sort((a, b) => a.node.name.localeCompare(b.node.name));
+        list.sort((a: any, b: any) => a.node.name.localeCompare(b.node.name));
         break;
       case "rating":
-        list.sort((a, b) => parseFloat(b.node.score) - parseFloat(a.node.score));
+        list.sort((a: any, b: any) => parseFloat(b.node.score) - parseFloat(a.node.score));
         break;
       default:
         break;
@@ -61,12 +66,13 @@ const SourcesGallery = ({ limit, sort }) => {
     return limit ? list.slice(0, limit) : list;
   }, [data.allSourcesJson.edges, language, limit, sort]);
 
+  const { t } = useTranslation();
   return (
     <section id="sources-gallery" className="scroll-mt-24">
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-        {sortedSources.map(({ node }, idx) => {
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {sortedSources.map(({ node }: any, idx: number) => {
           const image = getImage(node.screenshot);
-          const eager = idx < 3 ? "eager" : "lazy";
+          const eager: "eager" | "lazy" = idx < 3 ? "eager" : "lazy";
           const localeText = Array.isArray(node.locale) ? node.locale.join(", ") : node.locale;
           const displayUrl = node.url.length > 42 ? node.url.slice(0, 42) + "..." : node.url;
           return (
@@ -119,13 +125,18 @@ const SourcesGallery = ({ limit, sort }) => {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button asChild size="icon" variant="ghost" aria-label={`Open ${node.name}`}>
-                          <a href={node.url} target="_blank" rel="noreferrer">
+                        <Button asChild size="icon" variant="ghost">
+                          <a
+                            href={node.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={String(t("open_site", { name: node.name }))}
+                          >
                             <ExternalLink className="h-4 w-4" aria-hidden="true" />
                           </a>
                         </Button>
                       </TooltipTrigger>
-                      <TooltipContent>Open in new tab</TooltipContent>
+                      <TooltipContent><Trans i18nKey="open_in_new_tab" /></TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </div>

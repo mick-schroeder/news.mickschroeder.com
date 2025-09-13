@@ -2,14 +2,16 @@ import React from "react";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { Script } from "gatsby";
 
-export const SEO = ({ title, description, pathname, children }) => {
-  const {
-    title: defaultTitle,
-    description: defaultDescription,
-    image,
-    siteUrl,
-    twitterUsername,
-  } = useSiteMetadata();
+type SEOProps = {
+  title?: string;
+  description?: string;
+  pathname?: string;
+  children?: React.ReactNode;
+};
+
+export const SEO: React.FC<SEOProps> = ({ title, description, pathname, children }) => {
+  const { title: defaultTitle, description: defaultDescription, image, siteUrl, twitterUsername } =
+    useSiteMetadata();
 
   const seo = {
     title: title || defaultTitle,
@@ -58,3 +60,4 @@ export const SEO = ({ title, description, pathname, children }) => {
     </>
   );
 };
+

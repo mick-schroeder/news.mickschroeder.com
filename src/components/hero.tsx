@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../components/logo.js";
+import Logo from "../components/logo";
 import RedirectButton from "../components/redirect-button";
 import { Trans } from "gatsby-plugin-react-i18next";
 const SideBar = () => {

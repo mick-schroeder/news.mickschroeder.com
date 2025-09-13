@@ -16,5 +16,10 @@
     "heading": "Redirecting…",
     "loading": "Loading…",
     "description": "You will be redirected shortly to:"
-  }
+  },
+  "home": "Home",
+  "loading": "Loading…",
+  "open_in_new_tab": "Open in new tab",
+  "shuffle_next": "Shuffle next site",
+  "open_site": "Open site: {{name}}"
 }

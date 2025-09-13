@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useNextSiteContext } from "./next-site-context";
-import { useI18next, Trans, useTranslation } from "gatsby-plugin-react-i18next";
+import { useI18next, Trans } from "gatsby-plugin-react-i18next";
 
-const Redirecter = () => {
-  const { nextSite, nextSiteName, refreshNextSite, availableCount } = useNextSiteContext();
+const Redirecter: React.FC = () => {
+  const { nextSite, refreshNextSite } = useNextSiteContext();
   const { language } = useI18next();
-  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Seed using the current locale path (en-US/ga/en-IE)
     refreshNextSite(language);
     const retry = setTimeout(() => {
       if (!nextSite) refreshNextSite(language);
@@ -64,3 +63,4 @@ const Redirecter = () => {
 };
 
 export default Redirecter;
+

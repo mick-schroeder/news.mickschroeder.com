@@ -4,7 +4,9 @@ import { Link } from "gatsby";
 import logo from "../images/logo.svg";
 import { Trans } from "gatsby-plugin-react-i18next";
 
-const Logo = ({ showAuthor = false }) => {
+type LogoProps = { showAuthor?: boolean };
+
+const Logo = ({ showAuthor = false }: LogoProps) => {
   return (
     <Link to="/" className="inline-flex items-center">
       <img
@@ -17,7 +19,7 @@ const Logo = ({ showAuthor = false }) => {
         {showAuthor && (
           <>
             &nbsp;
-            <span className="text-muted">
+            <span className="text-foreground/80 font-medium">
               <Trans i18nKey="by_author" />
             </span>
           </>

@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Link, useI18next } from "gatsby-plugin-react-i18next";
+import { Link, useI18next, Trans } from "gatsby-plugin-react-i18next";
 import RedirectButton from "./redirect-button";
-import Logo from "../components/logo.js";
+import Logo from "../components/logo";
 
 import WebShufflePlayer from "../components/player";
 import { Button } from "./ui/button";
@@ -74,12 +74,16 @@ export default function DefaultNavbar() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link to="/" className={navigationMenuTriggerStyle()}>Home</Link>
+                    <Link to="/" className={navigationMenuTriggerStyle()}>
+                      <Trans i18nKey="home" />
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link to="/#sources-gallery" className={navigationMenuTriggerStyle()}>Sources</Link>
+                    <Link to="/#sources-gallery" className={navigationMenuTriggerStyle()}>
+                      <Trans i18nKey="sources" />
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
