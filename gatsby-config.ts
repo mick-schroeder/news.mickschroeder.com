@@ -6,25 +6,25 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    name: `Nuacht Craic`,
-    title: `Nuacht Craic`,
+    name: `News Craic`,
+    title: `News Craic`,
     tagLine: `Shuffle the news, find the craic.`,
-    description: `Nuacht Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.`,
+    description: `News Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.`,
     twitterUsername: `@mick_schroeder`,
     image: `/web-shuffle-large-promo.png`,
     author: `Mick Schroeder, LLC`,
-    authorUrl: `https://schroeder.ie`,
+    authorUrl: `https://www.mickschroeder.com`,
     foundingYear: `2021`,
-    email: `webshuffle@mickschroeder.com`,
-    siteUrl: `https://news.schroeder.ie`,
+    email: `contact@mickschroeder.com`,
+    siteUrl: `https://news.mickschroeder.com`,
   },
   graphqlTypegen: true,
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Nuacht Craic`,
-        short_name: `Nuacht Craic`,
+        name: `News Craic`,
+        short_name: `News Craic`,
         start_url: `/`,
         background_color: `#1f2937`,
         lang: `en-IE`,
