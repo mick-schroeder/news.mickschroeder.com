@@ -5,6 +5,9 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./ui/card";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { ExternalLink } from "lucide-react";
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { Badge } from "./ui/badge";
 
 const SourcesGallery = ({ limit, sort }) => {
   const data = useStaticQuery(graphql`
@@ -60,34 +63,35 @@ const SourcesGallery = ({ limit, sort }) => {
 
   return (
     <section id="sources-gallery" className="scroll-mt-24">
-      <div className="gap-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {sortedSources.map(({ node }, idx) => {
           const image = getImage(node.screenshot);
           const eager = idx < 3 ? "eager" : "lazy";
           const localeText = Array.isArray(node.locale) ? node.locale.join(", ") : node.locale;
+          const displayUrl = node.url.length > 42 ? node.url.slice(0, 42) + "..." : node.url;
           return (
-            <a
-              key={node.hash || node.url}
-              href={node.url}
-              target="_blank"
-              rel="noopener"
-              aria-label={`Open ${node.name} in a new tab`}
-              className="block group"
-            >
-              <Card className="overflow-hidden hover:shadow-md transition-shadow">
-                <CardHeader className="p-4">
-                  <CardTitle className="text-card-foreground group-hover:text-primary">
-                    {node.name}
+            <Card key={node.hash || node.url} className="overflow-hidden transition-shadow hover:shadow-md">
+              <CardHeader className="p-4">
+                <div className="flex items-center justify-between gap-2">
+                  <CardTitle className="truncate text-card-foreground">
+                    <a href={node.url} target="_blank" rel="noreferrer" className="hover:underline">
+                      {node.name}
+                    </a>
                   </CardTitle>
-                </CardHeader>
-                <AspectRatio ratio={9/16} className="bg-muted">
+                  {localeText ? (
+                    <Badge variant="secondary" className="shrink-0">{localeText}</Badge>
+                  ) : null}
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <AspectRatio ratio={9 / 16} className="bg-muted">
                   {image ? (
                     <GatsbyImage
                       image={image}
                       alt={`${node.name}`}
                       loading={eager}
-                      className="w-full h-full"
-                      imgClassName="w-full h-full object-cover"
+                      className="h-full w-full"
+                      imgClassName="h-full w-full object-cover"
                     />
                   ) : (
                     <img
@@ -95,22 +99,38 @@ const SourcesGallery = ({ limit, sort }) => {
                       alt={`${node.name}`}
                       loading={eager}
                       decoding="async"
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-cover"
                       width="720"
                       height="1280"
                     />
                   )}
                 </AspectRatio>
-                <CardFooter className="p-4">
-                  <div className="text-xs font-semibold inline-flex items-center text-primary hover:text-primary">
-                    <p className="truncate mr-2">
-                      {node.url.length > 30 ? node.url.slice(0, 30) + "..." : node.url}
-                    </p>
-                    <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                  </div>
-                </CardFooter>
-              </Card>
-            </a>
+              </CardContent>
+              <CardFooter className="p-4">
+                <div className="flex w-full items-center justify-between">
+                  <a
+                    href={node.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="truncate text-xs font-semibold text-primary hover:underline"
+                  >
+                    {displayUrl}
+                  </a>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button asChild size="icon" variant="ghost" aria-label={`Open ${node.name}`}>
+                          <a href={node.url} target="_blank" rel="noreferrer">
+                            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                          </a>
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Open in new tab</TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+              </CardFooter>
+            </Card>
           );
         })}
       </div>

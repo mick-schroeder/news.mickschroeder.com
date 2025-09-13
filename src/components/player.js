@@ -2,7 +2,7 @@ import React from "react";
 //import { GatsbyImage } from "gatsby-plugin-image";
 import { useNextSiteContext } from "./next-site-context";
 import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { ExternalLink, RefreshCw } from "lucide-react";
 
@@ -28,7 +28,42 @@ const WebShufflePlayer = () => {
     <div className="flex items-center justify-center px-2 shrink-0">
       <Card className="backdrop-blur w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px]">
         <CardHeader className="p-2 pb-0">
-          <div className="flex items-center justify-end">
+          <div className="grid grid-cols-[2.25rem_1fr_2.25rem] items-center gap-2">
+            <div className="w-9 h-9" aria-hidden="true" />
+            <div className="min-w-0 text-center pb-2">
+              <CardTitle className="truncate text-sm font-bold text-card-foreground text-center">
+                {nextSiteName ? (
+                  <a
+                    href={nextSite}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="truncate hover:underline"
+                  >
+                    {nextSiteName}
+                  </a>
+                ) : (
+                  <span className="text-muted-foreground">Loading…</span>
+                )}
+              </CardTitle>
+              <CardDescription className="mt-0.5">
+                {nextSite ? (
+                  <Button asChild variant="link" aria-label={`Open site: ${nextSiteName}`} className="h-auto p-0">
+                    <a
+                      onClick={handleClick}
+                      href={nextSite}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center text-primary hover:text-primary truncate"
+                    >
+                      {nextSite.length > 48 ? nextSite.slice(0, 48) + "..." : nextSite}
+                      <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
+                    </a>
+                  </Button>
+                ) : (
+                  <div className="h-4 w-48 mx-auto rounded bg-muted animate-pulse" />
+                )}
+              </CardDescription>
+            </div>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -46,40 +81,6 @@ const WebShufflePlayer = () => {
             </TooltipProvider>
           </div>
         </CardHeader>
-        <CardContent className="p-3 pt-2">
-          <div className="flex flex-col items-center text-center space-y-1">
-            <CardTitle className="truncate text-sm font-bold text-card-foreground">
-              {nextSiteName ? (
-                <a
-                  href={nextSite}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="truncate hover:underline"
-                >
-                  {nextSiteName}
-                </a>
-              ) : (
-                <span className="text-muted-foreground">Loading…</span>
-              )}
-            </CardTitle>
-            {nextSite ? (
-              <Button asChild variant="link" aria-label={`Open site: ${nextSiteName}`} className="h-auto p-0">
-                <a
-                  onClick={handleClick}
-                  href={nextSite}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center text-primary hover:text-primary truncate"
-                >
-                  {nextSite.length > 48 ? nextSite.slice(0, 48) + "..." : nextSite}
-                  <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
-                </a>
-              </Button>
-            ) : (
-              <div className="h-4 w-48 rounded bg-muted animate-pulse" />
-            )}
-          </div>
-        </CardContent>
       </Card>
     </div>
   );

@@ -9,7 +9,7 @@ const SideBar = () => {
     <div className="p-4 md:p-8">
       <div className="flex-col content-center mx-auto text-center">
         <span className="hidden sm:block">
-          <Logo />
+          <Logo showAuthor />
         </span>
         <h2 className="my-2 text-4xl tracking-tight font-extrabold leading-tight text-foreground">
            <Trans i18nKey="headline" />

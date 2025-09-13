@@ -65,7 +65,7 @@ function LanguageSwitcher() {
 
 export default function DefaultNavbar() {
   return (
-    <nav className="z-20 backdrop-blur bg-background/80 md:fixed start-0 top-0 left-0 right-0 border-b border-border">
+    <nav className="fixed inset-x-0 top-0 z-50 w-full h-[var(--nav-h)] backdrop-blur bg-background/80 border-b border-border">
       <div className="lg:max-w-screen-lg md:max-w-screen-md mx-auto px-4">
         <div className="flex items-center justify-between py-2">
           <div className="flex items-center gap-4">
