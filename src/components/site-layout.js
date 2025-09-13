@@ -5,10 +5,10 @@ import FooterBar from "./footer";
 
 const SiteLayout = ({ children }) => (
   <NextSiteProvider>
-    <div className="antialiased bg-white dark:bg-emerald-950 min-h-screen">
+    <div className="antialiased bg-background min-h-screen">
      
       {/* Body */}
-      <div class="h-auto md:pt-20">
+      <div className="h-auto md:pt-20">
         {/* Header */}
         <header className="">
           <Navbar />

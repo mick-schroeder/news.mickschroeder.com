@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import logo from "../images/logo.svg";
 import { useStaticQuery, graphql } from "gatsby";
 import { Trans } from "gatsby-plugin-react-i18next";
+import { Separator } from "./ui/separator";
 
 const currentYear = new Date().getFullYear();
 
@@ -21,9 +22,10 @@ const FooterBar = () => {
 
   return (
     <div>
-      <footer className="border-t border-neutral-300 dark:border-neutral-700">
+      <Separator className="my-0" />
+      <footer>
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-          <div className="block text-sm text-neutral-500 sm:text-center dark:text-neutral-400">
+          <div className="block text-sm text-muted-foreground sm:text-center">
             <p>
               {" "}
               {<Trans i18nKey="brand" />}™ ©{" "}
@@ -36,7 +38,7 @@ const FooterBar = () => {
               </a>
               .
             </p>
-            <p className="py-4 md:p-10 text-xs text-justify text-neutral-500 dark:text-neutral-400">
+            <p className="py-4 md:p-10 text-xs text-justify text-muted-foreground">
               <Trans i18nKey="disclaimer" />
             </p>
           </div>

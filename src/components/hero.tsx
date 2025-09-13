@@ -11,10 +11,10 @@ const SideBar = () => {
         <span className="hidden sm:block">
           <Logo />
         </span>
-        <h2 className="my-2 text-4xl tracking-tight font-extrabold leading-tight text-neutral-900 dark:text-white">
+        <h2 className="my-2 text-4xl tracking-tight font-extrabold leading-tight text-foreground">
            <Trans i18nKey="headline" />
         </h2>
-        <p className="mb-6 font-light text-neutral-500 dark:text-neutral-400 md:text-lg">
+        <p className="mb-6 font-light text-muted-foreground md:text-lg">
                 <Trans i18nKey="tagline" />
         </p>
 

@@ -18,7 +18,9 @@ const config: GatsbyConfig = {
     email: `contact@mickschroeder.com`,
     siteUrl: `https://news.mickschroeder.com`,
   },
-  graphqlTypegen: true,
+  graphqlTypegen: {
+    typesOutputPath: `types/gatsby-types.d.ts`,
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,

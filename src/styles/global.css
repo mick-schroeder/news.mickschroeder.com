@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+/* Use Tailwind's default media-based dark variant (prefers-color-scheme) */
 
 @theme inline {
     --font-sans: "Helvetica Neue", Helvetica, "Nimbus Sans", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Liberation Sans", "Noto Sans", sans-serif;
@@ -49,7 +49,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  /* Brand primary (green) */
+  --primary: oklch(0.62 0.21 145);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -76,15 +77,17 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
+@media (prefers-color-scheme: dark) {
+  :root {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  /* Brand primary (green) for dark mode */
+  --primary: oklch(0.72 0.18 145);
+  --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -108,6 +111,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  }
 }
 
 @layer base {

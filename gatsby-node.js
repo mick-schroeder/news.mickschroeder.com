@@ -1,12 +1,11 @@
-const path = require("path");
-const fs = require("fs");
-const { preProcessSources } = require("./processSources.js");
-const { onPreBootstrap } = require("gatsby");
-const crypto = require("crypto");
-
-const { report } = require("process");
-
-require("aws-sdk/lib/maintenance_mode_message").suppress = true;
+import * as path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+import fs from "fs";
+import crypto from "crypto";
+import processSourcesModule from "./processSources.js";
+const { preProcessSources } = processSourcesModule;
 
 const shouldForceRegenerate = process.env.FORCE_REGENERATE === "true";
 
@@ -18,7 +17,19 @@ const CONCURRENT_PAGES = 5;
 const isDevelopment = process.env.NODE_ENV === "development";
 const isProduction = process.env.NODE_ENV === "production";
 
-exports.onPreBootstrap = async ({ reporter }) => {
+
+export const onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "@/components": path.resolve(__dirname, "src/components"),
+        "@/lib/utils": path.resolve(__dirname, "src/lib/utils"),
+      },
+    },
+  })
+}
+
+export const onPreBootstrap = async ({ reporter }) => {
   if (!fs.existsSync(SCREENSHOT_PATH)) {
     fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
   }
@@ -34,7 +45,7 @@ const hashOf = (input) =>
   crypto.createHash("sha1").update(String(input)).digest("hex").slice(0, 12);
 
 // 1) Declare explicit types so Gatsby won’t infer from JSON
-exports.createSchemaCustomization = ({ actions }) => {
+export const createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
     type SourcesJson implements Node @dontInfer {
@@ -50,7 +61,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 };
 
 // 2) Resolve derived fields: hash + link to File in /static/screenshots
-exports.createResolvers = ({ createResolvers }) => {
+export const createResolvers = ({ createResolvers }) => {
   createResolvers({
     SourcesJson: {
       locale: {

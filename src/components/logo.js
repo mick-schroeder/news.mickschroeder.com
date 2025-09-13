@@ -12,7 +12,7 @@ const Logo = () => {
             className="h-6 mr-2"
             alt={`${<Trans i18nKey="brand" />} Logo`}
           />
-          <span className="text-xl font-black tracking-tighter self-center whitespace-nowrap dark:text-neutral-100">
+          <span className="text-xl font-black tracking-tighter self-center whitespace-nowrap text-foreground">
             {<Trans i18nKey="brand" />}
           </span>
         </Link>

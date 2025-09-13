@@ -57,6 +57,7 @@ typings/
 # gatsby files
 .cache/
 public
+types/gatsby-types.d.ts
 
 # Mac files
 .DS_Store
@@ -71,3 +72,4 @@ yarn-error.log
 # Screenshots
 /static/screenshots/*
 !/static/screenshots/.gitkeep
+

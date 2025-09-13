@@ -18,10 +18,10 @@ const IndexPage: React.FC<PageProps> = () => {
         </section>
         {
           <section>
-            <div className="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">
-              <h2 className="text-2xl py-4 font-extrabold dark:text-white">
-                <Trans i18nKey="sources" defaults="Sources" />
-              </h2>
+              <div className="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">
+                <h2 className="text-2xl py-4 font-extrabold text-foreground">
+                  <Trans i18nKey="sources" defaults="Sources" />
+                </h2>
               
               <CardsSources sort="rating" />
 
