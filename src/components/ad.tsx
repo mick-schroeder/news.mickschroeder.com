@@ -7,9 +7,16 @@ type AdProps = {
 };
 
 const Ad: React.FC<AdProps> = ({ adClient, adSlot, adFormat }) => {
+  const isProd = process.env.NODE_ENV === "production";
+
   useEffect(() => {
-    (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-    (window as any).adsbygoogle.push({});
+    if (typeof window === "undefined") return;
+    try {
+      (window as any).adsbygoogle = (window as any).adsbygoogle || [];
+      (window as any).adsbygoogle.push({});
+    } catch (_) {
+      // Silently ignore if blocked by extensions or script not loaded
+    }
   }, []);
 
   return (
@@ -19,9 +26,10 @@ const Ad: React.FC<AdProps> = ({ adClient, adSlot, adFormat }) => {
       data-ad-client={adClient}
       data-ad-slot={adSlot as any}
       data-ad-format={adFormat}
+      data-full-width-responsive="true"
+      data-adtest={isProd ? undefined : ("on" as any)}
     ></ins>
   );
 };
 
 export default Ad;
-

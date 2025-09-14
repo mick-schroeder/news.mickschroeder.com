@@ -26,6 +26,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, children
       <html lang="en" />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
+      <meta name="google-adsense-account" content="ca-pub-6344797609391119" />
       <meta name="image" content={seo.image} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
@@ -51,13 +52,15 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, children
         "logo": "https://webshuffle.mickschroeder.com/logo.svg"
       }`}
       </script>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6344797609391119"
-        crossOrigin="anonymous"
-      />
+      {process.env.NODE_ENV === "production" && (
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6344797609391119"
+          crossOrigin="anonymous"
+          strategy="post-hydrate"
+        />
+      )}
       {children}
     </>
   );
 };
-
