@@ -1,17 +1,10 @@
 import * as React from "react";
-import { Link, useI18next, Trans } from "gatsby-plugin-react-i18next";
+import { Link, Trans } from "gatsby-plugin-react-i18next";
 import RedirectButton from "./redirect-button";
 import Logo from "../components/logo";
 
 import WebShufflePlayer from "../components/player";
-import { Button } from "./ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import LanguageSwitcher from "./language-switcher";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -20,55 +13,12 @@ import {
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 
-function LanguageSwitcher() {
-  const { languages, language, originalPath } = useI18next();
-
-  const displayNames = React.useMemo(() => {
-    if (typeof Intl !== "undefined" && (Intl as any).DisplayNames) {
-      return new Intl.DisplayNames([language], { type: "language" });
-    }
-    return null;
-  }, [language]);
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          className="px-5 py-3 text-sm font-semibold"
-          aria-label="Change language"
-        >
-          {displayNames ? displayNames.of(language) : language}
-          <ChevronDown aria-hidden="true" className="w-4 h-4 ms-2" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="my-2">
-        {languages.map((lng) => (
-          <DropdownMenuItem key={lng} asChild>
-            <Link
-              to={originalPath}
-              language={lng}
-              hrefLang={lng}
-              aria-selected={lng === language}
-              className="flex items-center gap-2"
-            >
-              <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-              <span className="font-medium">{displayNames ? displayNames.of(lng) : lng}</span>
-              {lng === language && <span className="sr-only">(current)</span>}
-            </Link>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
-
 export default function DefaultNavbar() {
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 w-full h-[var(--nav-h)] backdrop-blur bg-background/80 border-b border-border">
+    <nav className="inset-x-0 top-0 z-50 w-full md:fixed md:h-[var(--nav-h)] backdrop-blur bg-background/80 border-b border-border">
       <div className="lg:max-w-screen-lg md:max-w-screen-md mx-auto px-4">
-        <div className="flex items-center justify-between py-2">
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between py-2 flex-wrap gap-2 md:flex-nowrap">
+          <div className="flex items-center gap-2 md:gap-4">
             <Logo />
             <NavigationMenu>
               <NavigationMenuList>
@@ -90,12 +40,12 @@ export default function DefaultNavbar() {
             </NavigationMenu>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 w-full justify-center md:w-auto md:justify-end">
             <LanguageSwitcher />
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-3 pb-2">
+        <div className="flex flex-col items-center justify-center gap-3 pb-2 md:flex-row">
           <WebShufflePlayer />
           <RedirectButton />
         </div>

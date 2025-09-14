@@ -19,7 +19,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://news.mickschroeder.com`,
   },
   graphqlTypegen: {
-    typesOutputPath: `types/gatsby-types.d.ts`,
+    typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
   },
   plugins: [
     {

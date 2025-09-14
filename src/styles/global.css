@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-/* Use Tailwind's default media-based dark variant (prefers-color-scheme) */
-
 @theme inline {
-    --font-sans: "Helvetica Neue", Helvetica, "Nimbus Sans", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Liberation Sans", "Noto Sans", sans-serif;
+  --font-sans: "Helvetica Neue", Helvetica, "Nimbus Sans", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Liberation Sans", "Noto Sans", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -49,7 +47,6 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  /* Brand primary (green) */
   --primary: oklch(0.62 0.21 145);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
@@ -85,7 +82,6 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  /* Brand primary (green) for dark mode */
   --primary: oklch(0.72 0.18 145);
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);

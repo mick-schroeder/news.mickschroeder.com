@@ -12,9 +12,7 @@ const SiteLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
         <header className="">
           <Navbar />
         </header>
-        {/* Spacer for fixed navbar */}
-        <div className="h-[var(--nav-h)]" aria-hidden="true" />
-
+        <div className="hidden md:block h-[var(--nav-h)]" aria-hidden="true" />
         {/* Content */}
         <main className="container mx-auto px-4 py-4 md:max-w-screen-md lg:max-w-screen-lg">
           {children}

@@ -21,5 +21,12 @@
     "heading": "Redirecting…",
     "loading": "Loading…",
     "description": "You will be redirected shortly to:"
+  },
+  "bookmark": {
+    "title": "Bookmark the Shuffle link",
+    "description": "Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’.",
+    "link_label": "Shuffle (Bookmark me)",
+    "copy": "Copy link",
+    "copied": "Copied"
   }
 }

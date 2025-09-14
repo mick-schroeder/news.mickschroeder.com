@@ -17,6 +17,13 @@
     "loading": "Á lódáil…",
     "description": "Díreofar chugat go luath chuig:"
   },
+  "bookmark": {
+    "title": "Cuir an nasc Mearaigh i leabharmharcanna",
+    "description": "Tarraing an nasc seo go do bharra leabharmharcanna, nó cliceáil deas air agus roghnaigh ‘Leabharmharc an nasc’.",
+    "link_label": "Mearaigh (Cuir i leabharmharc mé)",
+    "copy": "Cóipeáil an nasc",
+    "copied": "Cóipeálta"
+  },
   "home": "Baile",
   "loading": "Á lódáil…",
   "open_in_new_tab": "Oscail i gcluaisín nua",
