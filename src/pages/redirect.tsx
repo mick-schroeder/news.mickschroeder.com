@@ -18,7 +18,7 @@ const RedirectPage = () => {
 };
 
 export default RedirectPage;
-export const Head = () => <SEO title="Redirect" />;
+export const Head = () => <SEO title="Redirect" noindex />;
 
 export const query = graphql`
   query RedirectPageQuery($language: String!) {

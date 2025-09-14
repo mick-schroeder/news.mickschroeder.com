@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 @theme inline {
   --font-sans: "Helvetica Neue", Helvetica, "Nimbus Sans", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Liberation Sans", "Noto Sans", sans-serif;

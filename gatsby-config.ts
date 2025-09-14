@@ -3,6 +3,21 @@ require("dotenv").config({
 });
 
 import type { GatsbyConfig } from "gatsby";
+import fs from "fs";
+import path from "path";
+
+const SITE_URL = process.env.SITE_URL || "https://news.mickschroeder.com";
+const LOCALES_DIR = path.join(__dirname, "src", "locales");
+const languages = fs.existsSync(LOCALES_DIR)
+  ? fs
+      .readdirSync(LOCALES_DIR)
+      .filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
+  : ["en"];
+const DEFAULT_LANGUAGE = ((): string => {
+  const envDefault = process.env.DEFAULT_LANGUAGE;
+  if (envDefault && languages.includes(envDefault)) return envDefault;
+  return languages[0] || "en";
+})();
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -16,7 +31,7 @@ const config: GatsbyConfig = {
     authorUrl: `https://www.mickschroeder.com`,
     foundingYear: `2021`,
     email: `contact@mickschroeder.com`,
-    siteUrl: `https://news.mickschroeder.com`,
+    siteUrl: SITE_URL,
   },
   graphqlTypegen: {
     typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
@@ -29,7 +44,7 @@ const config: GatsbyConfig = {
         short_name: `News Craic`,
         start_url: `/`,
         background_color: `#1f2937`,
-        lang: `en-IE`,
+        lang: DEFAULT_LANGUAGE,
         theme_color: `#1f2937`,
         display: `standalone`,
         cache_busting_mode: "none",
@@ -54,15 +69,15 @@ const config: GatsbyConfig = {
   resolve: 'gatsby-plugin-react-i18next',
   options: {
     localeJsonSourceName: 'locale', 
-    languages: ['en-IE','ga','en-US'],     
-    defaultLanguage: 'en-IE',
+    languages,
+    defaultLanguage: DEFAULT_LANGUAGE,
     redirect: true,
     lowerCaseLng: false,
-    siteUrl: 'https://news.schroeder.ie',
+    siteUrl: SITE_URL,
     i18nextOptions: {
-      fallbackLng: 'en-IE',
+      fallbackLng: DEFAULT_LANGUAGE,
       interpolation: { escapeValue: false },
-      supportedLngs: ['en-IE','ga','en-US'],
+      supportedLngs: languages,
       ns: ['common'],
       defaultNS: 'common',
     },
@@ -129,13 +144,96 @@ const config: GatsbyConfig = {
     },
     {
       resolve: `gatsby-plugin-sitemap`,
-      options: {},
+      options: {
+        resolveSiteUrl: () => SITE_URL,
+        excludes: ["/redirect"],
+        query: `
+          {
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
+        resolvePages: ({ allSitePage }) => {
+          const nodes = allSitePage?.nodes || [];
+          const groups = new Map();
+          const languagesSet = new Set();
+          let defaultLanguage: string | undefined;
+
+          const langFromPath = (p: string): string | undefined => {
+            const m = p.match(/^\/(\w{2}(?:-[A-Za-z]{2})?)(?:\/|$)/);
+            return m?.[1];
+          };
+
+          for (const n of nodes) {
+            const ctx = (n as any).context || (n as any).pageContext || {};
+            const i18n = ctx.i18n || {};
+            const language: string | undefined = i18n.language || langFromPath(n.path);
+            const originalPath: string = i18n.originalPath || (language ? n.path.replace(new RegExp(`^/${language}(?=/|$)`), "") : n.path) || "/";
+            const langs: string[] = Array.isArray(i18n.languages) ? i18n.languages : [];
+            if (langs.length) langs.forEach((l) => languagesSet.add(l));
+            if (language) languagesSet.add(language);
+            if (!defaultLanguage && i18n.defaultLanguage) defaultLanguage = i18n.defaultLanguage;
+
+            const key = originalPath || "/";
+            if (!groups.has(key)) groups.set(key, { originalPath: key, perLang: {} as Record<string, string> });
+            if (language) groups.get(key).perLang[language] = n.path;
+            // Also store default fallback if no language identified
+            if (!language) groups.get(key).perLang["__default__"] = n.path;
+          }
+
+          // Heuristic if defaultLanguage not in context: prefer the language whose page has no prefix
+          if (!defaultLanguage) {
+            // Try to find a language that has pages where path === originalPath
+            for (const [, g] of groups) {
+              const perLang = g.perLang;
+              for (const lang of Object.keys(perLang)) {
+                if (lang === "__default__") continue;
+                const p = perLang[lang];
+                if (p === g.originalPath) {
+                  defaultLanguage = lang;
+                  break;
+                }
+              }
+              if (defaultLanguage) break;
+            }
+          }
+          // Fallback to configured default
+          if (!defaultLanguage) defaultLanguage = DEFAULT_LANGUAGE;
+
+          // Ensure default language appears in alternates
+          languagesSet.add(defaultLanguage!);
+          const languages = Array.from(languagesSet);
+
+          const toHref = (lng: string, originalPath: string) =>
+            `${SITE_URL}${lng === defaultLanguage ? originalPath : `/${lng}${originalPath}`}`;
+
+          const pages = Array.from(groups.values()).map((g) => {
+            const canonicalPath = g.perLang[defaultLanguage!] || g.originalPath || "/";
+            const links = [
+              { lang: "x-default", url: `${SITE_URL}${g.originalPath || "/"}` },
+              ...languages.map((lng) => ({ lang: lng, url: toHref(lng, g.originalPath || "/") })),
+            ];
+            return { path: canonicalPath, links };
+          });
+
+          return pages;
+        },
+        serialize: (page) => ({
+          url: `${SITE_URL}${page.path}`,
+          links: page.links,
+          changefreq: `daily`,
+          priority: 0.7,
+        }),
+      },
     },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://news.schroeder.ie",
-        sitemap: "https://news.schroeder.ie/sitemap-index.xml",
+        host: SITE_URL,
+        sitemap: `${SITE_URL}/sitemap-index.xml`,
         env: {
           development: {
             policy: [{ userAgent: "*", disallow: ["/"] }],
