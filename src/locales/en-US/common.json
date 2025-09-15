@@ -1,36 +1,47 @@
 {
-  "brand": "News Craic",
-  "by_author": "by Mick Schroeder",
-  "headline": "Shuffle the web's top news sources.",
-  "tagline": "Shuffle the news, find the craic — stay up to date with the best stories, all in one place.",
-  "shuffle": "Shuffle",
-  "latest": "Latest",
-  "sources": "Sources",
-  "disclaimer": "This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. Some links may be sponsored or affiliate programs that earn commission. This site uses cookies and analytics trackers and is supported by advertising. These links are being provided as a convenience and for informational purposes only; they do not constitute an endorsement or an approval or opinions of that organization or individual. Not responsible for the accuracy, legality or content of the external site or for that of subsequent links. Contact the external site for answers to questions regarding their content.",
-  "home": "Home",
-  "loading": "Loading…",
-  "open_in_new_tab": "Open in new tab",
-  "shuffle_next": "Shuffle next site",
-  "open_site": "Open site: {{name}}",
   "all_categories": "All Categories",
-  "select_categories": "Select categories...",
-  "clear_selection": "Clear selection",
-  "notfound": {
-    "title": "Page not found",
-    "message": "Sorry 😔, we couldn’t find what you were looking for.",
-    "gohome": "Go home"
-  },
-  "redirect": {
-    "heading": "Redirecting…",
-    "loading": "Loading…",
-    "description": "You will be redirected shortly to:"
-  },
   "bookmark": {
-    "title": "Bookmark the Shuffle link",
+    "copied": "Copied",
+    "copy": "Copy link",
     "description": "Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’.",
     "link_label": "Shuffle (Bookmark me)",
-    "copy": "Copy link",
-    "copied": "Copied"
+    "title": "Bookmark the Shuffle link"
   },
+  "brand": "News Craic",
+  "by_author": "by Mick Schroeder",
+  "clear_selection": "Clear selection",
+  "consent": {
+    "ads": "Ads",
+    "analytics": "Analytics",
+    "body": "We use cookies to improve your experience. Analytics help us understand usage; Ads enable personalized ads and conversion measurement. You can change this anytime in cookie settings.",
+    "decline": "Decline",
+    "privacy": "See our <1>Privacy Policy</1> for more details.",
+    "save": "Save",
+    "selectAll": "Select all",
+    "acceptAll": "Accept all",
+    "title": "We use cookies"
+  },
+  "disclaimer": "This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. Some links may be sponsored or affiliate programs that earn commission. This site uses cookies and analytics trackers and is supported by advertising. These links are being provided as a convenience and for informational purposes only; they do not constitute an endorsement or an approval or opinions of that organization or individual. Not responsible for the accuracy, legality or content of the external site or for that of subsequent links. Contact the external site for answers to questions regarding their content.",
+  "headline": "Shuffle the web's top news sources.",
+  "home": "Home",
+  "latest": "Latest",
+  "loading": "Loading…",
+  "notfound": {
+    "gohome": "Go home",
+    "message": "Sorry 😔, we couldn’t find what you were looking for.",
+    "title": "Page not found"
+  },
+  "open_in_new_tab": "Open in new tab",
+  "open_site": "Open site: {{name}}",
+  "redirect": {
+    "description": "You will be redirected shortly to:",
+    "heading": "Redirecting…",
+    "loading": "Loading…"
+  },
+  "select_categories": "Select categories...",
+  "shuffle": "Shuffle",
+  "shuffle_next": "Shuffle next site",
+  "sources": "Sources",
+  "tagline": "Shuffle the news, find the craic — stay up to date with the best stories, all in one place.",
   "terms_privacy": "Terms & Privacy"
 }

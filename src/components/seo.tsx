@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
-import { Script } from 'gatsby';
 import { useI18next } from 'gatsby-plugin-react-i18next';
+import { loadAdSense } from '../lib/adsense';
+import { readConsent } from '../lib/consent';
 
 type SEOProps = {
   title?: string;
@@ -29,12 +30,21 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
 
   const ogLocale = (language || defaultLanguage || 'en').toString().replace('-', '_');
 
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') return;
+    const consent = readConsent();
+    const client = process.env.GATSBY_GOOGLE_ADSENSE_ID;
+    if (consent?.ads && client) {
+      loadAdSense(client);
+    }
+  }, []);
+
   return (
     <>
       <html lang={(language || defaultLanguage || 'en').toLowerCase()} />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="google-adsense-account" content="ca-pub-6344797609391119" />
+      <meta name="google-adsense-account" content={process.env.GATSBY_GOOGLE_ADSENSE_ID} />
       <meta name="image" content={seo.image} />
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -89,14 +99,6 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
         "name": "${defaultTitle}"
       }`}
       </script>
-      {process.env.NODE_ENV === 'production' && (
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6344797609391119"
-          crossOrigin="anonymous"
-          strategy="post-hydrate"
-        />
-      )}
       {children}
     </>
   );

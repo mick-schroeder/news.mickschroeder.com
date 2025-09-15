@@ -6,7 +6,7 @@ import type { GatsbyConfig } from 'gatsby';
 import fs from 'fs';
 import path from 'path';
 
-const SITE_URL = process.env.SITE_URL || 'https://news.mickschroeder.com';
+const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL || 'https://news.mickschroeder.com';
 const LOCALES_DIR = path.join(__dirname, 'src', 'locales');
 const languages = fs.existsSync(LOCALES_DIR)
   ? fs.readdirSync(LOCALES_DIR).filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
@@ -28,7 +28,7 @@ const config: GatsbyConfig = {
     authorUrl: 'https://www.mickschroeder.com',
     foundingYear: '2021',
     email: 'contact@mickschroeder.com',
-    siteUrl: SITE_URL,
+    siteUrl: GATSBY_SITE_URL,
   },
   graphqlTypegen: {
     typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
@@ -45,7 +45,7 @@ const config: GatsbyConfig = {
         theme_color: '#1f2937',
         display: 'standalone',
         cache_busting_mode: 'none',
-        icon: "static/logo.png",
+        icon: "src/images/logo.png",
         icon_options: {
           purpose: 'any maskable',
         },
@@ -70,7 +70,7 @@ const config: GatsbyConfig = {
         defaultLanguage: DEFAULT_LANGUAGE,
         redirect: true,
         lowerCaseLng: false,
-        siteUrl: SITE_URL,
+        siteUrl: GATSBY_SITE_URL,
         i18nextOptions: {
           fallbackLng: DEFAULT_LANGUAGE,
           interpolation: { escapeValue: false },
@@ -99,12 +99,13 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingIds: [
-          'G-RMM4MSRDQM', // Google Analytics
-        ],
+        trackingIds: [process.env.GATSBY_GTAG_ID, process.env.GATSBY_GOOGLE_ADS_ID].filter(Boolean) as string[],
         pluginConfig: {
           head: true,
           respectDNT: true,
+        },
+        gtagConfig: {
+          anonymize_ip: true,
         },
       },
     },
@@ -150,7 +151,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-sitemap',
       options: {
-        resolveSiteUrl: () => SITE_URL,
+        resolveSiteUrl: () => GATSBY_SITE_URL,
         excludes: ['/redirect'],
         query: `
           {
@@ -217,12 +218,12 @@ const config: GatsbyConfig = {
           const languages = Array.from(languagesSet);
 
           const toHref = (lng: string, originalPath: string) =>
-            `${SITE_URL}${lng === defaultLanguage ? originalPath : `/${lng}${originalPath}`}`;
+            `${GATSBY_SITE_URL}${lng === defaultLanguage ? originalPath : `/${lng}${originalPath}`}`;
 
           const pages = Array.from(groups.values()).map((g) => {
             const canonicalPath = g.perLang[defaultLanguage!] || g.originalPath || '/';
             const links = [
-              { lang: 'x-default', url: `${SITE_URL}${g.originalPath || '/'}` },
+              { lang: 'x-default', url: `${GATSBY_SITE_URL}${g.originalPath || '/'}` },
               ...languages.map((lng) => ({ lang: lng, url: toHref(lng, g.originalPath || '/') })),
             ];
             return { path: canonicalPath, links };
@@ -231,7 +232,7 @@ const config: GatsbyConfig = {
           return pages;
         },
         serialize: (page) => ({
-          url: `${SITE_URL}${page.path}`,
+          url: `${GATSBY_SITE_URL}${page.path}`,
           links: page.links,
           changefreq: 'daily',
           priority: 0.7,
@@ -241,8 +242,8 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: SITE_URL,
-        sitemap: `${SITE_URL}/sitemap-index.xml`,
+        host: GATSBY_SITE_URL,
+        sitemap: `${GATSBY_SITE_URL}/sitemap-index.xml`,
         env: {
           development: {
             policy: [{ userAgent: '*', disallow: ['/'] }],

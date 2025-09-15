@@ -1,36 +1,47 @@
 {
-  "brand": "Nuacht Craic",
-  "by_author": "le Mick Schroeder",
-  "tagline": "Mearaigh an nuacht, faigh an craic.",
-  "headline": "Nuacht Craic",
-  "shuffle": "Mearaigh",
-  "latest": "Is déanaí",
-  "sources": "Foinsí",
-  "disclaimer": "Déantar an clár seo a dháileadh leis an dóchas go mbeidh sé úsáideach, ach gan aon bharántas; gan fiú an bharántas intuigthe maidir le hinmhargaidheacht nó oiriúnacht chun críche áirithe. D’fhéadfadh roinnt naisc a bheith urraithe nó cleamhnaithe a thuilleann coimisiún. Úsáideann an suíomh seo fianáin agus rianaitheoirí anailíse agus tacaíonn fógraíocht leis. Cuirtear na naisc seo ar fáil mar áis agus chun críocha faisnéise amháin; ní hionann iad agus formhuiniú ná ceadú ná tuairimí na heagraíochta ná an duine aonair sin. Níl sé freagrach as cruinneas, dlíthiúlacht ná ábhar an tsuímh sheachtraigh ná as naisc ina dhiaidh sin. Téigh i dteagmháil leis an suíomh seachtrach le haghaidh freagraí ar cheisteanna maidir lena n-ábhar.",
   "all_categories": "Gach Catagóir",
-  "select_categories": "Roghnaigh catagóirí...",
-  "clear_selection": "Glan roghnú",
-  "notfound": {
-    "title": "Leathanach gan aimsiú",
-    "message": "Tá brón orainn 😔, níor aimsíomar an rud a bhí á lorg agat.",
-    "gohome": "Fill abhaile"
-  },
-  "redirect": {
-    "heading": "Ag atreorú…",
-    "loading": "Á lódáil…",
-    "description": "Díreofar chugat go luath chuig:"
-  },
   "bookmark": {
-    "title": "Cuir an nasc Mearaigh i leabharmharcanna",
+    "copied": "Cóipeálta",
+    "copy": "Cóipeáil an nasc",
     "description": "Tarraing an nasc seo go do bharra leabharmharcanna, nó cliceáil deas air agus roghnaigh ‘Leabharmharc an nasc’.",
     "link_label": "Mearaigh (Cuir i leabharmharc mé)",
-    "copy": "Cóipeáil an nasc",
-    "copied": "Cóipeálta"
+    "title": "Cuir an nasc Mearaigh i leabharmharcanna"
   },
+  "brand": "Nuacht Craic",
+  "by_author": "le Mick Schroeder",
+  "clear_selection": "Glan roghnú",
+  "consent": {
+    "ads": "Fógraí",
+    "analytics": "Anailís",
+    "body": "Úsáidimid fianáin chun do thaithí a fheabhsú. Cabhraíonn anailís linn tuiscint a fháil ar úsáid; cumasaíonn Fógraí fógraí pearsantaithe agus tomhas tiontaithe. Is féidir leat é seo a athrú am ar bith i socruithe fianán.",
+    "decline": "Diúltaigh",
+    "privacy": "Féach ar ár <1>Beartas Príobháideachais</1> le haghaidh tuilleadh sonraí.",
+    "save": "Sábháil",
+    "selectAll": "Roghnaigh uile",
+    "acceptAll": "Glacadh le gach",
+    "title": "Úsáidimid fianáin"
+  },
+  "disclaimer": "Déantar an clár seo a dháileadh leis an dóchas go mbeidh sé úsáideach, ach gan aon bharántas; gan fiú an bharántas intuigthe maidir le hinmhargaidheacht nó oiriúnacht chun críche áirithe. D’fhéadfadh roinnt naisc a bheith urraithe nó cleamhnaithe a thuilleann coimisiún. Úsáideann an suíomh seo fianáin agus rianaitheoirí anailíse agus tacaíonn fógraíocht leis. Cuirtear na naisc seo ar fáil mar áis agus chun críocha faisnéise amháin; ní hionann iad agus formhuiniú ná ceadú ná tuairimí na heagraíochta ná an duine aonair sin. Níl sé freagrach as cruinneas, dlíthiúlacht ná ábhar an tsuímh sheachtraigh ná as naisc ina dhiaidh sin. Téigh i dteagmháil leis an suíomh seachtrach le haghaidh freagraí ar cheisteanna maidir lena n-ábhar.",
+  "headline": "Nuacht Craic",
   "home": "Baile",
+  "latest": "Is déanaí",
   "loading": "Á lódáil…",
+  "notfound": {
+    "gohome": "Fill abhaile",
+    "message": "Tá brón orainn 😔, níor aimsíomar an rud a bhí á lorg agat.",
+    "title": "Leathanach gan aimsiú"
+  },
   "open_in_new_tab": "Oscail i gcluaisín nua",
-  "shuffle_next": "Mearaigh an chéad suíomh eile",
   "open_site": "Oscail suíomh: {{name}}",
+  "redirect": {
+    "description": "Díreofar chugat go luath chuig:",
+    "heading": "Ag atreorú…",
+    "loading": "Á lódáil…"
+  },
+  "select_categories": "Roghnaigh catagóirí...",
+  "shuffle": "Mearaigh",
+  "shuffle_next": "Mearaigh an chéad suíomh eile",
+  "sources": "Foinsí",
+  "tagline": "Mearaigh an nuacht, faigh an craic.",
   "terms_privacy": "Téarmaí & Príobháideachas"
 }
