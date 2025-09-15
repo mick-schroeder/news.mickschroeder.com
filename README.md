@@ -1,8 +1,8 @@
-# 🔀 Web Shuffle
+# 🔀 New Craic
 
 Take me to a random website, please.
 
-Hit the "Web Shuffle" button and you will be sent to a random website from the most influential sites across the web.
+Hit the "New Craic" button and you will be sent to a random website from the most influential sites across the web.
 
 ## Tech Stack
 
@@ -15,8 +15,8 @@ Hit the "Web Shuffle" button and you will be sent to a random website from the m
 ### Development
 
     ```shell
-    git clone https://github.com/mick-schroeder/schroeder-web-shuffle.git
-    cd schroeder-Web Shuffle
+    git clone https://github.com/mick-schroeder/schroeder-news-craic.git
+    cd schroeder-news-craic
     npm install
     npm run develop
     ```

@@ -130,6 +130,14 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        name: "mdpages",
+        path: "./src/md-pages/",
+      },
+      __key: "mdpages",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "pages",
         path: "./src/pages/",
       },
@@ -138,7 +146,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        extensions: [".mdx"],
+        extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [],
       },
     },

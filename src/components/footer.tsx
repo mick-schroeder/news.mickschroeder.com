@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, Trans } from "gatsby-plugin-react-i18next";
 import logo from "../images/logo.svg";
 import { useStaticQuery, graphql } from "gatsby";
-import { Trans } from "gatsby-plugin-react-i18next";
+// Trans imported above
 import { Separator } from "./ui/separator";
 
 const currentYear = new Date().getFullYear();
@@ -37,6 +37,11 @@ const FooterBar = () => {
                 {data.site.siteMetadata.author}
               </a>
               .
+            </p>
+            <p className="mt-2">
+              <Link to="/terms-privacy" className="underline hover:no-underline text-foreground">
+                <Trans i18nKey="terms_privacy" defaults="Terms & Privacy" />
+              </Link>
             </p>
             <p className="py-4 md:p-10 text-xs text-justify text-muted-foreground">
               <Trans i18nKey="disclaimer" />
