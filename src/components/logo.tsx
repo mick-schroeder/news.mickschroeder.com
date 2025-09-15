@@ -2,7 +2,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Link , Trans } from 'gatsby-plugin-react-i18next';
-import logo from '../images/logo.svg';
+import logo from '../images/logo-circle.svg';
 
 type LogoProps = { showAuthor?: boolean };
 

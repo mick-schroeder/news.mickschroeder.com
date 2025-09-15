@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Trans } from 'gatsby-plugin-react-i18next';
-import logo from '../images/logo.svg';
+import logo from '../images/logo-circle.svg';
 import { useStaticQuery, graphql } from 'gatsby';
 // Trans imported above
 import { Separator } from './ui/separator';

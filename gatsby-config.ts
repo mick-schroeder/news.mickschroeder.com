@@ -23,8 +23,7 @@ const config: GatsbyConfig = {
     title: 'News Craic',
     tagLine: 'Shuffle the news, find the craic.',
     description: 'News Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.',
-    twitterUsername: '@mick_schroeder',
-    image: '/web-shuffle-large-promo.png',
+    image: '/large-promo.png',
     author: 'Mick Schroeder, LLC',
     authorUrl: 'https://www.mickschroeder.com',
     foundingYear: '2021',
@@ -46,7 +45,7 @@ const config: GatsbyConfig = {
         theme_color: '#1f2937',
         display: 'standalone',
         cache_busting_mode: 'none',
-        icon: 'src/images/icon.svg',
+        icon: "static/logo.png",
         icon_options: {
           purpose: 'any maskable',
         },
