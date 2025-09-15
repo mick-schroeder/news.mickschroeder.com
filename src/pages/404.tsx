@@ -1,60 +1,30 @@
-import * as React from 'react';
-import { Link, HeadFC, PageProps } from 'gatsby';
+import React from 'react';
+import { Link, graphql } from 'gatsby';
 import { Trans } from 'gatsby-plugin-react-i18next';
-import { graphql } from 'gatsby';
+import SiteLayout from '../components/site-layout';
+import { SEO } from '../components/seo';
 import '../fragments/locale';
 
-const pageStyles = {
-  color: '#232129',
-  padding: '96px',
-  fontFamily: '-apple-system, sans-serif, serif',
-};
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-};
-
-const paragraphStyles = {
-  marginBottom: 48,
-};
-const codeStyles = {
-  color: '#8A6534',
-  padding: 4,
-  backgroundColor: '#FFF4DB',
-  fontSize: '1.25rem',
-  borderRadius: 4,
-};
-
-const NotFoundPage: React.FC<PageProps> = () => {
+const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        <Trans i18nKey="notfound.title" />
-      </h1>
-      <p style={paragraphStyles}>
-        <Trans i18nKey="notfound.message" />
-        <br />
-        {process.env.NODE_ENV === 'development' ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">
+    <SiteLayout>
+      <main className="mx-auto max-w-prose py-16 px-6 text-center">
+        <h1 className="mb-6 text-3xl font-bold">
+          <Trans i18nKey="notfound.title" />
+        </h1>
+        <p className="mb-8 text-base text-muted-foreground">
+          <Trans i18nKey="notfound.message" />
+        </p>
+        <Link to="/" className="underline underline-offset-4 hover:no-underline">
           <Trans i18nKey="notfound.gohome" />
         </Link>
-        .
-      </p>
-    </main>
+      </main>
+    </SiteLayout>
   );
 };
 
 export default NotFoundPage;
-
-export const Head: HeadFC = () => <title>Not found</title>;
+export const Head = () => <SEO title="404 — Not found" noindex />;
 
 export const query = graphql`
   query NotFoundPageQuery($language: String!) {

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useI18next } from 'gatsby-plugin-react-i18next';
-import { Link } from 'gatsby-plugin-react-i18next';
+import { useI18next , Link } from 'gatsby-plugin-react-i18next';
 import { Button } from './ui/button';
 import {
   DropdownMenu,

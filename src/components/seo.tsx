@@ -25,7 +25,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image}`,
-    url: `${siteUrl}${pathname || originalPath || ``}`,
+    url: `${siteUrl}${pathname || originalPath || ''}`,
     twitterUsername,
   };
 
@@ -70,7 +70,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
           return <link key={lng} rel="alternate" hrefLang={lng} href={href} />;
         })}
       {defaultLanguage && (
-        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}${originalPath || ``}`} />
+        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}${originalPath || ''}`} />
       )}
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />

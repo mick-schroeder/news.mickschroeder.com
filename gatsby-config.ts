@@ -19,16 +19,16 @@ const DEFAULT_LANGUAGE = ((): string => {
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    name: `News Craic`,
-    title: `News Craic`,
-    tagLine: `Shuffle the news, find the craic.`,
-    description: `News Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.`,
-    twitterUsername: `@mick_schroeder`,
-    image: `/web-shuffle-large-promo.png`,
-    author: `Mick Schroeder, LLC`,
-    authorUrl: `https://www.mickschroeder.com`,
-    foundingYear: `2021`,
-    email: `contact@mickschroeder.com`,
+    name: 'News Craic',
+    title: 'News Craic',
+    tagLine: 'Shuffle the news, find the craic.',
+    description: 'News Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.',
+    twitterUsername: '@mick_schroeder',
+    image: '/web-shuffle-large-promo.png',
+    author: 'Mick Schroeder, LLC',
+    authorUrl: 'https://www.mickschroeder.com',
+    foundingYear: '2021',
+    email: 'contact@mickschroeder.com',
     siteUrl: SITE_URL,
   },
   graphqlTypegen: {
@@ -36,19 +36,19 @@ const config: GatsbyConfig = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `News Craic`,
-        short_name: `News Craic`,
-        start_url: `/`,
-        background_color: `#1f2937`,
+        name: 'News Craic',
+        short_name: 'News Craic',
+        start_url: '/',
+        background_color: '#1f2937',
         lang: DEFAULT_LANGUAGE,
-        theme_color: `#1f2937`,
-        display: `standalone`,
+        theme_color: '#1f2937',
+        display: 'standalone',
         cache_busting_mode: 'none',
-        icon: `src/images/icon.svg`,
+        icon: 'src/images/icon.svg',
         icon_options: {
-          purpose: `any maskable`,
+          purpose: 'any maskable',
         },
       },
     },
@@ -60,8 +60,8 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: { name: `screenshots`, path: `${__dirname}/static/screenshots` },
+      resolve: 'gatsby-source-filesystem',
+      options: { name: 'screenshots', path: `${__dirname}/static/screenshots` },
     },
     {
       resolve: 'gatsby-plugin-react-i18next',
@@ -85,10 +85,10 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    `gatsby-plugin-postcss`,
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-offline',
       options: {
@@ -98,7 +98,7 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
         trackingIds: [
           'G-RMM4MSRDQM', // Google Analytics
@@ -113,7 +113,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'data',
-        path: `./src/data/`,
+        path: './src/data/',
       },
     },
     'gatsby-transformer-json',
@@ -149,7 +149,7 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-sitemap`,
+      resolve: 'gatsby-plugin-sitemap',
       options: {
         resolveSiteUrl: () => SITE_URL,
         excludes: ['/redirect'],
@@ -234,7 +234,7 @@ const config: GatsbyConfig = {
         serialize: (page) => ({
           url: `${SITE_URL}${page.path}`,
           links: page.links,
-          changefreq: `daily`,
+          changefreq: 'daily',
           priority: 0.7,
         }),
       },

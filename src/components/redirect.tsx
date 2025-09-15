@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { Trans } from 'gatsby-plugin-react-i18next';
 import { Loader2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { useNextSiteContext } from './next-site-context';
-import { useI18next, Trans } from 'gatsby-plugin-react-i18next';
 
 const Redirecter: React.FC = () => {
   const { nextSite, refreshNextSite } = useNextSiteContext();
-  const { language } = useI18next();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    refreshNextSite(language);
+    refreshNextSite();
     const retry = setTimeout(() => {
-      if (!nextSite) refreshNextSite(language);
+      if (!nextSite) refreshNextSite();
     }, 600);
+    setIsLoading(false);
     return () => clearTimeout(retry);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language]);
+  }, [refreshNextSite]);
 
   useEffect(() => {
     if (!nextSite) return;
     if (typeof window === 'undefined') return;
     if (nextSite === window.location.href) return;
 
-    setIsLoading(true);
+    setIsLoading(false);
     const t = setTimeout(() => {
       window.location.replace(nextSite);
     }, 150);
@@ -31,8 +30,8 @@ const Redirecter: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center">
-        <div className="bg-card rounded-lg p-8 shadow-md my-16 flex flex-col items-center justify-center ">
+      <div className="flex items-center justify-center min-h-[60vh] p-6">
+        <div className="bg-card rounded-lg p-10 shadow-lg border border-border text-center my-16 flex flex-col items-center justify-center ">
           <p className="text-xl font-bold mb-4 text-card-foreground">
             <Trans i18nKey="redirect.heading" />
           </p>
@@ -48,8 +47,8 @@ const Redirecter: React.FC = () => {
   }
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="bg-card rounded-lg p-8 shadow-md">
+    <div className="flex items-center justify-center min-h-[60vh] p-6">
+      <div className="bg-card rounded-lg p-10 shadow-lg border border-border text-center">
         <p className="text-xl font-bold mb-4 text-card-foreground">
           <Trans i18nKey="redirect.heading" />
         </p>

@@ -1,21 +1,16 @@
+import crypto from 'crypto';
+import fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import processSourcesModule from './processSources.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-import fs from 'fs';
-import crypto from 'crypto';
-import processSourcesModule from './processSources.js';
 const { preProcessSources } = processSourcesModule;
-
-const shouldForceRegenerate = process.env.FORCE_REGENERATE === 'true';
 
 // Constants
 const JSON_PATH = './src/data/sources.json';
 const SCREENSHOT_PATH = './static/screenshots'; // generated screenshots live here
 const CONCURRENT_PAGES = 5;
-
-const isDevelopment = process.env.NODE_ENV === 'development';
-const isProduction = process.env.NODE_ENV === 'production';
 
 export const onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({

@@ -1,9 +1,8 @@
 //import PropTypes from "prop-types"
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Link } from 'gatsby-plugin-react-i18next';
+import { Link , Trans } from 'gatsby-plugin-react-i18next';
 import logo from '../images/logo.svg';
-import { Trans } from 'gatsby-plugin-react-i18next';
 
 type LogoProps = { showAuthor?: boolean };
 

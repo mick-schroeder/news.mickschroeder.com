@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSourceCategoryContext } from './context/SourceCategoryContext';
-import { Button } from '@/components/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useStaticQuery, graphql } from 'gatsby';
-import { Trans } from 'gatsby-plugin-react-i18next';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { graphql, useStaticQuery } from 'gatsby';
+import { Trans } from 'gatsby-plugin-react-i18next';
+import { useSourceCategoryContext } from './context/SourceCategoryContext';
+import { ChevronDown } from 'lucide-react';
 
 export const SourceCategorySelector: React.FC = () => {
   const { selectedCategories, setSelectedCategories } = useSourceCategoryContext();
@@ -69,12 +70,10 @@ export const SourceCategorySelector: React.FC = () => {
           aria-expanded={open}
           aria-label="Select categories"
         >
-          {display}
-          {!isAllSelected && selectedCategories.length > 0 && (
-            <Badge variant="secondary" className="ml-2">
-              {selectedCategories.length}
-            </Badge>
-          )}
+          <span className="flex items-center gap-2">
+            {display}
+          </span>
+          <ChevronDown aria-hidden="true" className="w-4 h-4 ms-auto" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[220px] p-0">
