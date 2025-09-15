@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Link, Trans } from 'gatsby-plugin-react-i18next';
 import RedirectButton from './redirect-button';
 import Logo from '../components/logo';

@@ -17,7 +17,6 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
     description: defaultDescription,
     image,
     siteUrl,
-    twitterUsername,
   } = useSiteMetadata();
   const { language, languages, originalPath, defaultLanguage } = useI18next() as any;
 
@@ -26,7 +25,6 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
     description: description || defaultDescription,
     image: `${siteUrl}${image}`,
     url: `${siteUrl}${pathname || originalPath || ''}`,
-    twitterUsername,
   };
 
   const ogLocale = (language || defaultLanguage || 'en').toString().replace('-', '_');
@@ -46,8 +44,6 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
-      <meta name="twitter:creator" content={seo.twitterUsername} />
-      <meta name="twitter:site" content={seo.twitterUsername} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />

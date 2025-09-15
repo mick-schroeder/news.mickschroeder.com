@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from 'react';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { Loader2 } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
 import { useNextSiteContext } from './next-site-context';
 
 const Redirecter: React.FC = () => {
