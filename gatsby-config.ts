@@ -1,22 +1,20 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-import type { GatsbyConfig } from "gatsby";
-import fs from "fs";
-import path from "path";
+import type { GatsbyConfig } from 'gatsby';
+import fs from 'fs';
+import path from 'path';
 
-const SITE_URL = process.env.SITE_URL || "https://news.mickschroeder.com";
-const LOCALES_DIR = path.join(__dirname, "src", "locales");
+const SITE_URL = process.env.SITE_URL || 'https://news.mickschroeder.com';
+const LOCALES_DIR = path.join(__dirname, 'src', 'locales');
 const languages = fs.existsSync(LOCALES_DIR)
-  ? fs
-      .readdirSync(LOCALES_DIR)
-      .filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
-  : ["en"];
+  ? fs.readdirSync(LOCALES_DIR).filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
+  : ['en'];
 const DEFAULT_LANGUAGE = ((): string => {
   const envDefault = process.env.DEFAULT_LANGUAGE;
   if (envDefault && languages.includes(envDefault)) return envDefault;
-  return languages[0] || "en";
+  return languages[0] || 'en';
 })();
 
 const config: GatsbyConfig = {
@@ -47,7 +45,7 @@ const config: GatsbyConfig = {
         lang: DEFAULT_LANGUAGE,
         theme_color: `#1f2937`,
         display: `standalone`,
-        cache_busting_mode: "none",
+        cache_busting_mode: 'none',
         icon: `src/images/icon.svg`,
         icon_options: {
           purpose: `any maskable`,
@@ -55,47 +53,47 @@ const config: GatsbyConfig = {
       },
     },
     {
-  resolve: 'gatsby-source-filesystem',
-  options: {
-    name: 'locale',
-    path: `${__dirname}/src/locales`,
-  },
-},
-{
-  resolve: `gatsby-source-filesystem`,
-  options: { name: `screenshots`, path: `${__dirname}/static/screenshots` },
-},
-    {
-  resolve: 'gatsby-plugin-react-i18next',
-  options: {
-    localeJsonSourceName: 'locale', 
-    languages,
-    defaultLanguage: DEFAULT_LANGUAGE,
-    redirect: true,
-    lowerCaseLng: false,
-    siteUrl: SITE_URL,
-    i18nextOptions: {
-      fallbackLng: DEFAULT_LANGUAGE,
-      interpolation: { escapeValue: false },
-      supportedLngs: languages,
-      ns: ['common'],
-      defaultNS: 'common',
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'locale',
+        path: `${__dirname}/src/locales`,
+      },
     },
-    pages: [
-      // keep MDX/pages localized by filename or directory later if you want
-      // { matchPath: '/:lang?/news/:uid', getLanguageFromPath: true },
-    ],
-  },
-},
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: { name: `screenshots`, path: `${__dirname}/static/screenshots` },
+    },
+    {
+      resolve: 'gatsby-plugin-react-i18next',
+      options: {
+        localeJsonSourceName: 'locale',
+        languages,
+        defaultLanguage: DEFAULT_LANGUAGE,
+        redirect: true,
+        lowerCaseLng: false,
+        siteUrl: SITE_URL,
+        i18nextOptions: {
+          fallbackLng: DEFAULT_LANGUAGE,
+          interpolation: { escapeValue: false },
+          supportedLngs: languages,
+          ns: ['common'],
+          defaultNS: 'common',
+        },
+        pages: [
+          // keep MDX/pages localized by filename or directory later if you want
+          // { matchPath: '/:lang?/news/:uid', getLanguageFromPath: true },
+        ],
+      },
+    },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
-      resolve: "gatsby-plugin-offline",
+      resolve: 'gatsby-plugin-offline',
       options: {
         workboxConfig: {
-          globPatterns: ["**/icons*"],
+          globPatterns: ['**/icons*'],
         },
       },
     },
@@ -103,8 +101,8 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: [
-          "G-RMM4MSRDQM", // Google Analytics        
-          ],
+          'G-RMM4MSRDQM', // Google Analytics
+        ],
         pluginConfig: {
           head: true,
           respectDNT: true,
@@ -112,41 +110,41 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "data",
+        name: 'data',
         path: `./src/data/`,
       },
     },
-    "gatsby-transformer-json",
+    'gatsby-transformer-json',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'images',
+        path: './src/images/',
       },
-      __key: "images",
+      __key: 'images',
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "mdpages",
-        path: "./src/md-pages/",
+        name: 'mdpages',
+        path: './src/md-pages/',
       },
-      __key: "mdpages",
+      __key: 'mdpages',
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        name: 'pages',
+        path: './src/pages/',
       },
-      __key: "pages",
+      __key: 'pages',
     },
     {
-      resolve: "gatsby-plugin-mdx",
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        extensions: [".mdx", ".md"],
+        extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [],
       },
     },
@@ -154,7 +152,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         resolveSiteUrl: () => SITE_URL,
-        excludes: ["/redirect"],
+        excludes: ['/redirect'],
         query: `
           {
             allSitePage {
@@ -179,17 +177,21 @@ const config: GatsbyConfig = {
             const ctx = (n as any).context || (n as any).pageContext || {};
             const i18n = ctx.i18n || {};
             const language: string | undefined = i18n.language || langFromPath(n.path);
-            const originalPath: string = i18n.originalPath || (language ? n.path.replace(new RegExp(`^/${language}(?=/|$)`), "") : n.path) || "/";
+            const originalPath: string =
+              i18n.originalPath ||
+              (language ? n.path.replace(new RegExp(`^/${language}(?=/|$)`), '') : n.path) ||
+              '/';
             const langs: string[] = Array.isArray(i18n.languages) ? i18n.languages : [];
             if (langs.length) langs.forEach((l) => languagesSet.add(l));
             if (language) languagesSet.add(language);
             if (!defaultLanguage && i18n.defaultLanguage) defaultLanguage = i18n.defaultLanguage;
 
-            const key = originalPath || "/";
-            if (!groups.has(key)) groups.set(key, { originalPath: key, perLang: {} as Record<string, string> });
+            const key = originalPath || '/';
+            if (!groups.has(key))
+              groups.set(key, { originalPath: key, perLang: {} as Record<string, string> });
             if (language) groups.get(key).perLang[language] = n.path;
             // Also store default fallback if no language identified
-            if (!language) groups.get(key).perLang["__default__"] = n.path;
+            if (!language) groups.get(key).perLang['__default__'] = n.path;
           }
 
           // Heuristic if defaultLanguage not in context: prefer the language whose page has no prefix
@@ -198,7 +200,7 @@ const config: GatsbyConfig = {
             for (const [, g] of groups) {
               const perLang = g.perLang;
               for (const lang of Object.keys(perLang)) {
-                if (lang === "__default__") continue;
+                if (lang === '__default__') continue;
                 const p = perLang[lang];
                 if (p === g.originalPath) {
                   defaultLanguage = lang;
@@ -219,10 +221,10 @@ const config: GatsbyConfig = {
             `${SITE_URL}${lng === defaultLanguage ? originalPath : `/${lng}${originalPath}`}`;
 
           const pages = Array.from(groups.values()).map((g) => {
-            const canonicalPath = g.perLang[defaultLanguage!] || g.originalPath || "/";
+            const canonicalPath = g.perLang[defaultLanguage!] || g.originalPath || '/';
             const links = [
-              { lang: "x-default", url: `${SITE_URL}${g.originalPath || "/"}` },
-              ...languages.map((lng) => ({ lang: lng, url: toHref(lng, g.originalPath || "/") })),
+              { lang: 'x-default', url: `${SITE_URL}${g.originalPath || '/'}` },
+              ...languages.map((lng) => ({ lang: lng, url: toHref(lng, g.originalPath || '/') })),
             ];
             return { path: canonicalPath, links };
           });
@@ -238,18 +240,18 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: SITE_URL,
         sitemap: `${SITE_URL}/sitemap-index.xml`,
         env: {
           development: {
-            policy: [{ userAgent: "*", disallow: ["/"] }],
+            policy: [{ userAgent: '*', disallow: ['/'] }],
           },
           production: {
             policy: [
-              { userAgent: "*", allow: "/" },
-              { userAgent: "*", disallow: ["/redirect"] },
+              { userAgent: '*', allow: '/' },
+              { userAgent: '*', disallow: ['/redirect'] },
             ],
           },
         },

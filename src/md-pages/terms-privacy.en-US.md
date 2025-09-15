@@ -1,7 +1,7 @@
 ---
 title: Terms and Privacy Policy
 description: New Craic Terms of Use and Privacy Policy.
-slug: "terms-privacy"
+slug: 'terms-privacy'
 ---
 
 # Terms of Use

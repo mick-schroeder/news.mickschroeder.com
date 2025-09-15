@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useNextSiteContext } from "../components/next-site-context";
-import SiteLayout from "../components/site-layout"; // Import the Layout component
-import Redirecter from "../components/redirect";
-import { SEO } from "../components/seo";
-import { Trans } from "gatsby-plugin-react-i18next";
-import { graphql } from "gatsby";
-import "../fragments/locale";
+import React, { useEffect } from 'react';
+import { useNextSiteContext } from '../components/next-site-context';
+import SiteLayout from '../components/site-layout'; // Import the Layout component
+import Redirecter from '../components/redirect';
+import { SEO } from '../components/seo';
+import { Trans } from 'gatsby-plugin-react-i18next';
+import { graphql } from 'gatsby';
+import '../fragments/locale';
 
 const RedirectPage = () => {
   return (

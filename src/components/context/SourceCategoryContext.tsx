@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 // Type for the context value
 interface SourceCategoryContextType {
@@ -12,23 +12,29 @@ const SourceCategoryContext = createContext<SourceCategoryContextType | undefine
 export const useSourceCategoryContext = () => {
   const context = useContext(SourceCategoryContext);
   if (!context) {
-    throw new Error("useSourceCategoryContext must be used within a SourceCategoryProvider");
+    throw new Error('useSourceCategoryContext must be used within a SourceCategoryProvider');
   }
   return context;
 };
 
-export const SourceCategoryProvider = ({ children, defaultCategories = [] }: { children: ReactNode; defaultCategories?: string[] }) => {
+export const SourceCategoryProvider = ({
+  children,
+  defaultCategories = [],
+}: {
+  children: ReactNode;
+  defaultCategories?: string[];
+}) => {
   const [selectedCategories, setSelectedCategoriesState] = useState<string[]>(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("selectedCategories");
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('selectedCategories');
       if (stored) return JSON.parse(stored);
     }
     return defaultCategories;
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("selectedCategories", JSON.stringify(selectedCategories));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedCategories', JSON.stringify(selectedCategories));
     }
   }, [selectedCategories]);
 

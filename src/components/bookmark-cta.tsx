@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Link, Trans } from "gatsby-plugin-react-i18next";
-import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
-import { Bookmark, Copy, Check } from "lucide-react";
+import * as React from 'react';
+import { Link, Trans } from 'gatsby-plugin-react-i18next';
+import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
+import { Button } from './ui/button';
+import { Bookmark, Copy, Check } from 'lucide-react';
 
 const BookmarkCTA: React.FC = () => {
   const linkRef = React.useRef<HTMLAnchorElement>(null);
@@ -10,7 +10,7 @@ const BookmarkCTA: React.FC = () => {
 
   // Sync the visible anchor's href to the localized Link's resolved URL
   React.useEffect(() => {
-    const el = document.getElementById("bookmark-localized") as HTMLAnchorElement | null;
+    const el = document.getElementById('bookmark-localized') as HTMLAnchorElement | null;
     if (el && linkRef.current) {
       linkRef.current.href = el.href; // absolute, localized URL
     }

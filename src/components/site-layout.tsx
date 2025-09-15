@@ -1,8 +1,8 @@
-import React from "react";
-import { NextSiteProvider } from "./next-site-context";
-import { SourceCategoryProvider } from "./context/SourceCategoryContext";
-import Navbar from "./navbar";
-import FooterBar from "./footer";
+import React from 'react';
+import { NextSiteProvider } from './next-site-context';
+import { SourceCategoryProvider } from './context/SourceCategoryContext';
+import Navbar from './navbar';
+import FooterBar from './footer';
 
 const SiteLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
   <SourceCategoryProvider>

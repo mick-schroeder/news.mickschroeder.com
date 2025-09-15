@@ -1,7 +1,7 @@
-import React from "react";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
-import { Script } from "gatsby";
-import { useI18next } from "gatsby-plugin-react-i18next";
+import React from 'react';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
+import { Script } from 'gatsby';
+import { useI18next } from 'gatsby-plugin-react-i18next';
 
 type SEOProps = {
   title?: string;
@@ -12,8 +12,13 @@ type SEOProps = {
 };
 
 export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex, children }) => {
-  const { title: defaultTitle, description: defaultDescription, image, siteUrl, twitterUsername } =
-    useSiteMetadata();
+  const {
+    title: defaultTitle,
+    description: defaultDescription,
+    image,
+    siteUrl,
+    twitterUsername,
+  } = useSiteMetadata();
   const { language, languages, originalPath, defaultLanguage } = useI18next() as any;
 
   const seo = {
@@ -24,11 +29,11 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
     twitterUsername,
   };
 
-  const ogLocale = ((language || defaultLanguage || "en").toString()).replace("-", "_");
+  const ogLocale = (language || defaultLanguage || 'en').toString().replace('-', '_');
 
   return (
     <>
-      <html lang={(language || defaultLanguage || "en").toLowerCase()} />
+      <html lang={(language || defaultLanguage || 'en').toLowerCase()} />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta name="google-adsense-account" content="ca-pub-6344797609391119" />
@@ -50,16 +55,18 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={defaultTitle} />
       <meta property="og:locale" content={ogLocale} />
-      {languages && defaultLanguage &&
+      {languages &&
+        defaultLanguage &&
         languages
           .filter((lng) => lng !== language)
           .map((lng) => (
-            <meta key={lng} property="og:locale:alternate" content={lng.replace("-", "_")} />
+            <meta key={lng} property="og:locale:alternate" content={lng.replace('-', '_')} />
           ))}
       <link rel="canonical" href={seo.url} />
-      {languages && defaultLanguage &&
+      {languages &&
+        defaultLanguage &&
         languages.map((lng) => {
-          const href = `${siteUrl}${lng === defaultLanguage ? originalPath || "" : `/${lng}${originalPath || ""}`}`;
+          const href = `${siteUrl}${lng === defaultLanguage ? originalPath || '' : `/${lng}${originalPath || ''}`}`;
           return <link key={lng} rel="alternate" hrefLang={lng} href={href} />;
         })}
       {defaultLanguage && (
@@ -86,7 +93,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
         "name": "${defaultTitle}"
       }`}
       </script>
-      {process.env.NODE_ENV === "production" && (
+      {process.env.NODE_ENV === 'production' && (
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6344797609391119"

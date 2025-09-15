@@ -1,13 +1,13 @@
-import React, { useMemo } from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./ui/card";
-import { AspectRatio } from "./ui/aspect-ratio";
-import { ExternalLink } from "lucide-react";
-import { Button } from "./ui/button";
-import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-import { Badge } from "./ui/badge";
-import { useSourceCategoryContext } from "./context/SourceCategoryContext";
+import React, { useMemo } from 'react';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/card';
+import { AspectRatio } from './ui/aspect-ratio';
+import { ExternalLink } from 'lucide-react';
+import { Button } from './ui/button';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { Badge } from './ui/badge';
+import { useSourceCategoryContext } from './context/SourceCategoryContext';
 
 type Source = {
   name: string;
@@ -21,7 +21,7 @@ type Source = {
 type Props = {
   items: Source[];
   limit?: number;
-  sort?: "alphabetical" | "rating";
+  sort?: 'alphabetical' | 'rating';
 };
 
 const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
@@ -30,20 +30,18 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
   // Filter items by selected categories (empty = all)
   const filteredItems = useMemo(() => {
     if (!selectedCategories.length) return items;
-    return items.filter((item) =>
-      item.categories.some((cat) => selectedCategories.includes(cat))
-    );
+    return items.filter((item) => item.categories.some((cat) => selectedCategories.includes(cat)));
   }, [items, selectedCategories]);
 
   const sortedSources = useMemo(() => {
     let list = [...filteredItems];
     switch (sort) {
-      case "alphabetical":
+      case 'alphabetical':
         list.sort((a, b) => a.name.localeCompare(b.name));
         break;
-      case "rating": {
+      case 'rating': {
         const scoreOf = (s: any) => {
-          const n = parseFloat(String(s ?? "0"));
+          const n = parseFloat(String(s ?? '0'));
           return Number.isFinite(n) ? n : 0;
         };
         list.sort((a, b) => scoreOf(b.score) - scoreOf(a.score));
@@ -51,7 +49,7 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
       }
       default: {
         const scoreOf = (s: any) => {
-          const n = parseFloat(String(s ?? "0"));
+          const n = parseFloat(String(s ?? '0'));
           return Number.isFinite(n) ? n : 0;
         };
         list.sort((a, b) => scoreOf(b.score) - scoreOf(a.score));
@@ -72,9 +70,9 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
           {sortedSources.map((node, idx) => {
             const { name, url, hash, screenshot, categories } = node;
             const image = getImage(screenshot);
-            const eager: "eager" | "lazy" = idx < 3 ? "eager" : "lazy";
-            const fetchP = idx < 3 ? "high" : undefined;
-            const categoriesText = categories.join(", ");
+            const eager: 'eager' | 'lazy' = idx < 3 ? 'eager' : 'lazy';
+            const fetchP = idx < 3 ? 'high' : undefined;
+            const categoriesText = categories.join(', ');
             const titleId = `card-title-${hash || idx}`;
             let host = url;
             try {
@@ -88,12 +86,12 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
                 tabIndex={0}
                 aria-labelledby={titleId}
                 onClick={() => {
-                  if (typeof window !== "undefined") window.open(url, "_blank", "noopener");
+                  if (typeof window !== 'undefined') window.open(url, '_blank', 'noopener');
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
+                  if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    if (typeof window !== "undefined") window.open(url, "_blank", "noopener");
+                    if (typeof window !== 'undefined') window.open(url, '_blank', 'noopener');
                   }
                 }}
               >
@@ -118,7 +116,9 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
                       </a>
                     </CardTitle>
                     {categoriesText ? (
-                      <Badge variant="secondary" className="shrink-0">{categoriesText}</Badge>
+                      <Badge variant="secondary" className="shrink-0">
+                        {categoriesText}
+                      </Badge>
                     ) : null}
                   </div>
                 </CardHeader>
@@ -155,7 +155,7 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
                       rel="noopener noreferrer"
                       className="block truncate text-xs font-semibold text-primary hover:underline flex-1 min-w-0"
                       title={url}
-                      aria-label={String(t("open_site", { name }))}
+                      aria-label={String(t('open_site', { name }))}
                       tabIndex={-1}
                       aria-hidden="true"
                       onClick={(e) => {
@@ -171,7 +171,7 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
                             href={url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={String(t("open_site", { name }))}
+                            aria-label={String(t('open_site', { name }))}
                             tabIndex={-1}
                             aria-hidden="true"
                             onClick={(e) => {
@@ -182,7 +182,9 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
                           </a>
                         </Button>
                       </TooltipTrigger>
-                      <TooltipContent><Trans i18nKey="open_in_new_tab" /></TooltipContent>
+                      <TooltipContent>
+                        <Trans i18nKey="open_in_new_tab" />
+                      </TooltipContent>
                     </Tooltip>
                   </div>
                 </CardFooter>

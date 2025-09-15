@@ -1,8 +1,8 @@
-import React from "react";
-import { graphql, PageProps } from "gatsby";
-import SiteLayout from "@/components/site-layout";
-import { SEO } from "@/components/seo";
-import "../fragments/locale";
+import React from 'react';
+import { graphql, PageProps } from 'gatsby';
+import SiteLayout from '@/components/site-layout';
+import { SEO } from '@/components/seo';
+import '../fragments/locale';
 
 type DataProps = {
   mdx: {

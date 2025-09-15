@@ -1,12 +1,12 @@
-import React from "react";
-import { useSourceCategoryContext } from "./context/SourceCategoryContext";
-import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useStaticQuery, graphql } from "gatsby";
-import { Trans } from "gatsby-plugin-react-i18next";
-import { Badge } from "@/components/ui/badge";
+import React from 'react';
+import { useSourceCategoryContext } from './context/SourceCategoryContext';
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
+import { Checkbox } from '@/components/ui/checkbox';
+import { useStaticQuery, graphql } from 'gatsby';
+import { Trans } from 'gatsby-plugin-react-i18next';
+import { Badge } from '@/components/ui/badge';
 
 export const SourceCategorySelector: React.FC = () => {
   const { selectedCategories, setSelectedCategories } = useSourceCategoryContext();
@@ -28,7 +28,8 @@ export const SourceCategorySelector: React.FC = () => {
   }, [data]);
 
   const [open, setOpen] = React.useState(false);
-  const isAllSelected = selectedCategories.length === 0 || selectedCategories.length === allCategories.length;
+  const isAllSelected =
+    selectedCategories.length === 0 || selectedCategories.length === allCategories.length;
 
   // Memoized handlers
   const handleToggle = React.useCallback(
@@ -52,9 +53,11 @@ export const SourceCategorySelector: React.FC = () => {
     setSelectedCategories([]);
   }, [setSelectedCategories]);
 
-  const display = isAllSelected
-    ? <Trans i18nKey="all_categories" defaults="All Categories" />
-    : selectedCategories.join(", ");
+  const display = isAllSelected ? (
+    <Trans i18nKey="all_categories" defaults="All Categories" />
+  ) : (
+    selectedCategories.join(', ')
+  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -68,7 +71,9 @@ export const SourceCategorySelector: React.FC = () => {
         >
           {display}
           {!isAllSelected && selectedCategories.length > 0 && (
-            <Badge variant="secondary" className="ml-2">{selectedCategories.length}</Badge>
+            <Badge variant="secondary" className="ml-2">
+              {selectedCategories.length}
+            </Badge>
           )}
         </Button>
       </PopoverTrigger>
@@ -77,7 +82,9 @@ export const SourceCategorySelector: React.FC = () => {
           <CommandGroup>
             <CommandItem onSelect={handleSelectAll} role="option" aria-selected={isAllSelected}>
               <Checkbox checked={isAllSelected} className="mr-2" />
-              <span><Trans i18nKey="all_categories" defaults="All Categories" /></span>
+              <span>
+                <Trans i18nKey="all_categories" defaults="All Categories" />
+              </span>
             </CommandItem>
             {allCategories.map((cat) => (
               <CommandItem
@@ -86,7 +93,10 @@ export const SourceCategorySelector: React.FC = () => {
                 role="option"
                 aria-selected={isAllSelected || selectedCategories.includes(cat)}
               >
-                <Checkbox checked={isAllSelected || selectedCategories.includes(cat)} className="mr-2" />
+                <Checkbox
+                  checked={isAllSelected || selectedCategories.includes(cat)}
+                  className="mr-2"
+                />
                 <span>{cat}</span>
               </CommandItem>
             ))}

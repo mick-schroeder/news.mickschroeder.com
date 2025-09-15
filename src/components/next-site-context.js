@@ -1,13 +1,6 @@
-import React, {
-  createContext,
-  useContext,
-  useMemo,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import { useSourceCategoryContext } from "./context/SourceCategoryContext";
+import React, { createContext, useContext, useMemo, useCallback, useEffect, useState } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import { useSourceCategoryContext } from './context/SourceCategoryContext';
 
 const NextSiteContext = createContext();
 
@@ -45,20 +38,20 @@ export const NextSiteProvider = ({ children }) => {
   );
 
   // State for the next site selection
-  const [nextSite, setNextSite] = useState("");
-  const [nextSiteName, setNextSiteName] = useState("");
+  const [nextSite, setNextSite] = useState('');
+  const [nextSiteName, setNextSiteName] = useState('');
 
   // Refresh using filtered sources
   const refreshNextSite = useCallback(() => {
     if (!filteredSources.length) {
-      setNextSite("");
-      setNextSiteName("");
+      setNextSite('');
+      setNextSiteName('');
       return;
     }
     const chosen = pickRandom(filteredSources);
     if (!chosen) {
-      setNextSite("");
-      setNextSiteName("");
+      setNextSite('');
+      setNextSiteName('');
       return;
     }
     setNextSite(chosen.url);
@@ -82,9 +75,5 @@ export const NextSiteProvider = ({ children }) => {
     [nextSite, nextSiteName, refreshNextSite, filteredSources.length]
   );
 
-  return (
-    <NextSiteContext.Provider value={contextValue}>
-      {children}
-    </NextSiteContext.Provider>
-  );
+  return <NextSiteContext.Provider value={contextValue}>{children}</NextSiteContext.Provider>;
 };

@@ -1,13 +1,13 @@
-import * as React from "react";
-import { Link, HeadFC, PageProps } from "gatsby";
-import { Trans } from "gatsby-plugin-react-i18next";
-import { graphql } from "gatsby";
-import "../fragments/locale";
+import * as React from 'react';
+import { Link, HeadFC, PageProps } from 'gatsby';
+import { Trans } from 'gatsby-plugin-react-i18next';
+import { graphql } from 'gatsby';
+import '../fragments/locale';
 
 const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, sans-serif, serif",
+  color: '#232129',
+  padding: '96px',
+  fontFamily: '-apple-system, sans-serif, serif',
 };
 const headingStyles = {
   marginTop: 0,
@@ -19,10 +19,10 @@ const paragraphStyles = {
   marginBottom: 48,
 };
 const codeStyles = {
-  color: "#8A6534",
+  color: '#8A6534',
   padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
+  backgroundColor: '#FFF4DB',
+  fontSize: '1.25rem',
   borderRadius: 4,
 };
 
@@ -35,7 +35,7 @@ const NotFoundPage: React.FC<PageProps> = () => {
       <p style={paragraphStyles}>
         <Trans i18nKey="notfound.message" />
         <br />
-        {process.env.NODE_ENV === "development" ? (
+        {process.env.NODE_ENV === 'development' ? (
           <>
             <br />
             Try creating a page in <code style={codeStyles}>src/pages/</code>.
@@ -43,7 +43,10 @@ const NotFoundPage: React.FC<PageProps> = () => {
           </>
         ) : null}
         <br />
-        <Link to="/"><Trans i18nKey="notfound.gohome" /></Link>.
+        <Link to="/">
+          <Trans i18nKey="notfound.gohome" />
+        </Link>
+        .
       </p>
     </main>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 type AdProps = {
   adClient: string;
@@ -7,10 +7,10 @@ type AdProps = {
 };
 
 const Ad: React.FC<AdProps> = ({ adClient, adSlot, adFormat }) => {
-  const isProd = process.env.NODE_ENV === "production";
+  const isProd = process.env.NODE_ENV === 'production';
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
     try {
       (window as any).adsbygoogle = (window as any).adsbygoogle || [];
       (window as any).adsbygoogle.push({});
@@ -22,12 +22,12 @@ const Ad: React.FC<AdProps> = ({ adClient, adSlot, adFormat }) => {
   return (
     <ins
       className="adsbygoogle mb-2"
-      style={{ display: "block" }}
+      style={{ display: 'block' }}
       data-ad-client={adClient}
       data-ad-slot={adSlot as any}
       data-ad-format={adFormat}
       data-full-width-responsive="true"
-      data-adtest={isProd ? undefined : ("on" as any)}
+      data-adtest={isProd ? undefined : ('on' as any)}
     ></ins>
   );
 };

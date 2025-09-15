@@ -1,9 +1,9 @@
 //import PropTypes from "prop-types"
-import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import { Link } from "gatsby-plugin-react-i18next";
-import logo from "../images/logo.svg";
-import { Trans } from "gatsby-plugin-react-i18next";
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby-plugin-react-i18next';
+import logo from '../images/logo.svg';
+import { Trans } from 'gatsby-plugin-react-i18next';
 
 type LogoProps = { showAuthor?: boolean };
 
@@ -29,7 +29,7 @@ const Logo = ({ showAuthor = false }: LogoProps) => {
       </Link>
       {showAuthor && (
         <a
-          href={authorUrl || "/"}
+          href={authorUrl || '/'}
           target="_blank"
           rel="noreferrer"
           className="ml-1 text-lg tracking-tighter font-semibold text-foreground/60 hover:underline"
@@ -40,5 +40,5 @@ const Logo = ({ showAuthor = false }: LogoProps) => {
     </span>
   );
 };
-    
-    export default Logo;
+
+export default Logo;

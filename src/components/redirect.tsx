@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Loader2 } from "lucide-react";
-import { useNextSiteContext } from "./next-site-context";
-import { useI18next, Trans } from "gatsby-plugin-react-i18next";
+import React, { useEffect, useState } from 'react';
+import { Loader2 } from 'lucide-react';
+import { useNextSiteContext } from './next-site-context';
+import { useI18next, Trans } from 'gatsby-plugin-react-i18next';
 
 const Redirecter: React.FC = () => {
   const { nextSite, refreshNextSite } = useNextSiteContext();
@@ -19,7 +19,7 @@ const Redirecter: React.FC = () => {
 
   useEffect(() => {
     if (!nextSite) return;
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
     if (nextSite === window.location.href) return;
 
     setIsLoading(true);
@@ -38,7 +38,9 @@ const Redirecter: React.FC = () => {
           </p>
           <div role="status">
             <Loader2 aria-hidden="true" className="w-16 h-16 text-muted-foreground animate-spin" />
-            <span className="sr-only"><Trans i18nKey="redirect.loading" /></span>
+            <span className="sr-only">
+              <Trans i18nKey="redirect.loading" />
+            </span>
           </div>
         </div>
       </div>
@@ -54,13 +56,10 @@ const Redirecter: React.FC = () => {
         <p className="text-muted-foreground">
           <Trans i18nKey="redirect.description" />
         </p>
-        <p className="text-primary font-medium">
-          {nextSite}
-        </p>
+        <p className="text-primary font-medium">{nextSite}</p>
       </div>
     </div>
   );
 };
 
 export default Redirecter;
-

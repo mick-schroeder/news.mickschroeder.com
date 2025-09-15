@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 //import { GatsbyImage } from "gatsby-plugin-image";
-import { useNextSiteContext } from "./next-site-context";
-import { Button } from "./ui/button";
-import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
-import { ExternalLink, RefreshCw } from "lucide-react";
+import { useNextSiteContext } from './next-site-context';
+import { Button } from './ui/button';
+import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
+import { ExternalLink, RefreshCw } from 'lucide-react';
 
 //import { Link } from "gatsby";
 
@@ -23,7 +23,7 @@ const WebShufflePlayer: React.FC = () => {
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    window.open(nextSite, "_blank");
+    window.open(nextSite, '_blank');
     refreshNextSite();
   };
 
@@ -45,7 +45,9 @@ const WebShufflePlayer: React.FC = () => {
                     {nextSiteName}
                   </a>
                 ) : (
-                  <span className="text-muted-foreground"><Trans i18nKey="loading" /></span>
+                  <span className="text-muted-foreground">
+                    <Trans i18nKey="loading" />
+                  </span>
                 )}
               </CardTitle>
               <CardDescription className="mt-0.5">
@@ -56,10 +58,10 @@ const WebShufflePlayer: React.FC = () => {
                       href={nextSite}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label={String(t("open_site", { name: nextSiteName || "" }))}
+                      aria-label={String(t('open_site', { name: nextSiteName || '' }))}
                       className="inline-flex items-center justify-center text-primary hover:text-primary truncate"
                     >
-                      {nextSite.length > 48 ? nextSite.slice(0, 48) + "..." : nextSite}
+                      {nextSite.length > 48 ? nextSite.slice(0, 48) + '...' : nextSite}
                       <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
                     </a>
                   </Button>
@@ -80,7 +82,9 @@ const WebShufflePlayer: React.FC = () => {
                     <RefreshCw className="w-5 h-5 text-muted-foreground" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent><Trans i18nKey="shuffle_next" /></TooltipContent>
+                <TooltipContent>
+                  <Trans i18nKey="shuffle_next" />
+                </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>

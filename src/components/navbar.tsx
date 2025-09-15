@@ -1,18 +1,18 @@
-import * as React from "react";
-import { Link, Trans } from "gatsby-plugin-react-i18next";
-import RedirectButton from "./redirect-button";
-import Logo from "../components/logo";
+import * as React from 'react';
+import { Link, Trans } from 'gatsby-plugin-react-i18next';
+import RedirectButton from './redirect-button';
+import Logo from '../components/logo';
 
-import WebShufflePlayer from "../components/player";
-import LanguageSwitcher from "./language-switcher";
+import WebShufflePlayer from '../components/player';
+import LanguageSwitcher from './language-switcher';
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
-} from "./ui/navigation-menu";
-import { SourceCategorySelector } from "./SourceCategorySelector";
+} from './ui/navigation-menu';
+import { SourceCategorySelector } from './SourceCategorySelector';
 
 export default function DefaultNavbar() {
   return (
