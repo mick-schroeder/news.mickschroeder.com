@@ -62,11 +62,11 @@ export const query = graphql`
         }
       }
     }
-    allSourcesJson(filter: { locale: { in: [$language] } }) {
+    allSourcesJson {
       nodes {
         name
         score
-        locale
+        categories
         url
         hash
         screenshot {

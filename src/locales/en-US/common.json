@@ -12,6 +12,9 @@
   "open_in_new_tab": "Open in new tab",
   "shuffle_next": "Shuffle next site",
   "open_site": "Open site: {{name}}",
+  "all_categories": "All Categories",
+  "select_categories": "Select categories...",
+  "clear_selection": "Clear selection",
   "notfound": {
     "title": "Page not found",
     "message": "Sorry 😔, we couldn’t find what you were looking for.",

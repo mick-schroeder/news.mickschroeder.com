@@ -51,7 +51,7 @@ export const createSchemaCustomization = ({ actions }) => {
     type SourcesJson implements Node @dontInfer {
       name: String!
       url: String!
-      locale: [String]
+      categories: [String]
       score: String
       # Derived fields (not in your JSON)
       hash: String
@@ -64,11 +64,11 @@ export const createSchemaCustomization = ({ actions }) => {
 export const createResolvers = ({ createResolvers }) => {
   createResolvers({
     SourcesJson: {
-      locale: {
+      categories: {
         resolve(source) {
-          const loc = source.locale;
-          if (Array.isArray(loc)) return loc;
-          if (typeof loc === "string" && loc) return [loc];
+          const cat = source.categories;
+          if (Array.isArray(cat)) return cat;
+          if (typeof cat === "string" && cat) return [cat];
           return [];
         },
       },

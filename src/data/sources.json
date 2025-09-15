@@ -2,199 +2,199 @@
   {
     "name": "ABC News",
     "url": "https://abcnews.go.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.1"
   },
   {
     "name": "Belfast Telegraph",
     "url": "https://www.belfasttelegraph.co.uk/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.8"
   },
   {
     "name": "BreakingNews.ie",
     "url": "https://www.breakingnews.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "2.8"
   },
   {
     "name": "Business Post",
     "url": "https://www.businesspost.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "4.0"
   },
   {
     "name": "CBS News",
     "url": "https://www.cbsnews.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.1"
   },
   {
     "name": "CNN",
     "url": "https://www.cnn.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.5"
   },
   {
     "name": "Connacht Tribune",
     "url": "https://connachttribune.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.0"
   },
   {
     "name": "Drudge Report",
     "url": "https://www.drudgereport.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "3.5"
   },
   {
     "name": "Extra.ie",
     "url": "https://extra.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.6"
   },
   {
     "name": "Fox News",
     "url": "https://www.foxnews.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.4"
   },
   {
     "name": "Gript",
     "url": "https://gript.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "2.2"
   },
   {
     "name": "Independent - Seachtain",
     "url": "https://www.independent.ie/seachtain",
-    "locale": "ga",
+    "categories": ["ga"],
     "score": "3.5"
   },
   {
     "name": "Irish Examiner",
     "url": "https://www.irishexaminer.com/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.9"
   },
   {
     "name": "Irish Independent",
     "url": "https://www.independent.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "4.2"
   },
   {
     "name": "Irish Mirror",
     "url": "https://www.irishmirror.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.5"
   },
   {
     "name": "Irish Sun",
     "url": "https://www.thesun.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.3"
   },
   {
     "name": "Joe",
     "url": "https://www.joe.ie",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.2"
   },
   {
     "name": "NBC News",
     "url": "https://www.nbcnews.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.3"
   },
   {
     "name": "NPR",
     "url": "https://www.npr.org/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.3"
   },
   {
     "name": "Nuacht RTÉ",
     "url": "https://www.rte.ie/news/nuacht/",
-    "locale": "ga",
+    "categories": ["ga"],
     "score": "4.2"
   },
   {
     "name": "RTÉ News",
     "url": "https://www.rte.ie/news/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "4.5"
   },
   {
     "name": "Silicon Republic",
     "url": "https://www.siliconrepublic.com",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.5"
   },
   {
     "name": "TG4 Nuacht",
     "url": "https://www.tg4.ie/ga/",
-    "locale": "ga",
+    "categories": ["ga"],
     "score": "3.8"
   },
   {
     "name": "The Ditch",
     "url": "https://www.ontheditch.com/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.4"
   },
   {
     "name": "The Irish News",
     "url": "https://www.irishnews.com/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "3.6"
   },
   {
     "name": "The Irish Times",
     "url": "https://www.irishtimes.com/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "4.6"
   },
   {
     "name": "The Journal",
     "url": "https://www.thejournal.ie/",
-    "locale": "en-IE",
+    "categories": ["en-IE"],
     "score": "4.0"
   },
   {
     "name": "The Journal - Gaeilge",
     "url": "https://www.thejournal.ie/gaeilge/news/",
-    "locale": "ga",
+    "categories": ["ga"],
     "score": "3.7"
   },
   {
     "name": "The New York Times",
     "url": "https://www.nytimes.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.8"
   },
   {
     "name": "The Wall Street Journal",
     "url": "https://www.wsj.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.7"
   },
   {
     "name": "The Washington Post",
     "url": "https://www.washingtonpost.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.6"
   },
   {
     "name": "Tuairisc.ie",
     "url": "https://tuairisc.ie/",
-    "locale": "ga",
+    "categories": ["ga"],
     "score": "3.6"
   },
   {
     "name": "USA Today",
     "url": "https://www.usatoday.com/",
-    "locale": "en-US",
+    "categories": ["en-US"],
     "score": "4.2"
   }
 ]

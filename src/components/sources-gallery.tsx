@@ -7,11 +7,12 @@ import { Button } from "./ui/button";
 import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { Badge } from "./ui/badge";
+import { useSourceCategoryContext } from "./context/SourceCategoryContext";
 
 type Source = {
   name: string;
   score?: number | string;
-  locale: string | string[];
+  categories: string[];
   url: string;
   hash?: string;
   screenshot?: any;
@@ -23,34 +24,42 @@ type Props = {
   sort?: "alphabetical" | "rating";
 };
 
-const SourcesGallery: React.FC<Props> = ({ items, limit, sort }) => {
-  const sortedSources = useMemo(() => {
-    let list = [...items];
+const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
+  const { selectedCategories } = useSourceCategoryContext();
 
+  // Filter items by selected categories (empty = all)
+  const filteredItems = useMemo(() => {
+    if (!selectedCategories.length) return items;
+    return items.filter((item) =>
+      item.categories.some((cat) => selectedCategories.includes(cat))
+    );
+  }, [items, selectedCategories]);
+
+  const sortedSources = useMemo(() => {
+    let list = [...filteredItems];
     switch (sort) {
       case "alphabetical":
-        list.sort((a: any, b: any) => String(a.name).localeCompare(String(b.name)));
+        list.sort((a, b) => a.name.localeCompare(b.name));
         break;
       case "rating": {
         const scoreOf = (s: any) => {
           const n = parseFloat(String(s ?? "0"));
           return Number.isFinite(n) ? n : 0;
         };
-        list.sort((a: any, b: any) => scoreOf(b.score) - scoreOf(a.score));
+        list.sort((a, b) => scoreOf(b.score) - scoreOf(a.score));
         break;
       }
       default: {
-        // Default to rating sort
         const scoreOf = (s: any) => {
           const n = parseFloat(String(s ?? "0"));
           return Number.isFinite(n) ? n : 0;
         };
-        list.sort((a: any, b: any) => scoreOf(b.score) - scoreOf(a.score));
+        list.sort((a, b) => scoreOf(b.score) - scoreOf(a.score));
         break;
       }
     }
     return limit ? list.slice(0, limit) : list;
-  }, [items, limit, sort]);
+  }, [filteredItems, limit, sort]);
 
   const { t } = useTranslation();
 
@@ -60,30 +69,31 @@ const SourcesGallery: React.FC<Props> = ({ items, limit, sort }) => {
     <section id="sources-gallery" className="scroll-mt-24">
       <TooltipProvider>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {sortedSources.map((node: Source, idx: number) => {
-            const image = getImage((node as any).screenshot);
+          {sortedSources.map((node, idx) => {
+            const { name, url, hash, screenshot, categories } = node;
+            const image = getImage(screenshot);
             const eager: "eager" | "lazy" = idx < 3 ? "eager" : "lazy";
             const fetchP = idx < 3 ? "high" : undefined;
-            const localeText = Array.isArray(node.locale) ? node.locale.join(", ") : node.locale;
-            const titleId = `card-title-${node.hash || idx}`;
-            let host = node.url;
+            const categoriesText = categories.join(", ");
+            const titleId = `card-title-${hash || idx}`;
+            let host = url;
             try {
-              host = new URL(node.url).host;
+              host = new URL(url).host;
             } catch {}
             return (
               <Card
-                key={node.hash || node.url}
+                key={hash || url}
                 className="overflow-hidden motion-safe:transition-shadow cursor-pointer hover:shadow-lg hover:ring-1 hover:ring-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 [content-visibility:auto] [contain-intrinsic-size:720px_1280px]"
                 role="link"
                 tabIndex={0}
                 aria-labelledby={titleId}
                 onClick={() => {
-                  if (typeof window !== "undefined") window.open(node.url, "_blank", "noopener");
+                  if (typeof window !== "undefined") window.open(url, "_blank", "noopener");
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
-                    if (typeof window !== "undefined") window.open(node.url, "_blank", "noopener");
+                    if (typeof window !== "undefined") window.open(url, "_blank", "noopener");
                   }
                 }}
               >
@@ -91,24 +101,24 @@ const SourcesGallery: React.FC<Props> = ({ items, limit, sort }) => {
                   <div className="flex items-center justify-between gap-2">
                     <CardTitle className="truncate text-card-foreground">
                       <span id={titleId} className="sr-only">
-                        {node.name}
+                        {name}
                       </span>
-                    <a
-                      href={node.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                      tabIndex={-1}
-                      aria-hidden="true"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      {node.name}
-                    </a>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline"
+                        tabIndex={-1}
+                        aria-hidden="true"
+                        onClick={(e) => {
+                          e.preventDefault();
+                        }}
+                      >
+                        {name}
+                      </a>
                     </CardTitle>
-                    {localeText ? (
-                      <Badge variant="secondary" className="shrink-0">{localeText}</Badge>
+                    {categoriesText ? (
+                      <Badge variant="secondary" className="shrink-0">{categoriesText}</Badge>
                     ) : null}
                   </div>
                 </CardHeader>
@@ -117,18 +127,18 @@ const SourcesGallery: React.FC<Props> = ({ items, limit, sort }) => {
                     {image ? (
                       <GatsbyImage
                         image={image}
-                        alt={`Screenshot of ${node.name}`}
+                        alt={`Screenshot of ${name}`}
                         loading={eager}
-                        fetchpriority={fetchP as any}
+                        fetchPriority={fetchP}
                         className="h-full w-full"
                         imgClassName="h-full w-full object-cover"
                       />
                     ) : (
                       <img
-                        src={`/screenshots/${node.hash}.webp`}
-                        alt={`Screenshot of ${node.name}`}
+                        src={`/screenshots/${hash}.webp`}
+                        alt={`Screenshot of ${name}`}
                         loading={eager}
-                        fetchpriority={fetchP as any}
+                        fetchPriority={fetchP}
                         decoding="async"
                         className="h-full w-full object-cover"
                         width="720"
@@ -139,37 +149,37 @@ const SourcesGallery: React.FC<Props> = ({ items, limit, sort }) => {
                 </CardContent>
                 <CardFooter className="p-4">
                   <div className="flex w-full items-center justify-between gap-2">
-                  <a
-                    href={node.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block truncate text-xs font-semibold text-primary hover:underline flex-1 min-w-0"
-                    title={node.url}
-                    aria-label={String(t("open_site", { name: node.name }))}
-                    tabIndex={-1}
-                    aria-hidden="true"
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
-                  >
-                    {host}
-                  </a>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block truncate text-xs font-semibold text-primary hover:underline flex-1 min-w-0"
+                      title={url}
+                      aria-label={String(t("open_site", { name }))}
+                      tabIndex={-1}
+                      aria-hidden="true"
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      {host}
+                    </a>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button asChild size="icon" variant="ghost">
-                        <a
-                          href={node.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={String(t("open_site", { name: node.name }))}
-                          tabIndex={-1}
-                          aria-hidden="true"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                        </a>
+                          <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={String(t("open_site", { name }))}
+                            tabIndex={-1}
+                            aria-hidden="true"
+                            onClick={(e) => {
+                              e.preventDefault();
+                            }}
+                          >
+                            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                          </a>
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent><Trans i18nKey="open_in_new_tab" /></TooltipContent>
@@ -183,6 +193,6 @@ const SourcesGallery: React.FC<Props> = ({ items, limit, sort }) => {
       </TooltipProvider>
     </section>
   );
-};
+});
 
 export default SourcesGallery;

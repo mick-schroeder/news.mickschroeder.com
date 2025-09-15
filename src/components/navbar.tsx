@@ -12,6 +12,7 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
+import { SourceCategorySelector } from "./SourceCategorySelector";
 
 export default function DefaultNavbar() {
   return (
@@ -42,6 +43,7 @@ export default function DefaultNavbar() {
 
           <div className="flex items-center gap-3 w-full justify-center md:w-auto md:justify-end">
             <LanguageSwitcher />
+            <SourceCategorySelector />
           </div>
         </div>
 

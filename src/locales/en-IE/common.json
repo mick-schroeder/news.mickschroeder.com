@@ -2,16 +2,19 @@
   "brand": "News Craic",
   "by_author": "by Mick Schroeder",
   "headline": "Shuffle the web's top news sources.",
-  "tagline": "Shuffle the news, find the craic — stay up to date with the best stories, all in one place.",
+  "tagline": "Shuffle the news, find the craic — stay up to date with the best stories, all in one spot.",
   "shuffle": "Shuffle",
   "latest": "Latest",
   "sources": "Sources",
-  "disclaimer": "This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. Some links may be sponsored or affiliate programs that earn commission. This site uses cookies and analytics trackers and is supported by advertising. These links are being provided as a convenience and for informational purposes only; they do not constitute an endorsement or an approval or opinions of that organization or individual. Not responsible for the accuracy, legality or content of the external site or for that of subsequent links. Contact the external site for answers to questions regarding their content.",
+  "disclaimer": "This programme is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. Some links may be sponsored or affiliate programmes that earn commission. This site uses cookies and analytics trackers and is supported by advertising. These links are being provided as a convenience and for informational purposes only; they do not constitute an endorsement or an approval or opinions of that organisation or individual. Not responsible for the accuracy, legality or content of the external site or for that of subsequent links. Contact the external site for answers to questions regarding their content.",
   "home": "Home",
   "loading": "Loading…",
   "open_in_new_tab": "Open in new tab",
   "shuffle_next": "Shuffle next site",
   "open_site": "Open site: {{name}}",
+  "all_categories": "All Categories",
+  "select_categories": "Select categories...",
+  "clear_selection": "Clear selection",
   "notfound": {
     "title": "Page not found",
     "message": "Sorry 😔, we couldn’t find what you were looking for.",
@@ -20,7 +23,7 @@
   "redirect": {
     "heading": "Redirecting…",
     "loading": "Loading…",
-    "description": "You will be redirected shortly to:"
+    "description": "You’ll be redirected shortly to:"
   },
   "bookmark": {
     "title": "Bookmark the Shuffle link",
