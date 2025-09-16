@@ -1,25 +1,31 @@
-# 🔀 New Craic
+# [🔀 New Craic](https://news.mickschroeder.com)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-blue.svg)]
 
 Take me to a random website, please.
 
-Hit the "New Craic" button and you will be sent to a random website from the most influential sites across the web.
+Hit the "Shuffle" button and you will be sent to a random website from the most influential news sites across the web.
 
 ## Tech Stack
 
 - [React](https://reactjs.org/)
 - [Gatsby](https://www.gatsbyjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com)
 
 ## 🚀 Quick start
 
 ### Development
 
     ```shell
-    git clone https://github.com/mick-schroeder/schroeder-news-craic.git
-    cd schroeder-news-craic
+    git clone https://github.com/mick-schroeder/news.mickschroeder.com.git
+    cd news.mickschroeder.com
     npm install
     npm run develop
     ```
+
+    Open `http://localhost:8000`
 
 ### Production
 
@@ -27,15 +33,13 @@ Hit the "New Craic" button and you will be sent to a random website from the mos
     npm run build
     ```
 
-## Authors
+## Author
 
 - [Mick Schroeder](https://mickschroeder.com)
 
-## Attribution
-
-Font Awesome Icons by Font Awesome under CC BY 4.0 https://fontawesome.com/license/free
-Simple Icons under CC0 1.0 Universal https://simpleicons.org
-
 ## License
 
-This project is open-source and available under the [GNU Affero General Public License](LICENSE)
+- This project is open-source and available under the [MIT License](LICENSE)
+- Content (non-code): [CC BY 4.0](CONTENT_LICENSE.md)
+
+Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.

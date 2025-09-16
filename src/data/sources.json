@@ -1,200 +1,274 @@
 [
-  {
-    "name": "ABC News",
-    "url": "https://abcnews.go.com/",
-    "categories": ["en-US"],
-    "score": "4.1"
-  },
-  {
-    "name": "Belfast Telegraph",
-    "url": "https://www.belfasttelegraph.co.uk/",
-    "categories": ["en-IE"],
-    "score": "3.8"
-  },
-  {
-    "name": "BreakingNews.ie",
-    "url": "https://www.breakingnews.ie/",
-    "categories": ["en-IE"],
-    "score": "2.8"
-  },
-  {
-    "name": "Business Post",
-    "url": "https://www.businesspost.ie/",
-    "categories": ["en-IE"],
-    "score": "4.0"
-  },
-  {
-    "name": "CBS News",
-    "url": "https://www.cbsnews.com/",
-    "categories": ["en-US"],
-    "score": "4.1"
-  },
-  {
-    "name": "CNN",
-    "url": "https://www.cnn.com/",
-    "categories": ["en-US"],
-    "score": "4.5"
-  },
-  {
-    "name": "Connacht Tribune",
-    "url": "https://connachttribune.ie/",
-    "categories": ["en-IE"],
-    "score": "3.0"
-  },
-  {
-    "name": "Drudge Report",
-    "url": "https://www.drudgereport.com/",
-    "categories": ["en-US"],
-    "score": "3.5"
-  },
-  {
-    "name": "Extra.ie",
-    "url": "https://extra.ie/",
-    "categories": ["en-IE"],
-    "score": "3.6"
-  },
-  {
-    "name": "Fox News",
-    "url": "https://www.foxnews.com/",
-    "categories": ["en-US"],
-    "score": "4.4"
-  },
-  {
-    "name": "Gript",
-    "url": "https://gript.ie/",
-    "categories": ["en-IE"],
-    "score": "2.2"
-  },
-  {
-    "name": "Independent - Seachtain",
-    "url": "https://www.independent.ie/seachtain",
-    "categories": ["ga"],
-    "score": "3.5"
-  },
-  {
-    "name": "Irish Examiner",
-    "url": "https://www.irishexaminer.com/",
-    "categories": ["en-IE"],
-    "score": "3.9"
-  },
-  {
-    "name": "Irish Independent",
-    "url": "https://www.independent.ie/",
-    "categories": ["en-IE"],
-    "score": "4.2"
-  },
-  {
-    "name": "Irish Mirror",
-    "url": "https://www.irishmirror.ie/",
-    "categories": ["en-IE"],
-    "score": "3.5"
-  },
-  {
-    "name": "Irish Sun",
-    "url": "https://www.thesun.ie/",
-    "categories": ["en-IE"],
-    "score": "3.3"
-  },
-  {
-    "name": "Joe",
-    "url": "https://www.joe.ie",
-    "categories": ["en-IE"],
-    "score": "3.2"
-  },
-  {
-    "name": "NBC News",
-    "url": "https://www.nbcnews.com/",
-    "categories": ["en-US"],
-    "score": "4.3"
-  },
-  {
-    "name": "NPR",
-    "url": "https://www.npr.org/",
-    "categories": ["en-US"],
-    "score": "4.3"
-  },
-  {
-    "name": "Nuacht RTÉ",
-    "url": "https://www.rte.ie/news/nuacht/",
-    "categories": ["ga"],
-    "score": "4.2"
-  },
-  {
-    "name": "RTÉ News",
-    "url": "https://www.rte.ie/news/",
-    "categories": ["en-IE"],
-    "score": "4.5"
-  },
-  {
-    "name": "Silicon Republic",
-    "url": "https://www.siliconrepublic.com",
-    "categories": ["en-IE"],
-    "score": "3.5"
-  },
-  {
-    "name": "TG4 Nuacht",
-    "url": "https://www.tg4.ie/ga/",
-    "categories": ["ga"],
-    "score": "3.8"
-  },
-  {
-    "name": "The Ditch",
-    "url": "https://www.ontheditch.com/",
-    "categories": ["en-IE"],
-    "score": "3.4"
-  },
-  {
-    "name": "The Irish News",
-    "url": "https://www.irishnews.com/",
-    "categories": ["en-IE"],
-    "score": "3.6"
-  },
-  {
-    "name": "The Irish Times",
-    "url": "https://www.irishtimes.com/",
-    "categories": ["en-IE"],
-    "score": "4.6"
-  },
-  {
-    "name": "The Journal",
-    "url": "https://www.thejournal.ie/",
-    "categories": ["en-IE"],
-    "score": "4.0"
-  },
-  {
-    "name": "The Journal - Gaeilge",
-    "url": "https://www.thejournal.ie/gaeilge/news/",
-    "categories": ["ga"],
-    "score": "3.7"
-  },
-  {
-    "name": "The New York Times",
-    "url": "https://www.nytimes.com/",
-    "categories": ["en-US"],
-    "score": "4.8"
-  },
-  {
-    "name": "The Wall Street Journal",
-    "url": "https://www.wsj.com/",
-    "categories": ["en-US"],
-    "score": "4.7"
-  },
-  {
-    "name": "The Washington Post",
-    "url": "https://www.washingtonpost.com/",
-    "categories": ["en-US"],
-    "score": "4.6"
-  },
-  {
-    "name": "Tuairisc.ie",
-    "url": "https://tuairisc.ie/",
-    "categories": ["ga"],
-    "score": "3.6"
-  },
-  {
-    "name": "USA Today",
-    "url": "https://www.usatoday.com/",
-    "categories": ["en-US"],
-    "score": "4.2"
-  }
+	{
+		"name": "ABC News",
+		"url": "https://abcnews.go.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.1"
+	},
+	{
+		"name": "Belfast Telegraph",
+		"url": "https://www.belfasttelegraph.co.uk/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.8"
+	},
+	{
+		"name": "BreakingNews.ie",
+		"url": "https://www.breakingnews.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "2.8"
+	},
+	{
+		"name": "Business Post",
+		"url": "https://www.businesspost.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "4.0"
+	},
+	{
+		"name": "CBS News",
+		"url": "https://www.cbsnews.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.1"
+	},
+	{
+		"name": "CNN",
+		"url": "https://www.cnn.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.5"
+	},
+	{
+		"name": "Connacht Tribune",
+		"url": "https://connachttribune.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.0"
+	},
+	{
+		"name": "Drudge Report",
+		"url": "https://www.drudgereport.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.9"
+	},
+	{
+		"name": "Extra.ie",
+		"url": "https://extra.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.6"
+	},
+	{
+		"name": "Fox News",
+		"url": "https://www.foxnews.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.0"
+	},
+	{
+		"name": "Gript",
+		"url": "https://gript.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "2.2"
+	},
+  	{
+		"name": "Huffington Post",
+		"url": "https://www.huffpost.com",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.2"
+	},
+	{
+		"name": "Independent - Seachtain",
+		"url": "https://www.independent.ie/seachtain",
+		"categories": [
+			"ga"
+		],
+		"score": "3.5"
+	},
+	{
+		"name": "Irish Examiner",
+		"url": "https://www.irishexaminer.com/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.9"
+	},
+	{
+		"name": "Irish Independent",
+		"url": "https://www.independent.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "4.2"
+	},
+	{
+		"name": "Irish Mirror",
+		"url": "https://www.irishmirror.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.5"
+	},
+	{
+		"name": "Irish Sun",
+		"url": "https://www.thesun.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.3"
+	},
+	{
+		"name": "Joe",
+		"url": "https://www.joe.ie",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.2"
+	},
+	{
+		"name": "NBC News",
+		"url": "https://www.nbcnews.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.3"
+	},
+	{
+		"name": "NPR",
+		"url": "https://www.npr.org/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.3"
+	},
+	{
+		"name": "Nuacht RTÉ",
+		"url": "https://www.rte.ie/news/nuacht/",
+		"categories": [
+			"ga"
+		],
+		"score": "4.2"
+	},
+	{
+		"name": "RTÉ News",
+		"url": "https://www.rte.ie/news/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "4.5"
+	},
+	{
+		"name": "Silicon Republic",
+		"url": "https://www.siliconrepublic.com",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.5"
+	},
+	{
+		"name": "TG4 Nuacht",
+		"url": "https://www.tg4.ie/ga/",
+		"categories": [
+			"ga"
+		],
+		"score": "3.8"
+	},
+	{
+		"name": "The Ditch",
+		"url": "https://www.ontheditch.com/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.4"
+	},
+	{
+		"name": "The Irish News",
+		"url": "https://www.irishnews.com/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "3.6"
+	},
+	{
+		"name": "The Irish Times",
+		"url": "https://www.irishtimes.com/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "4.6"
+	},
+	{
+		"name": "The Journal",
+		"url": "https://www.thejournal.ie/",
+		"categories": [
+			"en-IE"
+		],
+		"score": "4.0"
+	},
+	{
+		"name": "The Journal - Gaeilge",
+		"url": "https://www.thejournal.ie/gaeilge/news/",
+		"categories": [
+			"ga"
+		],
+		"score": "3.7"
+	},
+	{
+		"name": "The New York Times",
+		"url": "https://www.nytimes.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.8"
+	},
+	{
+		"name": "The Wall Street Journal",
+		"url": "https://www.wsj.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.7"
+	},
+	{
+		"name": "The Washington Post",
+		"url": "https://www.washingtonpost.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.6"
+	},
+	{
+		"name": "Tuairisc.ie",
+		"url": "https://tuairisc.ie/",
+		"categories": [
+			"ga"
+		],
+		"score": "3.6"
+	},
+	{
+		"name": "USA Today",
+		"url": "https://www.usatoday.com/",
+		"categories": [
+			"en-US"
+		],
+		"score": "4.2"
+	}
 ]
