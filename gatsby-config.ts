@@ -11,8 +11,8 @@ const LOCALES_DIR = path.join(__dirname, 'src', 'locales');
 const languages = fs.existsSync(LOCALES_DIR)
   ? fs.readdirSync(LOCALES_DIR).filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
   : ['en'];
-const DEFAULT_LANGUAGE = ((): string => {
-  const envDefault = process.env.DEFAULT_LANGUAGE;
+const GATSBY_DEFAULT_LANGUAGE = ((): string => {
+  const envDefault = process.env.GATSBY_DEFAULT_LANGUAGE;
   if (envDefault && languages.includes(envDefault)) return envDefault;
   return languages[0] || 'en';
 })();
@@ -41,7 +41,7 @@ const config: GatsbyConfig = {
         short_name: 'News Craic',
         start_url: '/',
         background_color: '#1f2937',
-        lang: DEFAULT_LANGUAGE,
+        lang: GATSBY_DEFAULT_LANGUAGE,
         theme_color: '#1f2937',
         display: 'standalone',
         cache_busting_mode: 'none',
@@ -67,12 +67,12 @@ const config: GatsbyConfig = {
       options: {
         localeJsonSourceName: 'locale',
         languages,
-        defaultLanguage: DEFAULT_LANGUAGE,
+        defaultLanguage: GATSBY_DEFAULT_LANGUAGE,
         redirect: true,
         lowerCaseLng: false,
         siteUrl: GATSBY_SITE_URL,
         i18nextOptions: {
-          fallbackLng: DEFAULT_LANGUAGE,
+          fallbackLng: GATSBY_DEFAULT_LANGUAGE,
           interpolation: { escapeValue: false },
           supportedLngs: languages,
           ns: ['common'],
@@ -88,14 +88,6 @@ const config: GatsbyConfig = {
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    {
-      resolve: 'gatsby-plugin-offline',
-      options: {
-        workboxConfig: {
-          globPatterns: ['**/icons*'],
-        },
-      },
-    },
     {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
@@ -211,7 +203,7 @@ const config: GatsbyConfig = {
             }
           }
           // Fallback to configured default
-          if (!defaultLanguage) defaultLanguage = DEFAULT_LANGUAGE;
+          if (!defaultLanguage) defaultLanguage = GATSBY_DEFAULT_LANGUAGE;
 
           // Ensure default language appears in alternates
           languagesSet.add(defaultLanguage!);

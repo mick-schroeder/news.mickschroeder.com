@@ -74,8 +74,7 @@ export const query = graphql`
             gatsbyImageData(
               width: 720
               formats: [AUTO, WEBP, AVIF]
-              quality: 75
-              placeholder: DOMINANT_COLOR
+              placeholder: BLURRED
               breakpoints: [360, 720]
               sizes: "(min-width:768px) 33vw, (min-width:640px) 50vw, 100vw"
               aspectRatio: 0.5625

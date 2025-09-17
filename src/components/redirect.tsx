@@ -52,6 +52,12 @@ const Redirecter: React.FC = () => {
         <p className="text-xl font-bold mb-4 text-card-foreground">
           <Trans i18nKey="redirect.heading" />
         </p>
+        <div className="flex justify-center mb-4" role="status">
+          <Loader2 aria-hidden="true" className="w-12 h-12 text-muted-foreground animate-spin" />
+          <span className="sr-only">
+            <Trans i18nKey="redirect.loading" />
+          </span>
+        </div>
         <p className="text-muted-foreground">
           <Trans i18nKey="redirect.description" />
         </p>

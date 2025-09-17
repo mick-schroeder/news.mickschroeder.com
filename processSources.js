@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const puppeteer = require('puppeteer-extra');
+const { DEFAULT_INTERCEPT_RESOLUTION_PRIORITY } = require('puppeteer');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 const sharp = require('sharp');
@@ -27,6 +28,12 @@ const WAIT_FOR_BODY_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOU
 const WAIT_FOR_IMAGES_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || 5000);
 const SCROLL_STEP = Number(process.env.SCREENSHOT_SCROLL_STEP || 600);
 const SCROLL_PAUSE = Number(process.env.SCREENSHOT_SCROLL_PAUSE || 200);
+const CONSENT_TEXT_MATCHES = (process.env.SCREENSHOT_CONSENT_TEXTS ||
+  'accept,agree,consent,got it,continue,allow all,allow cookies,accept all,accept cookies,yes i agree,ok,got it!,save and exit'
+)
+  .split(',')
+  .map((t) => t.trim().toLowerCase())
+  .filter(Boolean);
 
 const CACHE_TIMEOUT = 6 * 60 * 60 * 1000;
 const RETRIES = 2;
@@ -110,6 +117,58 @@ async function primeLazyMedia(page) {
   }
 }
 
+async function dismissConsentModals(page, reporter, slug) {
+  const frames = page.frames();
+  const attemptClick = async (frame) => {
+    try {
+      return await frame.evaluate((texts) => {
+        const candidates = Array.from(
+          document.querySelectorAll(
+            'button, [role="button"], input[type="button"], input[type="submit"], a[role="button"], a.consent-accept'
+          )
+        );
+        for (const el of candidates) {
+          if (!el || typeof el.click !== 'function') continue;
+          const label =
+            (el.innerText || el.textContent || el.getAttribute('aria-label') || el.value || '')
+              .replace(/\s+/g, ' ')
+              .trim()
+              .toLowerCase();
+          if (!label) continue;
+          if (texts.some((text) => label.includes(text))) {
+            el.click();
+            return true;
+          }
+        }
+        return false;
+      }, CONSENT_TEXT_MATCHES);
+    } catch (error) {
+      return false;
+    }
+  };
+
+  for (const frame of frames) {
+    const clicked = await attemptClick(frame);
+    if (clicked) {
+      if (reporter && slug) {
+        reporter.log(`Dismissed consent modal for ${slug}.`);
+      }
+      return true;
+    }
+  }
+
+  try {
+    await page.addStyleTag({
+      content:
+        '[data-testid*="cookie"], [id*="cookie"], [class*="cookie"], .fc-consent-root, #sp_message_container_318103, .qc-cmp2-container, .qc-cmp2-summary-buttons, .js-consent-banner { display: none !important; visibility: hidden !important; }',
+    });
+  } catch (error) {
+    // ignore style injection failures
+  }
+
+  return false;
+}
+
 async function generatePlaceholderImage(slug) {
   const screenshotFullPath = path.join(SCREENSHOT_PATH, `${slug}.webp`);
 
@@ -147,6 +206,7 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
         await delay(WAIT_AFTER_LOAD);
       }
 
+      await dismissConsentModals(page, reporter, slug);
       await primeLazyMedia(page);
 
       await page.screenshot({
@@ -161,6 +221,7 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
       } else if (attempt === RETRIES) {
         try {
           reporter.warn(`Attempt ${attempt} exceeded timeout for ${slug}; capturing current state.`);
+          await dismissConsentModals(page, reporter, slug);
           await delay(500);
           await page.screenshot({
             path: screenshotFullPath,
@@ -366,7 +427,13 @@ const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
     );
 
     puppeteer.use(StealthPlugin());
-    puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
+    puppeteer.use(
+      AdblockerPlugin({
+        blockTrackers: true,
+        blockTrackersAndAnnoyances: true,
+        interceptResolutionPriority: DEFAULT_INTERCEPT_RESOLUTION_PRIORITY,
+      })
+    );
 
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],

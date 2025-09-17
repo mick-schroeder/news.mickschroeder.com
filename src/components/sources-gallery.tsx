@@ -66,7 +66,7 @@ const SourcesGallery: React.FC<Props> = React.memo(({ items, limit, sort }) => {
   return (
     <section id="sources-gallery" className="scroll-mt-24">
       <TooltipProvider>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {sortedSources.map((node, idx) => {
             const { name, url, hash, screenshot, categories } = node;
             const image = getImage(screenshot);

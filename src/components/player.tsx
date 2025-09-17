@@ -1,5 +1,4 @@
 import React from 'react';
-//import { GatsbyImage } from "gatsby-plugin-image";
 import { useNextSiteContext } from './next-site-context';
 import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
@@ -7,16 +6,11 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/t
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { ExternalLink, RefreshCw } from 'lucide-react';
 
-//import { Link } from "gatsby";
-
 const WebShufflePlayer: React.FC = () => {
   const {
     nextSite,
     nextSiteName,
-    //nextSiteSlug,
     refreshNextSite,
-    //nextSiteDescription,
-    // nextSiteImage,
   } = useNextSiteContext();
 
   const { t } = useTranslation();
@@ -34,15 +28,21 @@ const WebShufflePlayer: React.FC = () => {
           <div className="grid grid-cols-[2.25rem_1fr_2.25rem] items-center gap-2">
             <div className="w-9 h-9" aria-hidden="true" />
             <div className="min-w-0 text-center">
-              <CardTitle className="truncate text-sm font-bold text-card-foreground text-center">
-                {nextSiteName ? (
+              <CardTitle className="text-sm font-bold text-card-foreground text-center">
+                {nextSiteName && nextSite ? (
                   <a
                     href={nextSite}
                     target="_blank"
-                    rel="noreferrer"
-                    className="truncate hover:underline"
+                    rel="noopener"
+                    onClick={handleClick}
+                    aria-label={String(t('open_site', { name: nextSiteName }))}
+                    className="block overflow-hidden hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    {nextSiteName}
+                    <span className="block truncate">{nextSiteName}</span>
+                    <span className="mt-0.5 inline-flex items-center justify-center gap-2 text-sm font-normal text-primary truncate min-w-0">
+                      <span className="truncate">{nextSite}</span>
+                      <ExternalLink className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                    </span>
                   </a>
                 ) : (
                   <span className="text-muted-foreground">
@@ -51,21 +51,7 @@ const WebShufflePlayer: React.FC = () => {
                 )}
               </CardTitle>
               <CardDescription className="mt-0.5">
-                {nextSite ? (
-                  <Button asChild variant="link" className="h-auto p-0">
-                    <a
-                      onClick={handleClick}
-                      href={nextSite}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={String(t('open_site', { name: nextSiteName || '' }))}
-                      className="inline-flex items-center justify-center text-primary hover:text-primary truncate"
-                    >
-                      {nextSite.length > 48 ? nextSite.slice(0, 48) + '...' : nextSite}
-                      <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
-                    </a>
-                  </Button>
-                ) : (
+                {!nextSite && (
                   <div className="h-4 w-48 mx-auto rounded bg-muted animate-pulse" />
                 )}
               </CardDescription>
@@ -78,6 +64,7 @@ const WebShufflePlayer: React.FC = () => {
                     variant="ghost"
                     size="icon"
                     aria-label="Shuffle next site"
+                    className="h-11 w-11"
                   >
                     <RefreshCw className="w-5 h-5 text-muted-foreground" />
                   </Button>

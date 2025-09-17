@@ -1,18 +1,14 @@
-import crypto from 'crypto';
-import fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
-import processSourcesModule from './processSources.js';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const { preProcessSources } = processSourcesModule;
+const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
+const { preProcessSources } = require('./processSources.js');
 
 // Constants
 const JSON_PATH = './src/data/sources.json';
 const SCREENSHOT_PATH = './static/screenshots'; // generated screenshots live here
 const CONCURRENT_PAGES = 5;
 
-export const onCreateWebpackConfig = ({ actions }) => {
+const onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
@@ -23,7 +19,7 @@ export const onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-export const onPreBootstrap = async ({ reporter }) => {
+const onPreBootstrap = async ({ reporter }) => {
   if (!fs.existsSync(SCREENSHOT_PATH)) {
     fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
   }
@@ -38,7 +34,7 @@ const hashOf = (input) =>
   crypto.createHash('sha1').update(String(input)).digest('hex').slice(0, 12);
 
 // 1) Declare explicit types so Gatsby won’t infer from JSON
-export const createSchemaCustomization = ({ actions }) => {
+const createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
     type SourcesJson implements Node @dontInfer {
@@ -54,7 +50,7 @@ export const createSchemaCustomization = ({ actions }) => {
 };
 
 // 2) Resolve derived fields: hash + link to File in /static/screenshots
-export const createResolvers = ({ createResolvers }) => {
+const createResolvers = ({ createResolvers }) => {
   createResolvers({
     SourcesJson: {
       categories: {
@@ -88,7 +84,7 @@ export const createResolvers = ({ createResolvers }) => {
   });
 };
 
-export const createPages = async ({ graphql, actions, reporter }) => {
+const createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
   // Discover locales dynamically from src/locales
@@ -98,9 +94,9 @@ export const createPages = async ({ graphql, actions, reporter }) => {
         .readdirSync(LOCALES_DIR)
         .filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
     : ['en'];
-  const DEFAULT_LANGUAGE =
-    process.env.DEFAULT_LANGUAGE && languages.includes(process.env.DEFAULT_LANGUAGE)
-      ? process.env.DEFAULT_LANGUAGE
+  const GATSBY_DEFAULT_LANGUAGE =
+    process.env.GATSBY_DEFAULT_LANGUAGE && languages.includes(process.env.GATSBY_DEFAULT_LANGUAGE)
+      ? process.env.GATSBY_DEFAULT_LANGUAGE
       : languages[0] || 'en';
 
   const result = await graphql(`
@@ -138,11 +134,11 @@ export const createPages = async ({ graphql, actions, reporter }) => {
     const m = relativePath.match(/^(.*?)(?:\.(\w{2}(?:-[A-Za-z]{2})?))?\.(md|mdx)$/);
     if (m) {
       const slug = m[1].split('/').pop();
-      const lang = m[2] || DEFAULT_LANGUAGE;
+      const lang = m[2] || GATSBY_DEFAULT_LANGUAGE;
       return { slug, lang };
     }
     const base = relativePath.replace(/\.(md|mdx)$/i, '');
-    return { slug: base.split('/').pop(), lang: DEFAULT_LANGUAGE };
+    return { slug: base.split('/').pop(), lang: GATSBY_DEFAULT_LANGUAGE };
   };
 
   for (const node of nodes) {
@@ -150,7 +146,7 @@ export const createPages = async ({ graphql, actions, reporter }) => {
     const rel = (file.relativePath || file.name || '').toString();
     const { slug, lang } = parseName(rel);
     const originalPath = `/${slug}/`;
-    const localizedPath = lang === DEFAULT_LANGUAGE ? originalPath : `/${lang}${originalPath}`;
+    const localizedPath = lang === GATSBY_DEFAULT_LANGUAGE ? originalPath : `/${lang}${originalPath}`;
 
     createPage({
       path: localizedPath,
@@ -161,7 +157,7 @@ export const createPages = async ({ graphql, actions, reporter }) => {
         i18n: {
           language: lang,
           languages,
-          defaultLanguage: DEFAULT_LANGUAGE,
+          defaultLanguage: GATSBY_DEFAULT_LANGUAGE,
           originalPath,
           routed: true,
         },
@@ -169,3 +165,9 @@ export const createPages = async ({ graphql, actions, reporter }) => {
     });
   }
 };
+
+exports.onCreateWebpackConfig = onCreateWebpackConfig;
+exports.onPreBootstrap = onPreBootstrap;
+exports.createSchemaCustomization = createSchemaCustomization;
+exports.createResolvers = createResolvers;
+exports.createPages = createPages;

@@ -3,6 +3,7 @@ import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useI18next } from 'gatsby-plugin-react-i18next';
 import { loadAdSense } from '../lib/adsense';
 import { readConsent } from '../lib/consent';
+import { useLocation } from '@reach/router';
 
 type SEOProps = {
   title?: string;
@@ -20,20 +21,26 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
     siteUrl,
   } = useSiteMetadata();
   const { language, languages, originalPath, defaultLanguage } = useI18next() as any;
+  const { pathname: locPathname } = useLocation();
+
+  const rawPath = pathname ?? originalPath ?? locPathname ?? '/';
+  const normalizedPath = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
+  const canonicalUrl = `${siteUrl}${normalizedPath}`;
 
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image}`,
-    url: `${siteUrl}${pathname || originalPath || ''}`,
+    url: canonicalUrl,
   };
 
   const ogLocale = (language || defaultLanguage || 'en').toString().replace('-', '_');
+  const ADSENSE_ID = process.env.GATSBY_GOOGLE_ADSENSE_ID as string | undefined;
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') return;
     const consent = readConsent();
-    const client = process.env.GATSBY_GOOGLE_ADSENSE_ID;
+    const client = ADSENSE_ID;
     if (consent?.ads && client) {
       loadAdSense(client);
     }
@@ -44,7 +51,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
       <html lang={(language || defaultLanguage || 'en').toLowerCase()} />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="google-adsense-account" content={process.env.GATSBY_GOOGLE_ADSENSE_ID} />
+      <meta name="google-adsense-account" content={ADSENSE_ID} />
       <meta name="image" content={seo.image} />
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -72,11 +79,12 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
       {languages &&
         defaultLanguage &&
         languages.map((lng) => {
-          const href = `${siteUrl}${lng === defaultLanguage ? originalPath || '' : `/${lng}${originalPath || ''}`}`;
+          const basePath = normalizedPath;
+          const href = `${siteUrl}${lng === defaultLanguage ? basePath : `/${lng}${basePath}`}`;
           return <link key={lng} rel="alternate" hrefLang={lng} href={href} />;
         })}
       {defaultLanguage && (
-        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}${originalPath || ''}`} />
+        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}${normalizedPath}`} />
       )}
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
