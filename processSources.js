@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const puppeteer = require('puppeteer-extra');
-const { DEFAULT_INTERCEPT_RESOLUTION_PRIORITY } = require('puppeteer');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 const sharp = require('sharp');
@@ -43,17 +42,31 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
 const isProduction = NODE_ENV === 'production';
 
-const hasAwsCredentials =
-  Boolean(process.env.AWS_ACCESS_KEY_ID) && Boolean(process.env.AWS_SECRET_ACCESS_KEY);
+const resolveS3Client = () => {
+  try {
+    if (process.env.SKIP_S3 === 'true') return null;
 
-const s3 = hasAwsCredentials
-  ? new AWS.S3({
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      sessionToken: process.env.AWS_SESSION_TOKEN,
+    const explicitCreds =
+      process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY
+        ? {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+            sessionToken: process.env.AWS_SESSION_TOKEN,
+          }
+        : {};
+
+    const options = {
       region: process.env.AWS_REGION,
-    })
-  : null;
+      ...explicitCreds,
+    };
+
+    return new AWS.S3(options);
+  } catch (error) {
+    return null;
+  }
+};
+
+const s3 = resolveS3Client();
 
 function urlHash(input) {
   return crypto.createHash('sha1').update(String(input)).digest('hex').slice(0, 12);
@@ -431,7 +444,6 @@ const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
       AdblockerPlugin({
         blockTrackers: true,
         blockTrackersAndAnnoyances: true,
-        interceptResolutionPriority: DEFAULT_INTERCEPT_RESOLUTION_PRIORITY,
       })
     );
 
