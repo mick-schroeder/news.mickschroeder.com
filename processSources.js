@@ -273,6 +273,7 @@ async function uploadToS3(filePath, slug, reporter) {
       Key: `${slug}.webp`,
       Body: data,
       ContentType: 'image/webp',
+      CacheControl: 'public, max-age=604800, immutable',
     };
     await s3.upload(params).promise();
   } catch (error) {
@@ -367,6 +368,23 @@ async function processChunk(sourcesChunk, browser, reporter) {
   );
   page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
 
+  // Targeted resource throttling: skip heavy assets without breaking visuals
+  try {
+    await page.setRequestInterception(true);
+    page.on('request', (req) => {
+      try {
+        const type = req.resourceType();
+        if (type === 'media') return req.abort(); // block video/audio
+        // Keep images, styles, scripts, fonts, xhr to preserve layout/content
+        return req.continue();
+      } catch (e) {
+        try { return req.continue(); } catch (_) { /* swallow */ }
+      }
+    });
+  } catch (e) {
+    if (reporter && reporter.warn) reporter.warn(`Request interception unavailable: ${e.message}`);
+  }
+
   try {
     for (const edge of sourcesChunk) {
       const hash = urlHash(edge.url || edge.name);
@@ -413,7 +431,9 @@ async function processSources(sources, CONCURRENT_PAGES, browser, reporter) {
   }
 
   // Use Promise.all to process each chunk concurrently
-  await Promise.all(sourceChunks.map((chunk) => processChunk(chunk, browser, reporter)));
+  for (const chunk of sourceChunks) {
+    await processChunk(chunk, browser, reporter);
+  }
 }
 
 const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
