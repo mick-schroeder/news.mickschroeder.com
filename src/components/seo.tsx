@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useI18next } from 'gatsby-plugin-react-i18next';
-import { loadAdSense } from '../lib/adsense';
-import { readConsent } from '../lib/consent';
 import { useLocation } from '@reach/router';
 
 type SEOProps = {
@@ -36,15 +34,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
 
   const ogLocale = (language || defaultLanguage || 'en').toString().replace('-', '_');
   const ADSENSE_ID = process.env.GATSBY_GOOGLE_ADSENSE_ID as string | undefined;
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') return;
-    const consent = readConsent();
-    const client = ADSENSE_ID;
-    if (consent?.ads && client) {
-      loadAdSense(client);
-    }
-  }, []);
+  const GTAG_ID = process.env.GATSBY_GTAG_ID as string | undefined;
 
   return (
     <>
@@ -107,6 +97,28 @@ export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex,
         "name": "${defaultTitle}"
       }`}
       </script>
+      <meta name="google-adsense-account" content={ADSENSE_ID} />
+      {process.env.NODE_ENV === 'production' && GTAG_ID && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}></script>
+          <script>
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GTAG_ID}');
+            `}
+          </script>
+        </>
+      )}
+      {process.env.NODE_ENV === 'production' && ADSENSE_ID && (
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+          crossOrigin="anonymous"
+        ></script>
+      )}
+
       {children}
     </>
   );

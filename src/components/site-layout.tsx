@@ -1,5 +1,4 @@
 import React from 'react';
-import ConsentBanner from './consent-banner';
 import { NextSiteProvider } from './next-site-context';
 import { SourceCategoryProvider } from './context/SourceCategoryContext';
 import Navbar from './navbar';
@@ -23,7 +22,6 @@ const SiteLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
 
           {/* Footer */}
           <FooterBar />
-          <ConsentBanner />
         </div>
       </div>
     </NextSiteProvider>

@@ -40,11 +40,21 @@ Certain links on our website may be sponsored or paid for by third parties.
 
 Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your personal information. By using our website, you consent to the practices outlined in our Privacy Policy.
 
-## Links to Third Party Websites
+## Cookies and Consent
 
-This software includes links to third party websites. We are not responsible for the content or privacy policies on these websites. You should be aware that the privacy policies of these websites may differ from this one.
+We use cookies and similar technologies to improve your experience, serve ads, and analyze traffic. In regions where required (such as the EU/UK), you will be asked to provide consent before cookies are used. You may withdraw or adjust your consent at any time using your browser settings or available site controls.
 
-# Privacy Policy
+## Third-Party Services
+
+We use third-party services (including Google Analytics and Google AdSense) to deliver analytics and advertising. These providers may use cookies, device identifiers, or similar technologies to collect information about your activity on this site and across other websites. Data collected may be shared with these providers for processing according to their privacy policies.
+
+## User Rights
+
+Depending on your jurisdiction (e.g., EU/UK under GDPR or California under CCPA), you may have rights to access, correct, or delete your personal information, or to opt out of data sharing for targeted advertising. To exercise these rights, please contact us at [privacy@mickschroeder.com](mailto:privacy@mickschroeder.com).
+
+## Children’s Privacy
+
+This site is not directed at children under the age of 13 (or 16 where applicable). We do not knowingly collect personal information from children. If you believe we have inadvertently collected such information, please contact us to request deletion.
 
 ## Information We Collect
 
