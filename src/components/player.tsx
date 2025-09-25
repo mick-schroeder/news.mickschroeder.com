@@ -1,17 +1,15 @@
-import React from 'react'
+import * as React from 'react';
 import { useNextSiteContext } from './next-site-context';
 import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { ExternalLink, RefreshCw } from 'lucide-react';
-import type { MouseEvent } from 'react';
-
-const WebShufflePlayer = (): JSX.Element => {
+const WebShufflePlayer: React.FC = () => {
   const { nextSite, nextSiteName, refreshNextSite } = useNextSiteContext();
 
   const { t } = useTranslation();
 
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.open(nextSite, '_blank');
     refreshNextSite();

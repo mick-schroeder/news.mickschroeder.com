@@ -1,5 +1,4 @@
-import React from 'react'
-import type { ReactNode } from 'react';
+import * as React from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useI18next } from 'gatsby-plugin-react-i18next';
 import { useLocation } from '@reach/router';
@@ -9,10 +8,18 @@ type SEOProps = {
   description?: string;
   pathname?: string;
   noindex?: boolean;
-  children?: ReactNode;
+  disableAds?: boolean;
+  children?: React.ReactNode;
 };
 
-export const SEO = ({ title, description, pathname, noindex, children }: SEOProps): JSX.Element => {
+export const SEO = ({
+  title,
+  description,
+  pathname,
+  noindex,
+  disableAds,
+  children,
+}: SEOProps): JSX.Element => {
   const {
     title: defaultTitle,
     description: defaultDescription,
@@ -35,13 +42,14 @@ export const SEO = ({ title, description, pathname, noindex, children }: SEOProp
 
   const ogLocale = (language || defaultLanguage || 'en').toString().replace('-', '_');
   const ADSENSE_ID = process.env.GATSBY_GOOGLE_ADSENSE_ID as string | undefined;
+  const shouldShowAds = process.env.NODE_ENV === 'production' && ADSENSE_ID && !disableAds;
 
   return (
     <>
       <html lang={(language || defaultLanguage || 'en').toLowerCase()} />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="google-adsense-account" content={ADSENSE_ID} />
+      {ADSENSE_ID && !disableAds && <meta name="google-adsense-account" content={ADSENSE_ID} />}
       <meta name="image" content={seo.image} />
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -97,7 +105,7 @@ export const SEO = ({ title, description, pathname, noindex, children }: SEOProp
         "name": "${defaultTitle}"
       }`}
       </script>
-      {process.env.NODE_ENV === 'production' && ADSENSE_ID && (
+      {shouldShowAds && (
         <script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/card';
 import { AspectRatio } from './ui/aspect-ratio';
@@ -131,7 +131,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       image={image}
                       alt={`Screenshot of ${name}`}
                       loading={eager}
-                      fetchpriority={fetchP}
+                      fetchPriority={fetchP}
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                     />
@@ -140,7 +140,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       src={`/screenshots/${hash}.webp`}
                       alt={`Screenshot of ${name}`}
                       loading={eager}
-                      fetchpriority={fetchP}
+                      fetchPriority={fetchP}
                       decoding="async"
                       className="h-full w-full object-cover"
                       width="720"

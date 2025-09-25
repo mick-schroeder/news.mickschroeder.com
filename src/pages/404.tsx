@@ -1,11 +1,11 @@
-import React from 'react'
+import * as React from 'react';
 import { Link, graphql } from 'gatsby';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import SiteLayout from '../components/site-layout';
 import { SEO } from '../components/seo';
 import '../fragments/locale';
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FC = () => {
   return (
     <SiteLayout>
       <main className="mx-auto max-w-prose py-16 px-6 text-center">
@@ -24,7 +24,7 @@ const NotFoundPage = () => {
 };
 
 export default NotFoundPage;
-export const Head = () => <SEO title="404 — Not found" noindex />;
+export const Head = () => <SEO title="404 — Not found" noindex disableAds />;
 
 export const query = graphql`
   query NotFoundPageQuery($language: String!) {

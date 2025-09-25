@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import logo from '../images/logo-circle.svg';
@@ -6,7 +6,7 @@ import LocalizedLink from './LocalizedLink';
 
 type LogoProps = { showAuthor?: boolean };
 
-const Logo = ({ showAuthor = false }: LogoProps) => {
+const Logo: React.FC<LogoProps> = ({ showAuthor = false }) => {
   const data = useStaticQuery(graphql`
     query LogoAuthorUrlQuery {
       site {

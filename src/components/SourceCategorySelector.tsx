@@ -1,5 +1,4 @@
-import React from 'react'
-import { useCallback, useMemo, useState } from 'react';
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
@@ -9,7 +8,7 @@ import { Trans } from 'gatsby-plugin-react-i18next';
 import { useSourceCategoryContext } from './context/SourceCategoryContext';
 import { ChevronDown, Filter } from 'lucide-react';
 
-export const SourceCategorySelector = (): JSX.Element => {
+export const SourceCategorySelector: React.FC = () => {
   const { selectedCategories, setSelectedCategories } = useSourceCategoryContext();
   const data = useStaticQuery(graphql`
     query AllSourceCategories {
@@ -20,7 +19,7 @@ export const SourceCategorySelector = (): JSX.Element => {
       }
     }
   `);
-  const allCategories = useMemo(() => {
+  const allCategories = React.useMemo(() => {
     const set = new Set<string>();
     data.allSourcesJson.nodes.forEach((node: any) => {
       (node.categories || []).forEach((cat: string) => set.add(cat));
@@ -28,12 +27,12 @@ export const SourceCategorySelector = (): JSX.Element => {
     return Array.from(set).sort();
   }, [data]);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const isAllSelected =
     selectedCategories.length === 0 || selectedCategories.length === allCategories.length;
 
   // Memoized handlers
-  const handleToggle = useCallback(
+  const handleToggle = React.useCallback(
     (cat: string) => {
       let newSelected: string[];
       if (selectedCategories.includes(cat)) {
@@ -50,7 +49,7 @@ export const SourceCategorySelector = (): JSX.Element => {
     [selectedCategories, allCategories.length, setSelectedCategories]
   );
 
-  const handleSelectAll = useCallback(() => {
+  const handleSelectAll = React.useCallback(() => {
     setSelectedCategories([]);
   }, [setSelectedCategories]);
 

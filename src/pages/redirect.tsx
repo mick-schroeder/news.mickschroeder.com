@@ -1,11 +1,11 @@
-import React from 'react'
+import * as React from 'react';
 import SiteLayout from '../components/site-layout';
 import Redirecter from '../components/redirect';
 import { SEO } from '../components/seo';
 import { graphql } from 'gatsby';
 import '../fragments/locale';
 
-const RedirectPage = () => {
+const RedirectPage: React.FC = () => {
   return (
     <SiteLayout>
       <div className="flex items-center justify-center">
@@ -16,7 +16,7 @@ const RedirectPage = () => {
 };
 
 export default RedirectPage;
-export const Head = () => <SEO title="Redirect" noindex />;
+export const Head = () => <SEO title="Redirect" noindex disableAds />;
 
 export const query = graphql`
   query RedirectPageQuery($language: String!) {
