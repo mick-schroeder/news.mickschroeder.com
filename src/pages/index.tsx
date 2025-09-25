@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
 // import { Link } from "gatsby";
 import CardsSources from '../components/sources-gallery';
 import RedirectButton from '../components/redirect-button';
@@ -11,9 +12,22 @@ import { Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
 import { Newspaper } from 'lucide-react';
 import '../fragments/locale';
+type SourceNode = {
+  name: string;
+  score?: number | string;
+  categories: string[];
+  url: string;
+  hash: string;
+  screenshot?: {
+    childImageSharp?: {
+      gatsbyImageData: IGatsbyImageData;
+    } | null;
+  } | null;
+};
+
 type IndexData = {
   allSourcesJson: {
-    nodes: any[];
+    nodes: SourceNode[];
   };
 };
 

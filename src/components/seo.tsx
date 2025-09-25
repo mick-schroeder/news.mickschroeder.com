@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react'
+import type { ReactNode } from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useI18next } from 'gatsby-plugin-react-i18next';
 import { useLocation } from '@reach/router';
@@ -8,17 +9,17 @@ type SEOProps = {
   description?: string;
   pathname?: string;
   noindex?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-export const SEO: React.FC<SEOProps> = ({ title, description, pathname, noindex, children }) => {
+export const SEO = ({ title, description, pathname, noindex, children }: SEOProps): JSX.Element => {
   const {
     title: defaultTitle,
     description: defaultDescription,
     image,
     siteUrl,
   } = useSiteMetadata();
-  const { language, languages, originalPath, defaultLanguage } = useI18next() as any;
+  const { language, languages, originalPath, defaultLanguage } = useI18next();
   const { pathname: locPathname } = useLocation();
 
   const rawPath = pathname ?? originalPath ?? locPathname ?? '/';

@@ -17,7 +17,7 @@ const RedirectButton: React.FC = () => {
     <Button
       type="button"
       onClick={handleClick}
-      className="text-foreground inline-flex items-center py-3 px-5 font-bold shadow"
+      className="text-foreground inline-flex items-center py-3 px-5 font-bold shadow cursor-pointer"
     >
       <img src={WebShuffleIcon} className="w-3.5 h-3.5 mr-2" alt="Website Icon" />
       <Trans i18nKey="shuffle" />

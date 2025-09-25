@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import React, { type ReactNode } from 'react';
 
 // Type for the context value
 interface SourceCategoryContextType {
@@ -7,10 +7,10 @@ interface SourceCategoryContextType {
 }
 
 // Default: all categories selected (empty array means 'all')
-const SourceCategoryContext = createContext<SourceCategoryContextType | undefined>(undefined);
+const SourceCategoryContext = React.createContext<SourceCategoryContextType | undefined>(undefined);
 
 export const useSourceCategoryContext = () => {
-  const context = useContext(SourceCategoryContext);
+  const context = React.useContext(SourceCategoryContext);
   if (!context) {
     throw new Error('useSourceCategoryContext must be used within a SourceCategoryProvider');
   }
@@ -24,7 +24,7 @@ export const SourceCategoryProvider = ({
   children: ReactNode;
   defaultCategories?: string[];
 }) => {
-  const [selectedCategories, setSelectedCategoriesState] = useState<string[]>(() => {
+  const [selectedCategories, setSelectedCategoriesState] = React.useState<string[]>(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('selectedCategories');
       if (stored) return JSON.parse(stored);
@@ -32,7 +32,7 @@ export const SourceCategoryProvider = ({
     return defaultCategories;
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('selectedCategories', JSON.stringify(selectedCategories));
     }

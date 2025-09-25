@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, Trans } from 'gatsby-plugin-react-i18next';
-import logo from '../images/logo-circle.svg';
+import { Trans } from 'gatsby-plugin-react-i18next';
 import { useStaticQuery, graphql } from 'gatsby';
 // Trans imported above
 import { Separator } from './ui/separator';
+import LocalizedLink from './LocalizedLink';
 
 const currentYear = new Date().getFullYear();
 
-const FooterBar = () => {
+const FooterBar: React.FC = () => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -35,9 +35,12 @@ const FooterBar = () => {
               .
             </p>
             <p className="mt-2">
-              <Link to="/terms-privacy" className="underline hover:no-underline text-foreground">
+              <LocalizedLink
+                to="/terms-privacy"
+                className="underline hover:no-underline text-foreground"
+              >
                 <Trans i18nKey="terms_privacy" defaults="Terms & Privacy" />
-              </Link>
+              </LocalizedLink>
             </p>
             <p className="py-4 md:p-10 text-xs text-justify text-muted-foreground">
               <Trans i18nKey="disclaimer" />

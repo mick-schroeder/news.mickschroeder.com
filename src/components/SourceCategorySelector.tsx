@@ -1,5 +1,5 @@
-import React from 'react';
-import { Badge } from '@/components/ui/badge';
+import React from 'react'
+import { useCallback, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
@@ -7,9 +7,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { graphql, useStaticQuery } from 'gatsby';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { useSourceCategoryContext } from './context/SourceCategoryContext';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Filter } from 'lucide-react';
 
-export const SourceCategorySelector: React.FC = () => {
+export const SourceCategorySelector = (): JSX.Element => {
   const { selectedCategories, setSelectedCategories } = useSourceCategoryContext();
   const data = useStaticQuery(graphql`
     query AllSourceCategories {
@@ -20,7 +20,7 @@ export const SourceCategorySelector: React.FC = () => {
       }
     }
   `);
-  const allCategories = React.useMemo(() => {
+  const allCategories = useMemo(() => {
     const set = new Set<string>();
     data.allSourcesJson.nodes.forEach((node: any) => {
       (node.categories || []).forEach((cat: string) => set.add(cat));
@@ -28,12 +28,12 @@ export const SourceCategorySelector: React.FC = () => {
     return Array.from(set).sort();
   }, [data]);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const isAllSelected =
     selectedCategories.length === 0 || selectedCategories.length === allCategories.length;
 
   // Memoized handlers
-  const handleToggle = React.useCallback(
+  const handleToggle = useCallback(
     (cat: string) => {
       let newSelected: string[];
       if (selectedCategories.includes(cat)) {
@@ -50,7 +50,7 @@ export const SourceCategorySelector: React.FC = () => {
     [selectedCategories, allCategories.length, setSelectedCategories]
   );
 
-  const handleSelectAll = React.useCallback(() => {
+  const handleSelectAll = useCallback(() => {
     setSelectedCategories([]);
   }, [setSelectedCategories]);
 
@@ -65,14 +65,13 @@ export const SourceCategorySelector: React.FC = () => {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="w-[200px] justify-start"
+          className="w-[200px] justify-start text-left whitespace-normal"
           aria-haspopup="listbox"
           aria-expanded={open}
           aria-label="Select categories"
         >
-          <span className="flex items-center gap-2">
-            {display}
-          </span>
+          <Filter aria-hidden="true" className="w-4 h-4 me-2" />
+          <span className="flex-1 min-w-0 text-left break-words">{display}</span>
           <ChevronDown aria-hidden="true" className="w-4 h-4 ms-auto" />
         </Button>
       </PopoverTrigger>

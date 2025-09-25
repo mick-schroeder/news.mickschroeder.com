@@ -1,21 +1,17 @@
-import React from 'react';
+import React from 'react'
 import { useNextSiteContext } from './next-site-context';
 import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { ExternalLink, RefreshCw } from 'lucide-react';
+import type { MouseEvent } from 'react';
 
-const WebShufflePlayer: React.FC = () => {
-  const {
-    nextSite,
-    nextSiteName,
-    refreshNextSite,
-  } = useNextSiteContext();
+const WebShufflePlayer = (): JSX.Element => {
+  const { nextSite, nextSiteName, refreshNextSite } = useNextSiteContext();
 
   const { t } = useTranslation();
 
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.open(nextSite, '_blank');
     refreshNextSite();
@@ -51,29 +47,19 @@ const WebShufflePlayer: React.FC = () => {
                 )}
               </CardTitle>
               <CardDescription className="mt-0.5">
-                {!nextSite && (
-                  <div className="h-4 w-48 mx-auto rounded bg-muted animate-pulse" />
-                )}
+                {!nextSite && <div className="h-4 w-48 mx-auto rounded bg-muted animate-pulse" />}
               </CardDescription>
             </div>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={refreshNextSite}
-                    variant="ghost"
-                    size="icon"
-                    aria-label="Shuffle next site"
-                    className="h-11 w-11"
-                  >
-                    <RefreshCw className="w-5 h-5 text-muted-foreground" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <Trans i18nKey="shuffle_next" />
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+
+            <Button
+              onClick={refreshNextSite}
+              variant="ghost"
+              size="icon"
+              aria-label="Shuffle next site"
+              className="h-11 w-11"
+            >
+              <RefreshCw className="w-5 h-5 text-muted-foreground" />
+            </Button>
           </div>
         </CardHeader>
       </Card>

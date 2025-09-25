@@ -1,12 +1,13 @@
+import type { GatsbyBrowser } from 'gatsby';
 import './src/styles/global.css';
 
-export const onClientEntry = () => {
+export const onClientEntry: GatsbyBrowser['onClientEntry'] = () => {
   if (typeof window === 'undefined') return;
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
+    void navigator.serviceWorker.getRegistrations().then((registrations) => {
       registrations.forEach((registration) => {
-        registration.unregister().catch(() => {
+        void registration.unregister().catch(() => {
           // ignore unregister failures; next navigation will retry
         });
       });
@@ -14,11 +15,11 @@ export const onClientEntry = () => {
   }
 
   if ('caches' in window) {
-    caches.keys().then((keys) => {
+    void caches.keys().then((keys) => {
       keys
         .filter((key) => key.includes('gatsby-plugin-offline'))
         .forEach((key) => {
-          caches.delete(key).catch(() => {
+          void caches.delete(key).catch(() => {
             // best effort; ignore failures so app still loads
           });
         });

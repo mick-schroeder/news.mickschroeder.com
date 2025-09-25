@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Link, graphql } from 'gatsby';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import SiteLayout from '../components/site-layout';

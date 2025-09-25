@@ -1,8 +1,8 @@
-//import PropTypes from "prop-types"
-import React from 'react';
+import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby';
-import { Link , Trans } from 'gatsby-plugin-react-i18next';
+import { Trans } from 'gatsby-plugin-react-i18next';
 import logo from '../images/logo-circle.svg';
+import LocalizedLink from './LocalizedLink';
 
 type LogoProps = { showAuthor?: boolean };
 
@@ -20,12 +20,12 @@ const Logo = ({ showAuthor = false }: LogoProps) => {
 
   return (
     <span className="inline-flex items-center">
-      <Link to="/" className="inline-flex items-center">
+      <LocalizedLink to="/" className="inline-flex items-center">
         <img src={logo} className="h-6 mr-2" alt="Logo" />
         <span className="text-xl font-black tracking-tighter self-center whitespace-nowrap text-foreground">
           <Trans i18nKey="brand" />
         </span>
-      </Link>
+      </LocalizedLink>
       {showAuthor && (
         <a
           href={authorUrl || '/'}

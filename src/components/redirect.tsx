@@ -8,20 +8,28 @@ const Redirecter: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     refreshNextSite();
-    const retry = setTimeout(() => {
-      if (!nextSite) refreshNextSite();
-    }, 600);
-    setIsLoading(false);
-    return () => clearTimeout(retry);
   }, [refreshNextSite]);
+
+  useEffect(() => {
+    if (nextSite) {
+      setIsLoading(false);
+      return;
+    }
+
+    const retry = setTimeout(() => {
+      refreshNextSite();
+    }, 600);
+
+    return () => clearTimeout(retry);
+  }, [nextSite, refreshNextSite]);
 
   useEffect(() => {
     if (!nextSite) return;
     if (typeof window === 'undefined') return;
     if (nextSite === window.location.href) return;
 
-    setIsLoading(false);
     const t = setTimeout(() => {
       window.location.replace(nextSite);
     }, 150);

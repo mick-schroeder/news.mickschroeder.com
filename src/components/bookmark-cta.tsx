@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { Link, Trans } from 'gatsby-plugin-react-i18next';
+import React from 'react'
+import { Trans } from 'gatsby-plugin-react-i18next';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Bookmark, Copy, Check } from 'lucide-react';
+import LocalizedLink from './LocalizedLink';
 
 const BookmarkCTA: React.FC = () => {
   const linkRef = React.useRef<HTMLAnchorElement>(null);
@@ -72,9 +73,9 @@ const BookmarkCTA: React.FC = () => {
 
         {/* Hidden localized Link to resolve the correct href; we mirror it onto the visible anchor via effect */}
         <span className="hidden" aria-hidden="true">
-          <Link id="bookmark-localized" to="/redirect">
+          <LocalizedLink id="bookmark-localized" to="/redirect">
             localized redirect link
-          </Link>
+          </LocalizedLink>
         </span>
       </CardContent>
     </Card>

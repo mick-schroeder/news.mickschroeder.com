@@ -17,12 +17,41 @@ const GATSBY_DEFAULT_LANGUAGE = ((): string => {
   return languages[0] || 'en';
 })();
 
+type I18nContext = {
+  language?: string;
+  originalPath?: string;
+  languages?: string[];
+  defaultLanguage?: string;
+};
+
+type SitePageNode = {
+  path: string;
+  context?: {
+    i18n?: I18nContext;
+  };
+  pageContext?: {
+    i18n?: I18nContext;
+  };
+};
+
+type ResolvePagesArgs = {
+  allSitePage: {
+    nodes: SitePageNode[];
+  };
+};
+
+type SerializedPage = {
+  path: string;
+  links: { lang: string; url: string }[];
+};
+
 const config: GatsbyConfig = {
   siteMetadata: {
     name: 'News Craic',
     title: 'News Craic',
     tagLine: 'Shuffle the news, find the craic.',
-    description: 'News Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.',
+    description:
+      'News Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.',
     image: '/large-promo.png',
     author: 'Mick Schroeder, LLC',
     authorUrl: 'https://www.mickschroeder.com',
@@ -31,7 +60,7 @@ const config: GatsbyConfig = {
     siteUrl: GATSBY_SITE_URL,
   },
   graphqlTypegen: {
-    typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
+    typesOutputPath: '.cache/types/gatsby-types.d.ts',
   },
   plugins: [
     {
@@ -45,7 +74,7 @@ const config: GatsbyConfig = {
         theme_color: '#1f2937',
         display: 'standalone',
         cache_busting_mode: 'none',
-        icon: "src/images/logo.png",
+        icon: 'src/images/logo.png',
         icon_options: {
           purpose: 'any maskable',
         },
@@ -91,7 +120,9 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingIds: [process.env.GATSBY_GTAG_ID, process.env.GATSBY_GOOGLE_ADS_ID].filter(Boolean) as string[],
+        trackingIds: [process.env.GATSBY_GTAG_ID, process.env.GATSBY_GOOGLE_ADS_ID].filter(
+          Boolean
+        ) as string[],
         pluginConfig: {
           head: true,
           respectDNT: true,
@@ -146,7 +177,7 @@ const config: GatsbyConfig = {
         resolveSiteUrl: () => GATSBY_SITE_URL,
         excludes: ['/redirect'],
         query: `
-          {
+          query SitemapPages {
             allSitePage {
               nodes {
                 path
@@ -154,10 +185,16 @@ const config: GatsbyConfig = {
             }
           }
         `,
-        resolvePages: ({ allSitePage }) => {
+        resolvePages: ({ allSitePage }: ResolvePagesArgs) => {
           const nodes = allSitePage?.nodes || [];
-          const groups = new Map();
-          const languagesSet = new Set();
+          const groups = new Map<
+            string,
+            {
+              originalPath: string;
+              perLang: Record<string, string>;
+            }
+          >();
+          const languagesSet = new Set<string>();
           let defaultLanguage: string | undefined;
 
           const langFromPath = (p: string): string | undefined => {
@@ -165,13 +202,13 @@ const config: GatsbyConfig = {
             return m?.[1];
           };
 
-          for (const n of nodes) {
-            const ctx = (n as any).context || (n as any).pageContext || {};
+          for (const node of nodes) {
+            const ctx = node.context || node.pageContext || {};
             const i18n = ctx.i18n || {};
-            const language: string | undefined = i18n.language || langFromPath(n.path);
+            const language: string | undefined = i18n.language || langFromPath(node.path);
             const originalPath: string =
               i18n.originalPath ||
-              (language ? n.path.replace(new RegExp(`^/${language}(?=/|$)`), '') : n.path) ||
+              (language ? node.path.replace(new RegExp(`^/${language}(?=/|$)`), '') : node.path) ||
               '/';
             const langs: string[] = Array.isArray(i18n.languages) ? i18n.languages : [];
             if (langs.length) langs.forEach((l) => languagesSet.add(l));
@@ -181,9 +218,10 @@ const config: GatsbyConfig = {
             const key = originalPath || '/';
             if (!groups.has(key))
               groups.set(key, { originalPath: key, perLang: {} as Record<string, string> });
-            if (language) groups.get(key).perLang[language] = n.path;
+            const group = groups.get(key)!;
+            if (language) group.perLang[language] = node.path;
             // Also store default fallback if no language identified
-            if (!language) groups.get(key).perLang['__default__'] = n.path;
+            if (!language) group.perLang['__default__'] = node.path;
           }
 
           // Heuristic if defaultLanguage not in context: prefer the language whose page has no prefix
@@ -209,21 +247,21 @@ const config: GatsbyConfig = {
           languagesSet.add(defaultLanguage!);
           const languages = Array.from(languagesSet);
 
-          const toHref = (lng: string, originalPath: string) =>
+          const toHref = (lng: string, originalPath: string): string =>
             `${GATSBY_SITE_URL}${lng === defaultLanguage ? originalPath : `/${lng}${originalPath}`}`;
 
-          const pages = Array.from(groups.values()).map((g) => {
-            const canonicalPath = g.perLang[defaultLanguage!] || g.originalPath || '/';
+          const pages: SerializedPage[] = Array.from(groups.values()).map((group) => {
+            const canonicalPath = group.perLang[defaultLanguage!] || group.originalPath || '/';
             const links = [
-              { lang: 'x-default', url: `${GATSBY_SITE_URL}${g.originalPath || '/'}` },
-              ...languages.map((lng) => ({ lang: lng, url: toHref(lng, g.originalPath || '/') })),
+              { lang: 'x-default', url: `${GATSBY_SITE_URL}${group.originalPath || '/'}` },
+              ...languages.map((lng) => ({ lang: lng, url: toHref(lng, group.originalPath || '/') })),
             ];
             return { path: canonicalPath, links };
           });
 
           return pages;
         },
-        serialize: (page) => ({
+        serialize: (page: SerializedPage) => ({
           url: `${GATSBY_SITE_URL}${page.path}`,
           links: page.links,
           changefreq: 'daily',

@@ -1,14 +1,17 @@
-const crypto = require('crypto');
-const fs = require('fs');
-const path = require('path');
-const { preProcessSources } = require('./processSources.js');
+import { createHash } from 'crypto';
+import fs from 'fs';
+import path from 'path';
+import type { GatsbyNode } from 'gatsby';
+import { preProcessSources } from './processSources';
 
-// Constants
-const JSON_PATH = './src/data/sources.json';
-const SCREENSHOT_PATH = './static/screenshots'; // generated screenshots live here
+const JSON_PATH = path.resolve(__dirname, 'src/data/sources.json');
+const SCREENSHOT_PATH = path.resolve(__dirname, 'static/screenshots');
 const CONCURRENT_PAGES = 5;
 
-const onCreateWebpackConfig = ({ actions }) => {
+const hashOf = (input: unknown): string =>
+  createHash('sha1').update(String(input ?? '')).digest('hex').slice(0, 12);
+
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
@@ -19,22 +22,15 @@ const onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-const onPreBootstrap = async ({ reporter }) => {
+export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async ({ reporter }) => {
   if (!fs.existsSync(SCREENSHOT_PATH)) {
     fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
   }
-  await new Promise((resolve) => {
-    preProcessSources(JSON_PATH, CONCURRENT_PAGES, reporter).then(() => {
-      resolve();
-    });
-  });
+
+  await preProcessSources(JSON_PATH, CONCURRENT_PAGES, reporter);
 };
 
-const hashOf = (input) =>
-  crypto.createHash('sha1').update(String(input)).digest('hex').slice(0, 12);
-
-// 1) Declare explicit types so Gatsby won’t infer from JSON
-const createSchemaCustomization = ({ actions }) => {
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
     type SourcesJson implements Node @dontInfer {
@@ -42,19 +38,17 @@ const createSchemaCustomization = ({ actions }) => {
       url: String!
       categories: [String]
       score: String
-      # Derived fields (not in your JSON)
       hash: String
       screenshot: File @link
     }
   `);
 };
 
-// 2) Resolve derived fields: hash + link to File in /static/screenshots
-const createResolvers = ({ createResolvers }) => {
+export const createResolvers: GatsbyNode['createResolvers'] = ({ createResolvers }) => {
   createResolvers({
     SourcesJson: {
       categories: {
-        resolve(source) {
+        resolve(source: { categories?: unknown }) {
           const cat = source.categories;
           if (Array.isArray(cat)) return cat;
           if (typeof cat === 'string' && cat) return [cat];
@@ -62,12 +56,12 @@ const createResolvers = ({ createResolvers }) => {
         },
       },
       hash: {
-        resolve(source) {
+        resolve(source: { url?: string; name?: string }) {
           return hashOf(source.url || source.name || '');
         },
       },
       screenshot: {
-        async resolve(source, args, context) {
+        async resolve(source: { url?: string; name?: string }, _args: unknown, context: any) {
           const hash = hashOf(source.url || source.name || '');
           return context.nodeModel.findOne({
             type: 'File',
@@ -84,23 +78,42 @@ const createResolvers = ({ createResolvers }) => {
   });
 };
 
-const createPages = async ({ graphql, actions, reporter }) => {
+type MdxFileNode = {
+  name?: string | null;
+  relativePath?: string | null;
+};
+
+type MdxNode = {
+  id: string;
+  internal: {
+    contentFilePath: string;
+  };
+  parent?: MdxFileNode | null;
+};
+
+type AllMdxQuery = {
+  allMdx: {
+    nodes: MdxNode[];
+  };
+};
+
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  // Discover locales dynamically from src/locales
-  const LOCALES_DIR = path.join(__dirname, 'src', 'locales');
-  const languages = fs.existsSync(LOCALES_DIR)
+  const localesDir = path.join(__dirname, 'src', 'locales');
+  const languages = fs.existsSync(localesDir)
     ? fs
-        .readdirSync(LOCALES_DIR)
-        .filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
+        .readdirSync(localesDir)
+        .filter((file) => fs.statSync(path.join(localesDir, file)).isDirectory())
     : ['en'];
-  const GATSBY_DEFAULT_LANGUAGE =
+
+  const defaultLanguage =
     process.env.GATSBY_DEFAULT_LANGUAGE && languages.includes(process.env.GATSBY_DEFAULT_LANGUAGE)
       ? process.env.GATSBY_DEFAULT_LANGUAGE
       : languages[0] || 'en';
 
-  const result = await graphql(`
-    {
+  const result = await graphql<AllMdxQuery>(`
+    query MdPagesForCreatePages {
       allMdx(filter: { internal: { contentFilePath: { regex: "//src/md-pages//" } } }) {
         nodes {
           id
@@ -113,9 +126,6 @@ const createPages = async ({ graphql, actions, reporter }) => {
               relativePath
             }
           }
-          frontmatter {
-            title
-          }
         }
       }
     }
@@ -126,27 +136,27 @@ const createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
+  const nodes = result.data?.allMdx.nodes ?? [];
   const templatePath = path.resolve(__dirname, 'src/templates/md-page.tsx');
-  const nodes = result.data.allMdx.nodes || [];
 
-  const parseName = (relativePath) => {
-    // Supports names like: slug.lang.md or slug.lang.mdx
-    const m = relativePath.match(/^(.*?)(?:\.(\w{2}(?:-[A-Za-z]{2})?))?\.(md|mdx)$/);
-    if (m) {
-      const slug = m[1].split('/').pop();
-      const lang = m[2] || GATSBY_DEFAULT_LANGUAGE;
+  const parseName = (relativePath: string): { slug: string; lang: string } => {
+    const match = relativePath.match(/^(.*?)(?:\.(\w{2}(?:-[A-Za-z]{2})?))?\.(md|mdx)$/);
+    if (match) {
+      const slug = match[1].split('/').pop() ?? '';
+      const lang = match[2] || defaultLanguage;
       return { slug, lang };
     }
     const base = relativePath.replace(/\.(md|mdx)$/i, '');
-    return { slug: base.split('/').pop(), lang: GATSBY_DEFAULT_LANGUAGE };
+    const slug = base.split('/').pop() ?? '';
+    return { slug, lang: defaultLanguage };
   };
 
-  for (const node of nodes) {
-    const file = node.parent || {};
-    const rel = (file.relativePath || file.name || '').toString();
-    const { slug, lang } = parseName(rel);
+  nodes.forEach((node) => {
+    const parent = node.parent ?? {};
+    const relativePath = String(parent.relativePath || parent.name || '');
+    const { slug, lang } = parseName(relativePath);
     const originalPath = `/${slug}/`;
-    const localizedPath = lang === GATSBY_DEFAULT_LANGUAGE ? originalPath : `/${lang}${originalPath}`;
+    const localizedPath = lang === defaultLanguage ? originalPath : `/${lang}${originalPath}`;
 
     createPage({
       path: localizedPath,
@@ -157,17 +167,11 @@ const createPages = async ({ graphql, actions, reporter }) => {
         i18n: {
           language: lang,
           languages,
-          defaultLanguage: GATSBY_DEFAULT_LANGUAGE,
+          defaultLanguage,
           originalPath,
           routed: true,
         },
       },
     });
-  }
+  });
 };
-
-exports.onCreateWebpackConfig = onCreateWebpackConfig;
-exports.onPreBootstrap = onPreBootstrap;
-exports.createSchemaCustomization = createSchemaCustomization;
-exports.createResolvers = createResolvers;
-exports.createPages = createPages;
