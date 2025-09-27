@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const puppeteer = require('puppeteer');
-const { PuppeteerBlocker } = require('@ghostery/adblocker-puppeteer');
+const { PuppeteerBlocker, adsAndTrackingLists } = require('@ghostery/adblocker-puppeteer');
 const fetch = require('cross-fetch');
 const sharp = require('sharp');
 
@@ -24,7 +24,7 @@ const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || 3000);
 const WAIT_FOR_BODY_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || 15000);
 const CACHE_TIMEOUT = 6 * 60 * 60 * 1000;
 const RETRIES = 2;
-const HEADLESS_MODE = process.env.PUPPETEER_HEADLESS || 'new';
+const HEADLESS_MODE = process.env.PUPPETEER_HEADLESS || true;
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
@@ -293,16 +293,21 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
 }
 
 async function processSources(sources, CONCURRENT_PAGES, browser, reporter, blocker) {
-  // Chunk your sources
-  const sourceChunks = [];
-  for (let i = 0; i < sources.length; i += CONCURRENT_PAGES) {
-    sourceChunks.push(sources.slice(i, i + CONCURRENT_PAGES));
-  }
+  const maxParallel = Math.max(1, Number(CONCURRENT_PAGES) || 1);
+  if (!sources.length) return;
 
-  // Use Promise.all to process each chunk concurrently
-  for (const chunk of sourceChunks) {
-    await processChunk(chunk, browser, reporter, blocker);
-  }
+  const workerCount = Math.min(maxParallel, sources.length);
+  const workerChunks = Array.from({ length: workerCount }, () => []);
+
+  sources.forEach((source, index) => {
+    workerChunks[index % workerCount].push(source);
+  });
+
+  await Promise.all(
+    workerChunks
+      .filter((chunk) => chunk.length)
+      .map((chunk) => processChunk(chunk, browser, reporter, blocker))
+  );
 }
 
 const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
@@ -330,7 +335,10 @@ const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
 
     let blocker = null;
     try {
-      blocker = await PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch);
+      blocker = await PuppeteerBlocker.fromLists(fetch, [
+        ...adsAndTrackingLists,
+        'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
+      ]);
     } catch (error) {
       reporter.warn(`Failed to initialize ad blocker: ${error.message}`);
     }

@@ -6,7 +6,7 @@ import { preProcessSources } from './processSources';
 
 const JSON_PATH = path.resolve(__dirname, 'src/data/sources.json');
 const SCREENSHOT_PATH = path.resolve(__dirname, 'static/screenshots');
-const CONCURRENT_PAGES = 5;
+const CONCURRENT_PAGES = 3;
 
 const hashOf = (input: unknown): string =>
   createHash('sha1').update(String(input ?? '')).digest('hex').slice(0, 12);
