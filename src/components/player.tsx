@@ -17,7 +17,9 @@ const WebShufflePlayer: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center px-2 shrink-0">
-      <Card className="backdrop-blur w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px]">
+      <Card
+        className="w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px] bg-background/40 border-border/60 shadow-sm"
+      >
         <CardHeader className="p-2 pb-2">
           <div className="grid grid-cols-[2.25rem_1fr_2.25rem] items-center gap-2">
             <div className="w-9 h-9" aria-hidden="true" />

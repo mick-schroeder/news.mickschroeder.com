@@ -51,7 +51,7 @@ const config: GatsbyConfig = {
     title: 'News Craic',
     tagLine: 'Shuffle the news, find the craic.',
     description:
-      'News Craic is your shuffle button for Irish news. Stay informed with a single click as we take you across Ireland’s top news sites, serving the craic.',
+      'News Craic is your shuffle button for the news. Stay informed as we take you across the Internet\'s top news sites.',
     image: '/large-promo.png',
     author: 'Mick Schroeder, LLC',
     authorUrl: 'https://www.mickschroeder.com',

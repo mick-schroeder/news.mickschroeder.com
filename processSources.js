@@ -20,11 +20,16 @@ const SCREENSHOT_PATH = './static/screenshots';
 const VIEWPORT_WIDTH = Number(process.env.SCREENSHOT_VIEWPORT_WIDTH || 1080);
 const VIEWPORT_HEIGHT = Number(process.env.SCREENSHOT_VIEWPORT_HEIGHT || 1920);
 const PAGE_NAVIGATION_TIMEOUT = Number(process.env.SCREENSHOT_NAVIGATION_TIMEOUT || 30000);
-const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || 3000);
+const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || 3500);
 const WAIT_FOR_BODY_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || 15000);
+const WAIT_FOR_IMAGES_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || 5000);
 const CACHE_TIMEOUT = 6 * 60 * 60 * 1000;
 const RETRIES = 2;
-const HEADLESS_MODE = process.env.PUPPETEER_HEADLESS || true;
+const HEADLESS_MODE =
+  typeof process.env.PUPPETEER_HEADLESS === 'string'
+    ? process.env.PUPPETEER_HEADLESS !== 'false'
+    : true;
+const COLOR_SCHEME = process.env.PUPPETEER_COLOR_SCHEME || 'dark';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
@@ -86,6 +91,7 @@ async function hideCookieBanners(page, reporter) {
       const selectors = [
         '[id*="cookie" i]',
         '[class*="cookie" i]',
+        '[class*="message-container" i]',
         '[id*="consent" i]',
         '[class*="consent" i]',
         '[id*="gdpr" i]',
@@ -93,41 +99,165 @@ async function hideCookieBanners(page, reporter) {
         'button[aria-label*="cookie" i]',
         'button[aria-label*="consent" i]',
         'div[data-testid="cookie-popup"]',
+        '[class*="cookie-banner" i]',
+        '[class*="cookiebanner" i]',
+        '[class*="cookie-modal" i]',
+        '[class*="cookie-overlay" i]',
+        '[data-testid*="consent" i]',
+        '[role="dialog"][aria-label*="cookie" i]',
+        '[role="dialog"][aria-labelledby*="cookie" i]',
       ];
-      const hidden = new Set();
+      const hidden = new WeakSet();
 
       const hideElement = (el) => {
         if (!(el instanceof HTMLElement)) return;
+        if (hidden.has(el)) return;
+        el.setAttribute('data-cookie-hidden', 'true');
         el.style.setProperty('display', 'none', 'important');
         el.style.setProperty('visibility', 'hidden', 'important');
         el.style.setProperty('opacity', '0', 'important');
+        el.style.setProperty('pointer-events', 'none', 'important');
         hidden.add(el);
       };
 
+      const shouldHideByText = (el) => {
+        const text = (el.textContent || '').trim().toLowerCase();
+        if (!text || text.length > 800) return false;
+        const keywords = [
+          'cookie',
+          'consent',
+          'gdpr',
+          'privacy',
+          'preferences',
+          'tracking',
+          'agree',
+          'manage choices',
+          'manage consent',
+          'data usage',
+        ];
+        return keywords.some((word) => text.includes(word));
+      };
+
+      const scanElement = (el) => {
+        if (!(el instanceof HTMLElement)) return;
+        if (hidden.has(el)) return;
+
+        if (selectors.some((selector) => {
+            try {
+              return el.matches(selector);
+            } catch (err) {
+              return false;
+            }
+          })) {
+          hideElement(el);
+          return;
+        }
+
+        const styles = window.getComputedStyle(el);
+        if (['fixed', 'sticky'].includes(styles.position) || Number(styles.zIndex) > 999) {
+          if (shouldHideByText(el)) {
+            hideElement(el);
+          }
+        }
+      };
+
       selectors.forEach((selector) => {
-        document.querySelectorAll(selector).forEach(hideElement);
+        document.querySelectorAll(selector).forEach((el) => scanElement(el));
       });
 
-      const keywords = ['cookie', 'consent', 'gdpr', 'privacy'];
-      const nodes = Array.from(document.querySelectorAll('div, section, aside, dialog')); // broad sweep
-      nodes.forEach((el) => {
-        if (hidden.has(el)) return;
-        const styles = window.getComputedStyle(el);
-        if (!['fixed', 'sticky'].includes(styles.position)) return;
-        const text = (el.textContent || '').trim().toLowerCase();
-        if (!text || text.length > 600) return;
-        if (keywords.some((word) => text.includes(word))) {
-          hideElement(el);
-        }
-      });
+      document
+        .querySelectorAll('div, section, aside, dialog, footer, header')
+        .forEach((el) => scanElement(el));
 
       if (document.body) {
         document.body.style.setProperty('overflow', 'auto', 'important');
+        document.body.style.setProperty('position', 'relative', 'important');
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node instanceof HTMLElement) {
+              scanElement(node);
+              node.querySelectorAll?.('*').forEach((child) => {
+                if (child instanceof HTMLElement) scanElement(child);
+              });
+            }
+          });
+        });
+      });
+
+      if (document.body) {
+        observer.observe(document.body, { childList: true, subtree: true });
+        window.setTimeout(() => observer.disconnect(), 5000);
       }
     });
   } catch (error) {
     if (reporter && reporter.warn) {
       reporter.warn(`Failed to hide cookie banners: ${error.message}`);
+    }
+  }
+}
+
+async function autoScroll(page) {
+  await page.evaluate(async () => {
+    const scrollableHeight = () => document.documentElement.scrollHeight || document.body.scrollHeight || 0;
+    const distance = Math.max(window.innerHeight / 2, 200);
+    const maxScroll = scrollableHeight();
+    if (maxScroll <= window.innerHeight * 1.2) {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      return;
+    }
+
+    await new Promise((resolve) => {
+      let total = 0;
+      const step = () => {
+        window.scrollBy(0, distance);
+        total += distance;
+        const currentMax = scrollableHeight();
+        if (total >= currentMax - window.innerHeight) {
+          window.scrollTo({ top: 0, behavior: 'auto' });
+          resolve(null);
+          return;
+        }
+        window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    });
+  });
+}
+
+async function waitForImages(page, reporter) {
+  try {
+    await page.evaluate(
+      async (timeout) => {
+        const imgs = Array.from(document.images || []);
+        if (!imgs.length) return;
+
+        const loadImage = (img) =>
+          img.complete && img.naturalWidth > 0
+            ? Promise.resolve()
+            : new Promise((resolve) => {
+                const done = () => {
+                  img.removeEventListener('load', done);
+                  img.removeEventListener('error', done);
+                  resolve(null);
+                };
+                img.addEventListener('load', done, { once: true });
+                img.addEventListener('error', done, { once: true });
+                window.setTimeout(done, timeout);
+              });
+
+        await Promise.race([
+          Promise.all(imgs.map(loadImage)),
+          new Promise((resolve) => window.setTimeout(resolve, timeout)),
+        ]);
+      },
+      WAIT_FOR_IMAGES_TIMEOUT
+    );
+  } catch (error) {
+    if (reporter && reporter.warn) {
+      reporter.warn(`Failed waiting for images: ${error.message}`);
     }
   }
 }
@@ -151,6 +281,11 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
       }
 
       await hideCookieBanners(page, reporter);
+      await autoScroll(page).catch(() => {});
+      await waitForImages(page, reporter);
+      await page.evaluate(() => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
       await page.screenshot({
         path: screenshotFullPath,
       });
@@ -287,8 +422,8 @@ async function downloadFromS3(slug, reporter) {
 async function processChunk(sourcesChunk, browser, reporter, blocker) {
   const page = await browser.newPage();
   await page.setJavaScriptEnabled(true);
-  await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
-  await page.setViewport({ width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT });
+  await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: COLOR_SCHEME }]);
+  await page.setViewport({ width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT, deviceScaleFactor: 2 });
   await page.setDefaultNavigationTimeout(PAGE_NAVIGATION_TIMEOUT);
   await page.setDefaultTimeout(PAGE_NAVIGATION_TIMEOUT);
   await page.setUserAgent(

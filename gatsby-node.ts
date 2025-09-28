@@ -6,7 +6,7 @@ import { createScreenshotSlug } from './utils/screenshotSlug';
 
 const JSON_PATH = path.resolve(__dirname, 'src/data/sources.json');
 const SCREENSHOT_PATH = path.resolve(__dirname, 'static/screenshots');
-const CONCURRENT_PAGES = 3;
+const CONCURRENT_PAGES = 5;
 
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
