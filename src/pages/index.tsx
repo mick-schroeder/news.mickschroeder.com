@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
+import type { HeadProps, PageProps } from 'gatsby';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 // import { Link } from "gatsby";
 import CardsSources from '../components/sources-gallery';
@@ -8,6 +8,7 @@ import SiteLayout from '../components/site-layout';
 import Hero from '../components/hero';
 import BookmarkCTA from '../components/bookmark-cta';
 import { SEO } from '../components/seo';
+import type { SEOI18n } from '../components/seo';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
 import { Newspaper } from 'lucide-react';
@@ -65,7 +66,13 @@ const IndexPage: React.FC<PageProps<IndexData>> = ({ data }) => {
 
 export default IndexPage;
 
-export const Head = () => <SEO />;
+type I18nPageContext = {
+  i18n?: SEOI18n;
+};
+
+export const Head = ({ pageContext, location }: HeadProps<IndexData, I18nPageContext>) => (
+  <SEO pathname={location?.pathname} i18n={pageContext?.i18n} />
+);
 
 export const query = graphql`
   query IndexPageQuery($language: String!) {

@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
-import { useI18next } from 'gatsby-plugin-react-i18next';
+import { I18nextContext } from 'gatsby-plugin-react-i18next';
 import { useLocation } from '@reach/router';
+
+export type SEOI18n = {
+  language?: string;
+  languages?: string[];
+  originalPath?: string;
+  defaultLanguage?: string;
+};
 
 type SEOProps = {
   title?: string;
@@ -10,6 +17,7 @@ type SEOProps = {
   noindex?: boolean;
   disableAds?: boolean;
   children?: React.ReactNode;
+  i18n?: SEOI18n;
 };
 
 export const SEO = ({
@@ -19,6 +27,7 @@ export const SEO = ({
   noindex,
   disableAds,
   children,
+  i18n,
 }: SEOProps): JSX.Element => {
   const {
     title: defaultTitle,
@@ -26,7 +35,11 @@ export const SEO = ({
     image,
     siteUrl,
   } = useSiteMetadata();
-  const { language, languages, originalPath, defaultLanguage } = useI18next();
+  const i18nContext = React.useContext(I18nextContext);
+  const language = i18n?.language ?? i18nContext?.language;
+  const languages = i18n?.languages ?? i18nContext?.languages;
+  const originalPath = i18n?.originalPath ?? i18nContext?.originalPath;
+  const defaultLanguage = i18n?.defaultLanguage ?? i18nContext?.defaultLanguage;
   const { pathname: locPathname } = useLocation();
 
   const rawPath = pathname ?? originalPath ?? locPathname ?? '/';
@@ -44,12 +57,29 @@ export const SEO = ({
   const ADSENSE_ID = process.env.GATSBY_GOOGLE_ADSENSE_ID as string | undefined;
   const shouldShowAds = process.env.NODE_ENV === 'production' && ADSENSE_ID && !disableAds;
 
+  React.useEffect(() => {
+    if (typeof document === 'undefined' || !ADSENSE_ID) return;
+
+    const selectors = [
+      'meta[name="google-adsense-account"]',
+      `script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}"]`,
+    ];
+
+    selectors.forEach((selector) => {
+      document
+        .querySelectorAll(selector)
+        .forEach((node) => node.removeAttribute('data-gatsby-head'));
+    });
+  }, [ADSENSE_ID, shouldShowAds]);
+
   return (
     <>
       <html lang={(language || defaultLanguage || 'en').toLowerCase()} />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      {ADSENSE_ID && !disableAds && <meta name="google-adsense-account" content={ADSENSE_ID} />}
+      {ADSENSE_ID && !disableAds && (
+        <meta key="adsense-meta" name="google-adsense-account" content={ADSENSE_ID} />
+      )}
       <meta name="image" content={seo.image} />
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -107,6 +137,7 @@ export const SEO = ({
       </script>
       {shouldShowAds && (
         <script
+          key="adsense-script"
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
           crossOrigin="anonymous"

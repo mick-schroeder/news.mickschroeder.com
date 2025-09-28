@@ -1,7 +1,9 @@
 import React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql } from 'gatsby';
+import type { HeadProps, PageProps } from 'gatsby';
 import SiteLayout from '@/components/site-layout';
 import { SEO } from '@/components/seo';
+import type { SEOI18n } from '@/components/seo';
 import '../fragments/locale';
 
 type DataProps = {
@@ -28,8 +30,17 @@ const MdPageTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
 
 export default MdPageTemplate;
 
-export const Head: React.FC<PageProps<DataProps>> = ({ data }) => (
-  <SEO title={data.mdx.frontmatter?.title} description={data.mdx.frontmatter?.description} />
+type I18nPageContext = {
+  i18n?: SEOI18n;
+};
+
+export const Head = ({ data, pageContext, location }: HeadProps<DataProps, I18nPageContext>) => (
+  <SEO
+    title={data.mdx.frontmatter?.title}
+    description={data.mdx.frontmatter?.description}
+    pathname={location?.pathname}
+    i18n={pageContext?.i18n}
+  />
 );
 
 export const query = graphql`

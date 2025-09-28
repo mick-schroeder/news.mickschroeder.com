@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link, graphql, HeadProps } from 'gatsby';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import SiteLayout from '../components/site-layout';
 import { SEO } from '../components/seo';
+import type { SEOI18n } from '../components/seo';
 import '../fragments/locale';
 
 const NotFoundPage: React.FC = () => {
@@ -24,7 +25,19 @@ const NotFoundPage: React.FC = () => {
 };
 
 export default NotFoundPage;
-export const Head = () => <SEO title="404 — Not found" noindex disableAds />;
+type I18nPageContext = {
+  i18n?: SEOI18n;
+};
+
+export const Head = ({ pageContext, location }: HeadProps<object, I18nPageContext>) => (
+  <SEO
+    title="404 — Not found"
+    noindex
+    disableAds
+    pathname={location?.pathname}
+    i18n={pageContext?.i18n}
+  />
+);
 
 export const query = graphql`
   query NotFoundPageQuery($language: String!) {

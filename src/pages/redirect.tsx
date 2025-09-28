@@ -2,7 +2,8 @@ import * as React from 'react';
 import SiteLayout from '../components/site-layout';
 import Redirecter from '../components/redirect';
 import { SEO } from '../components/seo';
-import { graphql } from 'gatsby';
+import type { SEOI18n } from '../components/seo';
+import { graphql, HeadProps } from 'gatsby';
 import '../fragments/locale';
 
 const RedirectPage: React.FC = () => {
@@ -16,7 +17,19 @@ const RedirectPage: React.FC = () => {
 };
 
 export default RedirectPage;
-export const Head = () => <SEO title="Redirect" noindex disableAds />;
+type I18nPageContext = {
+  i18n?: SEOI18n;
+};
+
+export const Head = ({ pageContext, location }: HeadProps<object, I18nPageContext>) => (
+  <SEO
+    title="Redirect"
+    noindex
+    disableAds
+    pathname={location?.pathname}
+    i18n={pageContext?.i18n}
+  />
+);
 
 export const query = graphql`
   query RedirectPageQuery($language: String!) {

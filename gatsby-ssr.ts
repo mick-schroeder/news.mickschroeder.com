@@ -46,5 +46,20 @@ export const onPreRenderHTML: GatsbySSR['onPreRenderHTML'] = ({
     if (bk === 'consent-defaults') return 1;
     return 0;
   });
-  replaceHeadComponents(head);
+  const sanitizedHead = head.map((component: any) => {
+    if (!component || !component.props) return component;
+    const key = component.key ?? '';
+    if (key !== 'adsense-script' && key !== 'adsense-meta') {
+      return component;
+    }
+
+    if (!('data-gatsby-head' in component.props)) {
+      return component;
+    }
+
+    const { ['data-gatsby-head']: _ignored, ...rest } = component.props;
+    return React.cloneElement(component, rest);
+  });
+
+  replaceHeadComponents(sanitizedHead);
 };
