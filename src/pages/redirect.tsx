@@ -22,13 +22,7 @@ type I18nPageContext = {
 };
 
 export const Head = ({ pageContext, location }: HeadProps<object, I18nPageContext>) => (
-  <SEO
-    title="Redirect"
-    noindex
-    disableAds
-    pathname={location?.pathname}
-    i18n={pageContext?.i18n}
-  />
+  <SEO title="Redirect" noindex disableAds pathname={location?.pathname} i18n={pageContext?.i18n} />
 );
 
 export const query = graphql`

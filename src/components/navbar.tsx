@@ -19,10 +19,12 @@ import LocalizedLink from './LocalizedLink';
 const DefaultNavbar: React.FC = () => {
   return (
     <nav className="inset-x-0 top-0 z-50 w-full md:fixed md:h-[var(--nav-h)] backdrop-blur bg-background/80 border-b border-border">
-      <div className="lg:max-w-screen-lg md:max-w-screen-md mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-screen-xl">
         <div className="flex items-center justify-between py-2 flex-wrap gap-2 md:flex-nowrap">
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="w-full flex justify-center md:w-auto md:justify-start">
             <Logo />
+          </div>
+          <div className="flex items-center gap-2 md:gap-4">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -41,6 +43,49 @@ const DefaultNavbar: React.FC = () => {
 
                       <Trans i18nKey="sources" />
                     </LocalizedLink>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <a
+                      href="https://www.mickschroeder.com"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Personal website"
+                      className={navigationMenuTriggerStyle() + ' h-8 px-2 text-sm'}
+                    >
+                      <span className="px-2">mickschroeder.com</span>
+                    </a>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <a
+                      href="https://www.linkedin.com/in/schroedermick/"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="LinkedIn"
+                      className={navigationMenuTriggerStyle() + ' h-8 px-2'}
+                    >
+                      <img
+                        src="/images/linkedin.svg"
+                        alt="LinkedIn"
+                        className="h-4 w-4 dark:invert"
+                      />
+                    </a>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <a
+                      href="https://github.com/mick-schroeder/news.mickschroeder.com"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="GitHub"
+                      className={navigationMenuTriggerStyle() + ' h-8 px-2'}
+                    >
+                      <img src="/images/github.svg" alt="GitHub" className="h-4 w-4 dark:invert" />
+                    </a>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>

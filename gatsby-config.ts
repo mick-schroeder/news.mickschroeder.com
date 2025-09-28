@@ -254,7 +254,10 @@ const config: GatsbyConfig = {
             const canonicalPath = group.perLang[defaultLanguage!] || group.originalPath || '/';
             const links = [
               { lang: 'x-default', url: `${GATSBY_SITE_URL}${group.originalPath || '/'}` },
-              ...languages.map((lng) => ({ lang: lng, url: toHref(lng, group.originalPath || '/') })),
+              ...languages.map((lng) => ({
+                lang: lng,
+                url: toHref(lng, group.originalPath || '/'),
+              })),
             ];
             return { path: canonicalPath, links };
           });

@@ -5,6 +5,8 @@ import { Newspaper } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import RedirectButton from '../components/redirect-button';
 import { Trans } from 'gatsby-plugin-react-i18next';
+import BookmarkCTA from '../components/bookmark-cta';
+
 const SideBar: React.FC = () => {
   return (
     <div className="p-4 md:p-8">
@@ -25,6 +27,9 @@ const SideBar: React.FC = () => {
               <Newspaper className="h-5 w-5" /> <Trans i18nKey="sources" />
             </a>
           </Button>
+        </div>
+        <div className="flex items-center justify-center gap-4">
+          <BookmarkCTA />
         </div>
       </div>
     </div>

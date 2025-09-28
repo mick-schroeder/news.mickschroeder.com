@@ -6,7 +6,6 @@ import CardsSources from '../components/sources-gallery';
 import RedirectButton from '../components/redirect-button';
 import SiteLayout from '../components/site-layout';
 import Hero from '../components/hero';
-import BookmarkCTA from '../components/bookmark-cta';
 import { SEO } from '../components/seo';
 import type { SEOI18n } from '../components/seo';
 import { Trans } from 'gatsby-plugin-react-i18next';
@@ -39,14 +38,11 @@ const IndexPage: React.FC<PageProps<IndexData>> = ({ data }) => {
         <section className="px-4">
           <Hero />
         </section>
-        <section className="px-4">
-          <BookmarkCTA />
-        </section>
         {
           <section>
             <div className="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">
-              <h2 className="text-2xl py-4 font-extrabold text-foreground flex items-center gap-2">
-                <Newspaper className="w-6 h-6" aria-hidden="true" />
+              <h2 className="text-2xl py-4 font-extrabold flex items-center gap-2">
+                <Newspaper className="w-6 h-6 text-primary" aria-hidden="true" />
                 <Trans i18nKey="sources" defaults="Sources" />
               </h2>
 

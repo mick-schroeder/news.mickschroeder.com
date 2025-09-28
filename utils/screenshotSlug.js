@@ -12,7 +12,8 @@ const sanitize = (value) =>
     .replace(/^-+|-+$/g, '')
     .replace(/-{2,}/g, '-');
 
-const truncate = (value, maxLength) => (value.length > maxLength ? value.slice(0, maxLength) : value);
+const truncate = (value, maxLength) =>
+  value.length > maxLength ? value.slice(0, maxLength) : value;
 
 const buildBaseFromUrl = (rawUrl) => {
   if (!rawUrl) return '';

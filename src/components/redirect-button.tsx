@@ -14,12 +14,7 @@ const RedirectButton: React.FC = () => {
   };
 
   return (
-    <Button
-      type="button"
-      onClick={handleClick}
-      size="lg"
-      className="font-extrabold"
-    >
+    <Button type="button" onClick={handleClick} size="lg" className="font-extrabold">
       <Shuffle className="w-3 h-3 mr-2" aria-hidden="true" strokeWidth={2.5} />
       <Trans i18nKey="shuffle" />
     </Button>

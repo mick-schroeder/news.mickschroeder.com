@@ -386,18 +386,22 @@ const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
 
     let blocker = null;
     try {
-      blocker = await PuppeteerBlocker.fromLists(fetch, [
-        ...adsAndTrackingLists,
-        'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
-        'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
-      ], {
-        enableCompression: true,
-        config: {
-          loadCosmeticFilters: true,
-          loadGenericCosmeticsFilters: true,
-          loadNetworkFilters: true,
-        },
-      });
+      blocker = await PuppeteerBlocker.fromLists(
+        fetch,
+        [
+          ...adsAndTrackingLists,
+          'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
+          'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
+        ],
+        {
+          enableCompression: true,
+          config: {
+            loadCosmeticFilters: true,
+            loadGenericCosmeticsFilters: true,
+            loadNetworkFilters: true,
+          },
+        }
+      );
     } catch (error) {
       reporter.warn(`Failed to initialize ad blocker: ${error.message}`);
     }

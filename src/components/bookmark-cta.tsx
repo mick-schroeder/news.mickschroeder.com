@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -30,7 +30,7 @@ const BookmarkCTA: React.FC = () => {
   };
 
   return (
-    <Card className="my-6">
+    <Card className="my-6 max-w-2xl">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-base md:text-lg">
           <Bookmark className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
