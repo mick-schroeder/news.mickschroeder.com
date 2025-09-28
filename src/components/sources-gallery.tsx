@@ -131,7 +131,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       image={image}
                       alt={`Screenshot of ${name}`}
                       loading={eager}
-                      fetchPriority={fetchP}
+                      fetchpriority={fetchP}
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                     />
@@ -140,7 +140,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       src={`/screenshots/${hash}.webp`}
                       alt={`Screenshot of ${name}`}
                       loading={eager}
-                      fetchPriority={fetchP}
+                      fetchpriority={fetchP}
                       decoding="async"
                       className="h-full w-full object-cover"
                       width="720"
