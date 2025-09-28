@@ -24,7 +24,7 @@ const DefaultNavbar: React.FC = () => {
           <div className="w-full flex justify-center md:w-auto md:justify-start">
             <Logo />
           </div>
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex w-full flex-wrap items-center justify-center gap-2 md:w-auto md:flex-nowrap md:justify-start md:gap-4">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
