@@ -4,11 +4,12 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Trans } from 'gatsby-plugin-react-i18next';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { useSourceCategoryContext } from './context/SourceCategoryContext';
 import { ChevronDown, Filter } from 'lucide-react';
 
 export const SourceCategorySelector: React.FC = () => {
+  const { t } = useTranslation();
   const { selectedCategories, setSelectedCategories } = useSourceCategoryContext();
   const data = useStaticQuery(graphql`
     query AllSourceCategories {
@@ -35,18 +36,21 @@ export const SourceCategorySelector: React.FC = () => {
   const handleToggle = React.useCallback(
     (cat: string) => {
       let newSelected: string[];
-      if (selectedCategories.includes(cat)) {
+      if (isAllSelected) {
+        newSelected = allCategories.filter((c) => c !== cat);
+      } else if (selectedCategories.includes(cat)) {
         newSelected = selectedCategories.filter((c) => c !== cat);
       } else {
         newSelected = [...selectedCategories, cat];
       }
+
       if (newSelected.length === allCategories.length) {
         setSelectedCategories([]);
       } else {
         setSelectedCategories(newSelected);
       }
     },
-    [selectedCategories, allCategories.length, setSelectedCategories]
+    [isAllSelected, selectedCategories, allCategories, setSelectedCategories]
   );
 
   const handleSelectAll = React.useCallback(() => {
@@ -59,6 +63,10 @@ export const SourceCategorySelector: React.FC = () => {
     selectedCategories.join(', ')
   );
 
+  const tooltipText = isAllSelected
+    ? t('all_categories', 'All Categories')
+    : selectedCategories.join(', ');
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -68,9 +76,10 @@ export const SourceCategorySelector: React.FC = () => {
           aria-haspopup="listbox"
           aria-expanded={open}
           aria-label="Select categories"
+          title={tooltipText}
         >
           <Filter aria-hidden="true" className="w-4 h-4 me-2" />
-          <span className="flex-1 min-w-0 text-left break-words">{display}</span>
+          <span className="flex-1 min-w-0 text-left truncate">{display}</span>
           <ChevronDown aria-hidden="true" className="w-4 h-4 ms-auto" />
         </Button>
       </PopoverTrigger>

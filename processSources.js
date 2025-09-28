@@ -1,11 +1,11 @@
 const AWS = require('aws-sdk');
 const path = require('path');
 const fs = require('fs');
-const crypto = require('crypto');
 const puppeteer = require('puppeteer');
 const { PuppeteerBlocker, adsAndTrackingLists } = require('@ghostery/adblocker-puppeteer');
 const fetch = require('cross-fetch');
 const sharp = require('sharp');
+const { createScreenshotSlug } = require('./utils/screenshotSlug');
 
 require('aws-sdk/lib/maintenance_mode_message').suppress = true;
 
@@ -56,10 +56,6 @@ const resolveS3Client = () => {
 
 const s3 = resolveS3Client();
 
-function urlHash(input) {
-  return crypto.createHash('sha1').update(String(input)).digest('hex').slice(0, 12);
-}
-
 // Ensure screenshot output directory exists
 if (!fs.existsSync(SCREENSHOT_PATH)) {
   fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
@@ -84,6 +80,58 @@ async function generatePlaceholderImage(slug) {
   }
 }
 
+async function hideCookieBanners(page, reporter) {
+  try {
+    await page.evaluate(() => {
+      const selectors = [
+        '[id*="cookie" i]',
+        '[class*="cookie" i]',
+        '[id*="consent" i]',
+        '[class*="consent" i]',
+        '[id*="gdpr" i]',
+        '[class*="gdpr" i]',
+        'button[aria-label*="cookie" i]',
+        'button[aria-label*="consent" i]',
+        'div[data-testid="cookie-popup"]',
+      ];
+      const hidden = new Set();
+
+      const hideElement = (el) => {
+        if (!(el instanceof HTMLElement)) return;
+        el.style.setProperty('display', 'none', 'important');
+        el.style.setProperty('visibility', 'hidden', 'important');
+        el.style.setProperty('opacity', '0', 'important');
+        hidden.add(el);
+      };
+
+      selectors.forEach((selector) => {
+        document.querySelectorAll(selector).forEach(hideElement);
+      });
+
+      const keywords = ['cookie', 'consent', 'gdpr', 'privacy'];
+      const nodes = Array.from(document.querySelectorAll('div, section, aside, dialog')); // broad sweep
+      nodes.forEach((el) => {
+        if (hidden.has(el)) return;
+        const styles = window.getComputedStyle(el);
+        if (!['fixed', 'sticky'].includes(styles.position)) return;
+        const text = (el.textContent || '').trim().toLowerCase();
+        if (!text || text.length > 600) return;
+        if (keywords.some((word) => text.includes(word))) {
+          hideElement(el);
+        }
+      });
+
+      if (document.body) {
+        document.body.style.setProperty('overflow', 'auto', 'important');
+      }
+    });
+  } catch (error) {
+    if (reporter && reporter.warn) {
+      reporter.warn(`Failed to hide cookie banners: ${error.message}`);
+    }
+  }
+}
+
 async function generateScreenshot(screenshotFullPath, page, url, slug, reporter) {
   let success = false;
 
@@ -101,6 +149,8 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
       if (WAIT_AFTER_LOAD > 0) {
         await delay(WAIT_AFTER_LOAD);
       }
+
+      await hideCookieBanners(page, reporter);
       await page.screenshot({
         path: screenshotFullPath,
       });
@@ -244,6 +294,7 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
   await page.setUserAgent(
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
   );
+  await page.setBypassCSP(true);
   page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
 
   if (blocker) {
@@ -256,7 +307,7 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
 
   try {
     for (const edge of sourcesChunk) {
-      const hash = urlHash(edge.url || edge.name);
+      const hash = createScreenshotSlug(edge.url || edge.name, edge.name);
       const screenshotFullPath = path.join(SCREENSHOT_PATH, `${hash}.webp`);
       if (!edge.url) {
         reporter.warn(`Skipping source with missing URL: ${edge.name || hash}`);
@@ -338,7 +389,15 @@ const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
       blocker = await PuppeteerBlocker.fromLists(fetch, [
         ...adsAndTrackingLists,
         'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
-      ]);
+        'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
+      ], {
+        enableCompression: true,
+        config: {
+          loadCosmeticFilters: true,
+          loadGenericCosmeticsFilters: true,
+          loadNetworkFilters: true,
+        },
+      });
     } catch (error) {
       reporter.warn(`Failed to initialize ad blocker: ${error.message}`);
     }

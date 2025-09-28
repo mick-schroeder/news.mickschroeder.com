@@ -1,15 +1,12 @@
-import { createHash } from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import type { GatsbyNode } from 'gatsby';
 import { preProcessSources } from './processSources';
+import { createScreenshotSlug } from './utils/screenshotSlug';
 
 const JSON_PATH = path.resolve(__dirname, 'src/data/sources.json');
 const SCREENSHOT_PATH = path.resolve(__dirname, 'static/screenshots');
 const CONCURRENT_PAGES = 3;
-
-const hashOf = (input: unknown): string =>
-  createHash('sha1').update(String(input ?? '')).digest('hex').slice(0, 12);
 
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
@@ -57,12 +54,12 @@ export const createResolvers: GatsbyNode['createResolvers'] = ({ createResolvers
       },
       hash: {
         resolve(source: { url?: string; name?: string }) {
-          return hashOf(source.url || source.name || '');
+          return createScreenshotSlug(source.url || source.name || '', source.name);
         },
       },
       screenshot: {
         async resolve(source: { url?: string; name?: string }, _args: unknown, context: any) {
-          const hash = hashOf(source.url || source.name || '');
+          const hash = createScreenshotSlug(source.url || source.name || '', source.name);
           return context.nodeModel.findOne({
             type: 'File',
             query: {
