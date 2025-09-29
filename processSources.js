@@ -453,8 +453,21 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
         try {
           reporter.log(`Generating screenshot for ${edge.url}.`);
           const ok = await generateScreenshot(screenshotFullPath, page, edge.url, hash, reporter);
-          if (ok && isProduction) {
-            await uploadToS3(screenshotFullPath, hash, reporter);
+          if (ok) {
+            if (isProduction) {
+              await uploadToS3(screenshotFullPath, hash, reporter);
+            }
+          } else {
+            try {
+              if (!fs.existsSync(screenshotFullPath)) {
+                await generatePlaceholderImage(hash);
+              }
+              reporter.warn(`Falling back to placeholder image for ${edge.url}.`);
+            } catch (placeholderErr) {
+              reporter.error(
+                `Failed to create fallback placeholder for ${edge.url}: ${placeholderErr.message}`
+              );
+            }
           }
         } catch (error) {
           reporter.warn(`Failed to generate/upload screenshot for ${edge.url}: ${error.message}`);

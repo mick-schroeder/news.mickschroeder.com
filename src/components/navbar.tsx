@@ -19,7 +19,7 @@ import LocalizedLink from './LocalizedLink';
 const DefaultNavbar: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <nav className="inset-x-0 top-0 z-50 w-full md:fixed md:h-[var(--nav-h)] backdrop-blur bg-background/80 border-b border-border">
+    <nav className="inset-x-0 top-0 z-50 w-full md:fixed md:h-[var(--nav-h)] backdrop-blur bg-background/60 border-b border-border">
       <div className="container mx-auto px-4 max-w-screen-xl">
         <div className="flex items-center justify-between py-2 flex-wrap gap-2 md:flex-nowrap">
           <div className="w-full flex justify-center md:w-auto md:justify-start">

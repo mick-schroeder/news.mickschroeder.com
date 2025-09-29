@@ -1,0 +1,17 @@
+customHeaders:
+  - pattern: '**/*.html'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=300, must-revalidate'
+  - pattern: '**/page-data/*.json'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=300, stale-while-revalidate=86400'
+  - pattern: '**/*.{js,css}'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '**/static/**'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=31536000, immutable'
