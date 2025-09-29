@@ -129,18 +129,18 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                   {image ? (
                     <GatsbyImage
                       image={image}
-                      alt={`Screenshot of ${name}`}
+                      alt={String(t('screenshot_of', { name }))}
                       loading={eager}
-                      fetchpriority={fetchP}
+                      fetchPriority={fetchP}
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                     />
                   ) : (
                     <img
                       src={`/screenshots/${hash}.webp`}
-                      alt={`Screenshot of ${name}`}
+                      alt={String(t('screenshot_of', { name }))}
                       loading={eager}
-                      fetchpriority={fetchP}
+                      fetchPriority={fetchP}
                       decoding="async"
                       className="h-full w-full object-cover"
                       width="720"

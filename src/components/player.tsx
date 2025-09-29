@@ -18,10 +18,10 @@ const WebShufflePlayer: React.FC = () => {
   return (
     <div className="flex items-center justify-center px-2 shrink-0">
       <Card
-        className="w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px] bg-background/40 border-border/60 shadow-sm"
+        className="w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px] bg-background/50 border-border shadow-sm hover:shadow-lg hover:ring-1 hover:ring-primary/30"
       >
-        <CardHeader className="p-2 pb-2">
-          <div className="grid grid-cols-[2.25rem_1fr_2.25rem] items-center gap-2">
+        <CardHeader className="px-3 py-2">
+          <div className="grid grid-cols-[2.25rem_1fr_auto] items-center gap-2">
             <div className="w-9 h-9" aria-hidden="true" />
             <div className="min-w-0 text-center">
               <CardTitle className="text-sm font-bold text-card-foreground text-center">
@@ -32,12 +32,12 @@ const WebShufflePlayer: React.FC = () => {
                     rel="noopener"
                     onClick={handleClick}
                     aria-label={String(t('open_site', { name: nextSiteName }))}
-                    className="block overflow-hidden hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <span className="block truncate">{nextSiteName}</span>
                     <span className="mt-0.5 inline-flex items-center justify-center gap-2 text-sm font-normal text-primary truncate min-w-0">
                       <span className="truncate">{nextSite}</span>
-                      <ExternalLink className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                      <ExternalLink className="w-4 h-4 flex-shrink-0 " aria-hidden="true" />
                     </span>
                   </a>
                 ) : (
@@ -51,15 +51,15 @@ const WebShufflePlayer: React.FC = () => {
               </CardDescription>
             </div>
 
-            <Button
-              onClick={refreshNextSite}
-              variant="ghost"
-              size="icon"
-              aria-label="Shuffle next site"
-              className="h-11 w-11"
-            >
-              <RefreshCw className="w-5 h-5 text-muted-foreground" />
-            </Button>
+        <Button
+          onClick={refreshNextSite}
+          variant="ghost"
+          size="icon"
+          aria-label={String(t('shuffle_next'))}
+          className="h-10 w-10 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          <RefreshCw className="w-5 h-5 text-muted-foreground" />
+        </Button>
           </div>
         </CardHeader>
       </Card>

@@ -19,6 +19,11 @@ const FooterBar: React.FC = () => {
       }
     }
   `);
+  const licenseUrl =
+    'https://github.com/mick-schroeder/news.mickschroeder.com/blob/main/LICENSE';
+  const contentLicenseUrl = 'https://creativecommons.org/licenses/by/4.0/';
+  const repoUrl = 'https://github.com/mick-schroeder/news.mickschroeder.com';
+  const contactEmail = 'contact@mickschroeder.com';
 
   return (
     <div>
@@ -39,11 +44,67 @@ const FooterBar: React.FC = () => {
                 to="/terms-privacy"
                 className="underline hover:no-underline text-foreground"
               >
-                <Trans i18nKey="terms_privacy" defaults="Terms & Privacy" />
+                <Trans i18nKey="footer.terms_privacy" defaults="Terms & Privacy" />
               </LocalizedLink>
             </p>
-            <p className="py-4 md:p-10 text-xs text-justify text-muted-foreground">
-              <Trans i18nKey="disclaimer" />
+            <p className="mt-2 text-xs text-muted-foreground">
+              <Trans
+                i18nKey="footer.license"
+                components={{
+                  link: (
+                    <a
+                      href={licenseUrl}
+                      className="underline hover:no-underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    />
+                  ),
+                }}
+              />
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              <Trans
+                i18nKey="footer.content_license"
+                values={{ url: repoUrl }}
+                components={{
+                  cc: (
+                    <a
+                      href={contentLicenseUrl}
+                      className="underline hover:no-underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    />
+                  ),
+                  repo: (
+                    <a
+                      href={repoUrl}
+                      className="underline hover:no-underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    />
+                  ),
+                }}
+              />
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              <Trans i18nKey="footer.rights_reserved" />
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              <Trans
+                i18nKey="footer.contact"
+                values={{ email: contactEmail }}
+                components={{
+                  email: (
+                    <a
+                      href={`mailto:${contactEmail}`}
+                      className="underline hover:no-underline"
+                    />
+                  ),
+                }}
+              />
+            </p>
+            <p className="py-4 md:p-4 text-xs text-justify text-muted-foreground">
+              <Trans i18nKey="footer.disclaimer" />
             </p>
           </div>
         </div>

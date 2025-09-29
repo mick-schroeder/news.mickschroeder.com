@@ -39,7 +39,7 @@ Hit the "Shuffle" button and you will be sent to a random website from the most 
 
 ## License
 
-- This project is open-source and available under the [MIT License](LICENSE)
+- News Craic™ is open-source and available under the [MIT License](LICENSE)
 - Content (non-code): [CC BY 4.0](CONTENT_LICENSE.md)
 
 Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.

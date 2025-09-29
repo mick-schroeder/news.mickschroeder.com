@@ -1,36 +1,60 @@
 {
-  "all_categories": "All Categories",
   "bookmark": {
-    "copied": "Copied",
+    "copied": "Link Copied!",
     "copy": "Copy link",
-    "description": "Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’.",
-    "link_label": "Shuffle (Bookmark me)",
-    "title": "Bookmark the Shuffle link"
+    "description": "Drag this link to your bookmarks bar, or right-click to save it for quick access.",
+    "link_label": "🔀 Shuffle News",
+    "title": "Bookmark our Shuffle link"
   },
   "brand": "News Craic",
   "by_author": "by Mick Schroeder",
-  "clear_selection": "Clear selection",
-  "disclaimer": "This programme is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. Some links may be sponsored or affiliate programmes that earn commission. This site uses cookies and analytics trackers and is supported by advertising. These links are being provided as a convenience and for informational purposes only; they do not constitute an endorsement or an approval or opinions of that organisation or individual. Not responsible for the accuracy, legality or content of the external site or for that of subsequent links. Contact the external site for answers to questions regarding their content.",
-  "headline": "Shuffle the web's top news sources.",
+  "category_selector": {
+    "all_categories": "All Categories",
+    "clear_selection": "Clear selection",
+    "select_categories": "Choose categories...",
+    "select_categories_label": "Choose news categories"
+  },
+  "footer": {
+    "disclaimer": "News Craic™ is provided for informational and entertainment purposes only. No warranty is given, including implied warranties of merchantability or fitness. Some links may be affiliate or sponsored, helping support the site at no extra cost to you. This site uses cookies and analytics trackers and is supported by advertising. External links are provided as a convenience and do not represent endorsements. Screenshots of third-party websites are shown for illustrative purposes and remain the property of their respective owners. We are not responsible for the accuracy, legality, or content of external sites. Please contact those sites directly with any questions.",
+    "terms_privacy": "Terms & Privacy",
+    "license": "News Craic™ is open-source and available under the <link>MIT License</link>.",
+    "content_license": "Content (non-code): <cc>CC BY 4.0</cc>. Source code available at <repo>{{url}}</repo>.",
+    "rights_reserved": "Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.",
+    "contact": "Contact: <email>{{email}}</email>"
+  },
+  "hero": {
+    "headline": "Shuffle through the world’s most influential news sources.",
+    "tagline": "News Craic is your shortcut to the free press. Instead of clickbait headlines, we shuffle you directly into today’s most influential news websites to see the stories as they were meant to be told."
+  },
   "home": "Home",
   "latest": "Latest",
-  "loading": "Loading…",
+  "language_switcher": {
+    "label": "Switch language",
+    "current": "(current)"
+  },
+  "loading": "Loading random source…",
+  "logo_alt": "News Craic logo",
   "notfound": {
-    "gohome": "Go home",
-    "message": "Sorry 😔, we couldn’t find what you were looking for.",
+    "head_title": "404 — Page not found",
+    "gohome": "Back to home",
+    "message": "Sorry 😔, we couldn’t find that page.",
     "title": "Page not found"
   },
+  "navbar": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "personal_site": "Personal website"
+  },
   "open_in_new_tab": "Open in new tab",
-  "open_site": "Open site: {{name}}",
+  "open_site": "Open {{name}}",
+  "screenshot_of": "Preview of {{name}}",
   "redirect": {
     "description": "You’ll be redirected shortly to:",
     "heading": "Redirecting…",
+    "head_title": "Redirect",
     "loading": "Loading…"
   },
-  "select_categories": "Select categories...",
   "shuffle": "Shuffle",
-  "shuffle_next": "Shuffle next site",
-  "sources": "Sources",
-  "tagline": "Shuffle the news, find the craic — stay up to date with the best stories, all in one spot.",
-  "terms_privacy": "Terms & Privacy"
+  "shuffle_next": "Show me another site",
+  "sources": "News Sources"
 }

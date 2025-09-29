@@ -15,10 +15,10 @@ const SideBar: React.FC = () => {
           <Logo showAuthor />
         </Badge>
         <h2 className="my-2 text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
-          <Trans i18nKey="headline" />
+          <Trans i18nKey="hero.headline" />
         </h2>
         <p className="mb-6 my-6 text-muted-foreground md:text-lg">
-          <Trans i18nKey="tagline" />
+          <Trans i18nKey="hero.tagline" />
         </p>
         <div className="flex items-center justify-center gap-4">
           <RedirectButton />

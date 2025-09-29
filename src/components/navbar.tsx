@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans } from 'gatsby-plugin-react-i18next';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import RedirectButton from './redirect-button';
 import Logo from '../components/logo';
 import { House, Newspaper } from 'lucide-react';
@@ -17,6 +17,7 @@ import { SourceCategorySelector } from './SourceCategorySelector';
 import LocalizedLink from './LocalizedLink';
 
 const DefaultNavbar: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <nav className="inset-x-0 top-0 z-50 w-full md:fixed md:h-[var(--nav-h)] backdrop-blur bg-background/80 border-b border-border">
       <div className="container mx-auto px-4 max-w-screen-xl">
@@ -51,7 +52,7 @@ const DefaultNavbar: React.FC = () => {
                       href="https://www.mickschroeder.com"
                       target="_blank"
                       rel="noopener"
-                      aria-label="Personal website"
+                      aria-label={String(t('navbar.personal_site'))}
                       className={navigationMenuTriggerStyle() + ' h-8 px-2 text-sm'}
                     >
                       <span className="px-2">mickschroeder.com</span>
@@ -64,12 +65,12 @@ const DefaultNavbar: React.FC = () => {
                       href="https://www.linkedin.com/in/schroedermick/"
                       target="_blank"
                       rel="noopener"
-                      aria-label="LinkedIn"
+                      aria-label={String(t('navbar.linkedin'))}
                       className={navigationMenuTriggerStyle() + ' h-8 px-2'}
                     >
                       <img
                         src="/images/linkedin.svg"
-                        alt="LinkedIn"
+                        alt={String(t('navbar.linkedin'))}
                         className="h-4 w-4 dark:invert"
                       />
                     </a>
@@ -81,10 +82,14 @@ const DefaultNavbar: React.FC = () => {
                       href="https://github.com/mick-schroeder/news.mickschroeder.com"
                       target="_blank"
                       rel="noopener"
-                      aria-label="GitHub"
+                      aria-label={String(t('navbar.github'))}
                       className={navigationMenuTriggerStyle() + ' h-8 px-2'}
                     >
-                      <img src="/images/github.svg" alt="GitHub" className="h-4 w-4 dark:invert" />
+                      <img
+                        src="/images/github.svg"
+                        alt={String(t('navbar.github'))}
+                        className="h-4 w-4 dark:invert"
+                      />
                     </a>
                   </NavigationMenuLink>
                 </NavigationMenuItem>

@@ -58,13 +58,13 @@ export const SourceCategorySelector: React.FC = () => {
   }, [setSelectedCategories]);
 
   const display = isAllSelected ? (
-    <Trans i18nKey="all_categories" defaults="All Categories" />
+    <Trans i18nKey="category_selector.all_categories" defaults="All Categories" />
   ) : (
     selectedCategories.join(', ')
   );
 
   const tooltipText = isAllSelected
-    ? t('all_categories', 'All Categories')
+    ? t('category_selector.all_categories', 'All Categories')
     : selectedCategories.join(', ');
 
   return (
@@ -75,7 +75,7 @@ export const SourceCategorySelector: React.FC = () => {
           className="w-[200px] justify-start text-left whitespace-normal"
           aria-haspopup="listbox"
           aria-expanded={open}
-          aria-label="Select categories"
+          aria-label={String(t('category_selector.select_categories_label'))}
           title={tooltipText}
         >
           <Filter aria-hidden="true" className="w-4 h-4 me-2" />
@@ -89,7 +89,7 @@ export const SourceCategorySelector: React.FC = () => {
             <CommandItem onSelect={handleSelectAll} role="option" aria-selected={isAllSelected}>
               <Checkbox checked={isAllSelected} className="mr-2" />
               <span>
-                <Trans i18nKey="all_categories" defaults="All Categories" />
+                <Trans i18nKey="category_selector.all_categories" defaults="All Categories" />
               </span>
             </CommandItem>
             {allCategories.map((cat) => (

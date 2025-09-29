@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Trans } from 'gatsby-plugin-react-i18next';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import logo from '../images/logo-circle.svg';
 import LocalizedLink from './LocalizedLink';
 
@@ -17,11 +17,12 @@ const Logo: React.FC<LogoProps> = ({ showAuthor = false }) => {
     }
   `);
   const authorUrl: string | undefined = data?.site?.siteMetadata?.authorUrl;
+  const { t } = useTranslation();
 
   return (
     <span className="inline-flex items-center">
       <LocalizedLink to="/" className="inline-flex items-center">
-        <img src={logo} className="h-6 mr-2" alt="Logo" />
+        <img src={logo} className="h-6 mr-2" alt={String(t('logo_alt'))} />
         <span className="text-xl font-black tracking-tighter self-center whitespace-nowrap text-foreground">
           <Trans i18nKey="brand" />
         </span>

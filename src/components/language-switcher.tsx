@@ -1,5 +1,5 @@
 import React from 'react';
-import { useI18next } from 'gatsby-plugin-react-i18next';
+import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -12,6 +12,7 @@ import LocalizedLink from './LocalizedLink';
 
 const LanguageSwitcher: React.FC = () => {
   const { languages, language, originalPath } = useI18next();
+  const { t } = useTranslation();
 
   const displayNames = React.useMemo(() => {
     if (typeof Intl !== 'undefined' && (Intl as any).DisplayNames) {
@@ -26,7 +27,7 @@ const LanguageSwitcher: React.FC = () => {
         <Button
           variant="outline"
           className="px-5 py-3 text-sm font-semibold"
-          aria-label="Change language"
+          aria-label={String(t('language_switcher.label'))}
         >
           <Languages aria-hidden="true" className="w-4 h-4 me-2" />
           {displayNames ? displayNames.of(language) : language}
@@ -45,7 +46,9 @@ const LanguageSwitcher: React.FC = () => {
             >
               <Languages aria-hidden="true" className="w-4 h-4 me-2 text-primary" />
               <span className="font-medium">{displayNames ? displayNames.of(lng) : lng}</span>
-              {lng === language && <span className="sr-only">(current)</span>}
+              {lng === language && (
+                <span className="sr-only">{String(t('language_switcher.current'))}</span>
+              )}
             </LocalizedLink>
           </DropdownMenuItem>
         ))}
