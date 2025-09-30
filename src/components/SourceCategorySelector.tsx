@@ -13,18 +13,25 @@ export const SourceCategorySelector: React.FC = () => {
   const { selectedCategories, setSelectedCategories } = useSourceCategoryContext();
   const data = useStaticQuery(graphql`
     query AllSourceCategories {
-      allSourcesJson {
+      allDataJson {
         nodes {
-          categories
+          sources { 
+            categories 
+            }
         }
       }
     }
   `);
   const allCategories = React.useMemo(() => {
+    const dataNodes = (data?.allDataJson?.nodes ?? []);
+    const sourcesArrays = dataNodes.map((n: any) => n?.sources ?? []);
     const set = new Set<string>();
-    data.allSourcesJson.nodes.forEach((node: any) => {
-      (node.categories || []).forEach((cat: string) => set.add(cat));
-    });
+    for (const list of sourcesArrays) {
+      for (const item of list) {
+        const cats = Array.isArray(item?.categories) ? item.categories : [];
+        for (const c of cats) set.add(String(c));
+      }
+    }
     return Array.from(set).sort();
   }, [data]);
 

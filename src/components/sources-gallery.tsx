@@ -74,7 +74,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
           const image = getImage(screenshot);
           const eager: 'eager' | 'lazy' = idx < 3 ? 'eager' : 'lazy';
           const fetchP = idx < 3 ? 'high' : undefined;
-          const categoriesText = categories.join(', ');
+          const categoriesText = (categories ?? []).join(', ');
           const titleId = `card-title-${hash || idx}`;
           let host = url;
           try {
@@ -135,7 +135,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                     />
-                  ) : (
+                  ) : hash ? (
                     <img
                       src={`/screenshots/${hash}.webp`}
                       alt={String(t('screenshot_of', { name }))}
@@ -146,6 +146,8 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       width="720"
                       height="1280"
                     />
+                  ) : (
+                    <div className="h-full w-full bg-muted" aria-hidden="true" />
                   )}
                 </AspectRatio>
               </CardContent>

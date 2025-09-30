@@ -60,9 +60,14 @@ const config: GatsbyConfig = {
     siteUrl: GATSBY_SITE_URL,
   },
   graphqlTypegen: {
-    typesOutputPath: '.cache/types/gatsby-types.d.ts',
+    typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
   },
-  plugins: [
+    plugins: [
+        {
+      resolve: "gatsby-plugin-decap-cms",
+      options: {
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -136,7 +141,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'data',
-        path: './src/data/',
+        path: `${__dirname}/src/data/`,
       },
     },
     'gatsby-transformer-json',
@@ -144,7 +149,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: './src/images/',
+        path: `${__dirname}/src/images/`,
       },
       __key: 'images',
     },
@@ -152,7 +157,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'mdpages',
-        path: './src/md-pages/',
+        path: `${__dirname}/src/md-pages/`,
       },
       __key: 'mdpages',
     },
@@ -160,7 +165,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        path: './src/pages/',
+        path: `${__dirname}/src/pages/`,
       },
       __key: 'pages',
     },

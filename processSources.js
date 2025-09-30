@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// Screenshot pipeline for news.mickschroeder.com
+// -----------------------------------------------------------------------------
+// This script decides when to generate, download, or reuse screenshots for sources.
+// Dev: prefers downloading from S3 if available; generates only when missing.
+// Prod: uses S3 as cache with a freshness timeout, regenerates stale or missing.
+// Always ensures a file exists by generating or falling back to a placeholder.
+
 const AWS = require('aws-sdk');
 const path = require('path');
 const fs = require('fs');
@@ -20,10 +28,12 @@ const SCREENSHOT_PATH = './static/screenshots';
 const VIEWPORT_WIDTH = Number(process.env.SCREENSHOT_VIEWPORT_WIDTH || 1080);
 const VIEWPORT_HEIGHT = Number(process.env.SCREENSHOT_VIEWPORT_HEIGHT || 1920);
 const PAGE_NAVIGATION_TIMEOUT = Number(process.env.SCREENSHOT_NAVIGATION_TIMEOUT || 30000);
-const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || 3500);
+const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || 4000);
 const WAIT_FOR_BODY_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || 15000);
-const WAIT_FOR_IMAGES_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || 5000);
-const CACHE_TIMEOUT = 6 * 60 * 60 * 1000;
+const WAIT_FOR_IMAGES_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || 8000);
+const CONCURRENT_PAGES = 5;
+
+const CACHE_TIMEOUT = Number(process.env.SCREENSHOT_CACHE_TIMEOUT_MS || 6 * 60 * 60 * 1000);
 const RETRIES = 2;
 const HEADLESS_MODE =
   typeof process.env.PUPPETEER_HEADLESS === 'string'
@@ -35,6 +45,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
 const isProduction = NODE_ENV === 'production';
 
+// Create an S3 client or return null if disabled
 const resolveS3Client = () => {
   try {
     if (process.env.SKIP_S3 === 'true') return null;
@@ -66,6 +77,7 @@ if (!fs.existsSync(SCREENSHOT_PATH)) {
   fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
 }
 
+// Creates a placeholder image if screenshot fails
 async function generatePlaceholderImage(slug) {
   const screenshotFullPath = path.join(SCREENSHOT_PATH, `${slug}.webp`);
 
@@ -85,6 +97,7 @@ async function generatePlaceholderImage(slug) {
   }
 }
 
+// Tries to hide cookie/consent overlays using selectors and text matching
 async function hideCookieBanners(page, reporter) {
   try {
     await page.evaluate(() => {
@@ -199,6 +212,7 @@ async function hideCookieBanners(page, reporter) {
   }
 }
 
+// Scrolls down to trigger lazy loading, then scrolls back to top
 async function autoScroll(page) {
   await page.evaluate(async () => {
     const scrollableHeight = () => document.documentElement.scrollHeight || document.body.scrollHeight || 0;
@@ -227,6 +241,7 @@ async function autoScroll(page) {
   });
 }
 
+// Waits briefly for <img> elements to finish loading
 async function waitForImages(page, reporter) {
   try {
     await page.evaluate(
@@ -262,6 +277,7 @@ async function waitForImages(page, reporter) {
   }
 }
 
+// Navigates, stabilizes the page, and saves a screenshot; retries on timeouts
 async function generateScreenshot(screenshotFullPath, page, url, slug, reporter) {
   let success = false;
 
@@ -324,6 +340,8 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
   return success;
 }
 
+
+// Uploads a local screenshot to S3 (no-op if S3 is not configured)
 async function uploadToS3(filePath, slug, reporter) {
   if (!s3) {
     reporter.warn(`Skipping upload for ${slug}.webp — S3 credentials not configured.`);
@@ -344,6 +362,21 @@ async function uploadToS3(filePath, slug, reporter) {
   }
 }
 
+// Checks if the screenshot object exists in S3
+async function s3HasObject(slug) {
+  if (!s3) return false;
+  try {
+    await s3
+      .headObject({ Bucket: BUCKET_NAME, Key: `${slug}.webp` })
+      .promise();
+    return true;
+  } catch (error) {
+    if (error.code === 'NotFound') return false;
+    throw error;
+  }
+}
+
+// Checks if the S3 screenshot exists and is fresh within CACHE_TIMEOUT
 async function screenshotExistsInS3(slug) {
   if (!s3) return false;
   try {
@@ -362,6 +395,7 @@ async function screenshotExistsInS3(slug) {
   }
 }
 
+// Decides whether to generate a screenshot (dev uses S3 if possible; prod respects cache)
 async function shouldGenerateScreenshot(screenshotFullPath, slug, reporter) {
   if (shouldSkipScreenshots) {
     reporter.log('Skipping screenshot generation because SKIP_SCREENSHOTS=true');
@@ -369,30 +403,41 @@ async function shouldGenerateScreenshot(screenshotFullPath, slug, reporter) {
   }
 
   if (shouldForceRegenerate) {
-    reporter.log(
-      `Deciding to generate screenshot - Regenerated ${slug}.webp because shouldForceRegenerate is true `
-    );
+    reporter.log(`FORCE_REGENERATE=true → will generate ${slug}.webp`);
     return true;
-  } else if (isDevelopment) {
-    let decision = !fs.existsSync(screenshotFullPath);
-    reporter.log(`Generate new screenshot? ${decision}. `);
-    return decision;
-  } else if (isProduction) {
+  }
+
+  if (isDevelopment) {
+    // Dev policy: always try to use S3 if available; generate only if missing from S3.
     if (s3) {
-      let decision = !(await screenshotExistsInS3(slug));
-      reporter.log(`Generate new screenshot? ${decision}. `);
-      return decision;
+      const exists = await s3HasObject(slug);
+      reporter.log(`[dev] S3 has ${slug}.webp? ${exists}`);
+      return !exists; // generate only when not in S3
     }
+    // No S3 configured in dev: fall back to local check
     const decision = !fs.existsSync(screenshotFullPath);
-    reporter.log(
-      `Generate new screenshot? (fallback to local file check because S3 is unavailable) ${decision}.`
-    );
+    reporter.log(`[dev] No S3 configured; local exists? ${!decision} → generate: ${decision}`);
     return decision;
   }
 
+  if (isProduction) {
+    // Prod policy: honor freshness window in S3; generate when stale/missing
+    if (s3) {
+      const fresh = await screenshotExistsInS3(slug);
+      const decision = !fresh;
+      reporter.log(`[prod] S3 fresh within ${CACHE_TIMEOUT}ms? ${fresh} → generate: ${decision}`);
+      return decision;
+    }
+    const decision = !fs.existsSync(screenshotFullPath);
+    reporter.log(`[prod] S3 unavailable; local exists? ${!decision} → generate: ${decision}`);
+    return decision;
+  }
+
+  // Fallback for other NODE_ENV
   return !fs.existsSync(screenshotFullPath);
 }
 
+// Downloads a screenshot from S3 into ./static/screenshots or makes a placeholder
 async function downloadFromS3(slug, reporter) {
   if (!s3) {
     reporter.warn('Skipping S3 download because credentials are not configured.');
@@ -419,6 +464,20 @@ async function downloadFromS3(slug, reporter) {
   }
 }
 
+// Lightweight logging helper (choose info/warn/error; dev can be quieter)
+function rlog(reporter, level, msg) {
+  if (!reporter) return;
+  if (level === 'info' && reporter.info) reporter.info(msg);
+  else if (level === 'warn' && reporter.warn) reporter.warn(msg);
+  else if (level === 'error' && reporter.error) reporter.error(msg);
+  else if (reporter.log) reporter.log(msg);
+}
+// Extra-verbose hints for development runs
+function devHint(reporter, msg) {
+  if (reporter && reporter.info) reporter.info(`[devhint] ${msg}`);
+}
+
+// Processes a chunk of sources with a single Puppeteer page
 async function processChunk(sourcesChunk, browser, reporter, blocker) {
   const page = await browser.newPage();
   await page.setJavaScriptEnabled(true);
@@ -451,7 +510,7 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
 
       if (await shouldGenerateScreenshot(screenshotFullPath, hash, reporter)) {
         try {
-          reporter.log(`Generating screenshot for ${edge.url}.`);
+          rlog(reporter, 'info', `generate: ${edge.url}`);
           const ok = await generateScreenshot(screenshotFullPath, page, edge.url, hash, reporter);
           if (ok) {
             if (isProduction) {
@@ -460,9 +519,10 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
           } else {
             try {
               if (!fs.existsSync(screenshotFullPath)) {
+                devHint(reporter, `creating placeholder for ${edge.url}`);
                 await generatePlaceholderImage(hash);
               }
-              reporter.warn(`Falling back to placeholder image for ${edge.url}.`);
+              rlog(reporter, 'warn', `placeholder: ${edge.url}`);
             } catch (placeholderErr) {
               reporter.error(
                 `Failed to create fallback placeholder for ${edge.url}: ${placeholderErr.message}`
@@ -472,16 +532,17 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
         } catch (error) {
           reporter.warn(`Failed to generate/upload screenshot for ${edge.url}: ${error.message}`);
         }
-      } else if (isProduction && s3) {
+      } else if (s3 && isProduction) {
         try {
-          reporter.log(`Downloading existing screenshot for ${edge.url} from S3.`);
+          devHint(reporter, `dev/prod: downloading from S3 for ${edge.url}`);
           await downloadFromS3(hash, reporter);
         } catch (error) {
-          reporter.warn(`Failed to download screenshot for ${edge.url} from S3: ${error.message}`);
+          rlog(reporter, 'warn', `S3 download failed for ${edge.url} — ${error.message}`);
         }
       } else {
         // Local fallback: ensure placeholder exists so Gatsby image pipeline has a file.
         if (!fs.existsSync(screenshotFullPath)) {
+          devHint(reporter, `creating placeholder for ${edge.url}`);
           await generatePlaceholderImage(hash);
         }
       }
@@ -491,7 +552,8 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
   }
 }
 
-async function processSources(sources, CONCURRENT_PAGES, browser, reporter, blocker) {
+// Splits sources across workers and runs them in parallel
+async function processSources(sources, browser, reporter, blocker) {
   const maxParallel = Math.max(1, Number(CONCURRENT_PAGES) || 1);
   if (!sources.length) return;
 
@@ -509,28 +571,51 @@ async function processSources(sources, CONCURRENT_PAGES, browser, reporter, bloc
   );
 }
 
-const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
+// Entry point: loads sources, launches browser, and runs the pipeline
+const preProcessSources = async (sourcesInput, reporter) => {
   try {
     if (shouldSkipScreenshots) {
-      reporter.info('SKIP_SCREENSHOTS=true – skipping screenshot pre-processing.');
+      rlog(reporter, 'info', 'screenshots: SKIP_SCREENSHOTS=true — skipping pre-processing');
       return;
     }
 
-    if (!fs.existsSync(JSON_PATH)) {
-      reporter.warn(`Sources file not found at ${JSON_PATH}; skipping screenshots.`);
-      return;
+    let sourcesData = [];
+    if (Array.isArray(sourcesInput)) {
+      sourcesData = sourcesInput;
+    } else if (
+      sourcesInput &&
+      typeof sourcesInput === 'object' &&
+      Array.isArray(sourcesInput.sources)
+    ) {
+      sourcesData = sourcesInput.sources;
+    } else if (typeof sourcesInput === 'string') {
+      // treat as file path
+      try {
+        if (!fs.existsSync(sourcesInput)) {
+          reporter.warn(`Sources file not found at ${sourcesInput}; skipping screenshots.`);
+          return;
+        }
+        const fileContent = fs.readFileSync(sourcesInput, 'utf8');
+        const parsed = JSON.parse(fileContent);
+        if (parsed && typeof parsed === 'object' && Array.isArray(parsed.sources)) {
+          sourcesData = parsed.sources;
+        } else if (Array.isArray(parsed)) {
+          sourcesData = parsed;
+        }
+      } catch (err) {
+        reporter.error(`Failed to read or parse sources file: ${err.message}`);
+        return;
+      }
+    } else {
+      sourcesData = [];
     }
-
-    const sourcesData = require(JSON_PATH); // Load sources data from JSON
 
     if (!Array.isArray(sourcesData) || sourcesData.length === 0) {
       reporter.info('No sources found for screenshot generation.');
       return;
     }
 
-    console.log(
-      '\nI have gotten the task of taking screenshots of ' + sourcesData.length + ' Sources'
-    );
+    rlog(reporter, 'info', `screenshots: processing ${sourcesData.length} sources (env=${NODE_ENV}, s3=${!!s3})`);
 
     let blocker = null;
     try {
@@ -561,7 +646,7 @@ const preProcessSources = async (JSON_PATH, CONCURRENT_PAGES, reporter) => {
       protocolTimeout: PAGE_NAVIGATION_TIMEOUT * 2,
     });
 
-    await processSources(sourcesData, CONCURRENT_PAGES, browser, reporter, blocker);
+    await processSources(sourcesData, browser, reporter, blocker);
 
     await browser.close();
   } catch (error) {

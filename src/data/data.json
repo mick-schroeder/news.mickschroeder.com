@@ -1,5 +1,5 @@
-[
-{"name":"ABC News","url":"https://abcnews.go.com/","categories":["American"],"score":4.1},
+{
+  "sources": [{"name":"ABC News","url":"https://abcnews.go.com/","categories":["American"],"score":4.1},
 {"name":"AP News","url":"https://apnews.com/","categories":["Global"],"score":4.6},
 {"name":"Al Jazeera","url":"https://aljazeera.com/","categories":["Global"],"score":4.2},
 {"name":"Ars Technica","url":"https://arstechnica.com/","categories":["Tech"],"score":3.6},
@@ -79,5 +79,5 @@
 {"name":"USA Today","url":"https://usatoday.com/","categories":["American"],"score":4.2},
 {"name":"Vanity Fair","url":"https://vanityfair.com/","categories":["American"],"score":4.1},
 {"name":"Vox","url":"https://vox.com/","categories":["American"],"score":4},
-{"name":"Yahoo News","url":"https://news.yahoo.com/","categories":["Aggregator"],"score":3.8}
-]
+{"name":"Yahoo News","url":"https://news.yahoo.com/","categories":["Aggregator"],"score":3.8}]
+}

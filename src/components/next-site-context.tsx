@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useSourceCategoryContext } from './context/SourceCategoryContext';
 
@@ -17,6 +17,13 @@ type NextSiteContextValue = {
   availableCount: number;
 };
 
+
+type NextSiteSourcesQuery = {
+  allDataJson: {
+    nodes: Array<{ sources: SourceNode[] }>
+  };
+};
+
 const NextSiteContext = React.createContext<NextSiteContextValue | undefined>(undefined);
 
 export const useNextSiteContext = (): NextSiteContextValue => {
@@ -27,29 +34,25 @@ export const useNextSiteContext = (): NextSiteContextValue => {
   return context;
 };
 
-type NextSiteSourcesQuery = {
-  allSourcesJson: {
-    nodes: SourceNode[];
-  };
-};
-
 type NextSiteProviderProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 export const NextSiteProvider = ({ children }: NextSiteProviderProps): JSX.Element => {
-  const data = useStaticQuery<NextSiteSourcesQuery>(graphql`
+    const data = useStaticQuery<NextSiteSourcesQuery>(graphql`
     query NextSiteSourcesQuery {
-      allSourcesJson {
+      allDataJson {
         nodes {
+        sources {
           name
           url
           categories
         }
       }
+      }
     }
   `);
-  const nodes = data.allSourcesJson?.nodes ?? [];
+  const nodes = data.allDataJson?.nodes?.[0]?.sources ?? [];
   const sources = React.useMemo(() => nodes, [nodes]);
 
   const { selectedCategories } = useSourceCategoryContext();

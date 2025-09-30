@@ -1,12 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import type { GatsbyNode } from 'gatsby';
-import { preProcessSources } from './processSources';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { preProcessSources } = require('./processSources');
 import { createScreenshotSlug } from './utils/screenshotSlug';
 
-const JSON_PATH = path.resolve(__dirname, 'src/data/sources.json');
 const SCREENSHOT_PATH = path.resolve(__dirname, 'static/screenshots');
-const CONCURRENT_PAGES = 5;
 
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
@@ -19,31 +18,47 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ act
   });
 };
 
-export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async ({ reporter }) => {
+export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async () => {
   if (!fs.existsSync(SCREENSHOT_PATH)) {
     fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
   }
+};
 
-  await preProcessSources(JSON_PATH, CONCURRENT_PAGES, reporter);
+export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ reporter, getNodesByType }) => {
+  const files = getNodesByType('DataJson') as Array<{ sources?: any[] }>;
+  const file = files[0];
+  const sources = Array.isArray(file?.sources) ? file!.sources : [];
+
+  reporter.info(`[gatsby-node] DataJson nodes: ${files.length}; sources entries: ${sources.length}`);
+
+  if (!sources.length) {
+    reporter.warn('[gatsby-node] No sources found in data layer; skipping screenshot pre-processing.');
+    return;
+  }
+
+  await preProcessSources(sources, reporter);
 };
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
-    type SourcesJson implements Node @dontInfer {
+    type DataJson implements Node @dontInfer {
+      sources: [NewsSource!]!
+    }
+    type NewsSource {
       name: String!
       url: String!
       categories: [String]
-      score: String
+      score: Float
       hash: String
-      screenshot: File @link
+      screenshot: File
     }
   `);
 };
 
 export const createResolvers: GatsbyNode['createResolvers'] = ({ createResolvers }) => {
   createResolvers({
-    SourcesJson: {
+    NewsSource: {
       categories: {
         resolve(source: { categories?: unknown }) {
           const cat = source.categories;
