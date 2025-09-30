@@ -108,8 +108,10 @@ const config: GatsbyConfig = {
           defaultNS: 'common',
         },
         pages: [
-          // keep MDX/pages localized by filename or directory later if you want
-          // { matchPath: '/:lang?/news/:uid', getLanguageFromPath: true },
+           {
+          matchPath: '/admin',
+          languages: ['en']
+        }
         ],
       },
     },
