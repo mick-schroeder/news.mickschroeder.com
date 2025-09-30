@@ -63,11 +63,6 @@ const config: GatsbyConfig = {
     typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
   },
     plugins: [
-        {
-      resolve: "gatsby-plugin-decap-cms",
-      options: {
-      },
-    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

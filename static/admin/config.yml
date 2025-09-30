@@ -4,8 +4,13 @@ backend:
   branch: main
   auth_scope: public_repo
   app_id: "Ov23lilL0a2MeZH9wzJP"
-  logo_url: "https://news.mickschroeder.com/logo-circle.png"
-#local_backend: true
+  base_url: "https://auth.mickschroeder.com"
+  auth_endpoint: "/auth"
+media_folder: "static/screenshots"
+site_url: "https://news.mickschroeder.com"
+display_url: "https://news.mickschroeder.com"
+omit_empty_optional_fields: true
+show_preview_links: false
 
 media_folder: "static/screenshots"
 
