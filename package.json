@@ -60,22 +60,22 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "@aws-sdk/client-s3": "^3.896.0",
-    "@aws-sdk/lib-storage": "^3.896.0",
+    "@aws-sdk/client-s3": "^3.901.0",
+    "@aws-sdk/lib-storage": "^3.901.0",
     "@ghostery/adblocker-puppeteer": "^2.11.6",
-    "@tailwindcss/postcss": "^4.1.13",
+    "@tailwindcss/postcss": "^4.1.14",
     "@tailwindcss/typography": "^0.5.19",
-    "@types/node": "^20.19.17",
-    "@types/react": "^18.3.24",
+    "@types/node": "^20.19.19",
+    "@types/react": "^18.3.25",
     "@types/react-dom": "^18.3.7",
     "autoprefixer": "^10.4.21",
     "cssnano": "^6.1.2",
-    "npm-check-updates": "^18.3.0",
+    "npm-check-updates": "^18.3.1",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
-    "puppeteer": "^24.22.3",
-    "tailwindcss": "^4.1.13",
+    "puppeteer": "^24.23.0",
+    "tailwindcss": "^4.1.14",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   }
 }

@@ -26,16 +26,16 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": [
-  "./src/**/*",
-  "./gatsby-node.ts",
-  "./gatsby-config.ts",
-  "./gatsby-browser.ts",
-  "./gatsby-browser.tsx",
-  "./gatsby-ssr.ts",
-  "./gatsby-ssr.tsx",
-  "./plugins/**/*",
-  "./types/**/*",
-  ".cache/types/**/*.d.ts",
-  ".cache/**/*.d.ts"
-]
+    "./src/**/*",
+    "./gatsby-node.ts",
+    "./gatsby-config.ts",
+    "./gatsby-browser.ts",
+    "./gatsby-browser.tsx",
+    "./gatsby-ssr.ts",
+    "./gatsby-ssr.tsx",
+    "./plugins/**/*",
+    "./types/**/*",
+    ".cache/types/**/*.d.ts",
+    ".cache/**/*.d.ts"
+  ]
 }

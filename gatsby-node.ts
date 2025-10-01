@@ -5,12 +5,12 @@ import type { GatsbyNode } from 'gatsby';
 const { preProcessSources } = require('./processSources');
 import { createScreenshotSlug } from './utils/screenshotSlug';
 
-const express = require('express')
+const express = require('express');
 
 // Serve files from `static` in development
 exports.onCreateDevServer = ({ app }) => {
-  app.use(express.static("static"))
-}
+  app.use(express.static('static'));
+};
 
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
@@ -23,15 +23,22 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ act
   });
 };
 
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ reporter, getNodesByType }) => {
+export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
+  reporter,
+  getNodesByType,
+}) => {
   const files = getNodesByType('DataJson') as Array<{ sources?: any[] }>;
   const file = files[0];
   const sources = Array.isArray(file?.sources) ? file!.sources : [];
 
-  reporter.info(`[gatsby-node] DataJson nodes: ${files.length}; sources entries: ${sources.length}`);
+  reporter.info(
+    `[gatsby-node] DataJson nodes: ${files.length}; sources entries: ${sources.length}`
+  );
 
   if (!sources.length) {
-    reporter.warn('[gatsby-node] No sources found in data layer; skipping screenshot pre-processing.');
+    reporter.warn(
+      '[gatsby-node] No sources found in data layer; skipping screenshot pre-processing.'
+    );
     return;
   }
 

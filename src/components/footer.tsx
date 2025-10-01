@@ -19,8 +19,7 @@ const FooterBar: React.FC = () => {
       }
     }
   `);
-  const licenseUrl =
-    'https://github.com/mick-schroeder/news.mickschroeder.com/blob/main/LICENSE';
+  const licenseUrl = 'https://github.com/mick-schroeder/news.mickschroeder.com/blob/main/LICENSE';
   const contentLicenseUrl = 'https://creativecommons.org/licenses/by/4.0/';
   const repoUrl = 'https://github.com/mick-schroeder/news.mickschroeder.com';
   const contactEmail = 'contact@mickschroeder.com';
@@ -95,10 +94,7 @@ const FooterBar: React.FC = () => {
                 values={{ email: contactEmail }}
                 components={{
                   email: (
-                    <a
-                      href={`mailto:${contactEmail}`}
-                      className="underline hover:no-underline"
-                    />
+                    <a href={`mailto:${contactEmail}`} className="underline hover:no-underline" />
                   ),
                 }}
               />

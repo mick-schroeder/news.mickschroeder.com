@@ -15,15 +15,15 @@ export const SourceCategorySelector: React.FC = () => {
     query AllSourceCategories {
       allDataJson {
         nodes {
-          sources { 
-            categories 
-            }
+          sources {
+            categories
+          }
         }
       }
     }
   `);
   const allCategories = React.useMemo(() => {
-    const dataNodes = (data?.allDataJson?.nodes ?? []);
+    const dataNodes = data?.allDataJson?.nodes ?? [];
     const sourcesArrays = dataNodes.map((n: any) => n?.sources ?? []);
     const set = new Set<string>();
     for (const list of sourcesArrays) {

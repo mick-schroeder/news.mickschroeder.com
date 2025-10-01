@@ -17,10 +17,9 @@ type NextSiteContextValue = {
   availableCount: number;
 };
 
-
 type NextSiteSourcesQuery = {
   allDataJson: {
-    nodes: Array<{ sources: SourceNode[] }>
+    nodes: Array<{ sources: SourceNode[] }>;
   };
 };
 
@@ -39,16 +38,16 @@ type NextSiteProviderProps = {
 };
 
 export const NextSiteProvider = ({ children }: NextSiteProviderProps): JSX.Element => {
-    const data = useStaticQuery<NextSiteSourcesQuery>(graphql`
+  const data = useStaticQuery<NextSiteSourcesQuery>(graphql`
     query NextSiteSourcesQuery {
       allDataJson {
         nodes {
-        sources {
-          name
-          url
-          categories
+          sources {
+            name
+            url
+            categories
+          }
         }
-      }
       }
     }
   `);

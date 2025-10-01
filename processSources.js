@@ -155,13 +155,15 @@ async function hideCookieBanners(page, reporter) {
         if (!(el instanceof HTMLElement)) return;
         if (hidden.has(el)) return;
 
-        if (selectors.some((selector) => {
+        if (
+          selectors.some((selector) => {
             try {
               return el.matches(selector);
             } catch (err) {
               return false;
             }
-          })) {
+          })
+        ) {
           hideElement(el);
           return;
         }
@@ -215,7 +217,8 @@ async function hideCookieBanners(page, reporter) {
 // Scrolls down to trigger lazy loading, then scrolls back to top
 async function autoScroll(page) {
   await page.evaluate(async () => {
-    const scrollableHeight = () => document.documentElement.scrollHeight || document.body.scrollHeight || 0;
+    const scrollableHeight = () =>
+      document.documentElement.scrollHeight || document.body.scrollHeight || 0;
     const distance = Math.max(window.innerHeight / 2, 200);
     const maxScroll = scrollableHeight();
     if (maxScroll <= window.innerHeight * 1.2) {
@@ -244,32 +247,29 @@ async function autoScroll(page) {
 // Waits briefly for <img> elements to finish loading
 async function waitForImages(page, reporter) {
   try {
-    await page.evaluate(
-      async (timeout) => {
-        const imgs = Array.from(document.images || []);
-        if (!imgs.length) return;
+    await page.evaluate(async (timeout) => {
+      const imgs = Array.from(document.images || []);
+      if (!imgs.length) return;
 
-        const loadImage = (img) =>
-          img.complete && img.naturalWidth > 0
-            ? Promise.resolve()
-            : new Promise((resolve) => {
-                const done = () => {
-                  img.removeEventListener('load', done);
-                  img.removeEventListener('error', done);
-                  resolve(null);
-                };
-                img.addEventListener('load', done, { once: true });
-                img.addEventListener('error', done, { once: true });
-                window.setTimeout(done, timeout);
-              });
+      const loadImage = (img) =>
+        img.complete && img.naturalWidth > 0
+          ? Promise.resolve()
+          : new Promise((resolve) => {
+              const done = () => {
+                img.removeEventListener('load', done);
+                img.removeEventListener('error', done);
+                resolve(null);
+              };
+              img.addEventListener('load', done, { once: true });
+              img.addEventListener('error', done, { once: true });
+              window.setTimeout(done, timeout);
+            });
 
-        await Promise.race([
-          Promise.all(imgs.map(loadImage)),
-          new Promise((resolve) => window.setTimeout(resolve, timeout)),
-        ]);
-      },
-      WAIT_FOR_IMAGES_TIMEOUT
-    );
+      await Promise.race([
+        Promise.all(imgs.map(loadImage)),
+        new Promise((resolve) => window.setTimeout(resolve, timeout)),
+      ]);
+    }, WAIT_FOR_IMAGES_TIMEOUT);
   } catch (error) {
     if (reporter && reporter.warn) {
       reporter.warn(`Failed waiting for images: ${error.message}`);
@@ -340,7 +340,6 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
   return success;
 }
 
-
 // Uploads a local screenshot to S3
 async function uploadToS3(filePath, slug, reporter) {
   if (!s3) {
@@ -366,9 +365,7 @@ async function uploadToS3(filePath, slug, reporter) {
 async function s3HasObject(slug) {
   if (!s3) return false;
   try {
-    await s3
-      .headObject({ Bucket: BUCKET_NAME, Key: `${slug}.webp` })
-      .promise();
+    await s3.headObject({ Bucket: BUCKET_NAME, Key: `${slug}.webp` }).promise();
     return true;
   } catch (error) {
     if (error.code === 'NotFound') return false;
@@ -615,7 +612,11 @@ const preProcessSources = async (sourcesInput, reporter) => {
       return;
     }
 
-    rlog(reporter, 'info', `screenshots: processing ${sourcesData.length} sources (env=${NODE_ENV}, s3=${!!s3})`);
+    rlog(
+      reporter,
+      'info',
+      `screenshots: processing ${sourcesData.length} sources (env=${NODE_ENV}, s3=${!!s3})`
+    );
 
     let blocker = null;
     try {

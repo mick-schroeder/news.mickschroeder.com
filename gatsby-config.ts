@@ -51,7 +51,7 @@ const config: GatsbyConfig = {
     title: 'News Craic',
     tagLine: 'Shuffle the news, find the craic.',
     description:
-      'News Craic is your shuffle button for the news. Stay informed as we take you across the Internet\'s top news sites.',
+      "News Craic is your shuffle button for the news. Stay informed as we take you across the Internet's top news sites.",
     image: '/large-promo.png',
     author: 'Mick Schroeder, LLC',
     authorUrl: 'https://www.mickschroeder.com',
@@ -62,7 +62,7 @@ const config: GatsbyConfig = {
   graphqlTypegen: {
     typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
   },
-    plugins: [
+  plugins: [
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -110,7 +110,7 @@ const config: GatsbyConfig = {
         pages: [
           { matchPath: '/admin', languages: ['en'] },
           { matchPath: '/admin/(.*)', languages: ['en'] },
-        ]
+        ],
       },
     },
     'gatsby-plugin-postcss',
@@ -286,7 +286,6 @@ const config: GatsbyConfig = {
               { userAgent: '*', allow: '/' },
               { userAgent: '*', disallow: ['/redirect'] },
               { userAgent: '*', disallow: ['/admin'] },
-
             ],
           },
         },

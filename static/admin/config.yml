@@ -3,14 +3,14 @@ backend:
   repo: mick-schroeder/news.mickschroeder.com
   branch: main
   auth_scope: repo,user
-  app_id: "Ov23lilL0a2MeZH9wzJP"
-  base_url: "https://auth.mickschroeder.com"
-  auth_endpoint: "/auth?origin=https://news.mickschroeder.com&provider=github&site_id=news.mickschroeder.com"
+  app_id: 'Ov23lilL0a2MeZH9wzJP'
+  base_url: 'https://auth.mickschroeder.com'
+  auth_endpoint: '/auth?origin=https://news.mickschroeder.com&provider=github&site_id=news.mickschroeder.com'
 
-logo_url: "https://news.mickschroeder.com/logo-circle.png"
-media_folder: "static/screenshots"
-site_url: "https://news.mickschroeder.com"
-display_url: "https://news.mickschroeder.com"
+logo_url: 'https://news.mickschroeder.com/logo-circle.png'
+media_folder: 'static/screenshots'
+site_url: 'https://news.mickschroeder.com'
+display_url: 'https://news.mickschroeder.com'
 omit_empty_optional_fields: true
 show_preview_links: false
 
@@ -27,7 +27,7 @@ collections:
     files:
       - name: common
         label: Translations
-        file: "src/locales/{locale}/common.json"
+        file: 'src/locales/{locale}/common.json'
         format: file
         extension: json
         fields:
@@ -35,52 +35,62 @@ collections:
             label: Translations JSON
             widget: code
             default_language: json
-            hint: "Edit the JSON directly. Must be valid JSON."
+            hint: 'Edit the JSON directly. Must be valid JSON.'
             editor_components: []
-  - name: "sources"
-    label: "News Sources"
-    label_singular: "News Source"
-    description: "Edit news sources list for the app"
+  - name: 'sources'
+    label: 'News Sources'
+    label_singular: 'News Source'
+    description: 'Edit news sources list for the app'
     i18n: false
     files:
-      - name: "sources-json"
-        label: "All News Sources"
-        file: "src/data/data.json"
-        format: "json"
+      - name: 'sources-json'
+        label: 'All News Sources'
+        file: 'src/data/data.json'
+        format: 'json'
         fields:
-          - label: "News Sources"
-            name: "sources"
-            widget: "list"
-            label_singular: "News Source"
+          - label: 'News Sources'
+            name: 'sources'
+            widget: 'list'
+            label_singular: 'News Source'
             summary: "{{fields.name}} ({{fields.url}}) {{fields.categories | join(', ')}} (⭐ {{fields.score}})"
             collapsed: true
             add_to_top: true
             sortable: true
             fields:
-              - { label: "Name", name: "name", widget: "string", hint: "Publisher or site name (e.g., AP News)" }
-              - label: "URL"
-                name: "url"
-                widget: "string"
-                hint: "Full homepage URL (https preferred)"
+              - {
+                  label: 'Name',
+                  name: 'name',
+                  widget: 'string',
+                  hint: 'Publisher or site name (e.g., AP News)',
+                }
+              - label: 'URL'
+                name: 'url'
+                widget: 'string'
+                hint: 'Full homepage URL (https preferred)'
                 pattern:
-                  - "^https?://.+"
-                  - "Must start with http(s)://"
-              - label: "Categories"
-                name: "categories"
-                widget: "list"
-                summary: "{{fields.item}}"
+                  - '^https?://.+'
+                  - 'Must start with http(s)://'
+              - label: 'Categories'
+                name: 'categories'
+                widget: 'list'
+                summary: '{{fields.item}}'
                 field:
-                  { label: "Category", name: "item", widget: "string", hint: "e.g., Global, American, Irish" }
+                  {
+                    label: 'Category',
+                    name: 'item',
+                    widget: 'string',
+                    hint: 'e.g., Global, American, Irish',
+                  }
                 add_to_top: true
                 allow_add: true
-              - label: "Score"
-                name: "score"
-                widget: "number"
-                value_type: "float"
+              - label: 'Score'
+                name: 'score'
+                widget: 'number'
+                value_type: 'float'
                 min: 0
                 max: 5
                 step: 0.1
-                hint: "0–5 impact score (one decimal)"
+                hint: '0–5 impact score (one decimal)'
   - name: pages
     label: Markdown Pages
     folder: src/md-pages
@@ -89,7 +99,7 @@ collections:
     extension: md
     i18n:
       structure: multiple_files
-    path: "{{slug}}.{{locale}}"
+    path: '{{slug}}.{{locale}}'
     fields:
       - { label: Slug, name: slug, widget: string, required: true }
       - { label: Title, name: title, widget: string }
