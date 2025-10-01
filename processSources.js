@@ -24,14 +24,14 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Constants
 const BUCKET_NAME = process.env.SCREENSHOT_BUCKET || 'web-shuffle-screenshots';
-const SCREENSHOT_PATH = './static/screenshots';
+const SCREENSHOT_PATH = './src/images/screenshots';
 const VIEWPORT_WIDTH = Number(process.env.SCREENSHOT_VIEWPORT_WIDTH || 1080);
 const VIEWPORT_HEIGHT = Number(process.env.SCREENSHOT_VIEWPORT_HEIGHT || 1920);
 const PAGE_NAVIGATION_TIMEOUT = Number(process.env.SCREENSHOT_NAVIGATION_TIMEOUT || 30000);
 const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || 4000);
 const WAIT_FOR_BODY_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || 15000);
 const WAIT_FOR_IMAGES_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || 8000);
-const CONCURRENT_PAGES = 5;
+const CONCURRENT_PAGES = 4;
 
 const CACHE_TIMEOUT = Number(process.env.SCREENSHOT_CACHE_TIMEOUT_MS || 6 * 60 * 60 * 1000);
 const RETRIES = 2;
@@ -341,7 +341,7 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
 }
 
 
-// Uploads a local screenshot to S3 (no-op if S3 is not configured)
+// Uploads a local screenshot to S3
 async function uploadToS3(filePath, slug, reporter) {
   if (!s3) {
     reporter.warn(`Skipping upload for ${slug}.webp — S3 credentials not configured.`);

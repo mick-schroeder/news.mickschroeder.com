@@ -5,8 +5,6 @@ import type { GatsbyNode } from 'gatsby';
 const { preProcessSources } = require('./processSources');
 import { createScreenshotSlug } from './utils/screenshotSlug';
 
-const SCREENSHOT_PATH = path.resolve(__dirname, 'static/screenshots');
-
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
@@ -16,12 +14,6 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ act
       },
     },
   });
-};
-
-export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async () => {
-  if (!fs.existsSync(SCREENSHOT_PATH)) {
-    fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
-  }
 };
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ reporter, getNodesByType }) => {

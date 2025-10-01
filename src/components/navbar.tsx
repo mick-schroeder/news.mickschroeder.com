@@ -4,7 +4,7 @@ import RedirectButton from './redirect-button';
 import Logo from '../components/logo';
 import { House, Newspaper } from 'lucide-react';
 
-import WebShufflePlayer from '../components/player';
+import ShufflePlayer from '../components/player';
 import LanguageSwitcher from './language-switcher';
 import {
   NavigationMenu,
@@ -13,19 +13,19 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from './ui/navigation-menu';
-import { SourceCategorySelector } from './SourceCategorySelector';
+import { SourceCategorySelector } from './source-category-selector';
 import LocalizedLink from './LocalizedLink';
 
 const DefaultNavbar: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <nav className="inset-x-0 top-0 z-50 w-full md:fixed md:h-[var(--nav-h)] backdrop-blur bg-background/60 border-b border-border">
+    <nav className="inset-x-0 top-0 z-50 w-full md:fixed xl:h-[var(--nav-h)] backdrop-blur bg-background/60 border-b border-border">
       <div className="container mx-auto px-4 max-w-screen-xl">
-        <div className="flex items-center justify-between py-2 flex-wrap gap-2 md:flex-nowrap">
+        <div className="flex items-center justify-between py-2 flex-wrap gap-2 xl:flex-nowrap">
           <div className="w-full flex justify-center md:w-auto md:justify-start">
             <Logo />
           </div>
-          <div className="flex w-full flex-wrap items-center justify-center gap-2 md:w-auto md:flex-nowrap md:justify-start md:gap-4">
+          <div className="flex w-full flex-wrap items-center justify-center gap-2 md:w-auto md:flex-nowrap md:justify-start md:gap-4 overflow-x-auto max-w-full [-webkit-overflow-scrolling:touch]">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -97,14 +97,16 @@ const DefaultNavbar: React.FC = () => {
             </NavigationMenu>
           </div>
 
-          <div className="flex items-center gap-3 w-full justify-center md:w-auto md:justify-end">
+          <div className="flex flex-wrap items-center gap-3 w-full justify-center xl:justify-end xl:w-auto">
             <LanguageSwitcher />
-            <SourceCategorySelector />
+            <div className="shrink-0">
+              <SourceCategorySelector />
+            </div>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 pb-2 md:flex-row">
-          <WebShufflePlayer />
+          <ShufflePlayer />
           <RedirectButton />
         </div>
       </div>

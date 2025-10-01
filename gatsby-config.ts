@@ -89,7 +89,7 @@ const config: GatsbyConfig = {
     },
     {
       resolve: 'gatsby-source-filesystem',
-      options: { name: 'screenshots', path: `${__dirname}/static/screenshots` },
+      options: { name: 'screenshots', path: `${__dirname}/src/images/screenshots` },
     },
     {
       resolve: 'gatsby-plugin-react-i18next',

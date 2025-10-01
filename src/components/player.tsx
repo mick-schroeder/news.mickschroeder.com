@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { ExternalLink, RefreshCw } from 'lucide-react';
-const WebShufflePlayer: React.FC = () => {
+const ShufflePlayer: React.FC = () => {
   const { nextSite, nextSiteName, refreshNextSite } = useNextSiteContext();
 
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ const WebShufflePlayer: React.FC = () => {
   return (
     <div className="flex items-center justify-center px-2 shrink-0">
       <Card
-        className="w-[320px] sm:w-[420px] md:w-[520px] lg:w-[640px] bg-background/50 border-border shadow-sm hover:shadow-lg hover:ring-1 hover:ring-primary/30"
+        className="sm:w-full md:w-[520px] lg:w-[640px] bg-background/50 border-border shadow-sm hover:shadow-lg hover:ring-1 hover:ring-primary/30"
       >
         <CardHeader className="px-3 py-2">
           <div className="grid grid-cols-[2.25rem_1fr_auto] items-center gap-2">
@@ -67,4 +67,4 @@ const WebShufflePlayer: React.FC = () => {
   );
 };
 
-export default WebShufflePlayer;
+export default ShufflePlayer;

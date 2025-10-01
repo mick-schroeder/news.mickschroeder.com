@@ -119,3 +119,4 @@ export const SourceCategorySelector: React.FC = () => {
     </Popover>
   );
 };
+export default SourceCategorySelector;
