@@ -5,7 +5,7 @@ backend:
   auth_scope: public_repo
   app_id: "Ov23lilL0a2MeZH9wzJP"
   base_url: "https://auth.mickschroeder.com"
-  auth_endpoint: "/auth"
+  auth_endpoint: "/auth?origin=https://news.mickschroeder.com"
 
 logo_url: "https://news.mickschroeder.com/logo-circle.png"
 media_folder: "static/screenshots"

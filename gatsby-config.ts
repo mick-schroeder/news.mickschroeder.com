@@ -108,11 +108,9 @@ const config: GatsbyConfig = {
           defaultNS: 'common',
         },
         pages: [
-           {
-          matchPath: '/admin',
-          languages: ['en']
-        }
-        ],
+          { matchPath: '/admin', languages: ['en'] },
+          { matchPath: '/admin/(.*)', languages: ['en'] },
+        ]
       },
     },
     'gatsby-plugin-postcss',
@@ -287,6 +285,8 @@ const config: GatsbyConfig = {
             policy: [
               { userAgent: '*', allow: '/' },
               { userAgent: '*', disallow: ['/redirect'] },
+              { userAgent: '*', disallow: ['/admin'] },
+
             ],
           },
         },
