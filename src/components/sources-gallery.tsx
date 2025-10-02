@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/card';
 import { AspectRatio } from './ui/aspect-ratio';
 import { ExternalLink } from 'lucide-react';
@@ -131,23 +131,20 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       image={image}
                       alt={String(t('screenshot_of', { name }))}
                       loading={eager}
-                      fetchPriority={fetchP}
+                      fetchpriority={fetchP}
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                     />
-                  ) : hash ? (
-                    <img
-                      src={`/screenshots/${hash}.webp`}
+                  ) : (
+                    <StaticImage
+                      src="../images/placeholder-screenshot.png"
                       alt={String(t('screenshot_of', { name }))}
                       loading={eager}
-                      fetchPriority={fetchP}
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                      width="720"
-                      height="1280"
+                      placeholder="blurred"
+                      className="h-full w-full"
+                      imgClassName="h-full w-full object-cover"
+                      formats={["AUTO", "WEBP", "AVIF"]}
                     />
-                  ) : (
-                    <div className="h-full w-full bg-muted" aria-hidden="true" />
                   )}
                 </AspectRatio>
               </CardContent>
