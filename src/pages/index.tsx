@@ -15,7 +15,7 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
   const items = data.allDataJson?.nodes?.[0]?.sources ?? [];
   return (
     <SiteLayout>
-      <div className="lg:max-w-screen-lg">
+      <div className="lg:max-w-screen-lg md:pt-7 lg:pt-14">
         <section className="px-4">
           <Hero />
         </section>

@@ -39,7 +39,7 @@ const Redirecter: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh] p-6">
-        <div className="bg-card rounded-lg p-10 shadow-lg border border-border text-center my-16 flex flex-col items-center justify-center ">
+        <div className="bg-card rounded-lg p-10 shadow-lg border border-border text-center my-4 md:my-8 lg:my-16 flex flex-col items-center justify-center ">
           <p className="text-xl font-bold mb-4 text-card-foreground">
             <Trans i18nKey="redirect.heading" />
           </p>

@@ -11,7 +11,7 @@ const SideBar: React.FC = () => {
   return (
     <div className="p-4 md:p-8">
       <div className="flex-col content-center mx-auto text-center">
-        <Badge variant="secondary" className="rounded-full py-2 px-6 border-border">
+        <Badge variant="primary" className="rounded-full py-2 px-6 border-border">
           <Logo showAuthor />
         </Badge>
         <h2 className="my-2 text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">

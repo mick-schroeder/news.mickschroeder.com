@@ -4,7 +4,7 @@
 // This script decides when to generate, download, or reuse screenshots for sources.
 // Dev: prefers downloading from S3 if available; generates only when missing.
 // Prod: uses S3 as cache with a freshness timeout, regenerates stale or missing.
-// Always ensures a file exists by generating or falling back to a placeholder.
+// No placeholders are created; failures are skipped (gallery handles fallbacks).
 
 const AWS = require('aws-sdk');
 const path = require('path');
@@ -12,7 +12,6 @@ const fs = require('fs');
 const puppeteer = require('puppeteer');
 const { PuppeteerBlocker, adsAndTrackingLists } = require('@ghostery/adblocker-puppeteer');
 const fetch = require('cross-fetch');
-const sharp = require('sharp');
 const { createScreenshotSlug } = require('./utils/screenshotSlug');
 
 require('aws-sdk/lib/maintenance_mode_message').suppress = true;
@@ -77,25 +76,6 @@ if (!fs.existsSync(SCREENSHOT_PATH)) {
   fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
 }
 
-// Creates a placeholder image if screenshot fails
-async function generatePlaceholderImage(slug) {
-  const screenshotFullPath = path.join(SCREENSHOT_PATH, `${slug}.webp`);
-
-  try {
-    await sharp({
-      create: {
-        width: VIEWPORT_WIDTH,
-        height: VIEWPORT_HEIGHT,
-        channels: 3,
-        background: { r: 200, g: 200, b: 200 },
-      },
-    })
-      .webp({})
-      .toFile(screenshotFullPath);
-  } catch (error) {
-    throw new Error(`Failed to generate placeholder image: ${error.message}`);
-  }
-}
 
 // Tries to hide cookie/consent overlays using selectors and text matching
 async function hideCookieBanners(page, reporter) {
@@ -322,16 +302,9 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
           success = true;
           break; // Exit loop if screenshot is successful
         } catch (screenshotError) {
-          try {
-            await generatePlaceholderImage(slug);
-            reporter.warn(
-              `Generated placeholder image for ${slug} after failing to capture screenshot. Error: ${error.message}`
-            );
-          } catch (placeholderError) {
-            reporter.error(
-              `Failed to generate placeholder image for ${slug}: ${placeholderError.message}`
-            );
-          }
+          reporter.warn(
+            `Failed final screenshot for ${slug}: ${screenshotError.message}`
+          );
         }
       }
     }
@@ -404,17 +377,24 @@ async function shouldGenerateScreenshot(screenshotFullPath, slug, reporter) {
     return true;
   }
 
+  const localExists = fs.existsSync(screenshotFullPath);
+
   if (isDevelopment) {
-    // Dev policy: always try to use S3 if available; generate only if missing from S3.
+    if (localExists) {
+      return false; // local file is good enough; stay quiet
+    }
+
     if (s3) {
       const exists = await s3HasObject(slug);
-      reporter.log(`[dev] S3 has ${slug}.webp? ${exists}`);
+      devHint(
+        reporter,
+        `[dev] remote screenshot ${exists ? 'found' : 'missing'} for ${slug}.webp`
+      );
       return !exists; // generate only when not in S3
     }
-    // No S3 configured in dev: fall back to local check
-    const decision = !fs.existsSync(screenshotFullPath);
-    reporter.log(`[dev] No S3 configured; local exists? ${!decision} → generate: ${decision}`);
-    return decision;
+
+    devHint(reporter, `[dev] no S3 configured; generating ${slug}.webp`);
+    return true;
   }
 
   if (isProduction) {
@@ -425,7 +405,7 @@ async function shouldGenerateScreenshot(screenshotFullPath, slug, reporter) {
       reporter.log(`[prod] S3 fresh within ${CACHE_TIMEOUT}ms? ${fresh} → generate: ${decision}`);
       return decision;
     }
-    const decision = !fs.existsSync(screenshotFullPath);
+    const decision = !localExists;
     reporter.log(`[prod] S3 unavailable; local exists? ${!decision} → generate: ${decision}`);
     return decision;
   }
@@ -452,11 +432,6 @@ async function downloadFromS3(slug, reporter) {
     const fileWriteStream = fs.createWriteStream(`${SCREENSHOT_PATH}/${slug}.webp`);
     await pipeline(s3Stream, fileWriteStream);
   } catch (error) {
-    try {
-      await generatePlaceholderImage(slug);
-    } catch (e) {
-      reporter.warn(`Also failed to generate placeholder for ${slug}: ${e.message}`);
-    }
     reporter.warn(`Failed to download ${slug}.webp from S3: ${error.message}`);
   }
 }
@@ -505,6 +480,8 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
         continue;
       }
 
+      let localExists = fs.existsSync(screenshotFullPath);
+
       if (await shouldGenerateScreenshot(screenshotFullPath, hash, reporter)) {
         try {
           rlog(reporter, 'info', `generate: ${edge.url}`);
@@ -513,35 +490,23 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
             if (isProduction) {
               await uploadToS3(screenshotFullPath, hash, reporter);
             }
+            localExists = true;
           } else {
-            try {
-              if (!fs.existsSync(screenshotFullPath)) {
-                devHint(reporter, `creating placeholder for ${edge.url}`);
-                await generatePlaceholderImage(hash);
-              }
-              rlog(reporter, 'warn', `placeholder: ${edge.url}`);
-            } catch (placeholderErr) {
-              reporter.error(
-                `Failed to create fallback placeholder for ${edge.url}: ${placeholderErr.message}`
-              );
-            }
+            rlog(reporter, 'warn', `no screenshot captured for ${edge.url}`);
           }
         } catch (error) {
           reporter.warn(`Failed to generate/upload screenshot for ${edge.url}: ${error.message}`);
         }
-      } else if (s3 && isProduction) {
+      } else if (!localExists && s3) {
         try {
-          devHint(reporter, `dev/prod: downloading from S3 for ${edge.url}`);
+          devHint(reporter, `download from S3 for ${edge.url}`);
           await downloadFromS3(hash, reporter);
+          localExists = fs.existsSync(screenshotFullPath);
         } catch (error) {
           rlog(reporter, 'warn', `S3 download failed for ${edge.url} — ${error.message}`);
         }
       } else {
-        // Local fallback: ensure placeholder exists so Gatsby image pipeline has a file.
-        if (!fs.existsSync(screenshotFullPath)) {
-          devHint(reporter, `creating placeholder for ${edge.url}`);
-          await generatePlaceholderImage(hash);
-        }
+        // No-op: do not create placeholders; gallery handles missing images.
       }
     }
   } finally {
