@@ -118,7 +118,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                     </a>
                   </CardTitle>
                   {categoriesText ? (
-                    <Badge variant="primary" className="shrink-0">
+                    <Badge variant="outline" className="shrink-0">
                       {categoriesText}
                     </Badge>
                   ) : null}

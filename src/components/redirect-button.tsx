@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNextSiteContext } from './next-site-context';
+import { useNextSiteContext } from './context/next-site-context';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { Button } from './ui/button';
 import { Shuffle } from 'lucide-react';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextSiteProvider } from './next-site-context';
+import { NextSiteProvider } from './context/next-site-context';
 import { SourceCategoryProvider } from './context/SourceCategoryContext';
 import Navbar from './navbar';
 import FooterBar from './footer';

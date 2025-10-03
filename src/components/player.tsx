@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNextSiteContext } from './next-site-context';
+import { useNextSiteContext } from './context/next-site-context';
 import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';

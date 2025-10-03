@@ -30,7 +30,7 @@ const BookmarkCTA: React.FC = () => {
   };
 
   return (
-    <Card className="my-6 max-w-2xl">
+    <Card className="my-6 w-full max-w-2xl">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-base md:text-lg">
           <Bookmark className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
@@ -44,7 +44,7 @@ const BookmarkCTA: React.FC = () => {
             defaults="Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’."
           />
         </p>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+        <div className="flex flex-row justify-center items-center gap-4 md:gap-6">
           <a
             ref={linkRef}
             href="#"

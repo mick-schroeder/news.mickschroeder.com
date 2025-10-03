@@ -10,9 +10,10 @@ import { Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
 import { Newspaper } from 'lucide-react';
 import '../fragments/locale';
+import '../fragments/news-source';
 
 const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
-  const items = data.allDataJson?.nodes?.[0]?.sources ?? [];
+  const items = data?.sourcesData?.sources ?? [];
   return (
     <SiteLayout>
       <div className="lg:max-w-screen-lg md:pt-7 lg:pt-14">
@@ -60,27 +61,9 @@ export const query = graphql`
         }
       }
     }
-    allDataJson {
-      nodes {
-        sources {
-          name
-          score
-          categories
-          url
-          hash
-          screenshot {
-            childImageSharp {
-              gatsbyImageData(
-                width: 720
-                formats: [AUTO, WEBP, AVIF]
-                placeholder: BLURRED
-                breakpoints: [360, 720]
-                sizes: "(min-width:768px) 33vw, (min-width:640px) 50vw, 100vw"
-                aspectRatio: 0.5625
-              )
-            }
-          }
-        }
+    sourcesData: dataJson {
+      sources {
+        ...NewsSourceCardFields
       }
     }
   }

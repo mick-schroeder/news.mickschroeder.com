@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { useSourceCategoryContext } from './context/SourceCategoryContext';
+import { useSourceCategoryContext } from './SourceCategoryContext';
 
 type SourceNode = {
   name: string;
