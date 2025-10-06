@@ -7,7 +7,7 @@ import FooterBar from './footer';
 const SiteLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
   <SourceCategoryProvider>
     <NextSiteProvider>
-      <div className="relative isolate min-h-screen overflow-hidden bg-background antialiased [--nav-h:120px] md:[--nav-h:128px]">
+      <div className="relative isolate min-h-screen overflow-hidden antialiased [--nav-h:120px] md:[--nav-h:128px]">
         {/* Body */}
         <div className="h-auto">
           {/* Header */}
