@@ -61,8 +61,8 @@
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.901.0",
-    "@aws-sdk/lib-storage": "^3.901.0",
-    "@ghostery/adblocker-puppeteer": "^2.11.6",
+    "@aws-sdk/lib-storage": "^3.903.0",
+    "@ghostery/adblocker-puppeteer": "^2.12.1",
     "@tailwindcss/postcss": "^4.1.14",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20.19.19",
