@@ -16,14 +16,14 @@ const DefaultNavbar: React.FC = () => {
   const navInteractiveClasses =
     'text-navbar-foreground hover:bg-navbar-accent hover:text-navbar-accent-foreground focus-visible:ring-navbar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-navbar';
   return (
-    <nav className="inset-x-0 top-0 z-50 w-full md:fixed xl:h-[var(--nav-h)] backdrop-blur bg-navbar/70 border-b border-navbar-border text-navbar-foreground">
+    <nav className="inset-x-0 top-0 z-50 w-full md:fixed xl:h-[var(--nav-h)] backdrop-blur bg-navbar/50 border-b border-navbar-border text-navbar-foreground">
       <div className="container mx-auto px-4 max-w-screen-xl">
         <div className="flex items-center justify-between py-2 flex-wrap gap-2 xl:flex-nowrap">
-          <div className="w-full flex justify-center md:w-auto md:justify-start">
+          <div className="w-full flex justify-center md:w-auto md:justify-start pt-4 md:pt-0">
             <Logo />
           </div>
-          <div className="flex w-full flex-wrap items-center justify-center gap-2 md:w-auto md:flex-nowrap md:justify-start md:gap-4 overflow-x-auto max-w-full [-webkit-overflow-scrolling:touch]">
-            <div className="flex items-center gap-1 md:gap-2">
+          <div className="flex w-full flex-wrap items-center justify-center gap-2 md:w-auto md:flex-nowrap md:justify-start md:gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-1 md:flex-nowrap md:justify-start md:gap-2">
               <Button
                 asChild
                 variant="ghost"
@@ -112,7 +112,7 @@ const DefaultNavbar: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-3 pb-2 flex-row">
+        <div className="flex flex-col items-stretch gap-3 pb-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
           <ShufflePlayer />
           <RedirectButton />
         </div>

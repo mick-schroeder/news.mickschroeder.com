@@ -16,8 +16,8 @@ const ShufflePlayer: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center px-2 shrink-0">
-      <Card className="sm:w-full md:w-[520px] lg:w-[640px] bg-background/50 border-border shadow-sm hover:shadow-lg hover:ring-1 hover:ring-primary/30">
+    <div className="flex w-full items-center justify-center px-2 sm:w-auto sm:shrink-0">
+      <Card className="w-full md:w-[520px] lg:w-[640px] bg-background/50 border-border shadow-sm hover:shadow-lg hover:ring-1 hover:ring-primary/30">
         <CardHeader className="px-3 py-2">
           <div className="grid grid-cols-[2.25rem_1fr_auto] items-center gap-2">
             <div className="w-9 h-9" aria-hidden="true" />
