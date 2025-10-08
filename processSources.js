@@ -76,7 +76,6 @@ if (!fs.existsSync(SCREENSHOT_PATH)) {
   fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
 }
 
-
 // Tries to hide cookie/consent overlays using selectors and text matching
 async function hideCookieBanners(page, reporter) {
   try {
@@ -302,9 +301,7 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
           success = true;
           break; // Exit loop if screenshot is successful
         } catch (screenshotError) {
-          reporter.warn(
-            `Failed final screenshot for ${slug}: ${screenshotError.message}`
-          );
+          reporter.warn(`Failed final screenshot for ${slug}: ${screenshotError.message}`);
         }
       }
     }
@@ -386,10 +383,7 @@ async function shouldGenerateScreenshot(screenshotFullPath, slug, reporter) {
 
     if (s3) {
       const exists = await s3HasObject(slug);
-      devHint(
-        reporter,
-        `[dev] remote screenshot ${exists ? 'found' : 'missing'} for ${slug}.webp`
-      );
+      devHint(reporter, `[dev] remote screenshot ${exists ? 'found' : 'missing'} for ${slug}.webp`);
       return !exists; // generate only when not in S3
     }
 

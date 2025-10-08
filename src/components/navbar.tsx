@@ -27,7 +27,7 @@ const DefaultNavbar: React.FC = () => {
               <Button
                 asChild
                 variant="ghost"
-                size=""
+                
                 className={cn('flex items-center gap-2', navInteractiveClasses)}
               >
                 <LocalizedLink to="/">
@@ -39,7 +39,7 @@ const DefaultNavbar: React.FC = () => {
               <Button
                 asChild
                 variant="ghost"
-                size=""
+                
                 className={cn('flex items-center gap-2', navInteractiveClasses)}
               >
                 <LocalizedLink to="/#sources-gallery">
@@ -51,7 +51,7 @@ const DefaultNavbar: React.FC = () => {
               <Button
                 asChild
                 variant="ghost"
-                size=""
+                
                 className={cn('flex items-center gap-2', navInteractiveClasses)}
               >
                 <a

@@ -143,7 +143,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       placeholder="blurred"
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
-                      formats={["AUTO", "WEBP", "AVIF"]}
+                      formats={['auto', 'webp', 'avif']}
                     />
                   )}
                 </AspectRatio>
