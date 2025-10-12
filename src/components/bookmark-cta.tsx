@@ -54,7 +54,7 @@ const BookmarkCTA: React.FC = () => {
             className="font-semibold text-primary hover:underline"
             onClick={(e) => e.preventDefault()}
           >
-            <Trans i18nKey="bookmark.link_label" defaults="Shuffle (Bookmark me)" />
+            <Trans i18nKey="bookmark.link_label" defaults="News Shuffle" />
           </a>
           <Button type="button" size="sm" variant="outline" onClick={onCopy} aria-live="polite">
             {copied ? (

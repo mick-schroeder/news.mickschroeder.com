@@ -1,4 +1,4 @@
-# [🔀 New Craic](https://news.mickschroeder.com)
+# [🔀 News Shuffle](https://news.mickschroeder.com)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-blue.svg)]
@@ -39,7 +39,7 @@ Hit the "Shuffle" button and you will be sent to a random website from the most 
 
 ## License
 
-- News Craic™ is open-source and available under the [MIT License](LICENSE)
+- News Shuffle™ is open-source and available under the [MIT License](LICENSE)
 - Content (non-code): [CC BY 4.0](CONTENT_LICENSE.md)
 
 Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.

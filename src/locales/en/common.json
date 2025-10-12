@@ -3,10 +3,10 @@
     "copied": "Link Copied!",
     "copy": "Copy link",
     "description": "Drag this link to your bookmarks bar, or right-click to save it for quick access.",
-    "link_label": "🔀 Shuffle News",
-    "title": "Bookmark our Shuffle link"
+    "link_label": "🔀 News Shuffle",
+    "title": "Bookmark our News Shuffle link"
   },
-  "brand": "Mick Schroeder's News Craic",
+  "brand": "Mick Schroeder's News Shuffle",
   "category_selector": {
     "all_categories": "All Categories",
     "clear_selection": "Clear selection",
@@ -14,16 +14,16 @@
     "select_categories_label": "Choose news categories"
   },
   "footer": {
-    "disclaimer": "News Craic™ is provided for informational and entertainment purposes only. No warranty is given, including implied warranties of merchantability or fitness. Some links may be affiliate or sponsored, helping support the site at no extra cost to you. This site uses cookies and analytics trackers and is supported by advertising. External links are provided as a convenience and do not represent endorsements. Screenshots of third-party websites are shown for illustrative purposes and remain the property of their respective owners. We are not responsible for the accuracy, legality, or content of external sites. Please contact those sites directly with any questions.",
+    "disclaimer": "News Shuffle™ is provided for informational and entertainment purposes only. No warranty is given, including implied warranties of merchantability or fitness. Some links may be affiliate or sponsored, helping support the site at no extra cost to you. This site uses cookies and analytics trackers and is supported by advertising. External links are provided as a convenience and do not represent endorsements. Screenshots of third-party websites are shown for illustrative purposes and remain the property of their respective owners. We are not responsible for the accuracy, legality, or content of external sites. Please contact those sites directly with any questions.",
     "terms_privacy": "Terms & Privacy",
-    "license": "News Craic™ is open-source and available under the <link>MIT License</link>.",
+    "license": "News Shuffle™ is open-source and available under the <link>MIT License</link>.",
     "content_license": "Content (non-code): <cc>CC BY 4.0</cc>. Source code available at <repo>{{url}}</repo>.",
     "rights_reserved": "Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.",
     "contact": "Contact: <email>{{email}}</email>"
   },
   "hero": {
     "headline": "Shuffle through the world’s most influential news sources.",
-    "tagline": "News Craic is your shortcut to the free press. Instead of clickbait headlines, we shuffle you directly into today’s most influential news websites to see the stories as they were meant to be told."
+    "tagline": "News Shuffle is your shortcut to the free press. Instead of clickbait headlines, we shuffle you directly into today’s most influential news websites to see the stories as they were meant to be told."
   },
   "home": "Home",
   "latest": "Latest",
@@ -32,7 +32,7 @@
     "current": "(current)"
   },
   "loading": "Loading random source…",
-  "logo_alt": "News Craic logo",
+  "logo_alt": "News Shuffle logo",
   "notfound": {
     "head_title": "404 — Page not found",
     "gohome": "Back to home",
@@ -53,7 +53,7 @@
     "head_title": "Redirect",
     "loading": "Loading…"
   },
-  "shuffle": "Shuffle",
+  "shuffle": "News Shuffle",
   "shuffle_next": "Show me another site",
   "sources": "News Sources"
 }

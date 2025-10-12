@@ -1,14 +1,14 @@
 ---
 title: Terms and Privacy Policy
-description: New Craic Terms of Use and Privacy Policy.
+description: News Shuffle Terms of Use and Privacy Policy.
 slug: 'terms-privacy'
 ---
 
 # Terms of Use
 
-Please read these Terms of Use carefully before using the New Craic website.
+Please read these Terms of Use carefully before using the News Shuffle website.
 
-By accessing or using the New Craic website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you must not use our website.
+By accessing or using the News Shuffle website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you must not use our website.
 
 ## Software License
 
@@ -22,7 +22,7 @@ See the GNU Affero General Public License for more details.
 
 ## Content Usage
 
-The articles and content published on New Craic are for informational purposes only. You may not reproduce, distribute, or modify any content without prior written permission from New Craic.
+The articles and content published on News Shuffle are for informational purposes only. You may not reproduce, distribute, or modify any content without prior written permission from News Shuffle.
 
 ## Analytics and Tracking
 

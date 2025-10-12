@@ -47,11 +47,11 @@ type SerializedPage = {
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    name: "Mick Schroeder's News Craic",
-    title: "Mick Schroeder's News Craic",
-    tagLine: 'Shuffle the news, find the craic.',
+    name: "Mick Schroeder's News Shuffle",
+    title: "Mick Schroeder's News Shuffle",
+    tagLine: 'Shuffle the news.',
     description:
-      "Mick Schroeder\'s News Craic is your shuffle button for the news. Stay informed as we take you across the Internet's top news sites.",
+      "Mick Schroeder\'s News Shuffle is your shuffle button for the news. Stay informed as we take you across the Internet's top news sites.",
     image: '/large-promo.png',
     author: 'Mick Schroeder, LLC',
     authorUrl: 'https://www.mickschroeder.com',
@@ -66,8 +66,8 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'News Craic',
-        short_name: 'News Craic',
+        name: 'News Shuffle',
+        short_name: 'News Shuffle',
         start_url: '/',
         background_color: '#1f2937',
         lang: GATSBY_DEFAULT_LANGUAGE,

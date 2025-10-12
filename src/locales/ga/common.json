@@ -6,7 +6,7 @@
     "link_label": "🔀 Nuacht Mearaigh",
     "title": "Cuir ár nasc Mearaigh i do leabharmharcanna"
   },
-  "brand": "Mick Schroeder's Nuacht Craic",
+  "brand": "Mick Schroeder's Shuffle Nuachta",
   "category_selector": {
     "all_categories": "Gach catagóir",
     "clear_selection": "Glan an roghnú",
@@ -14,16 +14,16 @@
     "select_categories_label": "Roghnaigh catagóirí nuachta"
   },
   "footer": {
-    "disclaimer": "Soláthraítear News Craic™ ar mhaithe le faisnéis agus siamsaíocht amháin. Ní thugtar aon bharántas, lena n-áirítear barántais intuigthe maidir le hinmhargaidheacht ná oiriúnacht do chuspóir ar leith. D’fhéadfadh roinnt naisc a bheith cleamhnaithe nó urraithe, rud a chuidíonn leis an suíomh gan aon chostas breise ort. Úsáideann an suíomh seo fianáin agus rianaitheoirí anailíse agus tacaíonn fógraíocht leis. Cuirtear na naisc sheachtracha ar fáil mar áis agus ní hionann iad agus formhuiniú. Taispeántar seatanna scáileáin de shuíomhanna tríú páirtí chun críocha léiriúcháin agus fanann siad mar mhaoin dá n-úinéirí faoi seach. Nílimid freagrach as cruinneas, dlíthiúlacht ná ábhar suíomhanna seachtracha. Téigh i dteagmháil leis na suíomhanna sin go díreach le ceisteanna ar bith.",
+    "disclaimer": "Soláthraítear News Shuffle™ ar mhaithe le faisnéis agus siamsaíocht amháin. Ní thugtar aon bharántas, lena n-áirítear barántais intuigthe maidir le hinmhargaidheacht ná oiriúnacht do chuspóir ar leith. D’fhéadfadh roinnt naisc a bheith cleamhnaithe nó urraithe, rud a chuidíonn leis an suíomh gan aon chostas breise ort. Úsáideann an suíomh seo fianáin agus rianaitheoirí anailíse agus tacaíonn fógraíocht leis. Cuirtear na naisc sheachtracha ar fáil mar áis agus ní hionann iad agus formhuiniú. Taispeántar seatanna scáileáin de shuíomhanna tríú páirtí chun críocha léiriúcháin agus fanann siad mar mhaoin dá n-úinéirí faoi seach. Nílimid freagrach as cruinneas, dlíthiúlacht ná ábhar suíomhanna seachtracha. Téigh i dteagmháil leis na suíomhanna sin go díreach le ceisteanna ar bith.",
     "terms_privacy": "Téarmaí & Príobháideachas",
-    "license": "Tá Nuacht Craic™ foinse oscailte agus ar fáil faoin <link>Cheadúnas MIT</link>.",
+    "license": "Tá Shuffle Nuachta™ foinse oscailte agus ar fáil faoin <link>Cheadúnas MIT</link>.",
     "content_license": "Ábhar (neamhchód): <cc>CC BY 4.0</cc>. Tá an cód foinse ar fáil ag <repo>{{url}}</repo>.",
     "rights_reserved": "D’fhéadfadh logónna, trádmharcanna agus roinnt sócmhainní meán a bheith eisiata agus fanann gach ceart ar cosaint mura bhfuil siad ceadúnaithe go follasach.",
     "contact": "Teagmháil: <email>{{email}}</email>"
   },
   "hero": {
     "headline": "Mearaigh trí na foinsí nuachta is mó tionchair ar domhan.",
-    "tagline": "Is aicearra é News Craic™ chuig an bpreas shaor. Seachas teidil mealltacha clickbait, mearaimid tú díreach chuig na suíomhanna nuachta is mó tionchair inniu chun na scéalta a fheiceáil mar a scríobhadh iad."
+    "tagline": "Is aicearra é News Shuffle™ chuig an bpreas shaor. Seachas teidil mealltacha clickbait, mearaimid tú díreach chuig na suíomhanna nuachta is mó tionchair inniu chun na scéalta a fheiceáil mar a scríobhadh iad."
   },
   "home": "Baile",
   "latest": "Is déanaí",
@@ -32,7 +32,7 @@
     "current": "(reatha)"
   },
   "loading": "Foinse randamach á lódáil…",
-  "logo_alt": "Lógó Nuacht Craic",
+  "logo_alt": "Lógó Shuffle Nuachta",
   "notfound": {
     "head_title": "404 — Leathanach gan aimsiú",
     "gohome": "Fill ar an mbaile",
