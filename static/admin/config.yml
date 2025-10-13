@@ -7,7 +7,7 @@ backend:
   base_url: 'https://auth.mickschroeder.com'
   auth_endpoint: '/auth?origin=https://news.mickschroeder.com&provider=github&site_id=news.mickschroeder.com'
 
-logo_url: 'https://news.mickschroeder.com/logo-circle.png'
+logo_url: 'https://news.mickschroeder.com/images/logo-circle.png'
 media_folder: 'static/screenshots'
 site_url: 'https://news.mickschroeder.com'
 display_url: 'https://news.mickschroeder.com'

@@ -68,7 +68,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
       className="scroll-mt-6"
       style={{ scrollMarginTop: 'calc(var(--nav-h, 4rem) + 1rem)' }}
     >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {sortedSources.map((node, idx) => {
           const { name, url, hash, screenshot, categories } = node;
           const image = getImage(screenshot);
@@ -83,7 +83,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
           return (
             <Card
               key={hash || url}
-              className="overflow-hidden motion-safe:transition-shadow cursor-pointer hover:shadow-lg hover:ring-1 hover:ring-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 [content-visibility:auto] [contain-intrinsic-size:720px_1280px]"
+              className="flex h-full flex-col overflow-hidden motion-safe:transition-shadow cursor-pointer hover:shadow-lg hover:ring-1 hover:ring-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 [content-visibility:auto] [contain-intrinsic-size:720px_1280px]"
               role="link"
               tabIndex={0}
               aria-labelledby={titleId}
@@ -98,8 +98,8 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
               }}
             >
               <CardHeader className="p-4">
-                <div className="flex items-center justify-between gap-2">
-                  <CardTitle className="truncate text-card-foreground">
+                <div className="flex flex-wrap items-start gap-2 sm:items-center sm:justify-between">
+                  <CardTitle className="min-w-0 flex-1 truncate text-card-foreground">
                     <span id={titleId} className="sr-only">
                       {name}
                     </span>
@@ -118,7 +118,10 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                     </a>
                   </CardTitle>
                   {categoriesText ? (
-                    <Badge variant="outline" className="shrink-0">
+                    <Badge
+                      variant="outline"
+                      className="max-w-full whitespace-normal break-words text-xs leading-tight sm:shrink-0"
+                    >
                       {categoriesText}
                     </Badge>
                   ) : null}
@@ -148,14 +151,12 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                   )}
                 </AspectRatio>
               </CardContent>
-              <CardFooter className="p-4">
-                <div className="flex w-full items-center justify-between gap-2">
+              <CardFooter className="mt-auto justify-center gap-3 p-4 sm:p-4">
+                <Button asChild variant="ghost" className="gap-2 px-5">
                   <a
                     href={url}
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="block truncate text-xs font-semibold text-primary hover:underline flex-1 min-w-0"
-                    title={url}
+                    rel="noopener"
                     aria-label={String(t('open_site', { name }))}
                     tabIndex={-1}
                     aria-hidden="true"
@@ -164,24 +165,9 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                     }}
                   >
                     {host}
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   </a>
-
-                  <Button asChild size="icon" variant="ghost">
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={String(t('open_site', { name }))}
-                      tabIndex={-1}
-                      aria-hidden="true"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </Button>
-                </div>
+                </Button>
               </CardFooter>
             </Card>
           );
