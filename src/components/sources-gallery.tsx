@@ -106,7 +106,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                     <a
                       href={url}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener"
                       className="hover:underline"
                       tabIndex={-1}
                       aria-hidden="true"

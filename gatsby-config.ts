@@ -60,7 +60,7 @@ const config: GatsbyConfig = {
     siteUrl: GATSBY_SITE_URL,
   },
   graphqlTypegen: {
-    typesOutputPath: `${__dirname}/.cache/types/gatsby-types.d.ts`,
+    typesOutputPath: './.cache/types/gatsby-types.d.ts',
   },
   plugins: [
     {
