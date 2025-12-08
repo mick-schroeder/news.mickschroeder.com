@@ -17,7 +17,7 @@
     "disclaimer": "Soláthraítear News Shuffle™ ar mhaithe le faisnéis agus siamsaíocht amháin. Ní thugtar aon bharántas, lena n-áirítear barántais intuigthe maidir le hinmhargaidheacht ná oiriúnacht do chuspóir ar leith. D’fhéadfadh roinnt naisc a bheith cleamhnaithe nó urraithe, rud a chuidíonn leis an suíomh gan aon chostas breise ort. Úsáideann an suíomh seo fianáin agus rianaitheoirí anailíse agus tacaíonn fógraíocht leis. Cuirtear na naisc sheachtracha ar fáil mar áis agus ní hionann iad agus formhuiniú. Taispeántar seatanna scáileáin de shuíomhanna tríú páirtí chun críocha léiriúcháin agus fanann siad mar mhaoin dá n-úinéirí faoi seach. Nílimid freagrach as cruinneas, dlíthiúlacht ná ábhar suíomhanna seachtracha. Téigh i dteagmháil leis na suíomhanna sin go díreach le ceisteanna ar bith.",
     "terms_privacy": "Téarmaí & Príobháideachas",
     "license": "Tá Shuffle Nuachta™ foinse oscailte agus ar fáil faoin <link>Cheadúnas MIT</link>.",
-    "content_license": "Ábhar (neamhchód): <cc>CC BY 4.0</cc>. Tá an cód foinse ar fáil ag <repo>{{url}}</repo>.",
+    "content_license": "Ábhar (neamhchód): <cc>CC BY-NC 4.0</cc>. Tá an cód foinse ar fáil ag <repo>{{url}}</repo>.",
     "rights_reserved": "D’fhéadfadh logónna, trádmharcanna agus roinnt sócmhainní meán a bheith eisiata agus fanann gach ceart ar cosaint mura bhfuil siad ceadúnaithe go follasach.",
     "contact": "Teagmháil: <email>{{email}}</email>"
   },

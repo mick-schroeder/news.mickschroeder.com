@@ -17,7 +17,7 @@
     "disclaimer": "News Shuffle™ is provided for informational and entertainment purposes only. No warranty is given, including implied warranties of merchantability or fitness. Some links may be affiliate or sponsored, helping support the site at no extra cost to you. This site uses cookies and analytics trackers and is supported by advertising. External links are provided as a convenience and do not represent endorsements. Screenshots of third-party websites are shown for illustrative purposes and remain the property of their respective owners. We are not responsible for the accuracy, legality, or content of external sites. Please contact those sites directly with any questions.",
     "terms_privacy": "Terms & Privacy",
     "license": "News Shuffle™ is open-source and available under the <link>MIT License</link>.",
-    "content_license": "Content (non-code): <cc>CC BY 4.0</cc>. Source code available at <repo>{{url}}</repo>.",
+    "content_license": "Content (non-code): <cc>CC BY-NC 4.0</cc>. Source code available at <repo>{{url}}</repo>.",
     "rights_reserved": "Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.",
     "contact": "Contact: <email>{{email}}</email>"
   },
