@@ -3,12 +3,13 @@ import path from 'path';
 import type { GatsbyNode } from 'gatsby';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { preProcessSources } = require('./processSources');
+import { getSiteConfig } from './src/config/getSiteConfig';
 import { createScreenshotSlug } from './utils/screenshotSlug';
 
 const express = require('express');
 
 // Serve files from `static` in development
-exports.onCreateDevServer = ({ app }) => {
+export const onCreateDevServer: GatsbyNode['onCreateDevServer'] = ({ app }) => {
   app.use(express.static('static'));
 };
 
@@ -117,18 +118,23 @@ type AllMdxQuery = {
 
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
+  const site = getSiteConfig();
 
   const localesDir = path.join(__dirname, 'src', 'locales');
-  const languages = fs.existsSync(localesDir)
+  const availableLanguages = fs.existsSync(localesDir)
     ? fs
         .readdirSync(localesDir)
         .filter((file) => fs.statSync(path.join(localesDir, file)).isDirectory())
     : ['en'];
+  const languages = site.languages.filter((language) => availableLanguages.includes(language));
+  const activeLanguages = languages.length ? languages : availableLanguages;
 
   const defaultLanguage =
-    process.env.GATSBY_DEFAULT_LANGUAGE && languages.includes(process.env.GATSBY_DEFAULT_LANGUAGE)
+    process.env.GATSBY_DEFAULT_LANGUAGE && activeLanguages.includes(process.env.GATSBY_DEFAULT_LANGUAGE)
       ? process.env.GATSBY_DEFAULT_LANGUAGE
-      : languages[0] || 'en';
+      : activeLanguages.includes(site.defaultLanguage)
+        ? site.defaultLanguage
+        : activeLanguages[0] || 'en';
 
   const result = await graphql<AllMdxQuery>(`
     query MdPagesForCreatePages {
@@ -184,7 +190,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         id: node.id,
         i18n: {
           language: lang,
-          languages,
+          languages: activeLanguages,
           defaultLanguage,
           originalPath,
           routed: true,

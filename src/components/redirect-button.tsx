@@ -3,6 +3,9 @@ import { useNextSiteContext } from './context/next-site-context';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { Button } from './ui/button';
 import { Shuffle } from 'lucide-react';
+import { getSiteConfig } from '../config/getSiteConfig';
+
+const site = getSiteConfig();
 
 const RedirectButton: React.FC = () => {
   const { nextSite, refreshNextSite } = useNextSiteContext();
@@ -26,7 +29,7 @@ const RedirectButton: React.FC = () => {
           aria-hidden="true"
           strokeWidth={2.5}
         />
-        <Trans i18nKey="shuffle" />
+        {site.copyOverrides?.shuffleLabel || <Trans i18nKey="shuffle" />}
       </span>
     </Button>
   );

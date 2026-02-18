@@ -73,3 +73,5 @@ yarn-error.log
 /src/images/screenshots/*
 !/src/images/screenshots/.gitkeep
 
+# Generated sources node
+/src/data/data.json

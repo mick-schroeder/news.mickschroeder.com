@@ -5,17 +5,35 @@ require('dotenv').config({
 import type { GatsbyConfig } from 'gatsby';
 import fs from 'fs';
 import path from 'path';
+import { getSiteConfig } from './src/config/getSiteConfig';
+import { loadSources } from './src/data/loadSources';
 
 const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL || 'https://news.mickschroeder.com';
+const site = getSiteConfig();
 const LOCALES_DIR = path.join(__dirname, 'src', 'locales');
-const languages = fs.existsSync(LOCALES_DIR)
+const availableLanguages = fs.existsSync(LOCALES_DIR)
   ? fs.readdirSync(LOCALES_DIR).filter((f) => fs.statSync(path.join(LOCALES_DIR, f)).isDirectory())
   : ['en'];
+const languages = site.languages.filter((language) => availableLanguages.includes(language));
+const activeLanguages = languages.length ? languages : availableLanguages;
 const GATSBY_DEFAULT_LANGUAGE = ((): string => {
   const envDefault = process.env.GATSBY_DEFAULT_LANGUAGE;
-  if (envDefault && languages.includes(envDefault)) return envDefault;
-  return languages[0] || 'en';
+  if (envDefault && activeLanguages.includes(envDefault)) return envDefault;
+  if (activeLanguages.includes(site.defaultLanguage)) return site.defaultLanguage;
+  return activeLanguages[0] || 'en';
 })();
+const GENERATED_DATA_DIR = path.join(__dirname, 'src', 'data');
+const GENERATED_DATA_FILE = path.join(GENERATED_DATA_DIR, 'data.json');
+
+const ensureGeneratedDataFile = () => {
+  const payload = JSON.stringify({ sources: loadSources() });
+  fs.mkdirSync(GENERATED_DATA_DIR, { recursive: true });
+  if (!fs.existsSync(GENERATED_DATA_FILE) || fs.readFileSync(GENERATED_DATA_FILE, 'utf8') !== payload) {
+    fs.writeFileSync(GENERATED_DATA_FILE, payload);
+  }
+};
+
+ensureGeneratedDataFile();
 
 type I18nContext = {
   language?: string;
@@ -47,11 +65,10 @@ type SerializedPage = {
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    name: "Mick Schroeder's News Shuffle",
-    title: "Mick Schroeder's News Shuffle",
+    name: site.siteName,
+    title: site.siteName,
     tagLine: 'Shuffle the news.',
-    description:
-      "Mick Schroeder\'s News Shuffle is your shuffle button for the news. Stay informed as we take you across the Internet's top news sites.",
+    description: site.siteDescription,
     image: '/large-promo.png',
     author: 'Mick Schroeder, LLC',
     authorUrl: 'https://www.mickschroeder.com',
@@ -66,8 +83,8 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'News Shuffle',
-        short_name: 'News Shuffle',
+        name: site.siteName,
+        short_name: site.siteShortName,
         start_url: '/',
         background_color: '#1f2937',
         lang: GATSBY_DEFAULT_LANGUAGE,
@@ -95,7 +112,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-react-i18next',
       options: {
         localeJsonSourceName: 'locale',
-        languages,
+        languages: activeLanguages,
         defaultLanguage: GATSBY_DEFAULT_LANGUAGE,
         redirect: true,
         lowerCaseLng: false,
@@ -103,7 +120,7 @@ const config: GatsbyConfig = {
         i18nextOptions: {
           fallbackLng: GATSBY_DEFAULT_LANGUAGE,
           interpolation: { escapeValue: false },
-          supportedLngs: languages,
+          supportedLngs: activeLanguages,
           ns: ['common'],
           defaultNS: 'common',
         },
@@ -136,7 +153,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'data',
-        path: `${__dirname}/src/data/`,
+        path: GENERATED_DATA_DIR,
       },
     },
     'gatsby-transformer-json',

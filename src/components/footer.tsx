@@ -4,8 +4,10 @@ import { useStaticQuery, graphql } from 'gatsby';
 // Trans imported above
 import { Separator } from './ui/separator';
 import LocalizedLink from './LocalizedLink';
+import { getSiteConfig } from '../config/getSiteConfig';
 
 const currentYear = new Date().getFullYear();
+const site = getSiteConfig();
 
 const FooterBar: React.FC = () => {
   const data = useStaticQuery(graphql`
@@ -31,8 +33,7 @@ const FooterBar: React.FC = () => {
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
           <div className="block text-sm text-muted-foreground sm:text-center">
             <p>
-              {' '}
-              {<Trans i18nKey="brand" />}™ © {data.site.siteMetadata.foundingYear}-{currentYear}{' '}
+              {site.siteName}™ © {data.site.siteMetadata.foundingYear}-{currentYear}{' '}
               <a href={data.site.siteMetadata.authorUrl} className="font-semibold hover:underline">
                 {data.site.siteMetadata.author}
               </a>
@@ -47,19 +48,23 @@ const FooterBar: React.FC = () => {
               </LocalizedLink>
             </p>
             <p className="mt-2 text-xs text-muted-foreground">
-              <Trans
-                i18nKey="footer.license"
-                components={{
-                  link: (
-                    <a
-                      href={licenseUrl}
-                      className="underline hover:no-underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    />
-                  ),
-                }}
-              />
+              {site.copyOverrides?.footerLicense ? (
+                site.copyOverrides.footerLicense
+              ) : (
+                <Trans
+                  i18nKey="footer.license"
+                  components={{
+                    link: (
+                      <a
+                        href={licenseUrl}
+                        className="underline hover:no-underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    ),
+                  }}
+                />
+              )}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
               <Trans
@@ -100,7 +105,7 @@ const FooterBar: React.FC = () => {
               />
             </p>
             <p className="py-4 md:p-4 text-xs text-justify text-muted-foreground">
-              <Trans i18nKey="footer.disclaimer" />
+              {site.copyOverrides?.footerDisclaimer || <Trans i18nKey="footer.disclaimer" />}
             </p>
           </div>
         </div>

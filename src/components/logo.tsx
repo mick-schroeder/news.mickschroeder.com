@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import logo from '../images/logo-circle.svg';
+import { getSiteConfig } from '../config/getSiteConfig';
 import LocalizedLink from './LocalizedLink';
 
-const Logo: React.FC = ({}) => {
-  const { t } = useTranslation();
+const site = getSiteConfig();
 
+const Logo: React.FC = ({}) => {
   return (
     <span className="inline-flex items-center">
       <LocalizedLink to="/" className="inline-flex items-center">
-        <img src={logo} className="h-6 mr-2" alt={String(t('logo_alt'))} />
+        <img src={logo} className="h-6 mr-2" alt={`${site.siteName} logo`} />
         <span className="text-md md:text-xl font-black tracking-tighter self-center whitespace-nowrap">
-          <Trans i18nKey="brand" />
+          {site.navbarBrandLabel}
         </span>
       </LocalizedLink>
     </span>

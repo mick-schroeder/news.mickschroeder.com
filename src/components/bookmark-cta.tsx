@@ -4,6 +4,9 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Bookmark, Copy, Check } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
+import { getSiteConfig } from '../config/getSiteConfig';
+
+const site = getSiteConfig();
 
 const BookmarkCTA: React.FC = () => {
   const linkRef = React.useRef<HTMLAnchorElement>(null);
@@ -29,20 +32,26 @@ const BookmarkCTA: React.FC = () => {
     }
   };
 
+  const bookmarkTitle = site.copyOverrides?.bookmarkTitle;
+  const bookmarkDescription = site.copyOverrides?.bookmarkDescription;
+  const bookmarkLinkLabel = site.copyOverrides?.bookmarkLinkLabel;
+
   return (
     <Card className="my-6 w-full max-w-2xl">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-base md:text-lg">
           <Bookmark className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
-          <Trans i18nKey="bookmark.title" defaults="Bookmark the Shuffle link" />
+          {bookmarkTitle || <Trans i18nKey="bookmark.title" defaults="Bookmark the Shuffle link" />}
         </CardTitle>
       </CardHeader>
       <CardContent className="text-sm text-muted-foreground">
         <p className="mb-3">
-          <Trans
-            i18nKey="bookmark.description"
-            defaults="Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’."
-          />
+          {bookmarkDescription || (
+            <Trans
+              i18nKey="bookmark.description"
+              defaults="Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’."
+            />
+          )}
         </p>
         <div className="flex flex-row justify-center items-center gap-4 md:gap-6">
           <a
@@ -54,7 +63,7 @@ const BookmarkCTA: React.FC = () => {
             className="font-semibold text-primary hover:underline"
             onClick={(e) => e.preventDefault()}
           >
-            <Trans i18nKey="bookmark.link_label" defaults="News Shuffle" />
+            {bookmarkLinkLabel || <Trans i18nKey="bookmark.link_label" defaults="News Shuffle" />}
           </a>
           <Button type="button" size="sm" variant="outline" onClick={onCopy} aria-live="polite">
             {copied ? (

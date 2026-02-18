@@ -7,8 +7,15 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { useSourceCategoryContext } from './context/SourceCategoryContext';
 import { ChevronDown, Filter } from 'lucide-react';
+import { getSiteConfig } from '../config/getSiteConfig';
+
+const site = getSiteConfig();
 
 export const SourceCategorySelector: React.FC = () => {
+  if (site.key === 'drudge') {
+    return null;
+  }
+
   const { t } = useTranslation();
   const { selectedCategories, setSelectedCategories } = useSourceCategoryContext();
   const data = useStaticQuery(graphql`

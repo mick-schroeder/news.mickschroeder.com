@@ -6,8 +6,14 @@ import { Badge } from '@/components/ui/badge';
 import RedirectButton from '../components/redirect-button';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import BookmarkCTA from '../components/bookmark-cta';
+import { getSiteConfig } from '../config/getSiteConfig';
+
+const site = getSiteConfig();
 
 const SideBar: React.FC = () => {
+  const heroHeadline = site.copyOverrides?.heroHeadline;
+  const heroTagline = site.copyOverrides?.heroTagline;
+
   return (
     <div className="p-4 md:p-8">
       <div className="flex-col content-center mx-auto text-center">
@@ -18,10 +24,10 @@ const SideBar: React.FC = () => {
           <Logo />
         </Badge>
         <h2 className="my-2 text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
-          <Trans i18nKey="hero.headline" />
+          {heroHeadline || <Trans i18nKey="hero.headline" />}
         </h2>
         <p className="mb-6 my-6 text-muted-foreground md:text-lg">
-          <Trans i18nKey="hero.tagline" />
+          {heroTagline || <Trans i18nKey="hero.tagline" />}
         </p>
         <div className="flex items-center justify-center gap-4 py-8 lg:py-12">
           <RedirectButton />

@@ -1,0 +1,1130 @@
+[
+  {
+    "name": "abcnews.com",
+    "url": "https://abcnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "africanews.com",
+    "url": "https://africanews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "apnews.com",
+    "url": "https://apnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "arabnews.com",
+    "url": "https://arabnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "asia.nikkei.com",
+    "url": "https://asia.nikkei.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "axios.com",
+    "url": "https://axios.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "bild.de",
+    "url": "https://bild.de/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "billboard.com",
+    "url": "https://billboard.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "bloomberg.com",
+    "url": "https://bloomberg.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "boston.com",
+    "url": "https://boston.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "bostonherald.com",
+    "url": "https://bostonherald.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "boxofficemojo.com",
+    "url": "https://boxofficemojo.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "breitbart.com",
+    "url": "https://breitbart.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "businessinsider.com",
+    "url": "https://businessinsider.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "c-span.org",
+    "url": "https://c-span.org/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "cbslocal.com",
+    "url": "https://cbslocal.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "cbsnews.com",
+    "url": "https://cbsnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "charts.youtube.com",
+    "url": "https://charts.youtube.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "chicagotribune.com",
+    "url": "https://chicagotribune.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "clarin.com",
+    "url": "https://clarin.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "cnbc.com",
+    "url": "https://cnbc.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "cnn.com",
+    "url": "https://cnn.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "crazydaysandnights.net",
+    "url": "https://crazydaysandnights.net/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "csmonitor.com",
+    "url": "https://csmonitor.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "dailycaller.com",
+    "url": "https://dailycaller.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "dailymail.co.uk",
+    "url": "https://dailymail.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "dailynewslosangeles.com",
+    "url": "https://dailynewslosangeles.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "dailystar.co.uk",
+    "url": "https://dailystar.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "deadline.com",
+    "url": "https://deadline.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "dnyuz.com",
+    "url": "https://dnyuz.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "dw.com",
+    "url": "https://dw.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "economist.com",
+    "url": "https://economist.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "elmundo.es",
+    "url": "https://elmundo.es/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "elnuevodia.com",
+    "url": "https://elnuevodia.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "en.people.cn",
+    "url": "https://en.people.cn/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "english.elpais.com",
+    "url": "https://english.elpais.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "english.kyodonews.net",
+    "url": "https://english.kyodonews.net/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "english.yonhapnews.co.kr",
+    "url": "https://english.yonhapnews.co.kr/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "ew.com",
+    "url": "https://ew.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "express.co.uk",
+    "url": "https://express.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "foxnews.com",
+    "url": "https://foxnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "france24.com",
+    "url": "https://france24.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "ft.com",
+    "url": "https://ft.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "gbnews.com",
+    "url": "https://gbnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "haaretz.com",
+    "url": "https://haaretz.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "hindustantimes.com",
+    "url": "https://hindustantimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "hollywoodreporter.com",
+    "url": "https://hollywoodreporter.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "huffingtonpost.com",
+    "url": "https://huffingtonpost.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "hurriyetdailynews.com",
+    "url": "https://hurriyetdailynews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "independent.co.uk",
+    "url": "https://independent.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "interfax.com",
+    "url": "https://interfax.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "itar-tass.com",
+    "url": "https://itar-tass.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "japannews.yomiuri.co.jp",
+    "url": "https://japannews.yomiuri.co.jp/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "japantimes.co.jp",
+    "url": "https://japantimes.co.jp/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "jpost.com",
+    "url": "https://jpost.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "la-prensa.com.mx",
+    "url": "https://la-prensa.com.mx/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "latimes.com",
+    "url": "https://latimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "lefigaro.fr",
+    "url": "https://lefigaro.fr/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "lemonde.fr",
+    "url": "https://lemonde.fr/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "lesoir.be",
+    "url": "https://lesoir.be/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "marketwatch.com",
+    "url": "https://marketwatch.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "mcclatchydc.com",
+    "url": "https://mcclatchydc.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "mediaite.com",
+    "url": "https://mediaite.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "metro.co.uk",
+    "url": "https://metro.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "mirror.co.uk",
+    "url": "https://mirror.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "motherjones.com",
+    "url": "https://motherjones.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "msn.com",
+    "url": "https://msn.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "nationalreview.com",
+    "url": "https://nationalreview.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "nbcnews.com",
+    "url": "https://nbcnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "news.bbc.co.uk",
+    "url": "https://news.bbc.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "news.sky.com",
+    "url": "https://news.sky.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "newsmax.com",
+    "url": "https://newsmax.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "newyorker.com",
+    "url": "https://newyorker.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "newzit.com",
+    "url": "https://newzit.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "nydailynews.com",
+    "url": "https://nydailynews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "nymag.com",
+    "url": "https://nymag.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "nypost.com",
+    "url": "https://nypost.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "nytimes.com",
+    "url": "https://nytimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "olympics.com",
+    "url": "https://olympics.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "online.wsj.com",
+    "url": "https://online.wsj.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "pagesix.com",
+    "url": "https://pagesix.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "people.com",
+    "url": "https://people.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "politico.com",
+    "url": "https://politico.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "pravdareport.com",
+    "url": "https://pravdareport.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "pressreader.com",
+    "url": "https://pressreader.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "ptinews.com",
+    "url": "https://ptinews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "rawstory.com",
+    "url": "https://rawstory.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "reason.org",
+    "url": "https://reason.org/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "repubblica.it",
+    "url": "https://repubblica.it/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "reuters.com",
+    "url": "https://reuters.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "riotimesonline.com",
+    "url": "https://riotimesonline.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "rollcall.com",
+    "url": "https://rollcall.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "rollingstone.com",
+    "url": "https://rollingstone.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "salon.com",
+    "url": "https://salon.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "semafor.com",
+    "url": "https://semafor.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "sfgate.com",
+    "url": "https://sfgate.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "showbiz411.com",
+    "url": "https://showbiz411.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "smh.com.au",
+    "url": "https://smh.com.au/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "standard.co.uk",
+    "url": "https://standard.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "stateline.org",
+    "url": "https://stateline.org/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "suntimes.com",
+    "url": "https://suntimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "telegraph.co.uk",
+    "url": "https://telegraph.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "the-express.com",
+    "url": "https://the-express.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "theatlantic.com",
+    "url": "https://theatlantic.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thedailybeast.com",
+    "url": "https://thedailybeast.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thefp.com",
+    "url": "https://thefp.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "theguardian.com",
+    "url": "https://theguardian.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thehill.com",
+    "url": "https://thehill.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "theintercept.com",
+    "url": "https://theintercept.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "themoscowtimes.com",
+    "url": "https://themoscowtimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thenation.com",
+    "url": "https://thenation.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "theneweuropean.co.uk",
+    "url": "https://theneweuropean.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thenewrepublic.com",
+    "url": "https://thenewrepublic.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thesmokinggun.com",
+    "url": "https://thesmokinggun.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thesun.co.uk",
+    "url": "https://thesun.co.uk/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thetimes.com",
+    "url": "https://thetimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "thewrap.com",
+    "url": "https://thewrap.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "theyeshivaworld.com",
+    "url": "https://theyeshivaworld.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "time.com",
+    "url": "https://time.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "timesofindia.indiatimes.com",
+    "url": "https://timesofindia.indiatimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "tmz.com",
+    "url": "https://tmz.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "trends.google.com",
+    "url": "https://trends.google.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "twz.com",
+    "url": "https://twz.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "usatoday.com",
+    "url": "https://usatoday.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "usnews.com",
+    "url": "https://usnews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "ustvdb.com",
+    "url": "https://ustvdb.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "vanityfair.com",
+    "url": "https://vanityfair.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "variety.com",
+    "url": "https://variety.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "washingtonexaminer.com",
+    "url": "https://washingtonexaminer.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "washingtonpost.com",
+    "url": "https://washingtonpost.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "washingtontimes.com",
+    "url": "https://washingtontimes.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "welt.de",
+    "url": "https://welt.de/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "wgno.com",
+    "url": "https://wgno.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "wionews.com",
+    "url": "https://wionews.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "worldofreel.com",
+    "url": "https://worldofreel.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "wsj.com",
+    "url": "https://wsj.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "www1.folha.uol.com.br",
+    "url": "https://www1.folha.uol.com.br/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "www3.nhk.or.jp",
+    "url": "https://www3.nhk.or.jp/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "wyborcza.pl",
+    "url": "https://wyborcza.pl/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "xinhuanet.com",
+    "url": "https://xinhuanet.com/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  },
+  {
+    "name": "zeit.de",
+    "url": "https://zeit.de/",
+    "categories": [
+      "Drudge"
+    ],
+    "score": 3
+  }
+]

@@ -9,8 +9,11 @@ import type { SEOI18n } from '../components/seo';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
 import { Newspaper } from 'lucide-react';
+import { getSiteConfig } from '../config/getSiteConfig';
 import '../fragments/locale';
 import '../fragments/news-source';
+
+const site = getSiteConfig();
 
 const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
   const items = data?.sourcesData?.sources ?? [];
@@ -25,7 +28,7 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
             <div className="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">
               <h2 className="text-2xl py-4 font-extrabold flex items-center gap-2">
                 <Newspaper className="w-6 h-6 text-primary" aria-hidden="true" />
-                <Trans i18nKey="sources" defaults="Sources" />
+                {site.copyOverrides?.sourcesLabel || <Trans i18nKey="sources" defaults="Sources" />}
               </h2>
 
               <CardsSources items={items} sort="rating" />
