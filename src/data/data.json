@@ -14,7 +14,6 @@
 {"name":"CNBC","url":"https://cnbc.com/","categories":["Business"],"score":4.2},
 {"name":"CNN","url":"https://cnn.com/","categories":["American"],"score":4.5},
 {"name":"DW","url":"https://dw.com/","categories":["Global"],"score":4},
-{"name":"Daily Nation","url":"https://nation.africa/","categories":["Global"],"score":3.9},
 {"name":"Der Spiegel","url":"https://spiegel.de/international/","categories":["Global"],"score":4.2},
 {"name":"Drudge Report","url":"https://drudgereport.com/","categories":["Aggregator"],"score":4.8},
 {"name":"Economist","url":"https://economist.com/","categories":["Business"],"score":4.6},
