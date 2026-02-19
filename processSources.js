@@ -18,6 +18,7 @@ require('aws-sdk/lib/maintenance_mode_message').suppress = true;
 
 const shouldForceRegenerate = process.env.FORCE_REGENERATE === 'true';
 const shouldSkipScreenshots = process.env.SKIP_SCREENSHOTS === 'true';
+const IS_CI = process.env.CI === 'true' || process.env.AMPLIFY === 'true';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -27,10 +28,33 @@ const SCREENSHOT_PATH = './src/images/screenshots';
 const VIEWPORT_WIDTH = Number(process.env.SCREENSHOT_VIEWPORT_WIDTH || 1080);
 const VIEWPORT_HEIGHT = Number(process.env.SCREENSHOT_VIEWPORT_HEIGHT || 1920);
 const PAGE_NAVIGATION_TIMEOUT = Number(process.env.SCREENSHOT_NAVIGATION_TIMEOUT || 30000);
-const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || 4000);
-const WAIT_FOR_BODY_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || 15000);
-const WAIT_FOR_IMAGES_TIMEOUT = Number(process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || 8000);
-const CONCURRENT_PAGES = 4;
+const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || (IS_CI ? 1200 : 4000));
+const WAIT_FOR_BODY_TIMEOUT = Number(
+  process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || (IS_CI ? 8000 : 15000)
+);
+const WAIT_FOR_IMAGES_TIMEOUT = Number(
+  process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || (IS_CI ? 3000 : 8000)
+);
+const CONCURRENT_PAGES = Math.max(
+  1,
+  Number(process.env.SCREENSHOT_CONCURRENT_PAGES || (IS_CI ? 8 : 4))
+);
+const NAVIGATION_WAIT_UNTIL = (process.env.SCREENSHOT_NAVIGATION_WAIT_UNTIL || 'domcontentloaded')
+  .split(',')
+  .map((entry) => entry.trim())
+  .filter(Boolean);
+const SKIP_AUTO_SCROLL = process.env.SCREENSHOT_SKIP_AUTOSCROLL === 'true' || IS_CI;
+const SKIP_IMAGE_WAIT = process.env.SCREENSHOT_SKIP_IMAGE_WAIT === 'true' || IS_CI;
+const ENABLE_ADBLOCKER =
+  typeof process.env.SCREENSHOT_ENABLE_ADBLOCKER === 'string'
+    ? process.env.SCREENSHOT_ENABLE_ADBLOCKER !== 'false'
+    : !IS_CI;
+const BLOCKED_RESOURCE_TYPES = new Set(
+  (process.env.SCREENSHOT_BLOCK_RESOURCE_TYPES || 'media,font,websocket,eventsource')
+    .split(',')
+    .map((entry) => entry.trim().toLowerCase())
+    .filter(Boolean)
+);
 
 const CACHE_TIMEOUT = Number(process.env.SCREENSHOT_CACHE_TIMEOUT_MS || 6 * 60 * 60 * 1000);
 const RETRIES = 2;
@@ -256,6 +280,26 @@ async function waitForImages(page, reporter) {
   }
 }
 
+async function setupRequestBlocking(page, reporter) {
+  if (!BLOCKED_RESOURCE_TYPES.size) return;
+
+  try {
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+      const resourceType = request.resourceType();
+      if (BLOCKED_RESOURCE_TYPES.has(resourceType)) {
+        request.abort().catch(() => {});
+        return;
+      }
+      request.continue().catch(() => {});
+    });
+  } catch (error) {
+    if (reporter && reporter.warn) {
+      reporter.warn(`Failed to configure request blocking: ${error.message}`);
+    }
+  }
+}
+
 // Navigates, stabilizes the page, and saves a screenshot; retries on timeouts
 async function generateScreenshot(screenshotFullPath, page, url, slug, reporter) {
   let success = false;
@@ -263,7 +307,7 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
   for (let attempt = 1; attempt <= RETRIES; attempt++) {
     try {
       await page.goto(url, {
-        waitUntil: ['domcontentloaded', 'networkidle2'],
+        waitUntil: NAVIGATION_WAIT_UNTIL,
         timeout: PAGE_NAVIGATION_TIMEOUT,
       });
 
@@ -276,8 +320,12 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
       }
 
       await hideCookieBanners(page, reporter);
-      await autoScroll(page).catch(() => {});
-      await waitForImages(page, reporter);
+      if (!SKIP_AUTO_SCROLL) {
+        await autoScroll(page).catch(() => {});
+      }
+      if (!SKIP_IMAGE_WAIT) {
+        await waitForImages(page, reporter);
+      }
       await page.evaluate(() => {
         window.scrollTo({ top: 0, behavior: 'auto' });
       });
@@ -456,6 +504,9 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
   );
   await page.setBypassCSP(true);
   page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+  if (!blocker) {
+    await setupRequestBlocking(page, reporter);
+  }
 
   if (blocker) {
     try {
@@ -578,25 +629,27 @@ const preProcessSources = async (sourcesInput, reporter) => {
     );
 
     let blocker = null;
-    try {
-      blocker = await PuppeteerBlocker.fromLists(
-        fetch,
-        [
-          ...adsAndTrackingLists,
-          'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
-          'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
-        ],
-        {
-          enableCompression: true,
-          config: {
-            loadCosmeticFilters: true,
-            loadGenericCosmeticsFilters: true,
-            loadNetworkFilters: true,
-          },
-        }
-      );
-    } catch (error) {
-      reporter.warn(`Failed to initialize ad blocker: ${error.message}`);
+    if (ENABLE_ADBLOCKER) {
+      try {
+        blocker = await PuppeteerBlocker.fromLists(
+          fetch,
+          [
+            ...adsAndTrackingLists,
+            'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
+            'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
+          ],
+          {
+            enableCompression: true,
+            config: {
+              loadCosmeticFilters: true,
+              loadGenericCosmeticsFilters: true,
+              loadNetworkFilters: true,
+            },
+          }
+        );
+      } catch (error) {
+        reporter.warn(`Failed to initialize ad blocker: ${error.message}`);
+      }
     }
 
     const browser = await puppeteer.launch({
