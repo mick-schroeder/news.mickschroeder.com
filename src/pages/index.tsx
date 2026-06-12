@@ -21,6 +21,7 @@ const site = getSiteConfig();
 type HomeSource = {
   id?: string;
   name: string;
+  description?: string | null;
   url: string;
   score?: number | string;
   tags?: string[] | null;

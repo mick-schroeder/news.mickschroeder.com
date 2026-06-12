@@ -10,6 +10,7 @@ import { listPath, sourcePath } from '@/lib/taxonomy';
 type ShelfSource = {
   id?: string;
   name: string;
+  description?: string | null;
   url: string;
   tags?: string[] | null;
   hash?: string;
@@ -95,6 +96,11 @@ const SourceShelf = ({
               <p className="mt-2 truncate text-sm font-medium group-hover:underline">
                 {source.name}
               </p>
+              {source.description ? (
+                <p className="mt-1 line-clamp-2 text-xs leading-5 text-muted-foreground">
+                  {source.description}
+                </p>
+              ) : null}
               {tagsText ? (
                 <p className="truncate text-xs text-muted-foreground">{tagsText}</p>
               ) : null}

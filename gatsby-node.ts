@@ -321,6 +321,12 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  const sortedSourceNavigationItems = sortSourcesByName(shuffleData.sources).map((source) => ({
+    id: source.id,
+    name: source.name,
+    path: sourcePath(source.id),
+  }));
+
   createLocalizedPage({
     originalPath: tagsIndexPath(),
     component: taxonomyIndexTemplatePath,
@@ -379,6 +385,18 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
 
   shuffleData.sources.forEach((source) => {
     const screenshotBase = `${createScreenshotSlug(source.url || source.name || '', source.name)}.webp`;
+    const sourceIndex = sortedSourceNavigationItems.findIndex((item) => item.id === source.id);
+    const previousSource =
+      sourceIndex >= 0
+        ? sortedSourceNavigationItems[
+            (sourceIndex - 1 + sortedSourceNavigationItems.length) %
+              sortedSourceNavigationItems.length
+          ]
+        : undefined;
+    const nextSource =
+      sourceIndex >= 0
+        ? sortedSourceNavigationItems[(sourceIndex + 1) % sortedSourceNavigationItems.length]
+        : undefined;
 
     createLocalizedPage({
       originalPath: sourcePath(source.id),
@@ -395,6 +413,11 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
             path: listPath(listId),
           };
         }),
+        navigation: {
+          previous: previousSource,
+          next: nextSource,
+          sources: sortedSourceNavigationItems,
+        },
       },
     });
   });

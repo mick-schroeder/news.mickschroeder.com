@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { graphql, type HeadProps, type PageProps } from 'gatsby';
+import { graphql, navigate, type HeadProps, type PageProps } from 'gatsby';
 import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
-import { ExternalLink, ListFilter, Tags } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, ListFilter, Shuffle, Tags } from 'lucide-react';
 import LocalizedLink from '@/components/LocalizedLink';
 import SiteLayout from '@/components/site-layout';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -39,7 +39,18 @@ type SourcePageContext = {
     name: string;
     path: string;
   }>;
+  navigation?: {
+    previous?: SourceNavigationItem;
+    next?: SourceNavigationItem;
+    sources?: SourceNavigationItem[];
+  };
   i18n?: SEOI18n;
+};
+
+type SourceNavigationItem = {
+  id: string;
+  name: string;
+  path: string;
 };
 
 const fallbackDescription = (name: string, canonicalKey: string): string =>
@@ -51,6 +62,7 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
 }) => {
   const { t } = useTranslation();
   const source = pageContext.source;
+  const navigation = pageContext.navigation;
   const image = getImage(data?.screenshotFile);
   const sourceLists =
     pageContext.sourceLists ??
@@ -59,6 +71,56 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
       name,
       path: `/lists/${name}/`,
     }));
+  const localizedPath = React.useCallback(
+    (path: string) => {
+      const i18n = pageContext.i18n;
+      if (!i18n || i18n.language === i18n.defaultLanguage) return path;
+      return `/${i18n.language}${path}`;
+    },
+    [pageContext.i18n]
+  );
+  const goToRandomSource = React.useCallback(() => {
+    const candidates = (navigation?.sources ?? []).filter((item) => item.id !== source?.id);
+    if (!candidates.length) return;
+
+    const randomSource = candidates[Math.floor(Math.random() * candidates.length)];
+    navigate(localizedPath(randomSource.path));
+  }, [localizedPath, navigation?.sources, source?.id]);
+
+  React.useEffect(() => {
+    if (!source || !navigation) return undefined;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+      const isTypingTarget =
+        target instanceof HTMLElement &&
+        (target.isContentEditable || ['INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName));
+
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey ||
+        event.shiftKey ||
+        isTypingTarget
+      ) {
+        return;
+      }
+
+      if (event.key === 'ArrowLeft' && navigation.previous) {
+        event.preventDefault();
+        navigate(localizedPath(navigation.previous.path));
+      }
+
+      if (event.key === 'ArrowRight' && navigation.next) {
+        event.preventDefault();
+        navigate(localizedPath(navigation.next.path));
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [localizedPath, navigation, source]);
 
   if (!source) {
     return (
@@ -172,6 +234,45 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
             </CardContent>
           </Card>
         </div>
+
+        {navigation ? (
+          <nav
+            aria-label="Source navigation"
+            className="mt-8 flex flex-wrap items-center justify-center gap-2 border-t pt-6"
+          >
+            {navigation.previous ? (
+              <Button asChild variant="outline">
+                <LocalizedLink
+                  to={navigation.previous.path}
+                  aria-label={`Previous source: ${navigation.previous.name}`}
+                >
+                  <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+                  Previous
+                </LocalizedLink>
+              </Button>
+            ) : null}
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={goToRandomSource}
+              disabled={!navigation.sources || navigation.sources.length < 2}
+            >
+              <Shuffle aria-hidden="true" className="h-4 w-4" />
+              Shuffle
+            </Button>
+            {navigation.next ? (
+              <Button asChild variant="outline">
+                <LocalizedLink
+                  to={navigation.next.path}
+                  aria-label={`Next source: ${navigation.next.name}`}
+                >
+                  Next
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </LocalizedLink>
+              </Button>
+            ) : null}
+          </nav>
+        ) : null}
       </article>
     </SiteLayout>
   );

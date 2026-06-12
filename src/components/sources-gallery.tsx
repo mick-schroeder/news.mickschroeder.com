@@ -73,7 +73,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
     >
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {sortedSources.map((node, idx) => {
-          const { name, url, hash, screenshot, tags } = node;
+          const { name, url, hash, screenshot, tags, description } = node;
           const image = getImage(screenshot);
           const eager: 'eager' | 'lazy' = idx < 3 ? 'eager' : 'lazy';
           const fetchP = idx < 3 ? 'high' : undefined;
@@ -172,17 +172,24 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                 )}
               </CardContent>
               <CardFooter className="mt-auto justify-center gap-3 p-4 sm:p-4">
-                <Button asChild variant="ghost" className="gap-2 px-5">
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={String(t('open_site', { name }))}
-                  >
-                    {host}
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                </Button>
+                <div className="min-w-0 flex-1">
+                  {description ? (
+                    <p className="mb-3 line-clamp-3 text-sm leading-6 text-muted-foreground">
+                      {description}
+                    </p>
+                  ) : null}
+                  <Button asChild variant="ghost" className="gap-2 px-5">
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={String(t('open_site', { name }))}
+                    >
+                      {host}
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </Button>
+                </div>
               </CardFooter>
             </Card>
           );
