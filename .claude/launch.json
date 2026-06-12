@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gatsby-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "develop", "--", "--port", "8001"],
+      "port": 8001,
+      "autoPort": false
+    }
+  ]
+}

@@ -58,6 +58,7 @@ typings/
 .cache/
 public
 types/gatsby-types.d.ts
+/src/generated/
 
 # Mac files
 .DS_Store

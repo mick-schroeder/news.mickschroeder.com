@@ -4,6 +4,15 @@ import type { GatsbyNode } from 'gatsby';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { preProcessSources } = require('./processSources');
 import { getSiteConfig } from './src/config/getSiteConfig';
+import { loadShuffleData } from './src/data/loadSources';
+import {
+  listPath,
+  listsIndexPath,
+  sortSourcesByName,
+  sourcePath,
+  tagPath,
+  tagsIndexPath,
+} from './src/lib/taxonomy';
 import { createScreenshotSlug } from './utils/screenshotSlug';
 
 const express = require('express');
@@ -28,12 +37,22 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   reporter,
   getNodesByType,
 }) => {
-  const files = getNodesByType('DataJson') as Array<{ sources?: any[] }>;
+  const shouldRefreshScreenshots =
+    process.env.GATSBY_REFRESH_SCREENSHOTS === 'true' || process.env.FORCE_REGENERATE === 'true';
+
+  if (!shouldRefreshScreenshots) {
+    reporter.info(
+      '[gatsby-node] Skipping screenshot pre-processing. Set GATSBY_REFRESH_SCREENSHOTS=true to refresh screenshots during build.'
+    );
+    return;
+  }
+
+  const files = getNodesByType('GeneratedJson') as Array<{ sources?: any[] }>;
   const file = files[0];
   const sources = Array.isArray(file?.sources) ? file!.sources : [];
 
   reporter.info(
-    `[gatsby-node] DataJson nodes: ${files.length}; sources entries: ${sources.length}`
+    `[gatsby-node] GeneratedJson nodes: ${files.length}; sources entries: ${sources.length}`
   );
 
   if (!sources.length) {
@@ -49,16 +68,29 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
-    type DataJson implements Node @dontInfer {
+    type GeneratedJson implements Node @dontInfer {
       sources: [NewsSource!]!
+      lists: [SourceList!]!
     }
     type NewsSource {
+      id: String!
       name: String!
+      description: String!
       url: String!
-      categories: [String]
+      canonicalKey: String!
+      aliases: [String]
+      tags: [String]
+      lists: [String]
       score: Float
       hash: String
       screenshot: File
+    }
+    type SourceList {
+      id: String!
+      name: String!
+      description: String
+      kind: String!
+      sourceUrl: String
     }
   `);
 };
@@ -66,11 +98,27 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 export const createResolvers: GatsbyNode['createResolvers'] = ({ createResolvers }) => {
   createResolvers({
     NewsSource: {
-      categories: {
-        resolve(source: { categories?: unknown }) {
-          const cat = source.categories;
-          if (Array.isArray(cat)) return cat;
-          if (typeof cat === 'string' && cat) return [cat];
+      aliases: {
+        resolve(source: { aliases?: unknown }) {
+          const aliases = source.aliases;
+          if (Array.isArray(aliases)) return aliases;
+          if (typeof aliases === 'string' && aliases) return [aliases];
+          return [];
+        },
+      },
+      tags: {
+        resolve(source: { tags?: unknown; categories?: unknown }) {
+          const tags = source.tags ?? source.categories;
+          if (Array.isArray(tags)) return tags;
+          if (typeof tags === 'string' && tags) return [tags];
+          return [];
+        },
+      },
+      lists: {
+        resolve(source: { lists?: unknown }) {
+          const lists = source.lists;
+          if (Array.isArray(lists)) return lists;
+          if (typeof lists === 'string' && lists) return [lists];
           return [];
         },
       },
@@ -163,6 +211,15 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
 
   const nodes = result.data?.allMdx.nodes ?? [];
   const templatePath = path.resolve(__dirname, 'src/templates/md-page.tsx');
+  const sourceTemplatePath = path.resolve(__dirname, 'src/templates/source-page.tsx');
+  const taxonomyIndexTemplatePath = path.resolve(
+    __dirname,
+    'src/templates/taxonomy-index-page.tsx'
+  );
+  const taxonomyDetailTemplatePath = path.resolve(
+    __dirname,
+    'src/templates/taxonomy-detail-page.tsx'
+  );
 
   const parseName = (relativePath: string): { slug: string; lang: string } => {
     const match = relativePath.match(/^(.*?)(?:\.(\w{2}(?:-[A-Za-z]{2})?))?\.(md|mdx)$/);
@@ -196,6 +253,145 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
           originalPath,
           routed: true,
         },
+      },
+    });
+  });
+
+  const shuffleData = loadShuffleData();
+  const listById = new Map(shuffleData.lists.map((list) => [list.id, list]));
+  const sourceSummary = (source: (typeof shuffleData.sources)[number]) => ({
+    id: source.id,
+    name: source.name,
+    description: source.description,
+    url: source.url,
+    canonicalKey: source.canonicalKey,
+    tags: source.tags,
+    lists: source.lists,
+    score: source.score,
+  });
+  const createLocalizedPage = ({
+    originalPath,
+    component,
+    context,
+  }: {
+    originalPath: string;
+    component: string;
+    context: Record<string, unknown>;
+  }) => {
+    activeLanguages.forEach((lang) => {
+      const localizedPath = lang === defaultLanguage ? originalPath : `/${lang}${originalPath}`;
+
+      createPage({
+        path: localizedPath,
+        component,
+        context: {
+          ...context,
+          language: lang,
+          i18n: {
+            language: lang,
+            languages: activeLanguages,
+            defaultLanguage,
+            originalPath,
+            routed: true,
+          },
+        },
+      });
+    });
+  };
+
+  const tagNames = Array.from(
+    new Set(shuffleData.sources.flatMap((source) => source.tags ?? []))
+  ).sort((a, b) => a.localeCompare(b));
+
+  const tagItems = tagNames.map((tag) => ({
+    id: tagPath(tag).split('/').filter(Boolean).pop() || tag,
+    name: tag,
+    count: shuffleData.sources.filter((source) => source.tags.includes(tag)).length,
+    path: tagPath(tag),
+  }));
+
+  const listItems = shuffleData.lists
+    .map((list) => ({
+      id: list.id,
+      name: list.name,
+      description: list.description,
+      sourceUrl: list.sourceUrl,
+      count: shuffleData.sources.filter((source) => source.lists.includes(list.id)).length,
+      path: listPath(list.id),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  createLocalizedPage({
+    originalPath: tagsIndexPath(),
+    component: taxonomyIndexTemplatePath,
+    context: {
+      kind: 'tags',
+      items: tagItems,
+    },
+  });
+
+  createLocalizedPage({
+    originalPath: listsIndexPath(),
+    component: taxonomyIndexTemplatePath,
+    context: {
+      kind: 'lists',
+      items: listItems,
+    },
+  });
+
+  tagNames.forEach((tag) => {
+    const item = tagItems.find((tagItem) => tagItem.name === tag);
+    if (!item) return;
+
+    createLocalizedPage({
+      originalPath: tagPath(tag),
+      component: taxonomyDetailTemplatePath,
+      context: {
+        kind: 'tags',
+        item,
+        sources: sortSourcesByName(
+          shuffleData.sources
+            .filter((source) => source.tags.includes(tag))
+            .map((source) => sourceSummary(source))
+        ),
+      },
+    });
+  });
+
+  shuffleData.lists.forEach((list) => {
+    const item = listItems.find((listItem) => listItem.id === list.id);
+    if (!item) return;
+
+    createLocalizedPage({
+      originalPath: listPath(list.id),
+      component: taxonomyDetailTemplatePath,
+      context: {
+        kind: 'lists',
+        item,
+        sources: sortSourcesByName(
+          shuffleData.sources
+            .filter((source) => source.lists.includes(list.id))
+            .map((source) => sourceSummary(source))
+        ),
+      },
+    });
+  });
+
+  shuffleData.sources.forEach((source) => {
+    createLocalizedPage({
+      originalPath: sourcePath(source.id),
+      component: sourceTemplatePath,
+      context: {
+        id: source.id,
+        source,
+        sourceLists: source.lists.map((listId) => {
+          const list = listById.get(listId);
+          return {
+            id: listId,
+            name: list?.name || listId,
+            path: listPath(listId),
+          };
+        }),
       },
     });
   });

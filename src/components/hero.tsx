@@ -23,13 +23,13 @@ const SideBar: React.FC = () => {
         >
           <Logo />
         </Badge>
-        <h2 className="my-2 text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
+        <h2 className="my-2 text-3xl sm:text-4xl md:text-5xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
           {heroHeadline || <Trans i18nKey="hero.headline" />}
         </h2>
-        <p className="mb-6 my-6 text-muted-foreground md:text-lg">
+        <p className="my-4 text-muted-foreground md:text-lg">
           {heroTagline || <Trans i18nKey="hero.tagline" />}
         </p>
-        <div className="flex items-center justify-center gap-4 py-8 lg:py-12">
+        <div className="flex items-center justify-center gap-4 py-4 lg:py-6">
           <RedirectButton />
           <Button asChild variant="outline" size="lg">
             <a href="#sources-gallery">

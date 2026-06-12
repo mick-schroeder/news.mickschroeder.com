@@ -6,12 +6,17 @@ import { ExternalLink } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { Badge } from './ui/badge';
-import { useSourceCategoryContext } from './context/SourceCategoryContext';
+import { filterSources, useSourceFilterContext } from './context/source-filter-context';
+import LocalizedLink from './LocalizedLink';
+import { sourcePath } from '@/lib/taxonomy';
 
 type Source = {
+  id?: string;
   name: string;
+  description?: string;
   score?: number | string;
-  categories: string[];
+  tags: string[];
+  lists: string[];
   url: string;
   hash?: string;
   screenshot?: any;
@@ -24,13 +29,11 @@ type Props = {
 };
 
 const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element | null => {
-  const { selectedCategories } = useSourceCategoryContext();
+  const { selectedLists, selectedTags } = useSourceFilterContext();
 
-  // Filter items by selected categories (empty = all)
   const filteredItems = React.useMemo(() => {
-    if (!selectedCategories.length) return items;
-    return items.filter((item) => item.categories.some((cat) => selectedCategories.includes(cat)));
-  }, [items, selectedCategories]);
+    return filterSources(items, selectedLists, selectedTags);
+  }, [items, selectedLists, selectedTags]);
 
   const sortedSources = React.useMemo(() => {
     const list = [...filteredItems];
@@ -70,12 +73,13 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
     >
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {sortedSources.map((node, idx) => {
-          const { name, url, hash, screenshot, categories } = node;
+          const { name, url, hash, screenshot, tags } = node;
           const image = getImage(screenshot);
           const eager: 'eager' | 'lazy' = idx < 3 ? 'eager' : 'lazy';
           const fetchP = idx < 3 ? 'high' : undefined;
-          const categoriesText = (categories ?? []).join(', ');
+          const tagsText = (tags ?? []).join(', ');
           const titleId = `card-title-${hash || idx}`;
+          const detailPath = node.id ? sourcePath(node.id) : null;
           let host = url;
           try {
             host = new URL(url).host;
@@ -83,86 +87,97 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
           return (
             <Card
               key={hash || url}
-              className="flex h-full flex-col overflow-hidden motion-safe:transition-shadow cursor-pointer hover:shadow-lg hover:ring-1 hover:ring-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 [content-visibility:auto] [contain-intrinsic-size:720px_1280px]"
-              role="link"
-              tabIndex={0}
-              aria-labelledby={titleId}
-              onClick={() => {
-                if (typeof window !== 'undefined') window.open(url, '_blank', 'noopener');
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  if (typeof window !== 'undefined') window.open(url, '_blank', 'noopener');
-                }
-              }}
+              className="group flex h-full flex-col overflow-hidden motion-safe:transition-shadow hover:shadow-lg hover:ring-1 hover:ring-primary/30 [content-visibility:auto] [contain-intrinsic-size:720px_1280px]"
             >
               <CardHeader className="p-4">
                 <div className="flex flex-wrap items-start gap-2 sm:items-center sm:justify-between">
                   <CardTitle className="min-w-0 flex-1 truncate text-card-foreground">
-                    <span id={titleId} className="sr-only">
-                      {name}
-                    </span>
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener"
-                      className="hover:underline"
-                      tabIndex={-1}
-                      aria-hidden="true"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      {name}
-                    </a>
+                    {detailPath ? (
+                      <LocalizedLink id={titleId} to={detailPath} className="hover:underline">
+                        {name}
+                      </LocalizedLink>
+                    ) : (
+                      <a
+                        id={titleId}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline"
+                      >
+                        {name}
+                      </a>
+                    )}
                   </CardTitle>
-                  {categoriesText ? (
+                  {tagsText ? (
                     <Badge
                       variant="outline"
                       className="max-w-full whitespace-normal break-words text-xs leading-tight sm:shrink-0"
                     >
-                      {categoriesText}
+                      {tagsText}
                     </Badge>
                   ) : null}
                 </div>
               </CardHeader>
               <CardContent className="p-0">
-                <AspectRatio ratio={9 / 16} className="bg-muted">
-                  {image ? (
-                    <GatsbyImage
-                      image={image}
-                      alt={String(t('screenshot_of', { name }))}
-                      loading={eager}
-                      fetchPriority={fetchP}
-                      className="h-full w-full"
-                      imgClassName="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <StaticImage
-                      src="../images/placeholder-screenshot.png"
-                      alt={String(t('screenshot_of', { name }))}
-                      loading={eager}
-                      placeholder="blurred"
-                      className="h-full w-full"
-                      imgClassName="h-full w-full object-cover"
-                      formats={['auto', 'webp', 'avif']}
-                    />
-                  )}
-                </AspectRatio>
+                {detailPath ? (
+                  <LocalizedLink to={detailPath} aria-labelledby={titleId} className="block">
+                    <AspectRatio ratio={9 / 16} className="bg-muted">
+                      {image ? (
+                        <GatsbyImage
+                          image={image}
+                          alt=""
+                          loading={eager}
+                          fetchPriority={fetchP}
+                          className="h-full w-full"
+                          imgClassName="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.01]"
+                        />
+                      ) : (
+                        <StaticImage
+                          src="../images/placeholder-screenshot.png"
+                          alt=""
+                          loading={eager}
+                          placeholder="blurred"
+                          className="h-full w-full"
+                          imgClassName="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.01]"
+                          formats={['auto', 'webp', 'avif']}
+                        />
+                      )}
+                    </AspectRatio>
+                  </LocalizedLink>
+                ) : (
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="block">
+                    <AspectRatio ratio={9 / 16} className="bg-muted">
+                      {image ? (
+                        <GatsbyImage
+                          image={image}
+                          alt={String(t('screenshot_of', { name }))}
+                          loading={eager}
+                          fetchPriority={fetchP}
+                          className="h-full w-full"
+                          imgClassName="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.01]"
+                        />
+                      ) : (
+                        <StaticImage
+                          src="../images/placeholder-screenshot.png"
+                          alt={String(t('screenshot_of', { name }))}
+                          loading={eager}
+                          placeholder="blurred"
+                          className="h-full w-full"
+                          imgClassName="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.01]"
+                          formats={['auto', 'webp', 'avif']}
+                        />
+                      )}
+                    </AspectRatio>
+                  </a>
+                )}
               </CardContent>
               <CardFooter className="mt-auto justify-center gap-3 p-4 sm:p-4">
                 <Button asChild variant="ghost" className="gap-2 px-5">
                   <a
                     href={url}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     aria-label={String(t('open_site', { name }))}
-                    tabIndex={-1}
-                    aria-hidden="true"
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
                   >
                     {host}
                     <ExternalLink className="h-4 w-4" aria-hidden="true" />

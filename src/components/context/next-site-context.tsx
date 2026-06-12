@@ -1,16 +1,20 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { useSourceCategoryContext } from './SourceCategoryContext';
+import { filterSources, useSourceFilterContext } from './source-filter-context';
 
 type SourceNode = {
+  id: string;
   name: string;
   url: string;
-  categories?: string[] | null;
+  tags?: string[] | null;
+  lists?: string[] | null;
 };
 
 type NextSiteContextValue = {
   nextSite: string;
   setNextSite: React.Dispatch<React.SetStateAction<string>>;
+  nextSiteId: string;
+  setNextSiteId: React.Dispatch<React.SetStateAction<string>>;
   nextSiteName: string;
   setNextSiteName: React.Dispatch<React.SetStateAction<string>>;
   refreshNextSite: () => void;
@@ -18,7 +22,7 @@ type NextSiteContextValue = {
 };
 
 type NextSiteSourcesQuery = {
-  allDataJson: {
+  allGeneratedJson: {
     nodes: Array<{ sources: SourceNode[] }>;
   };
 };
@@ -40,29 +44,27 @@ type NextSiteProviderProps = {
 export const NextSiteProvider = ({ children }: NextSiteProviderProps): JSX.Element => {
   const data = useStaticQuery<NextSiteSourcesQuery>(graphql`
     query NextSiteSourcesQuery {
-      allDataJson {
+      allGeneratedJson {
         nodes {
           sources {
+            id
             name
             url
-            categories
+            tags
+            lists
           }
         }
       }
     }
   `);
-  const nodes = data.allDataJson?.nodes?.[0]?.sources ?? [];
+  const nodes = data.allGeneratedJson?.nodes?.[0]?.sources ?? [];
   const sources = React.useMemo(() => nodes, [nodes]);
 
-  const { selectedCategories } = useSourceCategoryContext();
+  const { selectedLists, selectedTags } = useSourceFilterContext();
 
-  // Filter sources by selected categories (empty = all)
   const filteredSources = React.useMemo(() => {
-    if (!selectedCategories.length) return sources;
-    return sources.filter((source) =>
-      (source.categories || []).some((cat) => selectedCategories.includes(cat))
-    );
-  }, [sources, selectedCategories]);
+    return filterSources(sources, selectedLists, selectedTags);
+  }, [sources, selectedLists, selectedTags]);
 
   // Random picker
   const pickRandom = React.useCallback(
@@ -73,22 +75,26 @@ export const NextSiteProvider = ({ children }: NextSiteProviderProps): JSX.Eleme
 
   // State for the next site selection
   const [nextSite, setNextSite] = React.useState<string>('');
+  const [nextSiteId, setNextSiteId] = React.useState<string>('');
   const [nextSiteName, setNextSiteName] = React.useState<string>('');
 
   // Refresh using filtered sources
   const refreshNextSite = React.useCallback((): void => {
     if (!filteredSources.length) {
       setNextSite('');
+      setNextSiteId('');
       setNextSiteName('');
       return;
     }
     const chosen = pickRandom(filteredSources);
     if (!chosen) {
       setNextSite('');
+      setNextSiteId('');
       setNextSiteName('');
       return;
     }
     setNextSite(chosen.url);
+    setNextSiteId(chosen.id);
     setNextSiteName(chosen.name);
   }, [filteredSources, pickRandom]);
 
@@ -101,12 +107,14 @@ export const NextSiteProvider = ({ children }: NextSiteProviderProps): JSX.Eleme
     () => ({
       nextSite, // string URL or "" when none available
       setNextSite,
+      nextSiteId,
+      setNextSiteId,
       nextSiteName,
       setNextSiteName,
       refreshNextSite,
       availableCount: filteredSources.length,
     }),
-    [nextSite, nextSiteName, refreshNextSite, filteredSources.length]
+    [nextSite, nextSiteId, nextSiteName, refreshNextSite, filteredSources.length]
   );
 
   return <NextSiteContext.Provider value={contextValue}>{children}</NextSiteContext.Provider>;

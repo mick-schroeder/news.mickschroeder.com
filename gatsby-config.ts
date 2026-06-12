@@ -1,14 +1,15 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
+  quiet: true,
 });
 
 import type { GatsbyConfig } from 'gatsby';
 import fs from 'fs';
 import path from 'path';
 import { getSiteConfig } from './src/config/getSiteConfig';
-import { loadSources } from './src/data/loadSources';
+import { loadShuffleData } from './src/data/loadSources';
 
-const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL || 'https://news.mickschroeder.com';
+const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL || 'https://webshuffle.mickschroeder.com';
 const site = getSiteConfig();
 const LOCALES_DIR = path.join(__dirname, 'src', 'locales');
 const availableLanguages = fs.existsSync(LOCALES_DIR)
@@ -22,11 +23,11 @@ const GATSBY_DEFAULT_LANGUAGE = ((): string => {
   if (activeLanguages.includes(site.defaultLanguage)) return site.defaultLanguage;
   return activeLanguages[0] || 'en';
 })();
-const GENERATED_DATA_DIR = path.join(__dirname, 'src', 'data');
+const GENERATED_DATA_DIR = path.join(__dirname, 'src', 'generated');
 const GENERATED_DATA_FILE = path.join(GENERATED_DATA_DIR, 'data.json');
 
 const ensureGeneratedDataFile = () => {
-  const payload = JSON.stringify({ sources: loadSources() });
+  const payload = JSON.stringify(loadShuffleData());
   fs.mkdirSync(GENERATED_DATA_DIR, { recursive: true });
   if (
     !fs.existsSync(GENERATED_DATA_FILE) ||
@@ -127,10 +128,6 @@ const config: GatsbyConfig = {
           ns: ['common'],
           defaultNS: 'common',
         },
-        pages: [
-          { matchPath: '/admin', languages: ['en'] },
-          { matchPath: '/admin/(.*)', languages: ['en'] },
-        ],
       },
     },
     'gatsby-plugin-postcss',
@@ -305,7 +302,6 @@ const config: GatsbyConfig = {
             policy: [
               { userAgent: '*', allow: '/' },
               { userAgent: '*', disallow: ['/redirect'] },
-              { userAgent: '*', disallow: ['/admin'] },
             ],
           },
         },

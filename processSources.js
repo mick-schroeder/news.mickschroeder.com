@@ -6,15 +6,17 @@
 // Prod: uses S3 as cache with a freshness timeout, regenerates stale or missing.
 // No placeholders are created; failures are skipped (gallery handles fallbacks).
 
-const AWS = require('aws-sdk');
+const {
+  S3Client,
+  GetObjectCommand,
+  HeadObjectCommand,
+  PutObjectCommand,
+} = require('@aws-sdk/client-s3');
 const path = require('path');
 const fs = require('fs');
 const puppeteer = require('puppeteer');
 const { PuppeteerBlocker, adsAndTrackingLists } = require('@ghostery/adblocker-puppeteer');
-const fetch = require('cross-fetch');
 const { createScreenshotSlug } = require('./utils/screenshotSlug');
-
-require('aws-sdk/lib/maintenance_mode_message').suppress = true;
 
 const shouldForceRegenerate = process.env.FORCE_REGENERATE === 'true';
 const shouldSkipScreenshots = process.env.SKIP_SCREENSHOTS === 'true';
@@ -83,11 +85,11 @@ const resolveS3Client = () => {
         : {};
 
     const options = {
-      region: process.env.AWS_REGION,
+      region: process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1',
       ...explicitCreds,
     };
 
-    return new AWS.S3(options);
+    return new S3Client(options);
   } catch (error) {
     return null;
   }
@@ -373,7 +375,7 @@ async function uploadToS3(filePath, slug, reporter) {
       ContentType: 'image/webp',
       CacheControl: 'public, max-age=604800, immutable',
     };
-    await s3.upload(params).promise();
+    await s3.send(new PutObjectCommand(params));
   } catch (error) {
     reporter.warn(`Failed to upload ${slug}.webp to S3: ${error.message}`);
   }
@@ -383,10 +385,10 @@ async function uploadToS3(filePath, slug, reporter) {
 async function s3HasObject(slug) {
   if (!s3) return false;
   try {
-    await s3.headObject({ Bucket: BUCKET_NAME, Key: `${slug}.webp` }).promise();
+    await s3.send(new HeadObjectCommand({ Bucket: BUCKET_NAME, Key: `${slug}.webp` }));
     return true;
   } catch (error) {
-    if (error.code === 'NotFound') return false;
+    if (error.name === 'NotFound' || error.$metadata?.httpStatusCode === 404) return false;
     throw error;
   }
 }
@@ -395,17 +397,17 @@ async function s3HasObject(slug) {
 async function screenshotExistsInS3(slug) {
   if (!s3) return false;
   try {
-    const objectData = await s3
-      .headObject({
+    const objectData = await s3.send(
+      new HeadObjectCommand({
         Bucket: BUCKET_NAME,
         Key: `${slug}.webp`,
       })
-      .promise();
+    );
     const lastModifiedDate = new Date(objectData.LastModified);
     const now = new Date();
     return now - lastModifiedDate < CACHE_TIMEOUT;
   } catch (error) {
-    if (error.code === 'NotFound') return false;
+    if (error.name === 'NotFound' || error.$metadata?.httpStatusCode === 404) return false;
     throw error;
   }
 }
@@ -470,7 +472,7 @@ async function downloadFromS3(slug, reporter) {
     const stream = require('stream');
     const util = require('util');
     const pipeline = util.promisify(stream.pipeline);
-    const s3Stream = s3.getObject(params).createReadStream();
+    const { Body: s3Stream } = await s3.send(new GetObjectCommand(params));
     const fileWriteStream = fs.createWriteStream(`${SCREENSHOT_PATH}/${slug}.webp`);
     await pipeline(s3Stream, fileWriteStream);
   } catch (error) {
@@ -632,7 +634,7 @@ const preProcessSources = async (sourcesInput, reporter) => {
     if (ENABLE_ADBLOCKER) {
       try {
         blocker = await PuppeteerBlocker.fromLists(
-          fetch,
+          globalThis.fetch,
           [
             ...adsAndTrackingLists,
             'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',

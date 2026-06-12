@@ -1,5 +1,6 @@
 import React from 'react';
 import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next';
+import { useLocation } from '@reach/router';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -12,7 +13,9 @@ import LocalizedLink from './LocalizedLink';
 
 const LanguageSwitcher: React.FC = () => {
   const { languages, language, originalPath } = useI18next();
+  const { pathname } = useLocation();
   const { t } = useTranslation();
+  const switcherPath = originalPath || pathname || '/';
 
   const displayNames = React.useMemo(() => {
     if (typeof Intl !== 'undefined' && (Intl as any).DisplayNames) {
@@ -26,7 +29,8 @@ const LanguageSwitcher: React.FC = () => {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="px-5 py-3 text-sm font-semibold"
+          size="sm"
+          className="h-9 px-3 text-sm font-semibold"
           aria-label={String(t('language_switcher.label'))}
         >
           <Languages aria-hidden="true" className="w-4 h-4 me-2" />
@@ -38,7 +42,7 @@ const LanguageSwitcher: React.FC = () => {
         {languages.map((lng) => (
           <DropdownMenuItem key={lng} asChild>
             <LocalizedLink
-              to={originalPath}
+              to={switcherPath}
               language={lng}
               hrefLang={lng}
               aria-selected={lng === language}

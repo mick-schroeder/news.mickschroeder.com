@@ -4,7 +4,7 @@ import { Loader2 } from 'lucide-react';
 import { useNextSiteContext } from './context/next-site-context';
 
 const Redirecter: React.FC = () => {
-  const { nextSite, refreshNextSite } = useNextSiteContext();
+  const { nextSite, refreshNextSite, availableCount } = useNextSiteContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -35,6 +35,18 @@ const Redirecter: React.FC = () => {
     }, 150);
     return () => clearTimeout(t);
   }, [nextSite]);
+
+  if (!availableCount) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh] p-6">
+        <div className="bg-card rounded-lg p-10 shadow-lg border border-border text-center">
+          <p className="text-xl font-bold mb-4 text-card-foreground">
+            <Trans i18nKey="filter_selector.no_sources" defaults="No matching sources" />
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (

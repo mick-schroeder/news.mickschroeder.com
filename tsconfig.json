@@ -7,8 +7,7 @@
     ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
     "jsx": "react-jsx" /* Specify what JSX code is generated. */,
     "module": "esnext" /* Specify what module code is generated. */,
-    "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
-    "baseUrl": ".",
+    "moduleResolution": "bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,
     "paths": {
       "@/*": ["./src/*"]
     },

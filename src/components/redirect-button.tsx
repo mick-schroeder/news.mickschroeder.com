@@ -4,14 +4,20 @@ import { Trans } from 'gatsby-plugin-react-i18next';
 import { Button } from './ui/button';
 import { Shuffle } from 'lucide-react';
 import { getSiteConfig } from '../config/getSiteConfig';
+import { cn } from '@/lib/utils';
 
 const site = getSiteConfig();
 
-const RedirectButton: React.FC = () => {
+type RedirectButtonProps = {
+  className?: string;
+};
+
+const RedirectButton: React.FC<RedirectButtonProps> = ({ className }) => {
   const { nextSite, refreshNextSite } = useNextSiteContext();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    if (!nextSite) return;
     window.open(nextSite, '_blank');
     refreshNextSite();
   };
@@ -20,8 +26,12 @@ const RedirectButton: React.FC = () => {
     <Button
       type="button"
       onClick={handleClick}
+      disabled={!nextSite}
       size="lg"
-      className="group relative w-full overflow-hidden rounded-full px-6 py-4 text-base font-black text-primary-foreground shadow-md transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/70 sm:w-auto sm:px-10 sm:text-lg h-auto"
+      className={cn(
+        'group relative w-full overflow-hidden rounded-full px-6 py-4 text-base font-black text-primary-foreground shadow-md transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/70 sm:w-auto sm:px-10 sm:text-lg h-auto',
+        className
+      )}
     >
       <span className="relative z-10 flex items-center gap-3 tracking-wide">
         <Shuffle

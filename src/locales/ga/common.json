@@ -3,10 +3,10 @@
     "copied": "Cóipeáladh an nasc!",
     "copy": "Cóipeáil an nasc",
     "description": "Tarraing an nasc seo go barra do leabharmharcanna, nó cliceáil air le deas agus sábháil é le rochtain thapa.",
-    "link_label": "🔀 Nuacht Mearaigh",
-    "title": "Cuir ár nasc Mearaigh i do leabharmharcanna"
+    "link_label": "🔀 News Shuffle",
+    "title": "Cuir News Shuffle i do leabharmharcanna"
   },
-  "brand": "Mick Schroeder's Shuffle Nuachta",
+  "brand": "Mick Schroeder's News Shuffle",
   "category_selector": {
     "all_categories": "Gach catagóir",
     "clear_selection": "Glan an roghnú",
@@ -16,23 +16,56 @@
   "footer": {
     "disclaimer": "Soláthraítear News Shuffle™ ar mhaithe le faisnéis agus siamsaíocht amháin. Ní thugtar aon bharántas, lena n-áirítear barántais intuigthe maidir le hinmhargaidheacht ná oiriúnacht do chuspóir ar leith. D’fhéadfadh roinnt naisc a bheith cleamhnaithe nó urraithe, rud a chuidíonn leis an suíomh gan aon chostas breise ort. Úsáideann an suíomh seo fianáin agus rianaitheoirí anailíse agus tacaíonn fógraíocht leis. Cuirtear na naisc sheachtracha ar fáil mar áis agus ní hionann iad agus formhuiniú. Taispeántar seatanna scáileáin de shuíomhanna tríú páirtí chun críocha léiriúcháin agus fanann siad mar mhaoin dá n-úinéirí faoi seach. Nílimid freagrach as cruinneas, dlíthiúlacht ná ábhar suíomhanna seachtracha. Téigh i dteagmháil leis na suíomhanna sin go díreach le ceisteanna ar bith.",
     "terms_privacy": "Téarmaí & Príobháideachas",
-    "license": "Tá Shuffle Nuachta™ foinse oscailte agus ar fáil faoin <link>Cheadúnas MIT</link>.",
+    "license": "Tá News Shuffle™ foinse oscailte agus ar fáil faoin <link>Cheadúnas MIT</link>.",
     "content_license": "Ábhar (neamhchód): <cc>CC BY-NC 4.0</cc>. Tá an cód foinse ar fáil ag <repo>{{url}}</repo>.",
     "rights_reserved": "D’fhéadfadh logónna, trádmharcanna agus roinnt sócmhainní meán a bheith eisiata agus fanann gach ceart ar cosaint mura bhfuil siad ceadúnaithe go follasach.",
     "contact": "Teagmháil: <email>{{email}}</email>"
   },
+  "filter_selector": {
+    "all_lists": "Gach liosta",
+    "all_tags": "Gach clib",
+    "no_sources": "Níl aon fhoinsí comhoiriúnacha",
+    "select_lists_label": "Roghnaigh liostaí foinsí",
+    "select_tags_label": "Roghnaigh clibeanna",
+    "source_count": "{{count}} foinse"
+  },
+  "taxonomy": {
+    "lists_title": "Liostaí",
+    "lists_description": "Brabhsáil na liostaí foinsí a chumhachtaíonn News Shuffle.",
+    "tags_title": "Clibeanna",
+    "tags_description": "Brabhsáil foinsí de réir clibe.",
+    "source_count": "{{count}} foinse",
+    "no_lists": "Níor aimsíodh aon liostaí.",
+    "no_tags": "Níor aimsíodh aon chlibeanna.",
+    "no_sources_for_list": "Níl aon fhoinsí nasctha leis an liosta seo fós.",
+    "no_sources_for_tag": "Níl aon fhoinsí nasctha leis an gclib seo fós.",
+    "view_original_list": "Féach ar an mbunliosta",
+    "browse_list": "Brabhsáil an liosta",
+    "tags_hint": "Tá clibeanna curtha in ord de réir líon na bhfoinsí ionas gur furasta na hábhair is leithne a scanadh ar dtús."
+  },
   "hero": {
-    "headline": "Mearaigh trí na foinsí nuachta is mó tionchair ar domhan.",
-    "tagline": "Is aicearra é News Shuffle™ chuig an bpreas shaor. Seachas teidil mealltacha clickbait, mearaimid tú díreach chuig na suíomhanna nuachta is mó tionchair inniu chun na scéalta a fheiceáil mar a scríobhadh iad."
+    "headline": "Mearaigh trí na liostaí foinsí is fearr ar an ngréasán.",
+    "tagline": "Tugann News Shuffle díreach chuig foinsí thú ó liostaí nuachta coimeádta agus ó chomhiomlánóirí."
   },
   "home": "Baile",
+  "home_page": {
+    "top_sources": "Na foinsí is fearr",
+    "top_sources_hint": "In ord de réir líon na liostaí ina bhfuil siad.",
+    "in_lists": "{{count}} liosta",
+    "see_all": "Féach uile",
+    "all_sources": "Gach foinse",
+    "all_sources_hint": "Gach foinse, in ord aibítre.",
+    "show_all": "Taispeáin gach {{count}} foinse",
+    "show_fewer": "Taispeáin níos lú"
+  },
   "latest": "Is déanaí",
+  "lists": "Liostaí",
   "language_switcher": {
     "label": "Athraigh an teanga",
     "current": "(reatha)"
   },
   "loading": "Foinse randamach á lódáil…",
-  "logo_alt": "Lógó Shuffle Nuachta",
+  "logo_alt": "Lógó News Shuffle",
   "notfound": {
     "head_title": "404 — Leathanach gan aimsiú",
     "gohome": "Fill ar an mbaile",
@@ -53,7 +86,8 @@
     "head_title": "Atreorú",
     "loading": "Á lódáil…"
   },
-  "shuffle": "Mearaigh",
+  "shuffle": "News Shuffle",
   "shuffle_next": "Taispeáin suíomh eile dom",
-  "sources": "Foinsí Nuachta"
+  "sources": "Foinsí",
+  "tags": "Clibeanna"
 }

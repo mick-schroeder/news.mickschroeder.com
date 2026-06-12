@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Link, graphql, HeadProps } from 'gatsby';
-import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
+import { Trans } from 'gatsby-plugin-react-i18next';
 import SiteLayout from '../components/site-layout';
 import { SEO } from '../components/seo';
-import type { SEOI18n } from '../components/seo';
+import type { SEOLocaleData, SEOI18n } from '../components/seo';
 import '../fragments/locale';
 
 const NotFoundPage: React.FC = () => {
@@ -29,11 +29,16 @@ type I18nPageContext = {
   i18n?: SEOI18n;
 };
 
-export const Head = ({ pageContext, location }: HeadProps<object, I18nPageContext>) => {
-  const { t } = useTranslation();
+export const Head = ({
+  data,
+  pageContext,
+  location,
+}: HeadProps<SEOLocaleData, I18nPageContext>) => {
   return (
     <SEO
-      title={String(t('notfound.head_title'))}
+      titleKey="notfound.head_title"
+      titleFallback="404 — Page not found"
+      localeData={data}
       noindex
       disableAds
       pathname={location?.pathname}

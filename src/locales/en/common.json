@@ -4,7 +4,7 @@
     "copy": "Copy link",
     "description": "Drag this link to your bookmarks bar, or right-click to save it for quick access.",
     "link_label": "🔀 News Shuffle",
-    "title": "Bookmark our News Shuffle link"
+    "title": "Bookmark this News Shuffle"
   },
   "brand": "Mick Schroeder's News Shuffle",
   "category_selector": {
@@ -21,12 +21,45 @@
     "rights_reserved": "Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.",
     "contact": "Contact: <email>{{email}}</email>"
   },
+  "filter_selector": {
+    "all_lists": "All Lists",
+    "all_tags": "All Tags",
+    "no_sources": "No matching sources",
+    "select_lists_label": "Choose source lists",
+    "select_tags_label": "Choose tags",
+    "source_count": "{{count}} sources"
+  },
+  "taxonomy": {
+    "lists_title": "Lists",
+    "lists_description": "Browse the source lists that power News Shuffle.",
+    "tags_title": "Tags",
+    "tags_description": "Browse sources by tag.",
+    "source_count": "{{count}} sources",
+    "no_lists": "No lists found.",
+    "no_tags": "No tags found.",
+    "no_sources_for_list": "No sources are linked to this list yet.",
+    "no_sources_for_tag": "No sources are linked to this tag yet.",
+    "view_original_list": "View original list",
+    "browse_list": "Browse list",
+    "tags_hint": "Tags are ordered by source count so the broadest topics are easiest to scan first."
+  },
   "hero": {
-    "headline": "Shuffle through the world’s most influential news sources.",
-    "tagline": "News Shuffle is your shortcut to the free press. Instead of clickbait headlines, we shuffle you directly into today’s most influential news websites to see the stories as they were meant to be told."
+    "headline": "Shuffle through the web’s best source lists.",
+    "tagline": "News Shuffle sends you straight to sources from curated news lists and the aggregators you already check."
   },
   "home": "Home",
+  "home_page": {
+    "top_sources": "Top sources",
+    "top_sources_hint": "Ranked by how many lists feature them.",
+    "in_lists": "{{count}} lists",
+    "see_all": "See all",
+    "all_sources": "All sources",
+    "all_sources_hint": "Every source, A to Z.",
+    "show_all": "Show all {{count}} sources",
+    "show_fewer": "Show fewer"
+  },
   "latest": "Latest",
+  "lists": "Lists",
   "language_switcher": {
     "label": "Switch language",
     "current": "(current)"
@@ -55,5 +88,6 @@
   },
   "shuffle": "News Shuffle",
   "shuffle_next": "Show me another site",
-  "sources": "News Sources"
+  "sources": "Sources",
+  "tags": "Tags"
 }

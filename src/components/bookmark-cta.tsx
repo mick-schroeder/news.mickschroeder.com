@@ -5,12 +5,14 @@ import { Button } from './ui/button';
 import { Bookmark, Copy, Check } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
 import { getSiteConfig } from '../config/getSiteConfig';
+import { useSourceFilterContext } from './context/source-filter-context';
 
 const site = getSiteConfig();
 
 const BookmarkCTA: React.FC = () => {
   const linkRef = React.useRef<HTMLAnchorElement>(null);
   const [copied, setCopied] = React.useState(false);
+  const { filterQueryString } = useSourceFilterContext();
 
   // Sync the visible anchor's href to the localized Link's resolved URL
   React.useEffect(() => {
@@ -18,7 +20,7 @@ const BookmarkCTA: React.FC = () => {
     if (el && linkRef.current) {
       linkRef.current.href = el.href; // absolute, localized URL
     }
-  });
+  }, [filterQueryString]);
 
   const onCopy = async () => {
     const href = linkRef.current?.href;
@@ -82,7 +84,7 @@ const BookmarkCTA: React.FC = () => {
 
         {/* Hidden localized Link to resolve the correct href; we mirror it onto the visible anchor via effect */}
         <span className="hidden" aria-hidden="true">
-          <LocalizedLink id="bookmark-localized" to="/redirect">
+          <LocalizedLink id="bookmark-localized" to={`/redirect${filterQueryString}`}>
             localized redirect link
           </LocalizedLink>
         </span>

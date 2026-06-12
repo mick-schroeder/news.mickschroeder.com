@@ -3,9 +3,13 @@ import { graphql } from 'gatsby';
 // Shared fields for NewsSource items used by the sources gallery cards.
 export const NewsSourceCardFields = graphql`
   fragment NewsSourceCardFields on NewsSource {
+    id
     name
+    description
     score
-    categories
+    canonicalKey
+    tags
+    lists
     url
     hash
     screenshot {

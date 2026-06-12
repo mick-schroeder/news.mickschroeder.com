@@ -1,0 +1,168 @@
+import * as React from 'react';
+import { graphql, type HeadProps, type PageProps } from 'gatsby';
+import { ExternalLink, ListFilter, Tags } from 'lucide-react';
+import LocalizedLink from '@/components/LocalizedLink';
+import SiteLayout from '@/components/site-layout';
+import { Badge, badgeVariants } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { SEO, type SEOI18n } from '@/components/seo';
+import { tagPath } from '@/lib/taxonomy';
+import '../fragments/locale';
+
+type SourcePageData = {
+  locales?: unknown;
+};
+
+type SourcePageSource = {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  canonicalKey: string;
+  tags: string[];
+  lists: string[];
+  score: number;
+};
+
+type SourcePageContext = {
+  id: string;
+  source?: SourcePageSource;
+  listNames?: string[];
+  sourceLists?: Array<{
+    id: string;
+    name: string;
+    path: string;
+  }>;
+  i18n?: SEOI18n;
+};
+
+const fallbackDescription = (name: string, canonicalKey: string): string =>
+  `${name} is a News Shuffle source for ${canonicalKey}.`;
+
+const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({ pageContext }) => {
+  const source = pageContext.source;
+  const sourceLists =
+    pageContext.sourceLists ??
+    (pageContext.listNames ?? []).map((name) => ({
+      id: name,
+      name,
+      path: `/lists/${name}/`,
+    }));
+
+  if (!source) {
+    return (
+      <SiteLayout>
+        <section className="mx-auto max-w-screen-md px-4 py-12">
+          <Card>
+            <CardHeader>
+              <CardTitle>Source not found</CardTitle>
+            </CardHeader>
+          </Card>
+        </section>
+      </SiteLayout>
+    );
+  }
+
+  const description = source.description || fallbackDescription(source.name, source.canonicalKey);
+
+  return (
+    <SiteLayout>
+      <article className="mx-auto max-w-screen-md px-4 py-8">
+        <header className="mb-6">
+          <p className="text-sm font-semibold text-muted-foreground">{source.canonicalKey}</p>
+          <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground">
+            {source.name}
+          </h1>
+          <p className="mt-4 text-base leading-7 text-muted-foreground">{description}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Button asChild size="lg">
+              <a href={source.url} target="_blank" rel="noopener">
+                Visit Source
+                <ExternalLink aria-hidden="true" className="h-4 w-4" />
+              </a>
+            </Button>
+            {Number.isFinite(source.score) && (
+              <Badge variant="outline" className="h-10 px-3 text-muted-foreground">
+                Score {source.score.toFixed(1)}
+              </Badge>
+            )}
+          </div>
+        </header>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <ListFilter aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
+                Lists
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-2">
+              {sourceLists.map((list) => (
+                <LocalizedLink
+                  key={list.id}
+                  to={list.path}
+                  className={badgeVariants({ variant: 'secondary' })}
+                >
+                  {list.name}
+                </LocalizedLink>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Tags aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
+                Tags
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-2">
+              {source.tags.map((tag) => (
+                <LocalizedLink
+                  key={tag}
+                  to={tagPath(tag)}
+                  className={badgeVariants({ variant: 'outline' })}
+                >
+                  {tag}
+                </LocalizedLink>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+      </article>
+    </SiteLayout>
+  );
+};
+
+export default SourcePage;
+
+export const Head = ({ pageContext, location }: HeadProps<SourcePageData, SourcePageContext>) => {
+  const source = pageContext.source;
+  const title = source ? `${source.name} | News Shuffle` : 'Source | News Shuffle';
+  const description = source
+    ? source.description || fallbackDescription(source.name, source.canonicalKey)
+    : undefined;
+
+  return (
+    <SEO
+      title={title}
+      description={description}
+      pathname={location?.pathname}
+      i18n={pageContext?.i18n}
+    />
+  );
+};
+
+export const query = graphql`
+  query SourcePageTemplate($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFields
+        }
+      }
+    }
+  }
+`;

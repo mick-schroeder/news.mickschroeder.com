@@ -1,0 +1,57 @@
+[
+  {
+    "id": "curated-news",
+    "name": "Curated News",
+    "description": "Our hand-picked set of news sources worth shuffling through.",
+    "kind": "curated"
+  },
+  {
+    "id": "drudge-report",
+    "name": "Drudge Report",
+    "description": "The internet's original news aggregator, known for its minimalist design, influential link selection, and focus on breaking news.",
+    "kind": "scraped",
+    "sourceUrl": "https://www.drudgereport.com/"
+  },
+  {
+    "id": "skimfeed",
+    "name": "Skimfeed",
+    "description": "A modern news aggregator that surfaces trending stories and headlines from a wide range of online publications.",
+    "kind": "scraped",
+    "sourceUrl": "https://skimfeed.com/news.html"
+  },
+  {
+    "id": "realclearpolitics",
+    "name": "RealClearPolitics",
+    "description": "A political news and polling hub featuring reporting, commentary, and analysis from across the ideological spectrum.",
+    "kind": "scraped",
+    "sourceUrl": "https://www.realclearpolitics.com/"
+  },
+  {
+    "id": "techmeme",
+    "name": "Techmeme",
+    "description": "A leading technology news aggregator that tracks the stories, companies, and conversations shaping the tech industry.",
+    "kind": "scraped",
+    "sourceUrl": "https://www.techmeme.com/"
+  },
+  {
+    "id": "memeorandum",
+    "name": "Memeorandum",
+    "description": "A political news aggregator that organizes coverage from major publications, independent outlets, and influential commentators.",
+    "kind": "scraped",
+    "sourceUrl": "https://www.memeorandum.com/"
+  },
+  {
+    "id": "mediagazer",
+    "name": "Mediagazer",
+    "description": "A media industry news aggregator covering journalism, publishing, streaming, advertising, and the business of media.",
+    "kind": "scraped",
+    "sourceUrl": "https://mediagazer.com/"
+  },
+    {
+    "id": "brutalist",
+    "name": "The Brutalist Report",
+    "description": "Plantext news aggregator.",
+    "kind": "scraped",
+    "sourceUrl": "https://brutalist.report/topic/news?"
+  }
+]

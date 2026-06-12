@@ -5,23 +5,23 @@
 :root {
   --background: theme(colors.stone.50);
   --foreground: theme(colors.stone.950);
-  --card: theme(colors.stone.200);
+  --card: theme(colors.white);
   --card-foreground: theme(colors.stone.900);
-  --popover: theme(colors.stone.200);
+  --popover: theme(colors.white);
   --popover-foreground: theme(colors.stone.900);
   --primary: theme(colors.green.600);
   --primary-foreground: theme(colors.stone.50);
-  --secondary: theme(colors.green.700);
-  --secondary-foreground: theme(colors.stone.50);
+  --secondary: theme(colors.green.100);
+  --secondary-foreground: theme(colors.green.900);
   --muted: theme(colors.stone.200);
   --muted-foreground: theme(colors.stone.600);
-  --accent: theme(colors.green.200);
-  --accent-foreground: theme(colors.green.900);
+  --accent: theme(colors.stone.200);
+  --accent-foreground: theme(colors.stone.900);
   --destructive: theme(colors.red.600);
   --destructive-foreground: theme(colors.stone.50);
-  --border: theme(colors.stone.300);
+  --border: theme(colors.stone.200);
   --input: theme(colors.stone.300);
-  --ring: theme(colors.green.300);
+  --ring: theme(colors.green.400);
   --chart-1: theme(colors.green.600);
   --chart-2: theme(colors.green.700);
   --chart-3: theme(colors.green.500);
@@ -33,16 +33,16 @@
   --sidebar-primary-foreground: theme(colors.stone.50);
   --sidebar-accent: theme(colors.stone.200);
   --sidebar-accent-foreground: theme(colors.stone.800);
-  --sidebar-border: theme(colors.stone.300);
-  --sidebar-ring: theme(colors.green.300);
-  --navbar: theme(colors.stone.300);
+  --sidebar-border: theme(colors.stone.200);
+  --sidebar-ring: theme(colors.green.400);
+  --navbar: theme(colors.white);
   --navbar-foreground: theme(colors.stone.900);
   --navbar-primary: theme(colors.green.600);
   --navbar-primary-foreground: theme(colors.stone.50);
-  --navbar-accent: theme(colors.stone.200);
-  --navbar-accent-foreground: theme(colors.stone.800);
-  --navbar-border: theme(colors.stone.300);
-  --navbar-ring: theme(colors.green.300);
+  --navbar-accent: theme(colors.stone.100);
+  --navbar-accent-foreground: theme(colors.stone.900);
+  --navbar-border: theme(colors.stone.200);
+  --navbar-ring: theme(colors.green.400);
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -74,21 +74,21 @@
   :root {
     --background: theme(colors.stone.950);
     --foreground: theme(colors.stone.100);
-    --card: theme(colors.stone.800);
+    --card: theme(colors.stone.900);
     --card-foreground: theme(colors.stone.100);
     --popover: theme(colors.stone.900);
     --popover-foreground: theme(colors.stone.100);
     --primary: theme(colors.green.500);
     --primary-foreground: theme(colors.stone.950);
-    --secondary: theme(colors.green.500);
-    --secondary-foreground: theme(colors.stone.950);
+    --secondary: theme(colors.green.950);
+    --secondary-foreground: theme(colors.green.200);
     --muted: theme(colors.stone.800);
-    --muted-foreground: theme(colors.stone.300);
-    --accent: theme(colors.green.700);
+    --muted-foreground: theme(colors.stone.400);
+    --accent: theme(colors.stone.800);
     --accent-foreground: theme(colors.stone.100);
     --destructive: theme(colors.red.500);
     --destructive-foreground: theme(colors.stone.100);
-    --border: theme(colors.stone.700);
+    --border: theme(colors.stone.800);
     --input: theme(colors.stone.700);
     --ring: theme(colors.green.500);
     --chart-1: theme(colors.green.400);
@@ -104,13 +104,13 @@
     --sidebar-accent-foreground: theme(colors.stone.200);
     --sidebar-border: theme(colors.stone.800);
     --sidebar-ring: theme(colors.green.500);
-    --navbar: theme(colors.stone.700);
+    --navbar: theme(colors.stone.950);
     --navbar-foreground: theme(colors.stone.200);
     --navbar-primary: theme(colors.green.500);
     --navbar-primary-foreground: theme(colors.stone.950);
-    --navbar-accent: theme(colors.stone.600);
+    --navbar-accent: theme(colors.stone.800);
     --navbar-accent-foreground: theme(colors.stone.100);
-    --navbar-border: theme(colors.stone.700);
+    --navbar-border: theme(colors.stone.800);
     --navbar-ring: theme(colors.green.500);
     --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
     --font-mono:
@@ -201,7 +201,23 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 25%, transparent);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 }

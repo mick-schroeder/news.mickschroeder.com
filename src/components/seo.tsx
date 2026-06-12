@@ -10,24 +10,82 @@ export type SEOI18n = {
   defaultLanguage?: string;
 };
 
+type LocaleNode = {
+  data?: unknown;
+};
+
+export type SEOLocaleData = {
+  locales?: {
+    edges?: Array<{
+      node?: LocaleNode | null;
+    } | null> | null;
+  } | null;
+};
+
 type SEOProps = {
   title?: string;
+  titleKey?: string;
+  titleFallback?: string;
   description?: string;
   pathname?: string;
   noindex?: boolean;
   disableAds?: boolean;
   children?: React.ReactNode;
   i18n?: SEOI18n;
+  localeData?: SEOLocaleData;
+};
+
+const parseLocaleData = (data: unknown): Record<string, unknown> | null => {
+  if (!data) return null;
+  if (typeof data === 'object' && !Array.isArray(data)) return data as Record<string, unknown>;
+  if (typeof data !== 'string') return null;
+
+  try {
+    const parsed = JSON.parse(data);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : null;
+  } catch {
+    return null;
+  }
+};
+
+const getDottedValue = (source: Record<string, unknown>, key: string): unknown =>
+  key.split('.').reduce<unknown>((current, segment) => {
+    if (!current || typeof current !== 'object' || Array.isArray(current)) return undefined;
+    return (current as Record<string, unknown>)[segment];
+  }, source);
+
+const getLocaleString = (
+  data: SEOLocaleData | undefined,
+  key: string | undefined,
+  fallback: string | undefined
+): string | undefined => {
+  if (!key) return fallback;
+
+  const edges = data?.locales?.edges ?? [];
+  for (const edge of edges) {
+    const localeData = parseLocaleData(edge?.node?.data);
+    if (!localeData) continue;
+
+    const value = getDottedValue(localeData, key);
+    if (typeof value === 'string' && value.length > 0) return value;
+  }
+
+  return fallback;
 };
 
 export const SEO = ({
   title,
+  titleKey,
+  titleFallback,
   description,
   pathname,
   noindex,
   disableAds,
   children,
   i18n,
+  localeData,
 }: SEOProps): JSX.Element => {
   const {
     title: defaultTitle,
@@ -45,9 +103,10 @@ export const SEO = ({
   const rawPath = pathname ?? originalPath ?? locPathname ?? '/';
   const normalizedPath = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
   const canonicalUrl = `${siteUrl}${normalizedPath}`;
+  const localizedTitle = title ?? getLocaleString(localeData, titleKey, titleFallback);
 
   const seo = {
-    title: title || defaultTitle,
+    title: localizedTitle || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image}`,
     url: canonicalUrl,
