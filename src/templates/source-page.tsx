@@ -167,7 +167,7 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
             href={source.url}
             target="_blank"
             rel="noopener"
-            className="group block overflow-hidden rounded-lg border bg-muted shadow-sm motion-safe:transition-shadow hover:shadow-md"
+            className="group block overflow-hidden rounded-xl border bg-muted shadow-sm motion-safe:transition-all hover:border-primary/40 hover:shadow-md"
           >
             <AspectRatio ratio={9 / 16}>
               {image ? (

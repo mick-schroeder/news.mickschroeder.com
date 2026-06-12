@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 type DirectorySource = {
   id?: string;
   name: string;
+  description?: string | null;
   url: string;
 };
 
@@ -31,7 +32,7 @@ const SourceDirectory = ({ items }: SourceDirectoryProps): JSX.Element | null =>
       <div className={cn('relative', !expanded && 'max-h-[26rem] overflow-hidden')}>
         <ul className="columns-2 gap-x-6 sm:columns-3 lg:columns-4">
           {sorted.map((source) => (
-            <li key={source.id || source.url}>
+            <li key={source.id || source.url} className="break-inside-avoid pb-2">
               {source.id ? (
                 <LocalizedLink
                   to={sourcePath(source.id)}
@@ -49,6 +50,11 @@ const SourceDirectory = ({ items }: SourceDirectoryProps): JSX.Element | null =>
                   {source.name}
                 </a>
               )}
+              {source.description ? (
+                <p className="line-clamp-2 text-xs leading-5 text-muted-foreground">
+                  {source.description}
+                </p>
+              ) : null}
             </li>
           ))}
         </ul>

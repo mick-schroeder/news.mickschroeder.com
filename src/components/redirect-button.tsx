@@ -29,7 +29,7 @@ const RedirectButton: React.FC<RedirectButtonProps> = ({ className }) => {
       disabled={!nextSite}
       size="lg"
       className={cn(
-        'group relative w-full overflow-hidden rounded-full px-6 py-4 text-base font-black text-primary-foreground shadow-md transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/70 sm:w-auto sm:px-10 sm:text-lg h-auto',
+        'group relative w-full overflow-hidden rounded-full px-6 py-4 text-base font-black text-primary-foreground shadow-lg shadow-primary/25 transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0 active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/70 sm:w-auto sm:px-10 sm:text-lg h-auto',
         className
       )}
     >

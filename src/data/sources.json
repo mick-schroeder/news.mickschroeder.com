@@ -577,7 +577,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "The Belfast Telegraph covers Northern Ireland news, politics, sport, business, and culture. It knows local news can be more complicated than international diplomacy, because often it is."
   },
   {
     "id": "bloomberg-com",
@@ -614,7 +614,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "BreakingNews.ie covers Irish news, world headlines, sport, entertainment, and current affairs. It does exactly what the name promises, which is refreshing in an internet full of coy branding."
   },
   {
     "id": "businesspost-ie",
@@ -630,7 +630,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "Business Post covers Irish business, politics, finance, technology, and analysis. It is for readers who enjoy their public affairs with a spreadsheet nearby and a raised eyebrow ready."
   },
   {
     "id": "spiegel-de",
@@ -645,7 +645,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "Der Spiegel offers German and international reporting on politics, business, society, and culture. It brings magazine-grade seriousness to a world that keeps submitting rough drafts."
   },
   {
     "id": "drudgereport-com",
@@ -781,7 +781,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "Forekast is a marketing and social media calendar for upcoming internet trends, events, and cultural moments. It is the rare calendar built for people trying to know what everyone will be talking about before everyone starts talking."
   },
   {
     "id": "france24-com",
@@ -871,7 +871,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "Independent.ie Seachtain covers Irish-language news, culture, and features for readers of Gaeilge. It gives the news a bilingual backbone, which the internet could frankly use more of."
   },
   {
     "id": "irishexaminer-com",
@@ -1010,7 +1010,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "Nuacht RTÉ provides Irish-language news from RTÉ covering Ireland, world affairs, politics, sport, and culture. It proves public-service journalism sounds better when the fada gets proper respect."
   },
   {
     "id": "pbs-org",
@@ -1128,7 +1128,7 @@
       "techmeme"
     ],
     "score": 2.5,
-    "description": "",
+    "description": "Silicon Republic covers Irish and global technology, science, startups, and innovation. It watches the tech sector with enough curiosity to make even funding announcements feel almost human.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-12",
@@ -1148,7 +1148,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "Skimfeed is a headline aggregation site for fast-moving news, politics, tech, and internet culture. It is built for scanning, because sometimes the internet is less a meal than a buffet under fluorescent lights."
   },
   {
     "id": "sky-com",
@@ -1332,7 +1332,7 @@
       "techmeme"
     ],
     "score": 2.5,
-    "description": "",
+    "description": "The Globe and Mail covers Canadian and international news, business, politics, and culture. It is Canada's national broadsheet voice, which means the seriousness arrives with winter tires.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-12",
@@ -1354,7 +1354,7 @@
       "techmeme"
     ],
     "score": 2.5,
-    "description": "",
+    "description": "The Irish News covers Northern Ireland news, politics, sport, opinion, and culture. It understands that local context is not a footnote; it is usually the whole plot.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-12",
@@ -1397,7 +1397,7 @@
       "skimfeed"
     ],
     "score": 2.5,
-    "description": "",
+    "description": "The Japan Times covers Japan news, politics, business, culture, and international affairs in English. It is a useful bridge for readers who want more than a postcard version of Japan.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-12",
@@ -1417,7 +1417,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "The Journal covers Irish news, politics, sport, entertainment, and explainers for a digital audience. It is the rare Irish site that can move from Dáil drama to weather chaos without changing shoes."
   },
   {
     "id": "thejournal-ie-gaeilge-news",
@@ -1432,7 +1432,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "The Journal Gaeilge covers Irish-language news and current affairs from TheJournal.ie. It keeps Gaeilge in the daily-news flow instead of treating it like a ceremonial ribbon."
   },
   {
     "id": "newyorker-com",
@@ -1512,7 +1512,7 @@
       "memeorandum"
     ],
     "score": 2.5,
-    "description": "",
+    "description": "The Times of Israel covers Israeli news, Middle East politics, Jewish world affairs, and global developments. It is a detailed window into a region where the footnotes often have footnotes.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-12",
@@ -1547,7 +1547,7 @@
       "news"
     ],
     "score": 2.5,
-    "description": ""
+    "description": "Tuairisc.ie is an Irish-language news site covering Irish affairs, politics, culture, and opinion. It is serious journalism as Gaeilge, with the welcome side effect of making monolingual headlines look underdressed."
   },
   {
     "id": "usatoday-com",
@@ -1811,7 +1811,7 @@
   {
     "id": "gbnews-com",
     "name": "gbnews.com",
-    "description": "",
+    "description": "GB News covers UK news, politics, opinion, and current affairs. It is British broadcasting with the settings turned firmly toward argument mode.",
     "url": "https://gbnews.com/",
     "canonicalKey": "gbnews.com",
     "aliases": [],
@@ -1851,7 +1851,7 @@
   {
     "id": "indiatimes-com",
     "name": "indiatimes.com",
-    "description": "",
+    "description": "Indiatimes covers Indian news, entertainment, lifestyle, technology, and viral stories. It is a broad digital bazaar where serious headlines and internet curiosities share the same escalator.",
     "url": "https://indiatimes.com/",
     "canonicalKey": "indiatimes.com",
     "aliases": [],
@@ -1871,7 +1871,7 @@
   {
     "id": "metro-co-uk",
     "name": "metro.co.uk",
-    "description": "",
+    "description": "Metro covers UK news, entertainment, lifestyle, sport, and viral stories. It is commuter-friendly news for people who need the world summarized before the next stop.",
     "url": "https://metro.co.uk/",
     "canonicalKey": "metro.co.uk",
     "aliases": [],
@@ -1911,7 +1911,7 @@
   {
     "id": "rawstory-com",
     "name": "rawstory.com",
-    "description": "",
+    "description": "Raw Story covers U.S. politics, media, and breaking news with a progressive tilt. It follows the outrage economy closely, which is useful because the economy keeps opening new branches.",
     "url": "https://rawstory.com/",
     "canonicalKey": "rawstory.com",
     "aliases": [],
@@ -2050,7 +2050,7 @@
   {
     "id": "algemeiner-com",
     "name": "algemeiner.com",
-    "description": "",
+    "description": "The Algemeiner covers Jewish news, Israel, antisemitism, opinion, and international affairs. It follows a serious beat where context is not optional equipment.",
     "url": "https://algemeiner.com/",
     "canonicalKey": "algemeiner.com",
     "aliases": [],
@@ -2069,7 +2069,7 @@
   {
     "id": "atr-org",
     "name": "atr.org",
-    "description": "",
+    "description": "Americans for Tax Reform covers tax policy, government spending, regulation, and conservative fiscal advocacy. It watches taxes the way most people watch smoke alarms.",
     "url": "https://atr.org/",
     "canonicalKey": "atr.org",
     "aliases": [],
@@ -2107,7 +2107,7 @@
   {
     "id": "blog-youtube",
     "name": "blog.youtube",
-    "description": "",
+    "description": "The YouTube Blog publishes platform updates, creator news, product changes, and policy announcements. It is where the world's biggest video site explains what just moved under everyone's feet.",
     "url": "https://blog.youtube/",
     "canonicalKey": "blog.youtube",
     "aliases": [],
@@ -2164,7 +2164,7 @@
   {
     "id": "comicbook-com",
     "name": "comicbook.com",
-    "description": "",
+    "description": "ComicBook.com covers comics, superhero films, television, gaming, anime, and pop culture. It treats fandom news with the seriousness of diplomacy, which honestly fits the stakes online.",
     "url": "https://comicbook.com/",
     "canonicalKey": "comicbook.com",
     "aliases": [],
@@ -2202,7 +2202,7 @@
   {
     "id": "dailycallernewsfoundation-org",
     "name": "dailycallernewsfoundation.org",
-    "description": "",
+    "description": "The Daily Caller News Foundation publishes conservative-leaning investigative reporting, politics, and policy coverage. It is the nonprofit cousin at the news table, still very much part of the conversation.",
     "url": "https://dailycallernewsfoundation.org/",
     "canonicalKey": "dailycallernewsfoundation.org",
     "aliases": [],
@@ -2240,7 +2240,7 @@
   {
     "id": "deseret-com",
     "name": "deseret.com",
-    "description": "",
+    "description": "Deseret News covers Utah, national news, family, faith, politics, and culture. It brings regional perspective to national arguments that could often use a calmer room.",
     "url": "https://deseret.com/",
     "canonicalKey": "deseret.com",
     "aliases": [],
@@ -2259,7 +2259,7 @@
   {
     "id": "dexerto-com",
     "name": "dexerto.com",
-    "description": "",
+    "description": "Dexerto covers gaming, esports, creators, streaming, and internet culture. It is a newsroom for the part of the internet where careers can launch from a headset and a camera.",
     "url": "https://dexerto.com/",
     "canonicalKey": "dexerto.com",
     "aliases": [],
@@ -2278,7 +2278,7 @@
   {
     "id": "esquire-com",
     "name": "esquire.com",
-    "description": "",
+    "description": "Esquire covers style, culture, politics, entertainment, food, and men's lifestyle. It can move from tailoring to constitutional anxiety without loosening its tie.",
     "url": "https://esquire.com/",
     "canonicalKey": "esquire.com",
     "aliases": [],
@@ -2316,7 +2316,7 @@
   {
     "id": "fire-org",
     "name": "fire.org",
-    "description": "",
+    "description": "FIRE covers free speech, campus rights, civil liberties, and legal advocacy. It watches speech rules closely, because apparently the First Amendment also needs tech support.",
     "url": "https://fire.org/",
     "canonicalKey": "fire.org",
     "aliases": [],
@@ -2335,7 +2335,7 @@
   {
     "id": "fox10phoenix-com",
     "name": "fox10phoenix.com",
-    "description": "",
+    "description": "FOX 10 Phoenix covers Phoenix-area news, weather, traffic, crime, and local stories. It is local TV news online, where the desert heat and civic drama both get live updates.",
     "url": "https://fox10phoenix.com/",
     "canonicalKey": "fox10phoenix.com",
     "aliases": [],
@@ -2354,7 +2354,7 @@
   {
     "id": "freebeacon-com",
     "name": "freebeacon.com",
-    "description": "",
+    "description": "The Washington Free Beacon covers politics, policy, national security, and media from a conservative perspective. It treats Washington like a target-rich environment, which is not exactly unfair.",
     "url": "https://freebeacon.com/",
     "canonicalKey": "freebeacon.com",
     "aliases": [],
@@ -2392,7 +2392,7 @@
   {
     "id": "hindustantimes-com",
     "name": "hindustantimes.com",
-    "description": "",
+    "description": "Hindustan Times covers Indian news, world affairs, politics, business, entertainment, and sport. It is a major Indian news source with the range to make one homepage feel like a whole country talking at once.",
     "url": "https://hindustantimes.com/",
     "canonicalKey": "hindustantimes.com",
     "aliases": [],
@@ -2411,7 +2411,7 @@
   {
     "id": "hotair-com",
     "name": "hotair.com",
-    "description": "",
+    "description": "Hot Air covers conservative politics, elections, media, and culture. It delivers commentary with the energy of a debate already warmed up and looking for a microphone.",
     "url": "https://hotair.com/",
     "canonicalKey": "hotair.com",
     "aliases": [],
@@ -2430,7 +2430,7 @@
   {
     "id": "ign-com",
     "name": "ign.com",
-    "description": "",
+    "description": "IGN covers video games, movies, television, comics, and entertainment reviews. It is where release dates and fan expectations enter negotiations under bright studio lighting.",
     "url": "https://ign.com/",
     "canonicalKey": "ign.com",
     "aliases": [],
@@ -2449,7 +2449,7 @@
   {
     "id": "indianexpress-com",
     "name": "indianexpress.com",
-    "description": "",
+    "description": "The Indian Express covers Indian news, politics, business, opinion, entertainment, and investigations. It brings newspaper depth to a digital news cycle that rarely waits for anyone to finish a paragraph.",
     "url": "https://indianexpress.com/",
     "canonicalKey": "indianexpress.com",
     "aliases": [],
@@ -2468,7 +2468,7 @@
   {
     "id": "insideradio-com",
     "name": "insideradio.com",
-    "description": "",
+    "description": "Inside Radio covers radio industry news, advertising, broadcasting, podcasts, and station business. It tracks the medium everyone keeps declaring dead right before listening to it in traffic.",
     "url": "https://insideradio.com/",
     "canonicalKey": "insideradio.com",
     "aliases": [],
@@ -2487,7 +2487,7 @@
   {
     "id": "iphoneincanada-ca",
     "name": "iphoneincanada.ca",
-    "description": "",
+    "description": "iPhone in Canada covers Apple, mobile carriers, apps, smart home tech, and Canadian technology deals. It is useful when the global tech story needs a maple-leaf price tag.",
     "url": "https://iphoneincanada.ca/",
     "canonicalKey": "iphoneincanada.ca",
     "aliases": [],
@@ -2506,7 +2506,7 @@
   {
     "id": "justjared-com",
     "name": "justjared.com",
-    "description": "",
+    "description": "Just Jared covers celebrity news, entertainment, fashion, and pop-culture sightings. It is the red-carpet side entrance of the internet, and the cameras are already rolling.",
     "url": "https://justjared.com/",
     "canonicalKey": "justjared.com",
     "aliases": [],
@@ -2525,7 +2525,7 @@
   {
     "id": "knightcolumbia-org",
     "name": "knightcolumbia.org",
-    "description": "",
+    "description": "The Knight First Amendment Institute at Columbia University covers free speech, press freedom, and First Amendment litigation and research. It is where constitutional law puts on reading glasses and gets to work.",
     "url": "https://knightcolumbia.org/",
     "canonicalKey": "knightcolumbia.org",
     "aliases": [],
@@ -2544,7 +2544,7 @@
   {
     "id": "livemint-com",
     "name": "livemint.com",
-    "description": "",
+    "description": "Mint covers Indian business, markets, economy, personal finance, technology, and policy. It follows money and policy closely enough to make a budget speech feel like live sports.",
     "url": "https://livemint.com/",
     "canonicalKey": "livemint.com",
     "aliases": [],
@@ -2582,7 +2582,7 @@
   {
     "id": "mediagazer-com",
     "name": "mediagazer.com",
-    "description": "",
+    "description": "Mediagazer aggregates media industry news, journalism coverage, and press-business conversations. It is the news about the news, which sounds recursive because it absolutely is.",
     "url": "https://mediagazer.com/",
     "canonicalKey": "mediagazer.com",
     "aliases": [],
@@ -2620,7 +2620,7 @@
   {
     "id": "msn-com",
     "name": "msn.com",
-    "description": "",
+    "description": "MSN aggregates news, weather, entertainment, finance, and lifestyle stories from a wide range of publishers. It is the web portal that never really left, quietly proving the 1990s had a point.",
     "url": "https://msn.com/",
     "canonicalKey": "msn.com",
     "aliases": [],
@@ -2658,7 +2658,7 @@
   {
     "id": "newsbusters-org",
     "name": "newsbusters.org",
-    "description": "",
+    "description": "NewsBusters covers media criticism and political commentary from a conservative perspective. It watches the press with a stopwatch and a highlighter, which is one way to spend a democracy.",
     "url": "https://newsbusters.org/",
     "canonicalKey": "newsbusters.org",
     "aliases": [],
@@ -2677,7 +2677,7 @@
   {
     "id": "nymag-com",
     "name": "nymag.com",
-    "description": "",
+    "description": "New York Magazine covers politics, culture, fashion, food, entertainment, and city life. It understands that everything is a trend eventually, especially the things denying it.",
     "url": "https://nymag.com/",
     "canonicalKey": "nymag.com",
     "aliases": [],
@@ -2696,7 +2696,7 @@
   {
     "id": "publicknowledge-org",
     "name": "publicknowledge.org",
-    "description": "",
+    "description": "Public Knowledge covers technology policy, digital rights, competition, copyright, and consumer advocacy. It reads telecom policy so the rest of us can keep pretending acronyms are optional.",
     "url": "https://publicknowledge.org/",
     "canonicalKey": "publicknowledge.org",
     "aliases": [],
@@ -2715,7 +2715,7 @@
   {
     "id": "redstate-com",
     "name": "redstate.com",
-    "description": "",
+    "description": "RedState covers conservative politics, opinion, elections, and culture. It treats the news cycle like a group chat that has already chosen a side.",
     "url": "https://redstate.com/",
     "canonicalKey": "redstate.com",
     "aliases": [],
@@ -2734,7 +2734,7 @@
   {
     "id": "rollcall-com",
     "name": "rollcall.com",
-    "description": "",
+    "description": "Roll Call covers Congress, campaigns, policy, and the machinery of Washington. It is for people who know the real drama often happens in committees with terrible room lighting.",
     "url": "https://rollcall.com/",
     "canonicalKey": "rollcall.com",
     "aliases": [],
@@ -2772,7 +2772,7 @@
   {
     "id": "rte-ie",
     "name": "rte.ie",
-    "description": "",
+    "description": "RTÉ is Ireland's public-service broadcaster, covering news, sport, culture, radio, television, and live programming. It is the national media hub where politics and weather both get the full treatment.",
     "url": "https://rte.ie/",
     "canonicalKey": "rte.ie",
     "aliases": [],
@@ -2791,7 +2791,7 @@
   {
     "id": "salon-com",
     "name": "salon.com",
-    "description": "",
+    "description": "Salon covers politics, culture, science, and opinion from a progressive perspective. It leans into argument with the confidence of a dinner guest who brought sources.",
     "url": "https://salon.com/",
     "canonicalKey": "salon.com",
     "aliases": [],
@@ -2810,7 +2810,7 @@
   {
     "id": "scrippsnews-com",
     "name": "scrippsnews.com",
-    "description": "",
+    "description": "Scripps News covers national news, politics, weather, health, and explainers across the United States. It aims for straight-ahead coverage in a media climate that keeps trying to invent fog machines.",
     "url": "https://scrippsnews.com/",
     "canonicalKey": "scrippsnews.com",
     "aliases": [],
@@ -2829,7 +2829,7 @@
   {
     "id": "senate-gov",
     "name": "senate.gov",
-    "description": "",
+    "description": "Senate.gov is the official website of the United States Senate, with member information, legislation, committees, votes, and public records. It is democracy's paperwork drawer, and yes, the drawer is very full.",
     "url": "https://senate.gov/",
     "canonicalKey": "senate.gov",
     "aliases": [],
@@ -2848,7 +2848,7 @@
   {
     "id": "standard-co-uk",
     "name": "standard.co.uk",
-    "description": "",
+    "description": "The Standard covers London news, UK politics, culture, lifestyle, and entertainment. It reports from a city where property prices, theater reviews, and mayoral politics all seem personally connected.",
     "url": "https://standard.co.uk/",
     "canonicalKey": "standard.co.uk",
     "aliases": [],
@@ -2867,7 +2867,7 @@
   {
     "id": "streamscharts-com",
     "name": "streamscharts.com",
-    "description": "",
+    "description": "Streams Charts covers livestreaming analytics, creator rankings, esports viewership, and platform data. It turns online watching into charts, because even vibes now have dashboards.",
     "url": "https://streamscharts.com/",
     "canonicalKey": "streamscharts.com",
     "aliases": [],
@@ -2886,7 +2886,7 @@
   {
     "id": "techtimes-com",
     "name": "techtimes.com",
-    "description": "",
+    "description": "Tech Times covers technology news, science, gadgets, health tech, and digital culture. It reports on the shiny new thing while keeping one eye on whether the shiny thing works.",
     "url": "https://techtimes.com/",
     "canonicalKey": "techtimes.com",
     "aliases": [],
@@ -2905,7 +2905,7 @@
   {
     "id": "telecompaper-com",
     "name": "telecompaper.com",
-    "description": "",
+    "description": "Telecompaper covers telecommunications, broadband, mobile operators, regulation, and telecom market data. It follows the pipes and spectrum that make the internet feel like magic until the bill arrives.",
     "url": "https://telecompaper.com/",
     "canonicalKey": "telecompaper.com",
     "aliases": [],
@@ -2924,7 +2924,7 @@
   {
     "id": "the-decoder-com",
     "name": "the-decoder.com",
-    "description": "",
+    "description": "THE DECODER covers artificial intelligence news, research, tools, and industry developments. It tracks AI like a fast-moving lab notebook with a public address system.",
     "url": "https://the-decoder.com/",
     "canonicalKey": "the-decoder.com",
     "aliases": [],
@@ -2943,7 +2943,7 @@
   {
     "id": "the-independent-com",
     "name": "the-independent.com",
-    "description": "",
+    "description": "The Independent U.S. covers American news, politics, culture, and opinion from The Independent. It brings the brand's fast digital news style to the U.S. argument factory.",
     "url": "https://the-independent.com/",
     "canonicalKey": "the-independent.com",
     "aliases": [],
@@ -2962,7 +2962,7 @@
   {
     "id": "thedesk-net",
     "name": "thedesk.net",
-    "description": "",
+    "description": "The Desk covers media, television, streaming, broadcasting, and telecom news. It watches the business behind the screen, where the real drama is often in carriage fees.",
     "url": "https://thedesk.net/",
     "canonicalKey": "thedesk.net",
     "aliases": [],
@@ -2981,7 +2981,7 @@
   {
     "id": "themoscowtimes-com",
     "name": "themoscowtimes.com",
-    "description": "",
+    "description": "The Moscow Times covers Russian news, politics, business, culture, and international reaction in English. It is useful because Russia rarely fits inside a simple headline.",
     "url": "https://themoscowtimes.com/",
     "canonicalKey": "themoscowtimes.com",
     "aliases": [],
@@ -3000,7 +3000,7 @@
   {
     "id": "thenation-com",
     "name": "thenation.com",
-    "description": "",
+    "description": "The Nation covers politics, culture, social justice, and opinion from a progressive magazine perspective. It has been arguing in paragraphs for so long the archives probably have biceps.",
     "url": "https://thenation.com/",
     "canonicalKey": "thenation.com",
     "aliases": [],
@@ -3019,7 +3019,7 @@
   {
     "id": "thenextweb-com",
     "name": "thenextweb.com",
-    "description": "",
+    "description": "The Next Web covers technology, startups, business, gadgets, and digital culture. It follows the tech world with the energy of a conference badge that refuses to expire.",
     "url": "https://thenextweb.com/",
     "canonicalKey": "thenextweb.com",
     "aliases": [],
@@ -3038,7 +3038,7 @@
   {
     "id": "thesun-co-uk",
     "name": "thesun.co.uk",
-    "description": "",
+    "description": "The Sun covers UK news, sport, celebrity, lifestyle, and entertainment with tabloid speed. It is built for headlines that arrive wearing running shoes.",
     "url": "https://thesun.co.uk/",
     "canonicalKey": "thesun.co.uk",
     "aliases": [],
@@ -3076,7 +3076,7 @@
   {
     "id": "upi-com",
     "name": "upi.com",
-    "description": "",
+    "description": "UPI covers national and international news, politics, science, health, and entertainment. It is a wire-service veteran still sending dispatches while the internet reinvents urgency every morning.",
     "url": "https://upi.com/",
     "canonicalKey": "upi.com",
     "aliases": [],
@@ -3095,7 +3095,7 @@
   {
     "id": "winbuzzer-com",
     "name": "winbuzzer.com",
-    "description": "",
+    "description": "WinBuzzer covers Microsoft, Windows, AI, enterprise software, and technology industry news. It is for readers who believe software updates are a beat, a lifestyle, and sometimes a warning.",
     "url": "https://winbuzzer.com/",
     "canonicalKey": "winbuzzer.com",
     "aliases": [],
@@ -3114,7 +3114,7 @@
   {
     "id": "zeteo-com",
     "name": "zeteo.com",
-    "description": "",
+    "description": "Zeteo publishes political commentary, interviews, and analysis from independent journalists and commentators. It is opinion media with the volume up, but the citations still matter.",
     "url": "https://zeteo.com/",
     "canonicalKey": "zeteo.com",
     "aliases": [],
@@ -3169,7 +3169,7 @@
   {
     "id": "aa-com-tr",
     "name": "aa.com.tr",
-    "description": "",
+    "description": "Anadolu Agency covers Turkish, regional, and global news as Turkey's state-run news agency. It is a wire service with a front-row seat to a very busy neighborhood.",
     "url": "https://aa.com.tr/",
     "canonicalKey": "aa.com.tr",
     "aliases": [],
@@ -3205,7 +3205,7 @@
   {
     "id": "adn-com",
     "name": "adn.com",
-    "description": "",
+    "description": "Anchorage Daily News covers Alaska news, politics, business, outdoors, and local life. It proves local news can involve city hall, oil policy, and a weather map that means business.",
     "url": "https://adn.com/",
     "canonicalKey": "adn.com",
     "aliases": [],
@@ -3223,7 +3223,7 @@
   {
     "id": "adobe-com",
     "name": "adobe.com",
-    "description": "",
+    "description": "Adobe's site covers its creative, document, marketing, and AI software products and company news. It is where creativity meets subscription management, a modern love story with invoices.",
     "url": "https://adobe.com/",
     "canonicalKey": "adobe.com",
     "aliases": [],
@@ -3259,7 +3259,7 @@
   {
     "id": "africanews-com",
     "name": "africanews.com",
-    "description": "",
+    "description": "Africanews covers African and international news, politics, business, culture, and current affairs. It helps correct the internet's bad habit of treating a continent like a footnote.",
     "url": "https://africanews.com/",
     "canonicalKey": "africanews.com",
     "aliases": [],
@@ -3277,7 +3277,7 @@
   {
     "id": "alaskapublic-org",
     "name": "alaskapublic.org",
-    "description": "",
+    "description": "Alaska Public Media covers Alaska news, public radio, public television, culture, and community stories. It brings public-service reporting to a state where distance is not a metaphor.",
     "url": "https://alaskapublic.org/",
     "canonicalKey": "alaskapublic.org",
     "aliases": [],
@@ -3295,7 +3295,7 @@
   {
     "id": "allrisenews-com",
     "name": "allrisenews.com",
-    "description": "",
+    "description": "All Rise News covers law, courts, politics, and democracy through reporting and commentary. It is courtroom-focused journalism with the gavel close enough to hear the echo.",
     "url": "https://allrisenews.com/",
     "canonicalKey": "allrisenews.com",
     "aliases": [],
@@ -3313,7 +3313,7 @@
   {
     "id": "alreporter-com",
     "name": "alreporter.com",
-    "description": "",
+    "description": "Alabama Political Reporter covers Alabama politics, policy, elections, and state government. It watches state power where the meetings are smaller but the consequences are not.",
     "url": "https://alreporter.com/",
     "canonicalKey": "alreporter.com",
     "aliases": [],
@@ -3349,7 +3349,7 @@
   {
     "id": "americaamerica-news",
     "name": "americaamerica.news",
-    "description": "",
+    "description": "America, America is a newsletter-style site covering U.S. politics, democracy, and civic life. It has the energy of a citizen staring at the headlines and refusing to look away.",
     "url": "https://americaamerica.news/",
     "canonicalKey": "americaamerica.news",
     "aliases": [],
@@ -3367,7 +3367,7 @@
   {
     "id": "americanbazaaronline-com",
     "name": "americanbazaaronline.com",
-    "description": "",
+    "description": "The American Bazaar covers Indian American news, business, immigration, politics, and community affairs. It connects diaspora stories to the policy and business beats that shape them.",
     "url": "https://americanbazaaronline.com/",
     "canonicalKey": "americanbazaaronline.com",
     "aliases": [],
@@ -3385,7 +3385,7 @@
   {
     "id": "amgreatness-com",
     "name": "amgreatness.com",
-    "description": "",
+    "description": "American Greatness covers conservative politics, culture, opinion, and national affairs. It writes from the part of the internet where every news cycle is also an ideological stress test.",
     "url": "https://amgreatness.com/",
     "canonicalKey": "amgreatness.com",
     "aliases": [],
@@ -3421,7 +3421,7 @@
   {
     "id": "arabianbusiness-com",
     "name": "arabianbusiness.com",
-    "description": "",
+    "description": "Arabian Business covers Middle East business, markets, real estate, technology, and executive news. It follows a region where growth stories tend to arrive with skyline renderings.",
     "url": "https://arabianbusiness.com/",
     "canonicalKey": "arabianbusiness.com",
     "aliases": [],
@@ -3439,7 +3439,7 @@
   {
     "id": "arabnews-com",
     "name": "arabnews.com",
-    "description": "",
+    "description": "Arab News covers Saudi Arabia, the Middle East, world affairs, business, and culture. It provides regional context where the headlines are rarely simple and never short on consequence.",
     "url": "https://arabnews.com/",
     "canonicalKey": "arabnews.com",
     "aliases": [],
@@ -3457,7 +3457,7 @@
   {
     "id": "asia-nikkei-com",
     "name": "asia.nikkei.com",
-    "description": "",
+    "description": "Nikkei Asia covers Asian business, markets, politics, technology, and regional affairs. It is especially good when the economic story has more moving parts than a factory floor.",
     "url": "https://asia.nikkei.com/",
     "canonicalKey": "asia.nikkei.com",
     "aliases": [],
@@ -3475,7 +3475,7 @@
   {
     "id": "asiae-co-kr",
     "name": "asiae.co.kr",
-    "description": "",
+    "description": "Asia Economy covers South Korean business, markets, politics, technology, and general news. It is a Korean business newsroom for readers who like their economic news with regional context.",
     "url": "https://asiae.co.kr/",
     "canonicalKey": "asiae.co.kr",
     "aliases": [],
@@ -3493,7 +3493,7 @@
   {
     "id": "asiaone-com",
     "name": "asiaone.com",
-    "description": "",
+    "description": "AsiaOne covers Singapore and regional news, lifestyle, entertainment, travel, and digital culture. It is a broad Asian newsstand online, with headlines moving at commuter speed.",
     "url": "https://asiaone.com/",
     "canonicalKey": "asiaone.com",
     "aliases": [],
@@ -3529,7 +3529,7 @@
   {
     "id": "aus-social",
     "name": "aus.social",
-    "description": "",
+    "description": "aus.social is a Mastodon server for Australian and Australia-adjacent social web conversations. It is a decentralized town square with a southern-hemisphere accent.",
     "url": "https://aus.social/",
     "canonicalKey": "aus.social",
     "aliases": [],
@@ -3547,7 +3547,7 @@
   {
     "id": "automotiveworld-com",
     "name": "automotiveworld.com",
-    "description": "",
+    "description": "Automotive World covers auto industry news, mobility, electric vehicles, supply chains, and transportation technology. It follows the car business as it turns into a software problem on wheels.",
     "url": "https://automotiveworld.com/",
     "canonicalKey": "automotiveworld.com",
     "aliases": [],
@@ -3583,7 +3583,7 @@
   {
     "id": "awfulannouncing-com",
     "name": "awfulannouncing.com",
-    "description": "",
+    "description": "Awful Announcing covers sports media, broadcasting, announcers, rights deals, and sports TV culture. It watches the people who talk over games, which is more important than anyone wants to admit.",
     "url": "https://awfulannouncing.com/",
     "canonicalKey": "awfulannouncing.com",
     "aliases": [],
@@ -3601,7 +3601,7 @@
   {
     "id": "barchart-com",
     "name": "barchart.com",
-    "description": "",
+    "description": "Barchart provides market data, commodity prices, charts, investing tools, and financial news. It is where numbers line up neatly before immediately making investors nervous.",
     "url": "https://barchart.com/",
     "canonicalKey": "barchart.com",
     "aliases": [],
@@ -3619,7 +3619,7 @@
   {
     "id": "barrettmedia-com",
     "name": "barrettmedia.com",
-    "description": "",
+    "description": "Barrett Media covers radio, sports media, news media, podcasting, and broadcasting business. It follows the people behind the microphones before the microphones become headlines.",
     "url": "https://barrettmedia.com/",
     "canonicalKey": "barrettmedia.com",
     "aliases": [],
@@ -3673,7 +3673,7 @@
   {
     "id": "benzinga-com",
     "name": "benzinga.com",
-    "description": "",
+    "description": "Benzinga covers markets, stocks, trading ideas, finance news, and investing tools. It makes Wall Street feel like a dashboard where every number is trying to get your attention.",
     "url": "https://benzinga.com/",
     "canonicalKey": "benzinga.com",
     "aliases": [],
@@ -3691,7 +3691,7 @@
   {
     "id": "betakit-com",
     "name": "betakit.com",
-    "description": "",
+    "description": "BetaKit covers Canadian startups, technology, venture capital, and innovation policy. It tracks the Canadian tech scene without pretending every pitch deck is a national emergency.",
     "url": "https://betakit.com/",
     "canonicalKey": "betakit.com",
     "aliases": [],
@@ -3709,7 +3709,7 @@
   {
     "id": "bild-de",
     "name": "bild.de",
-    "description": "",
+    "description": "Bild covers German news, politics, sport, celebrity, and tabloid stories. It is German mass-market news with the headline volume set somewhere near stadium announcer.",
     "url": "https://bild.de/",
     "canonicalKey": "bild.de",
     "aliases": [],
@@ -3745,7 +3745,7 @@
   {
     "id": "bitcoinmagazine-com",
     "name": "bitcoinmagazine.com",
-    "description": "",
+    "description": "Bitcoin Magazine covers Bitcoin news, markets, mining, policy, and cryptocurrency culture. It is for readers who believe monetary policy should come with hash rates.",
     "url": "https://bitcoinmagazine.com/",
     "canonicalKey": "bitcoinmagazine.com",
     "aliases": [],
@@ -3781,7 +3781,7 @@
   {
     "id": "blockonomi-com",
     "name": "blockonomi.com",
-    "description": "",
+    "description": "Blockonomi covers cryptocurrency, blockchain projects, markets, and digital-asset guides. It explains crypto with enough structure to make the chaos look like it brought a notebook.",
     "url": "https://blockonomi.com/",
     "canonicalKey": "blockonomi.com",
     "aliases": [],
@@ -3817,7 +3817,7 @@
   {
     "id": "blogspot-com",
     "name": "blogspot.com",
-    "description": "",
+    "description": "Blogspot is Google's legacy blogging platform hosting personal sites, commentary, and independent writing. It is old-school web publishing that somehow still pops up in the news cycle wearing cargo shorts.",
     "url": "https://blogspot.com/",
     "canonicalKey": "blogspot.com",
     "aliases": [],
@@ -3835,7 +3835,7 @@
   {
     "id": "bloomberglaw-com",
     "name": "bloomberglaw.com",
-    "description": "",
+    "description": "Bloomberg Law covers legal news, litigation, regulation, courts, and legal business analysis. It is where statutes and spreadsheets meet for a very billable lunch.",
     "url": "https://bloomberglaw.com/",
     "canonicalKey": "bloomberglaw.com",
     "aliases": [],
@@ -3853,7 +3853,7 @@
   {
     "id": "bnnbloomberg-ca",
     "name": "bnnbloomberg.ca",
-    "description": "",
+    "description": "BNN Bloomberg covers Canadian business news, markets, investing, and economic analysis. It watches Bay Street with the intensity usually reserved for playoff hockey.",
     "url": "https://bnnbloomberg.ca/",
     "canonicalKey": "bnnbloomberg.ca",
     "aliases": [],
@@ -3871,7 +3871,7 @@
   {
     "id": "boston-com",
     "name": "boston.com",
-    "description": "",
+    "description": "Boston.com covers Boston-area news, sports, culture, food, travel, and local life. It understands that in Boston, weather, traffic, and sports are all civic institutions.",
     "url": "https://boston.com/",
     "canonicalKey": "boston.com",
     "aliases": [],
@@ -3889,7 +3889,7 @@
   {
     "id": "bostonherald-com",
     "name": "bostonherald.com",
-    "description": "",
+    "description": "The Boston Herald covers Boston news, politics, sports, crime, and opinion. It brings tabloid muscle to a city that has never lacked for opinions.",
     "url": "https://bostonherald.com/",
     "canonicalKey": "bostonherald.com",
     "aliases": [],
@@ -3907,7 +3907,7 @@
   {
     "id": "boxofficemojo-com",
     "name": "boxofficemojo.com",
-    "description": "",
+    "description": "Box Office Mojo tracks movie box office grosses, release data, charts, and film performance. It is where Hollywood's dreams become numbers and the numbers become arguments.",
     "url": "https://boxofficemojo.com/",
     "canonicalKey": "boxofficemojo.com",
     "aliases": [],
@@ -3925,7 +3925,7 @@
   {
     "id": "brusselssignal-eu",
     "name": "brusselssignal.eu",
-    "description": "",
+    "description": "Brussels Signal covers European politics, policy, institutions, and public affairs from Brussels. It is for readers who know the quiet EU meeting often matters more than the loud press conference.",
     "url": "https://brusselssignal.eu/",
     "canonicalKey": "brusselssignal.eu",
     "aliases": [],
@@ -3943,7 +3943,7 @@
   {
     "id": "businessamlive-com",
     "name": "businessamlive.com",
-    "description": "",
+    "description": "Business a.m. covers Nigerian and African business, markets, finance, economy, and corporate news. It follows money and policy in a region too often reduced to lazy headlines.",
     "url": "https://businessamlive.com/",
     "canonicalKey": "businessamlive.com",
     "aliases": [],
@@ -3961,7 +3961,7 @@
   {
     "id": "businessinsider-in",
     "name": "businessinsider.in",
-    "description": "",
+    "description": "Business Insider India covers Indian business, startups, technology, markets, and workplace trends. It puts the global Insider playbook through an Indian business lens.",
     "url": "https://businessinsider.in/",
     "canonicalKey": "businessinsider.in",
     "aliases": [],
@@ -3979,7 +3979,7 @@
   {
     "id": "businesstimes-com-sg",
     "name": "businesstimes.com.sg",
-    "description": "",
+    "description": "The Business Times covers Singapore business, finance, markets, real estate, and economic news. It is a practical read for anyone tracking money in one of Asia's busiest crossroads.",
     "url": "https://businesstimes.com.sg/",
     "canonicalKey": "businesstimes.com.sg",
     "aliases": [],
@@ -3997,7 +3997,7 @@
   {
     "id": "businesstoday-in",
     "name": "businesstoday.in",
-    "description": "",
+    "description": "Business Today India covers Indian business, economy, markets, companies, and personal finance. It treats corporate India like a daily scoreboard with policy footnotes.",
     "url": "https://businesstoday.in/",
     "canonicalKey": "businesstoday.in",
     "aliases": [],
@@ -4015,7 +4015,7 @@
   {
     "id": "businesswire-com",
     "name": "businesswire.com",
-    "description": "",
+    "description": "Business Wire distributes press releases, regulatory disclosures, investor news, and corporate announcements. It is where companies speak in polished paragraphs before the market starts asking questions.",
     "url": "https://businesswire.com/",
     "canonicalKey": "businesswire.com",
     "aliases": [],
@@ -4033,7 +4033,7 @@
   {
     "id": "c-span-org",
     "name": "c-span.org",
-    "description": "",
+    "description": "C-SPAN provides live and archived coverage of U.S. government, public affairs, congressional hearings, and political events. It is democracy without the laugh track, which is both noble and occasionally a sleep study.",
     "url": "https://c-span.org/",
     "canonicalKey": "c-span.org",
     "aliases": [],
@@ -4051,7 +4051,7 @@
   {
     "id": "calcalistech-com",
     "name": "calcalistech.com",
-    "description": "",
+    "description": "CTech by Calcalist covers Israeli technology, startups, venture capital, and innovation news in English. It follows a startup ecosystem where the pitch deck often has geopolitical footnotes.",
     "url": "https://calcalistech.com/",
     "canonicalKey": "calcalistech.com",
     "aliases": [],
@@ -4069,7 +4069,7 @@
   {
     "id": "capacityglobal-com",
     "name": "capacityglobal.com",
-    "description": "",
+    "description": "Capacity covers digital infrastructure, telecoms, data centers, subsea cables, and connectivity markets. It watches the internet's plumbing, which is less glamorous than apps and far more important.",
     "url": "https://capacityglobal.com/",
     "canonicalKey": "capacityglobal.com",
     "aliases": [],
@@ -4087,7 +4087,7 @@
   {
     "id": "cbslocal-com",
     "name": "cbslocal.com",
-    "description": "",
+    "description": "CBS Local connects local CBS station coverage across U.S. markets, including news, weather, traffic, and community stories. It is network localism with a lot of ZIP codes under one umbrella.",
     "url": "https://cbslocal.com/",
     "canonicalKey": "cbslocal.com",
     "aliases": [],
@@ -4105,7 +4105,7 @@
   {
     "id": "chainalysis-com",
     "name": "chainalysis.com",
-    "description": "",
+    "description": "Chainalysis covers blockchain analytics, crypto compliance, digital-asset crime, and market research. It follows the money on-chain, where the ledger is public and the excuses are creative.",
     "url": "https://chainalysis.com/",
     "canonicalKey": "chainalysis.com",
     "aliases": [],
@@ -4123,7 +4123,7 @@
   {
     "id": "channelnewsasia-com",
     "name": "channelnewsasia.com",
-    "description": "",
+    "description": "CNA covers Singapore, Asia, world news, business, commentary, and documentaries. It offers a regional lens that is useful when global headlines forget Asia is not a sidebar.",
     "url": "https://channelnewsasia.com/",
     "canonicalKey": "channelnewsasia.com",
     "aliases": [],
@@ -4141,7 +4141,7 @@
   {
     "id": "chicagotribune-com",
     "name": "chicagotribune.com",
-    "description": "",
+    "description": "The Chicago Tribune covers Chicago news, Illinois politics, sports, business, food, and culture. It reports from a city where weather, transit, and corruption have all earned beat status.",
     "url": "https://chicagotribune.com/",
     "canonicalKey": "chicagotribune.com",
     "aliases": [],
@@ -4159,7 +4159,7 @@
   {
     "id": "christianpost-com",
     "name": "christianpost.com",
-    "description": "",
+    "description": "The Christian Post covers religion, church news, politics, culture, and global Christian communities. It follows faith in public life, where theology and headlines keep sharing a calendar.",
     "url": "https://christianpost.com/",
     "canonicalKey": "christianpost.com",
     "aliases": [],
@@ -4177,7 +4177,7 @@
   {
     "id": "citationneeded-news",
     "name": "citationneeded.news",
-    "description": "",
+    "description": "Citation Needed covers technology, cryptocurrency, web platforms, and accountability reporting from Molly White. It is what happens when internet optimism meets a very sharp bibliography.",
     "url": "https://citationneeded.news/",
     "canonicalKey": "citationneeded.news",
     "aliases": [],
@@ -4195,7 +4195,7 @@
   {
     "id": "clarin-com",
     "name": "clarin.com",
-    "description": "",
+    "description": "Clarín covers Argentine news, politics, economy, sports, culture, and international affairs. It is one of Argentina's major news voices, where politics rarely enters quietly.",
     "url": "https://clarin.com/",
     "canonicalKey": "clarin.com",
     "aliases": [],
@@ -4213,7 +4213,7 @@
   {
     "id": "cleantechnica-com",
     "name": "cleantechnica.com",
-    "description": "",
+    "description": "CleanTechnica covers clean energy, electric vehicles, climate technology, and sustainable transportation. It watches the green transition with charts, optimism, and a healthy suspicion of press releases.",
     "url": "https://cleantechnica.com/",
     "canonicalKey": "cleantechnica.com",
     "aliases": [],
@@ -4249,7 +4249,7 @@
   {
     "id": "coingape-com",
     "name": "coingape.com",
-    "description": "",
+    "description": "CoinGape covers cryptocurrency markets, blockchain news, regulation, and digital-asset analysis. It is crypto coverage for readers who like their volatility with timestamps.",
     "url": "https://coingape.com/",
     "canonicalKey": "coingape.com",
     "aliases": [],
@@ -4267,7 +4267,7 @@
   {
     "id": "coinpedia-org",
     "name": "coinpedia.org",
-    "description": "",
+    "description": "Coinpedia covers cryptocurrency news, blockchain projects, market updates, and crypto explainers. It tries to give the digital-asset circus a filing system.",
     "url": "https://coinpedia.org/",
     "canonicalKey": "coinpedia.org",
     "aliases": [],
@@ -4285,7 +4285,7 @@
   {
     "id": "cointelegraph-com",
     "name": "cointelegraph.com",
-    "description": "",
+    "description": "Cointelegraph covers cryptocurrency news, blockchain technology, markets, Web3, and regulation. It is where digital money news arrives wearing neon glasses and carrying charts.",
     "url": "https://cointelegraph.com/",
     "canonicalKey": "cointelegraph.com",
     "aliases": [],
@@ -4303,7 +4303,7 @@
   {
     "id": "completemusicupdate-com",
     "name": "completemusicupdate.com",
-    "description": "",
+    "description": "Complete Music Update covers music industry news, rights, labels, streaming, touring, and policy. It follows the business behind the songs, where every chorus eventually meets a contract.",
     "url": "https://completemusicupdate.com/",
     "canonicalKey": "completemusicupdate.com",
     "aliases": [],
@@ -4321,7 +4321,7 @@
   {
     "id": "constellationr-com",
     "name": "constellationr.com",
-    "description": "",
+    "description": "Constellation Research covers enterprise technology, digital transformation, AI, data, and business strategy. It brings analyst-world structure to the place where software budgets go to multiply.",
     "url": "https://constellationr.com/",
     "canonicalKey": "constellationr.com",
     "aliases": [],
@@ -4339,7 +4339,7 @@
   {
     "id": "courthousenews-com",
     "name": "courthousenews.com",
-    "description": "",
+    "description": "Courthouse News Service covers lawsuits, courts, legal filings, and justice news across the United States. It knows the first draft of history is sometimes a complaint stamped by a clerk.",
     "url": "https://courthousenews.com/",
     "canonicalKey": "courthousenews.com",
     "aliases": [],
@@ -4357,7 +4357,7 @@
   {
     "id": "coverager-com",
     "name": "coverager.com",
-    "description": "",
+    "description": "Coverager covers insurance technology, insurtech startups, carriers, and insurance industry news. It makes risk management feel almost lively, which is not easy work.",
     "url": "https://coverager.com/",
     "canonicalKey": "coverager.com",
     "aliases": [],
@@ -4375,7 +4375,7 @@
   {
     "id": "crazydaysandnights-net",
     "name": "crazydaysandnights.net",
-    "description": "",
+    "description": "Crazy Days and Nights publishes celebrity gossip, entertainment rumors, and blind items. It is the internet's showbiz whisper network, wearing sunglasses indoors.",
     "url": "https://crazydaysandnights.net/",
     "canonicalKey": "crazydaysandnights.net",
     "aliases": [],
@@ -4393,7 +4393,7 @@
   {
     "id": "crooksandliars-com",
     "name": "crooksandliars.com",
-    "description": "",
+    "description": "Crooks and Liars covers progressive politics, media criticism, video clips, and commentary. It watches the cable-news circus with a notebook and very little patience.",
     "url": "https://crooksandliars.com/",
     "canonicalKey": "crooksandliars.com",
     "aliases": [],
@@ -4411,7 +4411,7 @@
   {
     "id": "crunchbase-com",
     "name": "crunchbase.com",
-    "description": "",
+    "description": "Crunchbase tracks companies, startups, funding rounds, investors, acquisitions, and business profiles. It is the business-card drawer of the startup economy, except searchable and mildly addictive.",
     "url": "https://crunchbase.com/",
     "canonicalKey": "crunchbase.com",
     "aliases": [],
@@ -4429,7 +4429,7 @@
   {
     "id": "crypto-news",
     "name": "crypto.news",
-    "description": "",
+    "description": "crypto.news covers cryptocurrency markets, blockchain technology, digital assets, regulation, and Web3. It reports from a sector where every headline seems to come with a wallet address.",
     "url": "https://crypto.news/",
     "canonicalKey": "crypto.news",
     "aliases": [],
@@ -4447,7 +4447,7 @@
   {
     "id": "cryptotimes-io",
     "name": "cryptotimes.io",
-    "description": "",
+    "description": "The Crypto Times covers cryptocurrency, blockchain, markets, Web3, and digital-asset regulation. It follows the tokens, the trends, and the optimism that refuses to read the room.",
     "url": "https://cryptotimes.io/",
     "canonicalKey": "cryptotimes.io",
     "aliases": [],
@@ -4465,7 +4465,7 @@
   {
     "id": "csoonline-com",
     "name": "csoonline.com",
-    "description": "",
+    "description": "CSO Online covers cybersecurity leadership, risk management, data protection, and enterprise security. It is for people whose job is explaining that passwords are not a strategy.",
     "url": "https://csoonline.com/",
     "canonicalKey": "csoonline.com",
     "aliases": [],
@@ -4483,7 +4483,7 @@
   {
     "id": "cyberdaily-au",
     "name": "cyberdaily.au",
-    "description": "",
+    "description": "Cyber Daily covers Australian cybersecurity news, policy, threats, defense, and technology. It is a local read on a global problem that absolutely ignores borders.",
     "url": "https://cyberdaily.au/",
     "canonicalKey": "cyberdaily.au",
     "aliases": [],
@@ -4501,7 +4501,7 @@
   {
     "id": "cyberscoop-com",
     "name": "cyberscoop.com",
-    "description": "",
+    "description": "CyberScoop covers cybersecurity policy, threats, intelligence, and technology. It watches the digital threat landscape so the rest of us can at least panic with better nouns.",
     "url": "https://cyberscoop.com/",
     "canonicalKey": "cyberscoop.com",
     "aliases": [],
@@ -4519,7 +4519,7 @@
   {
     "id": "cybersecuritydive-com",
     "name": "cybersecuritydive.com",
-    "description": "",
+    "description": "Cybersecurity Dive covers security strategy, breaches, regulation, enterprise risk, and cyber industry news. It turns a noisy threat landscape into a boardroom-readable briefing.",
     "url": "https://cybersecuritydive.com/",
     "canonicalKey": "cybersecuritydive.com",
     "aliases": [],
@@ -4537,7 +4537,7 @@
   {
     "id": "cybersecuritynews-com",
     "name": "cybersecuritynews.com",
-    "description": "",
+    "description": "Cyber Security News covers vulnerabilities, malware, breaches, threat research, and security updates. It is a daily reminder that somewhere, someone clicked the wrong thing.",
     "url": "https://cybersecuritynews.com/",
     "canonicalKey": "cybersecuritynews.com",
     "aliases": [],
@@ -4555,7 +4555,7 @@
   {
     "id": "dailyecho-co-uk",
     "name": "dailyecho.co.uk",
-    "description": "",
+    "description": "The Daily Echo covers Southampton, Hampshire, local news, sport, crime, and community stories. It is local journalism where council decisions and football results can share the same urgency.",
     "url": "https://dailyecho.co.uk/",
     "canonicalKey": "dailyecho.co.uk",
     "aliases": [],
@@ -4573,7 +4573,7 @@
   {
     "id": "dailykos-com",
     "name": "dailykos.com",
-    "description": "",
+    "description": "Daily Kos covers progressive politics, elections, activism, and community commentary. It is where grassroots energy meets the refresh button and a very busy comments section.",
     "url": "https://dailykos.com/",
     "canonicalKey": "dailykos.com",
     "aliases": [],
@@ -4591,7 +4591,7 @@
   {
     "id": "dailynews-com",
     "name": "dailynews.com",
-    "description": "",
+    "description": "Daily News covers Southern California news, politics, crime, sports, and local life. It is local journalism for a region where the traffic report deserves its own constitution.",
     "url": "https://dailynews.com/",
     "canonicalKey": "dailynews.com",
     "aliases": [],
@@ -4609,7 +4609,7 @@
   {
     "id": "dailysabah-com",
     "name": "dailysabah.com",
-    "description": "",
+    "description": "Daily Sabah covers Turkey, regional affairs, world news, business, culture, and opinion. It offers a Turkish perspective on a news map that is rarely short on plot.",
     "url": "https://dailysabah.com/",
     "canonicalKey": "dailysabah.com",
     "aliases": [],
@@ -4627,7 +4627,7 @@
   {
     "id": "dailysignal-com",
     "name": "dailysignal.com",
-    "description": "",
+    "description": "The Daily Signal covers politics, policy, culture, and commentary from a conservative perspective. It turns think-tank arguments into daily news fuel.",
     "url": "https://dailysignal.com/",
     "canonicalKey": "dailysignal.com",
     "aliases": [],
@@ -4645,7 +4645,7 @@
   {
     "id": "dailystar-co-uk",
     "name": "dailystar.co.uk",
-    "description": "",
+    "description": "Daily Star covers UK news, celebrity, sport, lifestyle, and tabloid stories. It is the part of the newsstand that has never met a quiet headline it trusted.",
     "url": "https://dailystar.co.uk/",
     "canonicalKey": "dailystar.co.uk",
     "aliases": [],
@@ -4663,7 +4663,7 @@
   {
     "id": "dailywire-com",
     "name": "dailywire.com",
-    "description": "",
+    "description": "The Daily Wire covers conservative politics, culture, entertainment, and opinion. It treats the news cycle like a courtroom where every headline is exhibit A.",
     "url": "https://dailywire.com/",
     "canonicalKey": "dailywire.com",
     "aliases": [],
@@ -4681,7 +4681,7 @@
   {
     "id": "dallasexpress-com",
     "name": "dallasexpress.com",
-    "description": "",
+    "description": "The Dallas Express covers Dallas-area news, local government, business, crime, and community stories. It keeps one eye on city hall and the other on the neighborhood fallout.",
     "url": "https://dallasexpress.com/",
     "canonicalKey": "dallasexpress.com",
     "aliases": [],
@@ -4699,7 +4699,7 @@
   {
     "id": "datacenterdynamics-com",
     "name": "datacenterdynamics.com",
-    "description": "",
+    "description": "Data Center Dynamics covers data centers, cloud infrastructure, energy, networking, and digital infrastructure. It reports from the server rooms that make the internet look effortless.",
     "url": "https://datacenterdynamics.com/",
     "canonicalKey": "datacenterdynamics.com",
     "aliases": [],
@@ -4717,7 +4717,7 @@
   {
     "id": "decrypt-co",
     "name": "decrypt.co",
-    "description": "",
+    "description": "Decrypt covers cryptocurrency, blockchain, Web3, digital culture, and emerging technology. It explains crypto without pretending the jargon arrived from a normal place.",
     "url": "https://decrypt.co/",
     "canonicalKey": "decrypt.co",
     "aliases": [],
@@ -4735,7 +4735,7 @@
   {
     "id": "democracydocket-com",
     "name": "democracydocket.com",
-    "description": "",
+    "description": "Democracy Docket covers voting rights, election law, redistricting, and democracy litigation. It follows the legal plumbing of elections, which turns out to be where many floods begin.",
     "url": "https://democracydocket.com/",
     "canonicalKey": "democracydocket.com",
     "aliases": [],
@@ -4753,7 +4753,7 @@
   {
     "id": "developer-tech-com",
     "name": "developer-tech.com",
-    "description": "",
+    "description": "Developer Tech covers software development, APIs, cloud, DevOps, AI, and developer tools. It is for people whose workday can be improved or ruined by one dependency update.",
     "url": "https://developer-tech.com/",
     "canonicalKey": "developer-tech.com",
     "aliases": [],
@@ -4771,7 +4771,7 @@
   {
     "id": "digg-com",
     "name": "digg.com",
-    "description": "",
+    "description": "Digg surfaces trending stories, videos, and internet curiosities from across the web. It is an old internet name still performing the ancient ritual of finding what everyone is clicking.",
     "url": "https://digg.com/",
     "canonicalKey": "digg.com",
     "aliases": [],
@@ -4789,7 +4789,7 @@
   {
     "id": "digiday-com",
     "name": "digiday.com",
-    "description": "",
+    "description": "Digiday covers digital media, advertising, marketing, platforms, and publishing business. It understands that the internet's business model is mostly committees arguing with dashboards.",
     "url": "https://digiday.com/",
     "canonicalKey": "digiday.com",
     "aliases": [],
@@ -4807,7 +4807,7 @@
   {
     "id": "digit-in",
     "name": "digit.in",
-    "description": "",
+    "description": "Digit covers consumer technology, gadgets, reviews, gaming, apps, and Indian tech news. It is where specifications go to be translated into buying decisions and occasional gadget envy.",
     "url": "https://digit.in/",
     "canonicalKey": "digit.in",
     "aliases": [],
@@ -4825,7 +4825,7 @@
   {
     "id": "digitalmusicnews-com",
     "name": "digitalmusicnews.com",
-    "description": "",
+    "description": "Digital Music News covers music streaming, labels, artists, copyright, touring, and music business. It follows the industry where every play count eventually becomes an argument about royalties.",
     "url": "https://digitalmusicnews.com/",
     "canonicalKey": "digitalmusicnews.com",
     "aliases": [],
@@ -4843,7 +4843,7 @@
   {
     "id": "digitaltrends-com",
     "name": "digitaltrends.com",
-    "description": "",
+    "description": "Digital Trends covers consumer tech, gadgets, computing, entertainment, cars, and product reviews. It is a buying-guide universe where every device is auditioning for your desk.",
     "url": "https://digitaltrends.com/",
     "canonicalKey": "digitaltrends.com",
     "aliases": [],
@@ -4861,7 +4861,7 @@
   {
     "id": "digitimes-com",
     "name": "digitimes.com",
-    "description": "",
+    "description": "DigiTimes covers semiconductor, electronics, supply chain, hardware, and Asian technology industry news. It watches the component pipeline where tomorrow's gadget rumors usually begin.",
     "url": "https://digitimes.com/",
     "canonicalKey": "digitimes.com",
     "aliases": [],
@@ -4879,7 +4879,7 @@
   {
     "id": "dnyuz-com",
     "name": "dnyuz.com",
-    "description": "",
+    "description": "DNyuz republishes and aggregates news and commentary from major outlets across politics, culture, and business. It is a shortcut through the newsstand, with the usual internet caveat about shortcuts.",
     "url": "https://dnyuz.com/",
     "canonicalKey": "dnyuz.com",
     "aliases": [],
@@ -4897,7 +4897,7 @@
   {
     "id": "dropsitenews-com",
     "name": "dropsitenews.com",
-    "description": "",
+    "description": "Drop Site News publishes investigative reporting and analysis on politics, war, media, and power. It has the posture of a newsroom that suspects the official story left something important in the car.",
     "url": "https://dropsitenews.com/",
     "canonicalKey": "dropsitenews.com",
     "aliases": [],
@@ -4933,7 +4933,7 @@
   {
     "id": "elmundo-es",
     "name": "elmundo.es",
-    "description": "",
+    "description": "El Mundo covers Spanish news, politics, economy, culture, sport, and international affairs. It brings a major Spanish newsroom's view to a world that is rarely short on drama.",
     "url": "https://elmundo.es/",
     "canonicalKey": "elmundo.es",
     "aliases": [],
@@ -4951,7 +4951,7 @@
   {
     "id": "elnuevodia-com",
     "name": "elnuevodia.com",
-    "description": "",
+    "description": "El Nuevo Día covers Puerto Rico news, politics, business, sport, entertainment, and culture. It is a central news source for an island where local stories often have national consequences.",
     "url": "https://elnuevodia.com/",
     "canonicalKey": "elnuevodia.com",
     "aliases": [],
@@ -4969,7 +4969,7 @@
   {
     "id": "elpasotimes-com",
     "name": "elpasotimes.com",
-    "description": "",
+    "description": "El Paso Times covers El Paso news, border issues, politics, business, sports, and local life. It reports from a city where local stories often cross more than one kind of line.",
     "url": "https://elpasotimes.com/",
     "canonicalKey": "elpasotimes.com",
     "aliases": [],
@@ -4987,7 +4987,7 @@
   {
     "id": "en-people-cn",
     "name": "en.people.cn",
-    "description": "",
+    "description": "People's Daily Online English covers Chinese and international news, politics, business, and culture. It offers China's official news perspective, which is useful context if read with both eyes open.",
     "url": "https://en.people.cn/",
     "canonicalKey": "en.people.cn",
     "aliases": [],
@@ -5023,7 +5023,7 @@
   {
     "id": "english-kyodonews-net",
     "name": "english.kyodonews.net",
-    "description": "",
+    "description": "Kyodo News English covers Japanese and international news, politics, business, and society. It is a wire-service view from Japan, which means the details often arrive before the hot takes.",
     "url": "https://english.kyodonews.net/",
     "canonicalKey": "english.kyodonews.net",
     "aliases": [],
@@ -5041,7 +5041,7 @@
   {
     "id": "english-yonhapnews-co-kr",
     "name": "english.yonhapnews.co.kr",
-    "description": "",
+    "description": "Yonhap News English covers South Korean news, politics, business, technology, and international affairs. It is Korea's wire-service window for readers who want the headline and the regional context.",
     "url": "https://english.yonhapnews.co.kr/",
     "canonicalKey": "english.yonhapnews.co.kr",
     "aliases": [],
@@ -5059,7 +5059,7 @@
   {
     "id": "entrackr-com",
     "name": "entrackr.com",
-    "description": "",
+    "description": "Entrackr covers Indian startups, venture capital, funding, technology companies, and entrepreneurship. It follows the pitch decks, term sheets, and pivots of India's startup economy.",
     "url": "https://entrackr.com/",
     "canonicalKey": "entrackr.com",
     "aliases": [],
@@ -5077,7 +5077,7 @@
   {
     "id": "entrepreneur-com",
     "name": "entrepreneur.com",
-    "description": "",
+    "description": "Entrepreneur covers startups, small business, leadership, franchising, marketing, and founder advice. It is where business ambition gets a checklist and occasionally a motivational poster.",
     "url": "https://entrepreneur.com/",
     "canonicalKey": "entrepreneur.com",
     "aliases": [],
@@ -5095,7 +5095,7 @@
   {
     "id": "eonline-com",
     "name": "eonline.com",
-    "description": "",
+    "description": "E! Online covers celebrity news, entertainment, fashion, television, and pop culture. It is the red carpet translated into a feed, with fewer velvet ropes and more push alerts.",
     "url": "https://eonline.com/",
     "canonicalKey": "eonline.com",
     "aliases": [],
@@ -5131,7 +5131,7 @@
   {
     "id": "europa-eu",
     "name": "europa.eu",
-    "description": "",
+    "description": "Europa.eu is the official web portal of the European Union, covering EU institutions, policies, law, and services. It is Brussels in website form, which means the details are important and the acronyms are inevitable.",
     "url": "https://europa.eu/",
     "canonicalKey": "europa.eu",
     "aliases": [],
@@ -5149,7 +5149,7 @@
   {
     "id": "express-co-uk",
     "name": "express.co.uk",
-    "description": "",
+    "description": "The Express covers UK news, politics, royal stories, sport, finance, and lifestyle. It delivers British tabloid urgency with weather maps never far from the stage.",
     "url": "https://express.co.uk/",
     "canonicalKey": "express.co.uk",
     "aliases": [],
@@ -5167,7 +5167,7 @@
   {
     "id": "extratv-com",
     "name": "extratv.com",
-    "description": "",
+    "description": "Extra covers celebrity news, entertainment interviews, television, film, and pop culture. It is showbiz coverage with the microphone already extended.",
     "url": "https://extratv.com/",
     "canonicalKey": "extratv.com",
     "aliases": [],
@@ -5203,7 +5203,7 @@
   {
     "id": "fierce-network-com",
     "name": "fierce-network.com",
-    "description": "",
+    "description": "Fierce Network covers telecom, wireless, broadband, cloud, and digital infrastructure. It follows the networks everyone depends on and almost no one thanks until they stop working.",
     "url": "https://fierce-network.com/",
     "canonicalKey": "fierce-network.com",
     "aliases": [],
@@ -5221,7 +5221,7 @@
   {
     "id": "finimize-com",
     "name": "finimize.com",
-    "description": "",
+    "description": "Finimize explains markets, investing, business news, and personal finance for everyday investors. It tries to make finance sound less like a locked room full of jargon.",
     "url": "https://finimize.com/",
     "canonicalKey": "finimize.com",
     "aliases": [],
@@ -5239,7 +5239,7 @@
   {
     "id": "finsmes-com",
     "name": "finsmes.com",
-    "description": "",
+    "description": "FinSMEs covers startup funding, venture capital, private equity, acquisitions, and business growth. It is a steady ticker for people who hear funding round and reach for a spreadsheet.",
     "url": "https://finsmes.com/",
     "canonicalKey": "finsmes.com",
     "aliases": [],
@@ -5257,7 +5257,7 @@
   {
     "id": "forbesmiddleeast-com",
     "name": "forbesmiddleeast.com",
-    "description": "",
+    "description": "Forbes Middle East covers regional business, finance, leadership, entrepreneurship, and economic news. It brings Forbes-style lists and deal watching to a region very fond of scale.",
     "url": "https://forbesmiddleeast.com/",
     "canonicalKey": "forbesmiddleeast.com",
     "aliases": [],
@@ -5275,7 +5275,7 @@
   {
     "id": "foreignpolicy-com",
     "name": "foreignpolicy.com",
-    "description": "",
+    "description": "Foreign Policy covers geopolitics, diplomacy, security, global economics, and international analysis. It is for readers who want the map, the motive, and the uncomfortable second-order effect.",
     "url": "https://foreignpolicy.com/",
     "canonicalKey": "foreignpolicy.com",
     "aliases": [],
@@ -5311,7 +5311,7 @@
   {
     "id": "fortuneindia-com",
     "name": "fortuneindia.com",
-    "description": "",
+    "description": "Fortune India covers Indian business, markets, leadership, companies, and economic policy. It follows corporate India with the kind of seriousness usually reserved for quarterly results.",
     "url": "https://fortuneindia.com/",
     "canonicalKey": "fortuneindia.com",
     "aliases": [],
@@ -5329,7 +5329,7 @@
   {
     "id": "fosstodon-org",
     "name": "fosstodon.org",
-    "description": "",
+    "description": "Fosstodon is a Mastodon community for free and open-source software conversations. It is social media for people who can explain licensing before breakfast.",
     "url": "https://fosstodon.org/",
     "canonicalKey": "fosstodon.org",
     "aliases": [],
@@ -5347,7 +5347,7 @@
   {
     "id": "fox2detroit-com",
     "name": "fox2detroit.com",
-    "description": "",
+    "description": "FOX 2 Detroit covers Detroit-area news, weather, traffic, crime, and local stories. It is local TV news online, where weather alerts and city politics both move quickly.",
     "url": "https://fox2detroit.com/",
     "canonicalKey": "fox2detroit.com",
     "aliases": [],
@@ -5365,7 +5365,7 @@
   {
     "id": "fox4news-com",
     "name": "fox4news.com",
-    "description": "",
+    "description": "FOX 4 News covers Dallas-Fort Worth news, weather, traffic, crime, and local affairs. It keeps the Metroplex briefed, which is no small geographic assignment.",
     "url": "https://fox4news.com/",
     "canonicalKey": "fox4news.com",
     "aliases": [],
@@ -5383,7 +5383,7 @@
   {
     "id": "fox5dc-com",
     "name": "fox5dc.com",
-    "description": "",
+    "description": "FOX 5 DC covers Washington, D.C. area news, weather, traffic, politics, and local stories. It reports from a region where local news can become national news before lunch.",
     "url": "https://fox5dc.com/",
     "canonicalKey": "fox5dc.com",
     "aliases": [],
@@ -5401,7 +5401,7 @@
   {
     "id": "fox8live-com",
     "name": "fox8live.com",
-    "description": "",
+    "description": "FOX 8 Live covers New Orleans and Louisiana news, weather, sports, and community stories. It serves a city where weather, culture, and politics all arrive with personality.",
     "url": "https://fox8live.com/",
     "canonicalKey": "fox8live.com",
     "aliases": [],
@@ -5419,7 +5419,7 @@
   {
     "id": "foxbusiness-com",
     "name": "foxbusiness.com",
-    "description": "",
+    "description": "FOX Business covers markets, personal finance, business news, companies, and economic policy. It brings cable-business energy to the eternal question of what the market thinks now.",
     "url": "https://foxbusiness.com/",
     "canonicalKey": "foxbusiness.com",
     "aliases": [],
@@ -5437,7 +5437,7 @@
   {
     "id": "freep-com",
     "name": "freep.com",
-    "description": "",
+    "description": "The Detroit Free Press covers Michigan news, Detroit politics, autos, sports, business, and culture. It understands that in Detroit, the car beat is never just about cars.",
     "url": "https://freep.com/",
     "canonicalKey": "freep.com",
     "aliases": [],
@@ -5455,7 +5455,7 @@
   {
     "id": "freestar-com",
     "name": "freestar.com",
-    "description": "",
+    "description": "Freestar covers digital advertising technology, publisher monetization, and ad management services. It lives in the part of the web where page views become invoices.",
     "url": "https://freestar.com/",
     "canonicalKey": "freestar.com",
     "aliases": [],
@@ -5473,7 +5473,7 @@
   {
     "id": "futurism-com",
     "name": "futurism.com",
-    "description": "",
+    "description": "Futurism covers science, technology, AI, space, and future-facing research. It watches tomorrow approach with equal parts wonder and raised eyebrow.",
     "url": "https://futurism.com/",
     "canonicalKey": "futurism.com",
     "aliases": [],
@@ -5491,7 +5491,7 @@
   {
     "id": "gameranx-com",
     "name": "gameranx.com",
-    "description": "",
+    "description": "Gameranx covers video game news, reviews, lists, releases, and gaming culture. It is built for players who want the headline, the trailer, and a reason to clear hard-drive space.",
     "url": "https://gameranx.com/",
     "canonicalKey": "gameranx.com",
     "aliases": [],
@@ -5527,7 +5527,7 @@
   {
     "id": "geekwire-com",
     "name": "geekwire.com",
-    "description": "",
+    "description": "GeekWire covers Seattle technology, startups, Amazon, Microsoft, venture capital, and innovation. It reports from a tech ecosystem where coffee, cloud computing, and ambition all run hot.",
     "url": "https://geekwire.com/",
     "canonicalKey": "geekwire.com",
     "aliases": [],
@@ -5545,7 +5545,7 @@
   {
     "id": "gelliottmorris-com",
     "name": "gelliottmorris.com",
-    "description": "",
+    "description": "G. Elliott Morris publishes political data analysis, polling commentary, and election forecasting. It is where the campaign vibes are politely asked to show their math.",
     "url": "https://gelliottmorris.com/",
     "canonicalKey": "gelliottmorris.com",
     "aliases": [],
@@ -5581,7 +5581,7 @@
   {
     "id": "globalbankingandfinance-com",
     "name": "globalbankingandfinance.com",
-    "description": "",
+    "description": "Global Banking & Finance Review covers finance, banking, markets, fintech, business, and economic news. It follows money through enough institutions to need comfortable shoes.",
     "url": "https://globalbankingandfinance.com/",
     "canonicalKey": "globalbankingandfinance.com",
     "aliases": [],
@@ -5599,7 +5599,7 @@
   {
     "id": "globeandmail-com",
     "name": "globeandmail.com",
-    "description": "",
+    "description": "The Globe and Mail covers Canadian and international news, business, politics, and culture. It is Canada's national broadsheet voice, which means the seriousness arrives with winter tires.",
     "url": "https://globeandmail.com/",
     "canonicalKey": "globeandmail.com",
     "aliases": [],
@@ -5617,7 +5617,7 @@
   {
     "id": "gmanetwork-com",
     "name": "gmanetwork.com",
-    "description": "",
+    "description": "GMA Network covers Philippine news, entertainment, public affairs, lifestyle, and video from a major broadcaster. It brings TV newsroom reach to a country with no shortage of breaking stories.",
     "url": "https://gmanetwork.com/",
     "canonicalKey": "gmanetwork.com",
     "aliases": [],
@@ -5635,7 +5635,7 @@
   {
     "id": "gothamist-com",
     "name": "gothamist.com",
-    "description": "",
+    "description": "Gothamist covers New York City news, politics, transit, food, arts, and local life. It knows that in New York, even a sidewalk can become a public policy debate.",
     "url": "https://gothamist.com/",
     "canonicalKey": "gothamist.com",
     "aliases": [],
@@ -5653,7 +5653,7 @@
   {
     "id": "grabien-com",
     "name": "grabien.com",
-    "description": "",
+    "description": "Grabien indexes news clips, media transcripts, political video, and broadcast moments. It is a highlight reel for the part of public life that keeps talking into cameras.",
     "url": "https://grabien.com/",
     "canonicalKey": "grabien.com",
     "aliases": [],
@@ -5671,7 +5671,7 @@
   {
     "id": "guardian-co-uk",
     "name": "guardian.co.uk",
-    "description": "",
+    "description": "The Guardian UK domain points to Guardian journalism on news, politics, culture, sport, and opinion. It is a legacy web address still carrying plenty of reporting mileage.",
     "url": "https://guardian.co.uk/",
     "canonicalKey": "guardian.co.uk",
     "aliases": [],
@@ -5689,7 +5689,7 @@
   {
     "id": "gvwire-com",
     "name": "gvwire.com",
-    "description": "",
+    "description": "GV Wire covers Fresno, the Central Valley, California politics, business, and community news. It is local journalism from a region too often treated as flyover by people who should know better.",
     "url": "https://gvwire.com/",
     "canonicalKey": "gvwire.com",
     "aliases": [],
@@ -5725,7 +5725,7 @@
   {
     "id": "hackread-com",
     "name": "hackread.com",
-    "description": "",
+    "description": "HackRead covers cybersecurity news, breaches, malware, privacy, and hacking incidents. It is a useful reminder that the internet's front door has a lot of suspicious fingerprints.",
     "url": "https://hackread.com/",
     "canonicalKey": "hackread.com",
     "aliases": [],
@@ -5743,7 +5743,7 @@
   {
     "id": "harpers-org",
     "name": "harpers.org",
-    "description": "",
+    "description": "Harper's Magazine publishes essays, criticism, reporting, fiction, and cultural commentary. It is the literary magazine equivalent of asking the room to please use longer sentences.",
     "url": "https://harpers.org/",
     "canonicalKey": "harpers.org",
     "aliases": [],
@@ -5779,7 +5779,7 @@
   {
     "id": "heraldscotland-com",
     "name": "heraldscotland.com",
-    "description": "",
+    "description": "The Herald covers Scottish news, politics, business, sport, culture, and opinion. It follows Scotland's public life with the confidence of a paper that knows history is still in the room.",
     "url": "https://heraldscotland.com/",
     "canonicalKey": "heraldscotland.com",
     "aliases": [],
@@ -5797,7 +5797,7 @@
   {
     "id": "hollywoodintoto-com",
     "name": "hollywoodintoto.com",
-    "description": "",
+    "description": "Hollywood in Toto covers entertainment, film, television, comedy, and culture from a conservative perspective. It watches Hollywood with popcorn in one hand and a raised eyebrow in the other.",
     "url": "https://hollywoodintoto.com/",
     "canonicalKey": "hollywoodintoto.com",
     "aliases": [],
@@ -5815,7 +5815,7 @@
   {
     "id": "hollywoodlife-com",
     "name": "hollywoodlife.com",
-    "description": "",
+    "description": "HollywoodLife covers celebrity news, entertainment, fashion, relationships, and pop culture. It is the celebrity-news lane where every sighting arrives with dramatic lighting.",
     "url": "https://hollywoodlife.com/",
     "canonicalKey": "hollywoodlife.com",
     "aliases": [],
@@ -5833,7 +5833,7 @@
   {
     "id": "house-gov",
     "name": "house.gov",
-    "description": "",
+    "description": "House.gov is the official website of the U.S. House of Representatives, with member directories, legislation, committees, and public records. It is the institutional homepage for a workplace that turns procedure into endurance sport.",
     "url": "https://house.gov/",
     "canonicalKey": "house.gov",
     "aliases": [],
@@ -5851,7 +5851,7 @@
   {
     "id": "huffingtonpost-co-uk",
     "name": "huffingtonpost.co.uk",
-    "description": "",
+    "description": "HuffPost UK covers British politics, lifestyle, entertainment, opinion, and social issues. It brings the HuffPost mix of outrage, service journalism, and internet fluency across the Atlantic.",
     "url": "https://huffingtonpost.co.uk/",
     "canonicalKey": "huffingtonpost.co.uk",
     "aliases": [],
@@ -5869,7 +5869,7 @@
   {
     "id": "hurriyetdailynews-com",
     "name": "hurriyetdailynews.com",
-    "description": "",
+    "description": "Hürriyet Daily News covers Turkey, regional affairs, politics, business, culture, and opinion in English. It gives international readers a Turkish news lens without requiring them to decode the whole neighborhood alone.",
     "url": "https://hurriyetdailynews.com/",
     "canonicalKey": "hurriyetdailynews.com",
     "aliases": [],
@@ -5905,7 +5905,7 @@
   {
     "id": "inc42-com",
     "name": "inc42.com",
-    "description": "",
+    "description": "Inc42 covers Indian startups, venture capital, technology companies, policy, and entrepreneurship. It follows India's startup ecosystem with the stamina of a founder on demo day.",
     "url": "https://inc42.com/",
     "canonicalKey": "inc42.com",
     "aliases": [],
@@ -5923,7 +5923,7 @@
   {
     "id": "indy100-com",
     "name": "indy100.com",
-    "description": "",
+    "description": "Indy100 covers viral news, politics, entertainment, internet culture, and trending stories. It is The Independent's quicker, more online cousin, and yes, it knows what people are clicking.",
     "url": "https://indy100.com/",
     "canonicalKey": "indy100.com",
     "aliases": [],
@@ -5941,7 +5941,7 @@
   {
     "id": "inquirer-com",
     "name": "inquirer.com",
-    "description": "",
+    "description": "The Philadelphia Inquirer covers Philadelphia news, Pennsylvania politics, sports, business, food, and culture. It reports from a city where local pride has never been accused of subtlety.",
     "url": "https://inquirer.com/",
     "canonicalKey": "inquirer.com",
     "aliases": [],
@@ -5959,7 +5959,7 @@
   {
     "id": "inquirer-net",
     "name": "inquirer.net",
-    "description": "",
+    "description": "Inquirer.net covers Philippine news, politics, business, entertainment, sports, and opinion. It is a major Philippine digital newsroom with a very full national plate.",
     "url": "https://inquirer.net/",
     "canonicalKey": "inquirer.net",
     "aliases": [],
@@ -5977,7 +5977,7 @@
   {
     "id": "interfax-com",
     "name": "interfax.com",
-    "description": "",
+    "description": "Interfax covers Russian and international news, business, politics, and markets through a wire-service model. It is a dispatch-heavy source from a region where context matters deeply.",
     "url": "https://interfax.com/",
     "canonicalKey": "interfax.com",
     "aliases": [],
@@ -5995,7 +5995,7 @@
   {
     "id": "israpundit-org",
     "name": "israpundit.org",
-    "description": "",
+    "description": "Israpundit publishes pro-Israel political commentary, opinion, and Middle East news links. It is a niche politics site with a very specific map on the wall.",
     "url": "https://israpundit.org/",
     "canonicalKey": "israpundit.org",
     "aliases": [],
@@ -6013,7 +6013,7 @@
   {
     "id": "itar-tass-com",
     "name": "itar-tass.com",
-    "description": "",
+    "description": "TASS covers Russian and international news as Russia's state news agency. It is an official-news source best read with context, history, and a sturdy second tab.",
     "url": "https://itar-tass.com/",
     "canonicalKey": "itar-tass.com",
     "aliases": [],
@@ -6031,7 +6031,7 @@
   {
     "id": "itnews-com-au",
     "name": "itnews.com.au",
-    "description": "",
+    "description": "iTnews covers Australian enterprise technology, cybersecurity, cloud, software, and government IT. It watches the systems behind the systems, which is where the budget usually hides.",
     "url": "https://itnews.com.au/",
     "canonicalKey": "itnews.com.au",
     "aliases": [],
@@ -6049,7 +6049,7 @@
   {
     "id": "jewishinsider-com",
     "name": "jewishinsider.com",
-    "description": "",
+    "description": "Jewish Insider covers U.S. politics, Israel, Jewish communities, policy, and public affairs. It follows a beat where community news and geopolitics often share a table.",
     "url": "https://jewishinsider.com/",
     "canonicalKey": "jewishinsider.com",
     "aliases": [],
@@ -6067,7 +6067,7 @@
   {
     "id": "jpost-com",
     "name": "jpost.com",
-    "description": "",
+    "description": "The Jerusalem Post covers Israel, the Middle East, Jewish world news, politics, and opinion. It provides regional coverage where every headline benefits from a map and a memory.",
     "url": "https://jpost.com/",
     "canonicalKey": "jpost.com",
     "aliases": [],
@@ -6085,7 +6085,7 @@
   {
     "id": "justsecurity-org",
     "name": "justsecurity.org",
-    "description": "",
+    "description": "Just Security covers national security, law, foreign policy, human rights, and democracy. It is where legal analysis meets global affairs and asks for citations before lunch.",
     "url": "https://justsecurity.org/",
     "canonicalKey": "justsecurity.org",
     "aliases": [],
@@ -6103,7 +6103,7 @@
   {
     "id": "koreaherald-com",
     "name": "koreaherald.com",
-    "description": "",
+    "description": "The Korea Herald covers South Korean news, business, culture, politics, and international affairs in English. It gives global readers a Korean lens without making them guess the local context.",
     "url": "https://koreaherald.com/",
     "canonicalKey": "koreaherald.com",
     "aliases": [],
@@ -6139,7 +6139,7 @@
   {
     "id": "kscope-io",
     "name": "kscope.io",
-    "description": "",
+    "description": "Kaleidoscope is an SEC and SEDAR research platform for financial filings, analytics, compliance, and market intelligence. It turns regulatory paperwork into something closer to an intelligence dashboard, which is a small public service.",
     "url": "https://kscope.io/",
     "canonicalKey": "kscope.io",
     "aliases": [],
@@ -6157,7 +6157,7 @@
   {
     "id": "ktla-com",
     "name": "ktla.com",
-    "description": "",
+    "description": "KTLA covers Los Angeles news, weather, traffic, entertainment, and local stories. It is Southern California local TV online, where breaking news and freeway reality share a lane.",
     "url": "https://ktla.com/",
     "canonicalKey": "ktla.com",
     "aliases": [],
@@ -6175,7 +6175,7 @@
   {
     "id": "la-prensa-com-mx",
     "name": "la-prensa.com.mx",
-    "description": "",
+    "description": "La Prensa covers Mexican news, crime, politics, sport, entertainment, and local stories. It brings tabloid-style urgency to a news cycle that rarely waits politely.",
     "url": "https://la-prensa.com.mx/",
     "canonicalKey": "la-prensa.com.mx",
     "aliases": [],
@@ -6193,7 +6193,7 @@
   {
     "id": "ladbible-com",
     "name": "ladbible.com",
-    "description": "",
+    "description": "LADbible covers viral news, entertainment, lifestyle, sport, and internet culture. It is the online pub table where every story arrives ready to be shared.",
     "url": "https://ladbible.com/",
     "canonicalKey": "ladbible.com",
     "aliases": [],
@@ -6211,7 +6211,7 @@
   {
     "id": "laist-com",
     "name": "laist.com",
-    "description": "",
+    "description": "LAist covers Los Angeles news, culture, food, transportation, politics, and community life. It reports on a city where every local issue comes with parking considerations.",
     "url": "https://laist.com/",
     "canonicalKey": "laist.com",
     "aliases": [],
@@ -6229,7 +6229,7 @@
   {
     "id": "lawdork-com",
     "name": "lawdork.com",
-    "description": "",
+    "description": "Law Dork covers courts, law, politics, and democracy with legal analysis and commentary. It translates legal procedure into plain-language alarm bells when needed.",
     "url": "https://lawdork.com/",
     "canonicalKey": "lawdork.com",
     "aliases": [],
@@ -6247,7 +6247,7 @@
   {
     "id": "lawyersgunsmoneyblog-com",
     "name": "lawyersgunsmoneyblog.com",
-    "description": "",
+    "description": "Lawyers, Guns & Money is a politics, law, history, and culture blog with progressive commentary. It is old-school blogging with enough institutional memory to make the news feel less amnesiac.",
     "url": "https://lawyersgunsmoneyblog.com/",
     "canonicalKey": "lawyersgunsmoneyblog.com",
     "aliases": [],
@@ -6265,7 +6265,7 @@
   {
     "id": "lefigaro-fr",
     "name": "lefigaro.fr",
-    "description": "",
+    "description": "Le Figaro covers French news, politics, business, culture, international affairs, and opinion. It brings a major French newspaper voice to a world that keeps insisting on being complicated.",
     "url": "https://lefigaro.fr/",
     "canonicalKey": "lefigaro.fr",
     "aliases": [],
@@ -6283,7 +6283,7 @@
   {
     "id": "legalinsurrection-com",
     "name": "legalinsurrection.com",
-    "description": "",
+    "description": "Legal Insurrection covers law, politics, higher education, and culture from a conservative perspective. It treats lawsuits and campus controversies like recurring characters in the same drama.",
     "url": "https://legalinsurrection.com/",
     "canonicalKey": "legalinsurrection.com",
     "aliases": [],
@@ -6301,7 +6301,7 @@
   {
     "id": "lesoir-be",
     "name": "lesoir.be",
-    "description": "",
+    "description": "Le Soir covers Belgian news, politics, culture, business, and international affairs in French. It reports from a country where coalition politics can make chess look brisk.",
     "url": "https://lesoir.be/",
     "canonicalKey": "lesoir.be",
     "aliases": [],
@@ -6319,7 +6319,7 @@
   {
     "id": "lovinmalta-com",
     "name": "lovinmalta.com",
-    "description": "",
+    "description": "Lovin Malta covers Maltese news, politics, culture, lifestyle, food, and community stories. It gives island life the full digital-news treatment, with civic drama never too far away.",
     "url": "https://lovinmalta.com/",
     "canonicalKey": "lovinmalta.com",
     "aliases": [],
@@ -6337,7 +6337,7 @@
   {
     "id": "macdailynews-com",
     "name": "macdailynews.com",
-    "description": "",
+    "description": "MacDailyNews covers Apple news, rumors, product updates, and commentary. It is Apple fandom with a news feed and a very short tolerance for boring hardware cycles.",
     "url": "https://macdailynews.com/",
     "canonicalKey": "macdailynews.com",
     "aliases": [],
@@ -6355,7 +6355,7 @@
   {
     "id": "macobserver-com",
     "name": "macobserver.com",
-    "description": "",
+    "description": "The Mac Observer covers Apple news, analysis, reviews, tips, and product updates. It has watched the Apple ecosystem long enough to know every adapter tells a story.",
     "url": "https://macobserver.com/",
     "canonicalKey": "macobserver.com",
     "aliases": [],
@@ -6391,7 +6391,7 @@
   {
     "id": "mastodon-social",
     "name": "mastodon.social",
-    "description": "",
+    "description": "Mastodon.social is a flagship Mastodon server for decentralized social networking and public posts. It is social media with more escape hatches and fewer central-office vibes.",
     "url": "https://mastodon.social/",
     "canonicalKey": "mastodon.social",
     "aliases": [],
@@ -6409,7 +6409,7 @@
   {
     "id": "mcclatchydc-com",
     "name": "mcclatchydc.com",
-    "description": "",
+    "description": "McClatchy DC covers Washington politics, federal policy, investigations, and national news for the McClatchy network. It watches the capital for readers far beyond the Beltway.",
     "url": "https://mcclatchydc.com/",
     "canonicalKey": "mcclatchydc.com",
     "aliases": [],
@@ -6427,7 +6427,7 @@
   {
     "id": "mercurynews-com",
     "name": "mercurynews.com",
-    "description": "",
+    "description": "The Mercury News covers Silicon Valley, Bay Area news, California politics, sports, business, and technology. It reports from the neighborhood where local zoning and global tech can collide before breakfast.",
     "url": "https://mercurynews.com/",
     "canonicalKey": "mercurynews.com",
     "aliases": [],
@@ -6445,7 +6445,7 @@
   {
     "id": "middleeastmonitor-com",
     "name": "middleeastmonitor.com",
-    "description": "",
+    "description": "Middle East Monitor covers Middle East politics, human rights, conflict, analysis, and opinion. It follows a region where every headline needs history sitting next to it.",
     "url": "https://middleeastmonitor.com/",
     "canonicalKey": "middleeastmonitor.com",
     "aliases": [],
@@ -6463,7 +6463,7 @@
   {
     "id": "military-com",
     "name": "military.com",
-    "description": "",
+    "description": "Military.com covers U.S. military news, benefits, veterans affairs, defense policy, and service-member resources. It is practical reporting for a community where paperwork can matter as much as policy.",
     "url": "https://military.com/",
     "canonicalKey": "military.com",
     "aliases": [],
@@ -6481,7 +6481,7 @@
   {
     "id": "mirror-co-uk",
     "name": "mirror.co.uk",
-    "description": "",
+    "description": "The Mirror covers UK news, politics, sport, celebrity, lifestyle, and opinion. It brings tabloid speed with a populist streak and a very busy front page.",
     "url": "https://mirror.co.uk/",
     "canonicalKey": "mirror.co.uk",
     "aliases": [],
@@ -6499,7 +6499,7 @@
   {
     "id": "mmafighting-com",
     "name": "mmafighting.com",
-    "description": "",
+    "description": "MMA Fighting covers mixed martial arts news, UFC, Bellator, fighter interviews, analysis, and fight coverage. It treats combat sports like an ecosystem, not just a highlight reel.",
     "url": "https://mmafighting.com/",
     "canonicalKey": "mmafighting.com",
     "aliases": [],
@@ -6517,7 +6517,7 @@
   {
     "id": "mockpaperscissors-com",
     "name": "mockpaperscissors.com",
-    "description": "",
+    "description": "Mock Paper Scissors is a long-running political blog mixing progressive commentary, snark, media links, and activism resources. It is proudly scrappy internet commentary, with the sharp elbows left in on purpose.",
     "url": "https://mockpaperscissors.com/",
     "canonicalKey": "mockpaperscissors.com",
     "aliases": [],
@@ -6535,7 +6535,7 @@
   {
     "id": "moderndiplomacy-eu",
     "name": "moderndiplomacy.eu",
-    "description": "",
+    "description": "Modern Diplomacy publishes analysis on international relations, geopolitics, security, economics, and global affairs. It is a policy essay room where the maps are always open.",
     "url": "https://moderndiplomacy.eu/",
     "canonicalKey": "moderndiplomacy.eu",
     "aliases": [],
@@ -6553,7 +6553,7 @@
   {
     "id": "moneycontrol-com",
     "name": "moneycontrol.com",
-    "description": "",
+    "description": "Moneycontrol covers Indian markets, business news, personal finance, stocks, economy, and investing data. It is where market watchers go when the numbers refuse to sit quietly.",
     "url": "https://moneycontrol.com/",
     "canonicalKey": "moneycontrol.com",
     "aliases": [],
@@ -6589,7 +6589,7 @@
   {
     "id": "ms-now",
     "name": "ms.now",
-    "description": "",
+    "description": "MS NOW covers breaking news, politics, opinion, live TV, and shows from the rebranded MSNBC newsroom. It is cable-news energy with a new domain and the same appetite for Washington drama.",
     "url": "https://ms.now/",
     "canonicalKey": "ms.now",
     "aliases": [],
@@ -6607,7 +6607,7 @@
   {
     "id": "mstdn-social",
     "name": "mstdn.social",
-    "description": "",
+    "description": "mstdn.social is a Mastodon server for decentralized social networking and public conversation. It is one of the open-web town squares, complete with all the charm and moderation questions that implies.",
     "url": "https://mstdn.social/",
     "canonicalKey": "mstdn.social",
     "aliases": [],
@@ -6625,7 +6625,7 @@
   {
     "id": "musically-com",
     "name": "musically.com",
-    "description": "",
+    "description": "Music Ally covers digital music, streaming, labels, marketing, and music technology. It follows the music business where songs meet platforms and the platforms bring spreadsheets.",
     "url": "https://musically.com/",
     "canonicalKey": "musically.com",
     "aliases": [],
@@ -6643,7 +6643,7 @@
   {
     "id": "musicbusinessworldwide-com",
     "name": "musicbusinessworldwide.com",
-    "description": "",
+    "description": "Music Business Worldwide covers labels, publishing, streaming, rights, executives, and global music industry news. It knows the music business is a hits game with a lot of contracts backstage.",
     "url": "https://musicbusinessworldwide.com/",
     "canonicalKey": "musicbusinessworldwide.com",
     "aliases": [],
@@ -6661,7 +6661,7 @@
   {
     "id": "nasdaq-com",
     "name": "nasdaq.com",
-    "description": "",
+    "description": "Nasdaq covers markets, stocks, investing data, IPOs, and financial news. It is where tickers go to look official while everyone pretends volatility is a personality trait.",
     "url": "https://nasdaq.com/",
     "canonicalKey": "nasdaq.com",
     "aliases": [],
@@ -6679,7 +6679,7 @@
   {
     "id": "nbcbayarea-com",
     "name": "nbcbayarea.com",
-    "description": "",
+    "description": "NBC Bay Area covers San Francisco Bay Area news, weather, traffic, investigations, and local stories. It reports from a region where tech money and local problems keep sharing the same map.",
     "url": "https://nbcbayarea.com/",
     "canonicalKey": "nbcbayarea.com",
     "aliases": [],
@@ -6697,7 +6697,7 @@
   {
     "id": "ndtvprofit-com",
     "name": "ndtvprofit.com",
-    "description": "",
+    "description": "NDTV Profit covers Indian business, markets, economy, companies, and finance news. It tracks the money beat with enough urgency to make closing bells feel theatrical.",
     "url": "https://ndtvprofit.com/",
     "canonicalKey": "ndtvprofit.com",
     "aliases": [],
@@ -6715,7 +6715,7 @@
   {
     "id": "neowin-net",
     "name": "neowin.net",
-    "description": "",
+    "description": "Neowin covers Microsoft, Windows, software, hardware, gaming, and technology news. It is a tech-news site for people who notice build numbers and mean it.",
     "url": "https://neowin.net/",
     "canonicalKey": "neowin.net",
     "aliases": [],
@@ -6733,7 +6733,7 @@
   {
     "id": "nerds-xyz",
     "name": "nerds.xyz",
-    "description": "",
+    "description": "NERDS.xyz covers technology news, gadgets, gaming, AI, and internet culture for a tech-enthusiast audience. It is exactly as advertised: real tech news for people who do not mind being called nerds.",
     "url": "https://nerds.xyz/",
     "canonicalKey": "nerds.xyz",
     "aliases": [],
@@ -6751,7 +6751,7 @@
   {
     "id": "news18-com",
     "name": "news18.com",
-    "description": "",
+    "description": "News18 covers Indian news, politics, business, entertainment, sports, and regional stories. It brings network-scale coverage to a country that does not do quiet news cycles.",
     "url": "https://news18.com/",
     "canonicalKey": "news18.com",
     "aliases": [],
@@ -6769,7 +6769,7 @@
   {
     "id": "newsbtc-com",
     "name": "newsbtc.com",
-    "description": "",
+    "description": "NewsBTC covers Bitcoin, cryptocurrency markets, blockchain, trading analysis, and digital assets. It watches crypto prices so readers can choose between insight and anxiety.",
     "url": "https://newsbtc.com/",
     "canonicalKey": "newsbtc.com",
     "aliases": [],
@@ -6787,7 +6787,7 @@
   {
     "id": "newser-com",
     "name": "newser.com",
-    "description": "",
+    "description": "Newser summarizes news stories across politics, world affairs, science, entertainment, and oddities. It is the news in short form, because apparently the day brought homework.",
     "url": "https://newser.com/",
     "canonicalKey": "newser.com",
     "aliases": [],
@@ -6805,7 +6805,7 @@
   {
     "id": "newsroom-deezer-com",
     "name": "newsroom-deezer.com",
-    "description": "",
+    "description": "Deezer Newsroom publishes company news, product updates, music streaming announcements, and corporate information. It is where the streaming service speaks in its most press-release-ready voice.",
     "url": "https://newsroom-deezer.com/",
     "canonicalKey": "newsroom-deezer.com",
     "aliases": [],
@@ -6823,7 +6823,7 @@
   {
     "id": "newsweek-com",
     "name": "newsweek.com",
-    "description": "",
+    "description": "Newsweek covers U.S. and world news, politics, culture, science, and opinion. It is a legacy magazine brand rebuilt for a web that wants every story immediately and slightly louder.",
     "url": "https://newsweek.com/",
     "canonicalKey": "newsweek.com",
     "aliases": [],
@@ -6859,7 +6859,7 @@
   {
     "id": "nhk-or-jp",
     "name": "nhk.or.jp",
-    "description": "",
+    "description": "NHK covers Japanese and international news, public broadcasting, culture, weather, and emergency information. It is Japan's public broadcaster doing the calm, essential work at national scale.",
     "url": "https://nhk.or.jp/",
     "canonicalKey": "nhk.or.jp",
     "aliases": [],
@@ -6877,7 +6877,7 @@
   {
     "id": "nordot-app",
     "name": "nordot.app",
-    "description": "",
+    "description": "Nordot is a Japanese news distribution and content platform used by publishers and media partners. It is less a front page than a behind-the-scenes rail yard for stories.",
     "url": "https://nordot.app/",
     "canonicalKey": "nordot.app",
     "aliases": [],
@@ -6895,7 +6895,7 @@
   {
     "id": "notus-org",
     "name": "notus.org",
-    "description": "",
+    "description": "NOTUS covers Washington politics, policy, Congress, campaigns, and government power. It is a political newsroom for people who know the quiet Hill hallway can be the real scene.",
     "url": "https://notus.org/",
     "canonicalKey": "notus.org",
     "aliases": [],
@@ -6913,7 +6913,7 @@
   {
     "id": "nrcc-org",
     "name": "nrcc.org",
-    "description": "",
+    "description": "NRCC.org is the official website of the National Republican Congressional Committee, covering House Republican campaigns, messaging, and election updates. It is party politics with the fundraising machinery visible.",
     "url": "https://nrcc.org/",
     "canonicalKey": "nrcc.org",
     "aliases": [],
@@ -6931,7 +6931,7 @@
   {
     "id": "nydailynews-com",
     "name": "nydailynews.com",
-    "description": "",
+    "description": "New York Daily News covers New York City news, crime, politics, sports, entertainment, and opinion. It brings tabloid energy to a city that rarely needs help being dramatic.",
     "url": "https://nydailynews.com/",
     "canonicalKey": "nydailynews.com",
     "aliases": [],
@@ -6949,7 +6949,7 @@
   {
     "id": "nysun-com",
     "name": "nysun.com",
-    "description": "",
+    "description": "The New York Sun covers politics, culture, foreign affairs, opinion, and New York-focused news. It is a revived newspaper name with one foot in tradition and one in the online argument.",
     "url": "https://nysun.com/",
     "canonicalKey": "nysun.com",
     "aliases": [],
@@ -6967,7 +6967,7 @@
   {
     "id": "oann-com",
     "name": "oann.com",
-    "description": "",
+    "description": "One America News covers conservative news, politics, opinion, and national affairs. It is cable-style political media with the volume knob close at hand.",
     "url": "https://oann.com/",
     "canonicalKey": "oann.com",
     "aliases": [],
@@ -6985,7 +6985,7 @@
   {
     "id": "observer-com",
     "name": "observer.com",
-    "description": "",
+    "description": "Observer covers politics, business, culture, real estate, arts, and media. It brings glossy magazine instincts to the city-and-power beat.",
     "url": "https://observer.com/",
     "canonicalKey": "observer.com",
     "aliases": [],
@@ -7021,7 +7021,7 @@
   {
     "id": "oracle-com",
     "name": "oracle.com",
-    "description": "",
+    "description": "Oracle covers enterprise software, cloud infrastructure, databases, AI, and company announcements. It is where databases go to wear a suit and remind the cloud who was here first.",
     "url": "https://oracle.com/",
     "canonicalKey": "oracle.com",
     "aliases": [],
@@ -7039,7 +7039,7 @@
   {
     "id": "outsidethebeltway-com",
     "name": "outsidethebeltway.com",
-    "description": "",
+    "description": "Outside the Beltway publishes political analysis, foreign policy commentary, and public-affairs blogging. It is old-school political blogging with the patience to argue past the headline.",
     "url": "https://outsidethebeltway.com/",
     "canonicalKey": "outsidethebeltway.com",
     "aliases": [],
@@ -7057,7 +7057,7 @@
   {
     "id": "ozy-com",
     "name": "ozy.com",
-    "description": "",
+    "description": "OZY.com is a curated archive of OZY Media programming, podcasts, newsletters, and select culture and politics content. It is less a live newsroom now than a preserved display case with some complicated backstory.",
     "url": "https://ozy.com/",
     "canonicalKey": "ozy.com",
     "aliases": [],
@@ -7075,7 +7075,7 @@
   {
     "id": "pagesix-com",
     "name": "pagesix.com",
-    "description": "",
+    "description": "Page Six covers celebrity news, society gossip, entertainment, and pop-culture sightings. It is the velvet rope of online news: not always essential, rarely boring.",
     "url": "https://pagesix.com/",
     "canonicalKey": "pagesix.com",
     "aliases": [],
@@ -7147,7 +7147,7 @@
   {
     "id": "petapixel-com",
     "name": "petapixel.com",
-    "description": "",
+    "description": "PetaPixel covers photography news, cameras, lenses, creators, visual technology, and industry updates. It is for people who can argue about dynamic range and still call it fun.",
     "url": "https://petapixel.com/",
     "canonicalKey": "petapixel.com",
     "aliases": [],
@@ -7165,7 +7165,7 @@
   {
     "id": "pjmedia-com",
     "name": "pjmedia.com",
-    "description": "",
+    "description": "PJ Media covers conservative politics, opinion, culture, and current events. It approaches the news cycle like a debate stage with the lights already up.",
     "url": "https://pjmedia.com/",
     "canonicalKey": "pjmedia.com",
     "aliases": [],
@@ -7183,7 +7183,7 @@
   {
     "id": "podnews-net",
     "name": "podnews.net",
-    "description": "",
+    "description": "Podnews covers podcasting industry news, platforms, advertising, technology, and creator updates. It follows the audio business where every microphone hopes to become a media company.",
     "url": "https://podnews.net/",
     "canonicalKey": "podnews.net",
     "aliases": [],
@@ -7201,7 +7201,7 @@
   {
     "id": "politico-eu",
     "name": "politico.eu",
-    "description": "",
+    "description": "Politico Europe covers European politics, policy, Brussels, elections, and international affairs. It treats EU process like a thriller, which is impressive given the paperwork involved.",
     "url": "https://politico.eu/",
     "canonicalKey": "politico.eu",
     "aliases": [],
@@ -7237,7 +7237,7 @@
   {
     "id": "pravdareport-com",
     "name": "pravdareport.com",
-    "description": "",
+    "description": "PravdaReport covers Russian and international news, politics, opinion, and commentary in English. It is a useful reminder that international news sources come with very visible lenses.",
     "url": "https://pravdareport.com/",
     "canonicalKey": "pravdareport.com",
     "aliases": [],
@@ -7255,7 +7255,7 @@
   {
     "id": "pressassociation-co-uk",
     "name": "pressassociation.co.uk",
-    "description": "",
+    "description": "Press Association points to PA Media, the UK and Ireland news agency supplying wire copy, images, video, and media services. It is where many British headlines begin before putting on someone else's masthead.",
     "url": "https://pressassociation.co.uk/",
     "canonicalKey": "pressassociation.co.uk",
     "aliases": [],
@@ -7273,7 +7273,7 @@
   {
     "id": "pressgazette-co-uk",
     "name": "pressgazette.co.uk",
-    "description": "",
+    "description": "Press Gazette covers journalism, publishing, media business, press freedom, and UK media news. It reports on the people reporting on everyone else, which is a necessary loop.",
     "url": "https://pressgazette.co.uk/",
     "canonicalKey": "pressgazette.co.uk",
     "aliases": [],
@@ -7291,7 +7291,7 @@
   {
     "id": "pressreader-com",
     "name": "pressreader.com",
-    "description": "",
+    "description": "PressReader aggregates digital newspapers and magazines from publishers around the world. It is a global newsstand without the folding, ink, or awkward airport kiosk lighting.",
     "url": "https://pressreader.com/",
     "canonicalKey": "pressreader.com",
     "aliases": [],
@@ -7309,7 +7309,7 @@
   {
     "id": "prnewswire-com",
     "name": "prnewswire.com",
-    "description": "",
+    "description": "PR Newswire distributes press releases, corporate announcements, investor news, and multimedia statements. It is where companies speak in their most polished indoor voice.",
     "url": "https://prnewswire.com/",
     "canonicalKey": "prnewswire.com",
     "aliases": [],
@@ -7327,7 +7327,7 @@
   {
     "id": "proactiveinvestors-com",
     "name": "proactiveinvestors.com",
-    "description": "",
+    "description": "Proactive Investors covers small-cap markets, public companies, commodities, finance, and investor news. It is capital-markets coverage with a close eye on the next pitch.",
     "url": "https://proactiveinvestors.com/",
     "canonicalKey": "proactiveinvestors.com",
     "aliases": [],
@@ -7345,7 +7345,7 @@
   {
     "id": "prospect-org",
     "name": "prospect.org",
-    "description": "",
+    "description": "The American Prospect covers politics, policy, labor, economics, and progressive ideas. It is where policy arguments arrive with charts, history, and a serious expression.",
     "url": "https://prospect.org/",
     "canonicalKey": "prospect.org",
     "aliases": [],
@@ -7363,7 +7363,7 @@
   {
     "id": "protos-com",
     "name": "protos.com",
-    "description": "",
+    "description": "Protos covers cryptocurrency, financial fraud, Web3, markets, and digital-asset investigations. It watches crypto with the skeptical patience of someone checking every receipt.",
     "url": "https://protos.com/",
     "canonicalKey": "protos.com",
     "aliases": [],
@@ -7381,7 +7381,7 @@
   {
     "id": "ptinews-com",
     "name": "ptinews.com",
-    "description": "",
+    "description": "Press Trust of India covers Indian news, politics, business, sport, and international affairs as a major wire service. It is a dispatch engine for a very large democracy.",
     "url": "https://ptinews.com/",
     "canonicalKey": "ptinews.com",
     "aliases": [],
@@ -7399,7 +7399,7 @@
   {
     "id": "publicnotice-co",
     "name": "publicnotice.co",
-    "description": "",
+    "description": "Public Notice covers U.S. politics, democracy, media, and public affairs through newsletter-style analysis. It reads the room, then checks the receipts.",
     "url": "https://publicnotice.co/",
     "canonicalKey": "publicnotice.co",
     "aliases": [],
@@ -7417,7 +7417,7 @@
   {
     "id": "pulse2-com",
     "name": "pulse2.com",
-    "description": "",
+    "description": "Pulse 2.0 covers startups, technology companies, funding, business news, and executive interviews. It is a startup-news feed where every company wants its origin story polished.",
     "url": "https://pulse2.com/",
     "canonicalKey": "pulse2.com",
     "aliases": [],
@@ -7435,7 +7435,7 @@
   {
     "id": "punchbowl-news",
     "name": "punchbowl.news",
-    "description": "",
+    "description": "Punchbowl News covers Congress, campaigns, lobbying, and Washington power. It tracks the Hill with the intensity of people who know procedure is where the bodies are buried.",
     "url": "https://punchbowl.news/",
     "canonicalKey": "punchbowl.news",
     "aliases": [],
@@ -7453,7 +7453,7 @@
   {
     "id": "punchng-com",
     "name": "punchng.com",
-    "description": "",
+    "description": "Punch covers Nigerian news, politics, business, sport, entertainment, and opinion. It is a major Nigerian newsroom in a country where the news rarely travels slowly.",
     "url": "https://punchng.com/",
     "canonicalKey": "punchng.com",
     "aliases": [],
@@ -7471,7 +7471,7 @@
   {
     "id": "pymnts-com",
     "name": "pymnts.com",
-    "description": "",
+    "description": "PYMNTS covers payments, fintech, banking, commerce, retail, and digital transactions. It follows money at the precise moment it becomes infrastructure.",
     "url": "https://pymnts.com/",
     "canonicalKey": "pymnts.com",
     "aliases": [],
@@ -7489,7 +7489,7 @@
   {
     "id": "radaronline-com",
     "name": "radaronline.com",
-    "description": "",
+    "description": "RadarOnline covers celebrity news, scandals, entertainment, and pop-culture gossip. It lives in the part of the news cycle where privacy fences meet camera lenses.",
     "url": "https://radaronline.com/",
     "canonicalKey": "radaronline.com",
     "aliases": [],
@@ -7507,7 +7507,7 @@
   {
     "id": "radiotimes-com",
     "name": "radiotimes.com",
-    "description": "",
+    "description": "Radio Times covers television, streaming, film, entertainment news, and viewing guides. It is for people who need the modern content avalanche turned back into a schedule.",
     "url": "https://radiotimes.com/",
     "canonicalKey": "radiotimes.com",
     "aliases": [],
@@ -7525,7 +7525,7 @@
   {
     "id": "reason-org",
     "name": "reason.org",
-    "description": "",
+    "description": "Reason Foundation covers public policy, transportation, privatization, pensions, and libertarian policy analysis. It asks what government should do, then asks for the invoice.",
     "url": "https://reason.org/",
     "canonicalKey": "reason.org",
     "aliases": [],
@@ -7543,7 +7543,7 @@
   {
     "id": "repubblica-it",
     "name": "repubblica.it",
-    "description": "",
+    "description": "La Repubblica covers Italian news, politics, culture, business, sport, and international affairs. It is a major Italian daily with the full national-drama subscription included.",
     "url": "https://repubblica.it/",
     "canonicalKey": "repubblica.it",
     "aliases": [],
@@ -7561,7 +7561,7 @@
   {
     "id": "riotimesonline-com",
     "name": "riotimesonline.com",
-    "description": "",
+    "description": "The Rio Times covers Brazil, Latin America, business, politics, travel, and regional news in English. It gives international readers a window into a very large country that resists summary.",
     "url": "https://riotimesonline.com/",
     "canonicalKey": "riotimesonline.com",
     "aliases": [],
@@ -7579,7 +7579,7 @@
   {
     "id": "san-com",
     "name": "san.com",
-    "description": "",
+    "description": "Straight Arrow News covers U.S. and world news with video, explainers, and a stated focus on straight-ahead reporting. It is trying to make the news feel less like a team sport, which is a brave hobby.",
     "url": "https://san.com/",
     "canonicalKey": "san.com",
     "aliases": [],
@@ -7597,7 +7597,7 @@
   {
     "id": "satellitetoday-com",
     "name": "satellitetoday.com",
-    "description": "",
+    "description": "Via Satellite covers satellite communications, space industry news, connectivity, and commercial space markets. It follows the orbital infrastructure making Earth feel inconveniently small.",
     "url": "https://satellitetoday.com/",
     "canonicalKey": "satellitetoday.com",
     "aliases": [],
@@ -7651,7 +7651,7 @@
   {
     "id": "securityaffairs-com",
     "name": "securityaffairs.com",
-    "description": "",
+    "description": "Security Affairs covers cybersecurity news, cybercrime, malware, vulnerabilities, and threat intelligence. It is the part of the internet that reads the breach report before dessert.",
     "url": "https://securityaffairs.com/",
     "canonicalKey": "securityaffairs.com",
     "aliases": [],
@@ -7687,7 +7687,7 @@
   {
     "id": "sedaily-com",
     "name": "sedaily.com",
-    "description": "",
+    "description": "Seoul Economic Daily covers South Korean business, markets, economy, technology, and financial news. It follows the money in one of Asia's most consequential economies.",
     "url": "https://sedaily.com/",
     "canonicalKey": "sedaily.com",
     "aliases": [],
@@ -7723,7 +7723,7 @@
   {
     "id": "showbiz411-com",
     "name": "showbiz411.com",
-    "description": "",
+    "description": "Showbiz411 covers entertainment news, film, television, Broadway, music, and celebrity reporting. It is show business in column form, with the backstage door cracked open.",
     "url": "https://showbiz411.com/",
     "canonicalKey": "showbiz411.com",
     "aliases": [],
@@ -7741,7 +7741,7 @@
   {
     "id": "sifted-eu",
     "name": "sifted.eu",
-    "description": "",
+    "description": "Sifted covers European startups, venture capital, fintech, climate tech, and technology business. It watches Europe's startup scene without pretending every pitch deck came from Silicon Valley.",
     "url": "https://sifted.eu/",
     "canonicalKey": "sifted.eu",
     "aliases": [],
@@ -7759,7 +7759,7 @@
   {
     "id": "siliconangle-com",
     "name": "siliconangle.com",
-    "description": "",
+    "description": "SiliconANGLE covers enterprise tech, cloud, AI, cybersecurity, startups, and data infrastructure. It reports from the machinery room of the digital economy, where every acronym wants funding.",
     "url": "https://siliconangle.com/",
     "canonicalKey": "siliconangle.com",
     "aliases": [],
@@ -7777,7 +7777,7 @@
   {
     "id": "siliconcanals-com",
     "name": "siliconcanals.com",
-    "description": "",
+    "description": "Silicon Canals covers European startups, venture capital, technology companies, and innovation ecosystems. It tracks the continent's startup scene from canals to cap tables.",
     "url": "https://siliconcanals.com/",
     "canonicalKey": "siliconcanals.com",
     "aliases": [],
@@ -7795,7 +7795,7 @@
   {
     "id": "smh-com-au",
     "name": "smh.com.au",
-    "description": "",
+    "description": "The Sydney Morning Herald covers Australian news, politics, business, sport, culture, and world affairs. It brings one of Australia's major newsroom voices to a very loud century.",
     "url": "https://smh.com.au/",
     "canonicalKey": "smh.com.au",
     "aliases": [],
@@ -7813,7 +7813,7 @@
   {
     "id": "sourcery-vc",
     "name": "sourcery.vc",
-    "description": "",
+    "description": "Sourcery is Molly O'Shea's Substack covering venture capital, startups, and technology investing. It is a deal-world newsletter for people who like their startup chatter with a sharper pencil.",
     "url": "https://sourcery.vc/",
     "canonicalKey": "sourcery.vc",
     "aliases": [],
@@ -7831,7 +7831,7 @@
   {
     "id": "spacex-com",
     "name": "spacex.com",
-    "description": "",
+    "description": "SpaceX's website covers company launches, rockets, spacecraft, missions, Starlink, and official updates. It is where rocket science gets a launch schedule and a merchandising department.",
     "url": "https://spacex.com/",
     "canonicalKey": "spacex.com",
     "aliases": [],
@@ -7849,7 +7849,7 @@
   {
     "id": "spectator-com",
     "name": "spectator.com",
-    "description": "",
+    "description": "The Spectator covers politics, culture, books, current affairs, and opinion. It is magazine commentary with a long memory and a talent for starting arguments politely.",
     "url": "https://spectator.com/",
     "canonicalKey": "spectator.com",
     "aliases": [],
@@ -7867,7 +7867,7 @@
   {
     "id": "staradvertiser-com",
     "name": "staradvertiser.com",
-    "description": "",
+    "description": "Honolulu Star-Advertiser covers Hawaii news, politics, business, sports, weather, and island life. It reports from a place where local stories can have Pacific-wide consequences.",
     "url": "https://staradvertiser.com/",
     "canonicalKey": "staradvertiser.com",
     "aliases": [],
@@ -7885,7 +7885,7 @@
   {
     "id": "stateline-org",
     "name": "stateline.org",
-    "description": "",
+    "description": "Stateline covers U.S. state policy, legislatures, governors, and regional public affairs. It is where national politics quietly admits the states are doing half the plot.",
     "url": "https://stateline.org/",
     "canonicalKey": "stateline.org",
     "aliases": [],
@@ -7903,7 +7903,7 @@
   {
     "id": "statesman-com",
     "name": "statesman.com",
-    "description": "",
+    "description": "Austin American-Statesman covers Austin and Texas news, politics, business, culture, and sports. It reports from a capital city where tech, music, and state government keep bumping elbows.",
     "url": "https://statesman.com/",
     "canonicalKey": "statesman.com",
     "aliases": [],
@@ -7921,7 +7921,7 @@
   {
     "id": "status-news",
     "name": "status.news",
-    "description": "",
+    "description": "Status covers media, politics, entertainment, and the influence business through newsletter-style reporting. It watches the people who shape the narrative, which is basically journalism staring into a mirror.",
     "url": "https://status.news/",
     "canonicalKey": "status.news",
     "aliases": [],
@@ -7939,7 +7939,7 @@
   {
     "id": "straitstimes-com",
     "name": "straitstimes.com",
-    "description": "",
+    "description": "The Straits Times covers Singapore, Asia, world news, business, sport, and culture. It is one of Southeast Asia's major news voices, with regional context baked in.",
     "url": "https://straitstimes.com/",
     "canonicalKey": "straitstimes.com",
     "aliases": [],
@@ -7957,7 +7957,7 @@
   {
     "id": "stripes-com",
     "name": "stripes.com",
-    "description": "",
+    "description": "Stars and Stripes covers U.S. military news, service members, veterans, defense policy, and overseas bases. It reports for a community whose local news can be half a world away.",
     "url": "https://stripes.com/",
     "canonicalKey": "stripes.com",
     "aliases": [],
@@ -7975,7 +7975,7 @@
   {
     "id": "studyfinds-com",
     "name": "studyfinds.com",
-    "description": "",
+    "description": "StudyFinds covers research summaries, science news, health studies, consumer surveys, and academic findings. It is where studies go to become readable before everyone overgeneralizes them.",
     "url": "https://studyfinds.com/",
     "canonicalKey": "studyfinds.com",
     "aliases": [],
@@ -7993,7 +7993,7 @@
   {
     "id": "suggest-com",
     "name": "suggest.com",
-    "description": "",
+    "description": "Suggest covers celebrity, entertainment, lifestyle, and pop-culture stories, and absorbed the former Gossip Cop brand. It is the lighter side of internet media, where gossip got a filing system and then moved house.",
     "url": "https://suggest.com/",
     "canonicalKey": "suggest.com",
     "aliases": [],
@@ -8011,7 +8011,7 @@
   {
     "id": "suntimes-com",
     "name": "suntimes.com",
-    "description": "",
+    "description": "Chicago Sun-Times covers Chicago news, politics, sports, entertainment, and local culture. It reports from a city where the news comes with opinions already warmed up.",
     "url": "https://suntimes.com/",
     "canonicalKey": "suntimes.com",
     "aliases": [],
@@ -8029,7 +8029,7 @@
   {
     "id": "t3-com",
     "name": "t3.com",
-    "description": "",
+    "description": "T3 covers gadgets, consumer tech, lifestyle products, deals, and buying advice. It is a shiny catalog of things that promise to improve your life and occasionally your cable drawer.",
     "url": "https://t3.com/",
     "canonicalKey": "t3.com",
     "aliases": [],
@@ -8047,7 +8047,7 @@
   {
     "id": "talkingbiznews-com",
     "name": "talkingbiznews.com",
-    "description": "",
+    "description": "Talking Biz News covers business journalism, financial media, newsroom moves, and media industry updates. It is inside baseball for the people who explain Wall Street to everyone else.",
     "url": "https://talkingbiznews.com/",
     "canonicalKey": "talkingbiznews.com",
     "aliases": [],
@@ -8083,7 +8083,7 @@
   {
     "id": "tech4gamers-com",
     "name": "tech4gamers.com",
-    "description": "",
+    "description": "Tech4Gamers covers PC hardware, gaming news, reviews, benchmarks, and components. It is for readers who know frame rates can become a lifestyle choice.",
     "url": "https://tech4gamers.com/",
     "canonicalKey": "tech4gamers.com",
     "aliases": [],
@@ -8101,7 +8101,7 @@
   {
     "id": "techfundingnews-com",
     "name": "techfundingnews.com",
-    "description": "",
+    "description": "Tech Funding News covers startup funding, venture capital, technology companies, and European innovation. It follows the money before the press release has cooled.",
     "url": "https://techfundingnews.com/",
     "canonicalKey": "techfundingnews.com",
     "aliases": [],
@@ -8119,7 +8119,7 @@
   {
     "id": "techhub-social",
     "name": "techhub.social",
-    "description": "",
+    "description": "techhub.social is a Mastodon server for technology-focused social web conversations. It is a decentralized hallway track for people who enjoy software opinions in public.",
     "url": "https://techhub.social/",
     "canonicalKey": "techhub.social",
     "aliases": [],
@@ -8137,7 +8137,7 @@
   {
     "id": "techinasia-com",
     "name": "techinasia.com",
-    "description": "",
+    "description": "Tech in Asia covers Asian startups, technology companies, venture capital, and digital economies. It tracks a region where startup news can move faster than the market decks.",
     "url": "https://techinasia.com/",
     "canonicalKey": "techinasia.com",
     "aliases": [],
@@ -8155,7 +8155,7 @@
   {
     "id": "techstrong-ai",
     "name": "techstrong.ai",
-    "description": "",
+    "description": "Techstrong AI covers artificial intelligence, enterprise technology, automation, and AI industry strategy. It watches AI leave the lab and wander into every meeting invite.",
     "url": "https://techstrong.ai/",
     "canonicalKey": "techstrong.ai",
     "aliases": [],
@@ -8173,7 +8173,7 @@
   {
     "id": "televisual-com",
     "name": "televisual.com",
-    "description": "",
+    "description": "Televisual covers UK television production, broadcasting, studios, post-production, and media industry news. It reports on the business behind the shows before the credits roll.",
     "url": "https://televisual.com/",
     "canonicalKey": "televisual.com",
     "aliases": [],
@@ -8191,7 +8191,7 @@
   {
     "id": "teslarati-com",
     "name": "teslarati.com",
-    "description": "",
+    "description": "Teslarati covers Tesla, electric vehicles, SpaceX, energy, and clean technology. It follows the companies whose fans treat product updates like weather alerts.",
     "url": "https://teslarati.com/",
     "canonicalKey": "teslarati.com",
     "aliases": [],
@@ -8209,7 +8209,7 @@
   {
     "id": "theamericanconservative-com",
     "name": "theamericanconservative.com",
-    "description": "",
+    "description": "The American Conservative covers politics, foreign policy, culture, and ideas from a conservative perspective. It is most interested in the part of conservatism that still wants to argue in paragraphs.",
     "url": "https://theamericanconservative.com/",
     "canonicalKey": "theamericanconservative.com",
     "aliases": [],
@@ -8227,7 +8227,7 @@
   {
     "id": "theankler-com",
     "name": "theankler.com",
-    "description": "",
+    "description": "The Ankler covers Hollywood, entertainment business, streaming, studios, agencies, and media power. It reports from the industry where gossip, strategy, and accounting share a trailer.",
     "url": "https://theankler.com/",
     "canonicalKey": "theankler.com",
     "aliases": [],
@@ -8245,7 +8245,7 @@
   {
     "id": "theaustralian-com-au",
     "name": "theaustralian.com.au",
-    "description": "",
+    "description": "The Australian covers national news, politics, business, sport, culture, and opinion. It is a major Australian newspaper with a front-row seat to a nation that argues outdoors.",
     "url": "https://theaustralian.com.au/",
     "canonicalKey": "theaustralian.com.au",
     "aliases": [],
@@ -8263,7 +8263,7 @@
   {
     "id": "theblaze-com",
     "name": "theblaze.com",
-    "description": "",
+    "description": "TheBlaze covers conservative news, opinion, politics, culture, and media. It approaches the day's stories like the volume knob is a moral position.",
     "url": "https://theblaze.com/",
     "canonicalKey": "theblaze.com",
     "aliases": [],
@@ -8281,7 +8281,7 @@
   {
     "id": "theblock-co",
     "name": "theblock.co",
-    "description": "",
+    "description": "The Block covers cryptocurrency, blockchain, digital assets, markets, and Web3 business. It reports on crypto like a financial beat that learned to speak in tokens.",
     "url": "https://theblock.co/",
     "canonicalKey": "theblock.co",
     "aliases": [],
@@ -8299,7 +8299,7 @@
   {
     "id": "thebulwark-com",
     "name": "thebulwark.com",
-    "description": "",
+    "description": "The Bulwark covers politics, democracy, elections, and conservative commentary critical of populism. It is for readers who like their political analysis with both alarm and punctuation.",
     "url": "https://thebulwark.com/",
     "canonicalKey": "thebulwark.com",
     "aliases": [],
@@ -8317,7 +8317,7 @@
   {
     "id": "theconservativetreehouse-com",
     "name": "theconservativetreehouse.com",
-    "description": "",
+    "description": "The Conservative Treehouse covers conservative politics, media criticism, national affairs, and commentary. It is a political blog with the energy of a very long thread that brought its own filing cabinet.",
     "url": "https://theconservativetreehouse.com/",
     "canonicalKey": "theconservativetreehouse.com",
     "aliases": [],
@@ -8335,7 +8335,7 @@
   {
     "id": "thedailyupside-com",
     "name": "thedailyupside.com",
-    "description": "",
+    "description": "The Daily Upside covers business, markets, finance, and economic news through newsletters and analysis. It tries to make the money beat feel brisk without pretending money is ever calm.",
     "url": "https://thedailyupside.com/",
     "canonicalKey": "thedailyupside.com",
     "aliases": [],
@@ -8353,7 +8353,7 @@
   {
     "id": "thedeepview-com",
     "name": "thedeepview.com",
-    "description": "",
+    "description": "The Deep View covers artificial intelligence news, tools, research, and industry trends. It follows AI with the urgency of a sector that keeps moving the furniture overnight.",
     "url": "https://thedeepview.com/",
     "canonicalKey": "thedeepview.com",
     "aliases": [],
@@ -8371,7 +8371,7 @@
   {
     "id": "thedispatch-com",
     "name": "thedispatch.com",
-    "description": "",
+    "description": "The Dispatch covers politics, policy, culture, and conservative analysis with reported commentary. It is for readers who prefer their ideological fights with footnotes and fewer fireworks.",
     "url": "https://thedispatch.com/",
     "canonicalKey": "thedispatch.com",
     "aliases": [],
@@ -8389,7 +8389,7 @@
   {
     "id": "thefederalist-com",
     "name": "thefederalist.com",
-    "description": "",
+    "description": "The Federalist covers conservative politics, culture, policy, and opinion. It writes as if every cultural trend has entered evidence in a national trial.",
     "url": "https://thefederalist.com/",
     "canonicalKey": "thefederalist.com",
     "aliases": [],
@@ -8407,7 +8407,7 @@
   {
     "id": "thefp-com",
     "name": "thefp.com",
-    "description": "",
+    "description": "The Free Press covers politics, culture, media, and ideas through reported essays and commentary. It positions itself as heterodox, which on the internet mostly means bring a helmet and a bibliography.",
     "url": "https://thefp.com/",
     "canonicalKey": "thefp.com",
     "aliases": [],
@@ -8425,7 +8425,7 @@
   {
     "id": "thegamebusiness-com",
     "name": "thegamebusiness.com",
-    "description": "",
+    "description": "The Game Business covers video game industry news, publishing, studios, platforms, and strategy. It follows the part of gaming where fun meets quarterly expectations.",
     "url": "https://thegamebusiness.com/",
     "canonicalKey": "thegamebusiness.com",
     "aliases": [],
@@ -8443,7 +8443,7 @@
   {
     "id": "thegatewaypundit-com",
     "name": "thegatewaypundit.com",
-    "description": "",
+    "description": "The Gateway Pundit covers conservative politics, opinion, elections, and media stories. It approaches the news like the comment section has been promoted to editor.",
     "url": "https://thegatewaypundit.com/",
     "canonicalKey": "thegatewaypundit.com",
     "aliases": [],
@@ -8515,7 +8515,7 @@
   {
     "id": "thelogic-co",
     "name": "thelogic.co",
-    "description": "",
+    "description": "The Logic covers Canadian business, technology, innovation, and public policy. It reports from the overlap between startups, regulators, and people pretending those worlds are separate.",
     "url": "https://thelogic.co/",
     "canonicalKey": "thelogic.co",
     "aliases": [],
@@ -8533,7 +8533,7 @@
   {
     "id": "themerkle-com",
     "name": "themerkle.com",
-    "description": "",
+    "description": "The Merkle covers cryptocurrency, blockchain, digital assets, Web3, and fintech news. It follows the crypto beat where the acronyms are plentiful and the seatbelts are implied.",
     "url": "https://themerkle.com/",
     "canonicalKey": "themerkle.com",
     "aliases": [],
@@ -8551,7 +8551,7 @@
   {
     "id": "themirror-com",
     "name": "themirror.com",
-    "description": "",
+    "description": "The Mirror U.S. covers news, celebrity, sport, lifestyle, and viral stories for an American audience. It brings tabloid pacing to a web that was already stretching before warmups.",
     "url": "https://themirror.com/",
     "canonicalKey": "themirror.com",
     "aliases": [],
@@ -8569,7 +8569,7 @@
   {
     "id": "thenationalnews-com",
     "name": "thenationalnews.com",
-    "description": "",
+    "description": "The National covers UAE, Middle East, world news, business, culture, and opinion. It offers a regional lens from a part of the world where the headlines rarely sit still.",
     "url": "https://thenationalnews.com/",
     "canonicalKey": "thenationalnews.com",
     "aliases": [],
@@ -8587,7 +8587,7 @@
   {
     "id": "theneuron-ai",
     "name": "theneuron.ai",
-    "description": "",
+    "description": "The Neuron covers AI tools, news, workflows, and practical artificial intelligence updates. It is built for people trying to keep up with AI without quitting their jobs to read release notes.",
     "url": "https://theneuron.ai/",
     "canonicalKey": "theneuron.ai",
     "aliases": [],
@@ -8605,7 +8605,7 @@
   {
     "id": "theneweuropean-co-uk",
     "name": "theneweuropean.co.uk",
-    "description": "",
+    "description": "The New European covers British and European politics, culture, and opinion with a pro-European perspective. It is where Brexit fatigue goes to get a column and a second wind.",
     "url": "https://theneweuropean.co.uk/",
     "canonicalKey": "theneweuropean.co.uk",
     "aliases": [],
@@ -8623,7 +8623,7 @@
   {
     "id": "thenewrepublic-com",
     "name": "thenewrepublic.com",
-    "description": "",
+    "description": "The New Republic covers politics, culture, policy, and ideas from a progressive magazine perspective. It enjoys the ancient art of asking whether America is having a normal one, then answering no.",
     "url": "https://thenewrepublic.com/",
     "canonicalKey": "thenewrepublic.com",
     "aliases": [],
@@ -8641,7 +8641,7 @@
   {
     "id": "thepinknews-com",
     "name": "thepinknews.com",
-    "description": "",
+    "description": "PinkNews covers LGBTQ+ news, politics, culture, entertainment, and community issues. It follows a beat where rights, representation, and pop culture keep sharing the same stage.",
     "url": "https://thepinknews.com/",
     "canonicalKey": "thepinknews.com",
     "aliases": [],
@@ -8659,7 +8659,7 @@
   {
     "id": "thepostmillennial-com",
     "name": "thepostmillennial.com",
-    "description": "",
+    "description": "The Post Millennial covers Canadian and U.S. politics, culture, media, and conservative commentary. It moves through the culture-war news cycle with a very fast refresh button.",
     "url": "https://thepostmillennial.com/",
     "canonicalKey": "thepostmillennial.com",
     "aliases": [],
@@ -8677,7 +8677,7 @@
   {
     "id": "therundown-ai",
     "name": "therundown.ai",
-    "description": "",
+    "description": "The Rundown AI covers artificial intelligence news, tools, prompts, and practical updates. It is for readers trying to understand what changed in AI before breakfast.",
     "url": "https://therundown.ai/",
     "canonicalKey": "therundown.ai",
     "aliases": [],
@@ -8695,7 +8695,7 @@
   {
     "id": "thesaasnews-com",
     "name": "thesaasnews.com",
-    "description": "",
+    "description": "The SaaS News covers software startups, SaaS funding, product launches, and technology business updates. It follows subscription software, where recurring revenue is treated like a love language.",
     "url": "https://thesaasnews.com/",
     "canonicalKey": "thesaasnews.com",
     "aliases": [],
@@ -8713,7 +8713,7 @@
   {
     "id": "thesmokinggun-com",
     "name": "thesmokinggun.com",
-    "description": "",
+    "description": "The Smoking Gun publishes documents, mugshots, legal filings, and unusual public-record stories. It is the internet's evidence locker, with a taste for the absurd.",
     "url": "https://thesmokinggun.com/",
     "canonicalKey": "thesmokinggun.com",
     "aliases": [],
@@ -8731,7 +8731,7 @@
   {
     "id": "thestar-com",
     "name": "thestar.com",
-    "description": "",
+    "description": "The Toronto Star covers Canadian news, politics, business, culture, sport, and opinion. It is a major Canadian newsroom with civic seriousness and metropolitan reach.",
     "url": "https://thestar.com/",
     "canonicalKey": "thestar.com",
     "aliases": [],
@@ -8749,7 +8749,7 @@
   {
     "id": "thetechportal-com",
     "name": "thetechportal.com",
-    "description": "",
+    "description": "The Tech Portal covers startups, technology companies, gadgets, funding, and digital business. It follows tech entrepreneurship with the usual mix of optimism and launch-day confetti.",
     "url": "https://thetechportal.com/",
     "canonicalKey": "thetechportal.com",
     "aliases": [],
@@ -8767,7 +8767,7 @@
   {
     "id": "thetimes-co-uk",
     "name": "thetimes.co.uk",
-    "description": "",
+    "description": "The Times covers UK and world news, politics, business, sport, culture, and opinion. It is a British newspaper institution that still knows how to make a headline stand up straight.",
     "url": "https://thetimes.co.uk/",
     "canonicalKey": "thetimes.co.uk",
     "aliases": [],
@@ -8785,7 +8785,7 @@
   {
     "id": "thetimes-com",
     "name": "thetimes.com",
-    "description": "",
+    "description": "The Times U.S. domain points to Times journalism covering news, politics, business, culture, and opinion. It is old-school newspaper authority trying to behave sensibly on a very unsensible web.",
     "url": "https://thetimes.com/",
     "canonicalKey": "thetimes.com",
     "aliases": [],
@@ -8803,7 +8803,7 @@
   {
     "id": "theweek-com",
     "name": "theweek.com",
-    "description": "",
+    "description": "The Week covers politics, current affairs, culture, business, and explainers with a digest-style approach. It is for people who want the news summarized without being treated like they missed class.",
     "url": "https://theweek.com/",
     "canonicalKey": "theweek.com",
     "aliases": [],
@@ -8821,7 +8821,7 @@
   {
     "id": "thewincentral-com",
     "name": "thewincentral.com",
-    "description": "",
+    "description": "The WinCentral covers Microsoft, Windows, apps, hardware, and technology updates. It is a Microsoft-and-Windows watch site for readers who notice every new build number.",
     "url": "https://thewincentral.com/",
     "canonicalKey": "thewincentral.com",
     "aliases": [],
@@ -8839,7 +8839,7 @@
   {
     "id": "theyeshivaworld-com",
     "name": "theyeshivaworld.com",
-    "description": "",
+    "description": "The Yeshiva World covers Orthodox Jewish news, community updates, politics, Israel, and public affairs. It serves a specific community beat with the pace of a general news site.",
     "url": "https://theyeshivaworld.com/",
     "canonicalKey": "theyeshivaworld.com",
     "aliases": [],
@@ -8857,7 +8857,7 @@
   {
     "id": "thurrott-com",
     "name": "thurrott.com",
-    "description": "",
+    "description": "Thurrott covers Microsoft, Windows, Xbox, enterprise software, and personal technology. It is a Microsoft-watchers' clubhouse where updates arrive with context and occasionally a sigh.",
     "url": "https://thurrott.com/",
     "canonicalKey": "thurrott.com",
     "aliases": [],
@@ -8875,7 +8875,7 @@
   {
     "id": "timeanddate-com",
     "name": "timeanddate.com",
-    "description": "",
+    "description": "Timeanddate.com provides calendars, time zones, clocks, weather, astronomy, and date tools. It is the rare utility site that makes time itself slightly less annoying.",
     "url": "https://timeanddate.com/",
     "canonicalKey": "timeanddate.com",
     "aliases": [],
@@ -8893,7 +8893,7 @@
   {
     "id": "timesnownews-com",
     "name": "timesnownews.com",
-    "description": "",
+    "description": "Times Now covers Indian news, politics, business, entertainment, sport, and live TV updates. It brings broadcast-news urgency to a country where the day rarely lacks motion.",
     "url": "https://timesnownews.com/",
     "canonicalKey": "timesnownews.com",
     "aliases": [],
@@ -8911,7 +8911,7 @@
   {
     "id": "tomsguide-com",
     "name": "tomsguide.com",
-    "description": "",
+    "description": "Tom's Guide covers consumer technology, phones, streaming, appliances, software, and buying advice. It is where everyday gadgets go to be compared until one finally wins.",
     "url": "https://tomsguide.com/",
     "canonicalKey": "tomsguide.com",
     "aliases": [],
@@ -8929,7 +8929,7 @@
   {
     "id": "tomshardware-com",
     "name": "tomshardware.com",
-    "description": "",
+    "description": "Tom's Hardware covers PC components, CPUs, GPUs, benchmarks, building advice, and hardware news. It is for people who hear thermal paste and do not immediately leave the room.",
     "url": "https://tomshardware.com/",
     "canonicalKey": "tomshardware.com",
     "aliases": [],
@@ -8947,7 +8947,7 @@
   {
     "id": "townhall-com",
     "name": "townhall.com",
-    "description": "",
+    "description": "Townhall covers conservative politics, opinion, elections, and culture. It is a political commentary hub where the argument has usually already found a podium.",
     "url": "https://townhall.com/",
     "canonicalKey": "townhall.com",
     "aliases": [],
@@ -8965,7 +8965,7 @@
   {
     "id": "trends-google-com",
     "name": "trends.google.com",
-    "description": "",
+    "description": "Google Trends shows search interest data, trending queries, and topic comparisons across time and regions. It is the internet's mood ring, which is useful and mildly terrifying.",
     "url": "https://trends.google.com/",
     "canonicalKey": "trends.google.com",
     "aliases": [],
@@ -8983,7 +8983,7 @@
   {
     "id": "tribune-com-pk",
     "name": "tribune.com.pk",
-    "description": "",
+    "description": "The Express Tribune covers Pakistani news, politics, business, culture, sport, and international affairs. It brings a major Pakistani newsroom voice to a complex regional news map.",
     "url": "https://tribune.com.pk/",
     "canonicalKey": "tribune.com.pk",
     "aliases": [],
@@ -9001,7 +9001,7 @@
   {
     "id": "truthout-org",
     "name": "truthout.org",
-    "description": "",
+    "description": "Truthout covers politics, social justice, climate, labor, and human rights from a progressive perspective. It treats public policy like something with actual human consequences, because it is.",
     "url": "https://truthout.org/",
     "canonicalKey": "truthout.org",
     "aliases": [],
@@ -9019,7 +9019,7 @@
   {
     "id": "twitchy-com",
     "name": "twitchy.com",
-    "description": "",
+    "description": "Twitchy covers politics, media, and internet reaction through social media posts and conservative commentary. It is the news cycle as a quote-tweet tornado.",
     "url": "https://twitchy.com/",
     "canonicalKey": "twitchy.com",
     "aliases": [],
@@ -9037,7 +9037,7 @@
   {
     "id": "twz-com",
     "name": "twz.com",
-    "description": "",
+    "description": "The War Zone covers defense, military technology, aviation, naval affairs, and geopolitical security. It is for readers who know hardware specs can become foreign policy very quickly.",
     "url": "https://twz.com/",
     "canonicalKey": "twz.com",
     "aliases": [],
@@ -9055,7 +9055,7 @@
   {
     "id": "ubergizmo-com",
     "name": "ubergizmo.com",
-    "description": "",
+    "description": "Ubergizmo covers gadgets, consumer electronics, mobile devices, gaming, and technology news. It is a gadget feed for people who believe the future should at least come with specs.",
     "url": "https://ubergizmo.com/",
     "canonicalKey": "ubergizmo.com",
     "aliases": [],
@@ -9073,7 +9073,7 @@
   {
     "id": "understandingai-org",
     "name": "understandingai.org",
-    "description": "",
+    "description": "Understanding AI covers artificial intelligence research, policy, products, and practical analysis. It is trying to make AI legible before everyone simply points at a demo and panics.",
     "url": "https://understandingai.org/",
     "canonicalKey": "understandingai.org",
     "aliases": [],
@@ -9091,7 +9091,7 @@
   {
     "id": "unherd-com",
     "name": "unherd.com",
-    "description": "",
+    "description": "UnHerd publishes politics, culture, ideas, interviews, and opinion with a heterodox editorial bent. It likes arguments that arrive from the side door and refuse to leave quickly.",
     "url": "https://unherd.com/",
     "canonicalKey": "unherd.com",
     "aliases": [],
@@ -9109,7 +9109,7 @@
   {
     "id": "uniladtech-com",
     "name": "uniladtech.com",
-    "description": "",
+    "description": "UNILAD Tech covers technology, science, gadgets, internet culture, and viral digital stories. It is tech news for the part of the internet that wants the explainer and the reaction face.",
     "url": "https://uniladtech.com/",
     "canonicalKey": "uniladtech.com",
     "aliases": [],
@@ -9127,7 +9127,7 @@
   {
     "id": "universeodon-com",
     "name": "universeodon.com",
-    "description": "",
+    "description": "Universeodon is a Mastodon server for decentralized social networking and public posts. It is another open-web town square, because apparently one town square was not enough internet.",
     "url": "https://universeodon.com/",
     "canonicalKey": "universeodon.com",
     "aliases": [],
@@ -9145,7 +9145,7 @@
   {
     "id": "unn-ua",
     "name": "unn.ua",
-    "description": "",
+    "description": "UNN covers Ukrainian news, politics, economy, war updates, and international affairs. It reports from a country where the daily news carries unusually heavy stakes.",
     "url": "https://unn.ua/",
     "canonicalKey": "unn.ua",
     "aliases": [],
@@ -9163,7 +9163,7 @@
   {
     "id": "uol-com-br",
     "name": "uol.com.br",
-    "description": "",
+    "description": "UOL covers Brazilian news, politics, business, sport, entertainment, and digital services. It is one of Brazil's major web portals, which means the homepage has seen everything.",
     "url": "https://uol.com.br/",
     "canonicalKey": "uol.com.br",
     "aliases": [],
@@ -9181,7 +9181,7 @@
   {
     "id": "ustvdb-com",
     "name": "ustvdb.com",
-    "description": "",
+    "description": "USTVDB is a U.S. television database tracking ratings, shows, networks, demos, markets, and seasons. It is Nielsen-adjacent nerdery for anyone who thinks TV numbers deserve their own atlas.",
     "url": "https://ustvdb.com/",
     "canonicalKey": "ustvdb.com",
     "aliases": [],
@@ -9199,7 +9199,7 @@
   {
     "id": "vccircle-com",
     "name": "vccircle.com",
-    "description": "",
+    "description": "VCCircle covers Indian startups, private equity, venture capital, mergers, and business finance. It follows dealmaking where the paperwork is dense and the stakes are real.",
     "url": "https://vccircle.com/",
     "canonicalKey": "vccircle.com",
     "aliases": [],
@@ -9235,7 +9235,7 @@
   {
     "id": "ventureburn-com",
     "name": "ventureburn.com",
-    "description": "",
+    "description": "Ventureburn covers African startups, technology, venture capital, and entrepreneurship. It tracks innovation ecosystems that deserve more attention than the usual Silicon Valley weather report.",
     "url": "https://ventureburn.com/",
     "canonicalKey": "ventureburn.com",
     "aliases": [],
@@ -9253,7 +9253,7 @@
   {
     "id": "verdict-co-uk",
     "name": "verdict.co.uk",
-    "description": "",
+    "description": "Verdict covers business, technology, finance, healthcare, retail, and industry analysis. It is a cross-sector newsroom for people who enjoy their trends with market context.",
     "url": "https://verdict.co.uk/",
     "canonicalKey": "verdict.co.uk",
     "aliases": [],
@@ -9271,7 +9271,7 @@
   {
     "id": "wandering-shop",
     "name": "wandering.shop",
-    "description": "",
+    "description": "Wandering.shop is a Mastodon server with a community focus on writers, artists, and creative internet users. It is decentralized social media with a little more bookstore energy.",
     "url": "https://wandering.shop/",
     "canonicalKey": "wandering.shop",
     "aliases": [],
@@ -9289,7 +9289,7 @@
   {
     "id": "washingtontimes-com",
     "name": "washingtontimes.com",
-    "description": "",
+    "description": "The Washington Times covers U.S. politics, national news, opinion, and culture from a conservative perspective. It watches Washington with the stare of a paper that expects the plot to thicken.",
     "url": "https://washingtontimes.com/",
     "canonicalKey": "washingtontimes.com",
     "aliases": [],
@@ -9307,7 +9307,7 @@
   {
     "id": "watcher-guru",
     "name": "watcher.guru",
-    "description": "",
+    "description": "Watcher.Guru covers cryptocurrency markets, blockchain, digital assets, finance, and Web3 news. It watches crypto like a market that insists on being both financial and theatrical.",
     "url": "https://watcher.guru/",
     "canonicalKey": "watcher.guru",
     "aliases": [],
@@ -9325,7 +9325,7 @@
   {
     "id": "wausaupilotandreview-com",
     "name": "wausaupilotandreview.com",
-    "description": "",
+    "description": "Wausau Pilot & Review covers Wausau and central Wisconsin news, local government, community stories, and investigations. It is local accountability journalism with its feet firmly on the municipal floor.",
     "url": "https://wausaupilotandreview.com/",
     "canonicalKey": "wausaupilotandreview.com",
     "aliases": [],
@@ -9343,7 +9343,7 @@
   {
     "id": "waymo-com",
     "name": "waymo.com",
-    "description": "",
+    "description": "Waymo's site covers its autonomous driving technology, robotaxi service, safety work, and company updates. It is where self-driving cars try to sound reassuring, which is fair because the cars are doing the driving.",
     "url": "https://waymo.com/",
     "canonicalKey": "waymo.com",
     "aliases": [],
@@ -9361,7 +9361,7 @@
   {
     "id": "welt-de",
     "name": "welt.de",
-    "description": "",
+    "description": "WELT covers German news, politics, business, culture, sport, and international affairs. It brings a major German newsroom voice to a world that keeps needing more context.",
     "url": "https://welt.de/",
     "canonicalKey": "welt.de",
     "aliases": [],
@@ -9415,7 +9415,7 @@
   {
     "id": "worldcrunch-com",
     "name": "worldcrunch.com",
-    "description": "",
+    "description": "Worldcrunch curates and translates international journalism from news outlets around the world. It is a global news shortcut that remembers other countries write the first draft too.",
     "url": "https://worldcrunch.com/",
     "canonicalKey": "worldcrunch.com",
     "aliases": [],
@@ -9433,7 +9433,7 @@
   {
     "id": "worldofreel-com",
     "name": "worldofreel.com",
-    "description": "",
+    "description": "World of Reel covers film news, cinema criticism, festivals, awards, and movie industry chatter. It is for people who can make Oscar season last all year if necessary.",
     "url": "https://worldofreel.com/",
     "canonicalKey": "worldofreel.com",
     "aliases": [],
@@ -9451,7 +9451,7 @@
   {
     "id": "wpxi-com",
     "name": "wpxi.com",
-    "description": "",
+    "description": "WPXI covers Pittsburgh-area news, weather, traffic, sports, and local stories. It is local TV news online, with enough weather and civic drama to fill the feed.",
     "url": "https://wpxi.com/",
     "canonicalKey": "wpxi.com",
     "aliases": [],
@@ -9469,7 +9469,7 @@
   {
     "id": "wvxu-org",
     "name": "wvxu.org",
-    "description": "",
+    "description": "WVXU covers Cincinnati news, public radio, culture, politics, and community stories. It brings public-media steadiness to local stories that deserve more than a quick scroll.",
     "url": "https://wvxu.org/",
     "canonicalKey": "wvxu.org",
     "aliases": [],
@@ -9487,7 +9487,7 @@
   {
     "id": "wyborcza-pl",
     "name": "wyborcza.pl",
-    "description": "",
+    "description": "Gazeta Wyborcza covers Polish news, politics, culture, business, and opinion. It is a major Polish newsroom with a long memory and a busy present.",
     "url": "https://wyborcza.pl/",
     "canonicalKey": "wyborcza.pl",
     "aliases": [],
@@ -9505,7 +9505,7 @@
   {
     "id": "xbox-com",
     "name": "xbox.com",
-    "description": "",
+    "description": "Xbox.com is Microsoft's official Xbox site for consoles, games, Game Pass, accessories, and company updates. It is where gaming hardware meets subscription strategy and a lot of green branding.",
     "url": "https://xbox.com/",
     "canonicalKey": "xbox.com",
     "aliases": [],
@@ -9541,7 +9541,7 @@
   {
     "id": "xiaomi-com",
     "name": "xiaomi.com",
-    "description": "",
+    "description": "Xiaomi's official site covers smartphones, smart home products, wearables, software, and company news. It is a product showcase for an electronics giant that believes everything can be slightly smarter.",
     "url": "https://xiaomi.com/",
     "canonicalKey": "xiaomi.com",
     "aliases": [],
@@ -9559,7 +9559,7 @@
   {
     "id": "xinhuanet-com",
     "name": "xinhuanet.com",
-    "description": "",
+    "description": "Xinhua covers Chinese and international news as China's state news agency. It is an official perspective on global events, useful when read with context firmly switched on.",
     "url": "https://xinhuanet.com/",
     "canonicalKey": "xinhuanet.com",
     "aliases": [],
@@ -9595,7 +9595,7 @@
   {
     "id": "ynetnews-com",
     "name": "ynetnews.com",
-    "description": "",
+    "description": "Ynetnews covers Israeli news, Middle East affairs, Jewish world stories, culture, and opinion in English. It is a direct line into Israeli headlines for readers outside the Hebrew-language news cycle.",
     "url": "https://ynetnews.com/",
     "canonicalKey": "ynetnews.com",
     "aliases": [],
@@ -9613,7 +9613,7 @@
   {
     "id": "yomiuri-co-jp",
     "name": "yomiuri.co.jp",
-    "description": "",
+    "description": "The Yomiuri Shimbun covers Japanese news, politics, business, culture, sport, and international affairs. It is one of Japan's major newspapers, with institutional weight and a very large readership.",
     "url": "https://yomiuri.co.jp/",
     "canonicalKey": "yomiuri.co.jp",
     "aliases": [],
@@ -9649,7 +9649,7 @@
   {
     "id": "zeit-de",
     "name": "zeit.de",
-    "description": "",
+    "description": "Die Zeit covers German and international news, politics, culture, science, and opinion. It brings weekly-newspaper depth to a web that is usually allergic to patience.",
     "url": "https://zeit.de/",
     "canonicalKey": "zeit.de",
     "aliases": [],
@@ -9685,7 +9685,7 @@
   {
     "id": "zeteonews-co-uk",
     "name": "zeteonews.co.uk",
-    "description": "",
+    "description": "Zeteo News covers UK media, journalism, broadcasting, and industry developments. It watches the British media business with the useful suspicion of someone reading the small print.",
     "url": "https://zeteonews.co.uk/",
     "canonicalKey": "zeteonews.co.uk",
     "aliases": [],

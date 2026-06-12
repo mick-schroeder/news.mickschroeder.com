@@ -6,6 +6,7 @@ import { sourcePath } from '@/lib/taxonomy';
 type TopSource = {
   id?: string;
   name: string;
+  description?: string | null;
   url: string;
   score?: number | string;
   lists?: string[] | null;
@@ -38,37 +39,41 @@ const TopSources = ({ items, limit = 24 }: TopSourcesProps): JSX.Element | null 
   return (
     <ol className="columns-1 gap-x-8 sm:columns-2 lg:columns-3">
       {ranked.map((source, index) => (
-        <li
-          key={source.id || source.url}
-          className="flex items-baseline gap-2 break-inside-avoid py-1"
-        >
-          <span className="w-6 shrink-0 text-right font-mono text-xs tabular-nums text-muted-foreground">
-            {index + 1}
-          </span>
-          {source.id ? (
-            <LocalizedLink
-              to={sourcePath(source.id)}
-              className="min-w-0 truncate text-sm font-medium hover:underline"
-            >
-              {source.name}
-            </LocalizedLink>
-          ) : (
-            <a
-              href={source.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="min-w-0 truncate text-sm font-medium hover:underline"
-            >
-              {source.name}
-            </a>
-          )}
-          <span className="shrink-0 text-xs text-muted-foreground">
-            <Trans
-              i18nKey="home_page.in_lists"
-              defaults="{{count}} lists"
-              values={{ count: source.lists?.length ?? 0 }}
-            />
-          </span>
+        <li key={source.id || source.url} className="break-inside-avoid py-1.5">
+          <div className="flex items-baseline gap-2">
+            <span className="w-6 shrink-0 text-right font-mono text-xs tabular-nums text-muted-foreground">
+              {index + 1}
+            </span>
+            {source.id ? (
+              <LocalizedLink
+                to={sourcePath(source.id)}
+                className="min-w-0 truncate text-sm font-medium hover:underline"
+              >
+                {source.name}
+              </LocalizedLink>
+            ) : (
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-w-0 truncate text-sm font-medium hover:underline"
+              >
+                {source.name}
+              </a>
+            )}
+            <span className="shrink-0 text-xs text-muted-foreground">
+              <Trans
+                i18nKey="home_page.in_lists"
+                defaults="{{count}} lists"
+                values={{ count: source.lists?.length ?? 0 }}
+              />
+            </span>
+          </div>
+          {source.description ? (
+            <p className="ml-8 mt-0.5 line-clamp-2 text-xs leading-5 text-muted-foreground">
+              {source.description}
+            </p>
+          ) : null}
         </li>
       ))}
     </ol>

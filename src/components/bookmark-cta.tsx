@@ -1,6 +1,5 @@
 import React from 'react';
 import { Trans } from 'gatsby-plugin-react-i18next';
-import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Bookmark, Copy, Check } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
@@ -39,30 +38,32 @@ const BookmarkCTA: React.FC = () => {
   const bookmarkLinkLabel = site.copyOverrides?.bookmarkLinkLabel;
 
   return (
-    <Card className="my-6 w-full max-w-2xl">
-      <CardHeader className="pb-2">
-        <CardTitle className="flex items-center gap-2 text-base md:text-lg">
-          <Bookmark className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
-          {bookmarkTitle || <Trans i18nKey="bookmark.title" defaults="Bookmark the Shuffle link" />}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="text-sm text-muted-foreground">
-        <p className="mb-3">
-          {bookmarkDescription || (
-            <Trans
-              i18nKey="bookmark.description"
-              defaults="Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’."
-            />
-          )}
-        </p>
-        <div className="flex flex-row justify-center items-center gap-4 md:gap-6">
+    <div className="my-6 w-full max-w-2xl rounded-xl border border-dashed bg-muted/30 px-4 py-4 text-start sm:px-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <Bookmark className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+            {bookmarkTitle || (
+              <Trans i18nKey="bookmark.title" defaults="Bookmark the Shuffle link" />
+            )}
+          </p>
+          <p className="mt-1 text-pretty text-sm text-muted-foreground">
+            {bookmarkDescription || (
+              <Trans
+                i18nKey="bookmark.description"
+                defaults="Drag this link to your bookmarks bar, or right‑click it and choose ‘Bookmark link’."
+              />
+            )}
+          </p>
+        </div>
+        <div className="flex shrink-0 items-center gap-3 sm:gap-4">
           <a
             ref={linkRef}
             href="#"
             // We want a localized link; Link handles the path, but we also
             // need a plain <a> element to expose absolute href for copying.
             // We'll render a hidden Link to generate the correct path and sync it.
-            className="font-semibold text-primary hover:underline"
+            className="whitespace-nowrap font-semibold text-primary hover:underline"
             onClick={(e) => e.preventDefault()}
           >
             {bookmarkLinkLabel || <Trans i18nKey="bookmark.link_label" defaults="News Shuffle" />}
@@ -81,15 +82,15 @@ const BookmarkCTA: React.FC = () => {
             )}
           </Button>
         </div>
+      </div>
 
-        {/* Hidden localized Link to resolve the correct href; we mirror it onto the visible anchor via effect */}
-        <span className="hidden" aria-hidden="true">
-          <LocalizedLink id="bookmark-localized" to={`/redirect${filterQueryString}`}>
-            localized redirect link
-          </LocalizedLink>
-        </span>
-      </CardContent>
-    </Card>
+      {/* Hidden localized Link to resolve the correct href; we mirror it onto the visible anchor via effect */}
+      <span className="hidden" aria-hidden="true">
+        <LocalizedLink id="bookmark-localized" to={`/redirect${filterQueryString}`}>
+          localized redirect link
+        </LocalizedLink>
+      </span>
+    </div>
   );
 };
 export default BookmarkCTA;

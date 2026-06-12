@@ -203,6 +203,7 @@
   }
   html {
     scroll-behavior: smooth;
+    color-scheme: light dark;
   }
   @media (prefers-reduced-motion: reduce) {
     html {

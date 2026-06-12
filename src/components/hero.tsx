@@ -1,8 +1,6 @@
 import React from 'react';
-import Logo from '../components/logo';
 import { Button } from './ui/button';
 import { Newspaper } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 import RedirectButton from '../components/redirect-button';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import BookmarkCTA from '../components/bookmark-cta';
@@ -15,23 +13,21 @@ const SideBar: React.FC = () => {
   const heroTagline = site.copyOverrides?.heroTagline;
 
   return (
-    <div className="p-4 md:p-8">
+    <div className="relative p-4 md:p-8">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-72 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
+      />
       <div className="flex-col content-center mx-auto text-center">
-        <Badge
-          variant="outline"
-          className="rounded-full py-2 px-6 bg-card border-0 text-muted-foreground"
-        >
-          <Logo />
-        </Badge>
-        <h2 className="my-2 text-3xl sm:text-4xl md:text-5xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
+        <h2 className="mx-auto my-2 max-w-3xl text-3xl sm:text-4xl md:text-5xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
           {heroHeadline || <Trans i18nKey="hero.headline" />}
         </h2>
-        <p className="my-4 text-muted-foreground md:text-lg">
+        <p className="mx-auto my-4 max-w-2xl text-pretty text-muted-foreground md:text-lg">
           {heroTagline || <Trans i18nKey="hero.tagline" />}
         </p>
-        <div className="flex items-center justify-center gap-4 py-4 lg:py-6">
+        <div className="flex items-center justify-center gap-3 py-4 lg:py-6">
           <RedirectButton />
-          <Button asChild variant="outline" size="lg">
+          <Button asChild variant="outline" size="lg" className="h-12 rounded-full px-6">
             <a href="#sources-gallery">
               <Newspaper className="h-5 w-5" /> <Trans i18nKey="sources" />
             </a>

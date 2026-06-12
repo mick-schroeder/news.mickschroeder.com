@@ -68,8 +68,8 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
           <TagPills sources={items} className="mx-auto max-w-screen-md py-4" />
         </section>
 
-        <section className="py-6 px-4 mx-auto max-w-screen-xl lg:px-6">
-          <h2 className="text-2xl py-2 font-extrabold flex items-center gap-2">
+        <section className="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+          <h2 className="text-2xl py-2 font-extrabold tracking-tight flex items-center gap-2">
             <TrendingUp className="w-6 h-6 text-primary" aria-hidden="true" />
             <Trans i18nKey="home_page.top_sources" defaults="Top sources" />
           </h2>
@@ -84,14 +84,14 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
 
         <section
           id="sources-gallery"
-          className="scroll-mt-6 py-6 px-4 mx-auto max-w-screen-xl lg:px-6"
+          className="scroll-mt-6 py-8 px-4 mx-auto max-w-screen-xl lg:px-6"
           style={{ scrollMarginTop: 'calc(var(--nav-h, 4rem) + 1rem)' }}
         >
-          <h2 className="text-2xl py-2 font-extrabold flex items-center gap-2">
+          <h2 className="text-2xl py-2 font-extrabold tracking-tight flex items-center gap-2">
             <Newspaper className="w-6 h-6 text-primary" aria-hidden="true" />
             {site.copyOverrides?.sourcesLabel || <Trans i18nKey="sources" defaults="Sources" />}
           </h2>
-          <div className="mt-2 flex flex-col gap-8">
+          <div className="mt-2 flex flex-col gap-10">
             {shelves.map((shelf, idx) => (
               <SourceShelf
                 key={shelf.list.id}
@@ -104,8 +104,8 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
           </div>
         </section>
 
-        <section className="py-6 px-4 mx-auto max-w-screen-xl lg:px-6">
-          <h2 className="text-2xl py-2 font-extrabold flex items-center gap-2">
+        <section className="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+          <h2 className="text-2xl py-2 font-extrabold tracking-tight flex items-center gap-2">
             <LayoutList className="w-6 h-6 text-primary" aria-hidden="true" />
             <Trans i18nKey="home_page.all_sources" defaults="All sources" />
             <span className="text-base font-normal tabular-nums text-muted-foreground">

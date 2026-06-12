@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Link, graphql, HeadProps } from 'gatsby';
 import { Trans } from 'gatsby-plugin-react-i18next';
+import { House } from 'lucide-react';
 import SiteLayout from '../components/site-layout';
+import { Button } from '../components/ui/button';
 import { SEO } from '../components/seo';
 import type { SEOLocaleData, SEOI18n } from '../components/seo';
 import '../fragments/locale';
@@ -9,16 +11,25 @@ import '../fragments/locale';
 const NotFoundPage: React.FC = () => {
   return (
     <SiteLayout>
-      <main className="mx-auto max-w-prose py-16 px-6 text-center">
-        <h1 className="mb-6 text-3xl font-bold">
+      <main className="mx-auto max-w-prose px-6 py-20 text-center">
+        <p
+          aria-hidden="true"
+          className="text-7xl font-black tracking-tight text-muted-foreground/30"
+        >
+          404
+        </p>
+        <h1 className="mt-4 text-3xl font-extrabold tracking-tight">
           <Trans i18nKey="notfound.title" />
         </h1>
-        <p className="mb-8 text-base text-muted-foreground">
+        <p className="mt-4 text-pretty text-base text-muted-foreground">
           <Trans i18nKey="notfound.message" />
         </p>
-        <Link to="/" className="underline underline-offset-4 hover:no-underline">
-          <Trans i18nKey="notfound.gohome" />
-        </Link>
+        <Button asChild size="lg" className="mt-8 rounded-full px-7">
+          <Link to="/">
+            <House aria-hidden="true" className="h-4 w-4" />
+            <Trans i18nKey="notfound.gohome" />
+          </Link>
+        </Button>
       </main>
     </SiteLayout>
   );

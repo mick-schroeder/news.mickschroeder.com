@@ -271,6 +271,11 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
                             {source.name}
                           </a>
                         )}
+                        {source.description ? (
+                          <p className="mt-1 line-clamp-2 text-sm leading-6 text-muted-foreground xl:hidden">
+                            {source.description}
+                          </p>
+                        ) : null}
                       </div>
                     </TableCell>
                     <TableCell className="hidden max-w-[320px] xl:table-cell">

@@ -29,13 +29,15 @@ const BUCKET_NAME = process.env.SCREENSHOT_BUCKET || 'web-shuffle-screenshots';
 const SCREENSHOT_PATH = './src/images/screenshots';
 const VIEWPORT_WIDTH = Number(process.env.SCREENSHOT_VIEWPORT_WIDTH || 1080);
 const VIEWPORT_HEIGHT = Number(process.env.SCREENSHOT_VIEWPORT_HEIGHT || 1920);
-const PAGE_NAVIGATION_TIMEOUT = Number(process.env.SCREENSHOT_NAVIGATION_TIMEOUT || 30000);
-const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || (IS_CI ? 1200 : 4000));
+const PAGE_NAVIGATION_TIMEOUT = Number(
+  process.env.SCREENSHOT_NAVIGATION_TIMEOUT || (IS_CI ? 15000 : 20000)
+);
+const WAIT_AFTER_LOAD = Number(process.env.SCREENSHOT_WAIT_AFTER_LOAD || (IS_CI ? 500 : 1000));
 const WAIT_FOR_BODY_TIMEOUT = Number(
-  process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || (IS_CI ? 8000 : 15000)
+  process.env.SCREENSHOT_WAIT_FOR_BODY_TIMEOUT || (IS_CI ? 5000 : 8000)
 );
 const WAIT_FOR_IMAGES_TIMEOUT = Number(
-  process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || (IS_CI ? 3000 : 8000)
+  process.env.SCREENSHOT_WAIT_FOR_IMAGES_TIMEOUT || (IS_CI ? 1500 : 2500)
 );
 const CONCURRENT_PAGES = Math.max(
   1,
@@ -45,7 +47,11 @@ const NAVIGATION_WAIT_UNTIL = (process.env.SCREENSHOT_NAVIGATION_WAIT_UNTIL || '
   .split(',')
   .map((entry) => entry.trim())
   .filter(Boolean);
-const SKIP_AUTO_SCROLL = process.env.SCREENSHOT_SKIP_AUTOSCROLL === 'true' || IS_CI;
+const ENABLE_AUTO_SCROLL =
+  process.env.SCREENSHOT_ENABLE_AUTOSCROLL === 'true' &&
+  process.env.SCREENSHOT_SKIP_AUTOSCROLL !== 'true' &&
+  !IS_CI;
+const MAX_AUTOSCROLL_STEPS = Math.max(0, Number(process.env.SCREENSHOT_MAX_AUTOSCROLL_STEPS || 0));
 const SKIP_IMAGE_WAIT = process.env.SCREENSHOT_SKIP_IMAGE_WAIT === 'true' || IS_CI;
 const ENABLE_ADBLOCKER =
   typeof process.env.SCREENSHOT_ENABLE_ADBLOCKER === 'string'
@@ -59,7 +65,8 @@ const BLOCKED_RESOURCE_TYPES = new Set(
 );
 
 const CACHE_TIMEOUT = Number(process.env.SCREENSHOT_CACHE_TIMEOUT_MS || 6 * 60 * 60 * 1000);
-const RETRIES = 2;
+const RETRIES = Math.max(1, Number(process.env.SCREENSHOT_RETRIES || 1));
+const SCREENSHOT_QUALITY = Math.max(0, Math.min(100, Number(process.env.SCREENSHOT_QUALITY || 78)));
 const HEADLESS_MODE =
   typeof process.env.PUPPETEER_HEADLESS === 'string'
     ? process.env.PUPPETEER_HEADLESS !== 'false'
@@ -219,41 +226,61 @@ async function hideCookieBanners(page, reporter) {
   }
 }
 
-// Scrolls down to trigger lazy loading, then scrolls back to top
+// Scrolls just enough to trigger common lazy-loaded hero images, then returns to top.
 async function autoScroll(page) {
-  await page.evaluate(async () => {
+  if (MAX_AUTOSCROLL_STEPS <= 0) return;
+
+  await page.evaluate(async (maxSteps) => {
     const scrollableHeight = () =>
       document.documentElement.scrollHeight || document.body.scrollHeight || 0;
-    const distance = Math.max(window.innerHeight / 2, 200);
-    const maxScroll = scrollableHeight();
-    if (maxScroll <= window.innerHeight * 1.2) {
+    const distance = Math.max(window.innerHeight * 0.75, 300);
+    if (scrollableHeight() <= window.innerHeight * 1.2) {
       window.scrollTo({ top: 0, behavior: 'auto' });
       return;
     }
 
     await new Promise((resolve) => {
+      let steps = 0;
       let total = 0;
       const step = () => {
         window.scrollBy(0, distance);
+        steps += 1;
         total += distance;
         const currentMax = scrollableHeight();
-        if (total >= currentMax - window.innerHeight) {
+        if (steps >= maxSteps || total >= currentMax - window.innerHeight) {
           window.scrollTo({ top: 0, behavior: 'auto' });
           resolve(null);
           return;
         }
-        window.requestAnimationFrame(step);
+        window.setTimeout(() => window.requestAnimationFrame(step), 120);
       };
       window.requestAnimationFrame(step);
     });
-  });
+  }, MAX_AUTOSCROLL_STEPS);
 }
 
-// Waits briefly for <img> elements to finish loading
+// Waits briefly for above-the-fold <img> elements to finish loading.
 async function waitForImages(page, reporter) {
   try {
     await page.evaluate(async (timeout) => {
-      const imgs = Array.from(document.images || []);
+      const viewportWidth = window.innerWidth || 0;
+      const viewportHeight = window.innerHeight || 0;
+      const isVisibleInViewport = (img) => {
+        const rect = img.getBoundingClientRect();
+        if (rect.width < 24 || rect.height < 24) return false;
+        if (rect.bottom < -50 || rect.top > viewportHeight + 200) return false;
+        if (rect.right < 0 || rect.left > viewportWidth) return false;
+        const styles = window.getComputedStyle(img);
+        return (
+          styles.display !== 'none' &&
+          styles.visibility !== 'hidden' &&
+          Number(styles.opacity || 1) > 0
+        );
+      };
+
+      const imgs = Array.from(document.images || [])
+        .filter(isVisibleInViewport)
+        .slice(0, 16);
       if (!imgs.length) return;
 
       const loadImage = (img) =>
@@ -279,6 +306,95 @@ async function waitForImages(page, reporter) {
     if (reporter && reporter.warn) {
       reporter.warn(`Failed waiting for images: ${error.message}`);
     }
+  }
+}
+
+async function resetScrollToTop(page) {
+  await page.evaluate(async () => {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (error) {
+      // Ignore browsers/pages that block history mutations.
+    }
+
+    const forceTop = () => {
+      document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
+      if (document.body) {
+        document.body.style.setProperty('scroll-behavior', 'auto', 'important');
+      }
+
+      const root = document.scrollingElement || document.documentElement;
+      [root, document.documentElement, document.body].filter(Boolean).forEach((element) => {
+        element.scrollTop = 0;
+        element.scrollLeft = 0;
+      });
+
+      window.scrollTo(0, 0);
+    };
+
+    forceTop();
+    await new Promise((resolve) => window.requestAnimationFrame(resolve));
+    forceTop();
+    await new Promise((resolve) => window.requestAnimationFrame(resolve));
+    forceTop();
+  });
+
+  await page
+    .waitForFunction(
+      () => {
+        const root = document.scrollingElement || document.documentElement;
+        const scrollTop = window.scrollY || root?.scrollTop || document.documentElement.scrollTop;
+        return Math.abs(scrollTop || 0) <= 1;
+      },
+      { timeout: 1000 }
+    )
+    .catch(() => {});
+}
+
+async function waitForMeaningfulContent(page) {
+  await page.waitForSelector('body', {
+    visible: true,
+    timeout: WAIT_FOR_BODY_TIMEOUT,
+  });
+
+  await page
+    .waitForFunction(
+      () => {
+        const body = document.body;
+        if (!body) return false;
+        const rect = body.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return false;
+
+        const bodyText = (body.innerText || '').replace(/\s+/g, ' ').trim();
+        if (bodyText.length >= 40) return true;
+
+        return Boolean(
+          document.querySelector(
+            'main, article, header, nav, img, picture, video, canvas, svg, [role="main"]'
+          )
+        );
+      },
+      {
+        timeout: WAIT_FOR_BODY_TIMEOUT,
+      }
+    )
+    .catch(() => {});
+}
+
+async function hasMeaningfulContent(page) {
+  try {
+    return await page.evaluate(() => {
+      const body = document.body;
+      if (!body) return false;
+      const rect = body.getBoundingClientRect();
+      const bodyText = (body.innerText || '').replace(/\s+/g, ' ').trim();
+      const hasMedia = Boolean(document.querySelector('img, picture, video, canvas, svg'));
+      return rect.width > 0 && rect.height > 0 && (bodyText.length >= 20 || hasMedia);
+    });
+  } catch (error) {
+    return false;
   }
 }
 
@@ -313,26 +429,29 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
         timeout: PAGE_NAVIGATION_TIMEOUT,
       });
 
-      await page.waitForFunction(() => document.readyState === 'complete', {
-        timeout: WAIT_FOR_BODY_TIMEOUT,
-      });
+      await waitForMeaningfulContent(page);
 
       if (WAIT_AFTER_LOAD > 0) {
         await delay(WAIT_AFTER_LOAD);
       }
 
       await hideCookieBanners(page, reporter);
-      if (!SKIP_AUTO_SCROLL) {
+      await resetScrollToTop(page);
+      if (ENABLE_AUTO_SCROLL) {
         await autoScroll(page).catch(() => {});
       }
       if (!SKIP_IMAGE_WAIT) {
+        await resetScrollToTop(page);
         await waitForImages(page, reporter);
       }
-      await page.evaluate(() => {
-        window.scrollTo({ top: 0, behavior: 'auto' });
-      });
+      await resetScrollToTop(page);
+      await waitForMeaningfulContent(page);
+      await resetScrollToTop(page);
       await page.screenshot({
         path: screenshotFullPath,
+        type: 'webp',
+        quality: SCREENSHOT_QUALITY,
+        captureBeyondViewport: false,
       });
       success = true;
       break; // Exit loop if screenshot is successful
@@ -345,8 +464,16 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
             `Attempt ${attempt} exceeded timeout for ${slug}; capturing current state.`
           );
           await delay(500);
+          if (!(await hasMeaningfulContent(page))) {
+            reporter.warn(`Skipping final screenshot for ${slug}: no meaningful page content.`);
+            break;
+          }
+          await resetScrollToTop(page);
           await page.screenshot({
             path: screenshotFullPath,
+            type: 'webp',
+            quality: SCREENSHOT_QUALITY,
+            captureBeyondViewport: false,
           });
           success = true;
           break; // Exit loop if screenshot is successful
@@ -501,6 +628,16 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
   await page.setViewport({ width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT, deviceScaleFactor: 2 });
   await page.setDefaultNavigationTimeout(PAGE_NAVIGATION_TIMEOUT);
   await page.setDefaultTimeout(PAGE_NAVIGATION_TIMEOUT);
+  await page.setBypassServiceWorker(true);
+  await page.evaluateOnNewDocument(() => {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (error) {
+      // Ignore browsers/pages that block history mutations.
+    }
+  });
   await page.setUserAgent(
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
   );
@@ -555,6 +692,10 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
       } else {
         // No-op: do not create placeholders; gallery handles missing images.
       }
+
+      await page
+        .goto('about:blank', { waitUntil: 'domcontentloaded', timeout: 3000 })
+        .catch(() => {});
     }
   } finally {
     await page.close().catch(() => {});
@@ -655,7 +796,14 @@ const preProcessSources = async (sourcesInput, reporter) => {
     }
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-background-networking',
+        '--disable-background-timer-throttling',
+        '--disable-dev-shm-usage',
+        '--disable-features=Translate,BackForwardCache',
+      ],
       headless: HEADLESS_MODE,
       ignoreHTTPSErrors: true,
       protocolTimeout: PAGE_NAVIGATION_TIMEOUT * 2,

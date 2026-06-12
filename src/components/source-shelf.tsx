@@ -70,7 +70,7 @@ const SourceShelf = ({
           const tagsText = (source.tags ?? []).join(', ');
           const card = (
             <>
-              <div className="overflow-hidden rounded-lg border bg-muted">
+              <div className="overflow-hidden rounded-xl border bg-muted shadow-xs motion-safe:transition-colors group-hover:border-primary/40">
                 <AspectRatio ratio={9 / 16}>
                   {image ? (
                     <GatsbyImage
@@ -130,7 +130,7 @@ const SourceShelf = ({
         {remaining > 0 ? (
           <li className="w-36 shrink-0 snap-start sm:w-40">
             <LocalizedLink to={listPath(listId)} className="group block">
-              <div className="rounded-lg border bg-muted/50">
+              <div className="rounded-xl border border-dashed bg-muted/50 motion-safe:transition-colors group-hover:border-primary/40 group-hover:bg-muted">
                 <AspectRatio ratio={9 / 16}>
                   <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-muted-foreground">
                     <span className="text-lg font-bold tabular-nums">+{remaining}</span>

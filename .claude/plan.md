@@ -3,9 +3,6 @@
 
 ## General
 
-- build nice <http://localhost:8000/sources> page to show all sources
-  - data page use shadcn table kinda block
-
 ## Source Scraper
 
 - mechnism for sites falling off list?

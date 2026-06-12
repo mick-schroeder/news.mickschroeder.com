@@ -42,7 +42,7 @@ const TagPills = ({ sources, className }: TagPillsProps): JSX.Element | null => 
           )}
         >
           {tag}
-          <span className="ms-1.5 tabular-nums text-muted-foreground">{count}</span>
+          <span className="ms-1.5 tabular-nums text-secondary-foreground/60">{count}</span>
         </LocalizedLink>
       ))}
     </nav>

@@ -22,7 +22,7 @@ const DefaultNavbar: React.FC = () => {
   const navInteractiveClasses =
     'text-navbar-foreground hover:bg-navbar-accent hover:text-navbar-accent-foreground focus-visible:ring-navbar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-navbar';
   return (
-    <nav className="sticky inset-x-0 top-0 z-50 w-full backdrop-blur bg-navbar/90 border-b border-navbar-border text-navbar-foreground supports-[backdrop-filter]:bg-navbar/70">
+    <nav className="relative inset-x-0 top-0 z-50 w-full backdrop-blur bg-navbar/90 border-b border-navbar-border text-navbar-foreground supports-[backdrop-filter]:bg-navbar/70 md:sticky">
       <div className="mx-auto max-w-screen-2xl px-4">
         <div className="flex min-h-16 items-center gap-3 py-2">
           <div className="flex min-w-0 flex-1 items-center">
@@ -166,8 +166,8 @@ const DefaultNavbar: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-navbar-border/80 py-2">
-          <div className="mx-auto max-w-screen-xl rounded-xl border border-navbar-border/80 bg-background/80 p-2 shadow-sm">
+        <div className="border-t border-navbar-border/80 py-2.5">
+          <div className="mx-auto max-w-screen-xl">
             <div className="grid gap-2 xl:grid-cols-[minmax(430px,auto)_minmax(320px,1fr)_auto] xl:items-center">
               <SourceFilterControls className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] xl:flex xl:flex-nowrap xl:justify-start" />
               <ShufflePlayer className="min-w-0" />
