@@ -77,3 +77,4 @@ yarn-error.log
 # Generated sources node
 /src/data/data.json
 .claude/plan.md
+.claude/plan.md

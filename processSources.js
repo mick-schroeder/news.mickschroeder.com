@@ -20,7 +20,10 @@ const { createScreenshotSlug } = require('./utils/screenshotSlug');
 
 const shouldForceRegenerate = process.env.FORCE_REGENERATE === 'true';
 const shouldSkipScreenshots = process.env.SKIP_SCREENSHOTS === 'true';
-const IS_CI = process.env.CI === 'true' || process.env.AMPLIFY === 'true';
+const IS_CI =
+  process.env.CI === 'true' ||
+  process.env.AMPLIFY === 'true' ||
+  Boolean(process.env.AWS_APP_ID || process.env.AWS_BRANCH);
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -82,17 +85,35 @@ const resolveS3Client = () => {
   try {
     if (process.env.SKIP_S3 === 'true') return null;
 
+    const accessKeyId =
+      process.env.SCREENSHOT_ACCESS_KEY_ID ||
+      process.env.SCREENSHOT_AWS_ACCESS_KEY_ID ||
+      process.env.AWS_ACCESS_KEY_ID;
+    const secretAccessKey =
+      process.env.SCREENSHOT_SECRET_ACCESS_KEY ||
+      process.env.SCREENSHOT_AWS_SECRET_ACCESS_KEY ||
+      process.env.AWS_SECRET_ACCESS_KEY;
+    const sessionToken =
+      process.env.SCREENSHOT_SESSION_TOKEN ||
+      process.env.SCREENSHOT_AWS_SESSION_TOKEN ||
+      process.env.AWS_SESSION_TOKEN;
+
     const explicitCreds =
-      process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY
+      accessKeyId && secretAccessKey
         ? {
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-            sessionToken: process.env.AWS_SESSION_TOKEN,
+            accessKeyId,
+            secretAccessKey,
+            sessionToken,
           }
         : {};
 
     const options = {
-      region: process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1',
+      region:
+        process.env.SCREENSHOT_REGION ||
+        process.env.SCREENSHOT_AWS_REGION ||
+        process.env.AWS_REGION ||
+        process.env.AWS_DEFAULT_REGION ||
+        'us-east-1',
       ...explicitCreds,
     };
 

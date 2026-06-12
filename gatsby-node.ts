@@ -33,10 +33,7 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ act
   });
 };
 
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
-  reporter,
-  getNodesByType,
-}) => {
+export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async ({ reporter }) => {
   const shouldRefreshScreenshots =
     process.env.GATSBY_REFRESH_SCREENSHOTS === 'true' || process.env.FORCE_REGENERATE === 'true';
 
@@ -47,13 +44,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     return;
   }
 
-  const files = getNodesByType('GeneratedJson') as Array<{ sources?: any[] }>;
-  const file = files[0];
-  const sources = Array.isArray(file?.sources) ? file!.sources : [];
-
-  reporter.info(
-    `[gatsby-node] GeneratedJson nodes: ${files.length}; sources entries: ${sources.length}`
-  );
+  const { sources } = loadShuffleData();
+  reporter.info(`[gatsby-node] Preparing screenshots before source nodes: ${sources.length}`);
 
   if (!sources.length) {
     reporter.warn(
