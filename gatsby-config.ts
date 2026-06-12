@@ -28,7 +28,10 @@ const GENERATED_DATA_FILE = path.join(GENERATED_DATA_DIR, 'data.json');
 const ensureGeneratedDataFile = () => {
   const payload = JSON.stringify({ sources: loadSources() });
   fs.mkdirSync(GENERATED_DATA_DIR, { recursive: true });
-  if (!fs.existsSync(GENERATED_DATA_FILE) || fs.readFileSync(GENERATED_DATA_FILE, 'utf8') !== payload) {
+  if (
+    !fs.existsSync(GENERATED_DATA_FILE) ||
+    fs.readFileSync(GENERATED_DATA_FILE, 'utf8') !== payload
+  ) {
     fs.writeFileSync(GENERATED_DATA_FILE, payload);
   }
 };

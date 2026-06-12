@@ -32,7 +32,10 @@ function assertSourceArray(value: unknown, label: string): asserts value is Sour
     if (typeof source.url !== 'string' || !source.url.trim()) {
       throw new Error(`[loadSources] ${label}[${i}].url must be a non-empty string.`);
     }
-    if (!Array.isArray(source.categories) || source.categories.some((cat) => typeof cat !== 'string')) {
+    if (
+      !Array.isArray(source.categories) ||
+      source.categories.some((cat) => typeof cat !== 'string')
+    ) {
       throw new Error(`[loadSources] ${label}[${i}].categories must be a string array.`);
     }
     if (typeof source.score !== 'number' || !Number.isFinite(source.score)) {

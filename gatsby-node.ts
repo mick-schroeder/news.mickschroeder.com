@@ -130,7 +130,8 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
   const activeLanguages = languages.length ? languages : availableLanguages;
 
   const defaultLanguage =
-    process.env.GATSBY_DEFAULT_LANGUAGE && activeLanguages.includes(process.env.GATSBY_DEFAULT_LANGUAGE)
+    process.env.GATSBY_DEFAULT_LANGUAGE &&
+    activeLanguages.includes(process.env.GATSBY_DEFAULT_LANGUAGE)
       ? process.env.GATSBY_DEFAULT_LANGUAGE
       : activeLanguages.includes(site.defaultLanguage)
         ? site.defaultLanguage

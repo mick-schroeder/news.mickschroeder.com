@@ -3,6 +3,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const DRUDGE_URL = 'https://www.drudgereport.com/';
+const PINNED_DRUDGE_SOURCE = {
+  name: 'drudgereport.com',
+  url: 'https://drudgereport.com/',
+  categories: ['Drudge'],
+  score: 10,
+};
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const OUTPUT_FILE = path.resolve(__dirname, '../src/data/sources.drudge.json');
@@ -80,20 +86,23 @@ const extractOutboundDomains = (html, ignoreRules) => {
   return Array.from(domains).sort((a, b) => a.localeCompare(b));
 };
 
-const toSources = (domains) =>
-  domains.map((domain) => ({
-    name: domain,
-    url: `https://${domain}/`,
-    categories: ['Drudge'],
-    score: 3.0,
-  }));
+const toSources = (domains) => [
+  PINNED_DRUDGE_SOURCE,
+  ...domains
+    .filter((domain) => domain !== PINNED_DRUDGE_SOURCE.name)
+    .map((domain) => ({
+      name: domain,
+      url: `https://${domain}/`,
+      categories: ['Drudge'],
+      score: 3.0,
+    })),
+];
 
 const main = async () => {
   const ignoreRules = await loadIgnoreRules();
   const response = await fetch(DRUDGE_URL, {
     headers: {
-      'user-agent':
-        'Mozilla/5.0 (compatible; NewsShuffleBot/1.0; +https://news.mickschroeder.com)',
+      'user-agent': 'Mozilla/5.0 (compatible; NewsShuffleBot/1.0; +https://news.mickschroeder.com)',
     },
   });
 

@@ -134,7 +134,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       image={image}
                       alt={String(t('screenshot_of', { name }))}
                       loading={eager}
-                      fetchpriority={fetchP}
+                      fetchPriority={fetchP}
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                     />

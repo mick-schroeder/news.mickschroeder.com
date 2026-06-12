@@ -2,13 +2,13 @@ import type { SiteConfig } from '../getSiteConfig';
 
 export const drudgeSiteConfig: SiteConfig = {
   key: 'drudge',
-  siteName: 'Mick Schroeder\'s Drudge Report Shuffle',
+  siteName: "Mick Schroeder's Drudge Report Shuffle",
   siteShortName: 'Drudge Shuffle',
   siteDescription: 'Shuffle through the sources linked on the Drudge Report.',
   defaultLanguage: 'en',
   languages: ['en'],
   sourcesFile: 'sources.drudge.json',
-  navbarBrandLabel: 'Mick Schroeder\'s Drudge Report Shuffle',
+  navbarBrandLabel: "Mick Schroeder's Drudge Report Shuffle",
   copyOverrides: {
     heroHeadline: 'Shuffle through sources linked by Drudge.',
     heroTagline:
