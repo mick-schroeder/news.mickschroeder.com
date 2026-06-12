@@ -6,7 +6,6 @@
     "canonicalKey": "reuters.com",
     "aliases": [],
     "tags": [
-      "Drudge",
       "Global"
     ],
     "lists": [
@@ -32,7 +31,6 @@
     "canonicalKey": "apnews.com",
     "aliases": [],
     "tags": [
-      "Drudge",
       "Global"
     ],
     "lists": [
@@ -57,8 +55,7 @@
     "canonicalKey": "axios.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -82,8 +79,7 @@
     "canonicalKey": "businessinsider.com",
     "aliases": [],
     "tags": [
-      "Business",
-      "Drudge"
+      "Business"
     ],
     "lists": [
       "news",
@@ -107,8 +103,7 @@
     "canonicalKey": "cnn.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -132,8 +127,7 @@
     "canonicalKey": "foxnews.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -157,8 +151,7 @@
     "canonicalKey": "theguardian.com",
     "aliases": [],
     "tags": [
-      "British",
-      "Drudge"
+      "British"
     ],
     "lists": [
       "news",
@@ -182,8 +175,7 @@
     "canonicalKey": "nytimes.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -235,8 +227,7 @@
       "abcnews.com"
     ],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -282,8 +273,7 @@
     "canonicalKey": "cbsnews.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -306,8 +296,7 @@
     "canonicalKey": "cnbc.com",
     "aliases": [],
     "tags": [
-      "Business",
-      "Drudge"
+      "Business"
     ],
     "lists": [
       "news",
@@ -330,8 +319,7 @@
     "canonicalKey": "ft.com",
     "aliases": [],
     "tags": [
-      "Business",
-      "Drudge"
+      "Business"
     ],
     "lists": [
       "news",
@@ -354,8 +342,7 @@
     "canonicalKey": "independent.co.uk",
     "aliases": [],
     "tags": [
-      "British",
-      "Drudge"
+      "British"
     ],
     "lists": [
       "news",
@@ -378,8 +365,7 @@
     "canonicalKey": "latimes.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -402,8 +388,7 @@
     "canonicalKey": "nbcnews.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -449,8 +434,7 @@
     "canonicalKey": "thehill.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -498,8 +482,7 @@
       "online.wsj.com"
     ],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -522,8 +505,7 @@
     "canonicalKey": "washingtonpost.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -604,8 +586,7 @@
     "canonicalKey": "bloomberg.com",
     "aliases": [],
     "tags": [
-      "Business",
-      "Drudge"
+      "Business"
     ],
     "lists": [
       "news",
@@ -673,8 +654,7 @@
     "canonicalKey": "drudgereport.com",
     "aliases": [],
     "tags": [
-      "Aggregator",
-      "Drudge"
+      "Aggregator"
     ],
     "lists": [
       "news",
@@ -695,7 +675,6 @@
     "canonicalKey": "dw.com",
     "aliases": [],
     "tags": [
-      "Drudge",
       "Global"
     ],
     "lists": [
@@ -717,8 +696,7 @@
     "canonicalKey": "economist.com",
     "aliases": [],
     "tags": [
-      "Business",
-      "Drudge"
+      "Business"
     ],
     "lists": [
       "news",
@@ -812,7 +790,6 @@
     "canonicalKey": "france24.com",
     "aliases": [],
     "tags": [
-      "Drudge",
       "Global"
     ],
     "lists": [
@@ -866,8 +843,7 @@
       "huffingtonpost.com"
     ],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -934,7 +910,6 @@
     "canonicalKey": "lemonde.fr",
     "aliases": [],
     "tags": [
-      "Drudge",
       "Global"
     ],
     "lists": [
@@ -956,8 +931,7 @@
     "canonicalKey": "marketwatch.com",
     "aliases": [],
     "tags": [
-      "Business",
-      "Drudge"
+      "Business"
     ],
     "lists": [
       "news",
@@ -1066,8 +1040,7 @@
     "canonicalKey": "politico.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -1186,7 +1159,6 @@
       "news.sky.com"
     ],
     "tags": [
-      "Drudge",
       "Global"
     ],
     "lists": [
@@ -1310,8 +1282,7 @@
     "canonicalKey": "theatlantic.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -1333,8 +1304,7 @@
     "canonicalKey": "thedailybeast.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -1419,7 +1389,6 @@
     "canonicalKey": "japantimes.co.jp",
     "aliases": [],
     "tags": [
-      "Drudge",
       "Global"
     ],
     "lists": [
@@ -1472,8 +1441,7 @@
     "canonicalKey": "newyorker.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -1515,8 +1483,7 @@
     "canonicalKey": "telegraph.co.uk",
     "aliases": [],
     "tags": [
-      "British",
-      "Drudge"
+      "British"
     ],
     "lists": [
       "news",
@@ -1559,8 +1526,7 @@
     "canonicalKey": "time.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news"
@@ -1590,8 +1556,7 @@
     "canonicalKey": "usatoday.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",
@@ -1612,8 +1577,7 @@
     "canonicalKey": "vanityfair.com",
     "aliases": [],
     "tags": [
-      "American",
-      "Drudge"
+      "American"
     ],
     "lists": [
       "news",

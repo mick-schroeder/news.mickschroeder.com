@@ -48,7 +48,7 @@ const DefaultNavbar: React.FC = () => {
               variant="ghost"
               className={cn('h-9 px-3', navInteractiveClasses)}
             >
-              <LocalizedLink to="/#sources-gallery">
+              <LocalizedLink to="/sources/">
                 <Newspaper aria-hidden="true" className="w-4 h-4" />
                 <Trans i18nKey="sources" />
               </LocalizedLink>
@@ -101,7 +101,7 @@ const DefaultNavbar: React.FC = () => {
                   </LocalizedLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="lg:hidden">
-                  <LocalizedLink to="/#sources-gallery" className="flex items-center gap-2">
+                  <LocalizedLink to="/sources/" className="flex items-center gap-2">
                     <Newspaper aria-hidden="true" className="h-4 w-4" />
                     <Trans i18nKey="sources" />
                   </LocalizedLink>

@@ -36,7 +36,7 @@ type SourcesDataTableProps = {
   lists: SourceList[];
 };
 
-type SortKey = 'name' | 'score' | 'lists' | 'tags';
+type SortKey = 'name' | 'score';
 type SortDirection = 'asc' | 'desc';
 
 const hostOf = (url: string): string => {
@@ -125,10 +125,6 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
       switch (sortKey) {
         case 'score':
           return scoreOf(a.score) - scoreOf(b.score);
-        case 'lists':
-          return (a.lists?.length ?? 0) - (b.lists?.length ?? 0) || compareStrings(a.name, b.name);
-        case 'tags':
-          return (a.tags?.length ?? 0) - (b.tags?.length ?? 0) || compareStrings(a.name, b.name);
         case 'name':
         default:
           return compareStrings(a.name, b.name);
@@ -240,19 +236,17 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
           <TableHeader>
             <TableRow className="bg-muted/40 hover:bg-muted/40">
               <TableHead className="min-w-[240px]">{sortButton('name', 'Source')}</TableHead>
-              <TableHead className="hidden min-w-[280px] lg:table-cell">Description</TableHead>
-              <TableHead className="min-w-[160px]">Lists</TableHead>
+              <TableHead className="hidden min-w-[220px] max-w-[320px] xl:table-cell">
+                Description
+              </TableHead>
               <TableHead className="hidden min-w-[160px] md:table-cell">Tags</TableHead>
               <TableHead className="w-[88px] text-right">{sortButton('score', 'Score')}</TableHead>
-              <TableHead className="w-[76px]">
-                <span className="sr-only">Visit source</span>
-              </TableHead>
+              <TableHead className="min-w-[180px]">URL</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {sortedSources.length ? (
               sortedSources.map((source) => {
-                const sourceLists = source.lists ?? [];
                 const sourceTags = source.tags ?? [];
                 const detailPath = source.id ? sourcePath(source.id) : null;
 
@@ -277,42 +271,25 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
                             {source.name}
                           </a>
                         )}
-                        <a
-                          href={source.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-1 block truncate text-xs text-muted-foreground hover:underline"
-                        >
-                          {hostOf(source.url)}
-                        </a>
                       </div>
                     </TableCell>
-                    <TableCell className="hidden max-w-[340px] lg:table-cell">
-                      <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">
+                    <TableCell className="hidden max-w-[320px] xl:table-cell">
+                      <p
+                        className="truncate text-sm text-muted-foreground"
+                        title={source.description || source.canonicalKey || hostOf(source.url)}
+                      >
                         {source.description || source.canonicalKey || hostOf(source.url)}
                       </p>
                     </TableCell>
-                    <TableCell>
-                      <div className="flex max-w-[220px] flex-wrap gap-1.5">
-                        {sourceLists.slice(0, 3).map((listId) => (
-                          <Badge key={listId} variant="secondary" className="max-w-full truncate">
-                            {listNameById.get(listId) || listId}
-                          </Badge>
-                        ))}
-                        {sourceLists.length > 3 ? (
-                          <Badge variant="outline">+{sourceLists.length - 3}</Badge>
-                        ) : null}
-                      </div>
-                    </TableCell>
                     <TableCell className="hidden md:table-cell">
                       <div className="flex max-w-[220px] flex-wrap gap-1.5">
-                        {sourceTags.slice(0, 3).map((tag) => (
+                        {sourceTags.slice(0, 2).map((tag) => (
                           <Badge key={tag} variant="outline" className="max-w-full truncate">
                             {tag}
                           </Badge>
                         ))}
-                        {sourceTags.length > 3 ? (
-                          <Badge variant="outline">+{sourceTags.length - 3}</Badge>
+                        {sourceTags.length > 2 ? (
+                          <Badge variant="outline">+{sourceTags.length - 2}</Badge>
                         ) : null}
                       </div>
                     </TableCell>
@@ -320,23 +297,22 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
                       {scoreOf(source.score).toFixed(1)}
                     </TableCell>
                     <TableCell>
-                      <Button
-                        asChild
-                        variant="ghost"
-                        size="icon"
-                        aria-label={`Open ${source.name}`}
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex max-w-[220px] items-center gap-2 truncate text-sm font-medium text-primary hover:underline"
                       >
-                        <a href={source.url} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink aria-hidden="true" className="h-4 w-4" />
-                        </a>
-                      </Button>
+                        <span className="truncate">{hostOf(source.url)}</span>
+                        <ExternalLink aria-hidden="true" className="h-4 w-4 shrink-0" />
+                      </a>
                     </TableCell>
                   </TableRow>
                 );
               })
             ) : (
               <TableRow>
-                <TableCell colSpan={6} className="h-28 text-center text-muted-foreground">
+                <TableCell colSpan={5} className="h-28 text-center text-muted-foreground">
                   No sources match the current filters.
                 </TableCell>
               </TableRow>
