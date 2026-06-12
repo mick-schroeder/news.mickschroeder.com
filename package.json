@@ -15,7 +15,6 @@
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
     "sources:refresh": "node scripts/refresh-aggregator-sources.mjs",
-    "sources:drudge": "node scripts/refresh-aggregator-sources.mjs --lists=drudge-report",
     "sources:validate": "node scripts/validate-sources.mjs",
     "test:sources": "node scripts/validate-sources.mjs && node scripts/test-scrapers.mjs && node scripts/test-score.mjs",
     "format": "prettier --write .",

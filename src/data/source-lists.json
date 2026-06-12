@@ -1,12 +1,12 @@
 [
   {
-    "id": "curated-news",
+    "id": "news",
     "name": "Curated News",
     "description": "Our hand-picked set of news sources worth shuffling through.",
     "kind": "curated"
   },
   {
-    "id": "drudge-report",
+    "id": "drudgereport",
     "name": "Drudge Report",
     "description": "The internet's original news aggregator, known for its minimalist design, influential link selection, and focus on breaking news.",
     "kind": "scraped",

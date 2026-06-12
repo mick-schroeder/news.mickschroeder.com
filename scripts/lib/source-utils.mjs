@@ -201,7 +201,7 @@ export const mergeScrapedSources = ({ sources, listId, candidates, runDate }) =>
 
 export const sortSources = (sources) =>
   [...sources].sort((a, b) => {
-    const listRank = (source) => ((source.lists || []).includes('curated-news') ? 0 : 1);
+    const listRank = (source) => ((source.lists || []).includes('news') ? 0 : 1);
     const rank = listRank(a) - listRank(b);
     if (rank) return rank;
     const score = Number(b.score || 0) - Number(a.score || 0);

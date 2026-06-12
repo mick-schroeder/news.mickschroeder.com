@@ -378,12 +378,15 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
   });
 
   shuffleData.sources.forEach((source) => {
+    const screenshotBase = `${createScreenshotSlug(source.url || source.name || '', source.name)}.webp`;
+
     createLocalizedPage({
       originalPath: sourcePath(source.id),
       component: sourceTemplatePath,
       context: {
         id: source.id,
         source,
+        screenshotBase,
         sourceLists: source.lists.map((listId) => {
           const list = listById.get(listId);
           return {

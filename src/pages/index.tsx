@@ -53,8 +53,8 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
       }))
       .filter((shelf) => shelf.items.length > 0)
       .sort((a, b) => {
-        if (a.list.id === 'curated-news') return -1;
-        if (b.list.id === 'curated-news') return 1;
+        if (a.list.id === 'news') return -1;
+        if (b.list.id === 'news') return 1;
         return b.items.length - a.items.length;
       });
   }, [items, lists]);

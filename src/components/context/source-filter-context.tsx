@@ -1,11 +1,11 @@
 import React, { type ReactNode } from 'react';
 
-export const DEFAULT_SELECTED_LISTS = ['curated-news'];
+export const DEFAULT_SELECTED_LISTS = ['news'];
 
 const LIST_PARAM = 'lists';
 const TAG_PARAM = 'tags';
-const LIST_STORAGE_KEY = 'webshuffle.selectedLists';
-const TAG_STORAGE_KEY = 'webshuffle.selectedTags';
+const LIST_STORAGE_KEY = 'news.selectedLists';
+const TAG_STORAGE_KEY = 'news.selectedTags';
 
 type SourceFilterContextType = {
   selectedLists: string[];

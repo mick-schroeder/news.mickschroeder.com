@@ -10,7 +10,7 @@ const ROOT = path.resolve(__dirname, '..');
 const IGNORE_FILE = path.join(ROOT, 'src/data/aggregator-ignore-urls.txt');
 
 const fixtures = {
-  'drudge-report': {
+  'drudgereport': {
     html: `
       <a href="https://www.drudgereport.com/">internal</a>
       <a href="https://www.nytimes.com/2026/06/12/story.html">NYT</a>

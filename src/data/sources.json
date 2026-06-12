@@ -10,8 +10,8 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "skimfeed",
@@ -36,8 +36,8 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -61,8 +61,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -86,8 +86,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "skimfeed",
       "techmeme"
@@ -111,8 +111,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "skimfeed"
@@ -136,8 +136,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "skimfeed"
@@ -161,8 +161,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -186,8 +186,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "skimfeed",
       "techmeme"
@@ -212,8 +212,8 @@
       "Aggregator"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -239,7 +239,7 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum",
       "skimfeed",
       "techmeme"
@@ -262,7 +262,7 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum",
       "skimfeed",
       "techmeme"
@@ -286,8 +286,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -310,8 +310,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -334,8 +334,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -358,8 +358,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer",
       "techmeme"
     ],
@@ -382,7 +382,7 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -406,8 +406,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -429,7 +429,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -453,8 +453,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -476,7 +476,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -502,8 +502,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -526,8 +526,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -549,7 +549,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "mediagazer",
       "techmeme"
     ],
@@ -571,7 +571,7 @@
       "British"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "mediagazer"
     ],
     "score": 2.5,
@@ -592,7 +592,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -608,7 +608,7 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum",
       "techmeme"
     ],
@@ -630,7 +630,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -646,7 +646,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -661,7 +661,7 @@
       "Global"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -677,8 +677,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -699,8 +699,8 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -721,8 +721,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -742,7 +742,7 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "techmeme"
     ],
     "score": 2.5,
@@ -763,7 +763,7 @@
       "Business"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum",
       "techmeme"
     ],
@@ -785,7 +785,7 @@
       "American"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -800,7 +800,7 @@
       "Aggregator"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -816,8 +816,8 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -837,7 +837,7 @@
       "Aggregator"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -852,7 +852,7 @@
       "Business"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -870,8 +870,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 2.5,
@@ -892,7 +892,7 @@
       "Gaeilge"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -907,7 +907,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -922,7 +922,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -938,8 +938,8 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -960,8 +960,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -981,7 +981,7 @@
       "American"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -996,7 +996,7 @@
       "Science"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1011,7 +1011,7 @@
       "American"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum",
       "techmeme"
     ],
@@ -1033,7 +1033,7 @@
       "Gaeilge"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1048,7 +1048,7 @@
       "American"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum"
     ],
     "score": 2.5,
@@ -1070,7 +1070,7 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum",
       "techmeme"
     ],
@@ -1092,7 +1092,7 @@
       "American"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "skimfeed"
     ],
     "score": 2.5,
@@ -1113,7 +1113,7 @@
       "Aggregator"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "skimfeed",
       "techmeme"
     ],
@@ -1135,7 +1135,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1151,7 +1151,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "techmeme"
     ],
     "score": 2.5,
@@ -1172,7 +1172,7 @@
       "Aggregator"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1190,8 +1190,8 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "mediagazer"
     ],
     "score": 2.5,
@@ -1212,7 +1212,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "techmeme"
     ],
     "score": 2.5,
@@ -1233,7 +1233,7 @@
       "American"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1248,7 +1248,7 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "techmeme"
     ],
     "score": 2.5,
@@ -1269,7 +1269,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "mediagazer",
       "memeorandum"
     ],
@@ -1291,7 +1291,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "mediagazer",
       "techmeme"
     ],
@@ -1314,8 +1314,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 2.5,
@@ -1337,8 +1337,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -1358,7 +1358,7 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "techmeme"
     ],
     "score": 2.5,
@@ -1379,7 +1379,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum",
       "techmeme"
     ],
@@ -1401,7 +1401,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "techmeme"
     ],
     "score": 2.5,
@@ -1423,8 +1423,8 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "skimfeed"
     ],
     "score": 2.5,
@@ -1445,7 +1445,7 @@
       "Irish"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1460,7 +1460,7 @@
       "Gaeilge"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1476,8 +1476,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -1497,7 +1497,7 @@
       "Tech"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "techmeme"
     ],
     "score": 2.5,
@@ -1519,8 +1519,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "techmeme"
     ],
     "score": 2.5,
@@ -1541,7 +1541,7 @@
       "Global"
     ],
     "lists": [
-      "curated-news",
+      "news",
       "memeorandum"
     ],
     "score": 2.5,
@@ -1563,7 +1563,7 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1578,7 +1578,7 @@
       "Gaeilge"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1594,8 +1594,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report"
+      "news",
+      "drudgereport"
     ],
     "score": 2.5,
     "description": "",
@@ -1616,8 +1616,8 @@
       "Drudge"
     ],
     "lists": [
-      "curated-news",
-      "drudge-report",
+      "news",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 2.5,
@@ -1638,7 +1638,7 @@
       "American"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1653,7 +1653,7 @@
       "Aggregator"
     ],
     "lists": [
-      "curated-news"
+      "news"
     ],
     "score": 2.5,
     "description": ""
@@ -1667,7 +1667,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -1688,7 +1688,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -1709,7 +1709,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -1730,7 +1730,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -1751,7 +1751,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -1772,7 +1772,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum",
       "techmeme"
@@ -1813,7 +1813,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum"
     ],
@@ -1833,7 +1833,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -1853,7 +1853,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -1873,7 +1873,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum"
     ],
@@ -1893,7 +1893,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "skimfeed",
       "techmeme"
     ],
@@ -1913,7 +1913,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum"
     ],
@@ -1953,7 +1953,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "mediagazer",
       "memeorandum"
     ],
@@ -1993,7 +1993,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -2013,7 +2013,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -2053,7 +2053,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum",
       "techmeme"
     ],
@@ -2130,7 +2130,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "skimfeed"
     ],
     "score": 1.98,
@@ -2225,7 +2225,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 1.98,
@@ -2263,7 +2263,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "skimfeed"
     ],
     "score": 1.98,
@@ -2434,7 +2434,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "techmeme"
     ],
     "score": 1.98,
@@ -2586,7 +2586,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "techmeme"
     ],
     "score": 1.98,
@@ -2662,7 +2662,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "skimfeed"
     ],
     "score": 1.98,
@@ -2719,7 +2719,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "techmeme"
     ],
     "score": 1.98,
@@ -2795,7 +2795,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 1.98,
@@ -2833,7 +2833,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 1.98,
@@ -2890,7 +2890,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "techmeme"
     ],
     "score": 1.98,
@@ -3023,7 +3023,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "skimfeed"
     ],
     "score": 1.98,
@@ -3042,7 +3042,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 1.98,
@@ -3099,7 +3099,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report",
+      "drudgereport",
       "memeorandum"
     ],
     "score": 1.98,
@@ -3301,7 +3301,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -3481,7 +3481,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -3499,7 +3499,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -3751,7 +3751,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -3913,7 +3913,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -3931,7 +3931,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -3949,7 +3949,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4075,7 +4075,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4129,7 +4129,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4183,7 +4183,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4201,7 +4201,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4237,7 +4237,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4417,7 +4417,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4633,7 +4633,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4687,7 +4687,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4921,7 +4921,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4975,7 +4975,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -4993,7 +4993,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5029,7 +5029,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5065,7 +5065,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5083,7 +5083,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5155,7 +5155,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5191,7 +5191,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5497,7 +5497,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5749,7 +5749,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -5911,7 +5911,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6019,7 +6019,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6055,7 +6055,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6109,7 +6109,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6217,7 +6217,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6307,7 +6307,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6343,7 +6343,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6451,7 +6451,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6613,7 +6613,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6865,7 +6865,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6883,7 +6883,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6901,7 +6901,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -6919,7 +6919,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7171,7 +7171,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7279,7 +7279,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7333,7 +7333,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7423,7 +7423,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7567,7 +7567,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7585,7 +7585,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7603,7 +7603,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7747,7 +7747,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7765,7 +7765,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7837,7 +7837,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -7927,7 +7927,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8017,7 +8017,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8449,7 +8449,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8539,7 +8539,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8593,7 +8593,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8647,7 +8647,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8665,7 +8665,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8755,7 +8755,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8827,7 +8827,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -8881,7 +8881,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9007,7 +9007,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9151,7 +9151,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9205,7 +9205,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9223,7 +9223,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9403,7 +9403,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9475,7 +9475,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9529,7 +9529,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9601,7 +9601,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9655,7 +9655,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9691,7 +9691,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {
@@ -9745,7 +9745,7 @@
     "aliases": [],
     "tags": [],
     "lists": [
-      "drudge-report"
+      "drudgereport"
     ],
     "score": 1.25,
     "metrics": {

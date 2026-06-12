@@ -1,4 +1,4 @@
-export type SiteVariantKey = 'webshuffle';
+export type SiteVariantKey = 'news';
 
 export type SiteConfig = {
   key: SiteVariantKey;
@@ -22,7 +22,7 @@ export type SiteConfig = {
 };
 
 const WEB_SHUFFLE_CONFIG: SiteConfig = {
-  key: 'webshuffle',
+  key: 'news',
   siteName: "Mick Schroeder's News Shuffle",
   siteShortName: 'News Shuffle',
   siteDescription:

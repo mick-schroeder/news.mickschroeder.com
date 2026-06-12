@@ -24,7 +24,7 @@ export const SCORE_CONFIG = {
   pruneAfterDays: 90,
 };
 
-export const CURATED_LIST_ID = 'curated-news';
+export const CURATED_LIST_ID = 'news';
 
 export const daysBetween = (isoA, isoB) => {
   const a = Date.parse(`${isoA}T00:00:00Z`);

@@ -9,7 +9,7 @@ import path from 'path';
 import { getSiteConfig } from './src/config/getSiteConfig';
 import { loadShuffleData } from './src/data/loadSources';
 
-const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL || 'https://webshuffle.mickschroeder.com';
+const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL || 'https://news.mickschroeder.com';
 const site = getSiteConfig();
 const LOCALES_DIR = path.join(__dirname, 'src', 'locales');
 const availableLanguages = fs.existsSync(LOCALES_DIR)

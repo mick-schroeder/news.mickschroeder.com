@@ -1,6 +1,6 @@
 export const SCRAPERS = [
   {
-    id: 'drudge-report',
+    id: 'drudgereport',
     label: 'Drudge Report',
     url: 'https://www.drudgereport.com/',
     internalUrls: [

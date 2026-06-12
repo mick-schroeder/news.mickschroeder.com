@@ -21,7 +21,7 @@ const makeSource = (overrides = {}) => ({
   canonicalKey: 'example.com',
   aliases: [],
   tags: [],
-  lists: ['drudge-report'],
+  lists: ['drudgereport'],
   ...overrides,
 });
 
@@ -70,19 +70,19 @@ const main = () => {
     ) <= 5
   );
 
-  const scrapedListIds = new Set(['drudge-report', 'skimfeed']);
+  const scrapedListIds = new Set(['drudgereport', 'skimfeed']);
 
   // applyScores: seen today -> foundInCount recomputed from current lists.
   let [seen] = applyScores(
     [
       makeSource({
-        lists: ['drudge-report', 'skimfeed', 'curated-news'],
+        lists: ['drudgereport', 'skimfeed', 'news'],
         metrics: { firstSeen: DAYS_90_AGO, lastSeen: NOW, foundInCount: 0 },
       }),
     ],
     { now: NOW, scrapedListIds }
   );
-  assert.equal(seen.metrics.foundInCount, 2, 'curated-news must not count toward foundInCount');
+  assert.equal(seen.metrics.foundInCount, 2, 'news must not count toward foundInCount');
   assert.equal(seen.metrics.firstSeen, DAYS_90_AGO);
   assert.ok(seen.score > 0);
 
@@ -103,14 +103,14 @@ const main = () => {
   assert.equal(unseen.score, 0.69);
 
   // applyScores: no metrics but scraped membership -> seeded (migration path).
-  let [seeded] = applyScores([makeSource({ lists: ['drudge-report', 'skimfeed'] })], {
+  let [seeded] = applyScores([makeSource({ lists: ['drudgereport', 'skimfeed'] })], {
     now: NOW,
     scrapedListIds,
   });
   assert.deepEqual(seeded.metrics, { firstSeen: NOW, lastSeen: NOW, foundInCount: 2 });
 
   // applyScores: curated-only source without metrics stays metrics-free at the floor.
-  let [curatedOnly] = applyScores([makeSource({ lists: ['curated-news'] })], {
+  let [curatedOnly] = applyScores([makeSource({ lists: ['news'] })], {
     now: NOW,
     scrapedListIds,
   });
@@ -130,7 +130,7 @@ const main = () => {
   const curatedPast = makeSource({
     id: 'curated-past',
     canonicalKey: 'curated.example.com',
-    lists: ['curated-news'],
+    lists: ['news'],
     metrics: { firstSeen: DAYS_91_AGO, lastSeen: DAYS_91_AGO, foundInCount: 1 },
   });
   const noEvidence = makeSource({
@@ -151,7 +151,7 @@ const main = () => {
         metrics: { firstSeen: DAYS_90_AGO, lastSeen: DAYS_30_AGO, foundInCount: 1 },
       }),
     ],
-    listId: 'drudge-report',
+    listId: 'drudgereport',
     candidates: [],
     runDate: NOW,
   });
@@ -166,7 +166,7 @@ const main = () => {
         metrics: { firstSeen: DAYS_90_AGO, lastSeen: DAYS_30_AGO, foundInCount: 1 },
       }),
     ],
-    listId: 'drudge-report',
+    listId: 'drudgereport',
     candidates: [{ canonicalKey: 'example.com' }],
     runDate: NOW,
   });
@@ -176,7 +176,7 @@ const main = () => {
   // mergeScrapedSources: brand-new source gets seeded metrics and no score yet.
   const created = mergeScrapedSources({
     sources: [],
-    listId: 'drudge-report',
+    listId: 'drudgereport',
     candidates: [{ canonicalKey: 'new.example.com' }],
     runDate: NOW,
   });

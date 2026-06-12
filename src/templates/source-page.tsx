@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { graphql, type HeadProps, type PageProps } from 'gatsby';
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { ExternalLink, ListFilter, Tags } from 'lucide-react';
 import LocalizedLink from '@/components/LocalizedLink';
 import SiteLayout from '@/components/site-layout';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge, badgeVariants } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,6 +15,7 @@ import '../fragments/locale';
 
 type SourcePageData = {
   locales?: unknown;
+  screenshotFile?: any;
 };
 
 type SourcePageSource = {
@@ -28,6 +32,7 @@ type SourcePageSource = {
 type SourcePageContext = {
   id: string;
   source?: SourcePageSource;
+  screenshotBase?: string;
   listNames?: string[];
   sourceLists?: Array<{
     id: string;
@@ -40,8 +45,13 @@ type SourcePageContext = {
 const fallbackDescription = (name: string, canonicalKey: string): string =>
   `${name} is a News Shuffle source for ${canonicalKey}.`;
 
-const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({ pageContext }) => {
+const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
+  data,
+  pageContext,
+}) => {
+  const { t } = useTranslation();
   const source = pageContext.source;
+  const image = getImage(data?.screenshotFile);
   const sourceLists =
     pageContext.sourceLists ??
     (pageContext.listNames ?? []).map((name) => ({
@@ -68,26 +78,57 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({ pa
 
   return (
     <SiteLayout>
-      <article className="mx-auto max-w-screen-md px-4 py-8">
-        <header className="mb-6">
-          <p className="text-sm font-semibold text-muted-foreground">{source.canonicalKey}</p>
-          <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground">
-            {source.name}
-          </h1>
-          <p className="mt-4 text-base leading-7 text-muted-foreground">{description}</p>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Button asChild size="lg">
-              <a href={source.url} target="_blank" rel="noopener">
-                Visit Source
-                <ExternalLink aria-hidden="true" className="h-4 w-4" />
-              </a>
-            </Button>
-            {Number.isFinite(source.score) && (
-              <Badge variant="outline" className="h-10 px-3 text-muted-foreground">
-                Score {source.score.toFixed(1)}
-              </Badge>
-            )}
+      <article className="mx-auto max-w-screen-lg px-4 py-8">
+        <header className="mb-6 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(220px,320px)] md:items-start">
+          <div>
+            <p className="text-sm font-semibold text-muted-foreground">{source.canonicalKey}</p>
+            <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground">
+              {source.name}
+            </h1>
+            <p className="mt-4 text-base leading-7 text-muted-foreground">{description}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Button asChild size="lg">
+                <a href={source.url} target="_blank" rel="noopener">
+                  Visit Source
+                  <ExternalLink aria-hidden="true" className="h-4 w-4" />
+                </a>
+              </Button>
+              {Number.isFinite(source.score) && (
+                <Badge variant="outline" className="h-10 px-3 text-muted-foreground">
+                  Score {source.score.toFixed(1)}
+                </Badge>
+              )}
+            </div>
           </div>
+
+          <a
+            href={source.url}
+            target="_blank"
+            rel="noopener"
+            className="group block overflow-hidden rounded-lg border bg-muted shadow-sm motion-safe:transition-shadow hover:shadow-md"
+          >
+            <AspectRatio ratio={9 / 16}>
+              {image ? (
+                <GatsbyImage
+                  image={image}
+                  alt={String(t('screenshot_of', { name: source.name }))}
+                  loading="eager"
+                  className="h-full w-full"
+                  imgClassName="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.01]"
+                />
+              ) : (
+                <StaticImage
+                  src="../images/placeholder-screenshot.png"
+                  alt={String(t('screenshot_of', { name: source.name }))}
+                  loading="eager"
+                  placeholder="blurred"
+                  className="h-full w-full"
+                  imgClassName="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.01]"
+                  formats={['auto', 'webp', 'avif']}
+                />
+              )}
+            </AspectRatio>
+          </a>
         </header>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -156,12 +197,26 @@ export const Head = ({ pageContext, location }: HeadProps<SourcePageData, Source
 };
 
 export const query = graphql`
-  query SourcePageTemplate($language: String!) {
+  query SourcePageTemplate($language: String!, $screenshotBase: String!) {
     locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ...LocaleFields
         }
+      }
+    }
+    screenshotFile: file(sourceInstanceName: { eq: "screenshots" }, base: { eq: $screenshotBase }) {
+      childImageSharp {
+        gatsbyImageData(
+          layout: CONSTRAINED
+          width: 720
+          height: 1280
+          formats: [AUTO, WEBP, AVIF]
+          placeholder: DOMINANT_COLOR
+          breakpoints: [360, 540, 720]
+          sizes: "(min-width:768px) 320px, 100vw"
+          transformOptions: { fit: COVER, cropFocus: ATTENTION }
+        )
       }
     }
   }
