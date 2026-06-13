@@ -31,21 +31,21 @@
     "name": "Techmeme",
     "description": "A leading technology news aggregator that tracks the stories, companies, and conversations shaping the tech industry.",
     "kind": "scraped",
-    "sourceUrl": "https://www.techmeme.com/lb.opml"
+    "sourceUrl": "https://www.techmeme.com/"
   },
   {
     "id": "memeorandum",
     "name": "Memeorandum",
     "description": "A political news aggregator that organizes coverage from major publications, independent outlets, and influential commentators.",
     "kind": "scraped",
-    "sourceUrl": "https://www.memeorandum.com/lb.opml"
+    "sourceUrl": "https://www.memeorandum.com/"
   },
   {
     "id": "mediagazer",
     "name": "Mediagazer",
     "description": "A media industry news aggregator covering journalism, publishing, streaming, advertising, and the business of media.",
     "kind": "scraped",
-    "sourceUrl": "https://mediagazer.com/lb.opml"
+    "sourceUrl": "https://mediagazer.com/"
   },
     {
     "id": "brutalist",

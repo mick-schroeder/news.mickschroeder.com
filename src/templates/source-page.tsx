@@ -157,7 +157,7 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
               </Button>
               {Number.isFinite(source.score) && (
                 <Badge variant="outline" className="h-10 px-3 text-muted-foreground">
-                  Score {source.score.toFixed(1)}
+                  Score {source.score}%
                 </Badge>
               )}
             </div>

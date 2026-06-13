@@ -135,7 +135,7 @@ const main = async () => {
     console.log('[sources:refresh] Top 10 by score:');
     for (const source of [...sources].sort((a, b) => b.score - a.score).slice(0, 10)) {
       console.log(
-        `  ${source.score.toFixed(2)}  ${source.canonicalKey}  (found in ${
+        `  ${source.score}  ${source.canonicalKey}  (found in ${
           source.metrics?.foundInCount ?? 0
         }, lists: ${source.lists.join(', ')})`
       );

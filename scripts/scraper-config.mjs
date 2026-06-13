@@ -5,9 +5,7 @@ export const SCRAPERS = [
     url: 'https://www.drudgereport.com/',
     internalUrls: [
       'https://www.drudgereport.com/',
-      'https://drudgereport.com/',
-      'https://www.drudgereportarchives.com/',
-      'https://drudgereportarchives.com/',
+      'https://drudgereport.com/'
     ],
     pinnedSources: [
       {
@@ -50,6 +48,20 @@ export const SCRAPERS = [
     url: 'https://mediagazer.com/lb.opml',
     internalUrls: ['https://mediagazer.com/', 'https://www.mediagazer.com/'],
     sourceOpml: true,
+  },
+  {
+    id: 'brutalist',
+    label: 'The Brutalist Report',
+    url: 'https://brutalist.report/topic/news',
+    internalUrls: ['https://brutalist.report/'],
+    pinnedSources: [
+      {
+        canonicalKey: 'brutalist.report',
+        name: 'The Brutalist Report',
+        url: 'https://brutalist.report/',
+        tags: ['Aggregator'],
+      },
+    ],
   },
 ];
 

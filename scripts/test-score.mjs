@@ -29,7 +29,7 @@ const main = () => {
   // Curated source in 5 lists, seen today, zero tenure (first run).
   assert.equal(
     computeScore({ firstSeen: NOW, lastSeen: NOW, foundInCount: 5 }, { isCurated: true, now: NOW }),
-    3.72
+    74
   );
 
   // Curated source in all 6 lists after a full year.
@@ -38,7 +38,7 @@ const main = () => {
       { firstSeen: DAYS_365_AGO, lastSeen: NOW, foundInCount: 6 },
       { isCurated: true, now: NOW }
     ),
-    4.5
+    90
   );
 
   // Single-list source, 90 days tenure, unseen for 30 days.
@@ -47,19 +47,19 @@ const main = () => {
       { firstSeen: DAYS_90_AGO, lastSeen: DAYS_30_AGO, foundInCount: 1 },
       { isCurated: false, now: NOW }
     ),
-    0.69
+    14
   );
 
   // Missing metrics: curated floor vs zero.
-  assert.equal(computeScore(undefined, { isCurated: true, now: NOW }), 2.5);
+  assert.equal(computeScore(undefined, { isCurated: true, now: NOW }), 50);
   assert.equal(computeScore(undefined, { isCurated: false, now: NOW }), 0);
 
-  // Scores never exceed the 0..5 clamp.
+  // Scores never exceed the 0..100 clamp.
   assert.ok(
     computeScore(
       { firstSeen: '2000-01-01', lastSeen: NOW, foundInCount: 6 },
       { isCurated: true, now: NOW }
-    ) <= 5
+    ) <= 100
   );
 
   const scrapedListIds = new Set(['drudgereport', 'skimfeed']);
@@ -92,7 +92,7 @@ const main = () => {
     lastSeen: DAYS_30_AGO,
     foundInCount: 1,
   });
-  assert.equal(unseen.score, 0.69);
+  assert.equal(unseen.score, 14);
 
   // applyScores: no metrics but scraped membership -> seeded (migration path).
   let [seeded] = applyScores([makeSource({ lists: ['drudgereport', 'skimfeed'] })], {
@@ -107,7 +107,7 @@ const main = () => {
     scrapedListIds,
   });
   assert.equal(curatedOnly.metrics, undefined);
-  assert.equal(curatedOnly.score, 2.5);
+  assert.equal(curatedOnly.score, 50);
 
   // pruneStaleSources: 90 days is kept, 91 is pruned, curated never pruned.
   const atBoundary = makeSource({

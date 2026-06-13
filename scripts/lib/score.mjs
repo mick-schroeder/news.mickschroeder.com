@@ -4,23 +4,23 @@
  * Each source carries scraper-derived metrics:
  *   "metrics": { "firstSeen": "2026-06-01", "lastSeen": "2026-06-12", "foundInCount": 3 }
  *
- * Score formula (0..5, rounded to 2 decimals):
- *   breadth = 3.5 * log2(1 + foundInCount) / log2(1 + 6)   // first list matters most
- *   tenure  = 0.5 * min(daysSince(firstSeen), 365) / 365
+ * Score formula (0–100 integer):
+ *   breadth = 70 * log2(1 + foundInCount) / log2(1 + 6)   // first list matters most
+ *   tenure  = 10 * min(daysSince(firstSeen), 365) / 365
  *   decay   = 0.5 ^ (daysSince(lastSeen) / 30)             // half-life 30 days
- *   score   = (breadth + tenure) * decay + (curated ? 0.5 : 0)
- *   curated sources never sink below 2.5 (floor covers curated-only
+ *   score   = (breadth + tenure) * decay + (curated ? 10 : 0)
+ *   curated sources never sink below 50 (floor covers curated-only
  *   sources that no scraper has ever found).
  */
 
 export const SCORE_CONFIG = {
-  maxBreadth: 3.5,
+  maxBreadth: 70,
   scraperCount: 6,
-  maxTenure: 0.5,
+  maxTenure: 10,
   tenureCapDays: 365,
   decayHalfLifeDays: 30,
-  curatedBonus: 0.5,
-  curatedFloor: 2.5,
+  curatedBonus: 10,
+  curatedFloor: 50,
   pruneAfterDays: 90,
 };
 
@@ -52,7 +52,7 @@ export const computeScore = (metrics, { isCurated, now }) => {
     score = Math.max(score + config.curatedBonus, config.curatedFloor);
   }
 
-  return Math.round(Math.min(Math.max(score, 0), 5) * 100) / 100;
+  return Math.round(Math.min(Math.max(score, 0), 100));
 };
 
 export const applyScores = (sources, { now, scrapedListIds }) =>

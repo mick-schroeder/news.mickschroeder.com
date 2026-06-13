@@ -87,6 +87,22 @@ const fixtures = {
       'variety.com': 'Variety',
     },
   },
+  brutalist: {
+    html: `
+      <nav>
+        <a href="/">Home</a>
+        <a href="/topic/news?">News</a>
+        <a href="https://apps.apple.com/app/brutalist-report/id123">iOS App</a>
+      </nav>
+      <a href="/source/nytimes">The New York Times</a>
+      <a href="https://www.nytimes.com/2026/06/12/us/story.html">NYT Story</a>
+      <a href="/source/apnews">AP News</a>
+      <a href="https://apnews.com/article/some-story">AP Story</a>
+      <a href="https://brutalist.report/about">About</a>
+    `,
+    includes: ['nytimes.com', 'apnews.com', 'brutalist.report'],
+    excludes: ['apps.apple.com'],
+  },
 };
 
 const main = async () => {

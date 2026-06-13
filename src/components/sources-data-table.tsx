@@ -299,7 +299,7 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
                       </div>
                     </TableCell>
                     <TableCell className="text-right font-medium tabular-nums text-muted-foreground">
-                      {scoreOf(source.score).toFixed(1)}
+                      {scoreOf(source.score)}%
                     </TableCell>
                     <TableCell>
                       <a
