@@ -39,8 +39,7 @@ const selectScrapers = (rawLists) => {
 const fetchHtml = async (scraper) => {
   const response = await fetch(scraper.url, {
     headers: {
-      'user-agent':
-        'Mozilla/5.0 (compatible; WebShuffleBot/1.0; +https://news.mickschroeder.com)',
+      'user-agent': 'Mozilla/5.0 (compatible; WebShuffleBot/1.0; +https://news.mickschroeder.com)',
     },
   });
 

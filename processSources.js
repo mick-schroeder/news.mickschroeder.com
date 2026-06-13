@@ -628,6 +628,52 @@ async function downloadFromS3(slug, reporter) {
   }
 }
 
+// Downloads any screenshots missing locally from S3 without launching a browser.
+// Used on CI builds where regeneration is disabled but cached screenshots are needed.
+const syncScreenshotsFromS3 = async (sourcesInput, reporter) => {
+  if (shouldSkipScreenshots) {
+    rlog(reporter, 'info', 'screenshots: SKIP_SCREENSHOTS=true — skipping S3 sync');
+    return;
+  }
+  if (!s3) {
+    rlog(reporter, 'warn', 'screenshots: S3 not configured — cannot sync screenshots');
+    return;
+  }
+
+  const sourcesData = Array.isArray(sourcesInput) ? sourcesInput : sourcesInput?.sources || [];
+  const missing = sourcesData
+    .filter((source) => source && (source.url || source.name))
+    .map((source) => createScreenshotSlug(source.url || source.name, source.name))
+    .filter((slug) => !fs.existsSync(path.join(SCREENSHOT_PATH, `${slug}.webp`)));
+
+  if (!missing.length) {
+    rlog(reporter, 'info', 'screenshots: all screenshots already present locally');
+    return;
+  }
+
+  rlog(reporter, 'info', `screenshots: downloading ${missing.length} screenshots from S3`);
+
+  const queue = [...missing];
+  const workerCount = Math.min(8, queue.length);
+  await Promise.all(
+    Array.from({ length: workerCount }, async () => {
+      while (queue.length) {
+        const slug = queue.shift();
+        await downloadFromS3(slug, reporter);
+      }
+    })
+  );
+
+  const downloaded = missing.filter((slug) =>
+    fs.existsSync(path.join(SCREENSHOT_PATH, `${slug}.webp`))
+  ).length;
+  rlog(
+    reporter,
+    'info',
+    `screenshots: S3 sync complete — ${downloaded}/${missing.length} downloaded`
+  );
+};
+
 // Lightweight logging helper (choose info/warn/error; dev can be quieter)
 function rlog(reporter, level, msg) {
   if (!reporter) return;
@@ -840,4 +886,5 @@ const preProcessSources = async (sourcesInput, reporter) => {
 
 module.exports = {
   preProcessSources,
+  syncScreenshotsFromS3,
 };

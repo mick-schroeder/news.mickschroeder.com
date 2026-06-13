@@ -76,7 +76,7 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
           <p className="mb-4 text-sm text-muted-foreground">
             <Trans
               i18nKey="home_page.top_sources_hint"
-              defaults="Ranked by how many lists feature them."
+              defaults="The highest-rated sources across all lists."
             />
           </p>
           <TopSources items={items} />

@@ -27,8 +27,8 @@ const TopSources = ({ items, limit = 24 }: TopSourcesProps): JSX.Element | null 
     return [...items]
       .sort(
         (a, b) =>
-          (b.lists?.length ?? 0) - (a.lists?.length ?? 0) ||
           scoreOf(b.score) - scoreOf(a.score) ||
+          (b.lists?.length ?? 0) - (a.lists?.length ?? 0) ||
           a.name.localeCompare(b.name)
       )
       .slice(0, limit);
@@ -41,7 +41,7 @@ const TopSources = ({ items, limit = 24 }: TopSourcesProps): JSX.Element | null 
       {ranked.map((source, index) => (
         <li key={source.id || source.url} className="break-inside-avoid py-1.5">
           <div className="flex items-baseline gap-2">
-            <span className="w-6 shrink-0 text-right font-mono text-xs tabular-nums text-muted-foreground">
+            <span className="w-7 shrink-0 text-right font-mono text-sm font-bold tabular-nums text-foreground/40">
               {index + 1}
             </span>
             {source.id ? (
@@ -61,16 +61,9 @@ const TopSources = ({ items, limit = 24 }: TopSourcesProps): JSX.Element | null 
                 {source.name}
               </a>
             )}
-            <span className="shrink-0 text-xs text-muted-foreground">
-              <Trans
-                i18nKey="home_page.in_lists"
-                defaults="{{count}} lists"
-                values={{ count: source.lists?.length ?? 0 }}
-              />
-            </span>
           </div>
           {source.description ? (
-            <p className="ml-8 mt-0.5 line-clamp-2 text-xs leading-5 text-muted-foreground">
+            <p className="ml-9 mt-0.5 line-clamp-2 text-xs leading-5 text-muted-foreground">
               {source.description}
             </p>
           ) : null}

@@ -1,10 +1,5 @@
 import assert from 'node:assert/strict';
-import {
-  applyScores,
-  computeScore,
-  daysBetween,
-  pruneStaleSources,
-} from './lib/score.mjs';
+import { applyScores, computeScore, daysBetween, pruneStaleSources } from './lib/score.mjs';
 import { mergeScrapedSources } from './lib/source-utils.mjs';
 
 const NOW = '2026-06-12';
@@ -33,10 +28,7 @@ const main = () => {
 
   // Curated source in 5 lists, seen today, zero tenure (first run).
   assert.equal(
-    computeScore(
-      { firstSeen: NOW, lastSeen: NOW, foundInCount: 5 },
-      { isCurated: true, now: NOW }
-    ),
+    computeScore({ firstSeen: NOW, lastSeen: NOW, foundInCount: 5 }, { isCurated: true, now: NOW }),
     3.72
   );
 
@@ -141,8 +133,14 @@ const main = () => {
   const { kept, pruned } = pruneStaleSources([atBoundary, past, curatedPast, noEvidence], {
     now: NOW,
   });
-  assert.deepEqual(kept.map((source) => source.id), ['boundary', 'curated-past']);
-  assert.deepEqual(pruned.map((source) => source.id), ['past', 'no-evidence']);
+  assert.deepEqual(
+    kept.map((source) => source.id),
+    ['boundary', 'curated-past']
+  );
+  assert.deepEqual(
+    pruned.map((source) => source.id),
+    ['past', 'no-evidence']
+  );
 
   // mergeScrapedSources: dropping off a list keeps the source and its metrics.
   const dropped = mergeScrapedSources({

@@ -10,7 +10,7 @@ const ROOT = path.resolve(__dirname, '..');
 const IGNORE_FILE = path.join(ROOT, 'src/data/aggregator-ignore-urls.txt');
 
 const fixtures = {
-  'drudgereport': {
+  drudgereport: {
     html: `
       <a href="https://www.drudgereport.com/">internal</a>
       <a href="https://www.nytimes.com/2026/06/12/story.html">NYT</a>
@@ -20,7 +20,7 @@ const fixtures = {
     includes: ['nytimes.com', 'drudgereport.com'],
     excludes: ['archive.is'],
   },
-  'skimfeed': {
+  skimfeed: {
     html: `
       <a href="/tech">internal</a>
       <a href="https://arstechnica.com/gadgets/thing">Ars</a>
@@ -29,7 +29,7 @@ const fixtures = {
     includes: ['arstechnica.com'],
     excludes: ['skimfeed.com', 'x.com'],
   },
-  'realclearpolitics': {
+  realclearpolitics: {
     html: `
       <a href="https://www.realclearpolitics.com/articles/example.html">internal</a>
       <a href="https://www.wsj.com/opinion/example">WSJ</a>
@@ -38,7 +38,7 @@ const fixtures = {
     includes: ['wsj.com', 'washingtonexaminer.com'],
     excludes: ['realclearpolitics.com'],
   },
-  'techmeme': {
+  techmeme: {
     html: `
       <a href="https://www.techmeme.com/260612/p1">internal</a>
       <a href="https://www.theverge.com/2026/6/12/story">The Verge</a>
@@ -47,7 +47,7 @@ const fixtures = {
     includes: ['theverge.com', 'techcrunch.com'],
     excludes: ['techmeme.com'],
   },
-  'memeorandum': {
+  memeorandum: {
     html: `
       <a href="https://www.memeorandum.com/260612/p1">internal</a>
       <a href="https://apnews.com/article/example">AP</a>
@@ -57,7 +57,7 @@ const fixtures = {
     includes: ['apnews.com', 'politico.com'],
     excludes: ['memeorandum.com', 'wesmirch.com'],
   },
-  'mediagazer': {
+  mediagazer: {
     html: `
       <a href="https://mediagazer.com/260612/p1">internal</a>
       <a href="https://www.niemanlab.org/2026/06/story/">Nieman Lab</a>

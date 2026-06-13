@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import type { GatsbyNode } from 'gatsby';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { preProcessSources } = require('./processSources');
+const { preProcessSources, syncScreenshotsFromS3 } = require('./processSources');
 import { getSiteConfig } from './src/config/getSiteConfig';
 import { loadShuffleData } from './src/data/loadSources';
 import {
@@ -39,8 +39,10 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async ({ reporter })
 
   if (!shouldRefreshScreenshots) {
     reporter.info(
-      '[gatsby-node] Skipping screenshot pre-processing. Set GATSBY_REFRESH_SCREENSHOTS=true to refresh screenshots during build.'
+      '[gatsby-node] Screenshot regeneration disabled; syncing existing screenshots from S3. Set GATSBY_REFRESH_SCREENSHOTS=true to regenerate during build.'
     );
+    const { sources } = loadShuffleData();
+    await syncScreenshotsFromS3(sources, reporter);
     return;
   }
 

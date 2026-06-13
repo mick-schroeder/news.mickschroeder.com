@@ -50,7 +50,7 @@
   "home": "Home",
   "home_page": {
     "top_sources": "Top sources",
-    "top_sources_hint": "Ranked by how many lists feature them.",
+    "top_sources_hint": "The highest-rated sources across all lists.",
     "in_lists": "{{count}} lists",
     "see_all": "See all",
     "all_sources": "All sources",
