@@ -76,31 +76,6 @@
     }
   },
   {
-    "id": "theguardian-com",
-    "name": "The Guardian",
-    "url": "https://theguardian.com/",
-    "canonicalKey": "theguardian.com",
-    "aliases": [],
-    "tags": [
-      "British"
-    ],
-    "lists": [
-      "brutalist",
-      "drudgereport",
-      "mediagazer",
-      "memeorandum",
-      "news",
-      "techmeme"
-    ],
-    "score": 74,
-    "description": "The Guardian is a British news organization covering global news, politics, culture, environment, and opinion. It brings serious reporting with just enough eyebrow raised to remind you Britain invented the sigh.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 5
-    }
-  },
-  {
     "id": "wsj-com",
     "name": "The Wall Street Journal",
     "url": "https://wsj.com/",
@@ -289,6 +264,30 @@
     ],
     "score": 68,
     "description": "NBC News covers U.S. and world news, politics, health, investigations, and culture. It brings network-news reach to a web that has never met a breaking banner it could not deploy.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 4
+    }
+  },
+  {
+    "id": "theguardian-com",
+    "name": "The Guardian",
+    "url": "https://theguardian.com/",
+    "canonicalKey": "theguardian.com",
+    "aliases": [],
+    "tags": [
+      "British"
+    ],
+    "lists": [
+      "brutalist",
+      "mediagazer",
+      "memeorandum",
+      "news",
+      "techmeme"
+    ],
+    "score": 68,
+    "description": "The Guardian is a British news organization covering global news, politics, culture, environment, and opinion. It brings serious reporting with just enough eyebrow raised to remind you Britain invented the sigh.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-13",
@@ -1638,7 +1637,6 @@
       "Aggregator"
     ],
     "lists": [
-      "drudgereport",
       "news"
     ],
     "score": 50,
@@ -1646,7 +1644,7 @@
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-13",
-      "foundInCount": 1
+      "foundInCount": 0
     }
   },
   {
@@ -1999,27 +1997,6 @@
     }
   },
   {
-    "id": "dailymail-com",
-    "name": "Daily Mail US",
-    "description": "Daily Mail covers news, celebrity, lifestyle, and viral stories for a global audience. It is the internet's loudest corner shop: everything is visible, everything is urgent, and somehow you keep looking.",
-    "url": "https://dailymail.com/",
-    "canonicalKey": "dailymail.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport",
-      "memeorandum"
-    ],
-    "score": 40,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    }
-  },
-  {
     "id": "deadline-com",
     "name": "Deadline",
     "description": "Deadline covers Hollywood, television, film, streaming, and entertainment industry deals. It is where show-business news gets a timestamp, an exclusive, and probably a sequel.",
@@ -2083,6 +2060,28 @@
     }
   },
   {
+    "id": "futurism-com",
+    "name": "Futurism",
+    "description": "Futurism covers science, technology, AI, space, and future-facing research. It watches tomorrow approach with equal parts wonder and raised eyebrow.",
+    "url": "https://futurism.com/",
+    "canonicalKey": "futurism.com",
+    "aliases": [],
+    "tags": [
+      "Science",
+      "Tech"
+    ],
+    "lists": [
+      "drudgereport",
+      "mediagazer"
+    ],
+    "score": 40,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 2
+    }
+  },
+  {
     "id": "indiatimes-com",
     "name": "Indiatimes",
     "description": "Indiatimes covers Indian news, entertainment, lifestyle, technology, and viral stories. It is a broad digital bazaar where serious headlines and internet curiosities share the same escalator.",
@@ -2123,25 +2122,6 @@
       "lastSeen": "2026-06-13",
       "foundInCount": 2
     }
-  },
-  {
-    "id": "ms-now",
-    "name": "ms.now",
-    "description": "",
-    "url": "https://ms.now/",
-    "canonicalKey": "ms.now",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport",
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    },
-    "score": 40
   },
   {
     "id": "msn-com",
@@ -2476,27 +2456,6 @@
       "lastSeen": "2026-06-13",
       "foundInCount": 2
     }
-  },
-  {
-    "id": "freebeacon-com",
-    "name": "Washington Free Beacon",
-    "description": "",
-    "url": "https://freebeacon.com/",
-    "canonicalKey": "freebeacon.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport",
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    },
-    "score": 40
   },
   {
     "id": "adweek-com",
@@ -3012,6 +2971,24 @@
     }
   },
   {
+    "id": "clutchpoints-com",
+    "name": "clutchpoints.com",
+    "description": "",
+    "url": "https://clutchpoints.com/",
+    "canonicalKey": "clutchpoints.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "drudgereport"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    },
+    "score": 25
+  },
+  {
     "id": "cjr-org",
     "name": "Columbia Journalism Review",
     "description": "",
@@ -3102,6 +3079,26 @@
     ],
     "lists": [
       "drudgereport"
+    ],
+    "score": 25,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    }
+  },
+  {
+    "id": "dailymail-com",
+    "name": "Daily Mail US",
+    "description": "Daily Mail covers news, celebrity, lifestyle, and viral stories for a global audience. It is the internet's loudest corner shop: everything is visible, everything is urgent, and somehow you keep looking.",
+    "url": "https://dailymail.com/",
+    "canonicalKey": "dailymail.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
     ],
     "score": 25,
     "metrics": {
@@ -3456,27 +3453,6 @@
     "tags": [],
     "lists": [
       "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "futurism-com",
-    "name": "Futurism",
-    "description": "Futurism covers science, technology, AI, space, and future-facing research. It watches tomorrow approach with equal parts wonder and raised eyebrow.",
-    "url": "https://futurism.com/",
-    "canonicalKey": "futurism.com",
-    "aliases": [],
-    "tags": [
-      "Science",
-      "Tech"
-    ],
-    "lists": [
-      "mediagazer"
     ],
     "score": 25,
     "metrics": {
@@ -4246,27 +4222,6 @@
     "score": 25
   },
   {
-    "id": "livemint-com",
-    "name": "Mint",
-    "description": "Mint covers Indian business, markets, economy, personal finance, technology, and policy. It follows money and policy closely enough to make a budget speech feel like live sports.",
-    "url": "https://livemint.com/",
-    "canonicalKey": "livemint.com",
-    "aliases": [],
-    "tags": [
-      "Business",
-      "Global"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "technologyreview-com",
     "name": "MIT Technology Review",
     "description": "",
@@ -4278,6 +4233,24 @@
     ],
     "lists": [
       "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    },
+    "score": 25
+  },
+  {
+    "id": "ms-now",
+    "name": "ms.now",
+    "description": "",
+    "url": "https://ms.now/",
+    "canonicalKey": "ms.now",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "memeorandum"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -5717,26 +5690,6 @@
     }
   },
   {
-    "id": "the-sun-com",
-    "name": "The Sun US",
-    "description": "",
-    "url": "https://the-sun.com/",
-    "canonicalKey": "the-sun.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "thetimes-co-uk",
     "name": "The Times",
     "description": "The Times covers UK and world news, politics, business, sport, culture, and opinion. It is a British newspaper institution that still knows how to make a headline stand up straight.",
@@ -5835,24 +5788,6 @@
       "lastSeen": "2026-06-13",
       "foundInCount": 1
     }
-  },
-  {
-    "id": "theonion-com",
-    "name": "theonion.com",
-    "description": "",
-    "url": "https://theonion.com/",
-    "canonicalKey": "theonion.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "brutalist"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
   },
   {
     "id": "timeanddate-com",
@@ -6013,26 +5948,6 @@
     "score": 25
   },
   {
-    "id": "uniladtech-com",
-    "name": "UNILAD Tech",
-    "description": "UNILAD Tech covers technology, science, gadgets, internet culture, and viral digital stories. It is tech news for the part of the internet that wants the explainer and the reaction face.",
-    "url": "https://uniladtech.com/",
-    "canonicalKey": "uniladtech.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "state-gov",
     "name": "United States Department of State",
     "description": "",
@@ -6122,6 +6037,26 @@
     ],
     "lists": [
       "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    },
+    "score": 25
+  },
+  {
+    "id": "freebeacon-com",
+    "name": "Washington Free Beacon",
+    "description": "",
+    "url": "https://freebeacon.com/",
+    "canonicalKey": "freebeacon.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -6321,26 +6256,6 @@
     ],
     "lists": [
       "mediagazer"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "ynetnews-com",
-    "name": "Ynetnews",
-    "description": "Ynetnews covers Israeli news, Middle East affairs, Jewish world stories, culture, and opinion in English. It is a direct line into Israeli headlines for readers outside the Hebrew-language news cycle.",
-    "url": "https://ynetnews.com/",
-    "canonicalKey": "ynetnews.com",
-    "aliases": [],
-    "tags": [
-      "Global"
-    ],
-    "lists": [
-      "drudgereport"
     ],
     "score": 25,
     "metrics": {

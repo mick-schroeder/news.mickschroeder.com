@@ -88,8 +88,8 @@ const main = async () => {
     assertStringArray(source.tags, `${source.id}.tags`);
     assertStringArray(source.lists, `${source.id}.lists`);
     if (source.aliases !== undefined) assertStringArray(source.aliases, `${source.id}.aliases`);
-    if (!Number.isFinite(source.score) || source.score < 0 || source.score > 5) {
-      throw new Error(`${source.id}.score must be a number between 0 and 5.`);
+    if (!Number.isFinite(source.score) || source.score < 0 || source.score >= 100) {
+      throw new Error(`${source.id}.score must be a number between 0 and 100.`);
     }
     if (source.metrics !== undefined) assertMetrics(source.metrics, `${source.id}.metrics`);
 
