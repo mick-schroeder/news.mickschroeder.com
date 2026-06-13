@@ -4,15 +4,9 @@
     "copy": "Copy link",
     "description": "Drag this link to your bookmarks bar, or right-click to save it for quick access.",
     "link_label": "🔀 News Shuffle",
-    "title": "Bookmark this News Shuffle"
+    "title": "Bookmark News Shuffle"
   },
   "brand": "Mick Schroeder's News Shuffle",
-  "category_selector": {
-    "all_categories": "All Categories",
-    "clear_selection": "Clear selection",
-    "select_categories": "Choose categories...",
-    "select_categories_label": "Choose news categories"
-  },
   "footer": {
     "disclaimer": "News Shuffle™ is provided for informational and entertainment purposes only. No warranty is given, including implied warranties of merchantability or fitness. Some links may be affiliate or sponsored, helping support the site at no extra cost to you. This site uses cookies and analytics trackers and is supported by advertising. External links are provided as a convenience and do not represent endorsements. Screenshots of third-party websites are shown for illustrative purposes and remain the property of their respective owners. We are not responsible for the accuracy, legality, or content of external sites. Please contact those sites directly with any questions.",
     "terms_privacy": "Terms & Privacy",
@@ -31,7 +25,7 @@
   },
   "taxonomy": {
     "lists_title": "Lists",
-    "lists_description": "Browse the source lists that power News Shuffle.",
+    "lists_description": "News Shuffle is ",
     "tags_title": "Tags",
     "tags_description": "Browse sources by tag.",
     "source_count": "{{count}} sources",
@@ -44,7 +38,7 @@
     "tags_hint": "Tags are ordered by source count so the broadest topics are easiest to scan first."
   },
   "hero": {
-    "headline": "Shuffle through the web’s best source lists.",
+    "headline": "Shuffle through the web’s best news sources.",
     "tagline": "News Shuffle sends you straight to sources from curated news lists and the aggregators you already check."
   },
   "home": "Home",
