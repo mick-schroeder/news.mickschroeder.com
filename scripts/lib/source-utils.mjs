@@ -112,33 +112,69 @@ export const shouldIgnoreUrl = (url, ignoreRules, internalKeys = new Set()) => {
   );
 };
 
-export const extractSourceCandidates = (html, scraper, ignoreRules) => {
-  const root = parseHtml(html);
-  const internalKeys = new Set(
+const textContent = (node) => node?.textContent?.replace(/\s+/g, ' ').trim() || '';
+
+const createInternalKeys = (scraper) =>
+  new Set(
     (scraper.internalUrls || [scraper.url])
       .map((entry) => canonicalKeyForUrl(entry))
       .filter(Boolean)
   );
+
+const addCandidate = (candidates, url, ignoreRules, internalKeys, name) => {
+  if (shouldIgnoreUrl(url, ignoreRules, internalKeys)) return;
+
+  const canonicalKey = canonicalKeyForUrl(url);
+  if (!canonicalKey || candidates.has(canonicalKey)) return;
+
+  candidates.set(canonicalKey, {
+    canonicalKey,
+    name: name || displayNameForCanonicalKey(canonicalKey),
+    url: sourceUrlForCanonicalKey(canonicalKey),
+  });
+};
+
+const addPinnedSources = (candidates, scraper) => {
+  for (const pinned of scraper.pinnedSources || []) {
+    candidates.set(pinned.canonicalKey, pinned);
+  }
+};
+
+const extractOpmlSourceCandidates = (root, scraper, ignoreRules, internalKeys) => {
+  const candidates = new Map();
+  const outlines = root.querySelectorAll('outline');
+
+  for (const outline of outlines) {
+    const name =
+      outline.getAttribute('text') || outline.getAttribute('title') || textContent(outline);
+    const rawUrl = outline.getAttribute('htmlUrl') || outline.getAttribute('url');
+    const url = toAbsoluteUrl(rawUrl, scraper.url);
+    addCandidate(candidates, url, ignoreRules, internalKeys, name);
+  }
+
+  return candidates;
+};
+
+const extractAnchorSourceCandidates = (root, scraper, ignoreRules, internalKeys) => {
   const candidates = new Map();
 
   for (const anchor of root.querySelectorAll('a[href]')) {
     const href = anchor.getAttribute('href');
     const url = toAbsoluteUrl(href, scraper.url);
-    if (shouldIgnoreUrl(url, ignoreRules, internalKeys)) continue;
-
-    const canonicalKey = canonicalKeyForUrl(url);
-    if (!canonicalKey || candidates.has(canonicalKey)) continue;
-
-    candidates.set(canonicalKey, {
-      canonicalKey,
-      name: displayNameForCanonicalKey(canonicalKey),
-      url: sourceUrlForCanonicalKey(canonicalKey),
-    });
+    addCandidate(candidates, url, ignoreRules, internalKeys);
   }
 
-  for (const pinned of scraper.pinnedSources || []) {
-    candidates.set(pinned.canonicalKey, pinned);
-  }
+  return candidates;
+};
+
+export const extractSourceCandidates = (html, scraper, ignoreRules) => {
+  const root = parseHtml(html);
+  const internalKeys = createInternalKeys(scraper);
+  const candidates = scraper.sourceOpml
+    ? extractOpmlSourceCandidates(root, scraper, ignoreRules, internalKeys)
+    : extractAnchorSourceCandidates(root, scraper, ignoreRules, internalKeys);
+
+  addPinnedSources(candidates, scraper);
 
   return Array.from(candidates.values()).sort((a, b) =>
     a.canonicalKey.localeCompare(b.canonicalKey)

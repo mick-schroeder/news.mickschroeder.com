@@ -33,20 +33,23 @@ export const SCRAPERS = [
   {
     id: 'techmeme',
     label: 'Techmeme',
-    url: 'https://www.techmeme.com/',
+    url: 'https://www.techmeme.com/lb.opml',
     internalUrls: ['https://www.techmeme.com/', 'https://techmeme.com/'],
+    sourceOpml: true,
   },
   {
     id: 'memeorandum',
     label: 'Memeorandum',
-    url: 'https://www.memeorandum.com/',
+    url: 'https://www.memeorandum.com/lb.opml',
     internalUrls: ['https://www.memeorandum.com/', 'https://memeorandum.com/'],
+    sourceOpml: true,
   },
   {
     id: 'mediagazer',
     label: 'Mediagazer',
-    url: 'https://mediagazer.com/',
+    url: 'https://mediagazer.com/lb.opml',
     internalUrls: ['https://mediagazer.com/', 'https://www.mediagazer.com/'],
+    sourceOpml: true,
   },
 ];
 

@@ -130,16 +130,66 @@ const main = () => {
     canonicalKey: 'noevidence.example.com',
     lists: [],
   });
-  const { kept, pruned } = pruneStaleSources([atBoundary, past, curatedPast, noEvidence], {
-    now: NOW,
+  const detachedToday = makeSource({
+    id: 'detached-today',
+    canonicalKey: 'detached.example.com',
+    lists: [],
+    metrics: { firstSeen: NOW, lastSeen: NOW, foundInCount: 0 },
   });
+  const { kept, pruned } = pruneStaleSources(
+    [atBoundary, past, curatedPast, noEvidence, detachedToday],
+    {
+      now: NOW,
+    }
+  );
   assert.deepEqual(
     kept.map((source) => source.id),
     ['boundary', 'curated-past']
   );
   assert.deepEqual(
     pruned.map((source) => source.id),
-    ['past', 'no-evidence']
+    ['past', 'no-evidence', 'detached-today']
+  );
+
+  const defaultPrune = pruneStaleSources([detachedToday], {
+    now: NOW,
+  });
+  assert.deepEqual(
+    defaultPrune.pruned.map((source) => source.id),
+    ['detached-today']
+  );
+
+  // pruneStaleSources: development override can purge anything not seen today.
+  const immediate = pruneStaleSources([atBoundary, past, curatedPast, noEvidence], {
+    now: NOW,
+    pruneAfterDays: 0,
+  });
+  assert.deepEqual(
+    immediate.kept.map((source) => source.id),
+    ['curated-past']
+  );
+  assert.deepEqual(
+    immediate.pruned.map((source) => source.id),
+    ['boundary', 'past', 'no-evidence']
+  );
+  const protectedPast = makeSource({
+    id: 'protected-past',
+    canonicalKey: 'protected.example.com',
+    lists: ['realclearpolitics'],
+    metrics: { firstSeen: DAYS_91_AGO, lastSeen: DAYS_91_AGO, foundInCount: 1 },
+  });
+  const protectedPrune = pruneStaleSources([protectedPast, past], {
+    now: NOW,
+    pruneAfterDays: 0,
+    protectedListIds: new Set(['realclearpolitics']),
+  });
+  assert.deepEqual(
+    protectedPrune.kept.map((source) => source.id),
+    ['protected-past']
+  );
+  assert.deepEqual(
+    protectedPrune.pruned.map((source) => source.id),
+    ['past']
   );
 
   // mergeScrapedSources: dropping off a list keeps the source and its metrics.

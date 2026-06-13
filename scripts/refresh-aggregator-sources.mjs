@@ -9,7 +9,7 @@ import {
   sortSources,
   writeJson,
 } from './lib/source-utils.mjs';
-import { applyScores, pruneStaleSources } from './lib/score.mjs';
+import { SCORE_CONFIG, applyScores, pruneStaleSources } from './lib/score.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,6 +36,17 @@ const selectScrapers = (rawLists) => {
   });
 };
 
+const parsePruneAfterDays = (rawValue) => {
+  if (rawValue === undefined) return SCORE_CONFIG.pruneAfterDays;
+
+  const value = Number(rawValue);
+  if (!Number.isInteger(value) || value < 0) {
+    throw new Error('--prune-after-days must be a non-negative integer.');
+  }
+
+  return value;
+};
+
 const fetchHtml = async (scraper) => {
   const response = await fetch(scraper.url, {
     headers: {
@@ -53,6 +64,7 @@ const fetchHtml = async (scraper) => {
 const main = async () => {
   const args = parseArgs();
   const dryRun = args.get('dry-run') === 'true';
+  const pruneAfterDays = parsePruneAfterDays(args.get('prune-after-days'));
   const runDate = new Date().toISOString().slice(0, 10);
   const scrapers = selectScrapers(args.get('lists'));
   const lists = await readJson(LISTS_FILE);
@@ -61,6 +73,7 @@ const main = async () => {
   let sources = await readJson(SOURCES_FILE);
 
   let succeeded = 0;
+  const succeededListIds = new Set();
 
   for (const scraper of scrapers) {
     if (!validListIds.has(scraper.id)) {
@@ -80,6 +93,7 @@ const main = async () => {
       });
 
       succeeded += 1;
+      succeededListIds.add(scraper.id);
       console.log(`${scraper.label}: ${candidates.length} source candidates`);
     } catch (error) {
       console.warn(`[sources:refresh] ${scraper.label} skipped: ${error.message}`);
@@ -93,11 +107,19 @@ const main = async () => {
   const scrapedListIds = new Set(
     lists.filter((list) => list.kind === 'scraped').map((list) => list.id)
   );
+  const protectedListIds =
+    pruneAfterDays < SCORE_CONFIG.pruneAfterDays
+      ? new Set([...scrapedListIds].filter((listId) => !succeededListIds.has(listId)))
+      : new Set();
   const seededBefore = sources.filter((source) => source.metrics).length;
   sources = applyScores(sources, { now: runDate, scrapedListIds });
   const seeded = sources.filter((source) => source.metrics).length - seededBefore;
 
-  const { kept, pruned } = pruneStaleSources(sources, { now: runDate });
+  const { kept, pruned } = pruneStaleSources(sources, {
+    now: runDate,
+    pruneAfterDays,
+    protectedListIds,
+  });
   sources = kept;
   for (const source of pruned) {
     console.log(`[sources:refresh] Pruned ${source.id} (last seen ${source.metrics?.lastSeen})`);

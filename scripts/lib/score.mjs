@@ -76,17 +76,23 @@ export const applyScores = (sources, { now, scrapedListIds }) =>
     return metrics ? { ...source, metrics, score } : { ...source, score };
   });
 
-export const pruneStaleSources = (sources, { now }) => {
+export const pruneStaleSources = (
+  sources,
+  { now, pruneAfterDays = SCORE_CONFIG.pruneAfterDays, protectedListIds = new Set() }
+) => {
   const kept = [];
   const pruned = [];
   for (const source of sources) {
-    const isCurated = (source.lists || []).includes(CURATED_LIST_ID);
-    // No metrics after applyScores means no scraper evidence at all;
-    // non-curated sources without evidence have nothing keeping them.
+    const lists = source.lists || [];
+    const isCurated = lists.includes(CURATED_LIST_ID);
+    const isProtected = lists.some((id) => protectedListIds.has(id));
+    // A non-curated source with no active lists has nothing keeping it in
+    // the shuffle, even if it was dropped during today's refresh.
+    const detached = lists.length === 0;
     const stale = source.metrics
-      ? daysBetween(source.metrics.lastSeen, now) > SCORE_CONFIG.pruneAfterDays
+      ? daysBetween(source.metrics.lastSeen, now) > pruneAfterDays
       : true;
-    if (!isCurated && stale) {
+    if (!isCurated && !isProtected && (detached || stale)) {
       pruned.push(source);
     } else {
       kept.push(source);
