@@ -5,6 +5,10 @@ frontend:
       commands:
         - export NODE_OPTIONS="--max_old_space_size=4096"
         - npm ci
+        # Gatsby's .cache and public must stay in sync; if only one was
+        # restored from the build cache, wipe both to avoid
+        # "Couldn't find temp query result" failures.
+        - if [ -d .cache ] && [ ! -d public/page-data ]; then npx gatsby clean; fi
     build:
       commands:
         - node -v && npm -v
@@ -17,3 +21,4 @@ frontend:
     paths:
       - node_modules/**/*
       - .cache/**/*
+      - public/**/*
