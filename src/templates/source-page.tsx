@@ -4,9 +4,10 @@ import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { ArrowLeft, ArrowRight, ExternalLink, ListFilter, Shuffle, Tags } from 'lucide-react';
 import LocalizedLink from '@/components/LocalizedLink';
+import ScoreBadge from '@/components/score-badge';
 import SiteLayout from '@/components/site-layout';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { Badge, badgeVariants } from '@/components/ui/badge';
+import { badgeVariants } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SEO, type SEOI18n } from '@/components/seo';
@@ -155,11 +156,7 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
                   <ExternalLink aria-hidden="true" className="h-4 w-4" />
                 </a>
               </Button>
-              {Number.isFinite(source.score) && (
-                <Badge variant="outline" className="h-10 px-3 text-muted-foreground">
-                  Score {source.score}%
-                </Badge>
-              )}
+              <ScoreBadge score={source.score} className="h-10 text-base" />
             </div>
           </div>
 

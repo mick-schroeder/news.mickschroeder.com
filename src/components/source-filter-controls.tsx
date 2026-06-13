@@ -3,7 +3,6 @@ import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { ChevronDown, ListFilter, Tags } from 'lucide-react';
 import sourceListsJson from '../data/source-lists.json';
 import sourcesJson from '../data/sources.json';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
@@ -203,16 +202,13 @@ export const SourceFilterControls: React.FC<SourceFilterControlsProps> = ({ clas
         </PopoverContent>
       </Popover>
 
-      <Badge
-        variant="outline"
-        className="inline-flex h-9 shrink-0 items-center rounded-md px-3 text-muted-foreground"
-      >
+      <span className="inline-flex h-9 shrink-0 items-center rounded-md border px-3 text-sm tabular-nums text-muted-foreground">
         <Trans
           i18nKey="filter_selector.source_count"
           defaults="{{count}} sources"
           values={{ count: availableCount }}
         />
-      </Badge>
+      </span>
     </div>
   );
 };

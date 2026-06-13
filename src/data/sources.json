@@ -42,7 +42,7 @@
       "news",
       "skimfeed"
     ],
-    "score": 74,
+    "score": 44,
     "description": "Fox News is a U.S. news and opinion site covering politics, breaking news, business, entertainment, and culture. It delivers the daily news with the volume knob confidently within reach.",
     "metrics": {
       "firstSeen": "2026-06-12",
@@ -3270,24 +3270,6 @@
     }
   },
   {
-    "id": "fieldhousefiles-com",
-    "name": "Fieldhouse Files",
-    "description": "",
-    "url": "https://fieldhousefiles.com/",
-    "canonicalKey": "fieldhousefiles.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "fortune-com",
     "name": "Fortune",
     "description": "Fortune covers business, finance, leadership, technology, markets, and the global economy. It follows corporate power with the seriousness of a site that knows boardrooms have plot twists.",
@@ -4544,26 +4526,6 @@
       "foundInCount": 1
     },
     "score": 25
-  },
-  {
-    "id": "pravdareport-com",
-    "name": "Pravda Report",
-    "description": "PravdaReport covers Russian and international news, politics, opinion, and commentary in English. It is a useful reminder that international news sources come with very visible lenses.",
-    "url": "https://pravdareport.com/",
-    "canonicalKey": "pravdareport.com",
-    "aliases": [],
-    "tags": [
-      "Global"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
   },
   {
     "id": "pressgazette-co-uk",

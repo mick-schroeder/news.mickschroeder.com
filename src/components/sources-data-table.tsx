@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
 import { Badge } from './ui/badge';
+import ScoreBadge from './score-badge';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader } from './ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
@@ -298,8 +299,8 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
                         ) : null}
                       </div>
                     </TableCell>
-                    <TableCell className="text-right font-medium tabular-nums text-muted-foreground">
-                      {scoreOf(source.score)}%
+                    <TableCell className="text-right">
+                      <ScoreBadge score={source.score} />
                     </TableCell>
                     <TableCell>
                       <a

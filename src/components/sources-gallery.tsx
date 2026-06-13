@@ -77,7 +77,6 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
           const image = getImage(screenshot);
           const eager: 'eager' | 'lazy' = idx < 3 ? 'eager' : 'lazy';
           const fetchP = idx < 3 ? 'high' : undefined;
-          const tagsText = (tags ?? []).join(', ');
           const titleId = `card-title-${hash || idx}`;
           const detailPath = node.id ? sourcePath(node.id) : null;
           let host = url;
@@ -89,34 +88,33 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
               key={hash || url}
               className="group flex h-full flex-col overflow-hidden motion-safe:transition-shadow hover:shadow-lg hover:ring-1 hover:ring-primary/30 [content-visibility:auto] [contain-intrinsic-size:720px_1280px]"
             >
-              <CardHeader className="p-4">
-                <div className="flex flex-wrap items-start gap-2 sm:items-center sm:justify-between">
-                  <CardTitle className="min-w-0 flex-1 truncate text-card-foreground">
-                    {detailPath ? (
-                      <LocalizedLink id={titleId} to={detailPath} className="hover:underline">
-                        {name}
-                      </LocalizedLink>
-                    ) : (
-                      <a
-                        id={titleId}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline"
-                      >
-                        {name}
-                      </a>
-                    )}
-                  </CardTitle>
-                  {tagsText ? (
-                    <Badge
-                      variant="outline"
-                      className="max-w-full whitespace-normal break-words text-xs leading-tight sm:shrink-0"
+              <CardHeader className="p-4 pb-3">
+                <CardTitle className="truncate text-card-foreground">
+                  {detailPath ? (
+                    <LocalizedLink id={titleId} to={detailPath} className="hover:underline">
+                      {name}
+                    </LocalizedLink>
+                  ) : (
+                    <a
+                      id={titleId}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
                     >
-                      {tagsText}
-                    </Badge>
-                  ) : null}
-                </div>
+                      {name}
+                    </a>
+                  )}
+                </CardTitle>
+                {(tags ?? []).length > 0 ? (
+                  <div className="mt-1.5 flex flex-wrap gap-1">
+                    {(tags ?? []).map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                ) : null}
               </CardHeader>
               <CardContent className="p-0">
                 {detailPath ? (
@@ -178,7 +176,7 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                       {description}
                     </p>
                   ) : null}
-                  <Button asChild variant="ghost" className="gap-2 px-5">
+                  <Button asChild variant="outline" className="gap-2 px-5">
                     <a
                       href={url}
                       target="_blank"

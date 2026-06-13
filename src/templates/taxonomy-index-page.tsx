@@ -4,12 +4,12 @@ import { ArrowRight, ExternalLink, ListFilter, Tags } from 'lucide-react';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import SiteLayout from '@/components/site-layout';
 import LocalizedLink from '@/components/LocalizedLink';
-import { Badge } from '@/components/ui/badge';
+import { Badge, badgeVariants } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { SEO, type SEOI18n } from '@/components/seo';
 import type { TaxonomyItem } from '@/lib/taxonomy';
+import { cn } from '@/lib/utils';
 import '../fragments/locale';
 
 type TaxonomyKind = 'lists' | 'tags';
@@ -161,34 +161,31 @@ const TaxonomyIndexPage: React.FC<PageProps<TaxonomyIndexPageData, TaxonomyIndex
               ))}
             </div>
           ) : (
-            <Card className="rounded-lg shadow-sm">
-              <CardContent className="p-4">
-                <div className="flex flex-wrap gap-2">
-                  {sortedItems.map((item) => (
-                    <Button
-                      key={item.id}
-                      asChild
-                      variant="outline"
-                      className="h-auto justify-between rounded-md px-3 py-2"
-                    >
-                      <LocalizedLink to={item.path}>
-                        <span className="font-semibold">{item.name}</span>
-                        <Badge variant="secondary" className="ml-1">
-                          {item.count}
-                        </Badge>
-                      </LocalizedLink>
-                    </Button>
-                  ))}
-                </div>
-                <Separator className="my-4" />
-                <p className="text-sm leading-6 text-muted-foreground">
-                  <Trans
-                    i18nKey="taxonomy.tags_hint"
-                    defaults="Tags are ordered by source count so the broadest topics are easiest to scan first."
-                  />
-                </p>
-              </CardContent>
-            </Card>
+            <div>
+              <div className="flex flex-wrap gap-2">
+                {sortedItems.map((item) => (
+                  <LocalizedLink
+                    key={item.id}
+                    to={item.path}
+                    className={cn(
+                      badgeVariants({ variant: 'secondary' }),
+                      'rounded-full px-3 py-1.5 font-medium hover:bg-secondary/70'
+                    )}
+                  >
+                    {item.name}
+                    <span className="ms-1.5 tabular-nums text-secondary-foreground/60">
+                      {item.count}
+                    </span>
+                  </LocalizedLink>
+                ))}
+              </div>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                <Trans
+                  i18nKey="taxonomy.tags_hint"
+                  defaults="Tags are ordered by source count so the broadest topics are easiest to scan first."
+                />
+              </p>
+            </div>
           )
         ) : (
           <p className="text-sm text-muted-foreground">

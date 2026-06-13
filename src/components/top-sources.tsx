@@ -1,5 +1,6 @@
 import * as React from 'react';
 import LocalizedLink from './LocalizedLink';
+import ScoreBadge from './score-badge';
 import { sourcePath } from '@/lib/taxonomy';
 
 type TopSource = {
@@ -69,6 +70,7 @@ const TopSources = ({ items, limit = 24 }: TopSourcesProps): JSX.Element | null 
                 </p>
               ) : null}
             </div>
+            <ScoreBadge score={source.score} className="shrink-0 self-start mt-0.5" />
           </div>
         </li>
       ))}

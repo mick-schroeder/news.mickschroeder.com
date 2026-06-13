@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ExternalLink } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
-import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
+import ScoreBadge from './score-badge';
 import { sourcePath, type SourceSummary } from '@/lib/taxonomy';
 
 type LinkedSourceListProps = {
@@ -38,11 +38,7 @@ const LinkedSourceList = ({ sources, emptyMessage }: LinkedSourceListProps): JSX
                   >
                     {source.name}
                   </LocalizedLink>
-                  {typeof source.score === 'number' && Number.isFinite(source.score) && (
-                    <Badge variant="outline" className="text-muted-foreground">
-                      {source.score.toFixed(1)}
-                    </Badge>
-                  )}
+                  <ScoreBadge score={source.score} />
                 </div>
                 <p className="mt-1 line-clamp-2 text-sm leading-6 text-muted-foreground">
                   {source.description || fallbackDescription(source)}
@@ -51,7 +47,7 @@ const LinkedSourceList = ({ sources, emptyMessage }: LinkedSourceListProps): JSX
 
               <Button
                 asChild
-                variant="ghost"
+                variant="outline"
                 className="shrink-0 justify-start gap-2 sm:justify-center"
               >
                 <a href={source.url} target="_blank" rel="noopener">

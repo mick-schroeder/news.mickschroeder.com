@@ -19,10 +19,10 @@ const SideBar: React.FC = () => {
         className="pointer-events-none absolute left-1/2 top-0 -z-10 h-72 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
       />
       <div className="flex-col content-center mx-auto text-center">
-        <h2 className="mx-auto my-2 max-w-3xl text-3xl sm:text-4xl md:text-5xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
+        <h2 className="mx-auto my-2 max-w-3xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold leading-[1.15] md:leading-[1.05] text-foreground">
           {heroHeadline || <Trans i18nKey="hero.headline" />}
         </h2>
-        <p className="mx-auto my-4 max-w-2xl text-pretty text-muted-foreground md:text-lg">
+        <p className="mx-auto my-4 max-w-2xl text-pretty text-muted-foreground md:text-lg lg:text-xl">
           {heroTagline || <Trans i18nKey="hero.tagline" />}
         </p>
         <div className="flex items-center justify-center gap-3 py-4 lg:py-6">

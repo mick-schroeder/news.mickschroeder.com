@@ -98,7 +98,7 @@ const SourceShelf = ({
               </p>
               {source.description ? (
                 <p className="mt-1 line-clamp-2 text-xs leading-5 text-muted-foreground">
-                  {source.url}
+                  {source.description}
                 </p>
               ) : null}
             </>

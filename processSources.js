@@ -68,7 +68,7 @@ const BLOCKED_RESOURCE_TYPES = new Set(
 );
 
 const CACHE_TIMEOUT = Number(process.env.SCREENSHOT_CACHE_TIMEOUT_MS || 6 * 60 * 60 * 1000);
-const RETRIES = Math.max(1, Number(process.env.SCREENSHOT_RETRIES || 1));
+const RETRIES = Math.max(1, Number(process.env.SCREENSHOT_RETRIES || 2));
 const SCREENSHOT_QUALITY = Math.max(0, Math.min(100, Number(process.env.SCREENSHOT_QUALITY || 78)));
 const HEADLESS_MODE =
   typeof process.env.PUPPETEER_HEADLESS === 'string'
@@ -466,8 +466,6 @@ async function generateScreenshot(screenshotFullPath, page, url, slug, reporter)
         await waitForImages(page, reporter);
       }
       await resetScrollToTop(page);
-      await waitForMeaningfulContent(page);
-      await resetScrollToTop(page);
       await page.screenshot({
         path: screenshotFullPath,
         type: 'webp',
@@ -594,7 +592,7 @@ async function shouldGenerateScreenshot(screenshotFullPath, slug, reporter) {
     if (s3) {
       const fresh = await screenshotExistsInS3(slug);
       const decision = !fresh;
-      reporter.log(`[prod] S3 fresh within ${CACHE_TIMEOUT}ms? ${fresh} → generate: ${decision}`);
+      //reporter.log(`[prod] S3 fresh within ${CACHE_TIMEOUT}ms? ${fresh} → generate: ${decision}`);
       return decision;
     }
     const decision = !localExists;
@@ -698,6 +696,9 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
   await page.setBypassServiceWorker(true);
   await page.evaluateOnNewDocument(() => {
     try {
+      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    } catch (e) {}
+    try {
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
       }
@@ -706,7 +707,7 @@ async function processChunk(sourcesChunk, browser, reporter, blocker) {
     }
   });
   await page.setUserAgent(
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
   );
   await page.setBypassCSP(true);
   page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
@@ -870,10 +871,11 @@ const preProcessSources = async (sourcesInput, reporter) => {
         '--disable-background-timer-throttling',
         '--disable-dev-shm-usage',
         '--disable-features=Translate,BackForwardCache',
+        '--disable-blink-features=AutomationControlled',
       ],
       headless: HEADLESS_MODE,
       ignoreHTTPSErrors: true,
-      protocolTimeout: PAGE_NAVIGATION_TIMEOUT * 2,
+      protocolTimeout: 90000,
     });
 
     await processSources(sourcesData, browser, reporter, blocker);
