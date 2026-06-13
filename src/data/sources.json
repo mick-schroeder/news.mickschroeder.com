@@ -1637,6 +1637,7 @@
       "Aggregator"
     ],
     "lists": [
+      "drudgereport",
       "news"
     ],
     "score": 50,
@@ -1644,30 +1645,7 @@
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-13",
-      "foundInCount": 0
-    }
-  },
-  {
-    "id": "bbc-co-uk",
-    "name": "BBC",
-    "description": "BBC.co.uk is the BBC's UK web hub for news, sport, weather, culture, and public-service content. It is the internet version of a national institution clearing its throat politely.",
-    "url": "https://bbc.co.uk/",
-    "canonicalKey": "bbc.co.uk",
-    "aliases": [],
-    "tags": [
-      "British"
-    ],
-    "lists": [
-      "brutalist",
-      "drudgereport",
-      "mediagazer",
-      "skimfeed"
-    ],
-    "score": 58,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 4
+      "foundInCount": 1
     }
   },
   {
@@ -1691,6 +1669,28 @@
       "foundInCount": 3
     },
     "score": 50
+  },
+  {
+    "id": "bbc-co-uk",
+    "name": "BBC",
+    "description": "BBC.co.uk is the BBC's UK web hub for news, sport, weather, culture, and public-service content. It is the internet version of a national institution clearing its throat politely.",
+    "url": "https://bbc.co.uk/",
+    "canonicalKey": "bbc.co.uk",
+    "aliases": [],
+    "tags": [
+      "British"
+    ],
+    "lists": [
+      "drudgereport",
+      "mediagazer",
+      "skimfeed"
+    ],
+    "score": 50,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 3
+    }
   },
   {
     "id": "mediaite-com",
@@ -1768,28 +1768,6 @@
     "aliases": [],
     "tags": [
       "Global"
-    ],
-    "lists": [
-      "drudgereport",
-      "mediagazer",
-      "memeorandum"
-    ],
-    "score": 50,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 3
-    }
-  },
-  {
-    "id": "substack-com",
-    "name": "Substack",
-    "description": "Substack is a publishing and newsletter platform for independent writers, journalists, and creators. It is where the internet rediscovered email and called it a media ecosystem.",
-    "url": "https://substack.com/",
-    "canonicalKey": "substack.com",
-    "aliases": [],
-    "tags": [
-      "Aggregator"
     ],
     "lists": [
       "drudgereport",
@@ -1997,6 +1975,27 @@
     }
   },
   {
+    "id": "dailymail-com",
+    "name": "Daily Mail US",
+    "description": "Daily Mail covers news, celebrity, lifestyle, and viral stories for a global audience. It is the internet's loudest corner shop: everything is visible, everything is urgent, and somehow you keep looking.",
+    "url": "https://dailymail.com/",
+    "canonicalKey": "dailymail.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "drudgereport",
+      "memeorandum"
+    ],
+    "score": 40,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 2
+    }
+  },
+  {
     "id": "deadline-com",
     "name": "Deadline",
     "description": "Deadline covers Hollywood, television, film, streaming, and entertainment industry deals. It is where show-business news gets a timestamp, an exclusive, and probably a sequel.",
@@ -2115,27 +2114,6 @@
     "lists": [
       "drudgereport",
       "memeorandum"
-    ],
-    "score": 40,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    }
-  },
-  {
-    "id": "msn-com",
-    "name": "MSN",
-    "description": "MSN aggregates news, weather, entertainment, finance, and lifestyle stories from a wide range of publishers. It is the web portal that never really left, quietly proving the 1990s had a point.",
-    "url": "https://msn.com/",
-    "canonicalKey": "msn.com",
-    "aliases": [],
-    "tags": [
-      "Aggregator"
-    ],
-    "lists": [
-      "drudgereport",
-      "skimfeed"
     ],
     "score": 40,
     "metrics": {
@@ -2596,24 +2574,6 @@
     "score": 25
   },
   {
-    "id": "anthropic-com",
-    "name": "Anthropic",
-    "description": "",
-    "url": "https://anthropic.com/",
-    "canonicalKey": "anthropic.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "arabnews-com",
     "name": "Arab News",
     "description": "Arab News covers Saudi Arabia, the Middle East, world affairs, business, and culture. It provides regional context where the headlines are rarely simple and never short on consequence.",
@@ -2754,26 +2714,6 @@
     }
   },
   {
-    "id": "boxofficemojo-com",
-    "name": "Box Office Mojo",
-    "description": "Box Office Mojo tracks movie box office grosses, release data, charts, and film performance. It is where Hollywood's dreams become numbers and the numbers become arguments.",
-    "url": "https://boxofficemojo.com/",
-    "canonicalKey": "boxofficemojo.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "broadbandtvnews-com",
     "name": "Broadband TV News",
     "description": "",
@@ -2785,42 +2725,6 @@
     ],
     "lists": [
       "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
-    "id": "brutalist-mov",
-    "name": "brutalist.mov",
-    "description": "",
-    "url": "https://brutalist.mov/",
-    "canonicalKey": "brutalist.mov",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "brutalist"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
-    "id": "brutalist-network",
-    "name": "brutalist.network",
-    "description": "",
-    "url": "https://brutalist.network/",
-    "canonicalKey": "brutalist.network",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "brutalist"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -3088,26 +2992,6 @@
     }
   },
   {
-    "id": "dailymail-com",
-    "name": "Daily Mail US",
-    "description": "Daily Mail covers news, celebrity, lifestyle, and viral stories for a global audience. It is the internet's loudest corner shop: everything is visible, everything is urgent, and somehow you keep looking.",
-    "url": "https://dailymail.com/",
-    "canonicalKey": "dailymail.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "dailynews-com",
     "name": "Daily News",
     "description": "Daily News covers Southern California news, politics, crime, sports, and local life. It is local journalism for a region where the traffic report deserves its own constitution.",
@@ -3248,24 +3132,6 @@
     "score": 25
   },
   {
-    "id": "drudgereportarchives-com",
-    "name": "drudgereportarchives.com",
-    "description": "",
-    "url": "https://drudgereportarchives.com/",
-    "canonicalKey": "drudgereportarchives.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "elmundo-es",
     "name": "El Mundo",
     "description": "El Mundo covers Spanish news, politics, economy, culture, sport, and international affairs. It brings a major Spanish newsroom's view to a world that is rarely short on drama.",
@@ -3326,17 +3192,15 @@
     }
   },
   {
-    "id": "elevenlabs-io",
-    "name": "ElevenLabs",
+    "id": "electionlawblog-org",
+    "name": "Election Law Blog",
     "description": "",
-    "url": "https://elevenlabs.io/",
-    "canonicalKey": "elevenlabs.io",
+    "url": "https://electionlawblog.org/",
+    "canonicalKey": "electionlawblog.org",
     "aliases": [],
-    "tags": [
-      "Tech"
-    ],
+    "tags": [],
     "lists": [
-      "mediagazer"
+      "memeorandum"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -3444,44 +3308,6 @@
     }
   },
   {
-    "id": "freestar-com",
-    "name": "freestar.com",
-    "description": "Freestar covers digital advertising technology, publisher monetization, and ad management services. It lives in the part of the web where page views become invoices.",
-    "url": "https://freestar.com/",
-    "canonicalKey": "freestar.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "gelliottmorris-com",
-    "name": "G. Elliott Morris",
-    "description": "",
-    "url": "https://gelliottmorris.com/",
-    "canonicalKey": "gelliottmorris.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "gallup-com",
     "name": "Gallup",
     "description": "",
@@ -3493,26 +3319,6 @@
     ],
     "lists": [
       "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
-    "id": "gamefile-news",
-    "name": "Game File",
-    "description": "",
-    "url": "https://gamefile.news/",
-    "canonicalKey": "gamefile.news",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "techmeme"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -4380,26 +4186,6 @@
     }
   },
   {
-    "id": "newsweek-com",
-    "name": "Newsweek",
-    "description": "Newsweek covers U.S. and world news, politics, culture, science, and opinion. It is a legacy magazine brand rebuilt for a web that wants every story immediately and slightly louder.",
-    "url": "https://newsweek.com/",
-    "canonicalKey": "newsweek.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "newzit-com",
     "name": "Newzit",
     "description": "",
@@ -4458,24 +4244,6 @@
       "foundInCount": 1
     },
     "score": 25
-  },
-  {
-    "id": "nordot-app",
-    "name": "nordot.app",
-    "description": "Nordot is a Japanese news distribution and content platform used by publishers and media partners. It is less a front page than a behind-the-scenes rail yard for stories.",
-    "url": "https://nordot.app/",
-    "canonicalKey": "nordot.app",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
   },
   {
     "id": "notus-org",
@@ -4778,26 +4546,6 @@
     "score": 25
   },
   {
-    "id": "prnewswire-com",
-    "name": "PR Newswire",
-    "description": "PR Newswire distributes press releases, corporate announcements, investor news, and multimedia statements. It is where companies speak in their most polished indoor voice.",
-    "url": "https://prnewswire.com/",
-    "canonicalKey": "prnewswire.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "pravdareport-com",
     "name": "Pravda Report",
     "description": "PravdaReport covers Russian and international news, politics, opinion, and commentary in English. It is a useful reminder that international news sources come with very visible lenses.",
@@ -4846,26 +4594,6 @@
     "aliases": [],
     "tags": [
       "Global"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "pressreader-com",
-    "name": "PressReader",
-    "description": "PressReader aggregates digital newspapers and magazines from publishers around the world. It is a global newsstand without the folding, ink, or awkward airport kiosk lighting.",
-    "url": "https://pressreader.com/",
-    "canonicalKey": "pressreader.com",
-    "aliases": [],
-    "tags": [
-      "Aggregator"
     ],
     "lists": [
       "drudgereport"
@@ -5180,26 +4908,6 @@
     "aliases": [],
     "tags": [
       "American"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "studyfinds-com",
-    "name": "Study Finds",
-    "description": "StudyFinds covers research summaries, science news, health studies, consumer surveys, and academic findings. It is where studies go to become readable before everyone overgeneralizes them.",
-    "url": "https://studyfinds.com/",
-    "canonicalKey": "studyfinds.com",
-    "aliases": [],
-    "tags": [
-      "Science"
     ],
     "lists": [
       "drudgereport"
@@ -5610,26 +5318,6 @@
     }
   },
   {
-    "id": "nytco-com",
-    "name": "The New York Times Company",
-    "description": "",
-    "url": "https://nytco.com/",
-    "canonicalKey": "nytco.com",
-    "aliases": [],
-    "tags": [
-      "Business"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "therecord-media",
     "name": "The Record",
     "description": "",
@@ -5730,26 +5418,6 @@
     }
   },
   {
-    "id": "whitehouse-gov",
-    "name": "The White House",
-    "description": "",
-    "url": "https://whitehouse.gov/",
-    "canonicalKey": "whitehouse.gov",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "theyeshivaworld-com",
     "name": "The Yeshiva World",
     "description": "The Yeshiva World covers Orthodox Jewish news, community updates, politics, Israel, and public affairs. It serves a specific community beat with the pace of a general news site.",
@@ -5781,24 +5449,6 @@
     ],
     "lists": [
       "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "timeanddate-com",
-    "name": "Time and Date",
-    "description": "Timeanddate.com provides calendars, time zones, clocks, weather, astronomy, and date tools. It is the rare utility site that makes time itself slightly less annoying.",
-    "url": "https://timeanddate.com/",
-    "canonicalKey": "timeanddate.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "skimfeed"
     ],
     "score": 25,
     "metrics": {
@@ -5848,6 +5498,24 @@
     }
   },
   {
+    "id": "today-com",
+    "name": "today.com",
+    "description": "",
+    "url": "https://today.com/",
+    "canonicalKey": "today.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "brutalist"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    },
+    "score": 25
+  },
+  {
     "id": "tomshardware-com",
     "name": "Tom's Hardware",
     "description": "Tom's Hardware covers PC components, CPUs, GPUs, benchmarks, building advice, and hardware news. It is for people who hear thermal paste and do not immediately leave the room.",
@@ -5888,86 +5556,6 @@
     "score": 25
   },
   {
-    "id": "cbp-gov",
-    "name": "U.S. Customs and Border Protection",
-    "description": "",
-    "url": "https://cbp.gov/",
-    "canonicalKey": "cbp.gov",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
-    "id": "justice-gov",
-    "name": "U.S. Department of Justice",
-    "description": "",
-    "url": "https://justice.gov/",
-    "canonicalKey": "justice.gov",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
-    "id": "treasury-gov",
-    "name": "U.S. Department of the Treasury",
-    "description": "",
-    "url": "https://treasury.gov/",
-    "canonicalKey": "treasury.gov",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
-    "id": "state-gov",
-    "name": "United States Department of State",
-    "description": "",
-    "url": "https://state.gov/",
-    "canonicalKey": "state.gov",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "uol-com-br",
     "name": "UOL",
     "description": "UOL covers Brazilian news, politics, business, sport, entertainment, and digital services. It is one of Brazil's major web portals, which means the homepage has seen everything.",
@@ -5977,24 +5565,6 @@
     "tags": [
       "Global"
     ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "ustvdb-com",
-    "name": "USTVDB",
-    "description": "USTVDB is a U.S. television database tracking ratings, shows, networks, demos, markets, and seasons. It is Nielsen-adjacent nerdery for anyone who thinks TV numbers deserve their own atlas.",
-    "url": "https://ustvdb.com/",
-    "canonicalKey": "ustvdb.com",
-    "aliases": [],
-    "tags": [],
     "lists": [
       "drudgereport"
     ],
@@ -6296,24 +5866,6 @@
     ],
     "lists": [
       "memeorandum"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "zoom-earth",
-    "name": "Zoom Earth",
-    "description": "Zoom Earth provides live weather maps, satellite imagery, storm tracking, and environmental data. It is the rare website where doomscrolling can be meteorologically justified.",
-    "url": "https://zoom.earth/",
-    "canonicalKey": "zoom.earth",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport"
     ],
     "score": 25,
     "metrics": {

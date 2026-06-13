@@ -1,17 +1,15 @@
 import * as React from 'react';
 import type { HeadProps, PageProps } from 'gatsby';
-import RedirectButton from '../components/redirect-button';
 import SiteLayout from '../components/site-layout';
 import Hero from '../components/hero';
 import TagPills from '../components/tag-pills';
 import TopSources from '../components/top-sources';
 import SourceShelf from '../components/source-shelf';
-import SourceDirectory from '../components/source-directory';
 import { SEO } from '../components/seo';
 import type { SEOI18n } from '../components/seo';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
-import { LayoutList, Newspaper, TrendingUp } from 'lucide-react';
+import { Newspaper, TrendingUp } from 'lucide-react';
 import { getSiteConfig } from '../config/getSiteConfig';
 import '../fragments/locale';
 import '../fragments/news-source';
@@ -101,24 +99,6 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
                 eager={idx === 0}
               />
             ))}
-          </div>
-        </section>
-
-        <section className="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
-          <h2 className="text-2xl py-2 font-extrabold tracking-tight flex items-center gap-2">
-            <LayoutList className="w-6 h-6 text-primary" aria-hidden="true" />
-            <Trans i18nKey="home_page.all_sources" defaults="All sources" />
-            <span className="text-base font-normal tabular-nums text-muted-foreground">
-              {items.length}
-            </span>
-          </h2>
-          <p className="mb-4 text-sm text-muted-foreground">
-            <Trans i18nKey="home_page.all_sources_hint" defaults="Every source, A to Z." />
-          </p>
-          <SourceDirectory items={items} />
-
-          <div className="text-center mt-10">
-            <RedirectButton />
           </div>
         </section>
       </div>

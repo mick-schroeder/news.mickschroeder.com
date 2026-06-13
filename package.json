@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit",
     "sources:refresh": "node scripts/refresh-aggregator-sources.mjs",
     "sources:validate": "node scripts/validate-sources.mjs",
+    "sources:check-links": "node scripts/check-dead-links.mjs",
     "test:sources": "node scripts/validate-sources.mjs && node scripts/test-scrapers.mjs && node scripts/test-score.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
