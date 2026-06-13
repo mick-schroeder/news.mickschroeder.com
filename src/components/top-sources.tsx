@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Trans } from 'gatsby-plugin-react-i18next';
 import LocalizedLink from './LocalizedLink';
 import { sourcePath } from '@/lib/taxonomy';
 

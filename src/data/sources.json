@@ -392,6 +392,29 @@
     }
   },
   {
+    "id": "arstechnica-com",
+    "name": "Ars Technica",
+    "url": "https://arstechnica.com/",
+    "canonicalKey": "arstechnica.com",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "mediagazer",
+      "memeorandum",
+      "news",
+      "techmeme"
+    ],
+    "score": 60,
+    "description": "Ars Technica covers technology, science, policy, hardware, software, and internet culture with technical depth. It is for readers who want the footnotes before the hot take has finished loading.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 3
+    }
+  },
+  {
     "id": "bloomberg-com",
     "name": "Bloomberg",
     "url": "https://bloomberg.com/",
@@ -553,6 +576,29 @@
     }
   },
   {
+    "id": "theverge-com",
+    "name": "The Verge",
+    "url": "https://theverge.com/",
+    "canonicalKey": "theverge.com",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "mediagazer",
+      "memeorandum",
+      "news",
+      "techmeme"
+    ],
+    "score": 60,
+    "description": "The Verge covers technology, gadgets, platforms, science, entertainment, and digital culture. It makes the future feel sleek, strange, and occasionally trapped inside a terms-of-service update.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 3
+    }
+  },
+  {
     "id": "usatoday-com",
     "name": "USA Today",
     "url": "https://usatoday.com/",
@@ -591,28 +637,6 @@
     ],
     "score": 50,
     "description": "Al Jazeera covers international news, politics, conflict, culture, and analysis with a strong global focus. It is especially useful when the world refuses to organize itself around a U.S. cable-news map.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    }
-  },
-  {
-    "id": "arstechnica-com",
-    "name": "Ars Technica",
-    "url": "https://arstechnica.com/",
-    "canonicalKey": "arstechnica.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "mediagazer",
-      "news",
-      "techmeme"
-    ],
-    "score": 50,
-    "description": "Ars Technica covers technology, science, policy, hardware, software, and internet culture with technical depth. It is for readers who want the footnotes before the hot take has finished loading.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-13",
@@ -1510,28 +1534,6 @@
     }
   },
   {
-    "id": "theverge-com",
-    "name": "The Verge",
-    "url": "https://theverge.com/",
-    "canonicalKey": "theverge.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "mediagazer",
-      "news",
-      "techmeme"
-    ],
-    "score": 50,
-    "description": "The Verge covers technology, gadgets, platforms, science, entertainment, and digital culture. It makes the future feel sleek, strange, and occasionally trapped inside a terms-of-service update.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    }
-  },
-  {
     "id": "time-com",
     "name": "TIME",
     "url": "https://time.com/",
@@ -1637,7 +1639,6 @@
     ],
     "lists": [
       "drudgereport",
-      "memeorandum",
       "news"
     ],
     "score": 50,
@@ -1645,7 +1646,7 @@
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-13",
-      "foundInCount": 2
+      "foundInCount": 1
     }
   },
   {
@@ -1805,6 +1806,28 @@
     }
   },
   {
+    "id": "hollywoodreporter-com",
+    "name": "The Hollywood Reporter",
+    "description": "The Hollywood Reporter covers film, television, entertainment business, awards, and media. It understands that Hollywood gossip becomes business news the moment someone hires a lawyer.",
+    "url": "https://hollywoodreporter.com/",
+    "canonicalKey": "hollywoodreporter.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "drudgereport",
+      "mediagazer",
+      "memeorandum"
+    ],
+    "score": 50,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 3
+    }
+  },
+  {
     "id": "theintercept-com",
     "name": "The Intercept",
     "description": "The Intercept covers investigative journalism, national security, politics, civil liberties, and accountability. It has a healthy suspicion of power, which is useful because power keeps earning it.",
@@ -1868,6 +1891,27 @@
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-13",
       "foundInCount": 3
+    }
+  },
+  {
+    "id": "9to5google-com",
+    "name": "9to5Google",
+    "description": "9to5Google covers Google, Android, Pixel, Chrome, apps, and search technology. It is for people who can tell a product leak from a settings-menu rumor at twenty paces.",
+    "url": "https://9to5google.com/",
+    "canonicalKey": "9to5google.com",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "mediagazer",
+      "techmeme"
+    ],
+    "score": 40,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 2
     }
   },
   {
@@ -2039,27 +2083,6 @@
     }
   },
   {
-    "id": "fortune-com",
-    "name": "Fortune",
-    "description": "Fortune covers business, finance, leadership, technology, markets, and the global economy. It follows corporate power with the seriousness of a site that knows boardrooms have plot twists.",
-    "url": "https://fortune.com/",
-    "canonicalKey": "fortune.com",
-    "aliases": [],
-    "tags": [
-      "Business"
-    ],
-    "lists": [
-      "memeorandum",
-      "techmeme"
-    ],
-    "score": 40,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    }
-  },
-  {
     "id": "indiatimes-com",
     "name": "Indiatimes",
     "description": "Indiatimes covers Indian news, entertainment, lifestyle, technology, and viral stories. It is a broad digital bazaar where serious headlines and internet curiosities share the same escalator.",
@@ -2175,27 +2198,6 @@
     "lists": [
       "mediagazer",
       "techmeme"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    },
-    "score": 40
-  },
-  {
-    "id": "popular-info",
-    "name": "Popular Information",
-    "description": "",
-    "url": "https://popular.info/",
-    "canonicalKey": "popular.info",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "mediagazer",
-      "memeorandum"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -2329,27 +2331,6 @@
     }
   },
   {
-    "id": "theconversation-com",
-    "name": "The Conversation",
-    "description": "",
-    "url": "https://theconversation.com/",
-    "canonicalKey": "theconversation.com",
-    "aliases": [],
-    "tags": [
-      "Global"
-    ],
-    "lists": [
-      "brutalist",
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    },
-    "score": 40
-  },
-  {
     "id": "the-decoder-com",
     "name": "The Decoder",
     "description": "THE DECODER covers artificial intelligence news, research, tools, and industry developments. It tracks AI like a fast-moving lab notebook with a public address system.",
@@ -2392,27 +2373,6 @@
     }
   },
   {
-    "id": "hollywoodreporter-com",
-    "name": "The Hollywood Reporter",
-    "description": "The Hollywood Reporter covers film, television, entertainment business, awards, and media. It understands that Hollywood gossip becomes business news the moment someone hires a lawyer.",
-    "url": "https://hollywoodreporter.com/",
-    "canonicalKey": "hollywoodreporter.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport",
-      "mediagazer"
-    ],
-    "score": 40,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 2
-    }
-  },
-  {
     "id": "themoscowtimes-com",
     "name": "The Moscow Times",
     "description": "The Moscow Times covers Russian news, politics, business, culture, and international reaction in English. It is useful because Russia rarely fits inside a simple headline.",
@@ -2445,6 +2405,27 @@
     ],
     "lists": [
       "drudgereport",
+      "memeorandum"
+    ],
+    "score": 40,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 2
+    }
+  },
+  {
+    "id": "newrepublic-com",
+    "name": "The New Republic",
+    "description": "The New Republic covers politics, culture, policy, and ideas from a progressive magazine perspective. It enjoys the ancient art of asking whether America is having a normal one, then answering no.",
+    "url": "https://newrepublic.com/",
+    "canonicalKey": "newrepublic.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "mediagazer",
       "memeorandum"
     ],
     "score": 40,
@@ -2516,26 +2497,6 @@
       "foundInCount": 2
     },
     "score": 40
-  },
-  {
-    "id": "9to5google-com",
-    "name": "9to5Google",
-    "description": "9to5Google covers Google, Android, Pixel, Chrome, apps, and search technology. It is for people who can tell a product leak from a settings-menu rumor at twenty paces.",
-    "url": "https://9to5google.com/",
-    "canonicalKey": "9to5google.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "techmeme"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
   },
   {
     "id": "adweek-com",
@@ -2667,6 +2628,24 @@
     ],
     "lists": [
       "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    },
+    "score": 25
+  },
+  {
+    "id": "anthropic-com",
+    "name": "Anthropic",
+    "description": "",
+    "url": "https://anthropic.com/",
+    "canonicalKey": "anthropic.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "memeorandum"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -3272,26 +3251,6 @@
     "score": 25
   },
   {
-    "id": "dnyuz-com",
-    "name": "DNyuz",
-    "description": "DNyuz republishes and aggregates news and commentary from major outlets across politics, culture, and business. It is a shortcut through the newsstand, with the usual internet caveat about shortcuts.",
-    "url": "https://dnyuz.com/",
-    "canonicalKey": "dnyuz.com",
-    "aliases": [],
-    "tags": [
-      "Aggregator"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "drudgereportarchives-com",
     "name": "drudgereportarchives.com",
     "description": "",
@@ -3466,6 +3425,26 @@
       "foundInCount": 1
     },
     "score": 25
+  },
+  {
+    "id": "fortune-com",
+    "name": "Fortune",
+    "description": "Fortune covers business, finance, leadership, technology, markets, and the global economy. It follows corporate power with the seriousness of a site that knows boardrooms have plot twists.",
+    "url": "https://fortune.com/",
+    "canonicalKey": "fortune.com",
+    "aliases": [],
+    "tags": [
+      "Business"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "score": 25,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    }
   },
   {
     "id": "freestar-com",
@@ -3967,26 +3946,6 @@
     }
   },
   {
-    "id": "kffhealthnews-org",
-    "name": "KFF Health News",
-    "description": "",
-    "url": "https://kffhealthnews.org/",
-    "canonicalKey": "kffhealthnews.org",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "king5-com",
     "name": "KING-TV",
     "description": "",
@@ -4247,26 +4206,6 @@
     "score": 25
   },
   {
-    "id": "mediapost-com",
-    "name": "MediaPost",
-    "description": "",
-    "url": "https://mediapost.com/",
-    "canonicalKey": "mediapost.com",
-    "aliases": [],
-    "tags": [
-      "Business"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
-  },
-  {
     "id": "metro-co-uk",
     "name": "Metro",
     "description": "Metro covers UK news, entertainment, lifestyle, sport, and viral stories. It is commuter-friendly news for people who need the world summarized before the next stop.",
@@ -4326,26 +4265,6 @@
       "lastSeen": "2026-06-13",
       "foundInCount": 1
     }
-  },
-  {
-    "id": "mississippifreepress-org",
-    "name": "Mississippi Free Press",
-    "description": "",
-    "url": "https://mississippifreepress.org/",
-    "canonicalKey": "mississippifreepress.org",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
   },
   {
     "id": "technologyreview-com",
@@ -4817,6 +4736,26 @@
     ],
     "lists": [
       "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    },
+    "score": 25
+  },
+  {
+    "id": "popular-info",
+    "name": "Popular Information",
+    "description": "",
+    "url": "https://popular.info/",
+    "canonicalKey": "popular.info",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
@@ -5498,6 +5437,26 @@
     "score": 25
   },
   {
+    "id": "theconversation-com",
+    "name": "The Conversation",
+    "description": "",
+    "url": "https://theconversation.com/",
+    "canonicalKey": "theconversation.com",
+    "aliases": [],
+    "tags": [
+      "Global"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-13",
+      "foundInCount": 1
+    },
+    "score": 25
+  },
+  {
     "id": "thedesk-net",
     "name": "The Desk",
     "description": "The Desk covers media, television, streaming, broadcasting, and telecom news. It watches the business behind the screen, where the real drama is often in carriage fees.",
@@ -5649,26 +5608,6 @@
     ],
     "lists": [
       "drudgereport"
-    ],
-    "score": 25,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "newrepublic-com",
-    "name": "The New Republic",
-    "description": "The New Republic covers politics, culture, policy, and ideas from a progressive magazine perspective. It enjoys the ancient art of asking whether America is having a normal one, then answering no.",
-    "url": "https://newrepublic.com/",
-    "canonicalKey": "newrepublic.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
     ],
     "score": 25,
     "metrics": {
@@ -5972,24 +5911,6 @@
       "lastSeen": "2026-06-13",
       "foundInCount": 1
     }
-  },
-  {
-    "id": "today-com",
-    "name": "today.com",
-    "description": "",
-    "url": "https://today.com/",
-    "canonicalKey": "today.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "brutalist"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-13",
-      "foundInCount": 1
-    },
-    "score": 25
   },
   {
     "id": "tomshardware-com",

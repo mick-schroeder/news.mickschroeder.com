@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { ChevronDown, ListFilter, Tags } from 'lucide-react';
+import sourceListsJson from '../data/source-lists.json';
+import sourcesJson from '../data/sources.json';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -21,13 +22,6 @@ type SourceNode = {
   lists?: string[] | null;
 };
 
-type SourceFilterControlsQuery = {
-  generatedJson?: {
-    lists?: SourceList[] | null;
-    sources?: SourceNode[] | null;
-  } | null;
-};
-
 const joinDisplay = (values: string[], fallback: React.ReactNode): React.ReactNode =>
   values.length ? values.join(', ') : fallback;
 
@@ -43,29 +37,14 @@ export const SourceFilterControls: React.FC<SourceFilterControlsProps> = ({ clas
   const [listsOpen, setListsOpen] = React.useState(false);
   const [tagsOpen, setTagsOpen] = React.useState(false);
 
-  const data = useStaticQuery<SourceFilterControlsQuery>(graphql`
-    query SourceFilterControlsQuery {
-      generatedJson {
-        lists {
-          id
-          name
-        }
-        sources {
-          tags
-          lists
-        }
-      }
-    }
-  `);
-
-  const lists = React.useMemo(() => data?.generatedJson?.lists ?? [], [data]);
+  const lists = React.useMemo(() => sourceListsJson as SourceList[], []);
   const tags = React.useMemo(() => {
     const set = new Set<string>();
-    for (const source of data?.generatedJson?.sources ?? []) {
+    for (const source of sourcesJson as SourceNode[]) {
       for (const tag of source.tags ?? []) set.add(tag);
     }
     return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, [data]);
+  }, []);
 
   const listIds = React.useMemo(() => lists.map((list) => list.id), [lists]);
   const listNameById = React.useMemo(

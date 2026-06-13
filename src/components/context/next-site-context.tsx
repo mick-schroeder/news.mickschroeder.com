@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import sourcesJson from '../../data/sources.json';
 import { filterSources, useSourceFilterContext } from './source-filter-context';
 
 type SourceNode = {
@@ -21,12 +21,6 @@ type NextSiteContextValue = {
   availableCount: number;
 };
 
-type NextSiteSourcesQuery = {
-  allGeneratedJson: {
-    nodes: Array<{ sources: SourceNode[] }>;
-  };
-};
-
 const NextSiteContext = React.createContext<NextSiteContextValue | undefined>(undefined);
 
 export const useNextSiteContext = (): NextSiteContextValue => {
@@ -42,23 +36,7 @@ type NextSiteProviderProps = {
 };
 
 export const NextSiteProvider = ({ children }: NextSiteProviderProps): JSX.Element => {
-  const data = useStaticQuery<NextSiteSourcesQuery>(graphql`
-    query NextSiteSourcesQuery {
-      allGeneratedJson {
-        nodes {
-          sources {
-            id
-            name
-            url
-            tags
-            lists
-          }
-        }
-      }
-    }
-  `);
-  const nodes = data.allGeneratedJson?.nodes?.[0]?.sources ?? [];
-  const sources = React.useMemo(() => nodes, [nodes]);
+  const sources = React.useMemo(() => sourcesJson as SourceNode[], []);
 
   const { selectedLists, selectedTags } = useSourceFilterContext();
 
