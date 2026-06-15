@@ -15,6 +15,7 @@ import { Card, CardContent, CardHeader } from './ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import { sourcePath } from '@/lib/taxonomy';
 import { cn } from '@/lib/utils';
+import { TAG_CONFIG } from '@/config/tag-config';
 
 type SourceList = {
   id: string;
@@ -289,11 +290,22 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
                       <div className="flex max-w-[220px] flex-wrap gap-1.5">
-                        {sourceTags.slice(0, 2).map((tag) => (
-                          <Badge key={tag} variant="outline" className="max-w-full truncate">
-                            {tag}
-                          </Badge>
-                        ))}
+                        {sourceTags.slice(0, 2).map((tag) => {
+                          const cfg = TAG_CONFIG[tag];
+                          const Icon = cfg?.icon;
+                          return (
+                            <span
+                              key={tag}
+                              className={cn(
+                                'inline-flex max-w-full items-center gap-1 truncate rounded-md border px-2 py-0.5 text-xs font-semibold',
+                                cfg?.colorClass ?? 'border-border bg-secondary text-secondary-foreground'
+                              )}
+                            >
+                              {Icon && <Icon aria-hidden="true" className="h-3 w-3 shrink-0" />}
+                              {tag}
+                            </span>
+                          );
+                        })}
                         {sourceTags.length > 2 ? (
                           <Badge variant="outline">+{sourceTags.length - 2}</Badge>
                         ) : null}

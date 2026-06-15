@@ -20,6 +20,7 @@ type ShelfSource = {
 type SourceShelfProps = {
   listId: string;
   listName: string;
+  path?: string;
   items: ShelfSource[];
   limit?: number;
   eager?: boolean;
@@ -28,10 +29,12 @@ type SourceShelfProps = {
 const SourceShelf = ({
   listId,
   listName,
+  path,
   items,
   limit = 10,
   eager = false,
 }: SourceShelfProps): React.ReactElement | null => {
+  const shelfPath = path ?? shelfPath;
   const { t } = useTranslation();
 
   if (!items.length) return null;
@@ -43,7 +46,7 @@ const SourceShelf = ({
     <section aria-label={listName}>
       <div className="mb-2 flex items-baseline justify-between gap-3">
         <h3 className="min-w-0 truncate text-lg font-bold">
-          <LocalizedLink to={listPath(listId)} className="hover:underline">
+          <LocalizedLink to={shelfPath} className="hover:underline">
             {listName}
           </LocalizedLink>
           <span className="ms-2 text-sm font-normal tabular-nums text-muted-foreground">
@@ -55,7 +58,7 @@ const SourceShelf = ({
           </span>
         </h3>
         <Button asChild variant="ghost" size="sm" className="shrink-0 gap-1 text-muted-foreground">
-          <LocalizedLink to={listPath(listId)}>
+          <LocalizedLink to={shelfPath}>
             <Trans i18nKey="home_page.see_all" defaults="See all" />
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </LocalizedLink>
@@ -126,7 +129,7 @@ const SourceShelf = ({
 
         {remaining > 0 ? (
           <li className="w-36 shrink-0 snap-start sm:w-40">
-            <LocalizedLink to={listPath(listId)} className="group block">
+            <LocalizedLink to={shelfPath} className="group block">
               <div className="rounded-xl border border-dashed bg-muted/50 motion-safe:transition-colors group-hover:border-primary/40 group-hover:bg-muted">
                 <AspectRatio ratio={9 / 16}>
                   <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-muted-foreground">

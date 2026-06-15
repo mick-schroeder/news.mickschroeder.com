@@ -5,10 +5,11 @@ import { AspectRatio } from './ui/aspect-ratio';
 import { ExternalLink } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
-import { Badge } from './ui/badge';
 import { filterSources, useSourceFilterContext } from './context/source-filter-context';
 import LocalizedLink from './LocalizedLink';
 import { sourcePath } from '@/lib/taxonomy';
+import { cn } from '@/lib/utils';
+import { TAG_CONFIG } from '@/config/tag-config';
 
 type Source = {
   id?: string;
@@ -108,11 +109,22 @@ const SourcesGallery = React.memo<Props>(({ items, limit, sort }): JSX.Element |
                 </CardTitle>
                 {(tags ?? []).length > 0 ? (
                   <div className="mt-1.5 flex flex-wrap gap-1">
-                    {(tags ?? []).map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
+                    {(tags ?? []).map((tag) => {
+                      const cfg = TAG_CONFIG[tag];
+                      const Icon = cfg?.icon;
+                      return (
+                        <span
+                          key={tag}
+                          className={cn(
+                            'inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-semibold',
+                            cfg?.colorClass ?? 'bg-secondary text-secondary-foreground border-transparent'
+                          )}
+                        >
+                          {Icon && <Icon aria-hidden="true" className="h-3 w-3 shrink-0" />}
+                          {tag}
+                        </span>
+                      );
+                    })}
                   </div>
                 ) : null}
               </CardHeader>

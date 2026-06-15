@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { graphql, type HeadProps, type PageProps } from 'gatsby';
 import { ExternalLink, ListFilter, Tags } from 'lucide-react';
+import { TAG_CONFIG } from '@/config/tag-config';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import LinkedSourceList from '@/components/linked-source-list';
 import SiteLayout from '@/components/site-layout';
@@ -53,7 +54,11 @@ const TaxonomyDetailPage: React.FC<
 > = ({ pageContext }) => {
   const { item, sources } = pageContext;
   const config = taxonomyConfig[pageContext.kind];
-  const Icon = config.Icon;
+  const Icon =
+    pageContext.kind === 'tags' ? (TAG_CONFIG[item.name]?.icon ?? config.Icon) : config.Icon;
+  const description =
+    item.description ??
+    (pageContext.kind === 'tags' ? TAG_CONFIG[item.name]?.description : undefined);
 
   return (
     <SiteLayout>
@@ -64,8 +69,8 @@ const TaxonomyDetailPage: React.FC<
             <Trans i18nKey={config.labelKey} defaults={config.labelDefault} />
           </p>
           <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground">{item.name}</h1>
-          {item.description ? (
-            <p className="mt-4 text-base leading-7 text-muted-foreground">{item.description}</p>
+          {description ? (
+            <p className="mt-4 text-base leading-7 text-muted-foreground">{description}</p>
           ) : null}
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <p className="text-sm font-medium text-muted-foreground">

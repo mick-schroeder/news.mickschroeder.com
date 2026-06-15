@@ -5,7 +5,7 @@
  *   "metrics": { "firstSeen": "2026-06-01", "lastSeen": "2026-06-12", "foundInCount": 3 }
  *
  * Score formula (0–100 integer):
- *   breadth = 70 * log2(1 + foundInCount) / log2(1 + 6)   // first list matters most
+ *   breadth = 70 * log2(1 + foundInCount) / log2(1 + 17)   // first list matters most
  *   tenure  = 10 * min(daysSince(firstSeen), 365) / 365
  *   decay   = 0.5 ^ (daysSince(lastSeen) / 30)             // half-life 30 days
  *   score   = (breadth + tenure) * decay + (curated ? 10 : 0)
@@ -15,7 +15,7 @@
 
 export const SCORE_CONFIG = {
   maxBreadth: 70,
-  scraperCount: 6,
+  scraperCount: 17,
   maxTenure: 10,
   tenureCapDays: 365,
   decayHalfLifeDays: 30,

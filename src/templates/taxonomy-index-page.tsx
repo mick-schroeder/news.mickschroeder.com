@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { graphql, type HeadProps, type PageProps } from 'gatsby';
 import { ArrowRight, ExternalLink, ListFilter, Tags } from 'lucide-react';
+import { TAG_CONFIG } from '@/config/tag-config';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import SiteLayout from '@/components/site-layout';
 import LocalizedLink from '@/components/LocalizedLink';
@@ -163,21 +164,24 @@ const TaxonomyIndexPage: React.FC<PageProps<TaxonomyIndexPageData, TaxonomyIndex
           ) : (
             <div>
               <div className="flex flex-wrap gap-2">
-                {sortedItems.map((item) => (
-                  <LocalizedLink
-                    key={item.id}
-                    to={item.path}
-                    className={cn(
-                      badgeVariants({ variant: 'secondary' }),
-                      'rounded-full px-3 py-1.5 font-medium hover:bg-secondary/70'
-                    )}
-                  >
-                    {item.name}
-                    <span className="ms-1.5 tabular-nums text-secondary-foreground/60">
-                      {item.count}
-                    </span>
-                  </LocalizedLink>
-                ))}
+                {sortedItems.map((item) => {
+                  const cfg = TAG_CONFIG[item.name];
+                  const Icon = cfg?.icon;
+                  return (
+                    <LocalizedLink
+                      key={item.id}
+                      to={item.path}
+                      className={cn(
+                        'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors hover:opacity-80',
+                        cfg?.colorClass ?? badgeVariants({ variant: 'secondary' })
+                      )}
+                    >
+                      {Icon && <Icon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />}
+                      {item.name}
+                      <span className="ms-1 tabular-nums opacity-60">{item.count}</span>
+                    </LocalizedLink>
+                  );
+                })}
               </div>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">
                 <Trans

@@ -1,5 +1,6 @@
 import sourceListsJson from './source-lists.json';
 import sourcesJson from './sources.json';
+import { KNOWN_TAG_NAMES } from '../config/tag-config';
 
 export type SourceMetrics = {
   firstSeen: string;
@@ -118,6 +119,16 @@ function assertSourceListArray(value: unknown, label: string): asserts value is 
   }
 }
 
+function assertNoDuplicateSourceIds(sources: Source[]): void {
+  const seen = new Set<string>();
+  for (const source of sources) {
+    if (seen.has(source.id)) {
+      throw new Error(`[loadSources] Duplicate source id "${source.id}".`);
+    }
+    seen.add(source.id);
+  }
+}
+
 function assertNoDuplicateSourceKeys(sources: Source[]): void {
   const seen = new Map<string, string>();
 
@@ -146,14 +157,28 @@ function assertListReferences(sources: Source[], lists: SourceList[]): void {
   }
 }
 
+function warnUnknownTags(sources: Source[]): void {
+  const unknown = new Set(
+    sources.flatMap((s) => s.tags).filter((t) => !KNOWN_TAG_NAMES.has(t))
+  );
+  if (unknown.size > 0) {
+    console.warn(
+      '[loadSources] Unknown tags (add to src/config/tag-config.ts):',
+      [...unknown].sort().join(', ')
+    );
+  }
+}
+
 export const loadShuffleData = (): ShuffleData => {
   const lists = sourceListsJson as unknown;
   const sources = sourcesJson as unknown;
 
   assertSourceListArray(lists, 'source-lists.json');
   assertSourceArray(sources, 'sources.json');
+  assertNoDuplicateSourceIds(sources);
   assertNoDuplicateSourceKeys(sources);
   assertListReferences(sources, lists);
+  warnUnknownTags(sources);
 
   return { lists, sources };
 };

@@ -2,15 +2,17 @@ import * as React from 'react';
 import { graphql, navigate, type HeadProps, type PageProps } from 'gatsby';
 import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
-import { ArrowLeft, ArrowRight, ExternalLink, ListFilter, Shuffle, Tags } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronRight, ExternalLink, ListFilter, Shuffle, Tags } from 'lucide-react';
+import { TAG_CONFIG } from '@/config/tag-config';
 import LocalizedLink from '@/components/LocalizedLink';
-import ScoreBadge from '@/components/score-badge';
 import SiteLayout from '@/components/site-layout';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { badgeVariants } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { SEO, type SEOI18n } from '@/components/seo';
+import { cn } from '@/lib/utils';
 import { tagPath } from '@/lib/taxonomy';
 import '../fragments/locale';
 
@@ -56,6 +58,12 @@ type SourceNavigationItem = {
 
 const fallbackDescription = (name: string, canonicalKey: string): string =>
   `${name} is a News Shuffle source for ${canonicalKey}.`;
+
+const scoreColorClass = (n: number): string => {
+  if (n >= 70) return 'bg-green-600 dark:bg-green-500';
+  if (n >= 40) return 'bg-amber-500';
+  return 'bg-red-600 dark:bg-red-500';
+};
 
 const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
   data,
@@ -137,34 +145,112 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
     );
   }
 
+  const hasLists = sourceLists.length > 0;
+  const hasTags = source.tags.length > 0;
+
   const description = source.description || fallbackDescription(source.name, source.canonicalKey);
 
   return (
     <SiteLayout>
       <article className="mx-auto max-w-screen-lg px-4 py-8">
-        <header className="mb-6 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(220px,320px)] md:items-start">
+        <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(240px,340px)] md:items-start">
+          {/* Left column — all source info */}
           <div>
             <p className="text-sm font-semibold text-muted-foreground">{source.canonicalKey}</p>
-            <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground">
-              {source.name}
-            </h1>
-            <p className="mt-4 text-base leading-7 text-muted-foreground">{description}</p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+
+            <div className="mt-3 flex items-start gap-5">
+              {Number.isFinite(source.score) && (
+                <div className="flex shrink-0 flex-col items-center">
+                  <div
+                    className={cn(
+                      'flex h-20 w-20 items-center justify-center rounded-xl text-4xl font-black tabular-nums text-white shadow-md',
+                      scoreColorClass(Math.round(source.score))
+                    )}
+                    aria-label={`Score: ${Math.round(source.score)}%`}
+                  >
+                    {Math.round(source.score)}
+                  </div>
+                  <span className="mt-1.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    Score
+                  </span>
+                </div>
+              )}
+              <div>
+                <h1 className="text-4xl font-black tracking-normal text-foreground">
+                  {source.name}
+                </h1>
+                <p className="mt-3 text-base leading-7 text-muted-foreground">{description}</p>
+              </div>
+            </div>
+
+            <div className="mt-6">
               <Button asChild size="lg">
                 <a href={source.url} target="_blank" rel="noopener">
                   Visit Source
                   <ExternalLink aria-hidden="true" className="h-4 w-4" />
                 </a>
               </Button>
-              <ScoreBadge score={source.score} className="h-10 text-base" />
             </div>
+
+            {(hasLists || hasTags) && <Separator className="my-7" />}
+
+            {hasLists && (
+              <div>
+                <p className="mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <ListFilter aria-hidden="true" className="h-3.5 w-3.5" />
+                  Appears in
+                </p>
+                <div className="-mx-2 mt-1">
+                  {sourceLists.map((list) => (
+                    <LocalizedLink
+                      key={list.id}
+                      to={list.path}
+                      className="flex items-center gap-3 rounded-lg px-2 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                      <span className="truncate">{list.name}</span>
+                      <ChevronRight aria-hidden="true" className="ml-auto h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                    </LocalizedLink>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {hasTags && (
+              <div className={hasLists ? 'mt-6' : ''}>
+                <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <Tags aria-hidden="true" className="h-3.5 w-3.5" />
+                  Tags
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {source.tags.map((tag) => {
+                    const cfg = TAG_CONFIG[tag];
+                    const Icon = cfg?.icon;
+                    return (
+                      <LocalizedLink
+                        key={tag}
+                        to={tagPath(tag)}
+                        className={cn(
+                          'inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-semibold transition-colors hover:opacity-80',
+                          cfg?.colorClass ?? badgeVariants({ variant: 'outline' })
+                        )}
+                      >
+                        {Icon && <Icon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />}
+                        {tag}
+                      </LocalizedLink>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
+          {/* Right column — screenshot, sticky on desktop */}
           <a
             href={source.url}
             target="_blank"
             rel="noopener"
-            className="group block overflow-hidden rounded-xl border bg-muted shadow-sm motion-safe:transition-all hover:border-primary/40 hover:shadow-md"
+            className="group block overflow-hidden rounded-xl border bg-muted shadow-sm motion-safe:transition-all hover:border-primary/40 hover:shadow-md md:sticky md:top-24"
           >
             <AspectRatio ratio={9 / 16}>
               {image ? (
@@ -188,54 +274,12 @@ const SourcePage: React.FC<PageProps<SourcePageData, SourcePageContext>> = ({
               )}
             </AspectRatio>
           </a>
-        </header>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <ListFilter aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
-                Lists
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-wrap gap-2">
-              {sourceLists.map((list) => (
-                <LocalizedLink
-                  key={list.id}
-                  to={list.path}
-                  className={badgeVariants({ variant: 'secondary' })}
-                >
-                  {list.name}
-                </LocalizedLink>
-              ))}
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <Tags aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
-                Tags
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-wrap gap-2">
-              {source.tags.map((tag) => (
-                <LocalizedLink
-                  key={tag}
-                  to={tagPath(tag)}
-                  className={badgeVariants({ variant: 'outline' })}
-                >
-                  {tag}
-                </LocalizedLink>
-              ))}
-            </CardContent>
-          </Card>
         </div>
 
         {navigation ? (
           <nav
             aria-label="Source navigation"
-            className="mt-8 flex flex-wrap items-center justify-center gap-2 border-t pt-6"
+            className="mt-10 flex flex-wrap items-center justify-center gap-2 border-t pt-6"
           >
             {navigation.previous ? (
               <Button asChild variant="outline">

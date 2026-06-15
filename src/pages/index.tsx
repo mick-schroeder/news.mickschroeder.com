@@ -10,6 +10,7 @@ import type { SEOI18n } from '../components/seo';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
 import { Newspaper, TrendingUp } from 'lucide-react';
+import { tagPath } from '../lib/taxonomy';
 import { getSiteConfig } from '../config/getSiteConfig';
 import '../fragments/locale';
 import '../fragments/news-source';
@@ -28,11 +29,6 @@ type HomeSource = {
   screenshot?: any;
 };
 
-type HomeList = {
-  id: string;
-  name: string;
-};
-
 const scoreOf = (score: HomeSource['score']): number => {
   const n = parseFloat(String(score ?? '0'));
   return Number.isFinite(n) ? n : 0;
@@ -40,23 +36,23 @@ const scoreOf = (score: HomeSource['score']): number => {
 
 const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
   const items: HomeSource[] = data?.sourcesData?.sources ?? [];
-  const lists: HomeList[] = data?.sourcesData?.lists ?? [];
 
-  const shelves = React.useMemo(() => {
-    return lists
-      .map((list) => ({
-        list,
-        items: items
-          .filter((source) => source.lists?.includes(list.id))
-          .sort((a, b) => scoreOf(b.score) - scoreOf(a.score)),
+  const tagShelves = React.useMemo(() => {
+    const tagMap = new Map<string, HomeSource[]>();
+    for (const item of items) {
+      for (const tag of item.tags ?? []) {
+        if (!tagMap.has(tag)) tagMap.set(tag, []);
+        tagMap.get(tag)!.push(item);
+      }
+    }
+    return Array.from(tagMap.entries())
+      .map(([tag, sources]) => ({
+        tag,
+        items: sources.sort((a, b) => scoreOf(b.score) - scoreOf(a.score)),
       }))
-      .filter((shelf) => shelf.items.length > 0)
-      .sort((a, b) => {
-        if (a.list.id === 'news') return -1;
-        if (b.list.id === 'news') return 1;
-        return b.items.length - a.items.length;
-      });
-  }, [items, lists]);
+      .filter((shelf) => shelf.items.length >= 2)
+      .sort((a, b) => b.items.length - a.items.length);
+  }, [items]);
 
   return (
     <SiteLayout>
@@ -90,11 +86,12 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
             {site.copyOverrides?.sourcesLabel || <Trans i18nKey="sources" defaults="Sources" />}
           </h2>
           <div className="mt-2 flex flex-col gap-10">
-            {shelves.map((shelf, idx) => (
+            {tagShelves.map((shelf, idx) => (
               <SourceShelf
-                key={shelf.list.id}
-                listId={shelf.list.id}
-                listName={shelf.list.name}
+                key={shelf.tag}
+                listId={shelf.tag}
+                listName={shelf.tag}
+                path={tagPath(shelf.tag)}
                 items={shelf.items}
                 eager={idx === 0}
               />
@@ -126,10 +123,6 @@ export const query = graphql`
       }
     }
     sourcesData: generatedJson {
-      lists {
-        id
-        name
-      }
       sources {
         ...NewsSourceCardFields
       }

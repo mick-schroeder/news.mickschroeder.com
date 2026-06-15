@@ -167,12 +167,35 @@ const extractAnchorSourceCandidates = (root, scraper, ignoreRules, internalKeys)
   return candidates;
 };
 
-export const extractSourceCandidates = (html, scraper, ignoreRules) => {
-  const root = parseHtml(html);
+const extractJsonSourceCandidates = (content, scraper, ignoreRules, internalKeys) => {
+  const candidates = new Map();
+  let data;
+  try {
+    data = JSON.parse(content);
+  } catch {
+    return candidates;
+  }
+
+  for (const article of data.articles || []) {
+    const url = toAbsoluteUrl(article.url);
+    addCandidate(candidates, url, ignoreRules, internalKeys);
+  }
+
+  return candidates;
+};
+
+export const extractSourceCandidates = (content, scraper, ignoreRules) => {
   const internalKeys = createInternalKeys(scraper);
-  const candidates = scraper.sourceOpml
-    ? extractOpmlSourceCandidates(root, scraper, ignoreRules, internalKeys)
-    : extractAnchorSourceCandidates(root, scraper, ignoreRules, internalKeys);
+  let candidates;
+
+  if (scraper.sourceJson) {
+    candidates = extractJsonSourceCandidates(content, scraper, ignoreRules, internalKeys);
+  } else {
+    const root = parseHtml(content);
+    candidates = scraper.sourceOpml
+      ? extractOpmlSourceCandidates(root, scraper, ignoreRules, internalKeys)
+      : extractAnchorSourceCandidates(root, scraper, ignoreRules, internalKeys);
+  }
 
   addPinnedSources(candidates, scraper);
 
@@ -192,7 +215,7 @@ export const createSourceIndex = (sources) => {
   return index;
 };
 
-export const mergeScrapedSources = ({ sources, listId, candidates, runDate }) => {
+export const mergeScrapedSources = ({ sources, listId, candidates, runDate, tags = [] }) => {
   const selectedList = String(listId);
   // Sources that drop off a list are kept (with their metrics frozen) so
   // firstSeen history survives transient absences; pruneStaleSources
@@ -213,6 +236,7 @@ export const mergeScrapedSources = ({ sources, listId, candidates, runDate }) =>
     const existing = index.get(candidate.canonicalKey);
     if (existing) {
       existing.lists = uniqueSorted([...existing.lists, selectedList]);
+      existing.tags = uniqueSorted([...existing.tags, ...tags]);
       existing.metrics = seenMetrics(existing);
       continue;
     }
@@ -224,7 +248,7 @@ export const mergeScrapedSources = ({ sources, listId, candidates, runDate }) =>
       url: candidate.url || sourceUrlForCanonicalKey(candidate.canonicalKey),
       canonicalKey: candidate.canonicalKey,
       aliases: uniqueSorted(candidate.aliases || []),
-      tags: uniqueSorted(candidate.tags || []),
+      tags: uniqueSorted([...(candidate.tags || []), ...tags]),
       lists: [selectedList],
     };
     source.metrics = seenMetrics(source);

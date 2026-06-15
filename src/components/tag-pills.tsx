@@ -4,6 +4,7 @@ import LocalizedLink from './LocalizedLink';
 import { badgeVariants } from './ui/badge';
 import { tagPath } from '@/lib/taxonomy';
 import { cn } from '@/lib/utils';
+import { TAG_CONFIG } from '@/config/tag-config';
 
 type TagSource = {
   tags?: string[] | null;
@@ -32,19 +33,24 @@ const TagPills = ({ sources, className }: TagPillsProps): JSX.Element | null => 
       className={cn('flex flex-wrap justify-center gap-2', className)}
       aria-label={String(t('tags'))}
     >
-      {tags.map(([tag, count]) => (
-        <LocalizedLink
-          key={tag}
-          to={tagPath(tag)}
-          className={cn(
-            badgeVariants({ variant: 'secondary' }),
-            'rounded-full px-3 py-1 font-medium hover:bg-secondary/70'
-          )}
-        >
-          {tag}
-          <span className="ms-1.5 tabular-nums text-secondary-foreground/60">{count}</span>
-        </LocalizedLink>
-      ))}
+      {tags.map(([tag, count]) => {
+        const config = TAG_CONFIG[tag];
+        const Icon = config?.icon;
+        return (
+          <LocalizedLink
+            key={tag}
+            to={tagPath(tag)}
+            className={cn(
+              'inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium transition-colors hover:opacity-80',
+              config?.colorClass ?? badgeVariants({ variant: 'secondary' })
+            )}
+          >
+            {Icon && <Icon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />}
+            {tag}
+            <span className="tabular-nums opacity-60">{count}</span>
+          </LocalizedLink>
+        );
+      })}
     </nav>
   );
 };

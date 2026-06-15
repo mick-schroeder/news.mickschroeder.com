@@ -90,6 +90,7 @@ const main = async () => {
         listId: scraper.id,
         candidates,
         runDate,
+        tags: scraper.tags || [],
       });
 
       succeeded += 1;

@@ -13,11 +13,39 @@
     "sourceUrl": "https://www.drudgereport.com/"
   },
   {
-    "id": "skimfeed",
-    "name": "Skimfeed",
-    "description": "A modern news aggregator that surfaces trending stories and headlines from a wide range of online publications.",
+    "id": "skimfeed-news",
+    "name": "Skimfeed · News",
+    "description": "Skimfeed's general news feed, surfacing trending headlines from a wide range of online publications.",
     "kind": "scraped",
     "sourceUrl": "https://skimfeed.com/news.html"
+  },
+  {
+    "id": "skimfeed-tech",
+    "name": "Skimfeed · Tech",
+    "description": "Skimfeed's technology topic page, featuring links from major tech publications and blogs.",
+    "kind": "scraped",
+    "sourceUrl": "https://skimfeed.com/tech.html"
+  },
+  {
+    "id": "skimfeed-politics",
+    "name": "Skimfeed · Politics",
+    "description": "Skimfeed's politics topic page, aggregating political news and commentary.",
+    "kind": "scraped",
+    "sourceUrl": "https://skimfeed.com/politics.html"
+  },
+  {
+    "id": "skimfeed-science",
+    "name": "Skimfeed · Science",
+    "description": "Skimfeed's science topic page, linking to science and research publications.",
+    "kind": "scraped",
+    "sourceUrl": "https://skimfeed.com/science.html"
+  },
+  {
+    "id": "skimfeed-agg",
+    "name": "Skimfeed · Aggregators",
+    "description": "Skimfeed's aggregator page, listing other news aggregators and link collections.",
+    "kind": "scraped",
+    "sourceUrl": "https://skimfeed.com/agg.html"
   },
   {
     "id": "realclearpolitics",
@@ -48,10 +76,59 @@
     "sourceUrl": "https://mediagazer.com/"
   },
     {
-    "id": "brutalist",
-    "name": "The Brutalist Report",
-    "description": "Plantext news aggregator.",
+    "id": "brutalist-news",
+    "name": "Brutalist · News",
+    "description": "The Brutalist Report's general news feed — plaintext links from across the web.",
     "kind": "scraped",
-    "sourceUrl": "https://brutalist.report/topic/news?"
+    "sourceUrl": "https://brutalist.report/topic/news"
+  },
+  {
+    "id": "brutalist-tech",
+    "name": "Brutalist · Tech",
+    "description": "The Brutalist Report's technology topic page.",
+    "kind": "scraped",
+    "sourceUrl": "https://brutalist.report/topic/tech"
+  },
+  {
+    "id": "brutalist-business",
+    "name": "Brutalist · Business",
+    "description": "The Brutalist Report's business and finance topic page.",
+    "kind": "scraped",
+    "sourceUrl": "https://brutalist.report/topic/business"
+  },
+  {
+    "id": "brutalist-science",
+    "name": "Brutalist · Science",
+    "description": "The Brutalist Report's science topic page.",
+    "kind": "scraped",
+    "sourceUrl": "https://brutalist.report/topic/science"
+  },
+  {
+    "id": "brutalist-gaming",
+    "name": "Brutalist · Gaming",
+    "description": "The Brutalist Report's gaming topic page.",
+    "kind": "scraped",
+    "sourceUrl": "https://brutalist.report/topic/gaming"
+  },
+  {
+    "id": "brutalist-culture",
+    "name": "Brutalist · Culture",
+    "description": "The Brutalist Report's arts and culture topic page.",
+    "kind": "scraped",
+    "sourceUrl": "https://brutalist.report/topic/culture"
+  },
+  {
+    "id": "brutalist-politics",
+    "name": "Brutalist · Politics",
+    "description": "The Brutalist Report's politics topic page.",
+    "kind": "scraped",
+    "sourceUrl": "https://brutalist.report/topic/politics"
+  },
+  {
+    "id": "clone-fyi",
+    "name": "clone.fyi",
+    "description": "A curated feed of technology and culture links, news, and podcasts, updated hourly.",
+    "kind": "scraped",
+    "sourceUrl": "https://clone.fyi/"
   }
 ]
