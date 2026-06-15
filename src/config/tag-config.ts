@@ -1,4 +1,4 @@
-import { BookOpen, Briefcase, Cpu, Flag, FlaskConical, Gamepad2, Globe, Landmark, Layers, Leaf, Palette } from 'lucide-react';
+import { BookOpen, Briefcase, Cpu, Flag, FlaskConical, Gamepad2, Globe, Landmark, Layers, Leaf, Newspaper, Palette } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export type TagConfig = {
@@ -39,6 +39,12 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
     colorClass:
       'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
     description: 'Irish language sources',
+  },
+  News: {
+    icon: Newspaper,
+    colorClass:
+      'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800/50 dark:text-gray-300 dark:border-gray-700',
+    description: 'General news coverage',
   },
   Tech: {
     icon: Cpu,

@@ -1,29 +1,27 @@
 [
   {
-    "id": "reddit",
-    "name": "Reddit",
-    "url": "https://reddit.com/",
-    "canonicalKey": "reddit.com",
+    "id": "theguardian",
+    "name": "The Guardian",
+    "url": "https://theguardian.com/",
+    "canonicalKey": "theguardian.com",
     "aliases": [],
     "tags": [
-      "Aggregator",
-      "Culture",
-      "Politics",
-      "Science",
+      "British",
+      "News",
       "Tech"
     ],
     "lists": [
-      "brutalist-culture",
+      "brutalist-news",
       "brutalist-tech",
+      "clone-fyi",
+      "drudgereport",
+      "mediagazer",
+      "memeorandum",
       "news",
-      "skimfeed-agg",
-      "skimfeed-news",
-      "skimfeed-politics",
-      "skimfeed-science",
-      "skimfeed-tech"
+      "techmeme"
     ],
     "score": 60,
-    "description": "Reddit is a community platform and news discovery site built around user-run forums, links, and discussion. It is the internet's public square, provided the square also contains several basements and a surprisingly useful help desk.",
+    "description": "The Guardian is a British news organization covering global news, politics, culture, environment, and opinion. It brings serious reporting with just enough eyebrow raised to remind you Britain invented the sigh.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-15",
@@ -52,37 +50,6 @@
     ],
     "score": 60,
     "description": "The New York Times is a major U.S. newspaper covering national news, world affairs, culture, business, and investigations. It can make a zoning dispute feel like chapter three of a national identity crisis.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 7
-    }
-  },
-  {
-    "id": "wsj",
-    "name": "The Wall Street Journal",
-    "url": "https://wsj.com/",
-    "canonicalKey": "wsj.com",
-    "aliases": [
-      "online.wsj.com"
-    ],
-    "tags": [
-      "American",
-      "Business",
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-business",
-      "brutalist-news",
-      "brutalist-tech",
-      "drudgereport",
-      "mediagazer",
-      "memeorandum",
-      "news",
-      "techmeme"
-    ],
-    "score": 60,
-    "description": "The Wall Street Journal covers business, markets, politics, technology, and global news. It is the paper of record for people who believe earnings reports contain character development.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-15",
@@ -201,6 +168,37 @@
     }
   },
   {
+    "id": "reddit",
+    "name": "Reddit",
+    "url": "https://reddit.com/",
+    "canonicalKey": "reddit.com",
+    "aliases": [],
+    "tags": [
+      "Aggregator",
+      "Culture",
+      "News",
+      "Politics",
+      "Science",
+      "Tech"
+    ],
+    "lists": [
+      "brutalist-culture",
+      "news",
+      "skimfeed-agg",
+      "skimfeed-news",
+      "skimfeed-politics",
+      "skimfeed-science",
+      "skimfeed-tech"
+    ],
+    "score": 57,
+    "description": "Reddit is a community platform and news discovery site built around user-run forums, links, and discussion. It is the internet's public square, provided the square also contains several basements and a surprisingly useful help desk.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-15",
+      "foundInCount": 6
+    }
+  },
+  {
     "id": "reuters",
     "name": "Reuters",
     "url": "https://reuters.com/",
@@ -208,6 +206,7 @@
     "aliases": [],
     "tags": [
       "Global",
+      "News",
       "Tech"
     ],
     "lists": [
@@ -228,18 +227,22 @@
     }
   },
   {
-    "id": "theguardian",
-    "name": "The Guardian",
-    "url": "https://theguardian.com/",
-    "canonicalKey": "theguardian.com",
-    "aliases": [],
+    "id": "wsj",
+    "name": "The Wall Street Journal",
+    "url": "https://wsj.com/",
+    "canonicalKey": "wsj.com",
+    "aliases": [
+      "online.wsj.com"
+    ],
     "tags": [
-      "British",
-      "News"
+      "American",
+      "Business",
+      "News",
+      "Tech"
     ],
     "lists": [
       "brutalist-news",
-      "clone-fyi",
+      "brutalist-tech",
       "drudgereport",
       "mediagazer",
       "memeorandum",
@@ -247,7 +250,7 @@
       "techmeme"
     ],
     "score": 57,
-    "description": "The Guardian is a British news organization covering global news, politics, culture, environment, and opinion. It brings serious reporting with just enough eyebrow raised to remind you Britain invented the sigh.",
+    "description": "The Wall Street Journal covers business, markets, politics, technology, and global news. It is the paper of record for people who believe earnings reports contain character development.",
     "metrics": {
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-15",
@@ -261,7 +264,8 @@
     "canonicalKey": "businessinsider.com",
     "aliases": [],
     "tags": [
-      "Business"
+      "Business",
+      "News"
     ],
     "lists": [
       "brutalist-business",
@@ -337,7 +341,8 @@
     "canonicalKey": "foxnews.com",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -362,7 +367,8 @@
     "canonicalKey": "nbcnews.com",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -440,7 +446,8 @@
       "abcnews.com"
     ],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -463,7 +470,8 @@
     "canonicalKey": "aljazeera.com",
     "aliases": [],
     "tags": [
-      "Global"
+      "Global",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -1003,7 +1011,8 @@
     "canonicalKey": "npr.org",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -1041,7 +1050,8 @@
     "canonicalKey": "pbs.org",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -1062,7 +1072,8 @@
     "canonicalKey": "propublica.org",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "memeorandum",
@@ -1440,7 +1451,8 @@
     "canonicalKey": "japantimes.co.jp",
     "aliases": [],
     "tags": [
-      "Global"
+      "Global",
+      "News"
     ],
     "lists": [
       "drudgereport",
@@ -1733,6 +1745,7 @@
     "aliases": [],
     "tags": [
       "British",
+      "News",
       "Tech"
     ],
     "lists": [
@@ -1786,6 +1799,7 @@
     "tags": [
       "Aggregator",
       "Global",
+      "News",
       "Politics",
       "Science",
       "Tech"
@@ -1813,6 +1827,7 @@
     "aliases": [],
     "tags": [
       "Aggregator",
+      "News",
       "Politics",
       "Science",
       "Tech"
@@ -2135,7 +2150,8 @@
     "canonicalKey": "theintercept.com",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -2286,32 +2302,12 @@
     "canonicalKey": "dailymail.co.uk",
     "aliases": [],
     "tags": [
-      "British"
+      "British",
+      "News"
     ],
     "lists": [
       "drudgereport",
       "skimfeed-news"
-    ],
-    "score": 27,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 2
-    }
-  },
-  {
-    "id": "dailymail",
-    "name": "Daily Mail US",
-    "description": "Daily Mail covers news, celebrity, lifestyle, and viral stories for a global audience. It is the internet's loudest corner shop: everything is visible, everything is urgent, and somehow you keep looking.",
-    "url": "https://dailymail.com/",
-    "canonicalKey": "dailymail.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport",
-      "memeorandum"
     ],
     "score": 27,
     "metrics": {
@@ -2393,7 +2389,8 @@
     "canonicalKey": "indiatimes.com",
     "aliases": [],
     "tags": [
-      "Global"
+      "Global",
+      "News"
     ],
     "lists": [
       "drudgereport",
@@ -2608,6 +2605,7 @@
     "canonicalKey": "qz.com",
     "aliases": [],
     "tags": [
+      "News",
       "Tech"
     ],
     "lists": [
@@ -2797,7 +2795,8 @@
     "canonicalKey": "theconversation.com",
     "aliases": [],
     "tags": [
-      "Global"
+      "Global",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -2860,7 +2859,8 @@
     "canonicalKey": "themoscowtimes.com",
     "aliases": [],
     "tags": [
-      "Global"
+      "Global",
+      "News"
     ],
     "lists": [
       "drudgereport",
@@ -2902,7 +2902,8 @@
     "canonicalKey": "theonion.com",
     "aliases": [],
     "tags": [
-      "Aggregator"
+      "Aggregator",
+      "News"
     ],
     "lists": [
       "brutalist-news",
@@ -3176,26 +3177,6 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "andreklein-net",
-    "name": "andreklein.net",
-    "description": "",
-    "url": "https://andreklein.net/",
-    "canonicalKey": "andreklein.net",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
       "lastSeen": "2026-06-15",
       "foundInCount": 1
     },
@@ -3522,26 +3503,6 @@
     }
   },
   {
-    "id": "bramcohen-com",
-    "name": "bramcohen.com",
-    "description": "",
-    "url": "https://bramcohen.com/",
-    "canonicalKey": "bramcohen.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
     "id": "broadbandtvnews",
     "name": "Broadband TV News",
     "description": "",
@@ -3560,27 +3521,6 @@
       "foundInCount": 1
     },
     "score": 17
-  },
-  {
-    "id": "businessinsider-in",
-    "name": "Business Insider India",
-    "description": "Business Insider India covers Indian business, startups, technology, markets, and workplace trends. It puts the global Insider playbook through an Indian business lens.",
-    "url": "https://businessinsider.in/",
-    "canonicalKey": "businessinsider.in",
-    "aliases": [],
-    "tags": [
-      "Business",
-      "Global"
-    ],
-    "lists": [
-      "skimfeed-news"
-    ],
-    "score": 17,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    }
   },
   {
     "id": "buzzfeed-com",
@@ -3703,26 +3643,6 @@
     }
   },
   {
-    "id": "claude-com",
-    "name": "claude.com",
-    "description": "",
-    "url": "https://claude.com/",
-    "canonicalKey": "claude.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
     "id": "clientsfromhell-net",
     "name": "clientsfromhell.net",
     "description": "",
@@ -3755,26 +3675,6 @@
     ],
     "lists": [
       "clone-fyi"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "cloudflare-com",
-    "name": "cloudflare.com",
-    "description": "",
-    "url": "https://cloudflare.com/",
-    "canonicalKey": "cloudflare.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
@@ -3838,26 +3738,6 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "continuations-com",
-    "name": "continuations.com",
-    "description": "",
-    "url": "https://continuations.com/",
-    "canonicalKey": "continuations.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "skimfeed-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
       "lastSeen": "2026-06-15",
       "foundInCount": 1
     },
@@ -4023,6 +3903,26 @@
     }
   },
   {
+    "id": "dailymail",
+    "name": "Daily Mail US",
+    "description": "Daily Mail covers news, celebrity, lifestyle, and viral stories for a global audience. It is the internet's loudest corner shop: everything is visible, everything is urgent, and somehow you keep looking.",
+    "url": "https://dailymail.com/",
+    "canonicalKey": "dailymail.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "score": 17,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-15",
+      "foundInCount": 1
+    }
+  },
+  {
     "id": "dailynews",
     "name": "Daily News",
     "description": "Daily News covers Southern California news, politics, crime, sports, and local life. It is local journalism for a region where the traffic report deserves its own constitution.",
@@ -4074,26 +3974,6 @@
     ],
     "lists": [
       "skimfeed-politics"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "datatau-com",
-    "name": "datatau.com",
-    "description": "",
-    "url": "https://datatau.com/",
-    "canonicalKey": "datatau.com",
-    "aliases": [],
-    "tags": [
-      "Science"
-    ],
-    "lists": [
-      "skimfeed-science"
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
@@ -4174,26 +4054,6 @@
     ],
     "lists": [
       "skimfeed-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "dillo-browser-org",
-    "name": "dillo-browser.org",
-    "description": "",
-    "url": "https://dillo-browser.org/",
-    "canonicalKey": "dillo-browser.org",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
@@ -4539,26 +4399,6 @@
     "score": 17
   },
   {
-    "id": "feedpress-me",
-    "name": "feedpress.me",
-    "description": "",
-    "url": "https://feedpress.me/",
-    "canonicalKey": "feedpress.me",
-    "aliases": [],
-    "tags": [
-      "Politics"
-    ],
-    "lists": [
-      "brutalist-politics"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
     "id": "flowingdata-com",
     "name": "flowingdata.com",
     "description": "",
@@ -4699,46 +4539,6 @@
     "score": 17
   },
   {
-    "id": "github-com",
-    "name": "github.com",
-    "description": "",
-    "url": "https://github.com/",
-    "canonicalKey": "github.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "github-io",
-    "name": "github.io",
-    "description": "",
-    "url": "https://github.io/",
-    "canonicalKey": "github.io",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
     "id": "gizmag-com",
     "name": "gizmag.com",
     "description": "",
@@ -4866,7 +4666,8 @@
     "canonicalKey": "harpers.org",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "skimfeed-news"
@@ -5179,26 +4980,6 @@
     }
   },
   {
-    "id": "interfax",
-    "name": "Interfax",
-    "description": "Interfax covers Russian and international news, business, politics, and markets through a wire-service model. It is a dispatch-heavy source from a region where context matters deeply.",
-    "url": "https://interfax.com/",
-    "canonicalKey": "interfax.com",
-    "aliases": [],
-    "tags": [
-      "Global"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 17,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "interviewmagazine",
     "name": "Interview Magazine",
     "description": "",
@@ -5477,24 +5258,6 @@
     }
   },
   {
-    "id": "lawdork",
-    "name": "Law Dork",
-    "description": "",
-    "url": "https://lawdork.com/",
-    "canonicalKey": "lawdork.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-14",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
     "id": "lawfaremedia-org",
     "name": "Lawfare",
     "description": "",
@@ -5615,6 +5378,26 @@
     "score": 17
   },
   {
+    "id": "machine0-io",
+    "name": "machine0.io",
+    "description": "",
+    "url": "https://machine0.io/",
+    "canonicalKey": "machine0.io",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "brutalist-tech"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-15",
+      "lastSeen": "2026-06-15",
+      "foundInCount": 1
+    },
+    "score": 17
+  },
+  {
     "id": "macrumors",
     "name": "MacRumors",
     "description": "MacRumors covers Apple news, product rumors, software updates, and buying guides. It treats supply-chain whispers like weather reports for people with very expensive pockets.",
@@ -5693,26 +5476,6 @@
       "lastSeen": "2026-06-15",
       "foundInCount": 1
     }
-  },
-  {
-    "id": "medgadget-com",
-    "name": "medgadget.com",
-    "description": "",
-    "url": "https://medgadget.com/",
-    "canonicalKey": "medgadget.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "skimfeed-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
   },
   {
     "id": "mediamatters-org",
@@ -5811,26 +5574,6 @@
     "score": 17
   },
   {
-    "id": "michellemalkin-com",
-    "name": "michellemalkin.com",
-    "description": "",
-    "url": "https://michellemalkin.com/",
-    "canonicalKey": "michellemalkin.com",
-    "aliases": [],
-    "tags": [
-      "Politics"
-    ],
-    "lists": [
-      "skimfeed-politics"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
     "id": "startribune",
     "name": "Minnesota Star Tribune",
     "description": "",
@@ -5856,26 +5599,6 @@
     "description": "",
     "url": "https://monash.edu/",
     "canonicalKey": "monash.edu",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "mova-org",
-    "name": "mova.org",
-    "description": "",
-    "url": "https://mova.org/",
-    "canonicalKey": "mova.org",
     "aliases": [],
     "tags": [
       "Tech"
@@ -6109,26 +5832,6 @@
     "score": 17
   },
   {
-    "id": "nhk-or-jp",
-    "name": "NHK",
-    "description": "NHK covers Japanese and international news, public broadcasting, culture, weather, and emergency information. It is Japan's public broadcaster doing the calm, essential work at national scale.",
-    "url": "https://nhk.or.jp/",
-    "canonicalKey": "nhk.or.jp",
-    "aliases": [],
-    "tags": [
-      "Global"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 17,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "niemanlab-org",
     "name": "Nieman Lab",
     "description": "",
@@ -6176,7 +5879,8 @@
     "canonicalKey": "observer.com",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "skimfeed-news"
@@ -6203,26 +5907,6 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "openrouter-ai",
-    "name": "openrouter.ai",
-    "description": "",
-    "url": "https://openrouter.ai/",
-    "canonicalKey": "openrouter.ai",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
       "lastSeen": "2026-06-15",
       "foundInCount": 1
     },
@@ -6256,7 +5940,8 @@
     "canonicalKey": "ozy.com",
     "aliases": [],
     "tags": [
-      "American"
+      "American",
+      "News"
     ],
     "lists": [
       "skimfeed-news"
@@ -6443,26 +6128,6 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "planetbigdata-com",
-    "name": "planetbigdata.com",
-    "description": "",
-    "url": "https://planetbigdata.com/",
-    "canonicalKey": "planetbigdata.com",
-    "aliases": [],
-    "tags": [
-      "Science"
-    ],
-    "lists": [
-      "skimfeed-science"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
       "lastSeen": "2026-06-15",
       "foundInCount": 1
     },
@@ -6905,11 +6570,11 @@
     "score": 17
   },
   {
-    "id": "rsgm-dev",
-    "name": "rsgm.dev",
+    "id": "roszigit-com",
+    "name": "roszigit.com",
     "description": "",
-    "url": "https://rsgm.dev/",
-    "canonicalKey": "rsgm.dev",
+    "url": "https://roszigit.com/",
+    "canonicalKey": "roszigit.com",
     "aliases": [],
     "tags": [
       "Tech"
@@ -6925,11 +6590,11 @@
     "score": 17
   },
   {
-    "id": "salesforce-com",
-    "name": "salesforce.com",
+    "id": "rsgm-dev",
+    "name": "rsgm.dev",
     "description": "",
-    "url": "https://salesforce.com/",
-    "canonicalKey": "salesforce.com",
+    "url": "https://rsgm.dev/",
+    "canonicalKey": "rsgm.dev",
     "aliases": [],
     "tags": [
       "Tech"
@@ -7301,46 +6966,6 @@
     "score": 17
   },
   {
-    "id": "swissinfo-ch",
-    "name": "swissinfo.ch",
-    "description": "",
-    "url": "https://swissinfo.ch/",
-    "canonicalKey": "swissinfo.ch",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "itar-tass",
-    "name": "TASS",
-    "description": "TASS covers Russian and international news as Russia's state news agency. It is an official-news source best read with context, history, and a sturdy second tab.",
-    "url": "https://itar-tass.com/",
-    "canonicalKey": "itar-tass.com",
-    "aliases": [],
-    "tags": [
-      "Global"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 17,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    }
-  },
-  {
     "id": "techinasia-com",
     "name": "techinasia.com",
     "description": "",
@@ -7407,7 +7032,9 @@
     "url": "https://telemundo.com/",
     "canonicalKey": "telemundo.com",
     "aliases": [],
-    "tags": [],
+    "tags": [
+      "News"
+    ],
     "lists": [
       "brutalist-news"
     ],
@@ -7446,7 +7073,8 @@
     "canonicalKey": "theaustralian.com.au",
     "aliases": [],
     "tags": [
-      "Global"
+      "Global",
+      "News"
     ],
     "lists": [
       "skimfeed-news"
@@ -7486,7 +7114,8 @@
     "canonicalKey": "brutalist.report",
     "aliases": [],
     "tags": [
-      "Aggregator"
+      "Aggregator",
+      "News"
     ],
     "lists": [
       "brutalist-news"
@@ -7606,7 +7235,8 @@
     "canonicalKey": "guardian.co.uk",
     "aliases": [],
     "tags": [
-      "British"
+      "British",
+      "News"
     ],
     "lists": [
       "skimfeed-news"
@@ -7768,26 +7398,6 @@
     ],
     "lists": [
       "drudgereport"
-    ],
-    "score": 17,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "thetimes-co-uk",
-    "name": "The Times",
-    "description": "The Times covers UK and world news, politics, business, sport, culture, and opinion. It is a British newspaper institution that still knows how to make a headline stand up straight.",
-    "url": "https://thetimes.co.uk/",
-    "canonicalKey": "thetimes.co.uk",
-    "aliases": [],
-    "tags": [
-      "British"
-    ],
-    "lists": [
-      "skimfeed-news"
     ],
     "score": 17,
     "metrics": {
@@ -8013,13 +7623,35 @@
     "score": 17
   },
   {
+    "id": "tinywind-io",
+    "name": "tinywind.io",
+    "description": "",
+    "url": "https://tinywind.io/",
+    "canonicalKey": "tinywind.io",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "brutalist-tech"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-15",
+      "lastSeen": "2026-06-15",
+      "foundInCount": 1
+    },
+    "score": 17
+  },
+  {
     "id": "today",
     "name": "today.com",
     "description": "",
     "url": "https://today.com/",
     "canonicalKey": "today.com",
     "aliases": [],
-    "tags": [],
+    "tags": [
+      "News"
+    ],
     "lists": [
       "brutalist-news"
     ],
@@ -8085,26 +7717,6 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
-    "id": "txt-fyi",
-    "name": "txt.fyi",
-    "description": "",
-    "url": "https://txt.fyi/",
-    "canonicalKey": "txt.fyi",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
       "lastSeen": "2026-06-15",
       "foundInCount": 1
     },
@@ -8410,26 +8022,6 @@
     "score": 17
   },
   {
-    "id": "wordpress-com",
-    "name": "wordpress.com",
-    "description": "",
-    "url": "https://wordpress.com/",
-    "canonicalKey": "wordpress.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    },
-    "score": 17
-  },
-  {
     "id": "worldofreel",
     "name": "World of Reel",
     "description": "World of Reel covers film news, cinema criticism, festivals, awards, and movie industry chatter. It is for people who can make Oscar season last all year if necessary.",
@@ -8457,7 +8049,8 @@
     "canonicalKey": "worldcrunch.com",
     "aliases": [],
     "tags": [
-      "Global"
+      "Global",
+      "News"
     ],
     "lists": [
       "skimfeed-news"
@@ -8475,26 +8068,6 @@
     "description": "Xinhua covers Chinese and international news as China's state news agency. It is an official perspective on global events, useful when read with context firmly switched on.",
     "url": "https://xinhuanet.com/",
     "canonicalKey": "xinhuanet.com",
-    "aliases": [],
-    "tags": [
-      "Global"
-    ],
-    "lists": [
-      "drudgereport"
-    ],
-    "score": 17,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-15",
-      "foundInCount": 1
-    }
-  },
-  {
-    "id": "english-yonhapnews-co-kr",
-    "name": "Yonhap News",
-    "description": "Yonhap News English covers South Korean news, politics, business, technology, and international affairs. It is Korea's wire-service window for readers who want the headline and the regional context.",
-    "url": "https://english.yonhapnews.co.kr/",
-    "canonicalKey": "english.yonhapnews.co.kr",
     "aliases": [],
     "tags": [
       "Global"
@@ -8575,6 +8148,26 @@
     "description": "",
     "url": "https://zinnia-os.org/",
     "canonicalKey": "zinnia-os.org",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "brutalist-tech"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-15",
+      "lastSeen": "2026-06-15",
+      "foundInCount": 1
+    },
+    "score": 17
+  },
+  {
+    "id": "zoic-org",
+    "name": "zoic.org",
+    "description": "",
+    "url": "https://zoic.org/",
+    "canonicalKey": "zoic.org",
     "aliases": [],
     "tags": [
       "Tech"

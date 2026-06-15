@@ -2,9 +2,15 @@ import React from 'react';
 import { NextSiteProvider } from './context/next-site-context';
 import { SourceFilterProvider } from './context/source-filter-context';
 import Navbar from './navbar';
+import NowPlayingBar from './now-playing-bar';
 import FooterBar from './footer';
+import { cn } from '@/lib/utils';
 
-const SiteLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
+type SiteLayoutProps = React.PropsWithChildren<{
+  fullWidthMain?: boolean;
+}>;
+
+const SiteLayout: React.FC<SiteLayoutProps> = ({ children, fullWidthMain }) => (
   <SourceFilterProvider>
     <NextSiteProvider>
       <div className="relative isolate min-h-screen overflow-hidden antialiased">
@@ -12,7 +18,14 @@ const SiteLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
           <header>
             <Navbar />
           </header>
-          <main className="container mx-auto flex-1 px-4 py-4 md:max-w-screen-md lg:max-w-screen-lg">
+          <NowPlayingBar />
+          <main
+            className={cn(
+              'flex-1',
+              !fullWidthMain &&
+                'container mx-auto px-4 py-4 md:max-w-screen-md lg:max-w-screen-lg'
+            )}
+          >
             {children}
           </main>
           <FooterBar />

@@ -1,13 +1,10 @@
 import React from 'react';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
-import RedirectButton from './redirect-button';
 import Logo from '../components/logo';
 import { ExternalLink, House, ListFilter, MoreHorizontal, Newspaper, Tags } from 'lucide-react';
 
-import ShufflePlayer from '../components/player';
 import LanguageSwitcher from './language-switcher';
 import { Button } from './ui/button';
-import { SourceFilterControls } from './source-filter-controls';
 import LocalizedLink from './LocalizedLink';
 import { cn } from '@/lib/utils';
 import {
@@ -51,30 +48,6 @@ const DefaultNavbar: React.FC = () => {
               <LocalizedLink to="/sources/">
                 <Newspaper aria-hidden="true" className="w-4 h-4" />
                 <Trans i18nKey="sources" />
-              </LocalizedLink>
-            </Button>
-
-            <Button
-              asChild
-              size="sm"
-              variant="ghost"
-              className={cn('h-9 px-3', navInteractiveClasses)}
-            >
-              <LocalizedLink to="/lists/">
-                <ListFilter aria-hidden="true" className="w-4 h-4" />
-                <Trans i18nKey="lists" defaults="Lists" />
-              </LocalizedLink>
-            </Button>
-
-            <Button
-              asChild
-              size="sm"
-              variant="ghost"
-              className={cn('h-9 px-3', navInteractiveClasses)}
-            >
-              <LocalizedLink to="/tags/">
-                <Tags aria-hidden="true" className="w-4 h-4" />
-                <Trans i18nKey="tags" defaults="Tags" />
               </LocalizedLink>
             </Button>
           </div>
@@ -166,15 +139,6 @@ const DefaultNavbar: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-navbar-border/80 py-2.5">
-          <div className="mx-auto max-w-screen-xl">
-            <div className="grid gap-2 xl:grid-cols-[minmax(430px,auto)_minmax(320px,1fr)_auto] xl:items-center">
-              <SourceFilterControls className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] xl:flex xl:flex-nowrap xl:justify-start" />
-              <ShufflePlayer className="min-w-0" />
-              <RedirectButton className="h-11 min-w-[150px] px-5 py-2 text-sm sm:w-full sm:px-5 sm:text-sm xl:w-auto" />
-            </div>
-          </div>
-        </div>
       </div>
     </nav>
   );

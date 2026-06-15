@@ -30,7 +30,7 @@ const FooterBar: React.FC = () => {
     <div>
       <Separator className="my-0" />
       <footer>
-        <div className="mx-auto w-full max-w-screen-md px-4 py-10">
+        <div className="mx-auto w-full max-w-screen-lg px-4 py-10">
           <div className="text-center text-sm text-muted-foreground">
             <p className="text-foreground">
               {site.siteName}™ © {data.site.siteMetadata.foundingYear}-{currentYear}{' '}
@@ -108,7 +108,7 @@ const FooterBar: React.FC = () => {
               </p>
             </div>
 
-            <p className="mx-auto mt-6 max-w-prose text-pretty text-xs leading-relaxed text-muted-foreground/80">
+            <p className="mx-auto mt-6 max-w-screen-md text-pretty text-xs leading-relaxed text-muted-foreground/80">
               {site.copyOverrides?.footerDisclaimer || <Trans i18nKey="footer.disclaimer" />}
             </p>
           </div>

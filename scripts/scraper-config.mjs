@@ -21,6 +21,7 @@ export const SCRAPERS = [
     label: 'Skimfeed · News',
     url: 'https://skimfeed.com/news.html',
     internalUrls: ['https://skimfeed.com/'],
+    tags: ['News'],
   },
   {
     id: 'skimfeed-tech',
@@ -82,6 +83,7 @@ export const SCRAPERS = [
     label: 'Brutalist · News',
     url: 'https://brutalist.report/topic/news',
     internalUrls: ['https://brutalist.report/'],
+    tags: ['News'],
     pinnedSources: [
       {
         canonicalKey: 'brutalist.report',

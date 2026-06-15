@@ -91,7 +91,7 @@ const SourceShelf = ({
                       placeholder="blurred"
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.02]"
-                      formats={['auto', 'webp', 'avif']}
+                      formats={['auto']}
                     />
                   )}
                 </AspectRatio>

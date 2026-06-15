@@ -67,7 +67,7 @@ const BLOCKED_RESOURCE_TYPES = new Set(
     .filter(Boolean)
 );
 
-const CACHE_TIMEOUT = Number(process.env.SCREENSHOT_CACHE_TIMEOUT_MS || 6 * 60 * 60 * 1000);
+const CACHE_TIMEOUT = Number(process.env.SCREENSHOT_CACHE_TIMEOUT_MS || 7 * 24 * 60 * 60 * 1000);
 const RETRIES = Math.max(1, Number(process.env.SCREENSHOT_RETRIES || 2));
 const SCREENSHOT_QUALITY = Math.max(0, Math.min(100, Number(process.env.SCREENSHOT_QUALITY || 78)));
 const HEADLESS_MODE =

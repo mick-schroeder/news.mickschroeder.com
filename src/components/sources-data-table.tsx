@@ -4,6 +4,8 @@ import {
   ArrowUp,
   ArrowUpDown,
   ExternalLink,
+  LayoutGrid,
+  LayoutList,
   Search,
   SlidersHorizontal,
 } from 'lucide-react';
@@ -36,10 +38,13 @@ type SourceTableItem = {
 type SourcesDataTableProps = {
   sources: SourceTableItem[];
   lists: SourceList[];
+  initialList?: string;
+  initialTag?: string;
 };
 
 type SortKey = 'name' | 'score';
 type SortDirection = 'asc' | 'desc';
+type ViewMode = 'table' | 'grid';
 
 const hostOf = (url: string): string => {
   try {
@@ -71,12 +76,18 @@ const SortIcon = ({
   );
 };
 
-const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Element => {
+const SourcesDataTable = ({
+  sources,
+  lists,
+  initialList,
+  initialTag,
+}: SourcesDataTableProps): JSX.Element => {
   const [query, setQuery] = React.useState('');
-  const [selectedList, setSelectedList] = React.useState('all');
-  const [selectedTag, setSelectedTag] = React.useState('all');
+  const [selectedList, setSelectedList] = React.useState(initialList ?? 'all');
+  const [selectedTag, setSelectedTag] = React.useState(initialTag ?? 'all');
   const [sortKey, setSortKey] = React.useState<SortKey>('score');
   const [sortDirection, setSortDirection] = React.useState<SortDirection>('desc');
+  const [view, setView] = React.useState<ViewMode>('table');
 
   const listNameById = React.useMemo(
     () => new Map(lists.map((list) => [list.id, list.name])),
@@ -141,15 +152,14 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
       setSortDirection((current) => (current === 'asc' ? 'desc' : 'asc'));
       return;
     }
-
     setSortKey(key);
     setSortDirection(key === 'name' ? 'asc' : 'desc');
   };
 
   const resetFilters = () => {
     setQuery('');
-    setSelectedList('all');
-    setSelectedTag('all');
+    setSelectedList(initialList ?? 'all');
+    setSelectedTag(initialTag ?? 'all');
   };
 
   const sortButton = (key: SortKey, label: string, className?: string) => (
@@ -167,7 +177,7 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
   );
 
   return (
-    <Card className="overflow-hidden rounded-lg shadow-sm">
+    <Card className="overflow-hidden rounded-none border-x-0 border-t-0 shadow-none lg:rounded-lg lg:border lg:shadow-sm lg:m-4">
       <CardHeader className="border-b p-4">
         <div className="grid gap-3 lg:grid-cols-[minmax(260px,1fr)_auto] lg:items-center">
           <label className="relative block">
@@ -185,43 +195,76 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
             />
           </label>
 
-          <div className="grid gap-2 sm:grid-cols-[minmax(0,180px)_minmax(0,160px)_auto]">
-            <label className="min-w-0">
-              <span className="sr-only">Filter by list</span>
-              <select
-                value={selectedList}
-                onChange={(event) => setSelectedList(event.target.value)}
-                className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-sm outline-none focus-visible:ring-1 focus-visible:ring-ring"
-              >
-                <option value="all">All lists</option>
-                {lists.map((list) => (
-                  <option key={list.id} value={list.id}>
-                    {list.name}
-                  </option>
-                ))}
-              </select>
-            </label>
+          <div className="flex flex-wrap items-center gap-2">
+            {/* List + Tag dropdowns — hidden on mobile when sidebar provides navigation */}
+            <div className="flex flex-1 gap-2 lg:flex-none">
+              <label className="min-w-0 flex-1 lg:w-44 lg:flex-none">
+                <span className="sr-only">Filter by list</span>
+                <select
+                  value={selectedList}
+                  onChange={(event) => setSelectedList(event.target.value)}
+                  className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-sm outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                >
+                  <option value="all">All lists</option>
+                  {lists.map((list) => (
+                    <option key={list.id} value={list.id}>
+                      {list.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-            <label className="min-w-0">
-              <span className="sr-only">Filter by tag</span>
-              <select
-                value={selectedTag}
-                onChange={(event) => setSelectedTag(event.target.value)}
-                className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-sm outline-none focus-visible:ring-1 focus-visible:ring-ring"
-              >
-                <option value="all">All tags</option>
-                {tags.map((tag) => (
-                  <option key={tag} value={tag}>
-                    {tag}
-                  </option>
-                ))}
-              </select>
-            </label>
+              <label className="min-w-0 flex-1 lg:w-36 lg:flex-none">
+                <span className="sr-only">Filter by tag</span>
+                <select
+                  value={selectedTag}
+                  onChange={(event) => setSelectedTag(event.target.value)}
+                  className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-sm outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                >
+                  <option value="all">All tags</option>
+                  {tags.map((tag) => (
+                    <option key={tag} value={tag}>
+                      {tag}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
 
-            <Button type="button" variant="outline" onClick={resetFilters} className="h-10">
+            <Button type="button" variant="outline" onClick={resetFilters} className="h-10 shrink-0">
               <SlidersHorizontal aria-hidden="true" className="h-4 w-4" />
               Reset
             </Button>
+
+            {/* View toggle */}
+            <div className="flex items-center rounded-md border border-input shadow-sm">
+              <button
+                type="button"
+                onClick={() => setView('table')}
+                aria-label="Table view"
+                className={cn(
+                  'flex h-10 w-10 items-center justify-center rounded-l-md transition-colors',
+                  view === 'table'
+                    ? 'bg-accent text-accent-foreground'
+                    : 'bg-background text-muted-foreground hover:bg-accent/50'
+                )}
+              >
+                <LayoutList aria-hidden="true" className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setView('grid')}
+                aria-label="Grid view"
+                className={cn(
+                  'flex h-10 w-10 items-center justify-center rounded-r-md border-l border-input transition-colors',
+                  view === 'grid'
+                    ? 'bg-accent text-accent-foreground'
+                    : 'bg-background text-muted-foreground hover:bg-accent/50'
+                )}
+              >
+                <LayoutGrid aria-hidden="true" className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
       </CardHeader>
@@ -234,109 +277,206 @@ const SourcesDataTable = ({ sources, lists }: SourcesDataTableProps): JSX.Elemen
           <span className="hidden sm:inline">Sorted by {sortKey}</span>
         </div>
 
-        <Table>
-          <TableHeader>
-            <TableRow className="bg-muted/40 hover:bg-muted/40">
-              <TableHead className="min-w-[240px]">{sortButton('name', 'Source')}</TableHead>
-              <TableHead className="hidden min-w-[220px] max-w-[320px] xl:table-cell">
-                Description
-              </TableHead>
-              <TableHead className="hidden min-w-[160px] md:table-cell">Tags</TableHead>
-              <TableHead className="w-[88px] text-right">{sortButton('score', 'Score')}</TableHead>
-              <TableHead className="min-w-[180px]">URL</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+        {view === 'table' ? (
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-muted/40 hover:bg-muted/40">
+                <TableHead className="min-w-[240px]">{sortButton('name', 'Source')}</TableHead>
+                <TableHead className="hidden min-w-[220px] max-w-[320px] xl:table-cell">
+                  Description
+                </TableHead>
+                <TableHead className="hidden min-w-[160px] md:table-cell">Tags</TableHead>
+                <TableHead className="w-[88px] text-right">
+                  {sortButton('score', 'Score')}
+                </TableHead>
+                <TableHead className="min-w-[180px]">URL</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {sortedSources.length ? (
+                sortedSources.map((source) => {
+                  const sourceTags = source.tags ?? [];
+                  const detailPath = source.id ? sourcePath(source.id) : null;
+
+                  return (
+                    <TableRow key={source.id || source.url}>
+                      <TableCell>
+                        <div className="min-w-0">
+                          {detailPath ? (
+                            <LocalizedLink
+                              to={detailPath}
+                              className="block truncate font-semibold text-foreground hover:underline"
+                            >
+                              {source.name}
+                            </LocalizedLink>
+                          ) : (
+                            <a
+                              href={source.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block truncate font-semibold text-foreground hover:underline"
+                            >
+                              {source.name}
+                            </a>
+                          )}
+                          {source.description ? (
+                            <p className="mt-1 line-clamp-2 text-sm leading-6 text-muted-foreground xl:hidden">
+                              {source.description}
+                            </p>
+                          ) : null}
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden max-w-[320px] xl:table-cell">
+                        <p
+                          className="truncate text-sm text-muted-foreground"
+                          title={source.description || source.canonicalKey || hostOf(source.url)}
+                        >
+                          {source.description || source.canonicalKey || hostOf(source.url)}
+                        </p>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        <div className="flex max-w-[220px] flex-wrap gap-1.5">
+                          {sourceTags.slice(0, 2).map((tag) => {
+                            const cfg = TAG_CONFIG[tag];
+                            const Icon = cfg?.icon;
+                            return (
+                              <span
+                                key={tag}
+                                className={cn(
+                                  'inline-flex max-w-full items-center gap-1 truncate rounded-md border px-2 py-0.5 text-xs font-semibold',
+                                  cfg?.colorClass ??
+                                    'border-border bg-secondary text-secondary-foreground'
+                                )}
+                              >
+                                {Icon && <Icon aria-hidden="true" className="h-3 w-3 shrink-0" />}
+                                {tag}
+                              </span>
+                            );
+                          })}
+                          {sourceTags.length > 2 ? (
+                            <Badge variant="outline">+{sourceTags.length - 2}</Badge>
+                          ) : null}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <ScoreBadge score={source.score} />
+                      </TableCell>
+                      <TableCell>
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex max-w-[220px] items-center gap-2 truncate text-sm font-medium text-primary hover:underline"
+                        >
+                          <span className="truncate">{hostOf(source.url)}</span>
+                          <ExternalLink aria-hidden="true" className="h-4 w-4 shrink-0" />
+                        </a>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={5} className="h-28 text-center text-muted-foreground">
+                    No sources match the current filters.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        ) : (
+          /* Grid view */
+          <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 xl:grid-cols-3">
             {sortedSources.length ? (
               sortedSources.map((source) => {
                 const sourceTags = source.tags ?? [];
                 const detailPath = source.id ? sourcePath(source.id) : null;
+                const host = hostOf(source.url);
 
                 return (
-                  <TableRow key={source.id || source.url}>
-                    <TableCell>
-                      <div className="min-w-0">
-                        {detailPath ? (
-                          <LocalizedLink
-                            to={detailPath}
-                            className="block truncate font-semibold text-foreground hover:underline"
-                          >
-                            {source.name}
-                          </LocalizedLink>
-                        ) : (
-                          <a
-                            href={source.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block truncate font-semibold text-foreground hover:underline"
-                          >
-                            {source.name}
-                          </a>
-                        )}
-                        {source.description ? (
-                          <p className="mt-1 line-clamp-2 text-sm leading-6 text-muted-foreground xl:hidden">
-                            {source.description}
-                          </p>
-                        ) : null}
-                      </div>
-                    </TableCell>
-                    <TableCell className="hidden max-w-[320px] xl:table-cell">
-                      <p
-                        className="truncate text-sm text-muted-foreground"
-                        title={source.description || source.canonicalKey || hostOf(source.url)}
-                      >
-                        {source.description || source.canonicalKey || hostOf(source.url)}
-                      </p>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      <div className="flex max-w-[220px] flex-wrap gap-1.5">
-                        {sourceTags.slice(0, 2).map((tag) => {
-                          const cfg = TAG_CONFIG[tag];
-                          const Icon = cfg?.icon;
-                          return (
-                            <span
-                              key={tag}
-                              className={cn(
-                                'inline-flex max-w-full items-center gap-1 truncate rounded-md border px-2 py-0.5 text-xs font-semibold',
-                                cfg?.colorClass ?? 'border-border bg-secondary text-secondary-foreground'
-                              )}
+                  <Card
+                    key={source.id || source.url}
+                    className="flex flex-col overflow-hidden rounded-lg shadow-sm"
+                  >
+                    <CardContent className="flex flex-1 flex-col gap-2 p-4">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0 flex-1">
+                          {detailPath ? (
+                            <LocalizedLink
+                              to={detailPath}
+                              className="block truncate font-semibold text-card-foreground hover:underline"
                             >
-                              {Icon && <Icon aria-hidden="true" className="h-3 w-3 shrink-0" />}
-                              {tag}
-                            </span>
-                          );
-                        })}
-                        {sourceTags.length > 2 ? (
-                          <Badge variant="outline">+{sourceTags.length - 2}</Badge>
-                        ) : null}
+                              {source.name}
+                            </LocalizedLink>
+                          ) : (
+                            <a
+                              href={source.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block truncate font-semibold text-card-foreground hover:underline"
+                            >
+                              {source.name}
+                            </a>
+                          )}
+                        </div>
+                        <ScoreBadge score={source.score} />
                       </div>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <ScoreBadge score={source.score} />
-                    </TableCell>
-                    <TableCell>
+
+                      {sourceTags.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {sourceTags.slice(0, 3).map((tag) => {
+                            const cfg = TAG_CONFIG[tag];
+                            const Icon = cfg?.icon;
+                            return (
+                              <span
+                                key={tag}
+                                className={cn(
+                                  'inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-xs font-semibold',
+                                  cfg?.colorClass ??
+                                    'border-border bg-secondary text-secondary-foreground'
+                                )}
+                              >
+                                {Icon && (
+                                  <Icon aria-hidden="true" className="h-2.5 w-2.5 shrink-0" />
+                                )}
+                                {tag}
+                              </span>
+                            );
+                          })}
+                          {sourceTags.length > 3 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{sourceTags.length - 3}
+                            </Badge>
+                          )}
+                        </div>
+                      )}
+
+                      {source.description && (
+                        <p className="line-clamp-2 text-xs leading-5 text-muted-foreground">
+                          {source.description}
+                        </p>
+                      )}
+
                       <a
                         href={source.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex max-w-[220px] items-center gap-2 truncate text-sm font-medium text-primary hover:underline"
+                        className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
                       >
-                        <span className="truncate">{hostOf(source.url)}</span>
-                        <ExternalLink aria-hidden="true" className="h-4 w-4 shrink-0" />
+                        <span className="truncate">{host}</span>
+                        <ExternalLink aria-hidden="true" className="h-3 w-3 shrink-0" />
                       </a>
-                    </TableCell>
-                  </TableRow>
+                    </CardContent>
+                  </Card>
                 );
               })
             ) : (
-              <TableRow>
-                <TableCell colSpan={5} className="h-28 text-center text-muted-foreground">
-                  No sources match the current filters.
-                </TableCell>
-              </TableRow>
+              <p className="col-span-full py-10 text-center text-sm text-muted-foreground">
+                No sources match the current filters.
+              </p>
             )}
-          </TableBody>
-        </Table>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
