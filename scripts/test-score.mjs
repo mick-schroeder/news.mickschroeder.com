@@ -1,5 +1,13 @@
 import assert from 'node:assert/strict';
-import { applyScores, computeScore, daysBetween, pruneStaleSources } from './lib/score.mjs';
+import { SCRAPERS } from './scraper-config.mjs';
+import {
+  SCORE_CONFIG,
+  applyScores,
+  computeScore,
+  daysBetween,
+  observedBreadthNormalizer,
+  pruneStaleSources,
+} from './lib/score.mjs';
 import { mergeScrapedSources } from './lib/source-utils.mjs';
 
 const NOW = '2026-06-12';
@@ -25,17 +33,28 @@ const main = () => {
   assert.equal(daysBetween(DAYS_90_AGO, NOW), 90);
   assert.equal(daysBetween(NOW, NOW), 0);
   assert.equal(daysBetween(NOW, DAYS_30_AGO), 0, 'daysBetween clamps negative diffs to 0');
+  assert.equal(SCORE_CONFIG.scraperCount, SCRAPERS.length);
 
-  // Curated source in 5 lists, seen today, zero tenure (first run).
+  // Curated source in 5 of 18 lists, seen today, zero tenure (first run).
   assert.equal(
     computeScore({ firstSeen: NOW, lastSeen: NOW, foundInCount: 5 }, { isCurated: true, now: NOW }),
-    74
+    53
   );
 
-  // Curated source in all 6 lists after a full year.
+  // Calibrating against the observed max keeps the current top tier from
+  // topping out around 60 just because total scraper count grew.
   assert.equal(
     computeScore(
-      { firstSeen: DAYS_365_AGO, lastSeen: NOW, foundInCount: 6 },
+      { firstSeen: NOW, lastSeen: NOW, foundInCount: 7 },
+      { isCurated: true, now: NOW, breadthNormalizer: 7 }
+    ),
+    80
+  );
+
+  // Curated source in all configured scraped lists after a full year.
+  assert.equal(
+    computeScore(
+      { firstSeen: DAYS_365_AGO, lastSeen: NOW, foundInCount: SCORE_CONFIG.scraperCount },
       { isCurated: true, now: NOW }
     ),
     90
@@ -47,7 +66,7 @@ const main = () => {
       { firstSeen: DAYS_90_AGO, lastSeen: DAYS_30_AGO, foundInCount: 1 },
       { isCurated: false, now: NOW }
     ),
-    14
+    9
   );
 
   // Missing metrics: curated floor vs zero.
@@ -63,6 +82,13 @@ const main = () => {
   );
 
   const scrapedListIds = new Set(['drudgereport', 'skimfeed']);
+  assert.equal(
+    observedBreadthNormalizer([
+      makeSource({ metrics: { firstSeen: NOW, lastSeen: NOW, foundInCount: 2 } }),
+      makeSource({ metrics: { firstSeen: NOW, lastSeen: NOW, foundInCount: 7 } }),
+    ]),
+    7
+  );
 
   // applyScores: seen today -> foundInCount recomputed from current lists.
   let [seen] = applyScores(
@@ -92,7 +118,25 @@ const main = () => {
     lastSeen: DAYS_30_AGO,
     foundInCount: 1,
   });
-  assert.equal(unseen.score, 14);
+  assert.equal(unseen.score, 9);
+
+  // applyScores: refresh can calibrate against the observed top evidence count.
+  const calibratedScrapedListIds = new Set(['a', 'b', 'c', 'd', 'e', 'f', 'g']);
+  let [topTier] = applyScores(
+    [
+      makeSource({
+        lists: [...calibratedScrapedListIds, 'news'],
+        metrics: { firstSeen: NOW, lastSeen: NOW, foundInCount: 0 },
+      }),
+    ],
+    {
+      now: NOW,
+      scrapedListIds: calibratedScrapedListIds,
+      calibrateBreadthToObservedMax: true,
+    }
+  );
+  assert.equal(topTier.metrics.foundInCount, 7);
+  assert.equal(topTier.score, 80);
 
   // applyScores: no metrics but scraped membership -> seeded (migration path).
   let [seeded] = applyScores([makeSource({ lists: ['drudgereport', 'skimfeed'] })], {

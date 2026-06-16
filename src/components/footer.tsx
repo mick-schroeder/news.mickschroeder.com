@@ -108,7 +108,7 @@ const FooterBar: React.FC = () => {
               </p>
             </div>
 
-            <p className="mx-auto mt-6 max-w-screen-md text-pretty text-xs leading-relaxed text-muted-foreground/80">
+            <p className="mx-auto mt-6 max-w-screen-lg text-pretty text-xs leading-relaxed text-muted-foreground/80">
               {site.copyOverrides?.footerDisclaimer || <Trans i18nKey="footer.disclaimer" />}
             </p>
           </div>

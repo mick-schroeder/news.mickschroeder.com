@@ -9,6 +9,33 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const IGNORE_FILE = path.join(ROOT, 'src/data/aggregator-ignore-urls.txt');
 
+const skimfeedFixture = {
+  html: `
+    <a href="/tech">internal</a>
+    <a href="https://arstechnica.com/gadgets/thing">Ars</a>
+    <a href="https://x.com/skimfeed">social</a>
+  `,
+  includes: ['arstechnica.com'],
+  excludes: ['skimfeed.com', 'x.com'],
+};
+
+const brutalistFixture = {
+  html: `
+    <nav>
+      <a href="/">Home</a>
+      <a href="/topic/news?">News</a>
+      <a href="https://apps.apple.com/app/brutalist-report/id123">iOS App</a>
+    </nav>
+    <a href="/source/nytimes">The New York Times</a>
+    <a href="https://www.nytimes.com/2026/06/12/us/story.html">NYT Story</a>
+    <a href="/source/apnews">AP News</a>
+    <a href="https://apnews.com/article/some-story">AP Story</a>
+    <a href="https://brutalist.report/about">About</a>
+  `,
+  includes: ['nytimes.com', 'apnews.com'],
+  excludes: ['apps.apple.com', 'brutalist.report'],
+};
+
 const fixtures = {
   drudgereport: {
     html: `
@@ -20,15 +47,11 @@ const fixtures = {
     includes: ['nytimes.com', 'drudgereport.com'],
     excludes: ['archive.is'],
   },
-  skimfeed: {
-    html: `
-      <a href="/tech">internal</a>
-      <a href="https://arstechnica.com/gadgets/thing">Ars</a>
-      <a href="https://x.com/skimfeed">social</a>
-    `,
-    includes: ['arstechnica.com'],
-    excludes: ['skimfeed.com', 'x.com'],
-  },
+  'skimfeed-news': skimfeedFixture,
+  'skimfeed-tech': skimfeedFixture,
+  'skimfeed-politics': skimfeedFixture,
+  'skimfeed-science': skimfeedFixture,
+  'skimfeed-agg': skimfeedFixture,
   realclearpolitics: {
     html: `
       <a href="https://www.realclearpolitics.com/articles/example.html">internal</a>
@@ -87,21 +110,27 @@ const fixtures = {
       'variety.com': 'Variety',
     },
   },
-  brutalist: {
-    html: `
-      <nav>
-        <a href="/">Home</a>
-        <a href="/topic/news?">News</a>
-        <a href="https://apps.apple.com/app/brutalist-report/id123">iOS App</a>
-      </nav>
-      <a href="/source/nytimes">The New York Times</a>
-      <a href="https://www.nytimes.com/2026/06/12/us/story.html">NYT Story</a>
-      <a href="/source/apnews">AP News</a>
-      <a href="https://apnews.com/article/some-story">AP Story</a>
-      <a href="https://brutalist.report/about">About</a>
-    `,
-    includes: ['nytimes.com', 'apnews.com', 'brutalist.report'],
+  'brutalist-news': {
+    ...brutalistFixture,
+    includes: [...brutalistFixture.includes, 'brutalist.report'],
     excludes: ['apps.apple.com'],
+  },
+  'brutalist-tech': brutalistFixture,
+  'brutalist-business': brutalistFixture,
+  'brutalist-science': brutalistFixture,
+  'brutalist-gaming': brutalistFixture,
+  'brutalist-culture': brutalistFixture,
+  'brutalist-politics': brutalistFixture,
+  'clone-fyi': {
+    html: JSON.stringify({
+      articles: [
+        { url: 'https://www.theverge.com/2026/06/12/example' },
+        { url: 'https://clone.fyi/items/internal' },
+        { url: 'https://x.com/clonefyi/status/123' },
+      ],
+    }),
+    includes: ['theverge.com', 'clone.fyi'],
+    excludes: ['x.com'],
   },
 };
 

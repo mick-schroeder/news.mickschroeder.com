@@ -113,7 +113,11 @@ const main = async () => {
       ? new Set([...scrapedListIds].filter((listId) => !succeededListIds.has(listId)))
       : new Set();
   const seededBefore = sources.filter((source) => source.metrics).length;
-  sources = applyScores(sources, { now: runDate, scrapedListIds });
+  sources = applyScores(sources, {
+    now: runDate,
+    scrapedListIds,
+    calibrateBreadthToObservedMax: true,
+  });
   const seeded = sources.filter((source) => source.metrics).length - seededBefore;
 
   const { kept, pruned } = pruneStaleSources(sources, {

@@ -5,7 +5,8 @@
  *   "metrics": { "firstSeen": "2026-06-01", "lastSeen": "2026-06-12", "foundInCount": 3 }
  *
  * Score formula (0–100 integer):
- *   breadth = 70 * log2(1 + foundInCount) / log2(1 + 17)   // first list matters most
+ *   breadth = 70 * log2(1 + foundInCount) / log2(1 + breadthNormalizer)
+ *                                                             // first list matters most
  *   tenure  = 10 * min(daysSince(firstSeen), 365) / 365
  *   decay   = 0.5 ^ (daysSince(lastSeen) / 30)             // half-life 30 days
  *   score   = (breadth + tenure) * decay + (curated ? 10 : 0)
@@ -15,7 +16,7 @@
 
 export const SCORE_CONFIG = {
   maxBreadth: 70,
-  scraperCount: 17,
+  scraperCount: 18,
   maxTenure: 10,
   tenureCapDays: 365,
   decayHalfLifeDays: 30,
@@ -26,6 +27,9 @@ export const SCORE_CONFIG = {
 
 export const CURATED_LIST_ID = 'news';
 
+export const observedBreadthNormalizer = (sources) =>
+  Math.max(1, ...sources.map((source) => source.metrics?.foundInCount || 0));
+
 export const daysBetween = (isoA, isoB) => {
   const a = Date.parse(`${isoA}T00:00:00Z`);
   const b = Date.parse(`${isoB}T00:00:00Z`);
@@ -33,14 +37,21 @@ export const daysBetween = (isoA, isoB) => {
   return Math.max(0, Math.round((b - a) / 86_400_000));
 };
 
-export const computeScore = (metrics, { isCurated, now }) => {
+export const computeScore = (
+  metrics,
+  { isCurated, now, breadthNormalizer = SCORE_CONFIG.scraperCount }
+) => {
   const config = SCORE_CONFIG;
+  const normalizedBreadthCap = Math.max(
+    1,
+    Math.min(config.scraperCount, Number(breadthNormalizer) || config.scraperCount)
+  );
   let score = 0;
 
   if (metrics) {
+    const foundInCount = Math.min(metrics.foundInCount || 0, normalizedBreadthCap);
     const breadth =
-      (config.maxBreadth * Math.log2(1 + (metrics.foundInCount || 0))) /
-      Math.log2(1 + config.scraperCount);
+      (config.maxBreadth * Math.log2(1 + foundInCount)) / Math.log2(1 + normalizedBreadthCap);
     const tenure =
       (config.maxTenure * Math.min(daysBetween(metrics.firstSeen, now), config.tenureCapDays)) /
       config.tenureCapDays;
@@ -55,8 +66,11 @@ export const computeScore = (metrics, { isCurated, now }) => {
   return Math.round(Math.min(Math.max(score, 0), 100));
 };
 
-export const applyScores = (sources, { now, scrapedListIds }) =>
-  sources.map((source) => {
+export const applyScores = (
+  sources,
+  { now, scrapedListIds, calibrateBreadthToObservedMax = false, breadthNormalizer }
+) => {
+  const sourcesWithMetrics = sources.map((source) => {
     const lists = source.lists || [];
     const scrapedCount = lists.filter((id) => scrapedListIds.has(id)).length;
     let metrics = source.metrics;
@@ -68,13 +82,24 @@ export const applyScores = (sources, { now, scrapedListIds }) =>
       metrics = { firstSeen: now, lastSeen: now, foundInCount: scrapedCount };
     }
 
-    const score = computeScore(metrics, {
+    return metrics ? { ...source, metrics } : source;
+  });
+
+  const effectiveBreadthNormalizer = calibrateBreadthToObservedMax
+    ? observedBreadthNormalizer(sourcesWithMetrics)
+    : breadthNormalizer;
+
+  return sourcesWithMetrics.map((source) => {
+    const lists = source.lists || [];
+    const score = computeScore(source.metrics, {
       isCurated: lists.includes(CURATED_LIST_ID),
       now,
+      breadthNormalizer: effectiveBreadthNormalizer,
     });
 
-    return metrics ? { ...source, metrics, score } : { ...source, score };
+    return { ...source, score };
   });
+};
 
 export const pruneStaleSources = (
   sources,
