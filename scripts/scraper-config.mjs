@@ -3,10 +3,7 @@ export const SCRAPERS = [
     id: 'drudgereport',
     label: 'Drudge Report',
     url: 'https://www.drudgereport.com/',
-    internalUrls: [
-      'https://www.drudgereport.com/',
-      'https://drudgereport.com/'
-    ],
+    internalUrls: ['https://www.drudgereport.com/', 'https://drudgereport.com/'],
     pinnedSources: [
       {
         canonicalKey: 'drudgereport.com',
@@ -63,6 +60,7 @@ export const SCRAPERS = [
     url: 'https://www.techmeme.com/lb.opml',
     internalUrls: ['https://www.techmeme.com/', 'https://techmeme.com/'],
     sourceOpml: true,
+    maxSourceCandidates: 50,
   },
   {
     id: 'memeorandum',
@@ -70,6 +68,7 @@ export const SCRAPERS = [
     url: 'https://www.memeorandum.com/lb.opml',
     internalUrls: ['https://www.memeorandum.com/', 'https://memeorandum.com/'],
     sourceOpml: true,
+    maxSourceCandidates: 50,
   },
   {
     id: 'mediagazer',
@@ -77,12 +76,14 @@ export const SCRAPERS = [
     url: 'https://mediagazer.com/lb.opml',
     internalUrls: ['https://mediagazer.com/', 'https://www.mediagazer.com/'],
     sourceOpml: true,
+    maxSourceCandidates: 50,
   },
   {
     id: 'brutalist-news',
     label: 'Brutalist · News',
     url: 'https://brutalist.report/topic/news',
     internalUrls: ['https://brutalist.report/'],
+    sourceSectionLinks: true,
     tags: ['News'],
     pinnedSources: [
       {
@@ -98,6 +99,7 @@ export const SCRAPERS = [
     label: 'Brutalist · Tech',
     url: 'https://brutalist.report/topic/tech',
     internalUrls: ['https://brutalist.report/'],
+    sourceSectionLinks: true,
     tags: ['Tech'],
   },
   {
@@ -105,6 +107,7 @@ export const SCRAPERS = [
     label: 'Brutalist · Business',
     url: 'https://brutalist.report/topic/business',
     internalUrls: ['https://brutalist.report/'],
+    sourceSectionLinks: true,
     tags: ['Business'],
   },
   {
@@ -112,6 +115,7 @@ export const SCRAPERS = [
     label: 'Brutalist · Science',
     url: 'https://brutalist.report/topic/science',
     internalUrls: ['https://brutalist.report/'],
+    sourceSectionLinks: true,
     tags: ['Science'],
   },
   {
@@ -119,6 +123,7 @@ export const SCRAPERS = [
     label: 'Brutalist · Gaming',
     url: 'https://brutalist.report/topic/gaming',
     internalUrls: ['https://brutalist.report/'],
+    sourceSectionLinks: true,
     tags: ['Gaming'],
   },
   {
@@ -126,6 +131,7 @@ export const SCRAPERS = [
     label: 'Brutalist · Culture',
     url: 'https://brutalist.report/topic/culture',
     internalUrls: ['https://brutalist.report/'],
+    sourceSectionLinks: true,
     tags: ['Culture'],
   },
   {
@@ -133,6 +139,7 @@ export const SCRAPERS = [
     label: 'Brutalist · Politics',
     url: 'https://brutalist.report/topic/politics',
     internalUrls: ['https://brutalist.report/'],
+    sourceSectionLinks: true,
     tags: ['Politics'],
   },
   {

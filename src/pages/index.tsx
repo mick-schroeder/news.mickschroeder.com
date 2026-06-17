@@ -4,13 +4,12 @@ import SiteLayout from '../components/site-layout';
 import Hero from '../components/hero';
 import TagPills from '../components/tag-pills';
 import TopSources from '../components/top-sources';
-import SourceShelf from '../components/source-shelf';
+import SourceDirectory from '../components/source-directory';
 import { SEO } from '../components/seo';
 import type { SEOI18n } from '../components/seo';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
 import { Newspaper, TrendingUp } from 'lucide-react';
-import { tagPath } from '../lib/taxonomy';
 import { getSiteConfig } from '../config/getSiteConfig';
 import '../fragments/locale';
 import '../fragments/news-source';
@@ -29,30 +28,8 @@ type HomeSource = {
   screenshot?: any;
 };
 
-const scoreOf = (score: HomeSource['score']): number => {
-  const n = parseFloat(String(score ?? '0'));
-  return Number.isFinite(n) ? n : 0;
-};
-
 const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
   const items: HomeSource[] = data?.sourcesData?.sources ?? [];
-
-  const tagShelves = React.useMemo(() => {
-    const tagMap = new Map<string, HomeSource[]>();
-    for (const item of items) {
-      for (const tag of item.tags ?? []) {
-        if (!tagMap.has(tag)) tagMap.set(tag, []);
-        tagMap.get(tag)!.push(item);
-      }
-    }
-    return Array.from(tagMap.entries())
-      .map(([tag, sources]) => ({
-        tag,
-        items: sources.sort((a, b) => scoreOf(b.score) - scoreOf(a.score)),
-      }))
-      .filter((shelf) => shelf.items.length >= 2)
-      .sort((a, b) => b.items.length - a.items.length);
-  }, [items]);
 
   return (
     <SiteLayout>
@@ -81,22 +58,22 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
           className="scroll-mt-6 py-8 px-4 mx-auto max-w-screen-xl lg:px-6"
           style={{ scrollMarginTop: 'calc(var(--nav-h, 4rem) + 1rem)' }}
         >
-          <h2 className="text-2xl py-2 font-extrabold tracking-tight flex items-center gap-2">
-            <Newspaper className="w-6 h-6 text-primary" aria-hidden="true" />
-            {site.copyOverrides?.sourcesLabel || <Trans i18nKey="sources" defaults="Sources" />}
-          </h2>
-          <div className="mt-2 flex flex-col gap-10">
-            {tagShelves.map((shelf, idx) => (
-              <SourceShelf
-                key={shelf.tag}
-                listId={shelf.tag}
-                listName={shelf.tag}
-                path={tagPath(shelf.tag)}
-                items={shelf.items}
-                eager={idx === 0}
+          <div className="mb-4 flex flex-col gap-1 pb-1 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-2xl py-2 font-extrabold tracking-tight flex items-center gap-2">
+                <Newspaper className="w-6 h-6 text-primary" aria-hidden="true" />
+                {site.copyOverrides?.sourcesLabel || <Trans i18nKey="sources" defaults="Sources" />}
+              </h2>
+            </div>
+            <p className="text-xs font-medium uppercase text-muted-foreground">
+              <Trans
+                i18nKey="home_page.sources_count"
+                defaults="{{count}} SOURCES"
+                values={{ count: items.length }}
               />
-            ))}
+            </p>
           </div>
+          <SourceDirectory items={items} />
         </section>
       </div>
     </SiteLayout>

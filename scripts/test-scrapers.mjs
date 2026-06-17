@@ -26,15 +26,30 @@ const brutalistFixture = {
       <a href="/topic/news?">News</a>
       <a href="https://apps.apple.com/app/brutalist-report/id123">iOS App</a>
     </nav>
-    <a href="/source/nytimes">The New York Times</a>
-    <a href="https://www.nytimes.com/2026/06/12/us/story.html">NYT Story</a>
-    <a href="/source/apnews">AP News</a>
-    <a href="https://apnews.com/article/some-story">AP Story</a>
+    <h3><a href="/source/nytimes">The New York Times</a></h3>
+    <ul>
+      <li><a href="https://www.nytimes.com/2026/06/12/us/story.html">NYT Story</a></li>
+      <li><a href="https://example.org/off-topic-wire-copy">Wire Copy</a></li>
+    </ul>
+    <h3><a href="/source/apnews">AP News</a></h3>
+    <ul>
+      <li><a href="https://apnews.com/article/some-story">AP Story</a></li>
+    </ul>
     <a href="https://brutalist.report/about">About</a>
   `,
   includes: ['nytimes.com', 'apnews.com'],
-  excludes: ['apps.apple.com', 'brutalist.report'],
+  excludes: ['apps.apple.com', 'brutalist.report', 'example.org'],
+  names: {
+    'nytimes.com': 'The New York Times',
+    'apnews.com': 'AP News',
+  },
 };
+
+const extraTechmemeOutlines = Array.from(
+  { length: 49 },
+  (_, index) =>
+    `<outline text="Source ${index + 1}" type="rss" htmlUrl="https://source-${index + 1}.com/"/>`
+).join('\n');
 
 const fixtures = {
   drudgereport: {
@@ -67,14 +82,16 @@ const fixtures = {
         <body>
           <outline text="The Verge" type="rss" htmlUrl="https://www.theverge.com/" xmlUrl="https://feeds.example.com/theverge"/>
           <outline text="TechCrunch" type="link" url="https://techcrunch.com/"/>
+          ${extraTechmemeOutlines}
         </body>
       </opml>
     `,
-    includes: ['theverge.com', 'techcrunch.com'],
-    excludes: ['feeds.example.com', 'techmeme.com'],
+    includes: ['theverge.com', 'techcrunch.com', 'source-48.com'],
+    excludes: ['feeds.example.com', 'techmeme.com', 'source-49.com'],
     names: {
       'theverge.com': 'The Verge',
       'techcrunch.com': 'TechCrunch',
+      'source-48.com': 'Source 48',
     },
   },
   memeorandum: {

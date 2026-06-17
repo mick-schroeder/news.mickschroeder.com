@@ -4,6 +4,7 @@ export const DEFAULT_SELECTED_LISTS = ['news'];
 
 const LIST_PARAM = 'lists';
 const TAG_PARAM = 'tags';
+const ALL_LISTS_PARAM_VALUE = 'all';
 const LIST_STORAGE_KEY = 'news.selectedLists';
 const TAG_STORAGE_KEY = 'news.selectedTags';
 
@@ -34,10 +35,10 @@ const parseCsv = (value: string | null): string[] =>
       )
     : [];
 
-const readStoredArray = (key: string): string[] => {
-  if (typeof window === 'undefined') return [];
+const readStoredArray = (key: string): string[] | undefined => {
+  if (typeof window === 'undefined') return undefined;
   const stored = window.localStorage.getItem(key);
-  if (!stored) return [];
+  if (stored === null) return undefined;
 
   try {
     const parsed = JSON.parse(stored);
@@ -63,7 +64,9 @@ export const createFilterQueryString = (
 ): string => {
   const params = new URLSearchParams();
 
-  if (selectedLists.length && !arraysMatch(selectedLists, DEFAULT_SELECTED_LISTS)) {
+  if (selectedLists.length === 0) {
+    params.set(LIST_PARAM, ALL_LISTS_PARAM_VALUE);
+  } else if (!arraysMatch(selectedLists, DEFAULT_SELECTED_LISTS)) {
     params.set(LIST_PARAM, selectedLists.join(','));
   }
   if (selectedTags.length) {
@@ -97,12 +100,17 @@ const getInitialSelection = (): { lists: string[]; tags: string[] } => {
   }
 
   const params = new URLSearchParams(window.location.search);
+  const hasQueryLists = params.has(LIST_PARAM);
   const queryLists = parseCsv(params.get(LIST_PARAM));
   const queryTags = parseCsv(params.get(TAG_PARAM));
 
-  if (queryLists.length || queryTags.length) {
+  if (hasQueryLists || queryTags.length) {
     return {
-      lists: queryLists.length ? normalizeSelection(queryLists) : DEFAULT_SELECTED_LISTS,
+      lists: queryLists.includes(ALL_LISTS_PARAM_VALUE)
+        ? []
+        : hasQueryLists
+          ? normalizeSelection(queryLists)
+          : DEFAULT_SELECTED_LISTS,
       tags: normalizeSelection(queryTags),
     };
   }
@@ -111,8 +119,8 @@ const getInitialSelection = (): { lists: string[]; tags: string[] } => {
   const storedTags = readStoredArray(TAG_STORAGE_KEY);
 
   return {
-    lists: storedLists.length ? normalizeSelection(storedLists) : DEFAULT_SELECTED_LISTS,
-    tags: normalizeSelection(storedTags),
+    lists: storedLists === undefined ? DEFAULT_SELECTED_LISTS : normalizeSelection(storedLists),
+    tags: normalizeSelection(storedTags ?? []),
   };
 };
 

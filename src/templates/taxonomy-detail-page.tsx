@@ -8,10 +8,8 @@ import SiteLayout from '@/components/site-layout';
 import SourceBrowserShell from '@/components/source-browser-shell';
 import { Button } from '@/components/ui/button';
 import { SEO, type SEOI18n } from '@/components/seo';
-import type { SourceSummary, TaxonomyItem } from '@/lib/taxonomy';
-import { tagPath, listPath } from '@/lib/taxonomy';
+import type { TaxonomyItem } from '@/lib/taxonomy';
 import '../fragments/locale';
-import '../fragments/news-source';
 
 type TaxonomyKind = 'lists' | 'tags';
 
@@ -31,18 +29,30 @@ type TaxonomyList = {
   name: string;
 };
 
+type SidebarTag = {
+  name: string;
+  count: number;
+  path: string;
+};
+
+type SidebarList = {
+  id: string;
+  name: string;
+  count: number;
+  path: string;
+};
+
 type TaxonomyDetailPageData = {
   locales?: unknown;
-  sourcesData?: {
-    lists?: TaxonomyList[] | null;
-    sources?: TaxonomySource[] | null;
-  } | null;
 };
 
 type TaxonomyDetailPageContext = {
   kind: TaxonomyKind;
   item: TaxonomyItem;
-  sources: SourceSummary[];
+  sources: TaxonomySource[];
+  lists: TaxonomyList[];
+  sidebarTags: SidebarTag[];
+  sidebarLists: SidebarList[];
   i18n?: SEOI18n;
 };
 
@@ -68,7 +78,7 @@ const taxonomyConfig = {
 
 const TaxonomyDetailPage: React.FC<
   PageProps<TaxonomyDetailPageData, TaxonomyDetailPageContext>
-> = ({ data, pageContext }) => {
+> = ({ pageContext }) => {
   const { item } = pageContext;
   const config = taxonomyConfig[pageContext.kind];
   const Icon =
@@ -77,50 +87,13 @@ const TaxonomyDetailPage: React.FC<
     item.description ??
     (pageContext.kind === 'tags' ? TAG_CONFIG[item.name]?.description : undefined);
 
-  const allSources = data?.sourcesData?.sources ?? [];
-  const allLists = data?.sourcesData?.lists ?? [];
+  const sources = pageContext.sources ?? [];
+  const lists = pageContext.lists ?? [];
+  const sidebarTags = pageContext.sidebarTags ?? [];
+  const sidebarLists = pageContext.sidebarLists ?? [];
 
   const initialList = pageContext.kind === 'lists' ? item.id : undefined;
   const initialTag = pageContext.kind === 'tags' ? item.name : undefined;
-
-  const filteredSourceCount = React.useMemo(
-    () =>
-      allSources.filter((s) => {
-        if (initialList) return (s.lists ?? []).includes(initialList);
-        if (initialTag) return (s.tags ?? []).includes(initialTag);
-        return true;
-      }).length,
-    [allSources, initialList, initialTag]
-  );
-
-  const sidebarTags = React.useMemo(() => {
-    const countMap = new Map<string, number>();
-    for (const source of allSources) {
-      for (const tag of source.tags ?? []) {
-        countMap.set(tag, (countMap.get(tag) ?? 0) + 1);
-      }
-    }
-    return Array.from(countMap.entries())
-      .sort((a, b) => b[1] - a[1])
-      .map(([name, count]) => ({ name, count, path: tagPath(name) }));
-  }, [allSources]);
-
-  const sidebarLists = React.useMemo(() => {
-    const countMap = new Map<string, number>();
-    for (const source of allSources) {
-      for (const listId of source.lists ?? []) {
-        countMap.set(listId, (countMap.get(listId) ?? 0) + 1);
-      }
-    }
-    return allLists
-      .map((list) => ({
-        id: list.id,
-        name: list.name,
-        count: countMap.get(list.id) ?? 0,
-        path: listPath(list.id),
-      }))
-      .filter((l) => l.count > 0);
-  }, [allSources, allLists]);
 
   return (
     <SiteLayout fullWidthMain>
@@ -144,7 +117,7 @@ const TaxonomyDetailPage: React.FC<
               <Trans
                 i18nKey="taxonomy.source_count"
                 defaults="{{count}} sources"
-                values={{ count: filteredSourceCount }}
+                values={{ count: item.count }}
               />
             </p>
             {item.sourceUrl ? (
@@ -159,8 +132,8 @@ const TaxonomyDetailPage: React.FC<
         </div>
 
         <SourcesDataTable
-          sources={allSources}
-          lists={allLists}
+          sources={sources}
+          lists={lists}
           initialList={initialList}
           initialTag={initialTag}
         />
@@ -197,15 +170,6 @@ export const query = graphql`
         node {
           ...LocaleFields
         }
-      }
-    }
-    sourcesData: generatedJson {
-      lists {
-        id
-        name
-      }
-      sources {
-        ...NewsSourceCardFields
       }
     }
   }

@@ -316,6 +316,25 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  const taxonomyLists = shuffleData.lists.map((list) => ({
+    id: list.id,
+    name: list.name,
+  }));
+  const sidebarTags = [...tagItems].sort(
+    (a, b) => b.count - a.count || a.name.localeCompare(b.name)
+  );
+  const sidebarLists = shuffleData.lists
+    .map((list) => {
+      const item = listItems.find((listItem) => listItem.id === list.id);
+      return {
+        id: list.id,
+        name: list.name,
+        count: item?.count ?? 0,
+        path: listPath(list.id),
+      };
+    })
+    .filter((list) => list.count > 0);
+
   const sortedSourceNavigationItems = sortSourcesByName(shuffleData.sources).map((source) => ({
     id: source.id,
     name: source.name,
@@ -350,6 +369,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
       context: {
         kind: 'tags',
         item,
+        lists: taxonomyLists,
+        sidebarTags,
+        sidebarLists,
         sources: sortSourcesByName(
           shuffleData.sources
             .filter((source) => source.tags.includes(tag))
@@ -369,6 +391,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
       context: {
         kind: 'lists',
         item,
+        lists: taxonomyLists,
+        sidebarTags,
+        sidebarLists,
         sources: sortSourcesByName(
           shuffleData.sources
             .filter((source) => source.lists.includes(list.id))

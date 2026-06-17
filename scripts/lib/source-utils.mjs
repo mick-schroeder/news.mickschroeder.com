@@ -122,22 +122,30 @@ const createInternalKeys = (scraper) =>
   );
 
 const addCandidate = (candidates, url, ignoreRules, internalKeys, name) => {
-  if (shouldIgnoreUrl(url, ignoreRules, internalKeys)) return;
+  if (shouldIgnoreUrl(url, ignoreRules, internalKeys)) return false;
 
   const canonicalKey = canonicalKeyForUrl(url);
-  if (!canonicalKey || candidates.has(canonicalKey)) return;
+  if (!canonicalKey) return false;
+  if (candidates.has(canonicalKey)) return true;
 
   candidates.set(canonicalKey, {
     canonicalKey,
     name: name || displayNameForCanonicalKey(canonicalKey),
     url: sourceUrlForCanonicalKey(canonicalKey),
   });
+
+  return true;
 };
 
 const addPinnedSources = (candidates, scraper) => {
   for (const pinned of scraper.pinnedSources || []) {
     candidates.set(pinned.canonicalKey, pinned);
   }
+};
+
+const limitCandidates = (candidates, maxCandidates) => {
+  if (!Number.isInteger(maxCandidates) || maxCandidates < 0) return candidates;
+  return new Map(Array.from(candidates).slice(0, maxCandidates));
 };
 
 const extractOpmlSourceCandidates = (root, scraper, ignoreRules, internalKeys) => {
@@ -162,6 +170,42 @@ const extractAnchorSourceCandidates = (root, scraper, ignoreRules, internalKeys)
     const href = anchor.getAttribute('href');
     const url = toAbsoluteUrl(href, scraper.url);
     addCandidate(candidates, url, ignoreRules, internalKeys);
+  }
+
+  return candidates;
+};
+
+const isSourceHeadingLink = (anchor) => {
+  const href = anchor.getAttribute('href') || '';
+  return /^\/source\/[^/?#]+/.test(href);
+};
+
+const isSectionHeading = (node) => /^H[1-6]$/.test(node?.tagName || '');
+
+const extractSectionSourceCandidates = (root, scraper, ignoreRules, internalKeys) => {
+  const candidates = new Map();
+  const sourceAnchors = root
+    .querySelectorAll('h1 a[href], h2 a[href], h3 a[href], h4 a[href]')
+    .filter(isSourceHeadingLink);
+
+  for (const sourceAnchor of sourceAnchors) {
+    const name = textContent(sourceAnchor);
+    let sibling = sourceAnchor.parentNode?.nextElementSibling;
+
+    while (sibling && !isSectionHeading(sibling)) {
+      const storyAnchors = sibling.querySelectorAll?.('a[href]') || [];
+
+      for (const storyAnchor of storyAnchors) {
+        const href = storyAnchor.getAttribute('href');
+        const url = toAbsoluteUrl(href, scraper.url);
+        if (addCandidate(candidates, url, ignoreRules, internalKeys, name)) {
+          sibling = null;
+          break;
+        }
+      }
+
+      sibling = sibling?.nextElementSibling;
+    }
   }
 
   return candidates;
@@ -194,9 +238,12 @@ export const extractSourceCandidates = (content, scraper, ignoreRules) => {
     const root = parseHtml(content);
     candidates = scraper.sourceOpml
       ? extractOpmlSourceCandidates(root, scraper, ignoreRules, internalKeys)
-      : extractAnchorSourceCandidates(root, scraper, ignoreRules, internalKeys);
+      : scraper.sourceSectionLinks
+        ? extractSectionSourceCandidates(root, scraper, ignoreRules, internalKeys)
+        : extractAnchorSourceCandidates(root, scraper, ignoreRules, internalKeys);
   }
 
+  candidates = limitCandidates(candidates, scraper.maxSourceCandidates);
   addPinnedSources(candidates, scraper);
 
   return Array.from(candidates.values()).sort((a, b) =>

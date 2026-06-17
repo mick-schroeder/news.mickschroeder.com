@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { Trans } from 'gatsby-plugin-react-i18next';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
-import { Button } from './ui/button';
 import { sourcePath } from '@/lib/taxonomy';
-import { cn } from '@/lib/utils';
 
 type DirectorySource = {
   id?: string;
@@ -17,9 +14,15 @@ type SourceDirectoryProps = {
   items: DirectorySource[];
 };
 
-const SourceDirectory = ({ items }: SourceDirectoryProps): JSX.Element | null => {
-  const [expanded, setExpanded] = React.useState(false);
+const displayHost = (url: string): string => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+  }
+};
 
+const SourceDirectory = ({ items }: SourceDirectoryProps): JSX.Element | null => {
   const sorted = React.useMemo(
     () => [...items].sort((a, b) => a.name.localeCompare(b.name)),
     [items]
@@ -28,15 +31,22 @@ const SourceDirectory = ({ items }: SourceDirectoryProps): JSX.Element | null =>
   if (!sorted.length) return null;
 
   return (
-    <div>
-      <div className={cn('relative', !expanded && 'max-h-[26rem] overflow-hidden')}>
-        <ul className="columns-2 gap-x-6 sm:columns-3 lg:columns-4">
-          {sorted.map((source) => (
-            <li key={source.id || source.url} className="break-inside-avoid pb-2">
+    <ul
+      className="columns-1 gap-x-6 sm:columns-2 lg:columns-3"
+      style={{ columnRule: '1px solid var(--border)' }}
+    >
+      {sorted.map((source) => {
+        const host = displayHost(source.url);
+        const title = source.description || `${source.name} - ${host}`;
+
+        return (
+          <li key={source.id || source.url} className="break-inside-avoid px-1.5 py-1.5">
+            <div className="rounded-md px-2 py-1.5 transition-colors hover:bg-muted/60">
               {source.id ? (
                 <LocalizedLink
                   to={sourcePath(source.id)}
-                  className="block truncate py-0.5 text-sm leading-6 hover:underline"
+                  title={title}
+                  className="block break-words text-sm font-semibold leading-snug text-foreground hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   {source.name}
                 </LocalizedLink>
@@ -45,54 +55,26 @@ const SourceDirectory = ({ items }: SourceDirectoryProps): JSX.Element | null =>
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate py-0.5 text-sm leading-6 hover:underline"
+                  title={title}
+                  className="block break-words text-sm font-semibold leading-snug text-foreground hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   {source.name}
                 </a>
               )}
-              {source.description ? (
-                <p className="line-clamp-2 text-xs leading-5 text-muted-foreground">
-                  {source.description}
-                </p>
-              ) : null}
-            </li>
-          ))}
-        </ul>
-        {!expanded ? (
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent"
-            aria-hidden="true"
-          />
-        ) : null}
-      </div>
-
-      <div className="mt-3 text-center">
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="gap-1"
-          onClick={() => setExpanded((value) => !value)}
-          aria-expanded={expanded}
-        >
-          {expanded ? (
-            <>
-              <Trans i18nKey="home_page.show_fewer" defaults="Show fewer" />
-              <ChevronUp className="h-4 w-4" aria-hidden="true" />
-            </>
-          ) : (
-            <>
-              <Trans
-                i18nKey="home_page.show_all"
-                defaults="Show all {{count}} sources"
-                values={{ count: sorted.length }}
-              />
-              <ChevronDown className="h-4 w-4" aria-hidden="true" />
-            </>
-          )}
-        </Button>
-      </div>
-    </div>
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-0.5 inline-flex max-w-full items-center gap-1 text-xs leading-5 text-muted-foreground/60 hover:text-muted-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <span className="truncate">{host}</span>
+                <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
