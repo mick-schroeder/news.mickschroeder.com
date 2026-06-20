@@ -23,7 +23,7 @@
     "description": "The New York Times is a major U.S. newspaper covering national news, world affairs, culture, business, and investigations. It can make a zoning dispute feel like chapter three of a national identity crisis.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 7
     }
   },
@@ -50,7 +50,7 @@
     "description": "Business Insider covers business, tech, finance, strategy, and workplace culture for a broad digital audience. It treats capitalism like both a beat and a weather system, which is mostly accurate.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 6
     }
   },
@@ -77,35 +77,7 @@
     "description": "CNBC covers business news, markets, investing, technology, and economic policy. It watches the economy like a suspense film where every villain is a bond yield.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 6
-    }
-  },
-  {
-    "id": "politico",
-    "name": "Politico",
-    "url": "https://politico.com/",
-    "canonicalKey": "politico.com",
-    "aliases": [],
-    "tags": [
-      "American",
-      "News",
-      "Politics"
-    ],
-    "lists": [
-      "brutalist-politics",
-      "drudgereport",
-      "mediagazer",
-      "memeorandum",
-      "news",
-      "skimfeed-politics",
-      "techmeme"
-    ],
-    "score": 76,
-    "description": "Politico covers politics, policy, campaigns, and power in Washington, Europe, and beyond. It treats government like a professional sport where the box score is subpoenas and committee chairs.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 6
     }
   },
@@ -136,7 +108,7 @@
     "description": "Reddit is a community platform and news discovery site built around user-run forums, links, and discussion. It is the internet's public square, provided the square also contains several basements and a surprisingly useful help desk.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 6
     }
   },
@@ -163,7 +135,7 @@
     "description": "Axios is a U.S. news site built around concise reporting on politics, business, technology, and media. It turns big stories into tidy bullet points, because apparently even democracy now needs a snackable format.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -190,33 +162,7 @@
     "description": "BBC News covers UK and international news, politics, business, science, health, and culture. It delivers global headlines with the calm tone of someone describing a fire from a safe but concerned distance.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 5
-    }
-  },
-  {
-    "id": "foxnews",
-    "name": "Fox News",
-    "url": "https://foxnews.com/",
-    "canonicalKey": "foxnews.com",
-    "aliases": [],
-    "tags": [
-      "American",
-      "News"
-    ],
-    "lists": [
-      "brutalist-news",
-      "drudgereport",
-      "mediagazer",
-      "memeorandum",
-      "news",
-      "skimfeed-news"
-    ],
-    "score": 71,
-    "description": "Fox News is a U.S. news and opinion site covering politics, breaking news, business, entertainment, and culture. It delivers the daily news with the volume knob confidently within reach.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -242,7 +188,34 @@
     "description": "NBC News covers U.S. and world news, politics, health, investigations, and culture. It brings network-news reach to a web that has never met a breaking banner it could not deploy.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 5
+    }
+  },
+  {
+    "id": "politico",
+    "name": "Politico",
+    "url": "https://politico.com/",
+    "canonicalKey": "politico.com",
+    "aliases": [],
+    "tags": [
+      "American",
+      "News",
+      "Politics"
+    ],
+    "lists": [
+      "drudgereport",
+      "mediagazer",
+      "memeorandum",
+      "news",
+      "skimfeed-politics",
+      "techmeme"
+    ],
+    "score": 71,
+    "description": "Politico covers politics, policy, campaigns, and power in Washington, Europe, and beyond. It treats government like a professional sport where the box score is subpoenas and committee chairs.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -269,7 +242,7 @@
     "description": "Reuters is a global news agency covering politics, markets, business, technology, and world events with wire-service speed. It is the news world's dependable filing cabinet, only somehow faster and better dressed.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -295,7 +268,7 @@
     "description": "The Verge covers technology, gadgets, platforms, science, entertainment, and digital culture. It makes the future feel sleek, strange, and occasionally trapped inside a terms-of-service update.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -325,7 +298,7 @@
     "description": "The Wall Street Journal covers business, markets, politics, technology, and global news. It is the paper of record for people who believe earnings reports contain character development.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -350,7 +323,7 @@
     "description": "Ars Technica covers technology, science, policy, hardware, software, and internet culture with technical depth. It is for readers who want the footnotes before the hot take has finished loading.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -375,7 +348,7 @@
     "description": "CNN is a major U.S. news network and website covering breaking news, politics, world events, business, and culture. It is the place headlines go when they need a lower-third and a countdown clock.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -399,7 +372,32 @@
     "description": "The Financial Times covers global business, markets, economics, politics, and finance. It is pink, serious, and deeply committed to making currency movements sound like court intrigue.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 4
+    }
+  },
+  {
+    "id": "foxnews",
+    "name": "Fox News",
+    "url": "https://foxnews.com/",
+    "canonicalKey": "foxnews.com",
+    "aliases": [],
+    "tags": [
+      "American",
+      "News"
+    ],
+    "lists": [
+      "brutalist-news",
+      "drudgereport",
+      "memeorandum",
+      "news",
+      "skimfeed-news"
+    ],
+    "score": 64,
+    "description": "Fox News is a U.S. news and opinion site covering politics, breaking news, business, entertainment, and culture. It delivers the daily news with the volume knob confidently within reach.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -424,7 +422,7 @@
     "description": "The Atlantic publishes analysis and reporting on politics, culture, ideas, technology, and society. It can turn a trend into a civilizational question before your coffee cools.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -450,7 +448,7 @@
     "description": "The Guardian is a British news organization covering global news, politics, culture, environment, and opinion. It brings serious reporting with just enough eyebrow raised to remind you Britain invented the sigh.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -475,7 +473,7 @@
     "description": "The Hill covers U.S. politics, Congress, policy, campaigns, and government. It treats Washington like a very expensive group project where no one can find the shared document.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -500,7 +498,7 @@
     "description": "The Washington Post covers U.S. politics, national news, world affairs, investigations, and culture. It watches Washington closely, which is admirable given Washington's lifelong commitment to being exhausting.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -526,7 +524,7 @@
     "description": "ABC News covers U.S. and world news, politics, investigations, health, and entertainment. It brings network-news polish to the web, where serious headlines sit one tab away from celebrity chaos.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -549,7 +547,7 @@
     "description": "Bloomberg covers business, finance, markets, technology, politics, and economic policy worldwide. It treats money like weather: always moving, occasionally disastrous, and somehow everyone's fault.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -572,7 +570,7 @@
     "description": "CBS News covers U.S. and world news, politics, investigations, health, and culture. It is broadcast-news steadiness translated into pixels, with fewer solemn desk shots but the same sensible shoes.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -598,7 +596,31 @@
     "description": "HuffPost covers U.S. politics, culture, lifestyle, opinion, and breaking news. It mixes civic outrage and human-interest pieces with the confidence of a site that remembers every era of the internet.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 3
+    }
+  },
+  {
+    "id": "npr-org",
+    "name": "NPR",
+    "url": "https://npr.org/",
+    "canonicalKey": "npr.org",
+    "aliases": [],
+    "tags": [
+      "American",
+      "News"
+    ],
+    "lists": [
+      "brutalist-news",
+      "drudgereport",
+      "memeorandum",
+      "news"
+    ],
+    "score": 57,
+    "description": "NPR covers national news, world affairs, culture, science, politics, and audio journalism. It makes serious reporting feel like someone has dimmed the lights and handed democracy a tote bag.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -622,7 +644,7 @@
     "description": "ProPublica publishes nonprofit investigative journalism on government, business, health, justice, and accountability. It is the site that reads the fine print so the rest of us can be properly alarmed.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -646,7 +668,31 @@
     "description": "TechCrunch covers startups, venture capital, artificial intelligence, apps, and the technology industry. It is where funding rounds go to become origin stories before anyone asks about revenue.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 3
+    }
+  },
+  {
+    "id": "independent-co-uk",
+    "name": "The Independent",
+    "url": "https://independent.co.uk/",
+    "canonicalKey": "independent.co.uk",
+    "aliases": [],
+    "tags": [
+      "British",
+      "Tech"
+    ],
+    "lists": [
+      "brutalist-tech",
+      "drudgereport",
+      "mediagazer",
+      "news"
+    ],
+    "score": 57,
+    "description": "The Independent is a UK news site covering British and global news, politics, culture, lifestyle, and opinion. It does the British online-news thing of being earnest, fast, and never far from a constitutional headache.",
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -670,7 +716,7 @@
     "description": "The New Yorker publishes reporting, essays, criticism, humor, fiction, and cultural commentary. It can make almost any subject feel like it has a cardigan, a backstory, and unresolved family history.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -693,7 +739,7 @@
     "description": "Al Jazeera covers international news, politics, conflict, culture, and analysis with a strong global focus. It is especially useful when the world refuses to organize itself around a U.S. cable-news map.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -716,7 +762,7 @@
     "description": "AP News is the Associated Press's global news site, delivering reporting on politics, world affairs, business, sports, and culture. It is where many headlines go before they put on a tie and appear everywhere else.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -800,7 +846,7 @@
     "description": "Drudge Report is a headline aggregator focused on politics, media, and breaking news. It is the web's giant blinking bulletin board, dramatic enough to make a weather update look like a coup.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -821,7 +867,7 @@
     "description": "DW is Germany's international broadcaster, covering world news, Europe, politics, business, and culture. It brings a European lens to global events without pretending the continent has misplaced its opinions.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -843,7 +889,7 @@
     "description": "The Economist covers global politics, business, finance, science, and culture with analytical reporting and opinion. It is where the world's crises are explained crisply enough to make you worry in complete sentences.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -884,7 +930,7 @@
     "description": "Forbes covers business, leadership, money, entrepreneurship, technology, and lifestyle. It is where capitalism gets a profile photo, a valuation, and occasionally a very enthusiastic headline.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -935,7 +981,7 @@
     "description": "France 24 covers international news, politics, culture, business, and live global events from a French public-media perspective. It brings world headlines with a touch of Parisian composure amid the usual alarm bells.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -972,7 +1018,7 @@
     "description": "Harvard Business Review publishes management ideas, leadership research, workplace strategy, and business analysis. It turns office behavior into frameworks, because apparently even meetings need a theory of the case.",
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1038,7 +1084,7 @@
     "description": "Le Monde covers French and international news, politics, culture, economics, and analysis. It reports the world with the quiet confidence of a publication that knows accent marks can carry authority.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1059,7 +1105,7 @@
     "description": "The Los Angeles Times covers California, national news, entertainment, culture, business, and investigations. It understands that in Los Angeles, politics, weather, and show business are often the same story wearing sunglasses.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1081,7 +1127,7 @@
     "description": "MarketWatch covers markets, investing, personal finance, business news, and economic trends. It watches your portfolio so closely it may know your risk tolerance before you do.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1116,29 +1162,6 @@
     "description": "Nature publishes scientific research, science news, analysis, and commentary across the research world. It is where discoveries go when they are ready to sound both thrilling and peer reviewed."
   },
   {
-    "id": "npr-org",
-    "name": "NPR",
-    "url": "https://npr.org/",
-    "canonicalKey": "npr.org",
-    "aliases": [],
-    "tags": [
-      "American",
-      "News"
-    ],
-    "lists": [
-      "brutalist-news",
-      "memeorandum",
-      "news"
-    ],
-    "score": 50,
-    "description": "NPR covers national news, world affairs, culture, science, politics, and audio journalism. It makes serious reporting feel like someone has dimmed the lights and handed democracy a tote bag.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 2
-    }
-  },
-  {
     "id": "rte-ie-news-nuacht",
     "name": "Nuacht RTÉ",
     "url": "https://rte.ie/news/nuacht/",
@@ -1165,15 +1188,14 @@
     ],
     "lists": [
       "brutalist-news",
-      "drudgereport",
       "news"
     ],
     "score": 50,
     "description": "PBS NewsHour covers U.S. and world news, politics, policy, science, and culture with public-media depth. It is calm enough to make breaking news feel like it has agreed to sit down and explain itself.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 2
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
     }
   },
   {
@@ -1246,7 +1268,7 @@
     "description": "Sky News covers UK and world news, politics, business, climate, and live breaking stories. It brings rolling-news urgency with the quiet implication that something important is happening at all times.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1268,7 +1290,7 @@
     "description": "Slashdot is a technology news and discussion site focused on open source, computing, science, and geek culture. It is old-school internet in the best way: opinionated, technical, and allergic to glossy nonsense.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1329,7 +1351,7 @@
     "description": "Techmeme aggregates technology news, analysis, and industry conversation from across the web. It is Silicon Valley's town square, only the town is mostly links and the square refreshes constantly.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1350,7 +1372,7 @@
     "description": "TechRadar covers consumer technology, gadgets, reviews, software, deals, and buying advice. It is for anyone who wants to buy a device without first becoming a full-time specification detective.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1372,7 +1394,7 @@
     "description": "The Daily Beast covers politics, media, entertainment, and breaking news with a tabloid-smart magazine sensibility. It knows that power often behaves badly, and it takes notes with excellent posture.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1394,28 +1416,6 @@
       "firstSeen": "2026-06-12",
       "lastSeen": "2026-06-13",
       "foundInCount": 0
-    }
-  },
-  {
-    "id": "independent-co-uk",
-    "name": "The Independent",
-    "url": "https://independent.co.uk/",
-    "canonicalKey": "independent.co.uk",
-    "aliases": [],
-    "tags": [
-      "British"
-    ],
-    "lists": [
-      "drudgereport",
-      "mediagazer",
-      "news"
-    ],
-    "score": 50,
-    "description": "The Independent is a UK news site covering British and global news, politics, culture, lifestyle, and opinion. It does the British online-news thing of being earnest, fast, and never far from a constitutional headache.",
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 2
     }
   },
   {
@@ -1477,7 +1477,7 @@
     "description": "The Japan Times covers Japan news, politics, business, culture, and international affairs in English. It is a useful bridge for readers who want more than a postcard version of Japan.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1529,7 +1529,7 @@
     "description": "The Register covers enterprise technology, software, security, hardware, and IT industry news. It reports tech with the skeptical grin of someone who has read the release notes and found the catch.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1550,7 +1550,7 @@
     "description": "The Telegraph covers UK and world news, politics, business, sport, opinion, and culture. It delivers British establishment news with the posture of a publication that owns several umbrellas.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1585,7 +1585,6 @@
       "News"
     ],
     "lists": [
-      "clone-fyi",
       "news"
     ],
     "score": 50,
@@ -1628,7 +1627,7 @@
     "description": "USA Today covers national news, sports, entertainment, money, travel, and local stories across the United States. It is broad, bright, and designed for the reader who wants the whole buffet labeled clearly.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1651,7 +1650,7 @@
     "description": "Vanity Fair covers politics, Hollywood, culture, style, media, and power. It treats celebrity and government as neighboring industries, which is rude only because it is often true.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1674,7 +1673,7 @@
     "description": "Vox explains politics, policy, culture, science, and technology through context-driven reporting. It is the internet saying, hold on, let us draw a chart before everyone yells.",
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1696,7 +1695,7 @@
     "description": "Wikipedia's current events portal summarizes ongoing news and links to collaboratively edited background articles. It is the world's group project, somehow both alarming and indispensable.",
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -1721,7 +1720,7 @@
     "description": "Yahoo News aggregates and publishes news across politics, business, entertainment, sports, and world events. It is the internet's old mall food court, somehow still serving a lot of what people actually click.",
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -1750,7 +1749,7 @@
     "score": 61,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -1778,7 +1777,7 @@
     "score": 61,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -1803,7 +1802,7 @@
     "score": 61,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 5
     }
   },
@@ -1828,7 +1827,7 @@
     "score": 54,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -1851,7 +1850,7 @@
     "score": 54,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -1875,7 +1874,7 @@
     "score": 54,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 4
     }
   },
@@ -1897,7 +1896,7 @@
     "score": 47,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -1920,7 +1919,7 @@
     "score": 47,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -1942,7 +1941,30 @@
     "score": 47,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 3
+    }
+  },
+  {
+    "id": "hollywoodreporter",
+    "name": "The Hollywood Reporter",
+    "description": "The Hollywood Reporter covers film, television, entertainment business, awards, and media. It understands that Hollywood gossip becomes business news the moment someone hires a lawyer.",
+    "url": "https://hollywoodreporter.com/",
+    "canonicalKey": "hollywoodreporter.com",
+    "aliases": [],
+    "tags": [
+      "American",
+      "News"
+    ],
+    "lists": [
+      "clone-fyi",
+      "drudgereport",
+      "mediagazer"
+    ],
+    "score": 47,
+    "metrics": {
+      "firstSeen": "2026-06-12",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -1965,7 +1987,7 @@
     "score": 47,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -1988,7 +2010,7 @@
     "score": 47,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -2010,7 +2032,7 @@
     "score": 47,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 3
     }
   },
@@ -2030,7 +2052,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2052,7 +2074,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2073,7 +2095,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2095,7 +2117,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2117,9 +2139,28 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
+  },
+  {
+    "id": "dailymail-com",
+    "name": "dailymail.com",
+    "description": "",
+    "url": "https://dailymail.com/",
+    "canonicalKey": "dailymail.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "drudgereport",
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 2
+    },
+    "score": 37
   },
   {
     "id": "deadline",
@@ -2139,7 +2180,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2160,7 +2201,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2182,7 +2223,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2203,7 +2244,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2225,7 +2266,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2248,7 +2289,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2269,7 +2310,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2291,7 +2332,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2313,7 +2354,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2334,7 +2375,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2355,7 +2396,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2377,7 +2418,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2399,30 +2440,9 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
-  },
-  {
-    "id": "pagesix",
-    "name": "Page Six",
-    "description": "",
-    "url": "https://pagesix.com/",
-    "canonicalKey": "pagesix.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport",
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 2
-    },
-    "score": 37
   },
   {
     "id": "phys-org",
@@ -2440,7 +2460,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2462,7 +2482,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2484,30 +2504,9 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
-  },
-  {
-    "id": "sciencedaily-com",
-    "name": "sciencedaily.com",
-    "description": "",
-    "url": "https://sciencedaily.com/",
-    "canonicalKey": "sciencedaily.com",
-    "aliases": [],
-    "tags": [
-      "Science"
-    ],
-    "lists": [
-      "brutalist-science",
-      "skimfeed-science"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 2
-    },
-    "score": 37
   },
   {
     "id": "status-news",
@@ -2523,7 +2522,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2545,7 +2544,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2567,31 +2566,10 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
-  },
-  {
-    "id": "hollywoodreporter",
-    "name": "The Hollywood Reporter",
-    "description": "The Hollywood Reporter covers film, television, entertainment business, awards, and media. It understands that Hollywood gossip becomes business news the moment someone hires a lawyer.",
-    "url": "https://hollywoodreporter.com/",
-    "canonicalKey": "hollywoodreporter.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "drudgereport",
-      "mediagazer"
-    ],
-    "score": 37,
-    "metrics": {
-      "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 2
-    }
   },
   {
     "id": "theintercept",
@@ -2611,7 +2589,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2633,7 +2611,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2654,7 +2632,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     },
     "score": 37
@@ -2676,7 +2654,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2698,7 +2676,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2719,7 +2697,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2740,7 +2718,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2761,7 +2739,7 @@
     "score": 37,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 2
     }
   },
@@ -2781,7 +2759,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2801,7 +2779,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2821,9 +2799,47 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "amediaoperator",
+    "name": "amediaoperator.com",
+    "description": "",
+    "url": "https://amediaoperator.com/",
+    "canonicalKey": "amediaoperator.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "androidpolice",
+    "name": "Android Police",
+    "description": "",
+    "url": "https://androidpolice.com/",
+    "canonicalKey": "androidpolice.com",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "arabnews",
@@ -2841,7 +2857,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2861,9 +2877,30 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "billboard",
+    "name": "Billboard",
+    "description": "",
+    "url": "https://billboard.com/",
+    "canonicalKey": "billboard.com",
+    "aliases": [],
+    "tags": [
+      "American",
+      "Culture"
+    ],
+    "lists": [
+      "brutalist-culture"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "bostonherald",
@@ -2881,7 +2918,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2901,7 +2938,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2921,7 +2958,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2941,7 +2978,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2961,7 +2998,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -2981,7 +3018,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3001,9 +3038,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "cjr-org",
+    "name": "Columbia Journalism Review",
+    "description": "",
+    "url": "https://cjr.org/",
+    "canonicalKey": "cjr.org",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "crazydaysandnights-net",
@@ -3021,7 +3078,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3042,9 +3099,27 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "current-org",
+    "name": "Current",
+    "description": "",
+    "url": "https://current.org/",
+    "canonicalKey": "current.org",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "dailycaller",
@@ -3062,7 +3137,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3082,7 +3157,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3102,9 +3177,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "democracydocket",
+    "name": "Democracy Docket",
+    "description": "",
+    "url": "https://democracydocket.com/",
+    "canonicalKey": "democracydocket.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "zeit-de",
@@ -3122,9 +3217,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "digiday",
+    "name": "Digiday",
+    "description": "",
+    "url": "https://digiday.com/",
+    "canonicalKey": "digiday.com",
+    "aliases": [],
+    "tags": [
+      "Business"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "elmundo-es",
@@ -3142,7 +3257,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3162,7 +3277,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3182,7 +3297,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3202,7 +3317,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3222,7 +3337,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3242,7 +3357,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3262,7 +3377,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3282,7 +3397,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3302,7 +3417,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3323,7 +3438,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3343,7 +3458,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3363,7 +3478,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3383,9 +3498,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "ifixit",
+    "name": "iFixit",
+    "description": "",
+    "url": "https://ifixit.com/",
+    "canonicalKey": "ifixit.com",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "ign",
@@ -3403,9 +3538,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "indiewire",
+    "name": "IndieWire",
+    "description": "",
+    "url": "https://indiewire.com/",
+    "canonicalKey": "indiewire.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "jpost",
@@ -3423,7 +3578,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3444,9 +3599,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "krebsonsecurity",
+    "name": "Krebs on Security",
+    "description": "",
+    "url": "https://krebsonsecurity.com/",
+    "canonicalKey": "krebsonsecurity.com",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "english-kyodonews-net",
@@ -3464,7 +3639,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3484,7 +3659,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3504,9 +3679,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "lawfaremedia-org",
+    "name": "Lawfare",
+    "description": "",
+    "url": "https://lawfaremedia.org/",
+    "canonicalKey": "lawfaremedia.org",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "lefigaro-fr",
@@ -3524,7 +3719,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3544,7 +3739,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3564,7 +3759,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3584,9 +3779,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "mediamatters-org",
+    "name": "Media Matters",
+    "description": "",
+    "url": "https://mediamatters.org/",
+    "canonicalKey": "mediamatters.org",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "metro-co-uk",
@@ -3604,9 +3819,47 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "ms-now",
+    "name": "ms.now",
+    "description": "",
+    "url": "https://ms.now/",
+    "canonicalKey": "ms.now",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "nbclosangeles",
+    "name": "NBC Los Angeles",
+    "description": "",
+    "url": "https://nbclosangeles.com/",
+    "canonicalKey": "nbclosangeles.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "newzit",
@@ -3624,9 +3877,49 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "niemanlab-org",
+    "name": "Nieman Lab",
+    "description": "",
+    "url": "https://niemanlab.org/",
+    "canonicalKey": "niemanlab.org",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "notus-org",
+    "name": "Notus",
+    "description": "",
+    "url": "https://notus.org/",
+    "canonicalKey": "notus.org",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "observer",
@@ -3645,7 +3938,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3666,9 +3959,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "pagesix",
+    "name": "Page Six",
+    "description": "",
+    "url": "https://pagesix.com/",
+    "canonicalKey": "pagesix.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "people",
@@ -3686,7 +3999,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3706,9 +4019,49 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "platformer-news",
+    "name": "Platformer",
+    "description": "",
+    "url": "https://platformer.news/",
+    "canonicalKey": "platformer.news",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "pressgazette-co-uk",
+    "name": "Press Gazette",
+    "description": "",
+    "url": "https://pressgazette.co.uk/",
+    "canonicalKey": "pressgazette.co.uk",
+    "aliases": [],
+    "tags": [
+      "British"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "ptinews",
@@ -3726,9 +4079,47 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "publicnotice-co",
+    "name": "publicnotice.co",
+    "description": "",
+    "url": "https://publicnotice.co/",
+    "canonicalKey": "publicnotice.co",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "punchbowl-news",
+    "name": "Punchbowl News",
+    "description": "",
+    "url": "https://punchbowl.news/",
+    "canonicalKey": "punchbowl.news",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "rawstory",
@@ -3746,7 +4137,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3766,9 +4157,29 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "reclaimthenet-org",
+    "name": "Reclaim The Net",
+    "description": "",
+    "url": "https://reclaimthenet.org/",
+    "canonicalKey": "reclaimthenet.org",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "sfgate",
@@ -3787,7 +4198,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3807,9 +4218,69 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "simonwillison-net",
+    "name": "Simon Willison's Weblog",
+    "description": "",
+    "url": "https://simonwillison.net/",
+    "canonicalKey": "simonwillison.net",
+    "aliases": [],
+    "tags": [
+      "Tech"
+    ],
+    "lists": [
+      "techmeme"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "sportsbusinessjournal",
+    "name": "Sports Business Journal",
+    "description": "",
+    "url": "https://sportsbusinessjournal.com/",
+    "canonicalKey": "sportsbusinessjournal.com",
+    "aliases": [],
+    "tags": [
+      "Business"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "statnews",
+    "name": "STAT",
+    "description": "",
+    "url": "https://statnews.com/",
+    "canonicalKey": "statnews.com",
+    "aliases": [],
+    "tags": [
+      "Science"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "stateline-org",
@@ -3827,7 +4298,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3847,7 +4318,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3868,9 +4339,70 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "bostonglobe",
+    "name": "The Boston Globe",
+    "description": "",
+    "url": "https://bostonglobe.com/",
+    "canonicalKey": "bostonglobe.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "brutalist-report",
+    "name": "The Brutalist Report",
+    "description": "",
+    "url": "https://brutalist.report/",
+    "canonicalKey": "brutalist.report",
+    "aliases": [],
+    "tags": [
+      "Aggregator",
+      "News"
+    ],
+    "lists": [
+      "brutalist-news"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
+  },
+  {
+    "id": "thebulwark",
+    "name": "The Bulwark",
+    "description": "",
+    "url": "https://thebulwark.com/",
+    "canonicalKey": "thebulwark.com",
+    "aliases": [],
+    "tags": [
+      "American"
+    ],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "the-decoder",
@@ -3888,7 +4420,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3908,7 +4440,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3928,7 +4460,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3949,7 +4481,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3969,7 +4501,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -3989,7 +4521,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4009,7 +4541,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4029,7 +4561,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4049,7 +4581,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4069,7 +4601,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4089,7 +4621,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4109,7 +4641,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4129,7 +4661,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4149,9 +4681,27 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
+  },
+  {
+    "id": "wbng-org",
+    "name": "Washington-Baltimore News Guild",
+    "description": "",
+    "url": "https://wbng.org/",
+    "canonicalKey": "wbng.org",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-13",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 24
   },
   {
     "id": "welt-de",
@@ -4169,7 +4719,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4189,7 +4739,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4209,7 +4759,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4230,7 +4780,7 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
   },
@@ -4250,27 +4800,9 @@
     "score": 24,
     "metrics": {
       "firstSeen": "2026-06-12",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     }
-  },
-  {
-    "id": "2news-com",
-    "name": "2news.com",
-    "description": "",
-    "url": "https://2news.com/",
-    "canonicalKey": "2news.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
   },
   {
     "id": "advancedsciencenews-com",
@@ -4287,7 +4819,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4307,45 +4839,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "amediaoperator",
-    "name": "amediaoperator.com",
-    "description": "",
-    "url": "https://amediaoperator.com/",
-    "canonicalKey": "amediaoperator.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "androidpolice",
-    "name": "Android Police",
-    "description": "",
-    "url": "https://androidpolice.com/",
-    "canonicalKey": "androidpolice.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "techmeme"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4365,25 +4859,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "aol-com",
-    "name": "aol.com",
-    "description": "",
-    "url": "https://aol.com/",
-    "canonicalKey": "aol.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4403,7 +4879,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4423,7 +4899,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4443,28 +4919,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "billboard",
-    "name": "Billboard",
-    "description": "",
-    "url": "https://billboard.com/",
-    "canonicalKey": "billboard.com",
-    "aliases": [],
-    "tags": [
-      "American",
-      "Culture"
-    ],
-    "lists": [
-      "brutalist-culture"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4484,7 +4939,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4504,7 +4959,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4524,7 +4979,25 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "suntimes-com",
+    "name": "Chicago Sun Times",
+    "description": "",
+    "url": "https://suntimes.com/",
+    "canonicalKey": "suntimes.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "memeorandum"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4544,7 +5017,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4565,7 +5038,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4585,7 +5058,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4605,27 +5078,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "cjr-org",
-    "name": "Columbia Journalism Review",
-    "description": "",
-    "url": "https://cjr.org/",
-    "canonicalKey": "cjr.org",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4645,7 +5098,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4665,7 +5118,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4685,25 +5138,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "current-org",
-    "name": "Current",
-    "description": "",
-    "url": "https://current.org/",
-    "canonicalKey": "current.org",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4723,67 +5158,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "cotypist-app",
-    "name": "Daring Fireball",
-    "description": "",
-    "url": "https://cotypist.app/",
-    "canonicalKey": "cotypist.app",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "brutalist-tech"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "democracydocket",
-    "name": "Democracy Docket",
-    "description": "",
-    "url": "https://democracydocket.com/",
-    "canonicalKey": "democracydocket.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "digiday",
-    "name": "Digiday",
-    "description": "",
-    "url": "https://digiday.com/",
-    "canonicalKey": "digiday.com",
-    "aliases": [],
-    "tags": [
-      "Business"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4803,7 +5178,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4823,7 +5198,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4843,7 +5218,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4863,7 +5238,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4881,7 +5256,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-17",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4893,13 +5268,15 @@
     "url": "https://espn.com/",
     "canonicalKey": "espn.com",
     "aliases": [],
-    "tags": [],
+    "tags": [
+      "News"
+    ],
     "lists": [
-      "drudgereport"
+      "clone-fyi"
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4919,7 +5296,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4939,7 +5316,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4959,7 +5336,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-18",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4979,7 +5356,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -4999,7 +5376,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5019,7 +5396,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5039,7 +5416,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5059,7 +5436,45 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "futurism-com",
+    "name": "futurism.com",
+    "description": "",
+    "url": "https://futurism.com/",
+    "canonicalKey": "futurism.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "drudgereport"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "gazetteer-co",
+    "name": "gazetteer.co",
+    "description": "",
+    "url": "https://gazetteer.co/",
+    "canonicalKey": "gazetteer.co",
+    "aliases": [],
+    "tags": [
+      "News"
+    ],
+    "lists": [
+      "clone-fyi"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5079,7 +5494,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5099,17 +5514,17 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
   },
   {
-    "id": "theiet-org",
+    "id": "theprint-in",
     "name": "Hacker News",
     "description": "",
-    "url": "https://theiet.org/",
-    "canonicalKey": "theiet.org",
+    "url": "https://theprint.in/",
+    "canonicalKey": "theprint.in",
     "aliases": [],
     "tags": [
       "Tech"
@@ -5118,8 +5533,8 @@
       "brutalist-tech"
     ],
     "metrics": {
-      "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5139,7 +5554,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5159,7 +5574,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5179,7 +5594,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-18",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5199,7 +5614,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5219,7 +5634,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5239,65 +5654,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "ifixit",
-    "name": "iFixit",
-    "description": "",
-    "url": "https://ifixit.com/",
-    "canonicalKey": "ifixit.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "techmeme"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "indianexpress-com",
-    "name": "indianexpress.com",
-    "description": "",
-    "url": "https://indianexpress.com/",
-    "canonicalKey": "indianexpress.com",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "drudgereport"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "indiewire",
-    "name": "IndieWire",
-    "description": "",
-    "url": "https://indiewire.com/",
-    "canonicalKey": "indiewire.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5317,7 +5674,25 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "irishstar-com",
+    "name": "irishstar.com",
+    "description": "",
+    "url": "https://irishstar.com/",
+    "canonicalKey": "irishstar.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "drudgereport"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5337,47 +5712,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "krebsonsecurity",
-    "name": "Krebs on Security",
-    "description": "",
-    "url": "https://krebsonsecurity.com/",
-    "canonicalKey": "krebsonsecurity.com",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "techmeme"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "lawfaremedia-org",
-    "name": "Lawfare",
-    "description": "",
-    "url": "https://lawfaremedia.org/",
-    "canonicalKey": "lawfaremedia.org",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5397,7 +5732,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5417,7 +5752,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5437,7 +5772,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5457,27 +5792,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "mediamatters-org",
-    "name": "Media Matters",
-    "description": "",
-    "url": "https://mediamatters.org/",
-    "canonicalKey": "mediamatters.org",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5497,65 +5812,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "midcoastvillager-com",
-    "name": "midcoastvillager.com",
-    "description": "",
-    "url": "https://midcoastvillager.com/",
-    "canonicalKey": "midcoastvillager.com",
-    "aliases": [],
-    "tags": [
-      "News"
-    ],
-    "lists": [
-      "clone-fyi"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-16",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "ms-now",
-    "name": "ms.now",
-    "description": "",
-    "url": "https://ms.now/",
-    "canonicalKey": "ms.now",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "nbclosangeles",
-    "name": "NBC Los Angeles",
-    "description": "",
-    "url": "https://nbclosangeles.com/",
-    "canonicalKey": "nbclosangeles.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "techmeme"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5575,7 +5832,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5595,27 +5852,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "niemanlab-org",
-    "name": "Nieman Lab",
-    "description": "",
-    "url": "https://niemanlab.org/",
-    "canonicalKey": "niemanlab.org",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5635,47 +5872,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-18",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "nme-com",
-    "name": "nme.com",
-    "description": "",
-    "url": "https://nme.com/",
-    "canonicalKey": "nme.com",
-    "aliases": [],
-    "tags": [
-      "News"
-    ],
-    "lists": [
-      "clone-fyi"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-16",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "notus-org",
-    "name": "Notus",
-    "description": "",
-    "url": "https://notus.org/",
-    "canonicalKey": "notus.org",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5695,7 +5892,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-17",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5715,7 +5912,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5735,7 +5932,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5755,27 +5952,27 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
   },
   {
-    "id": "platformer-news",
-    "name": "Platformer",
+    "id": "politico-eu",
+    "name": "Politico",
     "description": "",
-    "url": "https://platformer.news/",
-    "canonicalKey": "platformer.news",
+    "url": "https://politico.eu/",
+    "canonicalKey": "politico.eu",
     "aliases": [],
     "tags": [
-      "Tech"
+      "Politics"
     ],
     "lists": [
-      "techmeme"
+      "brutalist-politics"
     ],
     "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5795,47 +5992,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "popular-info",
-    "name": "Popular Information",
-    "description": "",
-    "url": "https://popular.info/",
-    "canonicalKey": "popular.info",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "pressgazette-co-uk",
-    "name": "Press Gazette",
-    "description": "",
-    "url": "https://pressgazette.co.uk/",
-    "canonicalKey": "pressgazette.co.uk",
-    "aliases": [],
-    "tags": [
-      "British"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5855,66 +6012,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "publicnotice-co",
-    "name": "publicnotice.co",
-    "description": "",
-    "url": "https://publicnotice.co/",
-    "canonicalKey": "publicnotice.co",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "punchbowl-news",
-    "name": "Punchbowl News",
-    "description": "",
-    "url": "https://punchbowl.news/",
-    "canonicalKey": "punchbowl.news",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "quantamagazine-org",
-    "name": "quantamagazine.org",
-    "description": "",
-    "url": "https://quantamagazine.org/",
-    "canonicalKey": "quantamagazine.org",
-    "aliases": [],
-    "tags": [
-      "News",
-      "Science"
-    ],
-    "lists": [
-      "brutalist-science"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5934,7 +6032,25 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "rferl-org",
+    "name": "Radio Free Europe/Radio Liberty",
+    "description": "",
+    "url": "https://rferl.org/",
+    "canonicalKey": "rferl.org",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "mediagazer"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5954,7 +6070,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -5974,27 +6090,25 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
   },
   {
-    "id": "reclaimthenet-org",
-    "name": "Reclaim The Net",
+    "id": "reason-com",
+    "name": "reason.com",
     "description": "",
-    "url": "https://reclaimthenet.org/",
-    "canonicalKey": "reclaimthenet.org",
+    "url": "https://reason.com/",
+    "canonicalKey": "reason.com",
     "aliases": [],
-    "tags": [
-      "Tech"
-    ],
+    "tags": [],
     "lists": [
-      "techmeme"
+      "drudgereport"
     ],
     "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6012,7 +6126,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6032,7 +6146,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6052,7 +6166,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6072,7 +6186,27 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "sciencedaily-com",
+    "name": "sciencedaily.com",
+    "description": "",
+    "url": "https://sciencedaily.com/",
+    "canonicalKey": "sciencedaily.com",
+    "aliases": [],
+    "tags": [
+      "Science"
+    ],
+    "lists": [
+      "skimfeed-science"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-15",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6092,7 +6226,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6112,7 +6246,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6132,7 +6266,27 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-16",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "sfchronicle-com",
+    "name": "sfchronicle.com",
+    "description": "",
+    "url": "https://sfchronicle.com/",
+    "canonicalKey": "sfchronicle.com",
+    "aliases": [],
+    "tags": [
+      "News"
+    ],
+    "lists": [
+      "clone-fyi"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6152,27 +6306,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "simonwillison-net",
-    "name": "Simon Willison's Weblog",
-    "description": "",
-    "url": "https://simonwillison.net/",
-    "canonicalKey": "simonwillison.net",
-    "aliases": [],
-    "tags": [
-      "Tech"
-    ],
-    "lists": [
-      "techmeme"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6192,7 +6326,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-18",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6212,7 +6346,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6232,7 +6366,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6252,27 +6386,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-17",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "sportsbusinessjournal",
-    "name": "Sports Business Journal",
-    "description": "",
-    "url": "https://sportsbusinessjournal.com/",
-    "canonicalKey": "sportsbusinessjournal.com",
-    "aliases": [],
-    "tags": [
-      "Business"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6292,27 +6406,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "statnews",
-    "name": "STAT",
-    "description": "",
-    "url": "https://statnews.com/",
-    "canonicalKey": "statnews.com",
-    "aliases": [],
-    "tags": [
-      "Science"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6332,7 +6426,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6350,7 +6444,25 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "studyfinds-com",
+    "name": "studyfinds.com",
+    "description": "",
+    "url": "https://studyfinds.com/",
+    "canonicalKey": "studyfinds.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "drudgereport"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6370,7 +6482,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6390,7 +6502,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6410,68 +6522,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "bostonglobe",
-    "name": "The Boston Globe",
-    "description": "",
-    "url": "https://bostonglobe.com/",
-    "canonicalKey": "bostonglobe.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "brutalist-report",
-    "name": "The Brutalist Report",
-    "description": "",
-    "url": "https://brutalist.report/",
-    "canonicalKey": "brutalist.report",
-    "aliases": [],
-    "tags": [
-      "Aggregator",
-      "News"
-    ],
-    "lists": [
-      "brutalist-news"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "thebulwark",
-    "name": "The Bulwark",
-    "description": "",
-    "url": "https://thebulwark.com/",
-    "canonicalKey": "thebulwark.com",
-    "aliases": [],
-    "tags": [
-      "American"
-    ],
-    "lists": [
-      "memeorandum"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6489,7 +6540,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-14",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6507,25 +6558,25 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
   },
   {
-    "id": "freebeacon-com",
-    "name": "The Washington Free Beacon",
+    "id": "the-express-com",
+    "name": "the-express.com",
     "description": "",
-    "url": "https://freebeacon.com/",
-    "canonicalKey": "freebeacon.com",
+    "url": "https://the-express.com/",
+    "canonicalKey": "the-express.com",
     "aliases": [],
     "tags": [],
     "lists": [
-      "memeorandum"
+      "drudgereport"
     ],
     "metrics": {
-      "firstSeen": "2026-06-18",
-      "lastSeen": "2026-06-19",
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6545,7 +6596,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-18",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6563,7 +6614,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6583,7 +6634,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6603,7 +6654,45 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "thedriftmag-com",
+    "name": "thedriftmag.com",
+    "description": "",
+    "url": "https://thedriftmag.com/",
+    "canonicalKey": "thedriftmag.com",
+    "aliases": [],
+    "tags": [
+      "News"
+    ],
+    "lists": [
+      "clone-fyi"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
+      "foundInCount": 1
+    },
+    "score": 23
+  },
+  {
+    "id": "themirror-com",
+    "name": "themirror.com",
+    "description": "",
+    "url": "https://themirror.com/",
+    "canonicalKey": "themirror.com",
+    "aliases": [],
+    "tags": [],
+    "lists": [
+      "drudgereport"
+    ],
+    "metrics": {
+      "firstSeen": "2026-06-20",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6623,7 +6712,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6643,7 +6732,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6663,7 +6752,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6683,25 +6772,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
-      "foundInCount": 1
-    },
-    "score": 23
-  },
-  {
-    "id": "wbng-org",
-    "name": "Washington-Baltimore News Guild",
-    "description": "",
-    "url": "https://wbng.org/",
-    "canonicalKey": "wbng.org",
-    "aliases": [],
-    "tags": [],
-    "lists": [
-      "mediagazer"
-    ],
-    "metrics": {
-      "firstSeen": "2026-06-13",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6721,7 +6792,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6741,7 +6812,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-18",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6761,7 +6832,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6779,7 +6850,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-19",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6799,7 +6870,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
@@ -6819,7 +6890,7 @@
     ],
     "metrics": {
       "firstSeen": "2026-06-15",
-      "lastSeen": "2026-06-19",
+      "lastSeen": "2026-06-20",
       "foundInCount": 1
     },
     "score": 23
