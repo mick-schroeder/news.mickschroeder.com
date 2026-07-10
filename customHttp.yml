@@ -2,11 +2,15 @@ customHeaders:
   - pattern: '**/*.html'
     headers:
       - key: Cache-Control
-        value: 'public, max-age=300, must-revalidate'
-  - pattern: '**/page-data/*.json'
+        # Gatsby HTML embeds references to the current build's bundles, so it
+        # must be revalidated with the page data on every request.
+        value: 'public, max-age=0, must-revalidate'
+  - pattern: '**/page-data/**/*.json'
     headers:
       - key: Cache-Control
-        value: 'public, max-age=300, stale-while-revalidate=86400'
+        # Gatsby's page data contains the current build's webpack hash. It
+        # cannot be served stale with immutable JS from a newer deployment.
+        value: 'public, max-age=0, must-revalidate'
   - pattern: '**/*.{js,css}'
     headers:
       - key: Cache-Control

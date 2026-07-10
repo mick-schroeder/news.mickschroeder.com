@@ -64,6 +64,12 @@ const IndexPage: React.FC<PageProps<any>> = ({ data }) => {
                 <Newspaper className="w-6 h-6 text-primary" aria-hidden="true" />
                 {site.copyOverrides?.sourcesLabel || <Trans i18nKey="sources" defaults="Sources" />}
               </h2>
+              <p className="text-sm text-muted-foreground">
+                <Trans
+                  i18nKey="home_page.sources_hint"
+                  defaults="Browse every source by subject and region."
+                />
+              </p>
             </div>
             <p className="text-xs font-medium uppercase text-muted-foreground">
               <Trans
