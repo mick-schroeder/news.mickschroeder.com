@@ -3,8 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Remove generated files restored from the old Gatsby build cache.
-        - git clean -fdx -- .cache public
+        # Remove generated files and dependencies restored from the Gatsby cache.
+        - git clean -fdx -- .cache public node_modules
         - git restore --source=HEAD --worktree -- public
         - nvm install 22
         - nvm use 22
@@ -18,6 +18,3 @@ frontend:
     baseDirectory: dist
     files:
       - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
