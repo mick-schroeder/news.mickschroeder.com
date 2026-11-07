@@ -3,13 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Remove generated files and dependencies restored from the Gatsby cache.
-        - git clean -fdx -- .cache public node_modules
-        - git restore --source=HEAD --worktree -- public
         - nvm install 22
         - nvm use 22
-        - npm install -g pnpm@12.18.0
-        - pnpm install --frozen-lockfile
+        - npm install -g pnpm
+        - pnpm install
     build:
       commands:
         - pnpm check
