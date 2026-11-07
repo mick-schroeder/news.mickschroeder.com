@@ -1,0 +1,21 @@
+---
+import Layout from "@/layouts/main.astro"
+import { buttonVariants } from "@/components/ui/button"
+import { defaultLocale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
+
+const t = translations[defaultLocale]
+---
+
+<Layout title={`${t.notFound} | News Shuffle`} description={t.notFound} noindex>
+  <main class="mx-auto min-h-[60vh] w-[90%] max-w-2xl space-y-6 py-16">
+    <h1 class="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+      {t.notFound}
+    </h1>
+    <div>
+      <a href="/" class={buttonVariants({ size: "lg" })}>
+        {t.home}
+      </a>
+    </div>
+  </main>
+</Layout>

@@ -1,40 +1,12 @@
 {
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
   "compilerOptions": {
-    "target": "esnext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "lib": [
-      "dom",
-      "esnext"
-    ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
-    "jsx": "react-jsx" /* Specify what JSX code is generated. */,
-    "module": "esnext" /* Specify what module code is generated. */,
-    "moduleResolution": "bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "types": [
-      "node",
-      "gatsby"
-    ] /* Specify type package names to be included without being referenced in a source file. */,
-    "resolveJsonModule": true /* Enable importing .json files */,
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    "strict": true /* Enable all strict type-checking options. */,
-    "isolatedModules": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
-  },
-  "include": [
-    "./src/**/*",
-    "./gatsby-node.ts",
-    "./gatsby-config.ts",
-    "./gatsby-browser.ts",
-    "./gatsby-browser.tsx",
-    "./gatsby-ssr.ts",
-    "./gatsby-ssr.tsx",
-    "./plugins/**/*",
-    "./types/**/*",
-    ".cache/types/**/*.d.ts",
-    ".cache/**/*.d.ts"
-  ]
+    }
+  }
 }

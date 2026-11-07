@@ -1,0 +1,12 @@
+---
+import Layout from "@/layouts/main.astro"
+import Discovery from "@/components/discovery/discovery.astro"
+import { localizedPaths, type Locale } from "@/i18n/locales"
+
+export const getStaticPaths = localizedPaths
+const { locale }: { locale: Locale } = Astro.props
+---
+
+<Layout locale={locale}>
+  <Discovery locale={locale} />
+</Layout>

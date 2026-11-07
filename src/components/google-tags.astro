@@ -1,0 +1,64 @@
+---
+import {
+  adsenseClient,
+  ga4MeasurementId,
+  googleTagsEnabled,
+} from "@/lib/google-config"
+import { shuffleEvent } from "@/lib/analytics"
+
+interface Props {
+  canonical: URL
+}
+
+const { canonical } = Astro.props
+const productionOrigin = canonical.origin
+const pageLocation = canonical.href
+---
+
+{googleTagsEnabled && ga4MeasurementId && <script
+  define:vars={{
+    productionOrigin,
+    pageLocation,
+    adsenseClient,
+    ga4MeasurementId,
+    shuffleEvent,
+  }}
+>
+  if (location.origin === productionOrigin) {
+    window.dataLayer = window.dataLayer || []
+    window.gtag = function () {
+      window.dataLayer.push(arguments)
+    }
+    window.gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      wait_for_update: 500,
+    })
+    window.gtag("js", new Date())
+    window.gtag("config", ga4MeasurementId, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      page_location: pageLocation,
+      page_referrer: "",
+    })
+    window.addEventListener(shuffleEvent, () => {
+      window.gtag("event", "shuffle")
+    })
+
+    const ads = document.createElement("script")
+    ads.async = true
+    ads.crossOrigin = "anonymous"
+    ads.src =
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" +
+      adsenseClient
+    document.head.append(ads)
+
+    const analytics = document.createElement("script")
+    analytics.async = true
+    analytics.src =
+      "https://www.googletagmanager.com/gtag/js?id=" + ga4MeasurementId
+    document.head.append(analytics)
+  }
+</script>}

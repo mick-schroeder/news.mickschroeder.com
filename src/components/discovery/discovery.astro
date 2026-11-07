@@ -1,0 +1,60 @@
+---
+import { getWebsites } from "@/data/catalog"
+import { translations, type Locale } from "@/i18n/ui"
+import { DiscoveryControls } from "./discovery-controls"
+import SourcesSection from "./sources-section.astro"
+interface Props {
+  locale: Locale
+}
+const { locale } = Astro.props
+const t = translations[locale]
+const websites = await getWebsites()
+---
+
+<main
+  id="discovery"
+  data-locale={locale}
+  class="mx-auto grid w-[90%] max-w-7xl grid-cols-1 items-start gap-12 pt-8 md:grid-cols-2 md:gap-16 md:pt-14"
+>
+  <section class="min-w-0">
+    <h1 class="text-balance text-5xl font-extrabold tracking-tighter leading-[0.92] text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
+      {t.headline}
+    </h1>
+  </section>
+  <DiscoveryControls client:load locale={locale} />
+  <noscript>
+    <style is:inline>
+      #discovery-controls {
+        display: none;
+      }
+    </style>
+    <div class="col-span-full space-y-4 rounded-xl border border-border bg-card p-6 text-sm text-card-foreground">
+      <p>{t.noscript}</p>
+      <details class="cursor-pointer">
+        <summary class="font-semibold text-foreground underline">
+          {t.browse}
+        </summary>
+        <ul class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+          {websites.map((site) => (
+            <li>
+              <a
+                href={site.url}
+                class="text-muted-foreground hover:text-foreground underline"
+              >
+                {site.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </div>
+  </noscript>
+  <SourcesSection locale={locale} count={websites.length} />
+</main>
+<script>
+  import { storageKeys, writeStorage } from "@/lib/browser-storage"
+
+  const locale =
+    document.querySelector<HTMLElement>("#discovery")?.dataset.locale
+  if (locale) writeStorage(storageKeys.locale, locale)
+</script>

@@ -1,0 +1,63 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n"
+import NativeSelect from "@/components/ui/native-select.astro"
+import { languages, locales, type Locale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
+
+interface Props {
+  locale: Locale
+  languageSuffix: string
+}
+
+const { locale, languageSuffix } = Astro.props
+const t = translations[locale]
+const options = locales.map((code) => ({
+  code,
+  label: languages[code].label,
+  url: getRelativeLocaleUrl(code, languageSuffix),
+}))
+---
+
+<div id="language-picker" class="shrink-0" hidden>
+  <NativeSelect id="site-language" aria-label={t.language} autocomplete="off">
+    {options.map(({ code, label, url }) => (
+      <option lang={code} value={url} selected={code === locale}>
+        {label}
+      </option>
+    ))}
+  </NativeSelect>
+</div>
+<noscript>
+  <nav
+    aria-label={t.language}
+    class="flex flex-wrap justify-end gap-x-3 text-sm"
+  >
+    {options.map(({ code, label, url }) => (
+      <a
+        href={url}
+        lang={code}
+        hreflang={code}
+        aria-current={code === locale ? "page" : undefined}
+        class="underline"
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
+</noscript>
+
+<script>
+  const picker = document.getElementById("language-picker")
+  const language = document.querySelector<HTMLSelectElement>("#site-language")
+
+  if (picker && language) {
+    const currentLanguage = language.value
+    language.addEventListener("change", () => {
+      location.assign(language.value)
+    })
+    window.addEventListener("pageshow", () => {
+      language.value = currentLanguage
+    })
+    picker.hidden = false
+  }
+</script>

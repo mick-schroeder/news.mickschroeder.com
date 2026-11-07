@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f2f4f5"/>
+<g font-family="Helvetica Neue,Helvetica,Arial,sans-serif" fill="#162b33">
+<text x="64" y="72" font-size="22" font-weight="700">News Shuffle</text>
+<text x="60" y="225" font-size="110" font-weight="700" letter-spacing="-7">News,</text>
+<text x="60" y="330" font-size="110" font-weight="700" letter-spacing="-7">with</text>
+<text x="60" y="435" font-size="110" font-weight="700" letter-spacing="-7">a twist.</text>
+<text x="64" y="557" font-size="22" fill="#52636b">A discovery project by Mick Schroeder</text>
+</g>
+<rect x="650" y="142" width="464" height="352" rx="12" fill="#bdd0ef" transform="rotate(5 882 318)"/>
+<rect x="650" y="142" width="464" height="352" rx="12" fill="#234bdb" transform="rotate(-4 882 318)"/>
+<g fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M756 254h30c50 0 100 128 148 128h61m-33-33 33 33-33 33M756 382h30c50 0 100-128 148-128h61m-33-33 33 33-33 33"/></g>
+<text x="1104" y="557" text-anchor="end" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="19" fill="#52636b">news.mickschroeder.com</text>
+</svg>

@@ -1,0 +1,38 @@
+---
+import Layout from "@/layouts/main.astro"
+import { translations, type Locale } from "@/i18n/ui"
+
+import { defaultLocale, localizedPaths } from "@/i18n/locales"
+
+export const getStaticPaths = localizedPaths
+
+const { locale }: { locale: Locale } = Astro.props
+const t = translations[locale]
+const documents = import.meta.glob<{ default: typeof Layout }>(
+  "../../components/legal/privacy/*.astro",
+  { eager: true }
+)
+const path = (code: Locale) => `../../components/legal/privacy/${code}.astro`
+const contentLocale = documents[path(locale)] ? locale : defaultLocale
+const Copy = documents[path(contentLocale)].default
+---
+
+<Layout
+  locale={locale}
+  title={`${t.privacy} | News Shuffle`}
+  description={t.privacyDescription}
+  noindex
+  languageSuffix="privacy/"
+>
+  <main class="mx-auto min-h-[60vh] w-[90%] max-w-2xl space-y-6 py-12 text-sm leading-relaxed text-muted-foreground">
+    <div>
+      <h1 class="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+        {t.privacy}
+      </h1>
+      <p class="mt-1 font-semibold text-foreground">Mick Schroeder, LLC</p>
+    </div>
+    <div lang={contentLocale} class="contents">
+      <Copy />
+    </div>
+  </main>
+</Layout>

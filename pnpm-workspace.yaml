@@ -1,0 +1,10 @@
+packages: []
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+  msw: false
+
+overrides:
+  # The lint toolchain still requests v10, while GHSA-g3hv-75wg-m249 is fixed in v11.
+  minimatch@10.2.6: 11.0.1

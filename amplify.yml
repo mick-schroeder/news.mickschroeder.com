@@ -3,22 +3,18 @@ frontend:
   phases:
     preBuild:
       commands:
-        - export NODE_OPTIONS="--max_old_space_size=4096"
-        - npm ci
-        # Gatsby's .cache and public must stay in sync; if only one was
-        # restored from the build cache, wipe both to avoid
-        # "Couldn't find temp query result" failures.
-        - if [ -d .cache ] && [ ! -d public/page-data ]; then npx gatsby clean; fi
+        - nvm install 22
+        - nvm use 22
+        - npm install -g pnpm@12.18.0
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        - node -v && npm -v
-        - npm run build
+        - pnpm check
+        - pnpm build
   artifacts:
-    baseDirectory: public
+    baseDirectory: dist
     files:
       - '**/*'
   cache:
     paths:
       - node_modules/**/*
-      - .cache/**/*
-      - public/**/*

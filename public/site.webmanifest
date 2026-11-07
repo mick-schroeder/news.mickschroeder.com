@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "Mick Schroeder's News Shuffle",
+  "short_name": "News Shuffle",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f2f4f5",
+  "theme_color": "#234bdb",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

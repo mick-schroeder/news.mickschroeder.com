@@ -1,0 +1,20 @@
+---
+import { ChevronDown } from "lucide-react"
+import type { HTMLAttributes } from "astro/types"
+
+type Props = HTMLAttributes<"select">
+---
+
+<div class="relative min-w-0 flex-1" data-slot="native-select-wrapper">
+  <select
+    data-slot="native-select"
+    class="h-9 w-full min-w-0 appearance-none rounded-md border border-input bg-transparent py-1 ps-2.5 pe-8 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-50 dark:bg-input/30"
+    {...Astro.props}
+  >
+    <slot />
+  </select>
+  <ChevronDown
+    className="pointer-events-none absolute end-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+    aria-hidden="true"
+  />
+</div>

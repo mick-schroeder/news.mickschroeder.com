@@ -1,0 +1,79 @@
+---
+import { adsenseClient } from "@/lib/google-config"
+import { getRelativeLocaleUrl } from "astro:i18n"
+import { languages, locales, type Locale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
+
+interface Props {
+  locale: Locale
+  title: string
+  noindex: boolean
+  description?: string
+}
+
+const { locale, title, noindex } = Astro.props
+const t = translations[locale]
+const description = Astro.props.description ?? t.description
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const rootUrl = new URL("/", Astro.site)
+const shareImage = new URL("/news-shuffle-share.jpg", Astro.site)
+const siteData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "News Shuffle",
+  alternateName: "Mick Schroeder's News Shuffle",
+  url: rootUrl.href,
+  inLanguage: locales,
+}
+---
+
+<title>{title}</title>
+<link rel="icon" type="image/png" sizes="64x64" href="/icons/favicon-64.png" />
+<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/icons/apple-touch-icon.png"
+/>
+<link rel="manifest" href="/site.webmanifest" />
+{noindex && <meta name="robots" content="noindex" />}
+<>
+  <meta name="description" content={description} />
+  <meta name="google-adsense-account" content={adsenseClient} />
+  <link rel="canonical" href={canonical} />
+  {!noindex &&
+    locales.map((code) => (
+      <link
+        rel="alternate"
+        hreflang={code}
+        href={new URL(getRelativeLocaleUrl(code), Astro.site)}
+      />
+    ))}
+  {!noindex && <link rel="alternate" hreflang="x-default" href={rootUrl} />}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="News Shuffle" />
+  <meta property="og:locale" content={languages[locale].socialLocale} />
+  {locales
+    .filter((code) => code !== locale)
+    .map((code) => (
+      <meta
+        property="og:locale:alternate"
+        content={languages[code].socialLocale}
+      />
+    ))}
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={shareImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={t.shareImageAlt} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={shareImage} />
+  <meta name="twitter:image:alt" content={t.shareImageAlt} />
+  {Astro.url.pathname === "/" && (
+    <script type="application/ld+json" set:html={JSON.stringify(siteData)} />
+  )}
+</>

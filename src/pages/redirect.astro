@@ -1,0 +1,224 @@
+---
+import { ExternalLink, Globe } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
+import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+import Layout from "@/layouts/main.astro"
+import { translations } from "@/i18n/ui"
+
+import { defaultLocale, locales } from "@/i18n/locales"
+import { getRelativeLocaleUrl } from "astro:i18n"
+
+const homeUrls = Object.fromEntries(
+  locales.map((locale) => [locale, getRelativeLocaleUrl(locale)])
+)
+
+const t = translations[defaultLocale]
+---
+
+<Layout title={t.redirecting} noindex>
+  <main
+    data-home-urls={JSON.stringify(homeUrls)}
+    class="redirect-page mx-auto w-[90%] max-w-lg min-h-[60vh] py-16"
+  >
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          <h1 id="redirect-title" class="mb-0! text-base! tracking-normal!">
+            {t.redirecting}
+          </h1>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div aria-live="polite" aria-atomic="true">
+          <div id="redirect-loading">
+            <div
+              class="flex min-h-18 items-center gap-3.5 rounded-md border px-4 py-3.5"
+              aria-hidden="true"
+            >
+              <Skeleton className="size-10 shrink-0 rounded-full motion-reduce:animate-none" />
+              <div class="flex flex-1 flex-col gap-2">
+                <Skeleton className="h-4 w-2/5 motion-reduce:animate-none" />
+                <Skeleton className="h-3 w-3/5 motion-reduce:animate-none" />
+              </div>
+            </div>
+          </div>
+          <a
+            id="redirect-destination"
+            class="block rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:animate-in motion-safe:duration-200 motion-safe:fade-in"
+            hidden
+          >
+            <Item
+              variant="outline"
+              className="group min-h-18 flex-nowrap hover:bg-muted"
+            >
+              <ItemMedia>
+                <span class="grid size-10 place-items-center rounded-full bg-muted text-muted-foreground">
+                  <Globe size={16} aria-hidden="true" />
+                </span>
+              </ItemMedia>
+              <ItemContent className="min-w-0">
+                <ItemTitle
+                  id="redirect-site-name"
+                  className="line-clamp-none wrap-anywhere"
+                />
+                <ItemDescription
+                  id="redirect-site-url"
+                  className="line-clamp-none wrap-anywhere"
+                />
+              </ItemContent>
+              <ItemActions>
+                <ExternalLink
+                  className="nudge-icon size-4"
+                  aria-hidden="true"
+                />
+              </ItemActions>
+            </Item>
+          </a>
+          <button
+            id="redirect-retry"
+            type="button"
+            class={buttonVariants({ variant: "outline" })}
+            hidden
+          >
+            {t.retry}
+          </button>
+          <div
+            id="redirect-empty"
+            class="space-y-4 motion-safe:animate-in motion-safe:duration-200 motion-safe:fade-in"
+            hidden
+          >
+            <a
+              id="choose-interests"
+              href="/"
+              class={buttonVariants({ variant: "outline" })}
+            >
+              {t.choose}
+            </a>
+          </div>
+        </div>
+        <noscript>
+          <style is:inline>
+            #redirect-loading {
+              display: none;
+            }
+          </style>
+          <div class="space-y-4">
+            <p class="text-muted-foreground">{t.noscript}</p>
+            <a href="/" class={buttonVariants({ variant: "outline" })}>
+              {t.choose}
+            </a>
+          </div>
+        </noscript>
+      </CardContent>
+    </Card>
+  </main>
+</Layout>
+
+<script>
+  import { tags } from "@/data/interest-tags"
+  import { loadCatalog } from "@/lib/load-catalog"
+  import {
+    addToHistory,
+    readHistory,
+    readInterests,
+    readStorage,
+    storageKeys,
+  } from "@/lib/browser-storage"
+  import { filterWebsites, pickWebsite } from "@/lib/discovery"
+  import { resolveLocale } from "@/i18n/locales"
+  import { translations } from "@/i18n/ui"
+
+  const page = document.querySelector<HTMLElement>(".redirect-page")!
+  const title = document.getElementById("redirect-title")!
+  const loading = document.getElementById("redirect-loading")!
+  const empty = document.getElementById("redirect-empty")!
+  const setup = document.querySelector<HTMLAnchorElement>("#choose-interests")!
+  const destination = document.querySelector<HTMLAnchorElement>(
+    "#redirect-destination"
+  )!
+  const siteName = document.getElementById("redirect-site-name")!
+  const siteUrl = document.getElementById("redirect-site-url")!
+  const retry = document.getElementById("redirect-retry")!
+  let timer: number | undefined
+  let request: AbortController | undefined
+
+  function cancelRedirect() {
+    window.clearTimeout(timer)
+    request?.abort()
+  }
+
+  async function redirect() {
+    cancelRedirect()
+    const controller = new AbortController()
+    request = controller
+    const locale = resolveLocale(readStorage(storageKeys.locale))
+    const t = translations[locale]
+    page.lang = locale
+    document.title = t.redirecting
+    title.textContent = t.redirecting
+    destination.hidden = true
+    loading.hidden = false
+    empty.hidden = true
+    retry.hidden = true
+
+    const interests = readInterests(tags)
+    let site
+    try {
+      if (interests.length) {
+        const websites = await loadCatalog(controller.signal)
+        if (controller.signal.aborted) return
+        site = pickWebsite(filterWebsites(websites, interests), readHistory())
+      }
+    } catch {
+      if (controller.signal.aborted) return
+      loading.hidden = true
+      title.textContent = t.catalogError
+      retry.textContent = t.retry
+      retry.hidden = false
+      return
+    }
+
+    if (!site) {
+      loading.hidden = true
+      empty.hidden = false
+      title.textContent = interests.length ? t.empty : t.ready
+      setup.textContent = t.choose
+      setup.href = JSON.parse(page.dataset.homeUrls!)[locale]
+      return
+    }
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches
+    timer = window.setTimeout(
+      () => {
+        siteName.textContent = site.name
+        siteUrl.textContent = site.url
+        destination.href = site.url
+        loading.hidden = true
+        destination.hidden = false
+        addToHistory(site.id)
+        timer = window.setTimeout(
+          () => location.replace(site.url),
+          reducedMotion ? 0 : 250
+        )
+      },
+      reducedMotion ? 0 : 650
+    )
+  }
+
+  retry.addEventListener("click", redirect)
+  redirect()
+  window.addEventListener("pagehide", cancelRedirect)
+  // A restored bookmark page should shuffle again.
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) redirect()
+  })
+</script>

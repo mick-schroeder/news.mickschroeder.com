@@ -1,0 +1,94 @@
+---
+import { translations, type Locale } from "@/i18n/ui"
+
+interface Props {
+  locale: Locale
+  count: number
+}
+
+const { locale, count } = Astro.props
+const t = translations[locale]
+
+// Verified 128 × 128 PNGs from Google's favicon endpoint, served locally.
+const rows = [
+  [
+    "bbc.com",
+    "nytimes.com",
+    "thejournal.ie",
+    "reuters.com",
+    "arstechnica.com",
+    "npr.org",
+    "ft.com",
+    "businesspost.ie",
+    "lemonde.fr",
+    "dw.com",
+    "propublica.org",
+    "theverge.com",
+  ],
+  [
+    "apnews.com",
+    "theguardian.com",
+    "nature.com",
+    "breakingnews.ie",
+    "theatlantic.com",
+    "economist.com",
+    "nbcnews.com",
+    "belfasttelegraph.co.uk",
+    "scmp.com",
+    "engadget.com",
+    "france24.com",
+    "cnbc.com",
+  ],
+]
+---
+
+<section
+  class="discovery-section-grid min-w-0 items-center border-t border-border pt-8"
+  aria-labelledby="sources-title"
+>
+  <div>
+    <h2
+      id="sources-title"
+      class="flex items-baseline gap-3 text-xl font-bold tracking-tight"
+    >
+      <span class="text-6xl leading-none font-extrabold tracking-tighter tabular-nums sm:text-7xl">
+        {new Intl.NumberFormat(locale).format(count)}
+      </span>
+      {t.sources}
+    </h2>
+  </div>
+
+  <div
+    class="grid min-w-0 gap-2 overflow-hidden mask-x-from-85%"
+    aria-hidden="true"
+  >
+    {rows.map((row, index) => (
+      <div
+        class:list={[
+          "flex w-max",
+          index === 0
+            ? "motion-safe:animate-source-marquee-reverse"
+            : "motion-safe:animate-source-marquee",
+        ]}
+      >
+        {[0, 1].map(() => (
+          <div class="flex gap-2 pr-2">
+            {row.map((domain) => (
+              <div class="grid size-12 shrink-0 place-items-center rounded-xl border border-border bg-card sm:size-14">
+                <img
+                  src={`/icons/sources/${domain}.png`}
+                  alt=""
+                  width="32"
+                  height="32"
+                  loading="lazy"
+                  decoding="async"
+                  class="size-8 rounded-sm"
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
