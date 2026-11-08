@@ -48,9 +48,9 @@ test("two links on the same host can match different interests", () => {
     "https://rte.ie/news/"
   )
 })
-test("defaults omit Gaeilge and saved selections override the defaults", () => {
+test("new users default to News and saved selections override the default", () => {
   const tags = ["News", "Gaeilge", "Tech"]
-  assert.deepEqual(parseInterests(null, tags), ["News", "Tech"])
+  assert.deepEqual(parseInterests(null, tags), ["News"])
   assert.deepEqual(parseInterests('{"tags":[]}', tags), [])
   assert.deepEqual(parseInterests('{"tags":["Gaeilge"]}', tags), ["Gaeilge"])
 })

@@ -1,12 +1,13 @@
 import { useEffect, useEffectEvent, useRef } from "react"
-import { ArrowDown, ExternalLink, Shuffle } from "lucide-react"
+import { ExternalLink, Shuffle } from "lucide-react"
 import { historyDepth, historyStep } from "./history-card-style"
 import { HistoryCard, SiteCard } from "./site-card"
+import { siteCardHeight } from "./site-card-frame"
 import { SiteCardSkeleton } from "./site-card-skeleton"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import {
   Empty,
+  EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
@@ -17,20 +18,14 @@ import type { useDiscovery } from "./use-discovery"
 type UpNextCardProps = {
   locale: Locale
   discovery: ReturnType<typeof useDiscovery>
-  onChooseInterests: () => void
 }
 
-export function UpNextCard({
-  locale,
-  discovery,
-  onChooseInterests,
-}: UpNextCardProps) {
+export function UpNextCard({ locale, discovery }: UpNextCardProps) {
   const t = translations[locale]
   const deck = useRef<HTMLElement>(null)
   const {
     interests,
     loadFailed,
-    retry,
     site: frontSite,
     historySites,
     transitioning,
@@ -42,6 +37,9 @@ export function UpNextCard({
   const loading = !interests && !loadFailed
   const hasInterests = Boolean(interests?.length)
   const showSkeleton = loading || transitioning
+  const showPeeks = showSkeleton && !frontSite
+  const visibleHistory = frontSite ? historySites.slice(0, historyDepth) : []
+  const stackDepth = showPeeks ? historyDepth : visibleHistory.length
 
   const handleArrowKey = useEffectEvent((event: KeyboardEvent) => {
     if (showSkeleton || !frontSite || event.defaultPrevented) return
@@ -69,112 +67,104 @@ export function UpNextCard({
   return (
     <section
       ref={deck}
-      className="mx-auto flex w-full max-w-md flex-col gap-6 md:max-w-none"
+      className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-4 md:max-w-none"
+      style={{
+        minHeight: `calc(${historyDepth * historyStep + siteCardHeight}px + 5.5rem)`,
+      }}
       aria-labelledby="queue-title"
     >
       <h2 id="queue-title" className="sr-only">
         {t.upNext}
       </h2>
       <div
-        className="relative mx-5 mt-4 select-none sm:mx-8"
+        className="relative mx-5 select-none sm:mx-8"
         aria-busy={showSkeleton}
-        style={{
-          paddingTop:
-            showSkeleton || frontSite ? historyDepth * historyStep : 0,
-        }}
+        style={{ paddingTop: stackDepth * historyStep }}
       >
-        {frontSite &&
-          !loading &&
-          historySites
-            .slice(0, historyDepth)
-            .map((site, index) => (
-              <HistoryCard
-                key={site.url}
-                site={site}
-                index={index}
-                onSelect={() => showHistorySite(site)}
-              />
-            ))}
+        {visibleHistory.map((site, index) => (
+          <HistoryCard
+            key={site.url}
+            site={site}
+            index={index}
+            depth={stackDepth}
+            onSelect={() => showHistorySite(site)}
+          />
+        ))}
 
         {showSkeleton ? (
-          <SiteCardSkeleton showPeeks={!frontSite || loading} />
+          <SiteCardSkeleton showPeeks={showPeeks} />
         ) : frontSite ? (
           <SiteCard
             key={frontSite.url}
             site={frontSite}
             opensInNewTab={t.opensInNewTab}
           />
-        ) : (
-          <Card className="flex min-h-[314px] flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-card p-6 text-center shadow-xs">
-            <Empty className="border-0 bg-transparent p-0">
-              <EmptyHeader>
-                <EmptyMedia variant="icon">
-                  <Shuffle
-                    className="size-6 text-muted-foreground"
-                    aria-hidden="true"
-                  />
-                </EmptyMedia>
-                <EmptyTitle className="text-base font-bold text-foreground">
-                  {loadFailed
-                    ? t.catalogError
-                    : hasInterests
-                      ? t.empty
-                      : t.ready}
-                </EmptyTitle>
-              </EmptyHeader>
-              {loadFailed ? (
-                <Button type="button" size="sm" onClick={retry}>
-                  {t.retry}
-                </Button>
-              ) : (
-                !hasInterests && (
-                  <Button
-                    type="button"
-                    size="sm"
-                    className="group"
-                    onClick={onChooseInterests}
-                  >
-                    {t.choose}
-                    <ArrowDown className="nudge-icon" aria-hidden="true" />
-                  </Button>
-                )
-              )}
-            </Empty>
-          </Card>
-        )}
+        ) : null}
       </div>
 
-      {(frontSite || showSkeleton) && (
-        <div className="mx-auto flex w-full max-w-52 gap-2">
-          <Button
-            type="button"
-            size="lg"
-            className="group h-12 flex-1 rounded-xl text-base font-bold motion-reduce:transition-none"
-            disabled={loading || !frontSite}
-            aria-disabled={transitioning || undefined}
-            onClick={shuffle}
-          >
-            <span>{t.shuffle}</span>
-            <span className="sr-only">({t.opensInNewTab})</span>
-            <ExternalLink
-              className="size-4 nudge-icon opacity-75"
-              aria-hidden="true"
-            />
-          </Button>
-          <Button
-            type="button"
-            size="icon-lg"
-            variant="secondary"
-            className="group size-12 shrink-0 rounded-xl motion-reduce:transition-none"
-            aria-label={t.refresh}
-            title={t.refresh}
-            disabled={loading || !frontSite}
-            aria-disabled={transitioning || undefined}
-            onClick={next}
-          >
-            <Shuffle className="size-5 nudge-icon" aria-hidden="true" />
-          </Button>
-        </div>
+      <div className="mx-auto flex h-12 w-full max-w-52 justify-center gap-2">
+        {(frontSite || showSkeleton) && (
+          <>
+            <Button
+              type="button"
+              size="lg"
+              className="open-heartbeat group h-12 flex-1 rounded-xl text-base font-bold motion-reduce:transition-none"
+              disabled={loading || !frontSite}
+              aria-disabled={transitioning || undefined}
+              onClick={shuffle}
+            >
+              <span>{t.shuffle}</span>
+              <span className="sr-only">({t.opensInNewTab})</span>
+              <ExternalLink
+                className="size-4 nudge-icon opacity-75"
+                aria-hidden="true"
+              />
+            </Button>
+            <Button
+              type="button"
+              size="icon-lg"
+              variant="secondary"
+              className="group size-12 shrink-0 rounded-xl motion-reduce:transition-none"
+              aria-label={t.refresh}
+              title={t.refresh}
+              disabled={loading || !frontSite}
+              aria-disabled={transitioning || undefined}
+              onClick={next}
+            >
+              <Shuffle
+                strokeWidth={3}
+                className="size-5 nudge-icon"
+                aria-hidden="true"
+              />
+            </Button>
+          </>
+        )}
+      </div>
+      {!frontSite && !showSkeleton && (
+        <Empty
+          className="absolute inset-0 border-0 bg-transparent p-4"
+          role="status"
+        >
+          <EmptyHeader>
+            <EmptyMedia className="mb-0 text-muted-foreground">
+              <Shuffle strokeWidth={3} className="size-6" aria-hidden="true" />
+            </EmptyMedia>
+            <EmptyTitle className="font-semibold">
+              {loadFailed
+                ? t.catalogError
+                : hasInterests
+                  ? t.noMatchesTitle
+                  : t.choose}
+            </EmptyTitle>
+            <EmptyDescription>
+              {loadFailed
+                ? t.reloadHint
+                : hasInterests
+                  ? t.noMatchesHint
+                  : t.ready}
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       )}
     </section>
   )

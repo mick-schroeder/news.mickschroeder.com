@@ -1,8 +1,20 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@utility page-width {
+  @apply mx-auto w-[90%];
+}
+
 @utility discovery-section-grid {
-  @apply col-span-full grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10;
+  @apply col-span-full grid min-w-0 grid-cols-1 items-start gap-6 border-t border-border py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10;
+}
+
+@utility discovery-section-title {
+  @apply text-xl font-bold tracking-tight text-foreground;
+}
+
+@utility discovery-section-subtitle {
+  @apply max-w-md text-sm leading-relaxed text-muted-foreground;
 }
 
 @theme {
@@ -52,7 +64,7 @@
   --foreground: #09090b;
   --muted-foreground: #71717a;
   --border: #e4e4e7;
-  --primary: #2563eb;
+  --primary: #00783a;
   --primary-foreground: #ffffff;
   --card: #ffffff;
   --card-foreground: #09090b;
@@ -64,7 +76,7 @@
   --accent: #f4f4f5;
   --accent-foreground: #09090b;
   --input: #e4e4e7;
-  --ring: #2563eb;
+  --ring: var(--primary);
   --destructive: #b02336;
   --radius: 0.75rem;
   color-scheme: light;
@@ -86,9 +98,8 @@
     --accent: #18181b;
     --accent-foreground: #f4f4f5;
     --input: #27272a;
-    --primary: #3b82f6;
-    --primary-foreground: #ffffff;
-    --ring: #3b82f6;
+    --primary: #009A49;
+    --primary-foreground: #09090b;
     --destructive: #b02336;
     color-scheme: dark;
   }
@@ -123,4 +134,27 @@
 
 @utility nudge-icon {
   @apply motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out motion-safe:group-hover:translate-x-0.75 motion-safe:group-hover:-translate-y-0.75 motion-safe:group-focus-visible:translate-x-0.75 motion-safe:group-focus-visible:-translate-y-0.75;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .open-heartbeat:not(:hover, :focus, :active, :disabled, [aria-disabled="true"]) {
+    animation: open-heartbeat 2s ease-in-out infinite;
+  }
+
+  @keyframes open-heartbeat {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--muted-foreground) 24%, transparent);
+      scale: 1;
+    }
+
+    50% {
+      box-shadow: 0 0 0 7px transparent;
+      scale: 1.05;
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+      scale: 1;
+    }
+  }
 }

@@ -15,7 +15,6 @@ const transitionDelay = 250
 export function useDiscovery() {
   const [websites, setWebsites] = useState<Website[]>([])
   const [loadFailed, setLoadFailed] = useState(false)
-  const [loadAttempt, setLoadAttempt] = useState(0)
   const [interests, setInterests] = useState<string[]>()
   const [history, setHistory] = useState<string[]>([])
   const [site, setSite] = useState<Website>()
@@ -37,7 +36,7 @@ export function useDiscovery() {
         if (!controller.signal.aborted) setLoadFailed(true)
       })
     return () => controller.abort()
-  }, [loadAttempt])
+  }, [])
 
   useEffect(() => {
     if (!pendingSite) return
@@ -86,10 +85,6 @@ export function useDiscovery() {
 
   return {
     loadFailed,
-    retry: () => {
-      setLoadFailed(false)
-      setLoadAttempt((attempt) => attempt + 1)
-    },
     interests,
     site,
     historySites: history

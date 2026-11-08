@@ -16,7 +16,10 @@ const t = translations[locale]
 const description = Astro.props.description ?? t.description
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const rootUrl = new URL("/", Astro.site)
-const shareImage = new URL("/news-shuffle-share.jpg", Astro.site)
+const shareImage = new URL(
+  locale === "ga" ? "/news-shuffle-share-ga.jpg" : "/news-shuffle-share.jpg",
+  Astro.site
+)
 const siteData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -67,12 +70,12 @@ const siteData = {
   <meta property="og:image" content={shareImage} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content={t.shareImageAlt} />
+  <meta property="og:image:alt" content={`${t.headline} ${t.description}`} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={shareImage} />
-  <meta name="twitter:image:alt" content={t.shareImageAlt} />
+  <meta name="twitter:image:alt" content={`${t.headline} ${t.description}`} />
   {Astro.url.pathname === "/" && (
     <script type="application/ld+json" set:html={JSON.stringify(siteData)} />
   )}

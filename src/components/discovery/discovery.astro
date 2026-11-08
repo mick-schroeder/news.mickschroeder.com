@@ -14,12 +14,15 @@ const websites = getWebsites()
 <main
   id="discovery"
   data-locale={locale}
-  class="mx-auto grid w-[90%] max-w-7xl grid-cols-1 items-start gap-12 pt-8 md:grid-cols-2 md:gap-16 md:pt-14"
+  class="page-width grid max-w-7xl grid-cols-1 items-start gap-12 pt-8 md:grid-cols-2 md:gap-16 md:pt-14"
 >
   <section class="min-w-0">
     <h1 class="text-balance text-5xl font-extrabold tracking-tighter leading-[0.92] text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
       {t.headline}
     </h1>
+    <p class="mt-5 max-w-md text-lg text-muted-foreground sm:text-xl">
+      {t.description}
+    </p>
   </section>
   <DiscoveryControls client:load locale={locale} />
   <noscript>
@@ -49,7 +52,7 @@ const websites = getWebsites()
       </details>
     </div>
   </noscript>
-  <SourcesSection locale={locale} count={websites.length} />
+  <SourcesSection locale={locale} />
 </main>
 <script>
   import { storageKeys, writeStorage } from "@/lib/browser-storage"

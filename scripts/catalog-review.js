@@ -71,13 +71,22 @@ function payload() {
 }
 
 function visibleRows() {
+  const updates = new Map(
+    draft.candidates
+      .filter(({ original }) => original)
+      .map((candidate) => [candidate.original, candidate])
+  )
   const rows = workspace.sites.map((site) => ({
     key: site.url,
     site,
     original: site.url,
+    suggestedTags: updates
+      .get(site.url)
+      ?.source.tags.filter((tag) => !site.tags.includes(tag)),
+    discoveredVia: updates.get(site.url)?.discoveredVia,
   }))
-  for (const { source, discoveredVia } of draft.candidates) {
-    rows.push({ key: source.url, site: source, discoveredVia })
+  for (const { source, discoveredVia, original } of draft.candidates) {
+    if (!original) rows.push({ key: source.url, site: source, discoveredVia })
   }
   const keys = new Set(rows.map(({ key }) => key))
   for (const [key, decision] of Object.entries(draft.decisions)) {
@@ -139,12 +148,14 @@ function render() {
     .length
   const query = $("search").value.toLowerCase().trim()
   const filter = $("filter").value
-  const filtered = rows.filter(({ key, site, original }) => {
+  const filtered = rows.filter(({ key, site, original, discoveredVia }) => {
     const decision = draft.decisions[key]
     const issue = draft.checks[(decision?.site ?? site).url]?.issue
     const searchText = [
       site.name,
       site.url,
+      ...site.tags,
+      ...(discoveredVia ?? []),
       decision?.site?.name,
       decision?.site?.url,
     ]
@@ -154,7 +165,7 @@ function render() {
       searchText.includes(query) &&
       (filter === "all" ||
         (filter === "current" && original) ||
-        (filter === "candidate" && !original) ||
+        (filter === "candidate" && (!original || discoveredVia)) ||
         (filter === "decided" && decision) ||
         (filter === "findings" &&
           ((issue && issue !== "reachable") || aliases.has(key))) ||
@@ -172,9 +183,11 @@ function render() {
   }
   $("links").replaceChildren(
     ...filtered.slice(page * pageSize, (page + 1) * pageSize).map((row) => {
-      const { key, site, original, discoveredVia } = row
+      const { key, site, original, discoveredVia, suggestedTags } = row
       const decision = draft.decisions[key]
       const displayed = decision?.site ?? site
+      const missingTags =
+        suggestedTags?.filter((tag) => !displayed.tags.includes(tag)) ?? []
       const check = draft.checks[displayed.url]
       const article = element("article")
       const title = element("h3")
@@ -226,6 +239,10 @@ function render() {
             `Found via ${discoveredVia.map((url) => new URL(url).hostname).join(", ")}`
           )
         )
+      if (missingTags.length)
+        article.append(
+          element("p", `Suggested tags · ${missingTags.join(" · ")}`)
+        )
       if (aliases.has(key)) {
         const note = element("p", "Possible matches ")
         for (const other of aliases.get(key)) {
@@ -245,6 +262,16 @@ function render() {
         )
       const controls = element("div")
       controls.className = "toolbar"
+      if (missingTags.length && decision?.action !== "remove") {
+        controls.append(
+          button("Stage suggested tags", () =>
+            stageDecision(row, "save", {
+              ...displayed,
+              tags: [...displayed.tags, ...missingTags],
+            })
+          )
+        )
+      }
       if (decision?.action !== "save" && (!original || draft.approvedOnly)) {
         controls.append(
           button(original ? "Keep" : "Add", () =>
@@ -267,7 +294,7 @@ function render() {
       }
       if (original && decision?.action !== "remove") {
         controls.append(button("Remove", () => stageDecision(row, "remove")))
-      } else if (discoveredVia && decision?.action !== "ignore") {
+      } else if (!original && discoveredVia && decision?.action !== "ignore") {
         controls.append(
           button("Ignore host", () => stageDecision(row, "ignore", site))
         )
@@ -416,9 +443,9 @@ $("discover").onclick = () =>
       page = 0
       saveDraft()
       render()
-      return `Found ${candidates.length} candidates · ${feedErrors.length} feed errors`
+      return `Found ${candidates.length} candidates · ${feedErrors.length} source errors`
     },
-    "Reading discovery feeds…"
+    "Reading discovery sources…"
   )
 
 $("add").onclick = () =>

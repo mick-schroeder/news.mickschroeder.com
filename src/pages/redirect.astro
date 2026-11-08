@@ -22,12 +22,13 @@ const homeUrls = Object.fromEntries(
 )
 
 const t = translations[defaultLocale]
+const destinationRow = "min-h-18 flex-nowrap"
 ---
 
 <Layout title={t.redirecting} noindex>
   <main
     data-home-urls={JSON.stringify(homeUrls)}
-    class="redirect-page mx-auto w-[90%] max-w-lg min-h-[60vh] py-16"
+    class="redirect-page page-width max-w-lg min-h-[60vh] py-16"
   >
     <Card>
       <CardHeader>
@@ -40,16 +41,15 @@ const t = translations[defaultLocale]
       <CardContent>
         <div aria-live="polite" aria-atomic="true">
           <div id="redirect-loading">
-            <div
-              class="flex min-h-18 items-center gap-3.5 rounded-md border px-4 py-3.5"
-              aria-hidden="true"
-            >
-              <Skeleton className="size-10 shrink-0 rounded-full motion-reduce:animate-none" />
-              <div class="flex flex-1 flex-col gap-2">
+            <Item variant="outline" className={destinationRow} aria-hidden="true">
+              <ItemMedia>
+                <Skeleton className="size-10 rounded-full motion-reduce:animate-none" />
+              </ItemMedia>
+              <ItemContent className="min-w-0 gap-2">
                 <Skeleton className="h-4 w-2/5 motion-reduce:animate-none" />
                 <Skeleton className="h-3 w-3/5 motion-reduce:animate-none" />
-              </div>
-            </div>
+              </ItemContent>
+            </Item>
           </div>
           <a
             id="redirect-destination"
@@ -58,7 +58,7 @@ const t = translations[defaultLocale]
           >
             <Item
               variant="outline"
-              className="group min-h-18 flex-nowrap hover:bg-muted"
+              className={`${destinationRow} group hover:bg-muted`}
             >
               <ItemMedia>
                 <span class="grid size-10 place-items-center rounded-full bg-muted text-muted-foreground">

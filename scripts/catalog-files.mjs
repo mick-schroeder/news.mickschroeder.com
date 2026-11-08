@@ -1,3 +1,4 @@
+import { z } from "astro/zod"
 import { createHash } from "node:crypto"
 import { readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs"
 import { catalogSchema, websiteSchema } from "../src/data/catalog-schema.ts"
@@ -5,6 +6,22 @@ import { hostname, ignoredHosts } from "./catalog.mjs"
 
 const catalogPath = new URL("../src/data/sources.json", import.meta.url)
 const ignorePath = new URL("../src/data/ignore-urls.txt", import.meta.url)
+
+const reviewBatchSchema = z.strictObject({
+  revision: z.string(),
+  approvedOnly: z.boolean(),
+  decisions: z.array(
+    z.discriminatedUnion("action", [
+      z.strictObject({
+        action: z.literal("save"),
+        original: z.string().optional(),
+        site: websiteSchema,
+      }),
+      z.strictObject({ action: z.literal("remove"), original: z.string() }),
+      z.strictObject({ action: z.literal("ignore"), site: websiteSchema }),
+    ])
+  ),
+})
 
 export function readWorkspace(
   catalogFile = catalogPath,
@@ -23,7 +40,8 @@ export function readWorkspace(
   }
 }
 
-export function planChanges(workspace, { revision, decisions, approvedOnly }) {
+export function planChanges(workspace, batch) {
+  const { revision, decisions, approvedOnly } = reviewBatchSchema.parse(batch)
   if (revision !== workspace.revision) {
     throw new Error(
       "The catalog or ignore list changed. Reload the workspace before applying."
@@ -44,7 +62,7 @@ export function planChanges(workspace, { revision, decisions, approvedOnly }) {
       handled.add(original)
     }
     if (action === "save") {
-      const replacement = websiteSchema.parse(site)
+      const replacement = site
       const before = existing.get(original)
       if (original !== undefined) next.set(original, replacement)
       else next.set(Symbol(), replacement)
@@ -59,8 +77,7 @@ export function planChanges(workspace, { revision, decisions, approvedOnly }) {
       next.delete(original)
       changes.push({ action: "Remove", before: existing.get(original) })
     } else if (action === "ignore" && original === undefined) {
-      const candidate = websiteSchema.parse(site)
-      const host = hostname(candidate.url)
+      const host = hostname(site.url)
       if (!ignored.has(host)) {
         ignored.add(host)
         newRules.push(`https://${host}/`)

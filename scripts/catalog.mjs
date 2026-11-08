@@ -1,10 +1,21 @@
 import { SaxesParser } from "saxes"
 import { catalogUrlKey } from "../src/data/catalog-schema.ts"
 
+import {
+  drudgePublishers,
+  newzitPublishers,
+  publisher,
+} from "./catalog-publishers.mjs"
+
 const feeds = [
-  { url: "https://www.techmeme.com/lb.opml", tag: "Tech" },
-  { url: "https://www.memeorandum.com/lb.opml", tag: "Politics" },
-  { url: "https://mediagazer.com/lb.opml", tag: "Culture" },
+  { url: "https://www.techmeme.com/lb.opml", tags: ["Tech", "Techmeme"] },
+  {
+    url: "https://www.memeorandum.com/lb.opml",
+    tags: ["Politics", "Memeorandum"],
+  },
+  { url: "https://mediagazer.com/lb.opml", tags: ["Culture", "Mediagazer"] },
+  { url: "https://www.newzit.com/api/domainThumbs", type: "newzit" },
+  { url: "https://www.drudgereport.com/", type: "drudge" },
 ]
 
 const request = (url, method = "GET") =>
@@ -56,30 +67,26 @@ export async function audit(sites) {
   return results.flat().sort((a, b) => a.url.localeCompare(b.url))
 }
 
-async function readFeed({ url, tag }) {
-  const response = await request(url)
+async function readFeed({ url, tags, type }, fetchSource) {
+  const response = await fetchSource(url)
   if (!response.ok) {
     await response.body?.cancel()
     throw new Error(`HTTP ${response.status}`)
   }
 
+  if (type === "newzit") return newzitPublishers(await response.json())
+  if (type === "drudge") return drudgePublishers(await response.text())
+
   const candidates = []
   const parser = new SaxesParser()
   parser.on("opentag", ({ name, attributes }) => {
     if (name !== "outline") return
-    const label = (attributes.text || attributes.title)?.trim()
-    const homepage = URL.parse(attributes.htmlUrl || attributes.url || "")
-    if (
-      !label ||
-      !homepage ||
-      !["http:", "https:"].includes(homepage.protocol) ||
-      homepage.username ||
-      homepage.password
+    const source = publisher(
+      attributes.text || attributes.title,
+      attributes.htmlUrl || attributes.url,
+      tags
     )
-      return
-    homepage.protocol = "https:"
-    homepage.hash = ""
-    candidates.push({ name: label, url: homepage.href, tag, feed: url })
+    if (source) candidates.push(source)
   })
   const bytes = await response.arrayBuffer()
   const declaration = new TextDecoder().decode(bytes.slice(0, 200))
@@ -101,37 +108,50 @@ export function ignoredHosts(ignoreList) {
   return hosts
 }
 
-export async function discover(sites, ignoreList, fetchFeed = readFeed) {
-  const existing = new Set(sites.map(({ url }) => catalogUrlKey(url)))
+export async function discover(sites, ignoreList, fetchSource = request) {
+  const existing = new Map(sites.map((site) => [catalogUrlKey(site.url), site]))
   const ignored = ignoredHosts(ignoreList)
   const candidates = new Map()
   const feedErrors = []
-  const results = await Promise.allSettled(feeds.map(fetchFeed))
+  const results = await Promise.allSettled(
+    feeds.map((feed) => readFeed(feed, fetchSource))
+  )
 
   for (const [index, result] of results.entries()) {
+    const feed = feeds[index].url
     if (result.status === "rejected") {
-      feedErrors.push({ feed: feeds[index].url, detail: result.reason.message })
+      feedErrors.push({ feed, detail: result.reason.message })
       continue
     }
-    for (const { name, url, tag, feed } of result.value) {
-      const key = catalogUrlKey(url)
-      if (existing.has(key) || ignored.has(hostname(url))) continue
+    for (const source of result.value) {
+      const key = catalogUrlKey(source.url)
+      if (ignored.has(hostname(source.url))) continue
+      const original = existing.get(key)
       if (!candidates.has(key)) {
+        const site = original ?? source
         candidates.set(key, {
-          source: { name, url, tags: [] },
+          source: { ...site, tags: [...site.tags] },
           discoveredVia: [],
+          ...(original && { original: original.url }),
         })
       }
       const candidate = candidates.get(key)
-      if (!candidate.source.tags.includes(tag)) candidate.source.tags.push(tag)
+      for (const tag of source.tags) {
+        if (!candidate.source.tags.includes(tag))
+          candidate.source.tags.push(tag)
+      }
       if (!candidate.discoveredVia.includes(feed))
         candidate.discoveredVia.push(feed)
     }
   }
   return {
     feedErrors,
-    candidates: [...candidates.values()].sort((a, b) =>
-      a.source.name.localeCompare(b.source.name)
-    ),
+    candidates: [...candidates.entries()]
+      .filter(
+        ([key, { source }]) =>
+          source.tags.length > (existing.get(key)?.tags.length ?? 0)
+      )
+      .map(([, candidate]) => candidate)
+      .sort((a, b) => a.source.name.localeCompare(b.source.name)),
   }
 }

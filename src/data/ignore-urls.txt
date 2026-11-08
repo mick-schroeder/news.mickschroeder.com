@@ -79,3 +79,5 @@ https://hetzner.com/
 https://openrouter.ai/
 https://salesforce.com/
 https://wordpress.com/
+https://php.net/
+https://blog.youtube/

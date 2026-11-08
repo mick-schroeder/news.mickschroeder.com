@@ -27,19 +27,14 @@ export function ShuffleBookmark({
 
   return (
     <section
-      className="discovery-section-grid items-start border-t border-border pt-8 pb-2"
+      className="discovery-section-grid"
       aria-labelledby="bookmark-title"
     >
       <div className="space-y-1">
-        <h2
-          id="bookmark-title"
-          className="text-xl font-bold tracking-tight text-foreground"
-        >
+        <h2 id="bookmark-title" className="discovery-section-title">
           {t.bookmark}
         </h2>
-        <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-          {t.bookmarkHint}
-        </p>
+        <p className="discovery-section-subtitle">{t.bookmarkHint}</p>
       </div>
       <div className="grid gap-4 text-center sm:grid-cols-2 sm:gap-0">
         <div className="min-w-0 space-y-2 sm:px-5">
@@ -60,6 +55,7 @@ export function ShuffleBookmark({
               size="icon-lg"
               aria-label={t.copyBookmark}
               title={t.copyBookmark}
+              aria-describedby="bookmark-copy-hint"
               disabled={!ready}
               onClick={copyBookmark}
               className="group size-11 shrink-0 border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -71,12 +67,15 @@ export function ShuffleBookmark({
               )}
             </Button>
           </div>
+          <p id="bookmark-copy-hint" className="text-xs text-muted-foreground">
+            {t.copyBookmarkHint}
+          </p>
           <p
             role="status"
             className={
               copyResult === "failed"
                 ? "text-xs font-medium text-muted-foreground"
-                : "sr-only"
+                : "sr-only mt-0"
             }
           >
             {copyResult === "failed" && t.copyBookmarkError}

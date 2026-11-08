@@ -30,7 +30,7 @@ export function parseInterests(
   raw: string | null,
   tags: readonly string[]
 ): string[] {
-  if (raw === null) return tags.filter((tag) => tag !== "Gaeilge")
+  if (raw === null) return tags.filter((tag) => tag === "News")
 
   try {
     const saved = JSON.parse(raw)?.tags

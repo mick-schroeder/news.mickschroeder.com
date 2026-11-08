@@ -21,6 +21,10 @@ export const interestTags = {
     icon: "Palette",
     labelGa: "Cultúr",
   },
+  "Drudge Report": {
+    icon: "Layers",
+    labelGa: "Drudge Report",
+  },
   Gaeilge: {
     icon: "BookOpen",
     labelGa: "Gaeilge",
@@ -45,6 +49,18 @@ export const interestTags = {
       ga: "Foinsí nuachta Éireannacha",
     },
   },
+  Mediagazer: {
+    icon: "Layers",
+    labelGa: "Mediagazer",
+  },
+  Memeorandum: {
+    icon: "Layers",
+    labelGa: "Memeorandum",
+  },
+  Newzit: {
+    icon: "Layers",
+    labelGa: "Newzit",
+  },
   News: {
     icon: "Newspaper",
     labelGa: "Nuacht",
@@ -60,6 +76,10 @@ export const interestTags = {
   Tech: {
     icon: "Cpu",
     labelGa: "Teicneolaíocht",
+  },
+  Techmeme: {
+    icon: "Layers",
+    labelGa: "Techmeme",
   },
 } as const satisfies Record<
   string,

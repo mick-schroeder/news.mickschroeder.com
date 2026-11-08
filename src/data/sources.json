@@ -8,7 +8,9 @@
       "News",
       "Politics",
       "Science",
-      "Tech"
+      "Tech",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -17,7 +19,14 @@
     "tags": [
       "American",
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -25,7 +34,10 @@
     "url": "https://arstechnica.com/",
     "tags": [
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -35,7 +47,12 @@
       "American",
       "News",
       "Politics",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Drudge Report"
     ]
   },
   {
@@ -44,7 +61,15 @@
     "tags": [
       "Business",
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "American",
+      "Drudge Report"
     ]
   },
   {
@@ -52,7 +77,14 @@
     "url": "https://cnbc.com/",
     "tags": [
       "Business",
-      "News"
+      "News",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Drudge Report"
     ]
   },
   {
@@ -61,7 +93,13 @@
     "tags": [
       "American",
       "News",
-      "Politics"
+      "Politics",
+      "Tech",
+      "Techmeme",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Drudge Report"
     ]
   },
   {
@@ -70,7 +108,13 @@
     "tags": [
       "Global",
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Drudge Report"
     ]
   },
   {
@@ -80,15 +124,25 @@
       "American",
       "Business",
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit"
     ]
   },
   {
     "name": "ABC News",
-    "url": "https://abcnews.go.com/",
+    "url": "https://abcnews.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Newzit",
+      "Politics",
+      "Memeorandum",
+      "Drudge Report"
     ]
   },
   {
@@ -96,7 +150,14 @@
     "url": "https://cnn.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Drudge Report"
     ]
   },
   {
@@ -104,7 +165,16 @@
     "url": "https://ft.com/",
     "tags": [
       "Business",
-      "News"
+      "News",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "British",
+      "Drudge Report"
     ]
   },
   {
@@ -112,7 +182,13 @@
     "url": "https://foxnews.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -120,7 +196,13 @@
     "url": "https://nbcnews.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -128,7 +210,13 @@
     "url": "https://npr.org/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -136,7 +224,12 @@
     "url": "https://techcrunch.com/",
     "tags": [
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -145,7 +238,12 @@
     "tags": [
       "British",
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -153,7 +251,13 @@
     "url": "https://thehill.com/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -161,7 +265,12 @@
     "url": "https://theverge.com/",
     "tags": [
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -169,7 +278,15 @@
     "url": "https://washingtonpost.com/",
     "tags": [
       "American",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -177,7 +294,14 @@
     "url": "https://apnews.com/",
     "tags": [
       "Global",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "American",
+      "Drudge Report"
     ]
   },
   {
@@ -186,7 +310,12 @@
     "tags": [
       "Business",
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -194,7 +323,11 @@
     "url": "https://huffpost.com/",
     "tags": [
       "Aggregator",
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Newzit"
     ]
   },
   {
@@ -202,7 +335,13 @@
     "url": "https://theatlantic.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -210,7 +349,12 @@
     "url": "https://independent.co.uk/",
     "tags": [
       "British",
-      "Tech"
+      "Tech",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -219,7 +363,10 @@
     "tags": [
       "American",
       "Culture",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Drudge Report"
     ]
   },
   {
@@ -236,7 +383,12 @@
     "tags": [
       "British",
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -244,7 +396,11 @@
     "url": "https://cbsnews.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -252,7 +408,10 @@
     "url": "https://drudgereport.com/",
     "tags": [
       "Aggregator",
-      "Politics"
+      "Politics",
+      "News",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -275,7 +434,9 @@
     "name": "MarketWatch",
     "url": "https://marketwatch.com/",
     "tags": [
-      "Business"
+      "Business",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -283,7 +444,9 @@
     "url": "https://propublica.org/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -298,7 +461,11 @@
     "url": "https://thedailybeast.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -306,21 +473,27 @@
     "url": "https://japantimes.co.jp/",
     "tags": [
       "Global",
-      "News"
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "The Register",
     "url": "https://theregister.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
     "name": "USA Today",
     "url": "https://usatoday.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -328,7 +501,13 @@
     "url": "https://vanityfair.com/",
     "tags": [
       "American",
-      "Culture"
+      "Culture",
+      "Politics",
+      "Memeorandum",
+      "Mediagazer",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -336,7 +515,11 @@
     "url": "https://vox.com/",
     "tags": [
       "American",
-      "Culture"
+      "Culture",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Newzit"
     ]
   },
   {
@@ -373,21 +556,34 @@
     "url": "https://economist.com/",
     "tags": [
       "Business",
-      "Tech"
+      "Tech",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Euronews",
     "url": "https://euronews.com/",
     "tags": [
-      "Global"
+      "Global",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
     "name": "Forbes",
     "url": "https://forbes.com/",
     "tags": [
-      "Business"
+      "Business",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -444,14 +640,23 @@
     "url": "https://lemonde.fr/en/",
     "tags": [
       "Global",
-      "Tech"
+      "Tech",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Los Angeles Times",
     "url": "https://latimes.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -480,7 +685,9 @@
     "url": "https://pbs.org/newshour/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -502,7 +709,10 @@
     "name": "Sky News",
     "url": "https://news.sky.com/",
     "tags": [
-      "British"
+      "British",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -510,7 +720,10 @@
     "url": "https://slate.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Newzit"
     ]
   },
   {
@@ -531,7 +744,10 @@
     "name": "TechRadar",
     "url": "https://techradar.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "News",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -552,7 +768,9 @@
     "name": "The Irish Times",
     "url": "https://irishtimes.com/",
     "tags": [
-      "Irish"
+      "Irish",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -573,7 +791,16 @@
     "name": "The Telegraph",
     "url": "https://telegraph.co.uk/",
     "tags": [
-      "British"
+      "British",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -588,7 +815,10 @@
     "url": "https://time.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Tech",
+      "Techmeme",
+      "Newzit"
     ]
   },
   {
@@ -611,7 +841,9 @@
     "url": "https://news.yahoo.com/",
     "tags": [
       "Aggregator",
-      "News"
+      "News",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -634,7 +866,9 @@
       "News",
       "Politics",
       "Science",
-      "Tech"
+      "Tech",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -642,7 +876,12 @@
     "url": "https://wired.com/",
     "tags": [
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -659,7 +898,12 @@
     "url": "https://salon.com/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -675,29 +919,34 @@
     "url": "https://nypost.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
     "name": "Semafor",
     "url": "https://semafor.com/",
     "tags": [
-      "Global"
-    ]
-  },
-  {
-    "name": "The New Republic",
-    "url": "https://newrepublic.com/",
-    "tags": [
-      "American",
-      "Politics"
+      "Global",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "VentureBeat",
     "url": "https://venturebeat.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
@@ -705,14 +954,18 @@
     "url": "https://404media.co/",
     "tags": [
       "News",
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
     "name": "9to5Mac",
     "url": "https://9to5mac.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -720,7 +973,9 @@
     "url": "https://adweek.com/",
     "tags": [
       "Aggregator",
-      "Business"
+      "Business",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -735,14 +990,17 @@
     "url": "https://billboard.com/",
     "tags": [
       "American",
-      "Culture"
+      "Culture",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Bleeping Computer",
     "url": "https://bleepingcomputer.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
@@ -750,7 +1008,9 @@
     "url": "https://www.dailymail.com/",
     "tags": [
       "British",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -758,7 +1018,9 @@
     "url": "https://deadline.com/",
     "tags": [
       "American",
-      "Tech"
+      "Tech",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -766,7 +1028,9 @@
     "url": "https://fastcompany.com/",
     "tags": [
       "Business",
-      "Tech"
+      "Tech",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -774,7 +1038,10 @@
     "url": "https://fortune.com/",
     "tags": [
       "Business",
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -806,7 +1073,9 @@
     "url": "https://kotaku.com/",
     "tags": [
       "Gaming",
-      "Tech"
+      "Tech",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -822,14 +1091,24 @@
     "name": "Mediaite",
     "url": "https://mediaite.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Mother Jones",
     "url": "https://motherjones.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -837,7 +1116,10 @@
     "url": "https://nymag.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Culture",
+      "Mediagazer",
+      "Drudge Report"
     ]
   },
   {
@@ -845,7 +1127,9 @@
     "url": "https://newsmax.com/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -853,7 +1137,11 @@
     "url": "https://asia.nikkei.com/",
     "tags": [
       "Business",
-      "Global"
+      "Global",
+      "Tech",
+      "Techmeme",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -875,7 +1163,11 @@
     "name": "Rolling Stone",
     "url": "https://rollingstone.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -889,7 +1181,9 @@
     "name": "sfstandard.com",
     "url": "https://sfstandard.com/",
     "tags": [
-      "News"
+      "News",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -897,7 +1191,10 @@
     "url": "https://status.news/",
     "tags": [
       "Culture",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Mediagazer"
     ]
   },
   {
@@ -905,7 +1202,15 @@
     "url": "https://hollywoodreporter.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Tech",
+      "Techmeme",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -913,7 +1218,8 @@
     "url": "https://theintercept.com/",
     "tags": [
       "American",
-      "News"
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -921,14 +1227,20 @@
     "url": "https://themoscowtimes.com/",
     "tags": [
       "Global",
-      "News"
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "TheWrap",
     "url": "https://thewrap.com/",
     "tags": [
-      "American"
+      "American",
+      "Culture",
+      "Mediagazer",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -936,7 +1248,10 @@
     "url": "https://tmz.com/",
     "tags": [
       "American",
-      "Culture"
+      "Culture",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -945,14 +1260,23 @@
     "tags": [
       "American",
       "Culture",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Mediagazer",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
     "name": "Washington Examiner",
     "url": "https://washingtonexaminer.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -980,7 +1304,9 @@
     "name": "Africanews",
     "url": "https://africanews.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -994,14 +1320,19 @@
     "name": "androidauthority.com",
     "url": "https://androidauthority.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
     "name": "Arab News",
     "url": "https://arabnews.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1050,7 +1381,10 @@
     "name": "Breitbart",
     "url": "https://breitbart.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -1064,7 +1398,9 @@
     "name": "C-SPAN",
     "url": "https://c-span.org/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1078,14 +1414,18 @@
     "name": "Chicago Tribune",
     "url": "https://chicagotribune.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Clarín",
     "url": "https://clarin.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1100,7 +1440,10 @@
     "name": "cnet.com",
     "url": "https://cnet.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "News",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -1128,7 +1471,9 @@
     "name": "Crazy Days and Nights",
     "url": "https://crazydaysandnights.net/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1142,35 +1487,47 @@
     "name": "Daily Caller",
     "url": "https://dailycaller.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Daily News",
     "url": "https://dailynews.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Daily Star",
     "url": "https://dailystar.co.uk/",
     "tags": [
-      "British"
+      "British",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
     "name": "dailykos.com",
     "url": "https://dailykos.com/",
     "tags": [
-      "Politics"
+      "Politics",
+      "News",
+      "Newzit",
+      "American"
     ]
   },
   {
     "name": "Democracy Docket",
     "url": "https://democracydocket.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -1205,7 +1562,9 @@
     "name": "El Mundo",
     "url": "https://elmundo.es/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1220,7 +1579,8 @@
     "url": "https://english.elpais.com/",
     "tags": [
       "Global",
-      "News"
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1234,14 +1594,19 @@
     "name": "Evening Standard",
     "url": "https://standard.co.uk/",
     "tags": [
-      "British"
+      "British",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Express",
     "url": "https://express.co.uk/",
     "tags": [
-      "British"
+      "British",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -1262,7 +1627,10 @@
     "name": "fark.com",
     "url": "https://fark.com/",
     "tags": [
-      "Aggregator"
+      "Aggregator",
+      "News",
+      "Newzit",
+      "American"
     ]
   },
   {
@@ -1283,7 +1651,9 @@
     "name": "GB News",
     "url": "https://gbnews.com/",
     "tags": [
-      "British"
+      "British",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1295,7 +1665,7 @@
   },
   {
     "name": "gizmag.com",
-    "url": "https://gizmag.com/",
+    "url": "https://newatlas.com/",
     "tags": [
       "Tech"
     ]
@@ -1312,7 +1682,8 @@
     "url": "https://haaretz.com/",
     "tags": [
       "Global",
-      "News"
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1341,7 +1712,9 @@
     "name": "Hindustan Times",
     "url": "https://hindustantimes.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1362,7 +1735,9 @@
     "name": "Hürriyet Daily News",
     "url": "https://hurriyetdailynews.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1376,7 +1751,8 @@
     "name": "iFixit",
     "url": "https://ifixit.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
@@ -1404,42 +1780,53 @@
     "name": "Jerusalem Post",
     "url": "https://jpost.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Krebs on Security",
     "url": "https://krebsonsecurity.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
     "name": "Kyodo News",
     "url": "https://english.kyodonews.net/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "La Repubblica",
     "url": "https://repubblica.it/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Le Figaro",
     "url": "https://lefigaro.fr/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "Le Soir",
     "url": "https://lesoir.be/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1467,7 +1854,9 @@
     "name": "McClatchy DC",
     "url": "https://mcclatchydc.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1481,7 +1870,10 @@
     "name": "Metro",
     "url": "https://metro.co.uk/",
     "tags": [
-      "British"
+      "British",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -1498,14 +1890,17 @@
     "tags": [
       "American",
       "News",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
     "name": "Newzit",
     "url": "https://newzit.com/",
     "tags": [
-      "Aggregator"
+      "Aggregator",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1519,7 +1914,11 @@
     "name": "Nieman Lab",
     "url": "https://niemanlab.org/",
     "tags": [
-      "American"
+      "American",
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -1549,14 +1948,19 @@
     "name": "People",
     "url": "https://people.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
     "name": "People's Daily",
     "url": "https://en.people.cn/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1577,14 +1981,18 @@
     "name": "Press Gazette",
     "url": "https://pressgazette.co.uk/",
     "tags": [
-      "British"
+      "British",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
     "name": "Press Trust of India",
     "url": "https://ptinews.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1599,7 +2007,8 @@
     "url": "https://publicnotice.co/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -1613,7 +2022,9 @@
     "name": "Raw Story",
     "url": "https://rawstory.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1634,7 +2045,9 @@
     "name": "Reason Foundation",
     "url": "https://reason.org/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1653,7 +2066,7 @@
   },
   {
     "name": "roboticsbusinessreview.com",
-    "url": "https://roboticsbusinessreview.com/",
+    "url": "https://www.therobotreport.com/",
     "tags": [
       "Science"
     ]
@@ -1678,7 +2091,9 @@
     "name": "Showbiz411",
     "url": "https://showbiz411.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1699,7 +2114,9 @@
     "name": "Stateline",
     "url": "https://stateline.org/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1713,7 +2130,9 @@
     "name": "Sydney Morning Herald",
     "url": "https://smh.com.au/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1721,7 +2140,8 @@
     "url": "https://talkingpointsmemo.com/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -1765,35 +2185,47 @@
     "name": "The Bulwark",
     "url": "https://thebulwark.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
     "name": "The Decoder",
     "url": "https://the-decoder.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
     "name": "The Desk",
     "url": "https://thedesk.net/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
     "name": "The Free Press",
     "url": "https://thefp.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "The Information",
     "url": "https://theinformation.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -1801,35 +2233,37 @@
     "url": "https://thenation.com/",
     "tags": [
       "American",
-      "News"
-    ]
-  },
-  {
-    "name": "The New European",
-    "url": "https://theneweuropean.co.uk/",
-    "tags": [
-      "British"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Drudge Report"
     ]
   },
   {
     "name": "The New Republic",
-    "url": "https://thenewrepublic.com/",
+    "url": "https://newrepublic.com/",
     "tags": [
-      "American"
+      "American",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
     "name": "The Rio Times",
     "url": "https://riotimesonline.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "The Smoking Gun",
     "url": "https://thesmokinggun.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1837,14 +2271,17 @@
     "url": "https://thetimes.com/",
     "tags": [
       "British",
-      "News"
+      "News",
+      "Drudge Report"
     ]
   },
   {
     "name": "The Yeshiva World",
     "url": "https://theyeshivaworld.com/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1887,7 +2324,8 @@
     "name": "Tom's Hardware",
     "url": "https://tomshardware.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
@@ -1908,14 +2346,20 @@
     "name": "washingtontimes.com",
     "url": "https://washingtontimes.com/",
     "tags": [
-      "Politics"
+      "Politics",
+      "News",
+      "Newzit",
+      "American",
+      "Drudge Report"
     ]
   },
   {
     "name": "WELT",
     "url": "https://welt.de/",
     "tags": [
-      "Global"
+      "Global",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1936,7 +2380,9 @@
     "name": "World of Reel",
     "url": "https://worldofreel.com/",
     "tags": [
-      "American"
+      "American",
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -1994,7 +2440,11 @@
     "name": "Columbia Journalism Review",
     "url": "https://cjr.org/",
     "tags": [
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -2008,7 +2458,10 @@
     "name": "MacRumors",
     "url": "https://macrumors.com/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -2016,14 +2469,17 @@
     "url": "https://meidasnews.com/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
     "name": "om.co",
     "url": "https://om.co/",
     "tags": [
-      "News"
+      "News",
+      "Tech",
+      "Techmeme"
     ]
   },
   {
@@ -2038,7 +2494,8 @@
     "url": "https://stratechery.com/",
     "tags": [
       "Business",
-      "Tech"
+      "Tech",
+      "Techmeme"
     ]
   },
   {
@@ -2069,7 +2526,8 @@
     "url": "https://zeteo.com/",
     "tags": [
       "News",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -2099,7 +2557,9 @@
     "url": "https://advocate.com/",
     "tags": [
       "Culture",
-      "News"
+      "News",
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -2129,7 +2589,8 @@
     "url": "https://prospect.org/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -2144,7 +2605,8 @@
     "url": "https://bnonews.com/",
     "tags": [
       "Global",
-      "News"
+      "News",
+      "Drudge Report"
     ]
   },
   {
@@ -2158,7 +2620,10 @@
     "name": "Daring Fireball",
     "url": "https://daringfireball.net/",
     "tags": [
-      "Tech"
+      "Tech",
+      "Techmeme",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -2166,7 +2631,9 @@
     "url": "https://digiday.com/",
     "tags": [
       "Business",
-      "Tech"
+      "Tech",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -2188,7 +2655,9 @@
     "url": "https://futurism.com/",
     "tags": [
       "Science",
-      "Tech"
+      "Tech",
+      "Culture",
+      "Mediagazer"
     ]
   },
   {
@@ -2218,7 +2687,8 @@
     "url": "https://hotair.com/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -2255,7 +2725,8 @@
     "url": "https://mediamatters.org/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -2263,7 +2734,9 @@
     "url": "https://mirror.co.uk/",
     "tags": [
       "British",
-      "News"
+      "News",
+      "Newzit",
+      "Drudge Report"
     ]
   },
   {
@@ -2321,7 +2794,8 @@
     "url": "https://popular.info/",
     "tags": [
       "American",
-      "Politics"
+      "Politics",
+      "Memeorandum"
     ]
   },
   {
@@ -2330,7 +2804,8 @@
     "tags": [
       "Business",
       "Culture",
-      "Politics"
+      "Politics",
+      "Mediagazer"
     ]
   },
   {
@@ -2441,6 +2916,143 @@
     "url": "https://windowslatest.com/",
     "tags": [
       "Tech"
+    ]
+  },
+  {
+    "name": "ESPN",
+    "url": "https://www.espn.com/",
+    "tags": [
+      "American",
+      "Newzit"
+    ]
+  },
+  {
+    "name": "Gothamist",
+    "url": "https://gothamist.com/",
+    "tags": [
+      "Culture",
+      "Mediagazer"
+    ]
+  },
+  {
+    "name": "HUFFINGTON POST",
+    "url": "https://www.huffingtonpost.com/",
+    "tags": [
+      "News",
+      "Drudge Report"
+    ]
+  },
+  {
+    "name": "I News",
+    "url": "https://inews.co.uk/",
+    "tags": [
+      "News",
+      "Newzit",
+      "British"
+    ]
+  },
+  {
+    "name": "MailOnline (gb)",
+    "url": "https://www.dailymail.com/home/index.html",
+    "tags": [
+      "British",
+      "Newzit"
+    ]
+  },
+  {
+    "name": "MSNBC",
+    "url": "https://www.msnbc.com/",
+    "tags": [
+      "News",
+      "Newzit",
+      "American"
+    ]
+  },
+  {
+    "name": "National Review",
+    "url": "https://www.nationalreview.com/",
+    "tags": [
+      "Politics",
+      "Memeorandum",
+      "News",
+      "Drudge Report"
+    ]
+  },
+  {
+    "name": "NEW REPUBLIC",
+    "url": "https://www.thenewrepublic.com/",
+    "tags": [
+      "News",
+      "Drudge Report"
+    ]
+  },
+  {
+    "name": "Newsweek",
+    "url": "https://www.newsweek.com/",
+    "tags": [
+      "News",
+      "Newzit",
+      "American"
+    ]
+  },
+  {
+    "name": "NY Daily News",
+    "url": "https://www.nydailynews.com/",
+    "tags": [
+      "News",
+      "Newzit",
+      "American",
+      "Drudge Report"
+    ]
+  },
+  {
+    "name": "Page Six",
+    "url": "https://pagesix.com/",
+    "tags": [
+      "American",
+      "Culture",
+      "Mediagazer",
+      "Newzit"
+    ]
+  },
+  {
+    "name": "Popsugar",
+    "url": "https://www.popsugar.com/",
+    "tags": [
+      "American",
+      "Newzit"
+    ]
+  },
+  {
+    "name": "Techdirt",
+    "url": "https://www.techdirt.com/",
+    "tags": [
+      "Tech",
+      "Techmeme"
+    ]
+  },
+  {
+    "name": "The Philadelphia Inquirer",
+    "url": "https://www.inquirer.com/",
+    "tags": [
+      "Politics",
+      "Memeorandum"
+    ]
+  },
+  {
+    "name": "Vogue",
+    "url": "https://www.vogue.com/",
+    "tags": [
+      "American",
+      "Newzit"
+    ]
+  },
+  {
+    "name": "Vogue UK",
+    "url": "https://www.vogue.co.uk/",
+    "tags": [
+      "British",
+      "Newzit"
     ]
   }
 ]

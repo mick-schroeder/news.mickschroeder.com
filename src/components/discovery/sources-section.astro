@@ -3,10 +3,9 @@ import { translations, type Locale } from "@/i18n/ui"
 
 interface Props {
   locale: Locale
-  count: number
 }
 
-const { locale, count } = Astro.props
+const { locale } = Astro.props
 const t = translations[locale]
 
 // Verified 128 × 128 PNGs from Google's favicon endpoint, served locally.
@@ -42,20 +41,12 @@ const rows = [
 ]
 ---
 
-<section
-  class="discovery-section-grid min-w-0 items-center border-t border-border pt-8"
-  aria-labelledby="sources-title"
->
-  <div>
-    <h2
-      id="sources-title"
-      class="flex items-baseline gap-3 text-xl font-bold tracking-tight"
-    >
-      <span class="text-6xl leading-none font-extrabold tracking-tighter tabular-nums sm:text-7xl">
-        {new Intl.NumberFormat(locale).format(count)}
-      </span>
+<section class="discovery-section-grid" aria-labelledby="sources-title">
+  <div class="space-y-1">
+    <h2 id="sources-title" class="discovery-section-title">
       {t.sources}
     </h2>
+    <p class="discovery-section-subtitle">{t.sourcesHint}</p>
   </div>
 
   <div
