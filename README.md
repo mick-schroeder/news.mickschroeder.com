@@ -27,11 +27,22 @@ Astro renders the pages and catalog overview. Discovery controls use a React isl
 
 ## Maintain the source catalog
 
-Edit or replace [`src/data/sources.json`](src/data/sources.json) directly. Keep it as a JSON array with one record per publisher. Each record has an `id`, `name`, HTTPS `url`, and `tags` from [the current interest list](src/data/interest-tags.ts).
+Run `pnpm catalog:review` to open the local review workspace. The address is
+`http://127.0.0.1:4322` if the browser does not open automatically.
 
-- Keep the existing `id` when updating a name, URL, or tags so saved visit history still works.
-- Add alternate destinations under `editions`. Each edition has its own `name`, `url`, and `tags`. The main record is the default destination, so omit it from the editions array.
-- Run `pnpm check` and `pnpm build`, then use `pnpm preview` to check the homepage and bookmark. Astro validates the collection and generates the shared `/catalog.json` during the build.
+1. **Audit existing links.** Review missing links, redirects and inconclusive checks. Open the original and redirect links to verify where they land, or recheck from the workspace. Review possible aliases before adding or replacing links. For the initial cleanup, you can approve reachable links without possible aliases in bulk, then review the rest individually.
+2. **Discover links.** The Techmeme, Memeorandum and Mediagazer feeds supply candidates and suggested interests. Edit the name, URL or tags before approving. You can also add a link manually or ignore a candidate's host. Discovery matches ignore rules by hostname, treating `www` as equivalent and other subdomains separately.
+3. **Preview and apply.** The browser saves draft decisions locally. Preview the batch before writing it to the checkout. Normal batches leave deferred links alone. For an explicitly approved-only rebuild, select the rebuild option and review the proposed removals before applying. Review the Git diff afterward.
+4. **Publish and verify.** Run `pnpm check` and `pnpm build`, merge the changes, and let Amplify deploy. From a build of the merged revision, run `pnpm catalog:verify --url https://news.mickschroeder.com`. Smoke-test Shuffle with an affected interest. Revert the catalog change and redeploy if a batch needs reversing.
+
+The catalog lives in `src/data/sources.json`. Each row contains `url`, `name`, and
+`tags` from the [interest list](src/data/interest-tags.ts). Astro serves the
+validated catalog at `/catalog.json`. The workspace can also append approved
+rules to [the ignore list](src/data/ignore-urls.txt).
+
+For standalone reports, run `pnpm catalog:audit` or `pnpm catalog:discover`.
+Discovery reports any feed failures alongside available results and exits
+nonzero if a feed failed. Network scans run independently of the build.
 
 ## Release
 

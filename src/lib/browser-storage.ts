@@ -1,9 +1,8 @@
-import { parseInterests } from "./discovery"
+import { parseInterests } from "./discovery.ts"
 
 export const storageKeys = {
   preferences: "news-shuffle.preferences.v1",
-  previous: "news-shuffle.previous",
-  history: "news-shuffle.history.v1",
+  history: "news-shuffle.history.urls.v1",
   locale: "news-shuffle.locale",
 } as const
 
@@ -38,20 +37,18 @@ export function readHistory(): string[] {
     if (raw) {
       const parsed = JSON.parse(raw)
       if (Array.isArray(parsed)) {
-        return parsed.filter((id): id is string => typeof id === "string")
+        return parsed.filter((url): url is string => typeof url === "string")
       }
     }
   } catch {
     // fallback
   }
-  const prev = readStorage(storageKeys.previous)
-  return prev ? [prev] : []
+  return []
 }
 
-export function addToHistory(siteId: string, maxItems = 7): string[] {
-  const current = readHistory().filter((id) => id !== siteId)
-  const updated = [siteId, ...current].slice(0, maxItems)
+export function addToHistory(url: string, maxItems = 7): string[] {
+  const current = readHistory().filter((visited) => visited !== url)
+  const updated = [url, ...current].slice(0, maxItems)
   writeStorage(storageKeys.history, JSON.stringify(updated))
-  writeStorage(storageKeys.previous, siteId)
   return updated
 }

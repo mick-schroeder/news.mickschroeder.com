@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News Shuffle catalog review</title>
+    <link rel="stylesheet" href="/review.css" />
+    <script type="module" src="/review.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Catalog review</h1>
+      <p>
+        Check links, review discoveries, and apply an approved batch to this
+        checkout.
+      </p>
+      <div class="toolbar">
+        <button id="audit">Audit existing links</button>
+        <button id="discover">Discover links</button>
+        <button id="add">Add a link</button>
+        <button id="approve-reachable" hidden disabled>
+          Keep reachable links without possible aliases
+        </button>
+        <button id="preview">Preview batch</button>
+        <button id="reset">Discard draft</button>
+      </div>
+      <p id="status" role="status"></p>
+      <ul id="feed-errors"></ul>
+      <p>
+        Existing links stay by default. Review only the links you want to change
+        or remove, and approve any new links you want to add.
+      </p>
+      <label class="rebuild"
+        ><input id="approved-only" type="checkbox" /> Rebuild the entire catalog
+        from approved links only. This removes every existing link you leave
+        unapproved.</label
+      >
+      <div class="toolbar filters">
+        <label
+          >Show
+          <select id="filter">
+            <option value="current">Current links</option>
+            <option value="all">All links (current and new)</option>
+            <option value="findings">
+              Audit findings and possible aliases
+            </option>
+            <option value="missing">Missing</option>
+            <option value="redirect">Redirects</option>
+            <option value="inconclusive">Inconclusive</option>
+            <option value="reachable">Reachable</option>
+            <option value="candidate">New candidates</option>
+            <option value="decided">Decisions</option>
+          </select></label
+        >
+        <label
+          >Search <input id="search" type="search" placeholder="Name or URL"
+        /></label>
+      </div>
+      <p id="summary" tabindex="-1"></p>
+      <nav class="toolbar pagination" aria-label="Result pages, top">
+        <button data-page-step="-1">Previous page</button>
+        <button data-page-step="1">Next page</button>
+      </nav>
+      <section id="links" aria-label="Links to review"></section>
+      <nav
+        class="toolbar pagination pagination-bottom"
+        aria-label="Result pages, bottom"
+      >
+        <button data-page-step="-1">Previous page</button>
+        <button data-page-step="1">Next page</button>
+      </nav>
+    </main>
+    <dialog id="editor">
+      <form id="edit-form">
+        <h2 id="editor-title">Review link</h2>
+        <label>Name <input name="name" required /></label>
+        <label>URL <input name="url" type="url" required /></label>
+        <fieldset>
+          <legend>Interests</legend>
+          <div id="tags"></div>
+        </fieldset>
+        <div class="toolbar">
+          <button id="save-link">Stage changes</button>
+          <button id="remove" type="button">Remove link</button>
+          <button id="ignore" type="button">Ignore host</button>
+          <button id="defer" type="button">Defer</button>
+          <button id="cancel-edit" type="button">Cancel</button>
+        </div>
+        <p id="editor-status" role="status"></p>
+      </form>
+    </dialog>
+    <dialog id="batch">
+      <h2>Preview batch</h2>
+      <ul id="changes"></ul>
+      <div class="toolbar">
+        <button id="apply">Apply batch</button>
+        <button id="cancel-batch">Back to review</button>
+      </div>
+      <p id="batch-status" role="status"></p>
+    </dialog>
+  </body>
+</html>

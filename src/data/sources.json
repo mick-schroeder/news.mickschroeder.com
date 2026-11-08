@@ -1,6 +1,5 @@
 [
   {
-    "id": "reddit",
     "name": "Reddit",
     "url": "https://reddit.com/",
     "tags": [
@@ -13,7 +12,6 @@
     ]
   },
   {
-    "id": "nytimes",
     "name": "The New York Times",
     "url": "https://nytimes.com/",
     "tags": [
@@ -23,7 +21,6 @@
     ]
   },
   {
-    "id": "arstechnica",
     "name": "Ars Technica",
     "url": "https://arstechnica.com/",
     "tags": [
@@ -32,7 +29,6 @@
     ]
   },
   {
-    "id": "axios",
     "name": "Axios",
     "url": "https://axios.com/",
     "tags": [
@@ -43,7 +39,6 @@
     ]
   },
   {
-    "id": "businessinsider",
     "name": "Business Insider",
     "url": "https://businessinsider.com/",
     "tags": [
@@ -53,7 +48,6 @@
     ]
   },
   {
-    "id": "cnbc",
     "name": "CNBC",
     "url": "https://cnbc.com/",
     "tags": [
@@ -62,7 +56,6 @@
     ]
   },
   {
-    "id": "politico",
     "name": "Politico",
     "url": "https://politico.com/",
     "tags": [
@@ -72,7 +65,6 @@
     ]
   },
   {
-    "id": "reuters",
     "name": "Reuters",
     "url": "https://reuters.com/",
     "tags": [
@@ -82,7 +74,6 @@
     ]
   },
   {
-    "id": "wsj",
     "name": "The Wall Street Journal",
     "url": "https://www.wsj.com/",
     "tags": [
@@ -93,7 +84,6 @@
     ]
   },
   {
-    "id": "abcnews-go",
     "name": "ABC News",
     "url": "https://abcnews.go.com/",
     "tags": [
@@ -102,7 +92,6 @@
     ]
   },
   {
-    "id": "cnn",
     "name": "CNN",
     "url": "https://cnn.com/",
     "tags": [
@@ -111,7 +100,6 @@
     ]
   },
   {
-    "id": "ft",
     "name": "Financial Times",
     "url": "https://ft.com/",
     "tags": [
@@ -120,7 +108,6 @@
     ]
   },
   {
-    "id": "foxnews",
     "name": "Fox News",
     "url": "https://foxnews.com/",
     "tags": [
@@ -129,7 +116,6 @@
     ]
   },
   {
-    "id": "nbcnews",
     "name": "NBC News",
     "url": "https://nbcnews.com/",
     "tags": [
@@ -138,7 +124,6 @@
     ]
   },
   {
-    "id": "npr-org",
     "name": "NPR",
     "url": "https://npr.org/",
     "tags": [
@@ -147,7 +132,6 @@
     ]
   },
   {
-    "id": "techcrunch",
     "name": "TechCrunch",
     "url": "https://techcrunch.com/",
     "tags": [
@@ -156,7 +140,6 @@
     ]
   },
   {
-    "id": "theguardian",
     "name": "The Guardian",
     "url": "https://theguardian.com/",
     "tags": [
@@ -166,7 +149,6 @@
     ]
   },
   {
-    "id": "thehill",
     "name": "The Hill",
     "url": "https://thehill.com/",
     "tags": [
@@ -175,7 +157,6 @@
     ]
   },
   {
-    "id": "theverge",
     "name": "The Verge",
     "url": "https://theverge.com/",
     "tags": [
@@ -184,7 +165,6 @@
     ]
   },
   {
-    "id": "washingtonpost",
     "name": "The Washington Post",
     "url": "https://washingtonpost.com/",
     "tags": [
@@ -193,7 +173,6 @@
     ]
   },
   {
-    "id": "apnews",
     "name": "AP News",
     "url": "https://apnews.com/",
     "tags": [
@@ -202,7 +181,6 @@
     ]
   },
   {
-    "id": "bloomberg",
     "name": "Bloomberg",
     "url": "https://bloomberg.com/",
     "tags": [
@@ -212,7 +190,6 @@
     ]
   },
   {
-    "id": "huffpost",
     "name": "HuffPost",
     "url": "https://huffpost.com/",
     "tags": [
@@ -221,7 +198,6 @@
     ]
   },
   {
-    "id": "theatlantic",
     "name": "The Atlantic",
     "url": "https://theatlantic.com/",
     "tags": [
@@ -230,7 +206,6 @@
     ]
   },
   {
-    "id": "independent-co-uk",
     "name": "The Independent",
     "url": "https://independent.co.uk/",
     "tags": [
@@ -239,7 +214,6 @@
     ]
   },
   {
-    "id": "newyorker",
     "name": "The New Yorker",
     "url": "https://newyorker.com/",
     "tags": [
@@ -249,7 +223,6 @@
     ]
   },
   {
-    "id": "aljazeera",
     "name": "Al Jazeera",
     "url": "https://aljazeera.com/",
     "tags": [
@@ -258,7 +231,6 @@
     ]
   },
   {
-    "id": "bbc",
     "name": "BBC News",
     "url": "https://bbc.com/news",
     "tags": [
@@ -268,7 +240,6 @@
     ]
   },
   {
-    "id": "cbsnews",
     "name": "CBS News",
     "url": "https://cbsnews.com/",
     "tags": [
@@ -277,7 +248,6 @@
     ]
   },
   {
-    "id": "drudgereport",
     "name": "Drudge Report",
     "url": "https://drudgereport.com/",
     "tags": [
@@ -286,7 +256,6 @@
     ]
   },
   {
-    "id": "dw",
     "name": "DW",
     "url": "https://dw.com/",
     "tags": [
@@ -295,7 +264,6 @@
     ]
   },
   {
-    "id": "france24",
     "name": "France 24",
     "url": "https://france24.com/en/",
     "tags": [
@@ -304,7 +272,6 @@
     ]
   },
   {
-    "id": "marketwatch",
     "name": "MarketWatch",
     "url": "https://marketwatch.com/",
     "tags": [
@@ -312,7 +279,6 @@
     ]
   },
   {
-    "id": "propublica-org",
     "name": "ProPublica",
     "url": "https://propublica.org/",
     "tags": [
@@ -321,7 +287,6 @@
     ]
   },
   {
-    "id": "slashdot-org",
     "name": "Slashdot",
     "url": "https://slashdot.org/",
     "tags": [
@@ -329,7 +294,6 @@
     ]
   },
   {
-    "id": "thedailybeast",
     "name": "The Daily Beast",
     "url": "https://thedailybeast.com/",
     "tags": [
@@ -338,7 +302,6 @@
     ]
   },
   {
-    "id": "japantimes-co-jp",
     "name": "The Japan Times",
     "url": "https://japantimes.co.jp/",
     "tags": [
@@ -347,7 +310,6 @@
     ]
   },
   {
-    "id": "theregister",
     "name": "The Register",
     "url": "https://theregister.com/",
     "tags": [
@@ -355,7 +317,6 @@
     ]
   },
   {
-    "id": "usatoday",
     "name": "USA Today",
     "url": "https://usatoday.com/",
     "tags": [
@@ -363,7 +324,6 @@
     ]
   },
   {
-    "id": "vanityfair",
     "name": "Vanity Fair",
     "url": "https://vanityfair.com/",
     "tags": [
@@ -372,7 +332,6 @@
     ]
   },
   {
-    "id": "vox",
     "name": "Vox",
     "url": "https://vox.com/",
     "tags": [
@@ -381,7 +340,6 @@
     ]
   },
   {
-    "id": "belfasttelegraph-co-uk",
     "name": "Belfast Telegraph",
     "url": "https://belfasttelegraph.co.uk/",
     "tags": [
@@ -389,7 +347,6 @@
     ]
   },
   {
-    "id": "breakingnews-ie",
     "name": "BreakingNews.ie",
     "url": "https://breakingnews.ie/",
     "tags": [
@@ -397,7 +354,6 @@
     ]
   },
   {
-    "id": "businesspost-ie",
     "name": "Business Post",
     "url": "https://businesspost.ie/",
     "tags": [
@@ -406,7 +362,6 @@
     ]
   },
   {
-    "id": "spiegel-de",
     "name": "Der Spiegel",
     "url": "https://spiegel.de/international/",
     "tags": [
@@ -414,7 +369,6 @@
     ]
   },
   {
-    "id": "economist",
     "name": "Economist",
     "url": "https://economist.com/",
     "tags": [
@@ -423,7 +377,6 @@
     ]
   },
   {
-    "id": "euronews",
     "name": "Euronews",
     "url": "https://euronews.com/",
     "tags": [
@@ -431,7 +384,6 @@
     ]
   },
   {
-    "id": "forbes",
     "name": "Forbes",
     "url": "https://forbes.com/",
     "tags": [
@@ -439,7 +391,6 @@
     ]
   },
   {
-    "id": "foreignaffairs",
     "name": "Foreign Affairs",
     "url": "https://foreignaffairs.com/",
     "tags": [
@@ -447,7 +398,6 @@
     ]
   },
   {
-    "id": "forekast",
     "name": "Forekast",
     "url": "https://forekast.com/",
     "tags": [
@@ -455,7 +405,6 @@
     ]
   },
   {
-    "id": "news-google",
     "name": "Google News",
     "url": "https://news.google.com/",
     "tags": [
@@ -463,7 +412,6 @@
     ]
   },
   {
-    "id": "hbr-org",
     "name": "Harvard Business Review",
     "url": "https://hbr.org",
     "tags": [
@@ -471,24 +419,20 @@
     ]
   },
   {
-    "id": "independent-ie",
     "name": "Irish Independent",
     "url": "https://independent.ie/",
     "tags": [
       "Irish"
-    ],
-    "editions": [
-      {
-        "name": "Independent - Seachtain",
-        "url": "https://independent.ie/seachtain",
-        "tags": [
-          "Gaeilge"
-        ]
-      }
     ]
   },
   {
-    "id": "irishexaminer",
+    "name": "Independent - Seachtain",
+    "url": "https://independent.ie/seachtain",
+    "tags": [
+      "Gaeilge"
+    ]
+  },
+  {
     "name": "Irish Examiner",
     "url": "https://irishexaminer.com/",
     "tags": [
@@ -496,7 +440,6 @@
     ]
   },
   {
-    "id": "lemonde-fr",
     "name": "Le Monde",
     "url": "https://lemonde.fr/en/",
     "tags": [
@@ -505,7 +448,6 @@
     ]
   },
   {
-    "id": "latimes",
     "name": "Los Angeles Times",
     "url": "https://latimes.com/",
     "tags": [
@@ -513,7 +455,6 @@
     ]
   },
   {
-    "id": "nature",
     "name": "Nature",
     "url": "https://nature.com/",
     "tags": [
@@ -521,24 +462,20 @@
     ]
   },
   {
-    "id": "rte-ie-news",
     "name": "RTÉ News",
     "url": "https://rte.ie/news/",
     "tags": [
       "Irish"
-    ],
-    "editions": [
-      {
-        "name": "Nuacht RTÉ",
-        "url": "https://rte.ie/news/nuacht/",
-        "tags": [
-          "Gaeilge"
-        ]
-      }
     ]
   },
   {
-    "id": "pbs-org",
+    "name": "Nuacht RTÉ",
+    "url": "https://rte.ie/news/nuacht/",
+    "tags": [
+      "Gaeilge"
+    ]
+  },
+  {
     "name": "PBS NewsHour",
     "url": "https://pbs.org/newshour/",
     "tags": [
@@ -547,7 +484,6 @@
     ]
   },
   {
-    "id": "siliconrepublic",
     "name": "Silicon Republic",
     "url": "https://siliconrepublic.com",
     "tags": [
@@ -556,7 +492,6 @@
     ]
   },
   {
-    "id": "skimfeed",
     "name": "Skimfeed",
     "url": "https://skimfeed.com/",
     "tags": [
@@ -564,7 +499,6 @@
     ]
   },
   {
-    "id": "sky",
     "name": "Sky News",
     "url": "https://news.sky.com/",
     "tags": [
@@ -572,7 +506,6 @@
     ]
   },
   {
-    "id": "slate",
     "name": "Slate",
     "url": "https://slate.com/",
     "tags": [
@@ -581,7 +514,6 @@
     ]
   },
   {
-    "id": "scmp",
     "name": "South China Morning Post",
     "url": "https://scmp.com/",
     "tags": [
@@ -589,7 +521,6 @@
     ]
   },
   {
-    "id": "techmeme",
     "name": "Techmeme",
     "url": "https://techmeme.com/",
     "tags": [
@@ -597,7 +528,6 @@
     ]
   },
   {
-    "id": "techradar",
     "name": "TechRadar",
     "url": "https://techradar.com/",
     "tags": [
@@ -605,7 +535,6 @@
     ]
   },
   {
-    "id": "theglobeandmail",
     "name": "The Globe and Mail",
     "url": "https://theglobeandmail.com/",
     "tags": [
@@ -613,7 +542,6 @@
     ]
   },
   {
-    "id": "irishnews",
     "name": "The Irish News",
     "url": "https://irishnews.com/",
     "tags": [
@@ -621,7 +549,6 @@
     ]
   },
   {
-    "id": "irishtimes",
     "name": "The Irish Times",
     "url": "https://irishtimes.com/",
     "tags": [
@@ -629,24 +556,20 @@
     ]
   },
   {
-    "id": "thejournal-ie",
     "name": "The Journal",
     "url": "https://thejournal.ie/",
     "tags": [
       "Irish"
-    ],
-    "editions": [
-      {
-        "name": "The Journal - Gaeilge",
-        "url": "https://thejournal.ie/gaeilge/news/",
-        "tags": [
-          "Gaeilge"
-        ]
-      }
     ]
   },
   {
-    "id": "telegraph-co-uk",
+    "name": "The Journal - Gaeilge",
+    "url": "https://thejournal.ie/gaeilge/news/",
+    "tags": [
+      "Gaeilge"
+    ]
+  },
+  {
     "name": "The Telegraph",
     "url": "https://telegraph.co.uk/",
     "tags": [
@@ -654,7 +577,6 @@
     ]
   },
   {
-    "id": "timesofisrael",
     "name": "The Times of Israel",
     "url": "https://timesofisrael.com/",
     "tags": [
@@ -662,7 +584,6 @@
     ]
   },
   {
-    "id": "time",
     "name": "TIME",
     "url": "https://time.com/",
     "tags": [
@@ -671,7 +592,6 @@
     ]
   },
   {
-    "id": "tuairisc-ie",
     "name": "Tuairisc.ie",
     "url": "https://tuairisc.ie/",
     "tags": [
@@ -679,7 +599,6 @@
     ]
   },
   {
-    "id": "wikipedia-org",
     "name": "Wikipedia",
     "url": "https://wikipedia.org/wiki/Portal:Current_events",
     "tags": [
@@ -688,7 +607,6 @@
     ]
   },
   {
-    "id": "yahoo",
     "name": "Yahoo News",
     "url": "https://news.yahoo.com/",
     "tags": [
@@ -697,7 +615,6 @@
     ]
   },
   {
-    "id": "cbc-ca",
     "name": "CBC",
     "url": "https://cbc.ca/",
     "tags": [
@@ -710,7 +627,6 @@
     ]
   },
   {
-    "id": "digg",
     "name": "Digg",
     "url": "https://digg.com/",
     "tags": [
@@ -722,7 +638,6 @@
     ]
   },
   {
-    "id": "wired",
     "name": "WIRED",
     "url": "https://wired.com/",
     "tags": [
@@ -731,7 +646,6 @@
     ]
   },
   {
-    "id": "bbc-co-uk",
     "name": "BBC",
     "url": "https://bbc.co.uk/",
     "tags": [
@@ -741,7 +655,6 @@
     ]
   },
   {
-    "id": "salon",
     "name": "Salon",
     "url": "https://salon.com/",
     "tags": [
@@ -750,7 +663,6 @@
     ]
   },
   {
-    "id": "engadget",
     "name": "Engadget",
     "url": "https://engadget.com/",
     "tags": [
@@ -759,7 +671,6 @@
     ]
   },
   {
-    "id": "nypost",
     "name": "New York Post",
     "url": "https://nypost.com/",
     "tags": [
@@ -768,7 +679,6 @@
     ]
   },
   {
-    "id": "semafor",
     "name": "Semafor",
     "url": "https://semafor.com/",
     "tags": [
@@ -776,7 +686,6 @@
     ]
   },
   {
-    "id": "newrepublic",
     "name": "The New Republic",
     "url": "https://newrepublic.com/",
     "tags": [
@@ -785,7 +694,6 @@
     ]
   },
   {
-    "id": "venturebeat",
     "name": "VentureBeat",
     "url": "https://venturebeat.com/",
     "tags": [
@@ -793,7 +701,6 @@
     ]
   },
   {
-    "id": "404media-co",
     "name": "404 Media",
     "url": "https://404media.co/",
     "tags": [
@@ -802,7 +709,6 @@
     ]
   },
   {
-    "id": "9to5mac",
     "name": "9to5Mac",
     "url": "https://9to5mac.com/",
     "tags": [
@@ -810,7 +716,6 @@
     ]
   },
   {
-    "id": "adweek",
     "name": "Adweek",
     "url": "https://adweek.com/",
     "tags": [
@@ -819,7 +724,6 @@
     ]
   },
   {
-    "id": "appleinsider-com",
     "name": "appleinsider.com",
     "url": "https://appleinsider.com/",
     "tags": [
@@ -827,7 +731,6 @@
     ]
   },
   {
-    "id": "billboard",
     "name": "Billboard",
     "url": "https://billboard.com/",
     "tags": [
@@ -836,7 +739,6 @@
     ]
   },
   {
-    "id": "bleepingcomputer",
     "name": "Bleeping Computer",
     "url": "https://bleepingcomputer.com/",
     "tags": [
@@ -844,7 +746,6 @@
     ]
   },
   {
-    "id": "dailymail-co-uk",
     "name": "Daily Mail",
     "url": "https://www.dailymail.com/",
     "tags": [
@@ -853,7 +754,6 @@
     ]
   },
   {
-    "id": "deadline",
     "name": "Deadline",
     "url": "https://deadline.com/",
     "tags": [
@@ -862,7 +762,6 @@
     ]
   },
   {
-    "id": "fastcompany-com",
     "name": "fastcompany.com",
     "url": "https://fastcompany.com/",
     "tags": [
@@ -871,7 +770,6 @@
     ]
   },
   {
-    "id": "fortune",
     "name": "Fortune",
     "url": "https://fortune.com/",
     "tags": [
@@ -880,7 +778,6 @@
     ]
   },
   {
-    "id": "gamespot",
     "name": "GameSpot",
     "url": "https://gamespot.com/",
     "tags": [
@@ -889,7 +786,6 @@
     ]
   },
   {
-    "id": "hackaday-com",
     "name": "hackaday.com",
     "url": "https://hackaday.com/",
     "tags": [
@@ -898,7 +794,6 @@
     ]
   },
   {
-    "id": "indiatimes",
     "name": "Indiatimes",
     "url": "https://indiatimes.com/",
     "tags": [
@@ -907,7 +802,6 @@
     ]
   },
   {
-    "id": "kotaku",
     "name": "Kotaku",
     "url": "https://kotaku.com/",
     "tags": [
@@ -916,7 +810,6 @@
     ]
   },
   {
-    "id": "mashable-com",
     "name": "mashable.com",
     "url": "https://mashable.com/",
     "tags": [
@@ -926,7 +819,6 @@
     ]
   },
   {
-    "id": "mediaite",
     "name": "Mediaite",
     "url": "https://mediaite.com/",
     "tags": [
@@ -934,7 +826,6 @@
     ]
   },
   {
-    "id": "motherjones",
     "name": "Mother Jones",
     "url": "https://motherjones.com/",
     "tags": [
@@ -942,7 +833,6 @@
     ]
   },
   {
-    "id": "nymag",
     "name": "New York Magazine",
     "url": "https://nymag.com/",
     "tags": [
@@ -951,7 +841,6 @@
     ]
   },
   {
-    "id": "newsmax",
     "name": "Newsmax",
     "url": "https://newsmax.com/",
     "tags": [
@@ -960,7 +849,6 @@
     ]
   },
   {
-    "id": "asia-nikkei",
     "name": "Nikkei Asia",
     "url": "https://asia.nikkei.com/",
     "tags": [
@@ -969,7 +857,6 @@
     ]
   },
   {
-    "id": "phys-org",
     "name": "phys.org",
     "url": "https://phys.org/",
     "tags": [
@@ -977,7 +864,6 @@
     ]
   },
   {
-    "id": "qz",
     "name": "qz.com",
     "url": "https://qz.com/",
     "tags": [
@@ -986,7 +872,6 @@
     ]
   },
   {
-    "id": "rollingstone",
     "name": "Rolling Stone",
     "url": "https://rollingstone.com/",
     "tags": [
@@ -994,7 +879,6 @@
     ]
   },
   {
-    "id": "sciencedaily-com",
     "name": "sciencedaily.com",
     "url": "https://sciencedaily.com/",
     "tags": [
@@ -1002,7 +886,6 @@
     ]
   },
   {
-    "id": "sfstandard-com",
     "name": "sfstandard.com",
     "url": "https://sfstandard.com/",
     "tags": [
@@ -1010,7 +893,6 @@
     ]
   },
   {
-    "id": "status-news",
     "name": "status.news",
     "url": "https://status.news/",
     "tags": [
@@ -1019,7 +901,6 @@
     ]
   },
   {
-    "id": "hollywoodreporter",
     "name": "The Hollywood Reporter",
     "url": "https://hollywoodreporter.com/",
     "tags": [
@@ -1028,7 +909,6 @@
     ]
   },
   {
-    "id": "theintercept",
     "name": "The Intercept",
     "url": "https://theintercept.com/",
     "tags": [
@@ -1037,7 +917,6 @@
     ]
   },
   {
-    "id": "themoscowtimes",
     "name": "The Moscow Times",
     "url": "https://themoscowtimes.com/",
     "tags": [
@@ -1046,7 +925,6 @@
     ]
   },
   {
-    "id": "thewrap",
     "name": "TheWrap",
     "url": "https://thewrap.com/",
     "tags": [
@@ -1054,7 +932,6 @@
     ]
   },
   {
-    "id": "tmz",
     "name": "TMZ",
     "url": "https://tmz.com/",
     "tags": [
@@ -1063,7 +940,6 @@
     ]
   },
   {
-    "id": "variety",
     "name": "Variety",
     "url": "https://variety.com/",
     "tags": [
@@ -1073,7 +949,6 @@
     ]
   },
   {
-    "id": "washingtonexaminer",
     "name": "Washington Examiner",
     "url": "https://washingtonexaminer.com/",
     "tags": [
@@ -1081,7 +956,6 @@
     ]
   },
   {
-    "id": "the-independent-com",
     "name": "the-independent.com",
     "url": "https://the-independent.com/",
     "tags": [
@@ -1089,7 +963,6 @@
     ]
   },
   {
-    "id": "9to5google",
     "name": "9to5Google",
     "url": "https://9to5google.com/",
     "tags": [
@@ -1097,7 +970,6 @@
     ]
   },
   {
-    "id": "advancedsciencenews-com",
     "name": "advancedsciencenews.com",
     "url": "https://advancedsciencenews.com/",
     "tags": [
@@ -1105,7 +977,6 @@
     ]
   },
   {
-    "id": "africanews",
     "name": "Africanews",
     "url": "https://africanews.com/",
     "tags": [
@@ -1113,7 +984,6 @@
     ]
   },
   {
-    "id": "androidpolice",
     "name": "Android Police",
     "url": "https://androidpolice.com/",
     "tags": [
@@ -1121,7 +991,6 @@
     ]
   },
   {
-    "id": "androidauthority-com",
     "name": "androidauthority.com",
     "url": "https://androidauthority.com/",
     "tags": [
@@ -1129,7 +998,6 @@
     ]
   },
   {
-    "id": "arabnews",
     "name": "Arab News",
     "url": "https://arabnews.com/",
     "tags": [
@@ -1137,7 +1005,6 @@
     ]
   },
   {
-    "id": "avc-com",
     "name": "avc.com",
     "url": "https://avc.com/",
     "tags": [
@@ -1145,15 +1012,6 @@
     ]
   },
   {
-    "id": "betabeat-com",
-    "name": "betabeat.com",
-    "url": "https://betabeat.com/",
-    "tags": [
-      "Tech"
-    ]
-  },
-  {
-    "id": "bild-de",
     "name": "Bild",
     "url": "https://bild.de/",
     "tags": [
@@ -1161,7 +1019,6 @@
     ]
   },
   {
-    "id": "bit-tech-net",
     "name": "bit-tech.net",
     "url": "https://bit-tech.net/",
     "tags": [
@@ -1169,7 +1026,6 @@
     ]
   },
   {
-    "id": "boingboing-net",
     "name": "boingboing.net",
     "url": "https://boingboing.net/",
     "tags": [
@@ -1177,7 +1033,6 @@
     ]
   },
   {
-    "id": "bostonherald",
     "name": "Boston Herald",
     "url": "https://bostonherald.com/",
     "tags": [
@@ -1185,7 +1040,6 @@
     ]
   },
   {
-    "id": "boston",
     "name": "Boston.com",
     "url": "https://boston.com/",
     "tags": [
@@ -1193,7 +1047,6 @@
     ]
   },
   {
-    "id": "breitbart",
     "name": "Breitbart",
     "url": "https://breitbart.com/",
     "tags": [
@@ -1201,7 +1054,6 @@
     ]
   },
   {
-    "id": "buzzfeed-com",
     "name": "buzzfeed.com",
     "url": "https://buzzfeed.com/",
     "tags": [
@@ -1209,7 +1061,6 @@
     ]
   },
   {
-    "id": "c-span-org",
     "name": "C-SPAN",
     "url": "https://c-span.org/",
     "tags": [
@@ -1217,7 +1068,6 @@
     ]
   },
   {
-    "id": "cbslocal",
     "name": "CBS Local",
     "url": "https://cbslocal.com/",
     "tags": [
@@ -1225,7 +1075,6 @@
     ]
   },
   {
-    "id": "chicagotribune",
     "name": "Chicago Tribune",
     "url": "https://chicagotribune.com/",
     "tags": [
@@ -1233,7 +1082,6 @@
     ]
   },
   {
-    "id": "clarin",
     "name": "Clarín",
     "url": "https://clarin.com/",
     "tags": [
@@ -1241,15 +1089,6 @@
     ]
   },
   {
-    "id": "clientsfromhell-net",
-    "name": "clientsfromhell.net",
-    "url": "https://clientsfromhell.net/",
-    "tags": [
-      "Aggregator"
-    ]
-  },
-  {
-    "id": "clone-fyi",
     "name": "clone.fyi",
     "url": "https://clone.fyi/",
     "tags": [
@@ -1258,7 +1097,6 @@
     ]
   },
   {
-    "id": "cnet-com",
     "name": "cnet.com",
     "url": "https://cnet.com/",
     "tags": [
@@ -1266,7 +1104,6 @@
     ]
   },
   {
-    "id": "coindesk-com",
     "name": "coindesk.com",
     "url": "https://coindesk.com/",
     "tags": [
@@ -1274,7 +1111,6 @@
     ]
   },
   {
-    "id": "copyblogger-com",
     "name": "copyblogger.com",
     "url": "https://copyblogger.com/",
     "tags": [
@@ -1282,7 +1118,6 @@
     ]
   },
   {
-    "id": "cracked-com",
     "name": "cracked.com",
     "url": "https://cracked.com/",
     "tags": [
@@ -1290,7 +1125,6 @@
     ]
   },
   {
-    "id": "crazydaysandnights-net",
     "name": "Crazy Days and Nights",
     "url": "https://crazydaysandnights.net/",
     "tags": [
@@ -1298,7 +1132,6 @@
     ]
   },
   {
-    "id": "cultofmac-com",
     "name": "cultofmac.com",
     "url": "https://cultofmac.com/",
     "tags": [
@@ -1306,7 +1139,6 @@
     ]
   },
   {
-    "id": "dailycaller",
     "name": "Daily Caller",
     "url": "https://dailycaller.com/",
     "tags": [
@@ -1314,7 +1146,6 @@
     ]
   },
   {
-    "id": "dailynews",
     "name": "Daily News",
     "url": "https://dailynews.com/",
     "tags": [
@@ -1322,7 +1153,6 @@
     ]
   },
   {
-    "id": "dailystar-co-uk",
     "name": "Daily Star",
     "url": "https://dailystar.co.uk/",
     "tags": [
@@ -1330,7 +1160,6 @@
     ]
   },
   {
-    "id": "dailykos-com",
     "name": "dailykos.com",
     "url": "https://dailykos.com/",
     "tags": [
@@ -1338,7 +1167,6 @@
     ]
   },
   {
-    "id": "democracydocket",
     "name": "Democracy Docket",
     "url": "https://democracydocket.com/",
     "tags": [
@@ -1346,7 +1174,6 @@
     ]
   },
   {
-    "id": "zeit-de",
     "name": "Die Zeit",
     "url": "https://zeit.de/",
     "tags": [
@@ -1354,7 +1181,6 @@
     ]
   },
   {
-    "id": "digitaltrends-com",
     "name": "digitaltrends.com",
     "url": "https://digitaltrends.com/",
     "tags": [
@@ -1362,7 +1188,6 @@
     ]
   },
   {
-    "id": "discovermagazine-com",
     "name": "discovermagazine.com",
     "url": "https://discovermagazine.com/",
     "tags": [
@@ -1370,7 +1195,6 @@
     ]
   },
   {
-    "id": "discovery-com",
     "name": "discovery.com",
     "url": "https://discovery.com/",
     "tags": [
@@ -1378,7 +1202,6 @@
     ]
   },
   {
-    "id": "elmundo-es",
     "name": "El Mundo",
     "url": "https://elmundo.es/",
     "tags": [
@@ -1386,7 +1209,6 @@
     ]
   },
   {
-    "id": "elnuevodia",
     "name": "El Nuevo Día",
     "url": "https://elnuevodia.com/",
     "tags": [
@@ -1394,7 +1216,6 @@
     ]
   },
   {
-    "id": "english-elpais",
     "name": "El País",
     "url": "https://english.elpais.com/",
     "tags": [
@@ -1403,7 +1224,6 @@
     ]
   },
   {
-    "id": "eurekalert-org",
     "name": "eurekalert.org",
     "url": "https://eurekalert.org/",
     "tags": [
@@ -1411,7 +1231,6 @@
     ]
   },
   {
-    "id": "standard-co-uk",
     "name": "Evening Standard",
     "url": "https://standard.co.uk/",
     "tags": [
@@ -1419,7 +1238,6 @@
     ]
   },
   {
-    "id": "express-co-uk",
     "name": "Express",
     "url": "https://express.co.uk/",
     "tags": [
@@ -1427,7 +1245,6 @@
     ]
   },
   {
-    "id": "extremetech-com",
     "name": "extremetech.com",
     "url": "https://extremetech.com/",
     "tags": [
@@ -1435,7 +1252,6 @@
     ]
   },
   {
-    "id": "factcheck-org",
     "name": "factcheck.org",
     "url": "https://factcheck.org/",
     "tags": [
@@ -1443,7 +1259,6 @@
     ]
   },
   {
-    "id": "fark-com",
     "name": "fark.com",
     "url": "https://fark.com/",
     "tags": [
@@ -1451,7 +1266,6 @@
     ]
   },
   {
-    "id": "fastcoexist-com",
     "name": "fastcoexist.com",
     "url": "https://fastcoexist.com/",
     "tags": [
@@ -1459,7 +1273,6 @@
     ]
   },
   {
-    "id": "flowingdata-com",
     "name": "flowingdata.com",
     "url": "https://flowingdata.com/",
     "tags": [
@@ -1467,15 +1280,6 @@
     ]
   },
   {
-    "id": "wyborcza-pl",
-    "name": "Gazeta Wyborcza",
-    "url": "https://wyborcza.pl/",
-    "tags": [
-      "Global"
-    ]
-  },
-  {
-    "id": "gbnews",
     "name": "GB News",
     "url": "https://gbnews.com/",
     "tags": [
@@ -1483,7 +1287,6 @@
     ]
   },
   {
-    "id": "geek-com",
     "name": "geek.com",
     "url": "https://geek.com/",
     "tags": [
@@ -1491,7 +1294,6 @@
     ]
   },
   {
-    "id": "gizmag-com",
     "name": "gizmag.com",
     "url": "https://gizmag.com/",
     "tags": [
@@ -1499,7 +1301,6 @@
     ]
   },
   {
-    "id": "trends-google",
     "name": "Google Trends",
     "url": "https://trends.google.com/",
     "tags": [
@@ -1507,7 +1308,6 @@
     ]
   },
   {
-    "id": "haaretz",
     "name": "Haaretz",
     "url": "https://haaretz.com/",
     "tags": [
@@ -1516,7 +1316,6 @@
     ]
   },
   {
-    "id": "harpers-org",
     "name": "Harper's",
     "url": "https://harpers.org/",
     "tags": [
@@ -1525,7 +1324,6 @@
     ]
   },
   {
-    "id": "heavy-com",
     "name": "heavy.com",
     "url": "https://heavy.com/",
     "tags": [
@@ -1533,7 +1331,6 @@
     ]
   },
   {
-    "id": "highscalability-com",
     "name": "highscalability.com",
     "url": "https://highscalability.com/",
     "tags": [
@@ -1541,7 +1338,6 @@
     ]
   },
   {
-    "id": "hindustantimes",
     "name": "Hindustan Times",
     "url": "https://hindustantimes.com/",
     "tags": [
@@ -1549,7 +1345,6 @@
     ]
   },
   {
-    "id": "howstuffworks-com",
     "name": "howstuffworks.com",
     "url": "https://howstuffworks.com/",
     "tags": [
@@ -1557,7 +1352,6 @@
     ]
   },
   {
-    "id": "howtogeek-com",
     "name": "howtogeek.com",
     "url": "https://howtogeek.com/",
     "tags": [
@@ -1565,7 +1359,6 @@
     ]
   },
   {
-    "id": "hurriyetdailynews",
     "name": "Hürriyet Daily News",
     "url": "https://hurriyetdailynews.com/",
     "tags": [
@@ -1573,7 +1366,6 @@
     ]
   },
   {
-    "id": "ieee-org",
     "name": "ieee.org",
     "url": "https://ieee.org/",
     "tags": [
@@ -1581,7 +1373,6 @@
     ]
   },
   {
-    "id": "ifixit",
     "name": "iFixit",
     "url": "https://ifixit.com/",
     "tags": [
@@ -1589,7 +1380,6 @@
     ]
   },
   {
-    "id": "ign",
     "name": "IGN",
     "url": "https://ign.com/",
     "tags": [
@@ -1597,7 +1387,6 @@
     ]
   },
   {
-    "id": "infowars-com",
     "name": "infowars.com",
     "url": "https://infowars.com/",
     "tags": [
@@ -1605,7 +1394,6 @@
     ]
   },
   {
-    "id": "itotd-com",
     "name": "itotd.com",
     "url": "https://itotd.com/",
     "tags": [
@@ -1613,7 +1401,6 @@
     ]
   },
   {
-    "id": "jpost",
     "name": "Jerusalem Post",
     "url": "https://jpost.com/",
     "tags": [
@@ -1621,7 +1408,6 @@
     ]
   },
   {
-    "id": "krebsonsecurity",
     "name": "Krebs on Security",
     "url": "https://krebsonsecurity.com/",
     "tags": [
@@ -1629,7 +1415,6 @@
     ]
   },
   {
-    "id": "english-kyodonews-net",
     "name": "Kyodo News",
     "url": "https://english.kyodonews.net/",
     "tags": [
@@ -1637,15 +1422,6 @@
     ]
   },
   {
-    "id": "la-prensa-com-mx",
-    "name": "La Prensa",
-    "url": "https://la-prensa.com.mx/",
-    "tags": [
-      "Global"
-    ]
-  },
-  {
-    "id": "repubblica-it",
     "name": "La Repubblica",
     "url": "https://repubblica.it/",
     "tags": [
@@ -1653,7 +1429,6 @@
     ]
   },
   {
-    "id": "lefigaro-fr",
     "name": "Le Figaro",
     "url": "https://lefigaro.fr/",
     "tags": [
@@ -1661,7 +1436,6 @@
     ]
   },
   {
-    "id": "lesoir-be",
     "name": "Le Soir",
     "url": "https://lesoir.be/",
     "tags": [
@@ -1669,7 +1443,6 @@
     ]
   },
   {
-    "id": "lifehacker-com",
     "name": "lifehacker.com",
     "url": "https://lifehacker.com/",
     "tags": [
@@ -1677,7 +1450,6 @@
     ]
   },
   {
-    "id": "makeuseof-com",
     "name": "makeuseof.com",
     "url": "https://makeuseof.com/",
     "tags": [
@@ -1685,7 +1457,6 @@
     ]
   },
   {
-    "id": "makezine-com",
     "name": "makezine.com",
     "url": "https://makezine.com/",
     "tags": [
@@ -1693,7 +1464,6 @@
     ]
   },
   {
-    "id": "mcclatchydc",
     "name": "McClatchy DC",
     "url": "https://mcclatchydc.com/",
     "tags": [
@@ -1701,7 +1471,6 @@
     ]
   },
   {
-    "id": "metafilter-com",
     "name": "metafilter.com",
     "url": "https://metafilter.com/",
     "tags": [
@@ -1709,7 +1478,6 @@
     ]
   },
   {
-    "id": "metro-co-uk",
     "name": "Metro",
     "url": "https://metro.co.uk/",
     "tags": [
@@ -1717,7 +1485,6 @@
     ]
   },
   {
-    "id": "technologyreview",
     "name": "MIT Technology Review",
     "url": "https://technologyreview.com/",
     "tags": [
@@ -1726,7 +1493,6 @@
     ]
   },
   {
-    "id": "ms-now",
     "name": "MS NOW",
     "url": "https://www.ms.now/",
     "tags": [
@@ -1736,7 +1502,6 @@
     ]
   },
   {
-    "id": "newzit",
     "name": "Newzit",
     "url": "https://newzit.com/",
     "tags": [
@@ -1744,7 +1509,6 @@
     ]
   },
   {
-    "id": "nextbigfuture-com",
     "name": "nextbigfuture.com",
     "url": "https://nextbigfuture.com/",
     "tags": [
@@ -1752,7 +1516,6 @@
     ]
   },
   {
-    "id": "niemanlab-org",
     "name": "Nieman Lab",
     "url": "https://niemanlab.org/",
     "tags": [
@@ -1760,15 +1523,6 @@
     ]
   },
   {
-    "id": "notus-org",
-    "name": "Notus",
-    "url": "https://notus.org/",
-    "tags": [
-      "American"
-    ]
-  },
-  {
-    "id": "observer",
     "name": "Observer",
     "url": "https://observer.com/",
     "tags": [
@@ -1777,7 +1531,6 @@
     ]
   },
   {
-    "id": "ozy",
     "name": "OZY",
     "url": "https://ozy.com/",
     "tags": [
@@ -1786,15 +1539,6 @@
     ]
   },
   {
-    "id": "packetstormsecurity-com",
-    "name": "packetstormsecurity.com",
-    "url": "https://packetstormsecurity.com/",
-    "tags": [
-      "Tech"
-    ]
-  },
-  {
-    "id": "pcgamer-com",
     "name": "pcgamer.com",
     "url": "https://pcgamer.com/",
     "tags": [
@@ -1802,7 +1546,6 @@
     ]
   },
   {
-    "id": "people",
     "name": "People",
     "url": "https://people.com/",
     "tags": [
@@ -1810,7 +1553,6 @@
     ]
   },
   {
-    "id": "en-people-cn",
     "name": "People's Daily",
     "url": "https://en.people.cn/",
     "tags": [
@@ -1818,7 +1560,6 @@
     ]
   },
   {
-    "id": "phoronix-com",
     "name": "phoronix.com",
     "url": "https://phoronix.com/",
     "tags": [
@@ -1826,7 +1567,6 @@
     ]
   },
   {
-    "id": "polygon-com",
     "name": "polygon.com",
     "url": "https://polygon.com/",
     "tags": [
@@ -1834,7 +1574,6 @@
     ]
   },
   {
-    "id": "pressgazette-co-uk",
     "name": "Press Gazette",
     "url": "https://pressgazette.co.uk/",
     "tags": [
@@ -1842,7 +1581,6 @@
     ]
   },
   {
-    "id": "ptinews",
     "name": "Press Trust of India",
     "url": "https://ptinews.com/",
     "tags": [
@@ -1850,7 +1588,6 @@
     ]
   },
   {
-    "id": "psfk-com",
     "name": "psfk.com",
     "url": "https://psfk.com/",
     "tags": [
@@ -1858,7 +1595,6 @@
     ]
   },
   {
-    "id": "publicnotice-co",
     "name": "publicnotice.co",
     "url": "https://publicnotice.co/",
     "tags": [
@@ -1867,7 +1603,6 @@
     ]
   },
   {
-    "id": "r-bloggers-com",
     "name": "r-bloggers.com",
     "url": "https://www.r-bloggers.com/",
     "tags": [
@@ -1875,7 +1610,6 @@
     ]
   },
   {
-    "id": "rawstory",
     "name": "Raw Story",
     "url": "https://rawstory.com/",
     "tags": [
@@ -1883,7 +1617,6 @@
     ]
   },
   {
-    "id": "readwrite-com",
     "name": "readwrite.com",
     "url": "https://readwrite.com/",
     "tags": [
@@ -1891,7 +1624,6 @@
     ]
   },
   {
-    "id": "realclearpolitics-com",
     "name": "realclearpolitics.com",
     "url": "https://realclearpolitics.com/",
     "tags": [
@@ -1899,7 +1631,6 @@
     ]
   },
   {
-    "id": "reason-org",
     "name": "Reason Foundation",
     "url": "https://reason.org/",
     "tags": [
@@ -1907,7 +1638,6 @@
     ]
   },
   {
-    "id": "reclaimthenet-org",
     "name": "Reclaim The Net",
     "url": "https://reclaimthenet.org/",
     "tags": [
@@ -1915,7 +1645,6 @@
     ]
   },
   {
-    "id": "robohub-org",
     "name": "robohub.org",
     "url": "https://robohub.org/",
     "tags": [
@@ -1923,7 +1652,6 @@
     ]
   },
   {
-    "id": "roboticsbusinessreview-com",
     "name": "roboticsbusinessreview.com",
     "url": "https://roboticsbusinessreview.com/",
     "tags": [
@@ -1931,7 +1659,6 @@
     ]
   },
   {
-    "id": "robotiq-com",
     "name": "robotiq.com",
     "url": "https://robotiq.com/",
     "tags": [
@@ -1939,15 +1666,6 @@
     ]
   },
   {
-    "id": "securiteam-com",
-    "name": "securiteam.com",
-    "url": "https://securiteam.com/",
-    "tags": [
-      "Tech"
-    ]
-  },
-  {
-    "id": "sfgate",
     "name": "SFGate",
     "url": "https://sfgate.com/",
     "tags": [
@@ -1957,7 +1675,6 @@
     ]
   },
   {
-    "id": "showbiz411",
     "name": "Showbiz411",
     "url": "https://showbiz411.com/",
     "tags": [
@@ -1965,7 +1682,6 @@
     ]
   },
   {
-    "id": "smartdatacollective-com",
     "name": "smartdatacollective.com",
     "url": "https://smartdatacollective.com/",
     "tags": [
@@ -1973,7 +1689,6 @@
     ]
   },
   {
-    "id": "smashingmagazine-com",
     "name": "smashingmagazine.com",
     "url": "https://smashingmagazine.com/",
     "tags": [
@@ -1981,7 +1696,6 @@
     ]
   },
   {
-    "id": "stateline-org",
     "name": "Stateline",
     "url": "https://stateline.org/",
     "tags": [
@@ -1989,7 +1703,6 @@
     ]
   },
   {
-    "id": "statsblogs-com",
     "name": "statsblogs.com",
     "url": "https://statsblogs.com/",
     "tags": [
@@ -1997,7 +1710,6 @@
     ]
   },
   {
-    "id": "smh-com-au",
     "name": "Sydney Morning Herald",
     "url": "https://smh.com.au/",
     "tags": [
@@ -2005,7 +1717,6 @@
     ]
   },
   {
-    "id": "talkingpointsmemo",
     "name": "Talking Points Memo",
     "url": "https://talkingpointsmemo.com/",
     "tags": [
@@ -2014,7 +1725,6 @@
     ]
   },
   {
-    "id": "techinasia-com",
     "name": "techinasia.com",
     "url": "https://techinasia.com/",
     "tags": [
@@ -2022,7 +1732,6 @@
     ]
   },
   {
-    "id": "techinsider-io",
     "name": "techinsider.io",
     "url": "https://techinsider.io/",
     "tags": [
@@ -2030,7 +1739,6 @@
     ]
   },
   {
-    "id": "ted-com",
     "name": "ted.com",
     "url": "https://ted.com/",
     "tags": [
@@ -2038,7 +1746,6 @@
     ]
   },
   {
-    "id": "theaustralian-com-au",
     "name": "The Australian",
     "url": "https://theaustralian.com.au/",
     "tags": [
@@ -2047,7 +1754,6 @@
     ]
   },
   {
-    "id": "brutalist-report",
     "name": "The Brutalist Report",
     "url": "https://brutalist.report/",
     "tags": [
@@ -2056,7 +1762,6 @@
     ]
   },
   {
-    "id": "thebulwark",
     "name": "The Bulwark",
     "url": "https://thebulwark.com/",
     "tags": [
@@ -2064,7 +1769,6 @@
     ]
   },
   {
-    "id": "the-decoder",
     "name": "The Decoder",
     "url": "https://the-decoder.com/",
     "tags": [
@@ -2072,7 +1776,6 @@
     ]
   },
   {
-    "id": "thedesk-net",
     "name": "The Desk",
     "url": "https://thedesk.net/",
     "tags": [
@@ -2080,7 +1783,6 @@
     ]
   },
   {
-    "id": "thefp",
     "name": "The Free Press",
     "url": "https://thefp.com/",
     "tags": [
@@ -2088,7 +1790,6 @@
     ]
   },
   {
-    "id": "theinformation",
     "name": "The Information",
     "url": "https://theinformation.com/",
     "tags": [
@@ -2096,7 +1797,6 @@
     ]
   },
   {
-    "id": "thenation",
     "name": "The Nation",
     "url": "https://thenation.com/",
     "tags": [
@@ -2105,7 +1805,6 @@
     ]
   },
   {
-    "id": "theneweuropean-co-uk",
     "name": "The New European",
     "url": "https://theneweuropean.co.uk/",
     "tags": [
@@ -2113,7 +1812,6 @@
     ]
   },
   {
-    "id": "thenewrepublic",
     "name": "The New Republic",
     "url": "https://thenewrepublic.com/",
     "tags": [
@@ -2121,7 +1819,6 @@
     ]
   },
   {
-    "id": "riotimesonline",
     "name": "The Rio Times",
     "url": "https://riotimesonline.com/",
     "tags": [
@@ -2129,7 +1826,6 @@
     ]
   },
   {
-    "id": "thesmokinggun",
     "name": "The Smoking Gun",
     "url": "https://thesmokinggun.com/",
     "tags": [
@@ -2137,7 +1833,6 @@
     ]
   },
   {
-    "id": "thetimes",
     "name": "The Times",
     "url": "https://thetimes.com/",
     "tags": [
@@ -2146,7 +1841,6 @@
     ]
   },
   {
-    "id": "theyeshivaworld",
     "name": "The Yeshiva World",
     "url": "https://theyeshivaworld.com/",
     "tags": [
@@ -2154,7 +1848,6 @@
     ]
   },
   {
-    "id": "yomiuri-co-jp",
     "name": "The Yomiuri Shimbun",
     "url": "https://yomiuri.co.jp/",
     "tags": [
@@ -2162,7 +1855,6 @@
     ]
   },
   {
-    "id": "theblaze-com",
     "name": "theblaze.com",
     "url": "https://theblaze.com/",
     "tags": [
@@ -2170,7 +1862,6 @@
     ]
   },
   {
-    "id": "thechive-com",
     "name": "thechive.com",
     "url": "https://thechive.com/",
     "tags": [
@@ -2178,7 +1869,6 @@
     ]
   },
   {
-    "id": "theonion-com",
     "name": "theonion.com",
     "url": "https://theonion.com/",
     "tags": [
@@ -2187,7 +1877,6 @@
     ]
   },
   {
-    "id": "thetechblock-com",
     "name": "thetechblock.com",
     "url": "https://thetechblock.com/",
     "tags": [
@@ -2195,7 +1884,6 @@
     ]
   },
   {
-    "id": "tomshardware",
     "name": "Tom's Hardware",
     "url": "https://tomshardware.com/",
     "tags": [
@@ -2203,7 +1891,6 @@
     ]
   },
   {
-    "id": "uol-com-br",
     "name": "UOL",
     "url": "https://uol.com.br/",
     "tags": [
@@ -2211,7 +1898,6 @@
     ]
   },
   {
-    "id": "vice-com",
     "name": "vice.com",
     "url": "https://vice.com/",
     "tags": [
@@ -2219,7 +1905,6 @@
     ]
   },
   {
-    "id": "washingtontimes-com",
     "name": "washingtontimes.com",
     "url": "https://washingtontimes.com/",
     "tags": [
@@ -2227,7 +1912,6 @@
     ]
   },
   {
-    "id": "welt-de",
     "name": "WELT",
     "url": "https://welt.de/",
     "tags": [
@@ -2235,7 +1919,6 @@
     ]
   },
   {
-    "id": "whatsthebigdata-com",
     "name": "whatsthebigdata.com",
     "url": "https://whatsthebigdata.com/",
     "tags": [
@@ -2243,7 +1926,6 @@
     ]
   },
   {
-    "id": "windowscentral",
     "name": "Windows Central",
     "url": "https://windowscentral.com/",
     "tags": [
@@ -2251,7 +1933,6 @@
     ]
   },
   {
-    "id": "worldofreel",
     "name": "World of Reel",
     "url": "https://worldofreel.com/",
     "tags": [
@@ -2259,7 +1940,6 @@
     ]
   },
   {
-    "id": "worldcrunch",
     "name": "Worldcrunch",
     "url": "https://worldcrunch.com/",
     "tags": [
@@ -2268,7 +1948,6 @@
     ]
   },
   {
-    "id": "xinhuanet",
     "name": "Xinhua",
     "url": "https://xinhuanet.com/",
     "tags": [
@@ -2276,7 +1955,6 @@
     ]
   },
   {
-    "id": "finance-yahoo",
     "name": "Yahoo Finance",
     "url": "https://finance.yahoo.com/",
     "tags": [
@@ -2285,7 +1963,6 @@
     ]
   },
   {
-    "id": "ycombinator-com",
     "name": "ycombinator.com",
     "url": "https://ycombinator.com/",
     "tags": [
@@ -2293,7 +1970,6 @@
     ]
   },
   {
-    "id": "zerohedge-com",
     "name": "zerohedge.com",
     "url": "https://zerohedge.com/",
     "tags": [
@@ -2301,7 +1977,6 @@
     ]
   },
   {
-    "id": "axelspringer-com",
     "name": "Axel Springer SE",
     "url": "https://axelspringer.com/",
     "tags": [
@@ -2309,7 +1984,6 @@
     ]
   },
   {
-    "id": "ben-evans-com",
     "name": "Benedict Evans",
     "url": "https://ben-evans.com/",
     "tags": [
@@ -2317,7 +1991,6 @@
     ]
   },
   {
-    "id": "cjr-org",
     "name": "Columbia Journalism Review",
     "url": "https://cjr.org/",
     "tags": [
@@ -2325,7 +1998,6 @@
     ]
   },
   {
-    "id": "wheresyoured-at",
     "name": "Ed Zitron's Where's Your Ed At",
     "url": "https://wheresyoured.at/",
     "tags": [
@@ -2333,7 +2005,6 @@
     ]
   },
   {
-    "id": "macrumors-com",
     "name": "MacRumors",
     "url": "https://macrumors.com/",
     "tags": [
@@ -2341,7 +2012,6 @@
     ]
   },
   {
-    "id": "meidasnews-com",
     "name": "MeidasTouch",
     "url": "https://meidasnews.com/",
     "tags": [
@@ -2350,7 +2020,6 @@
     ]
   },
   {
-    "id": "om-co",
     "name": "om.co",
     "url": "https://om.co/",
     "tags": [
@@ -2358,7 +2027,6 @@
     ]
   },
   {
-    "id": "poynter-org",
     "name": "Poynter",
     "url": "https://poynter.org/",
     "tags": [
@@ -2366,7 +2034,6 @@
     ]
   },
   {
-    "id": "stratechery-com",
     "name": "Stratechery",
     "url": "https://stratechery.com/",
     "tags": [
@@ -2375,7 +2042,6 @@
     ]
   },
   {
-    "id": "talkingbiznews-com",
     "name": "Talking Biz News",
     "url": "https://talkingbiznews.com/",
     "tags": [
@@ -2384,7 +2050,6 @@
     ]
   },
   {
-    "id": "avclub-com",
     "name": "The A.V. Club",
     "url": "https://avclub.com/",
     "tags": [
@@ -2393,7 +2058,6 @@
     ]
   },
   {
-    "id": "thepointsguy-com",
     "name": "The Points Guy",
     "url": "https://thepointsguy.com/",
     "tags": [
@@ -2401,7 +2065,6 @@
     ]
   },
   {
-    "id": "zeteo-com",
     "name": "Zeteo",
     "url": "https://zeteo.com/",
     "tags": [
@@ -2410,7 +2073,6 @@
     ]
   },
   {
-    "id": "1851franchise-com",
     "name": "1851franchise.com",
     "url": "https://1851franchise.com/",
     "tags": [
@@ -2418,15 +2080,6 @@
     ]
   },
   {
-    "id": "8ball-report",
-    "name": "8ball.report",
-    "url": "https://8ball.report/",
-    "tags": [
-      "News"
-    ]
-  },
-  {
-    "id": "abc-net-au",
     "name": "ABC",
     "url": "https://abc.net.au/",
     "tags": [
@@ -2435,7 +2088,6 @@
     ]
   },
   {
-    "id": "accuweather-com",
     "name": "accuweather.com",
     "url": "https://accuweather.com/",
     "tags": [
@@ -2443,7 +2095,6 @@
     ]
   },
   {
-    "id": "advocate-com",
     "name": "Advocate",
     "url": "https://advocate.com/",
     "tags": [
@@ -2452,7 +2103,6 @@
     ]
   },
   {
-    "id": "aftermath-site",
     "name": "Aftermath",
     "url": "https://aftermath.site/",
     "tags": [
@@ -2460,7 +2110,6 @@
     ]
   },
   {
-    "id": "afp-com",
     "name": "Agence France-Presse",
     "url": "https://www.afp.com/en/homepage",
     "tags": [
@@ -2469,7 +2118,6 @@
     ]
   },
   {
-    "id": "airmail-news",
     "name": "airmail.news",
     "url": "https://airmail.news/",
     "tags": [
@@ -2477,7 +2125,6 @@
     ]
   },
   {
-    "id": "prospect-org",
     "name": "American Prospect",
     "url": "https://prospect.org/",
     "tags": [
@@ -2486,7 +2133,6 @@
     ]
   },
   {
-    "id": "bangordailynews-com",
     "name": "bangordailynews.com",
     "url": "https://bangordailynews.com/",
     "tags": [
@@ -2494,7 +2140,6 @@
     ]
   },
   {
-    "id": "bnonews-com",
     "name": "bnonews.com",
     "url": "https://bnonews.com/",
     "tags": [
@@ -2503,7 +2148,6 @@
     ]
   },
   {
-    "id": "dampfkraft-com",
     "name": "dampfkraft.com",
     "url": "https://dampfkraft.com/",
     "tags": [
@@ -2511,7 +2155,6 @@
     ]
   },
   {
-    "id": "daringfireball-net",
     "name": "Daring Fireball",
     "url": "https://daringfireball.net/",
     "tags": [
@@ -2519,7 +2162,6 @@
     ]
   },
   {
-    "id": "digiday-com",
     "name": "Digiday",
     "url": "https://digiday.com/",
     "tags": [
@@ -2528,7 +2170,6 @@
     ]
   },
   {
-    "id": "esquire-com",
     "name": "Esquire",
     "url": "https://esquire.com/",
     "tags": [
@@ -2536,7 +2177,6 @@
     ]
   },
   {
-    "id": "foxweather-com",
     "name": "foxweather.com",
     "url": "https://foxweather.com/",
     "tags": [
@@ -2544,7 +2184,6 @@
     ]
   },
   {
-    "id": "futurism-com",
     "name": "futurism.com",
     "url": "https://futurism.com/",
     "tags": [
@@ -2553,7 +2192,6 @@
     ]
   },
   {
-    "id": "semianalysis-com",
     "name": "Hacker News",
     "url": "https://semianalysis.com/",
     "tags": [
@@ -2561,7 +2199,6 @@
     ]
   },
   {
-    "id": "hawaiinewsnow-com",
     "name": "hawaiinewsnow.com",
     "url": "https://hawaiinewsnow.com/",
     "tags": [
@@ -2570,7 +2207,6 @@
     ]
   },
   {
-    "id": "highsnobiety-com",
     "name": "highsnobiety.com",
     "url": "https://highsnobiety.com/",
     "tags": [
@@ -2578,7 +2214,6 @@
     ]
   },
   {
-    "id": "hotair-com",
     "name": "HotAir",
     "url": "https://hotair.com/",
     "tags": [
@@ -2587,7 +2222,6 @@
     ]
   },
   {
-    "id": "interviewmagazine-com",
     "name": "interviewmagazine.com",
     "url": "https://interviewmagazine.com/",
     "tags": [
@@ -2595,7 +2229,6 @@
     ]
   },
   {
-    "id": "lwn-net",
     "name": "Linux Weekly News",
     "url": "https://lwn.net/",
     "tags": [
@@ -2603,7 +2236,6 @@
     ]
   },
   {
-    "id": "liveandletsfly-com",
     "name": "liveandletsfly.com",
     "url": "https://liveandletsfly.com/",
     "tags": [
@@ -2611,7 +2243,6 @@
     ]
   },
   {
-    "id": "marylandmatters-org",
     "name": "Maryland Matters",
     "url": "https://marylandmatters.org/",
     "tags": [
@@ -2620,7 +2251,6 @@
     ]
   },
   {
-    "id": "mediamatters-org",
     "name": "Media Matters for America",
     "url": "https://mediamatters.org/",
     "tags": [
@@ -2629,7 +2259,6 @@
     ]
   },
   {
-    "id": "mirror-co-uk",
     "name": "mirror.co.uk",
     "url": "https://mirror.co.uk/",
     "tags": [
@@ -2638,7 +2267,6 @@
     ]
   },
   {
-    "id": "neowin-net",
     "name": "Neowin",
     "url": "https://neowin.net/",
     "tags": [
@@ -2646,7 +2274,6 @@
     ]
   },
   {
-    "id": "newscientist-com",
     "name": "New Scientist",
     "url": "https://newscientist.com/",
     "tags": [
@@ -2654,7 +2281,6 @@
     ]
   },
   {
-    "id": "northsouthnotes-org",
     "name": "northsouthnotes.org",
     "url": "https://northsouthnotes.org/",
     "tags": [
@@ -2662,7 +2288,6 @@
     ]
   },
   {
-    "id": "ofnote-org",
     "name": "ofnote.org",
     "url": "https://ofnote.org/",
     "tags": [
@@ -2670,7 +2295,6 @@
     ]
   },
   {
-    "id": "piratewires-com",
     "name": "Pirate Wires",
     "url": "https://piratewires.com/",
     "tags": [
@@ -2679,7 +2303,6 @@
     ]
   },
   {
-    "id": "pitchfork-com",
     "name": "pitchfork.com",
     "url": "https://pitchfork.com/",
     "tags": [
@@ -2687,7 +2310,6 @@
     ]
   },
   {
-    "id": "podnews-net",
     "name": "Podnews",
     "url": "https://podnews.net/",
     "tags": [
@@ -2695,7 +2317,6 @@
     ]
   },
   {
-    "id": "popular-info",
     "name": "Popular Information",
     "url": "https://popular.info/",
     "tags": [
@@ -2704,7 +2325,6 @@
     ]
   },
   {
-    "id": "puck-news",
     "name": "Puck",
     "url": "https://puck.news/",
     "tags": [
@@ -2714,7 +2334,6 @@
     ]
   },
   {
-    "id": "quantamagazine-org",
     "name": "Quanta Magazine",
     "url": "https://quantamagazine.org/",
     "tags": [
@@ -2723,7 +2342,6 @@
     ]
   },
   {
-    "id": "reason-com",
     "name": "reason.com",
     "url": "https://reason.com/",
     "tags": [
@@ -2731,7 +2349,6 @@
     ]
   },
   {
-    "id": "scientificamerican-com",
     "name": "Scientific American",
     "url": "https://scientificamerican.com/",
     "tags": [
@@ -2739,7 +2356,6 @@
     ]
   },
   {
-    "id": "serpentinegalleries-org",
     "name": "serpentinegalleries.org",
     "url": "https://serpentinegalleries.org/",
     "tags": [
@@ -2747,7 +2363,6 @@
     ]
   },
   {
-    "id": "servethehome-com",
     "name": "Serve The Home",
     "url": "https://servethehome.com/",
     "tags": [
@@ -2755,7 +2370,6 @@
     ]
   },
   {
-    "id": "smithsonianmag-com",
     "name": "smithsonianmag.com",
     "url": "https://smithsonianmag.com/",
     "tags": [
@@ -2763,7 +2377,6 @@
     ]
   },
   {
-    "id": "sportico-com",
     "name": "Sportico",
     "url": "https://sportico.com/",
     "tags": [
@@ -2772,7 +2385,6 @@
     ]
   },
   {
-    "id": "studyfinds-com",
     "name": "studyfinds.com",
     "url": "https://studyfinds.com/",
     "tags": [
@@ -2780,7 +2392,6 @@
     ]
   },
   {
-    "id": "tag24-com",
     "name": "tag24.com",
     "url": "https://tag24.com/",
     "tags": [
@@ -2788,7 +2399,6 @@
     ]
   },
   {
-    "id": "bostonglobe-com",
     "name": "The Boston Globe",
     "url": "https://bostonglobe.com/",
     "tags": [
@@ -2797,7 +2407,6 @@
     ]
   },
   {
-    "id": "the-fence-com",
     "name": "the-fence.com",
     "url": "https://the-fence.com/",
     "tags": [
@@ -2805,7 +2414,6 @@
     ]
   },
   {
-    "id": "the-sun-com",
     "name": "the-sun.com",
     "url": "https://the-sun.com/",
     "tags": [
@@ -2813,7 +2421,6 @@
     ]
   },
   {
-    "id": "tvnewscheck-com",
     "name": "TVNewsCheck",
     "url": "https://tvnewscheck.com/",
     "tags": [
@@ -2822,7 +2429,6 @@
     ]
   },
   {
-    "id": "washingtonian-com",
     "name": "Washingtonian",
     "url": "https://washingtonian.com/",
     "tags": [
@@ -2831,7 +2437,6 @@
     ]
   },
   {
-    "id": "windowslatest-com",
     "name": "Windows Latest",
     "url": "https://windowslatest.com/",
     "tags": [

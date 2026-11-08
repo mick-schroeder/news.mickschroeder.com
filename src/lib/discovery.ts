@@ -1,26 +1,15 @@
-type Destination = {
+export type Website = {
   name: string
   url: string
   tags: string[]
 }
 
-export type Website = Destination & {
-  id: string
-  editions?: Destination[]
-}
-
 export const shufflePath = "/redirect/"
 
 export function filterWebsites(sites: Website[], interests: string[]) {
-  const matches = (site: Destination) =>
+  return sites.filter((site) =>
     site.tags.some((tag) => interests.includes(tag))
-
-  return sites.flatMap((site) => {
-    if (!site.editions) return matches(site) ? [site] : []
-
-    const editions = [site, ...site.editions].filter(matches)
-    return editions.length ? [{ ...site, editions }] : []
-  })
+  )
 }
 export function pickWebsite(
   sites: Website[],
@@ -32,15 +21,9 @@ export function pickWebsite(
     : previous
       ? [previous]
       : []
-  const unvisited = sites.filter((site) => !previousList.includes(site.id))
+  const unvisited = sites.filter((site) => !previousList.includes(site.url))
   const pool = unvisited.length ? unvisited : sites
-  const site = pool[Math.floor(random() * pool.length)]
-  const editions = site?.editions
-  if (!editions?.length) return site
-
-  const edition =
-    editions[editions.length === 1 ? 0 : Math.floor(random() * editions.length)]
-  return { ...edition, id: site.id }
+  return pool[Math.floor(random() * pool.length)]
 }
 
 export function parseInterests(

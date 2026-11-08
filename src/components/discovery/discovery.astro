@@ -8,7 +8,7 @@ interface Props {
 }
 const { locale } = Astro.props
 const t = translations[locale]
-const websites = await getWebsites()
+const websites = getWebsites()
 ---
 
 <main

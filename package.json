@@ -15,7 +15,11 @@
     "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
     "typecheck": "astro check",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "check": "pnpm lint && pnpm typecheck && pnpm test"
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "catalog:audit": "node scripts/catalog-cli.mjs audit",
+    "catalog:discover": "node scripts/catalog-cli.mjs discover",
+    "catalog:verify": "node scripts/catalog-cli.mjs verify",
+    "catalog:review": "node scripts/catalog-review.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7",
@@ -44,6 +48,7 @@
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.2",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "saxes": "^6.0.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8"
   },

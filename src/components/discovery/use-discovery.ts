@@ -50,13 +50,10 @@ export function useDiscovery() {
 
   function selectInterests(selected: string[]) {
     const pool = filterWebsites(websites, selected)
-    const publisher = pool.find((candidate) => candidate.id === site?.id)
-    const destinations = publisher?.editions ?? (publisher ? [publisher] : [])
-
     setInterests(selected)
     setPendingSite(undefined)
-    if (!destinations.some((destination) => destination.url === site?.url)) {
-      setSite(pickWebsite(publisher ? [publisher] : pool, history))
+    if (!pool.some((candidate) => candidate.url === site?.url)) {
+      setSite(pickWebsite(pool, history))
     }
     writeInterests(selected)
   }
@@ -64,7 +61,7 @@ export function useDiscovery() {
   function next(visits = history) {
     if (!site || !interests || pendingSite) return
     const pool = filterWebsites(websites, interests)
-    const otherSites = pool.filter((candidate) => candidate.id !== site.id)
+    const otherSites = pool.filter((candidate) => candidate.url !== site.url)
     setPendingSite(pickWebsite(otherSites.length ? otherSites : pool, visits))
   }
 
@@ -72,7 +69,7 @@ export function useDiscovery() {
     if (!site || pendingSite) return
     window.open(site.url, "_blank", "noopener,noreferrer")
     window.dispatchEvent(new Event(shuffleEvent))
-    const visits = addToHistory(site.id)
+    const visits = addToHistory(site.url)
     setHistory(visits)
     next(visits)
   }
@@ -80,8 +77,8 @@ export function useDiscovery() {
   function showPrevious() {
     if (!site || pendingSite) return false
     const previous = history
-      .slice(history.indexOf(site.id) + 1)
-      .map((id) => websites.find((candidate) => candidate.id === id))
+      .slice(history.indexOf(site.url) + 1)
+      .map((url) => websites.find((candidate) => candidate.url === url))
       .find((candidate) => candidate !== undefined)
     setPendingSite(previous)
     return Boolean(previous)
@@ -96,9 +93,9 @@ export function useDiscovery() {
     interests,
     site,
     historySites: history
-      .map((id) => websites.find((candidate) => candidate.id === id))
+      .map((url) => websites.find((candidate) => candidate.url === url))
       .filter((candidate): candidate is Website =>
-        Boolean(candidate && candidate.id !== site?.id)
+        Boolean(candidate && candidate.url !== site?.url)
       ),
     transitioning: Boolean(pendingSite),
     selectInterests,

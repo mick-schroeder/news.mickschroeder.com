@@ -204,7 +204,7 @@ const t = translations[defaultLocale]
         destination.href = site.url
         loading.hidden = true
         destination.hidden = false
-        addToHistory(site.id)
+        addToHistory(site.url)
         timer = window.setTimeout(
           () => location.replace(site.url),
           reducedMotion ? 0 : 250

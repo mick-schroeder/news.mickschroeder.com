@@ -89,7 +89,7 @@ export function UpNextCard({
             .slice(0, historyDepth)
             .map((site, index) => (
               <HistoryCard
-                key={site.id}
+                key={site.url}
                 site={site}
                 index={index}
                 onSelect={() => showHistorySite(site)}
@@ -100,7 +100,7 @@ export function UpNextCard({
           <SiteCardSkeleton showPeeks={!frontSite || loading} />
         ) : frontSite ? (
           <SiteCard
-            key={frontSite.id}
+            key={frontSite.url}
             site={frontSite}
             opensInNewTab={t.opensInNewTab}
           />
