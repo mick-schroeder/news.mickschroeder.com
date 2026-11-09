@@ -41,7 +41,11 @@ const destinationRow = "min-h-18 flex-nowrap"
       <CardContent>
         <div aria-live="polite" aria-atomic="true">
           <div id="redirect-loading">
-            <Item variant="outline" className={destinationRow} aria-hidden="true">
+            <Item
+              variant="outline"
+              className={destinationRow}
+              aria-hidden="true"
+            >
               <ItemMedia>
                 <Skeleton className="size-10 rounded-full motion-reduce:animate-none" />
               </ItemMedia>

@@ -7,6 +7,7 @@
       "American",
       "Culture",
       "Newzit",
+      "News",
       "Politics",
       "Science",
       "Tech"
@@ -34,6 +35,7 @@
     "tags": [
       "American",
       "Newzit",
+      "News",
       "Tech",
       "Techmeme"
     ]
@@ -970,7 +972,8 @@
     "tags": [
       "American",
       "Culture",
-      "Drudge Report"
+      "Drudge Report",
+      "Mediagazer"
     ]
   },
   {
@@ -1268,9 +1271,8 @@
     "name": "Africanews",
     "url": "https://africanews.com/",
     "tags": [
-      "Global",
-      "News",
-      "Drudge Report"
+      "Drudge Report",
+      "Global"
     ]
   },
   {
@@ -1634,9 +1636,8 @@
     "name": "Haaretz",
     "url": "https://haaretz.com/",
     "tags": [
-      "Global",
-      "News",
-      "Drudge Report"
+      "Drudge Report",
+      "Global"
     ]
   },
   {
@@ -1763,8 +1764,7 @@
     "url": "https://lefigaro.fr/",
     "tags": [
       "Drudge Report",
-      "Global",
-      "News"
+      "Global"
     ]
   },
   {
@@ -1984,7 +1984,6 @@
     "url": "https://reason.org/",
     "tags": [
       "American",
-      "News",
       "Drudge Report"
     ]
   },
@@ -2684,7 +2683,8 @@
     "url": "https://www.espn.com/",
     "tags": [
       "American",
-      "Newzit"
+      "Newzit",
+      "News"
     ]
   },
   {
@@ -2718,7 +2718,8 @@
     "url": "https://www.dailymail.com/home/index.html",
     "tags": [
       "British",
-      "Newzit"
+      "Newzit",
+      "News"
     ]
   },
   {
@@ -2734,10 +2735,9 @@
     "name": "National Review",
     "url": "https://www.nationalreview.com/",
     "tags": [
-      "Politics",
+      "Drudge Report",
       "Memeorandum",
-      "News",
-      "Drudge Report"
+      "Politics"
     ]
   },
   {
@@ -2774,7 +2774,8 @@
       "American",
       "Culture",
       "Mediagazer",
-      "Newzit"
+      "Newzit",
+      "News"
     ]
   },
   {
@@ -2782,7 +2783,9 @@
     "url": "https://www.popsugar.com/",
     "tags": [
       "American",
-      "Newzit"
+      "Culture",
+      "Newzit",
+      "News"
     ]
   },
   {
@@ -2806,7 +2809,8 @@
     "url": "https://www.vogue.com/",
     "tags": [
       "American",
-      "Newzit"
+      "Newzit",
+      "News"
     ]
   },
   {

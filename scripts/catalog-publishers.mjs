@@ -22,9 +22,10 @@ export function newzitPublishers(records) {
     throw new Error("Expected a nonempty Newzit homepage list")
 
   return records.map((record) => {
-    const tags = ["News", "Newzit"]
+    const tags = ["Newzit"]
     if (record?.geo === "gb") tags.push("British")
     if (record?.geo === "us") tags.push("American")
+    if (record?.geo === "us") tags.push("News")
     const source = publisher(record?.name, record?.url, tags)
     if (!source) throw new Error("Invalid publisher in Newzit homepage list")
     return source
@@ -90,7 +91,7 @@ function readDrudgeSection(section) {
     if (!anchor) return []
     const name = textContent(anchor).replace(/\s+/g, " ").trim()
     const href = anchor.attrs.find(({ name }) => name === "href")?.value
-    const source = publisher(name, href, ["News", "Drudge Report"])
+    const source = publisher(name, href, ["Drudge Report"])
     if (
       !source ||
       /^(AP RADIO|LIVE|LATEST|WIRE|FEED)$/i.test(name) ||

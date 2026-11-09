@@ -2,8 +2,8 @@
 import { Shuffle } from "lucide-react"
 
 const faces = [
-  "border-primary/40 bg-[#009A49] text-white",
-  "brand-card-back border-border bg-foreground text-primary",
+  "bg-primary text-white",
+  "brand-card-back bg-secondary text-secondary-foreground",
 ]
 ---
 
@@ -12,7 +12,7 @@ const faces = [
     {faces.map((face) => (
       <span
         class:list={[
-          "brand-card-face absolute inset-0 flex items-center justify-center rounded-lg border",
+          "brand-card-face absolute inset-0 flex items-center justify-center rounded-lg",
           face,
         ]}
       >
