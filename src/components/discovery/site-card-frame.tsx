@@ -16,7 +16,7 @@ export function SiteCardFrame({
     <Card
       style={{ height: siteCardHeight }}
       className={cn(
-        "relative z-40 rounded-2xl py-0 shadow-md",
+        "relative z-40 rounded-2xl py-0",
         loading
           ? "pointer-events-none"
           : "group transition-[border-color,box-shadow] hover:border-ring/50 hover:shadow-lg active:shadow-sm motion-reduce:transition-none"

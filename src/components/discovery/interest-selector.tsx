@@ -43,9 +43,10 @@ export function InterestSelector({
     <div className="flex w-full flex-wrap items-center justify-start gap-2">
       <ToggleGroup
         aria-label={translations[locale].interests}
-        className="contents"
+        className="w-full flex-wrap"
         variant="outline"
         size="sm"
+        spacing={2}
         multiple
         disabled={!selected}
         value={selected ?? []}
@@ -64,9 +65,9 @@ export function InterestSelector({
                   ? interest.description[locale]
                   : undefined
               }
-              className="gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/40 hover:bg-muted hover:text-foreground aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background"
+              className="text-xs aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background"
             >
-              <Icon className="size-3.5" aria-hidden="true" />
+              <Icon data-icon="inline-start" aria-hidden="true" />
               <span>{locale === "ga" ? interest.labelGa : tag}</span>
             </ToggleGroupItem>
           )
@@ -76,7 +77,7 @@ export function InterestSelector({
         type="button"
         variant="ghost"
         size="sm"
-        className="rounded-full text-xs text-muted-foreground"
+        className="text-muted-foreground"
         disabled={!selected?.length}
         onClick={() => onChange([])}
       >

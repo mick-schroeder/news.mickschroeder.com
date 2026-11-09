@@ -43,8 +43,8 @@ export function ShuffleBookmark({
               href={shufflePath}
               title={bookmarkUrl}
               className={cn(
-                buttonVariants({ variant: "outline" }),
-                "h-11 min-w-0 flex-1 justify-start border-border bg-card px-3.5 text-left font-mono text-xs text-foreground hover:bg-muted"
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "min-w-0 flex-1 justify-start text-left font-mono text-xs"
               )}
             >
               <span className="truncate">{bookmarkUrl}</span>
@@ -58,7 +58,6 @@ export function ShuffleBookmark({
               aria-describedby="bookmark-copy-hint"
               disabled={!ready}
               onClick={copyBookmark}
-              className="group size-11 shrink-0 border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
             >
               {copyResult === "copied" ? (
                 <Check className="size-4 text-primary" aria-hidden="true" />
@@ -89,10 +88,11 @@ export function ShuffleBookmark({
             aria-describedby="bookmark-drag-hint"
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
-              "h-11 cursor-grab gap-2 px-3 active:cursor-grabbing"
+              "cursor-grab active:cursor-grabbing"
             )}
           >
             <img
+              data-icon="inline-start"
               src="/favicon.svg"
               alt=""
               draggable="false"
