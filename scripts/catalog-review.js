@@ -165,6 +165,9 @@ function render() {
       searchText.includes(query) &&
       (filter === "all" ||
         (filter === "current" && original) ||
+        (filter === "current-without-newzit" &&
+          original &&
+          !(decision?.site ?? site).tags.includes("Newzit")) ||
         (filter === "candidate" && (!original || discoveredVia)) ||
         (filter === "decided" && decision) ||
         (filter === "findings" &&

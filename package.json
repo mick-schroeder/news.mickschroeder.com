@@ -16,9 +16,6 @@
     "typecheck": "astro check",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "check": "pnpm lint && pnpm typecheck && pnpm test",
-    "catalog:audit": "node scripts/catalog-cli.mjs audit",
-    "catalog:discover": "node scripts/catalog-cli.mjs discover",
-    "catalog:verify": "node scripts/catalog-cli.mjs verify",
     "catalog:review": "node scripts/catalog-review.mjs"
   },
   "dependencies": {

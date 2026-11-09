@@ -1,8 +1,9 @@
+import { isDeepStrictEqual } from "node:util"
 import { createServer } from "node:http"
 import { readFile } from "node:fs/promises"
 import { spawn } from "node:child_process"
 import { tags } from "../src/data/interest-tags.ts"
-import { websiteSchema } from "../src/data/catalog-schema.ts"
+import { catalogSchema, websiteSchema } from "../src/data/catalog-schema.ts"
 import { audit, checkLink, discover } from "./catalog.mjs"
 import { applyChanges, planChanges, readWorkspace } from "./catalog-files.mjs"
 
@@ -91,11 +92,80 @@ const server = createServer(async (request, response) => {
   }
 })
 
-server.listen(4322, "127.0.0.1", () => {
-  console.log(`Catalog review is available at ${origin}`)
-  if (process.argv.includes("--no-open")) return
-  const opener = { darwin: "open", linux: "xdg-open" }[process.platform]
-  if (!opener) return
-  const child = spawn(opener, [origin], { stdio: "ignore" })
-  child.on("error", () => {})
-})
+async function verifyDeployment(siteUrl) {
+  const endpoint = new URL("/catalog.json", siteUrl)
+  const expected = catalogSchema.parse(
+    JSON.parse(
+      await readFile(new URL("../dist/catalog.json", import.meta.url), "utf8")
+    )
+  )
+  const response = await fetch(endpoint, {
+    signal: AbortSignal.timeout(8000),
+    cache: "no-store",
+  })
+  if (!response.ok)
+    throw new Error(`${endpoint} returned HTTP ${response.status}`)
+  const deployed = catalogSchema.safeParse(await response.json())
+  if (!deployed.success) {
+    console.log(
+      JSON.stringify(
+        {
+          matches: false,
+          error: "The deployed catalog does not use the current schema.",
+          detail: deployed.error.issues[0]?.message,
+        },
+        null,
+        2
+      )
+    )
+    process.exitCode = 1
+    return
+  }
+  const live = deployed.data
+  const localByUrl = new Map(expected.map((site) => [site.url, site]))
+  const liveByUrl = new Map(live.map((site) => [site.url, site]))
+  const missing = expected
+    .filter(({ url }) => !liveByUrl.has(url))
+    .map(({ url }) => url)
+  const extra = live
+    .filter(({ url }) => !localByUrl.has(url))
+    .map(({ url }) => url)
+  const changed = expected
+    .filter(
+      (site) =>
+        liveByUrl.has(site.url) &&
+        !isDeepStrictEqual(site, liveByUrl.get(site.url))
+    )
+    .map(({ url }) => url)
+  console.log(
+    JSON.stringify(
+      {
+        matches: !(missing.length || extra.length || changed.length),
+        missing,
+        extra,
+        changed,
+      },
+      null,
+      2
+    )
+  )
+  if (missing.length || extra.length || changed.length) process.exitCode = 1
+}
+
+const [mode, flag, url, ...extra] = process.argv.slice(2)
+if (mode === "verify" && flag === "--url" && url && !extra.length) {
+  await verifyDeployment(url)
+} else if (mode === undefined || (mode === "--no-open" && !flag)) {
+  server.listen(4322, "127.0.0.1", () => {
+    console.log(`Catalog review is available at ${origin}`)
+    if (mode === "--no-open") return
+    const opener = { darwin: "open", linux: "xdg-open" }[process.platform]
+    if (!opener) return
+    const child = spawn(opener, [origin], { stdio: "ignore" })
+    child.on("error", () => {})
+  })
+} else {
+  throw new Error(
+    "Usage: pnpm catalog:review [--no-open | verify --url <site-url>]"
+  )
+}
