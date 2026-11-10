@@ -21,7 +21,7 @@ export function DiscoveryControls({ locale }: { locale: Locale }) {
           </h2>
           <p className="discovery-section-subtitle">{t.interestsHint}</p>
         </div>
-        <div>
+        <div className="min-w-0 space-y-2">
           <InterestSelector
             locale={locale}
             selected={discovery.interests}

@@ -46,3 +46,10 @@ pnpm preview
 - Content (non-code): [CC BY-NC 4.0](CONTENT_LICENSE.md)
 
 Logos, trademarks, and certain media assets may be excluded and remain All Rights Reserved unless explicitly licensed.
+
+## UI conventions
+
+Use the Base Luma shadcn components in `src/components/ui` and prefer their
+variants and sizes. Keep discovery-specific styling with the components in
+`src/components/discovery`. Use Tailwind utilities for layout and keep shared
+theme tokens in `src/styles/global.css`.

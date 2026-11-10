@@ -1,11 +1,10 @@
 import { historyDepth } from "./history-card-style"
 import { Skeleton } from "@/components/ui/skeleton"
+import { Item, ItemActions, ItemContent, ItemMedia } from "@/components/ui/item"
 import {
   HistoryCardFrame,
   historyCardRow,
-  SiteCardFrame,
-  siteCardBody,
-  SiteCardRow,
+  siteCardClassName,
 } from "./site-card-frame"
 
 export function SiteCardSkeleton({ showPeeks }: { showPeeks: boolean }) {
@@ -23,20 +22,18 @@ export function SiteCardSkeleton({ showPeeks }: { showPeeks: boolean }) {
             </div>
           </HistoryCardFrame>
         ))}
-      <SiteCardFrame loading>
-        <div className={siteCardBody}>
-          <SiteCardRow
-            icon={<Skeleton className="size-12 shrink-0 rounded-xl" />}
-            label={
-              <div className="flex min-w-0 flex-col gap-2">
-                <Skeleton className="h-5 w-36 max-w-full" />
-                <Skeleton className="h-3 w-24 max-w-full" />
-              </div>
-            }
-            action={<Skeleton className="size-8 shrink-0 rounded-lg" />}
-          />
-        </div>
-      </SiteCardFrame>
+      <Item variant="outline" className={siteCardClassName}>
+        <ItemMedia>
+          <Skeleton className="size-10 rounded-full" />
+        </ItemMedia>
+        <ItemContent className="min-w-0">
+          <Skeleton className="h-4 w-36 max-w-full" />
+          <Skeleton className="h-3 w-24 max-w-full" />
+        </ItemContent>
+        <ItemActions>
+          <Skeleton className="size-4" />
+        </ItemActions>
+      </Item>
     </div>
   )
 }

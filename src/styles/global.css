@@ -4,7 +4,7 @@
 @import "@fontsource-variable/geist";
 
 @utility page-width {
-  @apply mx-auto w-[90%];
+  @apply mx-auto w-full px-4 sm:px-6;
 }
 
 @utility discovery-section-grid {
@@ -156,32 +156,4 @@
 ::selection {
   background: var(--primary);
   color: var(--primary-foreground);
-}
-
-
-@utility nudge-icon {
-  @apply motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out motion-safe:group-hover:translate-x-0.75 motion-safe:group-hover:-translate-y-0.75 motion-safe:group-focus-visible:translate-x-0.75 motion-safe:group-focus-visible:-translate-y-0.75;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .open-heartbeat:not(:hover, :focus, :active, :disabled, [aria-disabled="true"]) {
-    animation: open-heartbeat 2s ease-in-out infinite;
-  }
-
-  @keyframes open-heartbeat {
-    0% {
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--muted-foreground) 24%, transparent);
-      scale: 1;
-    }
-
-    50% {
-      box-shadow: 0 0 0 7px transparent;
-      scale: 1.05;
-    }
-
-    100% {
-      box-shadow: 0 0 0 0 transparent;
-      scale: 1;
-    }
-  }
 }

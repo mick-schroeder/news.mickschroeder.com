@@ -48,7 +48,7 @@ const title = Astro.props.title ?? t.title
     >
       {t.skip}
     </a>
-    <header class="page-width flex max-w-7xl items-center justify-between gap-4 py-6 sm:py-8">
+    <header class="page-width flex max-w-5xl items-center justify-between gap-4 py-6 sm:py-8">
       <a
         class="group inline-flex items-center gap-3 text-lg font-bold tracking-tight text-foreground transition-opacity hover:opacity-90"
         href={currentPath}
@@ -61,7 +61,7 @@ const title = Astro.props.title ?? t.title
     <div id="main-content" tabindex="-1" class="focus:outline-none">
       <slot />
     </div>
-    <footer class="page-width mt-12 max-w-7xl border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
+    <footer class="page-width mt-12 max-w-5xl border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
       <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
         <b class="text-foreground">News Shuffle™</b> © 2021-2026{" "}
         <a

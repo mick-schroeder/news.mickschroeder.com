@@ -67,9 +67,9 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
   return (
     <section
       ref={deck}
-      className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-4 md:max-w-none"
+      className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-4 lg:max-w-none"
       style={{
-        minHeight: `calc(${historyDepth * historyStep + siteCardHeight}px + 5.5rem)`,
+        minHeight: `calc(${historyDepth * historyStep + siteCardHeight}px + 4.5rem)`,
       }}
       aria-labelledby="queue-title"
     >
@@ -77,7 +77,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
         {t.upNext}
       </h2>
       <div
-        className="relative mx-5 select-none sm:mx-8"
+        className="relative select-none"
         aria-busy={showSkeleton}
         style={{ paddingTop: stackDepth * historyStep }}
       >
@@ -102,13 +102,13 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
         ) : null}
       </div>
 
-      <div className="mx-auto flex h-12 w-full max-w-52 justify-center gap-2">
+      <div className="mx-auto flex h-10 w-full max-w-52 justify-center gap-2">
         {(frontSite || showSkeleton) && (
           <>
             <Button
               type="button"
               size="lg"
-              className="open-heartbeat group h-12 flex-1 rounded-xl text-base font-bold motion-reduce:transition-none"
+              className="flex-1 font-bold motion-reduce:transition-none dark:bg-green-800 dark:text-white dark:hover:bg-green-900"
               disabled={loading || !frontSite}
               aria-disabled={transitioning || undefined}
               onClick={shuffle}
@@ -116,7 +116,8 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
               <span>{t.shuffle}</span>
               <span className="sr-only">({t.opensInNewTab})</span>
               <ExternalLink
-                className="size-4 nudge-icon opacity-75"
+                className="size-4"
+                strokeWidth={2.75}
                 aria-hidden="true"
               />
             </Button>
@@ -124,7 +125,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
               type="button"
               size="icon-lg"
               variant="secondary"
-              className="group size-12 shrink-0 rounded-xl motion-reduce:transition-none"
+              className="shrink-0 motion-reduce:transition-none"
               aria-label={t.refresh}
               title={t.refresh}
               disabled={loading || !frontSite}
@@ -133,7 +134,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
             >
               <Shuffle
                 strokeWidth={3}
-                className="size-5 nudge-icon"
+                className="size-5"
                 aria-hidden="true"
               />
             </Button>

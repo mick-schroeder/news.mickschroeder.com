@@ -1,6 +1,6 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n"
-import NativeSelect from "@/components/ui/native-select.astro"
+import { LanguageSelect } from "./language-select"
 import { languages, locales, type Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 
@@ -19,13 +19,11 @@ const options = locales.map((code) => ({
 ---
 
 <div id="language-picker" class="shrink-0" hidden>
-  <NativeSelect id="site-language" aria-label={t.language} autocomplete="off">
-    {options.map(({ code, label, url }) => (
-      <option lang={code} value={url} selected={code === locale}>
-        {label}
-      </option>
-    ))}
-  </NativeSelect>
+  <LanguageSelect
+    currentUrl={getRelativeLocaleUrl(locale, languageSuffix)}
+    label={t.language}
+    options={options}
+  />
 </div>
 <noscript>
   <nav

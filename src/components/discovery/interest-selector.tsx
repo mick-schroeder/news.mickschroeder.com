@@ -40,7 +40,7 @@ export function InterestSelector({
   onChange: (tags: string[]) => void
 }) {
   return (
-    <div className="flex w-full flex-wrap items-center justify-start gap-2">
+    <>
       <ToggleGroup
         aria-label={translations[locale].interests}
         className="w-full flex-wrap"
@@ -83,6 +83,6 @@ export function InterestSelector({
       >
         {translations[locale].clearInterests}
       </Button>
-    </div>
+    </>
   )
 }

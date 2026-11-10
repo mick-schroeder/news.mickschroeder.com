@@ -4,11 +4,17 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { favicon, type Website } from "@/lib/discovery"
 import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+import {
   HistoryCardFrame,
   historyCardRow,
-  SiteCardFrame,
-  siteCardBody,
-  SiteCardRow,
+  siteCardClassName,
 } from "./site-card-frame"
 
 export function SiteCard({
@@ -21,55 +27,41 @@ export function SiteCard({
   const hostname = new URL(site.url).hostname.replace(/^www\./, "")
 
   return (
-    <SiteCardFrame>
-      <a
-        href={site.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${site.name} (${opensInNewTab})`}
-        className={cn(
-          siteCardBody,
-          "rounded-[inherit] transition-colors hover:bg-muted/40 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring active:bg-muted motion-reduce:transition-none"
-        )}
-      >
-        <SiteCardRow
-          icon={
-            <Avatar
-              size="lg"
-              className="size-12 shrink-0 rounded-xl border border-border/80 bg-muted/40 p-1 shadow-2xs after:rounded-xl"
-            >
-              <AvatarImage
-                src={favicon(site.url)}
-                alt=""
-                referrerPolicy="no-referrer"
-                className="rounded-lg object-contain p-1"
-              />
-              <AvatarFallback className="rounded-lg">
-                <Globe className="size-5" />
-              </AvatarFallback>
-            </Avatar>
-          }
-          label={
-            <div className="min-w-0">
-              <h3 className="line-clamp-1 text-xl font-bold tracking-tight text-foreground">
-                {site.name}
-              </h3>
-              <p className="truncate text-xs font-medium text-muted-foreground">
-                {hostname}
-              </p>
-            </div>
-          }
-          action={
-            <span
-              aria-hidden="true"
-              className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg border border-border/60 bg-muted/30 text-muted-foreground transition-colors group-hover:bg-muted group-hover:text-foreground motion-reduce:transition-none"
-            >
-              <ExternalLink className="size-4" />
-            </span>
-          }
+    <Item
+      variant="outline"
+      className={cn(siteCardClassName, "motion-reduce:transition-none")}
+      render={
+        <a
+          href={site.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${site.name} (${opensInNewTab})`}
         />
-      </a>
-    </SiteCardFrame>
+      }
+    >
+      <ItemMedia>
+        <Avatar size="lg">
+          <AvatarImage
+            src={favicon(site.url)}
+            alt=""
+            referrerPolicy="no-referrer"
+            className="object-contain"
+          />
+          <AvatarFallback>
+            <Globe className="size-5" />
+          </AvatarFallback>
+        </Avatar>
+      </ItemMedia>
+      <ItemContent className="min-w-0">
+        <ItemTitle className="block w-full truncate">{site.name}</ItemTitle>
+        <ItemDescription className="block truncate text-xs">
+          {hostname}
+        </ItemDescription>
+      </ItemContent>
+      <ItemActions aria-hidden="true" className="text-muted-foreground">
+        <ExternalLink className="size-4" />
+      </ItemActions>
+    </Item>
   )
 }
 

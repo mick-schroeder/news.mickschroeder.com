@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { ButtonGroup } from "@/components/ui/button-group"
 import { Check, Copy } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { translations, type Locale } from "@/i18n/ui"
@@ -38,9 +39,10 @@ export function ShuffleBookmark({
       </div>
       <div className="grid gap-4 text-center sm:grid-cols-2 sm:gap-0">
         <div className="min-w-0 space-y-2 sm:px-5">
-          <div className="mx-auto flex max-w-xs items-center gap-2">
+          <ButtonGroup className="mx-auto w-full max-w-xs">
             <a
               href={shufflePath}
+              data-slot="button"
               title={bookmarkUrl}
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
@@ -65,7 +67,7 @@ export function ShuffleBookmark({
                 <Copy className="size-4" aria-hidden="true" />
               )}
             </Button>
-          </div>
+          </ButtonGroup>
           <p id="bookmark-copy-hint" className="text-xs text-muted-foreground">
             {t.copyBookmarkHint}
           </p>
