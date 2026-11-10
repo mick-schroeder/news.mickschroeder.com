@@ -178,20 +178,17 @@ test("discovery proposes additions and tag updates from all five sources", async
     ],
   })
   assert.deepEqual(byUrl.get(replacement.url).source.tags, [
-    "News",
     "Newzit",
     "American",
+    "News",
   ])
   assert.deepEqual(byUrl.get("https://world.example/").source.tags, [
-    "News",
     "Newzit",
   ])
   assert.deepEqual(byUrl.get("https://europe.example/en/").source.tags, [
-    "News",
     "Drudge Report",
   ])
   assert.deepEqual(byUrl.get("https://wire.example/").source.tags, [
-    "News",
     "Drudge Report",
   ])
   assert.equal(byUrl.size, 11)
