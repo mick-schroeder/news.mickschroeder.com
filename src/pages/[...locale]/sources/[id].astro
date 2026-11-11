@@ -45,51 +45,57 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
   description={format(t.sourceDescription, { name: source.name, host })}
   languageSuffix={`sources/${source.id}/`}
 >
-  <main
-    class="page-width max-w-3xl space-y-6 pt-4 sm:pt-8"
-    data-previous={sourceUrl(previous.id)}
-    data-next={sourceUrl(next.id)}
-  >
-    <PageBreadcrumb
-      crumbs={[
-        { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
-        { label: t.sources, href: getRelativeLocaleUrl(locale, "sources/") },
-        { label: source.name },
-      ]}
-    />
+  <!-- Same width as the header and footer on every page, so ads only use the
+       outer margins. -->
+  <main class="page-width max-w-5xl pt-4 sm:pt-8">
+    <!-- Swapped in place when browsing sources; see source-navigation.ts. -->
+    <div
+      id="source-page"
+      class="mx-auto max-w-3xl space-y-6"
+      data-previous={sourceUrl(previous.id)}
+      data-next={sourceUrl(next.id)}
+    >
+      <PageBreadcrumb
+        crumbs={[
+          { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
+          { label: t.sources, href: getRelativeLocaleUrl(locale, "sources/") },
+          { label: source.name },
+        ]}
+      />
 
-    <!-- Arrows stay put whatever the card's height: above it on phones, level
+      <!-- Arrows stay put whatever the card's height: above it on phones, level
          with its header beside it on wider screens. -->
-    <div class="grid grid-cols-2 items-start gap-3 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:gap-4 [&>a]:sm:mt-9">
-      <a
-        href={sourceUrl(previous.id)}
-        rel="prev"
-        data-astro-prefetch="load"
-        class={cn(arrow, "justify-self-start")}
-        aria-label={t.previous}
-        title={previous.name}
-      >
-        <ChevronLeft aria-hidden="true" />
-      </a>
-      <div class="order-last col-span-2 min-w-0 sm:order-none sm:col-span-1">
-        <SourceDetails source={source} locale={locale} />
+      <div class="grid grid-cols-2 items-start gap-3 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:gap-4 [&>a]:sm:mt-9">
+        <a
+          href={sourceUrl(previous.id)}
+          rel="prev"
+          data-source-nav
+          class={cn(arrow, "justify-self-start")}
+          aria-label={t.previous}
+          title={previous.name}
+        >
+          <ChevronLeft aria-hidden="true" />
+        </a>
+        <div class="order-last col-span-2 min-w-0 sm:order-none sm:col-span-1">
+          <SourceDetails source={source} locale={locale} />
+        </div>
+        <a
+          href={sourceUrl(next.id)}
+          rel="next"
+          data-source-nav
+          class={cn(arrow, "justify-self-end")}
+          aria-label={t.next}
+          title={next.name}
+        >
+          <ChevronRight aria-hidden="true" />
+        </a>
       </div>
-      <a
-        href={sourceUrl(next.id)}
-        rel="next"
-        data-astro-prefetch="load"
-        class={cn(arrow, "justify-self-end")}
-        aria-label={t.next}
-        title={next.name}
-      >
-        <ChevronRight aria-hidden="true" />
-      </a>
     </div>
   </main>
 </Layout>
 
 <script>
-  import { bindArrowNavigation } from "@/lib/arrow-navigation"
+  import { enableSourceNavigation } from "@/lib/source-navigation"
 
-  bindArrowNavigation()
+  enableSourceNavigation()
 </script>

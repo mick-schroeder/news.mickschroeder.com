@@ -54,7 +54,7 @@ export function SiteCard({
         <ItemTitle className="block w-full truncate">
           <a
             href={detailsHref}
-            className="relative z-10 underline-offset-4 outline-none hover:underline focus-visible:underline"
+            className="relative z-10 underline decoration-muted-foreground/40 underline-offset-4 outline-none hover:decoration-current focus-visible:decoration-current"
           >
             {site.name}
           </a>

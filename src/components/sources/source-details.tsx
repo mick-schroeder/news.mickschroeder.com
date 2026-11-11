@@ -1,5 +1,5 @@
 import { ExternalLink, Globe, Tags } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Card,
   CardAction,
@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator"
 import type { Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import type { Source } from "@/lib/source-pages"
+import { cn } from "@/lib/utils"
 import { InterestBadges } from "./interest-badges"
 import { hostOf, SiteIcon } from "./source-tables"
 
@@ -27,7 +28,7 @@ export function SourceDetails({
 }) {
   const t = translations[locale]
   return (
-    <Card className="min-w-0 [view-transition-name:source-details]">
+    <Card className="min-w-0">
       <CardHeader className="items-center">
         <div className="flex min-w-0 items-center gap-4">
           <SiteIcon url={source.url} size="lg" />
@@ -41,16 +42,16 @@ export function SourceDetails({
           </div>
         </div>
         <CardAction className="self-center">
-          <Button
-            size="lg"
-            className="font-bold"
-            nativeButton={false}
-            render={<a href={source.url} {...external} />}
+          <a
+            href={source.url}
+            {...external}
+            data-slot="button"
+            className={cn(buttonVariants({ size: "lg" }), "font-bold")}
           >
             {t.visit}
             <span className="sr-only">({t.opensInNewTab})</span>
             <ExternalLink data-icon="inline-end" aria-hidden="true" />
-          </Button>
+          </a>
         </CardAction>
       </CardHeader>
       <Separator />

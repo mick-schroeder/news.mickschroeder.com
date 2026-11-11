@@ -14,7 +14,6 @@ export default defineConfig({
   site: "https://news.mickschroeder.com",
   output: "static",
   trailingSlash: "always",
-  prefetch: { prefetchAll: false, defaultStrategy: "hover" },
   i18n: {
     defaultLocale,
     locales,

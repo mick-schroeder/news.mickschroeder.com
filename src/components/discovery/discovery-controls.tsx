@@ -3,6 +3,7 @@ import { ShuffleBookmark } from "./shuffle-bookmark"
 import { UpNextCard } from "./up-next-card"
 import { useDiscovery } from "./use-discovery"
 import { translations, type Locale } from "@/i18n/ui"
+import { localePath } from "@/lib/paths"
 
 export function DiscoveryControls({ locale }: { locale: Locale }) {
   const discovery = useDiscovery()
@@ -20,6 +21,14 @@ export function DiscoveryControls({ locale }: { locale: Locale }) {
             {t.interests}
           </h2>
           <p className="discovery-section-subtitle">{t.interestsHint}</p>
+          <p className="pt-2 text-sm">
+            <a
+              href={localePath(locale, "tags/")}
+              className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+            >
+              {t.browseInterests}
+            </a>
+          </p>
         </div>
         <div className="min-w-0 space-y-2">
           <InterestSelector
