@@ -1,11 +1,18 @@
 import { z } from "astro/zod"
 import { createHash } from "node:crypto"
 import { readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs"
-import { catalogSchema, websiteSchema } from "../src/data/catalog-schema.ts"
+import {
+  catalogSchema,
+  idFromUrl,
+  websiteSchema,
+} from "../src/data/catalog-schema.ts"
 import { hostname, ignoredHosts } from "./catalog.mjs"
 
 const catalogPath = new URL("../src/data/sources.json", import.meta.url)
 const ignorePath = new URL("../src/data/ignore-urls.txt", import.meta.url)
+
+// The review page leaves ids out; saved sites keep theirs or get one from the URL.
+const reviewedSite = websiteSchema.partial({ id: true })
 
 const reviewBatchSchema = z.strictObject({
   revision: z.string(),
@@ -15,10 +22,10 @@ const reviewBatchSchema = z.strictObject({
       z.strictObject({
         action: z.literal("save"),
         original: z.string().optional(),
-        site: websiteSchema,
+        site: reviewedSite,
       }),
       z.strictObject({ action: z.literal("remove"), original: z.string() }),
-      z.strictObject({ action: z.literal("ignore"), site: websiteSchema }),
+      z.strictObject({ action: z.literal("ignore"), site: reviewedSite }),
     ])
   ),
 })
@@ -62,8 +69,12 @@ export function planChanges(workspace, batch) {
       handled.add(original)
     }
     if (action === "save") {
-      const replacement = site
       const before = existing.get(original)
+      const { id, ...fields } = site
+      const replacement = {
+        id: id ?? before?.id ?? idFromUrl(site.url),
+        ...fields,
+      }
       if (original !== undefined) next.set(original, replacement)
       else next.set(Symbol(), replacement)
       if (JSON.stringify(before) !== JSON.stringify(replacement)) {

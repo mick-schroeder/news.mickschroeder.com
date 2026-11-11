@@ -5,8 +5,8 @@ frontend:
       commands:
         - nvm install 22
         - nvm use 22
-        - npm install -g pnpm
-        - pnpm install
+        - corepack enable
+        - pnpm install --frozen-lockfile
     build:
       commands:
         - pnpm check

@@ -1,7 +1,7 @@
 ---
 import { adsenseClient } from "@/lib/google-config"
 import { getRelativeLocaleUrl } from "astro:i18n"
-import { languages, locales, type Locale } from "@/i18n/locales"
+import { defaultLocale, languages, locales, type Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 
 interface Props {
@@ -9,9 +9,10 @@ interface Props {
   title: string
   noindex: boolean
   description?: string
+  languageSuffix?: string
 }
 
-const { locale, title, noindex } = Astro.props
+const { locale, title, noindex, languageSuffix = "" } = Astro.props
 const t = translations[locale]
 const description = Astro.props.description ?? t.description
 const canonical = new URL(Astro.url.pathname, Astro.site)
@@ -49,10 +50,18 @@ const siteData = {
       <link
         rel="alternate"
         hreflang={code}
-        href={new URL(getRelativeLocaleUrl(code), Astro.site)}
+        href={new URL(getRelativeLocaleUrl(code, languageSuffix), Astro.site)}
       />
     ))}
-  {!noindex && <link rel="alternate" hreflang="x-default" href={rootUrl} />}
+  {!noindex && (
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={
+        new URL(getRelativeLocaleUrl(defaultLocale, languageSuffix), Astro.site)
+      }
+    />
+  )}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="News Shuffle" />
   <meta property="og:locale" content={languages[locale].socialLocale} />

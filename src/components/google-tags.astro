@@ -1,9 +1,5 @@
 ---
-import {
-  adsenseClient,
-  ga4MeasurementId,
-  googleTagsEnabled,
-} from "@/lib/google-config"
+import { adsenseClient, ga4MeasurementId } from "@/lib/google-config"
 import { shuffleEvent } from "@/lib/analytics"
 
 interface Props {
@@ -12,16 +8,55 @@ interface Props {
 
 const { canonical } = Astro.props
 const productionOrigin = canonical.origin
-const pageLocation = canonical.href
+
+// Consent is required by default in the EEA, the UK and Switzerland. Google's
+// certified consent message (AdSense > Privacy & messaging) updates it.
+const consentRegions = [
+  // EU
+  "AT",
+  "BE",
+  "BG",
+  "HR",
+  "CY",
+  "CZ",
+  "DK",
+  "EE",
+  "FI",
+  "FR",
+  "DE",
+  "GR",
+  "HU",
+  "IE",
+  "IT",
+  "LV",
+  "LT",
+  "LU",
+  "MT",
+  "NL",
+  "PL",
+  "PT",
+  "RO",
+  "SK",
+  "SI",
+  "ES",
+  "SE",
+  // EEA, UK and Switzerland
+  "IS",
+  "LI",
+  "NO",
+  "GB",
+  "CH",
+]
 ---
 
-{googleTagsEnabled && ga4MeasurementId && <script
+<script
+  is:inline
   define:vars={{
     productionOrigin,
-    pageLocation,
     adsenseClient,
     ga4MeasurementId,
     shuffleEvent,
+    consentRegions,
   }}
 >
   if (location.origin === productionOrigin) {
@@ -30,21 +65,39 @@ const pageLocation = canonical.href
       window.dataLayer.push(arguments)
     }
     window.gtag("consent", "default", {
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
+      analytics_storage: "granted",
+    })
+    window.gtag("consent", "default", {
       ad_storage: "denied",
       ad_user_data: "denied",
       ad_personalization: "denied",
       analytics_storage: "denied",
+      region: consentRegions,
       wait_for_update: 500,
     })
     window.gtag("js", new Date())
     window.gtag("config", ga4MeasurementId, {
       allow_google_signals: false,
-      allow_ad_personalization_signals: false,
-      page_location: pageLocation,
-      page_referrer: "",
     })
     window.addEventListener(shuffleEvent, () => {
       window.gtag("event", "shuffle")
+    })
+
+    // Lets visitors reopen Google's consent message to change their choice.
+    window.googlefc = window.googlefc || {}
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || []
+    document.addEventListener("DOMContentLoaded", () => {
+      const privacyChoices = document.getElementById("privacy-choices")
+      if (!privacyChoices) return
+      privacyChoices.hidden = false
+      privacyChoices.querySelector("button")?.addEventListener("click", () => {
+        window.googlefc.callbackQueue.push(() =>
+          window.googlefc.showRevocationMessage()
+        )
+      })
     })
 
     const ads = document.createElement("script")
@@ -61,4 +114,4 @@ const pageLocation = canonical.href
       "https://www.googletagmanager.com/gtag/js?id=" + ga4MeasurementId
     document.head.append(analytics)
   }
-</script>}
+</script>

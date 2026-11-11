@@ -1,34 +1,8 @@
 import { Button } from "@/components/ui/button"
-import {
-  BookOpen,
-  Briefcase,
-  Cpu,
-  Flag,
-  FlaskConical,
-  Gamepad2,
-  Globe,
-  Landmark,
-  Layers,
-  Newspaper,
-  Palette,
-} from "lucide-react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { interestIcon, interestLabel } from "@/components/interest-icons"
 import { interestTags, tags } from "@/data/interest-tags"
 import { translations, type Locale } from "@/i18n/ui"
-
-const icons = {
-  BookOpen,
-  Briefcase,
-  Cpu,
-  Flag,
-  FlaskConical,
-  Gamepad2,
-  Globe,
-  Landmark,
-  Layers,
-  Newspaper,
-  Palette,
-}
 
 export function InterestSelector({
   locale,
@@ -54,7 +28,7 @@ export function InterestSelector({
       >
         {tags.map((tag) => {
           const interest = interestTags[tag]
-          const Icon = icons[interest.icon]
+          const Icon = interestIcon(tag)
 
           return (
             <ToggleGroupItem
@@ -68,7 +42,7 @@ export function InterestSelector({
               className="text-xs aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background"
             >
               <Icon data-icon="inline-start" aria-hidden="true" />
-              <span>{locale === "ga" ? interest.labelGa : tag}</span>
+              <span>{interestLabel(tag, locale)}</span>
             </ToggleGroupItem>
           )
         })}

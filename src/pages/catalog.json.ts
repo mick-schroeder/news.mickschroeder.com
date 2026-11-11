@@ -1,5 +1,5 @@
-import { getWebsites } from "@/data/catalog"
+import { getSources } from "@/data/catalog"
 
 export async function GET() {
-  return Response.json(getWebsites())
+  return Response.json(getSources())
 }

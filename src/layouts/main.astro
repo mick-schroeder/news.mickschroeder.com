@@ -3,9 +3,11 @@ import "@/styles/global.css"
 import SiteHead from "@/components/site-head.astro"
 import GoogleTags from "@/components/google-tags.astro"
 import BrandLogo from "@/components/brand-logo.astro"
+import ExternalLink from "@/components/external-link.astro"
 import LanguagePicker from "@/components/language-picker.astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
 import { defaultLocale } from "@/i18n/locales"
+import { googleTagsEnabled } from "@/lib/google-config"
 import { translations, type Locale } from "@/i18n/ui"
 
 interface Props {
@@ -24,6 +26,7 @@ const t = translations[locale]
 const currentPath = getRelativeLocaleUrl(locale)
 const canonical = new URL(currentPath, Astro.site)
 const title = Astro.props.title ?? t.title
+const showGoogleTags = googleTagsEnabled && !noindex
 ---
 
 <!doctype html>
@@ -36,10 +39,10 @@ const title = Astro.props.title ?? t.title
       title={title}
       noindex={noindex}
       description={Astro.props.description}
+      languageSuffix={languageSuffix}
     />
-    {!noindex && Astro.url.pathname === currentPath && (
-      <GoogleTags canonical={canonical} />
-    )}
+    <slot name="head" />
+    {showGoogleTags && <GoogleTags canonical={canonical} />}
   </head>
   <body>
     <a
@@ -64,11 +67,26 @@ const title = Astro.props.title ?? t.title
     <footer class="page-width mt-12 max-w-5xl border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
       <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
         <b class="text-foreground">News Shuffle™</b> © 2021-2026{" "}
-        <a
+        <ExternalLink
           href="https://www.mickschroeder.com/"
           class="underline hover:text-primary transition-colors"
+          locale={locale}
         >
           Mick Schroeder, LLC
+        </ExternalLink>
+        <span aria-hidden="true"> · </span>
+        <a
+          href={getRelativeLocaleUrl(locale, "sources/")}
+          class="underline hover:text-primary transition-colors"
+        >
+          {t.sources}
+        </a>
+        <span aria-hidden="true"> · </span>
+        <a
+          href={getRelativeLocaleUrl(locale, "tags/")}
+          class="underline hover:text-primary transition-colors"
+        >
+          {t.allInterests}
         </a>
         <span aria-hidden="true"> · </span>
         <a
@@ -84,6 +102,17 @@ const title = Astro.props.title ?? t.title
         >
           {t.terms}
         </a>
+        {showGoogleTags && (
+          <span id="privacy-choices" class="contents" hidden>
+            <span aria-hidden="true"> · </span>
+            <button
+              type="button"
+              class="underline hover:text-primary transition-colors"
+            >
+              {t.privacyChoices}
+            </button>
+          </span>
+        )}
       </p>
     </footer>
   </body>

@@ -1,0 +1,75 @@
+---
+import { Shuffle } from "lucide-react"
+import BrowsePage from "@/components/sources/browse-page.astro"
+import { InterestBadges } from "@/components/sources/interest-badges"
+import SourceList from "@/components/sources/source-list.astro"
+import { interestLabel, type Interest } from "@/components/interest-icons"
+import { buttonVariants } from "@/components/ui/button"
+import { getSources, tagPages } from "@/data/catalog"
+import { interestTags, tags } from "@/data/interest-tags"
+import { defaultLocale, locales, type Locale } from "@/i18n/locales"
+import { format, translations } from "@/i18n/ui"
+import { localePath } from "@/lib/paths"
+import { cn } from "@/lib/utils"
+
+export function getStaticPaths() {
+  return locales.flatMap((locale) =>
+    tagPages.map(({ tag, slug }) => ({
+      params: { locale: locale === defaultLocale ? undefined : locale, slug },
+      props: { locale, tag, slug },
+    }))
+  )
+}
+
+interface Props {
+  locale: Locale
+  tag: Interest
+  slug: string
+}
+
+const { locale, tag, slug } = Astro.props
+const t = translations[locale]
+const label = interestLabel(tag, locale)
+const interest = interestTags[tag]
+const sources = getSources().filter((source) => source.tags.includes(tag))
+---
+
+<BrowsePage
+  locale={locale}
+  title={`${label} | News Shuffle`}
+  heading={label}
+  description={format(t.interestDescription, { label })}
+  languageSuffix={`tags/${slug}/`}
+  crumbs={[
+    { label: "News Shuffle", href: localePath(locale) },
+    { label: t.allInterests, href: localePath(locale, "tags/") },
+    { label },
+  ]}
+>
+  {"description" in interest && (
+    <p slot="description" class="text-muted-foreground">
+      {interest.description[locale]}
+    </p>
+  )}
+  <a
+    slot="actions"
+    href={localePath(locale, `tags/${slug}/redirect/`)}
+    class={cn(buttonVariants({ size: "lg" }), "font-bold")}
+  >
+    <Shuffle data-icon="inline-start" strokeWidth={3} aria-hidden="true" />
+    {format(t.shuffleInterest, { label })}
+  </a>
+  <InterestBadges
+    locale={locale}
+    tags={tags}
+    current={tag}
+    label={t.allInterests}
+  />
+  <SourceList locale={locale} sources={sources} />
+  <InterestBadges
+    locale={locale}
+    tags={tags}
+    current={tag}
+    label={t.allInterests}
+  />
+</BrowsePage>

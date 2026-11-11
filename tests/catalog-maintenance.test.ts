@@ -15,16 +15,19 @@ import { drudgePublishers } from "../scripts/catalog-publishers.mjs"
 import { checkLink, discover } from "../scripts/catalog.mjs"
 
 const original = {
+  id: "example",
   name: "Example",
   url: "https://example.com/",
   tags: ["News"],
 }
 const replacement = {
+  id: "example-com-tech",
   name: "Example Tech",
   url: "https://example.com/tech/",
   tags: ["Tech"],
 }
 const newSite = {
+  id: "another-example",
   name: "Another",
   url: "https://another.example/",
   tags: ["Culture"],
@@ -182,9 +185,7 @@ test("discovery proposes additions and tag updates from all five sources", async
     "American",
     "News",
   ])
-  assert.deepEqual(byUrl.get("https://world.example/").source.tags, [
-    "Newzit",
-  ])
+  assert.deepEqual(byUrl.get("https://world.example/").source.tags, ["Newzit"])
   assert.deepEqual(byUrl.get("https://europe.example/en/").source.tags, [
     "Drudge Report",
   ])

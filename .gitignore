@@ -25,3 +25,5 @@ pnpm-debug.log*
 # Local browser evidence
 output/
 .playwright-cli/
+
+TODO.txt

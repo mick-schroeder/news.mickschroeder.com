@@ -38,8 +38,19 @@ const en = {
   home: "Back to News Shuffle",
   privacy: "Privacy",
   privacyDescription: "How News Shuffle uses browser data.",
+  privacyChoices: "Privacy and cookie settings",
   terms: "Terms",
   termsDescription: "Terms for using News Shuffle.",
+  allSourcesDescription: "Every site News Shuffle can take you to.",
+  allInterests: "Interests",
+  allInterestsDescription: "Browse News Shuffle sites by interest.",
+  sourceDescription:
+    "{name} ({host}) on News Shuffle. Visit the site or browse similar sources.",
+  interestDescription: "{label} sites on News Shuffle.",
+  visit: "Visit",
+  shuffleInterest: "Shuffle {label}",
+  previous: "Previous",
+  next: "Next",
 }
 
 export const translations = {
@@ -84,7 +95,30 @@ export const translations = {
     privacy: "Príobháideachas",
     privacyDescription:
       "An chaoi a n-úsáideann News Shuffle sonraí brabhsálaí.",
+    privacyChoices: "Socruithe príobháideachais agus fianán",
     terms: "Téarmaí",
     termsDescription: "Téarmaí úsáide News Shuffle.",
+    allSourcesDescription:
+      "Gach suíomh ar féidir le News Shuffle tú a thabhairt chuige.",
+    allInterests: "Spéiseanna",
+    allInterestsDescription:
+      "Brabhsáil suíomhanna News Shuffle de réir spéise.",
+    sourceDescription:
+      "{name} ({host}) ar News Shuffle. Tabhair cuairt ar an suíomh nó brabhsáil foinsí cosúla.",
+    interestDescription: "Suíomhanna {label} ar News Shuffle.",
+    visit: "Tabhair cuairt",
+    shuffleInterest: "Suíomh randamach: {label}",
+    previous: "Roimhe seo",
+    next: "Ar aghaidh",
   },
 } satisfies Record<Locale, Record<keyof typeof en, string>>
+
+/** Fills {placeholders} in a translation string. */
+export function format(
+  template: string,
+  values: Record<string, string | number>
+) {
+  return template.replace(/\{(\w+)\}/g, (match, key) =>
+    key in values ? String(values[key]) : match
+  )
+}

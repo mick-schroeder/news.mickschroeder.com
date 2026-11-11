@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n"
 import { translations, type Locale } from "@/i18n/ui"
 
 interface Props {
@@ -47,6 +48,14 @@ const rows = [
       {t.sources}
     </h2>
     <p class="discovery-section-subtitle">{t.sourcesHint}</p>
+    <p class="pt-2 text-sm">
+      <a
+        href={getRelativeLocaleUrl(locale, "sources/")}
+        class="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+      >
+        {t.browse}
+      </a>
+    </p>
   </div>
 
   <div

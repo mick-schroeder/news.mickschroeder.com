@@ -1,0 +1,23 @@
+---
+import { ExternalLink as ExternalIcon } from "lucide-react"
+import { defaultLocale, type Locale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
+
+interface Props {
+  href: string
+  class?: string
+  locale?: Locale
+}
+
+// Links that leave News Shuffle open in a new tab and say so with an icon.
+const { href, class: className, locale = defaultLocale } = Astro.props
+---
+
+<a href={href} target="_blank" rel="noopener noreferrer" class={className}>
+  <slot />
+  <ExternalIcon
+    className="ml-0.5 inline size-3 align-[-0.05em]"
+    aria-hidden="true"
+  />
+  <span class="sr-only"> ({translations[locale].opensInNewTab})</span>
+</a>

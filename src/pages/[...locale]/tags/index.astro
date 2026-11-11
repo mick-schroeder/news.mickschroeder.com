@@ -1,0 +1,37 @@
+---
+import BrowsePage from "@/components/sources/browse-page.astro"
+import { InterestTable } from "@/components/sources/source-tables"
+import { getSources, tagPages } from "@/data/catalog"
+import { localizedPaths, type Locale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
+import { localePath } from "@/lib/paths"
+
+export const getStaticPaths = localizedPaths
+
+const { locale }: { locale: Locale } = Astro.props
+const t = translations[locale]
+const sources = getSources()
+const rows = tagPages.map(({ tag, slug }) => ({
+  tag,
+  locale,
+  href: localePath(locale, `tags/${slug}/`),
+  examples: sources.filter((s) => s.tags.includes(tag)).slice(0, 5),
+}))
+---
+
+<BrowsePage
+  locale={locale}
+  title={`${t.allInterests} | News Shuffle`}
+  heading={t.allInterests}
+  description={t.allInterestsDescription}
+  languageSuffix="tags/"
+  crumbs={[
+    { label: "News Shuffle", href: localePath(locale) },
+    { label: t.allInterests },
+  ]}
+>
+  <p slot="description" class="text-muted-foreground">
+    {t.allInterestsDescription}
+  </p>
+  <InterestTable rows={rows} />
+</BrowsePage>

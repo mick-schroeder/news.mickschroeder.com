@@ -1,3 +1,7 @@
+---
+import ExternalLink from "@/components/external-link.astro"
+---
+
 <p>
   News Shuffle stores your interests, language and last shuffled site in this
   browser. You can remove those preferences by clearing this site’s data in your
@@ -6,17 +10,18 @@
 <p>
   Your browser requests the Up Next icon from Google, using the queued site’s
   hostname. Google receives the request and its connection details. See{" "}
-  <a
+  <ExternalLink
     class="text-foreground underline hover:text-primary transition-colors"
     href="https://policies.google.com/privacy"
+    locale="en"
   >
     Google’s privacy policy
-  </a>
+  </ExternalLink>
   .
 </p>
 <p>
   When Google Analytics and Google AdSense are enabled, we use Analytics to
-  measure homepage visits and use of the Shuffle button. Google can receive
+  measure page visits and use of the Shuffle button. Google can receive
   cookieless measurements while consent is denied. Shuffle events contain
   neither your selected interests nor the destination URL.
 </p>
@@ -24,20 +29,22 @@
   Google and its advertising partners may use cookies to serve ads based on
   previous visits to this or other sites, subject to your privacy choices. If
   you see a consent message, use Privacy and cookie settings at the bottom of
-  the homepage to change or withdraw your choice. Learn{" "}
-  <a
+  each page to change or withdraw your choice. Learn{" "}
+  <ExternalLink
     class="text-foreground underline hover:text-primary transition-colors"
     href="https://policies.google.com/technologies/partner-sites"
+    locale="en"
   >
     how Google uses data from partner sites
-  </a>{" "}
+  </ExternalLink>{" "}
   or adjust personalised ads in{" "}
-  <a
+  <ExternalLink
     class="text-foreground underline hover:text-primary transition-colors"
     href="https://adssettings.google.com/"
+    locale="en"
   >
     Google Ads Settings
-  </a>
+  </ExternalLink>
   .
 </p>
 <p>

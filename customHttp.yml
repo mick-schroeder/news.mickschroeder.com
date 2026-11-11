@@ -4,7 +4,7 @@ customHeaders:
       - key: X-Content-Type-Options
         value: nosniff
       - key: Referrer-Policy
-        value: no-referrer
+        value: strict-origin-when-cross-origin
       - key: Content-Security-Policy
         value: "frame-ancestors 'none'; base-uri 'none'; object-src 'none'"
   - pattern: '**/*.html'

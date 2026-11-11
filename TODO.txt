@@ -1,7 +1,0 @@
-[x] logo animation - make the shuffle icon kinda flip and loop like its shuffling
-
-[x] dark mode background should be pure black, i like dark mode oled dark
-
-[x] clean up CSS it seems to be a mess. Too much custom CSS: Hundreds of lines of layout, spacing, typography, and responsive styling that Tailwind should handle,Hardcoded colors: Blues, whites, grays, and transparency values scattered throughout component styles.
-Inconsistent design tokens: The primary color is green in light mode but lavender in dark mode, while the main card uses a completely separate blue.
-shadcn overrides: Broad [data-slot] selectors are overriding component styling rather than using Tailwind utilities and shadcn variants.Duplicated styling: Global element rules, component selectors, and media queries create unnecessary complexity. black and white. inky. newspaper theme. with 1 color accent.

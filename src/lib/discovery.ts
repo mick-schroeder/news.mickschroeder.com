@@ -2,6 +2,7 @@ export type Website = {
   name: string
   url: string
   tags: string[]
+  id: string
 }
 
 export const shufflePath = "/redirect/"

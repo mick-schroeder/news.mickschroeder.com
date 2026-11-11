@@ -1,0 +1,95 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import Layout from "@/layouts/main.astro"
+import { PageBreadcrumb } from "@/components/sources/page-breadcrumb"
+import { SourceDetails } from "@/components/sources/source-details"
+import { hostOf } from "@/components/sources/source-tables"
+import { buttonVariants } from "@/components/ui/button"
+import { getSources } from "@/data/catalog"
+import { defaultLocale, locales, type Locale } from "@/i18n/locales"
+import { format, translations } from "@/i18n/ui"
+import { neighbours, type Source } from "@/lib/source-pages"
+import { cn } from "@/lib/utils"
+
+export function getStaticPaths() {
+  const sources = getSources()
+  return locales.flatMap((locale) =>
+    sources.map((source, index) => ({
+      params: {
+        locale: locale === defaultLocale ? undefined : locale,
+        id: source.id,
+      },
+      props: { locale, source, ...neighbours(sources, index) },
+    }))
+  )
+}
+
+interface Props {
+  locale: Locale
+  source: Source
+  previous: Source
+  next: Source
+}
+
+const { locale, source, previous, next } = Astro.props
+const t = translations[locale]
+const sourceUrl = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
+const host = hostOf(source.url)
+const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
+---
+
+<Layout
+  locale={locale}
+  title={`${source.name} | News Shuffle`}
+  description={format(t.sourceDescription, { name: source.name, host })}
+  languageSuffix={`sources/${source.id}/`}
+>
+  <main
+    class="page-width max-w-3xl space-y-6 pt-4 sm:pt-8"
+    data-previous={sourceUrl(previous.id)}
+    data-next={sourceUrl(next.id)}
+  >
+    <PageBreadcrumb
+      crumbs={[
+        { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
+        { label: t.sources, href: getRelativeLocaleUrl(locale, "sources/") },
+        { label: source.name },
+      ]}
+    />
+
+    <!-- Arrows stay put whatever the card's height: above it on phones, level
+         with its header beside it on wider screens. -->
+    <div class="grid grid-cols-2 items-start gap-3 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:gap-4 [&>a]:sm:mt-9">
+      <a
+        href={sourceUrl(previous.id)}
+        rel="prev"
+        data-astro-prefetch="load"
+        class={cn(arrow, "justify-self-start")}
+        aria-label={t.previous}
+        title={previous.name}
+      >
+        <ChevronLeft aria-hidden="true" />
+      </a>
+      <div class="order-last col-span-2 min-w-0 sm:order-none sm:col-span-1">
+        <SourceDetails source={source} locale={locale} />
+      </div>
+      <a
+        href={sourceUrl(next.id)}
+        rel="next"
+        data-astro-prefetch="load"
+        class={cn(arrow, "justify-self-end")}
+        aria-label={t.next}
+        title={next.name}
+      >
+        <ChevronRight aria-hidden="true" />
+      </a>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { bindArrowNavigation } from "@/lib/arrow-navigation"
+
+  bindArrowNavigation()
+</script>

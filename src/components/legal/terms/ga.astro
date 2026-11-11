@@ -1,3 +1,7 @@
+---
+import ExternalLink from "@/components/external-link.astro"
+---
+
 <p>
   Cuireann Mick Schroeder, LLC News Shuffle ar fáil chun cabhrú leat foinsí
   nuachta agus léitheoireachta a aimsiú. Cuirtear an tseirbhís ar fáil mar atá
@@ -10,19 +14,21 @@
 </p>
 <p>
   Tá cód an tionscadail faoi{" "}
-  <a
+  <ExternalLink
     class="text-foreground underline hover:text-primary transition-colors"
     href="https://opensource.org/license/mit"
+    locale="ga"
   >
     cheadúnas MIT
-  </a>
+  </ExternalLink>
   . Mura luaitear a mhalairt, tá an t-ábhar neamhchóid faoi{" "}
-  <a
+  <ExternalLink
     class="text-foreground underline hover:text-primary transition-colors"
     href="https://creativecommons.org/licenses/by-nc/4.0/"
+    locale="ga"
   >
     CC BY-NC 4.0
-  </a>
+  </ExternalLink>
   . D’fhéadfadh sé nach mbeadh lógónna, trádmharcanna agus sócmhainní meán
   clúdaithe ag an gceadúnas sin.
 </p>

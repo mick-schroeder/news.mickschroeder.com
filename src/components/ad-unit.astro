@@ -1,0 +1,21 @@
+---
+import { adsenseClient, adsenseSlot } from "@/lib/google-config"
+---
+
+{adsenseSlot && (
+  <aside
+    aria-label="Advertisement"
+    class="col-span-full border-t border-border py-8"
+  >
+    <ins
+      class="adsbygoogle block min-h-[100px] w-full"
+      data-ad-client={adsenseClient}
+      data-ad-slot={adsenseSlot}
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+    <script is:inline>
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+    </script>
+  </aside>
+)}

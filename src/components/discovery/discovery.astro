@@ -1,14 +1,15 @@
 ---
-import { getWebsites } from "@/data/catalog"
+import { getRelativeLocaleUrl } from "astro:i18n"
 import { translations, type Locale } from "@/i18n/ui"
 import { DiscoveryControls } from "./discovery-controls"
 import SourcesSection from "./sources-section.astro"
+import AdUnit from "@/components/ad-unit.astro"
+import { googleTagsEnabled } from "@/lib/google-config"
 interface Props {
   locale: Locale
 }
 const { locale } = Astro.props
 const t = translations[locale]
-const websites = getWebsites()
 ---
 
 <main
@@ -33,25 +34,15 @@ const websites = getWebsites()
     </style>
     <div class="col-span-full space-y-4 rounded-xl border border-border bg-card p-6 text-sm text-card-foreground">
       <p>{t.noscript}</p>
-      <details class="cursor-pointer">
-        <summary class="font-semibold text-foreground underline">
-          {t.browse}
-        </summary>
-        <ul class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
-          {websites.map((site) => (
-            <li>
-              <a
-                href={site.url}
-                class="text-muted-foreground hover:text-foreground underline"
-              >
-                {site.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </details>
+      <a
+        href={getRelativeLocaleUrl(locale, "sources/")}
+        class="inline-block font-semibold text-foreground underline"
+      >
+        {t.browse}
+      </a>
     </div>
   </noscript>
+  {googleTagsEnabled && <AdUnit />}
   <SourcesSection locale={locale} />
 </main>
 <script>

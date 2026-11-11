@@ -20,24 +20,22 @@ import {
 export function SiteCard({
   site,
   opensInNewTab,
+  detailsHref,
 }: {
   site: Website
   opensInNewTab: string
+  detailsHref: string
 }) {
   const hostname = new URL(site.url).hostname.replace(/^www\./, "")
 
+  // The whole card opens the site; the title opens its details page instead.
   return (
     <Item
       variant="outline"
-      className={cn(siteCardClassName, "motion-reduce:transition-none")}
-      render={
-        <a
-          href={site.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${site.name} (${opensInNewTab})`}
-        />
-      }
+      className={cn(
+        siteCardClassName,
+        "has-[a[data-site]:hover]:bg-muted motion-reduce:transition-none"
+      )}
     >
       <ItemMedia>
         <Avatar size="lg">
@@ -53,13 +51,29 @@ export function SiteCard({
         </Avatar>
       </ItemMedia>
       <ItemContent className="min-w-0">
-        <ItemTitle className="block w-full truncate">{site.name}</ItemTitle>
+        <ItemTitle className="block w-full truncate">
+          <a
+            href={detailsHref}
+            className="relative z-10 underline-offset-4 outline-none hover:underline focus-visible:underline"
+          >
+            {site.name}
+          </a>
+        </ItemTitle>
         <ItemDescription className="block truncate text-xs">
           {hostname}
         </ItemDescription>
       </ItemContent>
-      <ItemActions aria-hidden="true" className="text-muted-foreground">
-        <ExternalLink className="size-4" />
+      <ItemActions className="text-muted-foreground">
+        <a
+          href={site.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-site
+          aria-label={`${site.name} (${opensInNewTab})`}
+          className="rounded-[inherit] outline-none after:absolute after:inset-0 after:rounded-[inherit] focus-visible:after:ring-[3px] focus-visible:after:ring-ring/50"
+        >
+          <ExternalLink className="size-4" aria-hidden="true" />
+        </a>
       </ItemActions>
     </Item>
   )

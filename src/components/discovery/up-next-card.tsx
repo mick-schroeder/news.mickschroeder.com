@@ -13,6 +13,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 import { translations, type Locale } from "@/i18n/ui"
+import { localePath } from "@/lib/paths"
 import type { useDiscovery } from "./use-discovery"
 
 type UpNextCardProps = {
@@ -98,6 +99,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
             key={frontSite.url}
             site={frontSite}
             opensInNewTab={t.opensInNewTab}
+            detailsHref={localePath(locale, `sources/${frontSite.id}/`)}
           />
         ) : null}
       </div>
@@ -108,7 +110,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
             <Button
               type="button"
               size="lg"
-              className="flex-1 font-bold motion-reduce:transition-none dark:bg-green-800 dark:text-white dark:hover:bg-green-900"
+              className="flex-1 font-bold motion-reduce:transition-none"
               disabled={loading || !frontSite}
               aria-disabled={transitioning || undefined}
               onClick={shuffle}
@@ -132,11 +134,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
               aria-disabled={transitioning || undefined}
               onClick={next}
             >
-              <Shuffle
-                strokeWidth={3}
-                className="size-5"
-                aria-hidden="true"
-              />
+              <Shuffle strokeWidth={3} className="size-5" aria-hidden="true" />
             </Button>
           </>
         )}

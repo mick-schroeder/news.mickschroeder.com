@@ -78,8 +78,9 @@
   --foreground: oklch(0.145 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --border: oklch(0.922 0 0);
-  --primary: oklch(0.508 0.118 165.612);
-  --primary-foreground: oklch(0.979 0.021 166.113);
+  /* The one accent: a single green, darker in light mode for contrast. */
+  --primary: #007a3a;
+  --primary-foreground: #ffffff;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -87,8 +88,8 @@
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.97 0 0);
-  --accent: oklch(0.508 0.118 165.612);
-  --accent-foreground: oklch(0.979 0.021 166.113);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -101,8 +102,8 @@
   --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.596 0.145 163.225);
-  --sidebar-primary-foreground: oklch(0.979 0.021 166.113);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
@@ -125,8 +126,9 @@
     --accent: #18181b;
     --accent-foreground: #f4f4f5;
     --input: #27272a;
-    --primary: #009A49;
-    --primary-foreground: #09090b;
+    --ring: #52525b;
+    --primary: #009a49;
+    --primary-foreground: #ffffff;
     --destructive: #b02336;
     color-scheme: dark;
   }
@@ -151,6 +153,18 @@
   button:not(:disabled) {
     cursor: pointer;
   }
+}
+
+/* Pages crossfade into each other; the source card morphs between sources. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 150ms;
 }
 
 ::selection {
