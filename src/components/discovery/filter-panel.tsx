@@ -1,20 +1,20 @@
+import { getRelativeLocaleUrl } from "astro:i18n"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { TagIcon } from "@/components/tag-icon"
 import { tierColors } from "@/components/tier-badge"
 import { format, translations, type Locale } from "@/i18n/ui"
-import { localePath } from "@/lib/paths"
 import {
   defaultFilters,
   facets,
+  tagLabel,
   tierRank,
   tiers,
   type Filters,
   type Tag,
   type Tier,
 } from "@/lib/sites"
-import { tagLabel } from "@/lib/tag-display"
 import { cn } from "@/lib/utils"
 
 const rowLabel = "text-xs font-semibold text-muted-foreground"
@@ -152,7 +152,7 @@ export function FilterPanel({
         <p className="discovery-section-subtitle">{t.filtersHint}</p>
         <p className="pt-2 text-sm">
           <a
-            href={localePath(locale, "tags/")}
+            href={getRelativeLocaleUrl(locale, "tags/")}
             className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
           >
             {t.browseTags}

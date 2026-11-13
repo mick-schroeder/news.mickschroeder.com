@@ -2,8 +2,7 @@ import { ChevronRight } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { TagIcon } from "@/components/tag-icon"
-import type { Site, Tag } from "@/lib/sites"
-import { tagLabel } from "@/lib/tag-display"
+import { tagLabel, type Site, type Tag } from "@/lib/sites"
 import { SiteIcon } from "./site-icon"
 
 // Line the table up with the card's padding.

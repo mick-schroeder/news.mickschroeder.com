@@ -1,7 +1,7 @@
 import { tiers, type Site, type Tag, type Tier } from "./feed.ts"
 
 export type { Site, Tag, Tier } from "./feed.ts"
-export { tiers } from "./feed.ts"
+export { tagLabel, tiers } from "./feed.ts"
 
 export type Filters = {
   topics: string[]
@@ -173,9 +173,8 @@ const monogramColors = [
 ]
 
 /** Letter and stable color for a site without a favicon. */
-export function monogram(site: Pick<Site, "id" | "title">) {
-  const letter =
-    site.title.match(/[\p{L}\p{N}]/u)?.[0]?.toLocaleUpperCase() ?? "?"
+export function monogram(site: Pick<Site, "id">) {
+  const letter = site.id.match(/[\p{L}\p{N}]/u)?.[0]?.toLocaleUpperCase() ?? "?"
   let hash = 0
   for (const char of site.id) hash = (hash * 31 + char.charCodeAt(0)) >>> 0
   return { letter, color: monogramColors[hash % monogramColors.length] }

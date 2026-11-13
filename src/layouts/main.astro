@@ -24,7 +24,6 @@ const {
 } = Astro.props
 const t = translations[locale]
 const currentPath = getRelativeLocaleUrl(locale)
-const canonical = new URL(currentPath, Astro.site)
 const title = Astro.props.title ?? t.title
 const showGoogleTags = googleTagsEnabled && !noindex
 ---
@@ -42,7 +41,7 @@ const showGoogleTags = googleTagsEnabled && !noindex
       languageSuffix={languageSuffix}
     />
     <slot name="head" />
-    {showGoogleTags && <GoogleTags canonical={canonical} />}
+    {showGoogleTags && <GoogleTags />}
   </head>
   <body>
     <a
@@ -97,14 +96,14 @@ const showGoogleTags = googleTagsEnabled && !noindex
         </a>
         <span aria-hidden="true"> · </span>
         <a
-          href={getRelativeLocaleUrl(locale, "privacy")}
+          href={getRelativeLocaleUrl(locale, "privacy/")}
           class="underline hover:text-primary transition-colors"
         >
           {t.privacy}
         </a>
         <span aria-hidden="true"> · </span>
         <a
-          href={getRelativeLocaleUrl(locale, "terms")}
+          href={getRelativeLocaleUrl(locale, "terms/")}
           class="underline hover:text-primary transition-colors"
         >
           {t.terms}

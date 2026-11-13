@@ -14,6 +14,7 @@ export default defineConfig({
   site: "https://news.mickschroeder.com",
   output: "static",
   trailingSlash: "always",
+  prefetch: true,
   i18n: {
     defaultLocale,
     locales,

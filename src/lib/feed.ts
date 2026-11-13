@@ -1,4 +1,5 @@
 import { z } from "astro/zod"
+import { locales, type Locale } from "../i18n/locales.ts"
 
 /** Tiers the site shows, best first. F is dropped at load. */
 export const tiers = ["S", "A", "B", "C", "D", "E"] as const
@@ -19,9 +20,17 @@ export const tagSchema = z.object({
   id: slug,
   title: z.string().trim().min(1),
   kind: z.enum(tagKinds),
+  /** Lucide icon name. */
+  icon: slug.optional(),
   description: z.string(),
   /** The aggregator's own site, for aggregator tags. */
   url: z.url({ protocol: /^https$/ }).optional(),
+  translations: z
+    .partialRecord(
+      z.enum(locales),
+      z.object({ title: z.string().trim().min(1) })
+    )
+    .optional(),
 })
 
 export const siteSchema = z.object({
@@ -34,7 +43,15 @@ export const siteSchema = z.object({
   tags: z.array(slug).min(1),
 })
 
-export type Tag = z.infer<typeof tagSchema>
+export type Tag = z.infer<typeof tagSchema> & {
+  /** Set by the catalog from the icon name. */
+  iconNode?: IconNode
+}
+export type IconNode = [string, Record<string, string>][]
+
+/** Tag title in the locale, falling back to the feed title. */
+export const tagLabel = (tag: Tag, locale: Locale) =>
+  tag.translations?.[locale]?.title ?? tag.title
 export type Site = Omit<z.infer<typeof siteSchema>, "tier"> & {
   tier: Tier
   /** Set by the catalog when public/favicons/{id}.png exists. */

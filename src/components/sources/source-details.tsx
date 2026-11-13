@@ -1,3 +1,4 @@
+import { getRelativeLocaleUrl } from "astro:i18n"
 import { ExternalLink } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -12,7 +13,6 @@ import { Separator } from "@/components/ui/separator"
 import { TierBadge } from "@/components/tier-badge"
 import type { Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { localePath } from "@/lib/paths"
 import { facets, hostOf, type Site, type Tag } from "@/lib/sites"
 import { cn } from "@/lib/utils"
 import { SiteIcon } from "./site-icon"
@@ -83,10 +83,7 @@ export function SourceDetails({
           </dt>
           <dd>
             <a
-              href={localePath(
-                locale,
-                `sources/#tier-${source.tier.toLowerCase()}`
-              )}
+              href={`${getRelativeLocaleUrl(locale, "sources/")}#tier-${source.tier.toLowerCase()}`}
               className="inline-flex rounded-md underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               <TierBadge tier={source.tier} locale={locale} />
@@ -130,7 +127,7 @@ export function SimilarSites({
         {sites.map((site) => (
           <li key={site.id}>
             <a
-              href={localePath(locale, `sources/${site.id}/`)}
+              href={getRelativeLocaleUrl(locale, `sources/${site.id}/`)}
               className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               <SiteIcon site={site} size="sm" className="size-8" />

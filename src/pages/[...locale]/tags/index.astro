@@ -1,11 +1,11 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n"
 import BrowsePage from "@/components/sources/browse-page.astro"
 import { TagTable } from "@/components/sources/tag-table"
 import { getSites, getTags } from "@/lib/catalog"
 import { browsableTags } from "@/lib/sites"
 import { localizedPaths, type Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { localePath } from "@/lib/paths"
 
 export const getStaticPaths = localizedPaths
 
@@ -15,7 +15,7 @@ const sites = await getSites()
 const rows = browsableTags(await getTags()).map((tag) => ({
   tag,
   locale,
-  href: localePath(locale, `tags/${tag.id}/`),
+  href: getRelativeLocaleUrl(locale, `tags/${tag.id}/`),
   examples: sites.filter((s) => s.tags.includes(tag.id)).slice(0, 5),
 }))
 ---
@@ -27,7 +27,7 @@ const rows = browsableTags(await getTags()).map((tag) => ({
   description={t.tagsDescription}
   languageSuffix="tags/"
   crumbs={[
-    { label: "News Shuffle", href: localePath(locale) },
+    { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
     { label: t.tags },
   ]}
 >

@@ -2,12 +2,7 @@
 import { adsenseClient, ga4MeasurementId } from "@/lib/google-config"
 import { shuffleEvent } from "@/lib/analytics"
 
-interface Props {
-  canonical: URL
-}
-
-const { canonical } = Astro.props
-const productionOrigin = canonical.origin
+const productionOrigin = Astro.site!.origin
 
 // Consent is required by default in the EEA, the UK and Switzerland. Google's
 // certified consent message (AdSense > Privacy & messaging) updates it.

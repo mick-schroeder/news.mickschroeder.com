@@ -3,30 +3,55 @@
     "id": "american",
     "title": "American",
     "kind": "region",
-    "description": "Based in the United States or mainly covering it."
+    "icon": "flag",
+    "description": "Based in the United States or mainly covering it.",
+    "translations": {
+      "ga": {
+        "title": "Meiriceánach"
+      }
+    }
   },
   {
     "id": "british",
     "title": "British",
     "kind": "region",
-    "description": "Based in Great Britain (England, Scotland or Wales) or mainly covering it."
+    "icon": "flag",
+    "description": "Based in Great Britain (England, Scotland or Wales) or mainly covering it.",
+    "translations": {
+      "ga": {
+        "title": "Briotanach"
+      }
+    }
   },
   {
     "id": "irish",
     "title": "Irish",
     "kind": "region",
-    "description": "Based anywhere on the island of Ireland, Northern Ireland included, or mainly covering it."
+    "icon": "flag",
+    "description": "Based anywhere on the island of Ireland, Northern Ireland included, or mainly covering it.",
+    "translations": {
+      "ga": {
+        "title": "Éireannach"
+      }
+    }
   },
   {
     "id": "gaeilge",
     "title": "Gaeilge",
     "kind": "language",
-    "description": "Written in Irish (Gaeilge)."
+    "icon": "book-open",
+    "description": "Written in Irish (Gaeilge).",
+    "translations": {
+      "ga": {
+        "title": "Gaeilge"
+      }
+    }
   },
   {
     "id": "newzit",
     "title": "Newzit",
     "kind": "aggregator",
+    "icon": "layers",
     "description": "Listed on Newzit's homepage.",
     "url": "https://www.newzit.com/",
     "feed": "newzit"
@@ -35,6 +60,7 @@
     "id": "brutalist-report",
     "title": "The Brutalist Report",
     "kind": "aggregator",
+    "icon": "layers",
     "description": "Listed on The Brutalist Report.",
     "url": "https://brutalist.report/",
     "feed": "brutalist"
@@ -43,6 +69,7 @@
     "id": "techmeme",
     "title": "Techmeme",
     "kind": "aggregator",
+    "icon": "layers",
     "description": "On Techmeme's leaderboard of most-cited sources.",
     "url": "https://www.techmeme.com/",
     "feed": "techmeme"
@@ -51,6 +78,7 @@
     "id": "memeorandum",
     "title": "Memeorandum",
     "kind": "aggregator",
+    "icon": "layers",
     "description": "On Memeorandum's leaderboard of most-cited sources.",
     "url": "https://www.memeorandum.com/",
     "feed": "memeorandum"
@@ -59,6 +87,7 @@
     "id": "mediagazer",
     "title": "Mediagazer",
     "kind": "aggregator",
+    "icon": "layers",
     "description": "On Mediagazer's leaderboard of most-cited sources.",
     "url": "https://mediagazer.com/",
     "feed": "mediagazer"
@@ -67,6 +96,7 @@
     "id": "drudge-report",
     "title": "Drudge Report",
     "kind": "aggregator",
+    "icon": "layers",
     "description": "Linked from the Drudge Report homepage.",
     "url": "https://www.drudgereport.com/",
     "feed": "drudge"
@@ -75,6 +105,7 @@
     "id": "popular",
     "title": "Popular",
     "kind": "tier",
+    "icon": "tag",
     "description": "Tier S or A.",
     "tiers": [
       "S",
@@ -85,54 +116,103 @@
     "id": "news",
     "title": "News",
     "kind": "tag",
-    "description": "General news: outlets covering many subjects (world, national or local news), not a single beat."
+    "icon": "newspaper",
+    "description": "General news: outlets covering many subjects (world, national or local news), not a single beat.",
+    "translations": {
+      "ga": {
+        "title": "Nuacht"
+      }
+    }
   },
   {
     "id": "tech",
     "title": "Technology",
     "kind": "tag",
-    "description": "Technology news: the tech industry, software, devices and the internet."
+    "icon": "cpu",
+    "description": "Technology news: the tech industry, software, devices and the internet.",
+    "translations": {
+      "ga": {
+        "title": "Teicneolaíocht"
+      }
+    }
   },
   {
     "id": "business",
     "title": "Business",
     "kind": "tag",
-    "description": "Business, finance and markets news."
+    "icon": "briefcase",
+    "description": "Business, finance and markets news.",
+    "translations": {
+      "ga": {
+        "title": "Gnó"
+      }
+    }
   },
   {
     "id": "science",
     "title": "Science",
     "kind": "tag",
-    "description": "Science and research news."
+    "icon": "flask-conical",
+    "description": "Science and research news.",
+    "translations": {
+      "ga": {
+        "title": "Eolaíocht"
+      }
+    }
   },
   {
     "id": "gaming",
     "title": "Gaming",
     "kind": "tag",
-    "description": "Video game news and reviews."
+    "icon": "gamepad-2",
+    "description": "Video game news and reviews.",
+    "translations": {
+      "ga": {
+        "title": "Cluichíocht"
+      }
+    }
   },
   {
     "id": "culture",
     "title": "Culture",
     "kind": "tag",
-    "description": "Entertainment, arts, celebrity and lifestyle news."
+    "icon": "palette",
+    "description": "Entertainment, arts, celebrity and lifestyle news.",
+    "translations": {
+      "ga": {
+        "title": "Cultúr"
+      }
+    }
   },
   {
     "id": "politics",
     "title": "Politics",
     "kind": "tag",
-    "description": "Political news and commentary."
+    "icon": "landmark",
+    "description": "Political news and commentary.",
+    "translations": {
+      "ga": {
+        "title": "Polaitíocht"
+      }
+    }
   },
   {
     "id": "sports",
     "title": "Sports",
     "kind": "tag",
-    "description": "Sports news and scores."
+    "icon": "trophy",
+    "description": "Sports news and scores.",
+    "translations": {
+      "ga": {
+        "title": "Spórt"
+      }
+    }
   },
   {
     "id": "sponsor",
     "title": "Sponsor",
     "kind": "sponsor",
+    "icon": "tag",
     "description": "Sponsor websites."
   }
 ]

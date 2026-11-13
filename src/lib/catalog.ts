@@ -1,7 +1,7 @@
 import { existsSync, readdirSync } from "node:fs"
 import path from "node:path"
 import { getCollection } from "astro:content"
-import { tagSchema } from "./feed.ts"
+import { tagSchema, type IconNode } from "./feed.ts"
 import { directoryOrder, type Site, type Tag } from "./sites.ts"
 
 // Filled by scripts/fetch-favicons.ts before the build.
@@ -18,9 +18,23 @@ export const getSites = async () =>
     })
   )
 
+/** Lucide icon data by name, read at build time so no glyph map ships. */
+const iconNode = async (name: string): Promise<IconNode> => {
+  try {
+    return (await import(`lucide-react/icons/${name}`)).__iconData.node
+  } catch {
+    throw new Error(`Unknown Lucide icon: ${name}`)
+  }
+}
+
 /** All tags in feed order. */
 export const getTags = async (): Promise<Tag[]> =>
-  (await getCollection("tags"))
-    .map((entry) => entry.data)
-    .sort((a, b) => a.order - b.order)
-    .map((tag) => tagSchema.parse(tag))
+  Promise.all(
+    (await getCollection("tags"))
+      .map((entry) => entry.data)
+      .sort((a, b) => a.order - b.order)
+      .map((data) => tagSchema.parse(data))
+      .map(async (tag) =>
+        tag.icon ? { ...tag, iconNode: await iconNode(tag.icon) } : tag
+      )
+  )

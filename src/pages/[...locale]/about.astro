@@ -1,11 +1,11 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n"
 import BrowsePage from "@/components/sources/browse-page.astro"
 import ExternalLink from "@/components/external-link.astro"
 import { TierBadge } from "@/components/tier-badge"
 import { localizedPaths, type Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { defaultFeedUrl } from "@/lib/feed"
-import { localePath } from "@/lib/paths"
 import { tiers } from "@/lib/sites"
 
 export const getStaticPaths = localizedPaths
@@ -59,7 +59,7 @@ const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
   description={copy.intro}
   languageSuffix="about/"
   crumbs={[
-    { label: "News Shuffle", href: localePath(locale) },
+    { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
     { label: t.about },
   ]}
 >
@@ -77,13 +77,18 @@ const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
     <ul class="flex gap-1.5" aria-label={copy.tiersTitle}>
       {tiers.map((tier) => (
         <li>
-          <a href={localePath(locale, `sources/#tier-${tier.toLowerCase()}`)}>
+          <a
+            href={`${getRelativeLocaleUrl(locale, "sources/")}#tier-${tier.toLowerCase()}`}
+          >
             <TierBadge tier={tier} locale={locale} />
           </a>
         </li>
       ))}
       <li>
-        <span class="grid size-7 shrink-0 place-items-center rounded-md text-sm font-black bg-tier-f text-tier-f-foreground" title="Excluded from shuffle">
+        <span
+          class="grid size-7 shrink-0 place-items-center rounded-md text-sm font-black bg-tier-f text-tier-f-foreground"
+          title="Excluded from shuffle"
+        >
           <span aria-hidden="true">F</span>
         </span>
       </li>

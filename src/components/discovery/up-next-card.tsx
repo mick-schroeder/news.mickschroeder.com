@@ -1,3 +1,4 @@
+import { getRelativeLocaleUrl } from "astro:i18n"
 import { useEffect, useEffectEvent, useRef } from "react"
 import { ExternalLink, Shuffle } from "lucide-react"
 import { historyDepth, historyStep } from "./history-card-style"
@@ -13,7 +14,6 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 import { translations, type Locale } from "@/i18n/ui"
-import { localePath } from "@/lib/paths"
 import { facets, type Site, type Tag } from "@/lib/sites"
 import type { useDiscovery } from "./use-discovery"
 
@@ -104,7 +104,10 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
             site={frontSite}
             tags={cardTags(frontSite)}
             locale={locale}
-            detailsHref={localePath(locale, `sources/${frontSite.id}/`)}
+            detailsHref={getRelativeLocaleUrl(
+              locale,
+              `sources/${frontSite.id}/`
+            )}
           />
         ) : null}
       </div>

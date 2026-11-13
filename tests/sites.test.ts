@@ -139,12 +139,12 @@ test("icons are local paths", () => {
   assert.equal(iconPath("bbc"), "/favicons/bbc.png")
 })
 
-test("monogram takes the first letter or digit, with a stable color", () => {
-  const wired = monogram({ id: "wired", title: "Wired" })
+test("monogram takes the first letter or digit of the id, with a stable color", () => {
+  const wired = monogram({ id: "wired" })
   assert.equal(wired.letter, "W")
-  assert.deepEqual(monogram({ id: "wired", title: "Wired" }), wired)
-  assert.equal(monogram({ id: "x", title: "“404 Media”" }).letter, "4")
-  assert.equal(monogram({ id: "x", title: "étude" }).letter, "É")
-  assert.equal(monogram({ id: "x", title: "…" }).letter, "?")
+  assert.deepEqual(monogram({ id: "wired" }), wired)
+  assert.equal(monogram({ id: "404media" }).letter, "4")
+  assert.equal(monogram({ id: "-nyt" }).letter, "N")
+  assert.equal(monogram({ id: "--" }).letter, "?")
   assert.match(wired.color, /^bg-[a-z]+-700$/)
 })

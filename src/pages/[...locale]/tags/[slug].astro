@@ -1,15 +1,14 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n"
 import { ExternalLink, Shuffle } from "lucide-react"
 import BrowsePage from "@/components/sources/browse-page.astro"
 import { TagChips } from "@/components/sources/tag-chips"
 import TierList from "@/components/sources/tier-list.astro"
 import { buttonVariants } from "@/components/ui/button"
 import { getSites, getTags } from "@/lib/catalog"
-import { browsableTags, hostOf, type Tag } from "@/lib/sites"
-import { tagLabel } from "@/lib/tag-display"
+import { browsableTags, hostOf, tagLabel, type Tag } from "@/lib/sites"
 import { defaultLocale, locales, type Locale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
-import { localePath } from "@/lib/paths"
 import { cn } from "@/lib/utils"
 
 export async function getStaticPaths() {
@@ -47,8 +46,8 @@ const sources = (await getSites()).filter((source) =>
   description={format(t.tagDescription, { label })}
   languageSuffix={`tags/${slug}/`}
   crumbs={[
-    { label: "News Shuffle", href: localePath(locale) },
-    { label: t.tags, href: localePath(locale, "tags/") },
+    { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
+    { label: t.tags, href: getRelativeLocaleUrl(locale, "tags/") },
     { label },
   ]}
 >
@@ -57,7 +56,7 @@ const sources = (await getSites()).filter((source) =>
   </p>
   <a
     slot="actions"
-    href={localePath(locale, `tags/${slug}/redirect/`)}
+    href={getRelativeLocaleUrl(locale, `tags/${slug}/redirect/`)}
     class={cn(buttonVariants({ size: "lg" }), "font-bold")}
   >
     <Shuffle data-icon="inline-start" strokeWidth={3} aria-hidden="true" />
@@ -76,11 +75,6 @@ const sources = (await getSites()).filter((source) =>
       <ExternalLink data-icon="inline-end" aria-hidden="true" />
     </a>
   )}
-  <TagChips
-    locale={locale}
-    tags={tags}
-    current={tag.id}
-    label={t.tags}
-  />
+  <TagChips locale={locale} tags={tags} current={tag.id} label={t.tags} />
   <TierList locale={locale} sites={sources} />
 </BrowsePage>

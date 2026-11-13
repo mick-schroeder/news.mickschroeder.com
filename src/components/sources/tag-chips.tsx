@@ -1,9 +1,8 @@
+import { getRelativeLocaleUrl } from "astro:i18n"
 import { Badge } from "@/components/ui/badge"
 import { TagIcon } from "@/components/tag-icon"
 import type { Locale } from "@/i18n/locales"
-import { localePath } from "@/lib/paths"
-import type { Tag } from "@/lib/sites"
-import { tagLabel } from "@/lib/tag-display"
+import { tagLabel, type Tag } from "@/lib/sites"
 
 /** Tags as links to their pages. */
 export function TagChips({
@@ -28,7 +27,7 @@ export function TagChips({
               className="h-7 gap-1.5 px-2.5"
               render={
                 <a
-                  href={localePath(locale, `tags/${tag.id}/`)}
+                  href={getRelativeLocaleUrl(locale, `tags/${tag.id}/`)}
                   aria-current={active ? "page" : undefined}
                 />
               }

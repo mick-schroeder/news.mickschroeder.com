@@ -68,13 +68,7 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
   <!-- Same width as the header and footer on every page, so ads only use the
        outer margins. -->
   <main class="page-width max-w-5xl pt-4 sm:pt-8">
-    <!-- Swapped in place when browsing sources; see source-navigation.ts. -->
-    <div
-      id="source-page"
-      class="mx-auto max-w-3xl space-y-6"
-      data-previous={sourceUrl(previous.id)}
-      data-next={sourceUrl(next.id)}
-    >
+    <div class="mx-auto max-w-3xl space-y-6">
       <PageBreadcrumb
         crumbs={[
           { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
@@ -89,7 +83,7 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
         <a
           href={sourceUrl(previous.id)}
           rel="prev"
-          data-source-nav
+          data-astro-prefetch
           class={cn(arrow, "justify-self-start")}
           aria-label={t.previous}
           title={previous.title}
@@ -102,7 +96,7 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
         <a
           href={sourceUrl(next.id)}
           rel="next"
-          data-source-nav
+          data-astro-prefetch
           class={cn(arrow, "justify-self-end")}
           aria-label={t.next}
           title={next.title}
@@ -116,7 +110,13 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
 </Layout>
 
 <script>
-  import { enableSourceNavigation } from "@/lib/source-navigation"
-
-  enableSourceNavigation()
+  // Left and right arrow keys follow the previous and next links.
+  document.addEventListener("keydown", (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+    const target = event.target
+    if (target instanceof Element && target.closest("input, select, textarea"))
+      return
+    const rel = { ArrowLeft: "prev", ArrowRight: "next" }[event.key]
+    document.querySelector<HTMLAnchorElement>(`a[rel="${rel}"]`)?.click()
+  })
 </script>

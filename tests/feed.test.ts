@@ -1,8 +1,7 @@
 import { test } from "node:test"
 import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
-import { parseFeed } from "../src/lib/feed.ts"
-import { tagDisplay } from "../src/lib/tag-display.ts"
+import { parseFeed, tagLabel } from "../src/lib/feed.ts"
 
 const read = (name: string) =>
   JSON.parse(
@@ -59,10 +58,20 @@ test("the feed is rejected when it doesn't add up", () => {
   assert.throws(() => parseFeed([site], rawTags), /expected 100\+/)
 })
 
-test("every chip tag has a display entry", () => {
-  const missing = rawTags
-    .filter((tag: { kind: string }) => !["tier", "sponsor"].includes(tag.kind))
-    .filter((tag: { id: string }) => !(tag.id in tagDisplay))
-    .map((tag: { id: string }) => tag.id)
-  assert.deepEqual(missing, [], `Add to tag-display.ts: ${missing}`)
+test("every tag has a Lucide icon", async () => {
+  for (const tag of parse(rawSites).tags) {
+    assert.ok(tag.icon, `${tag.id} has no icon`)
+    await assert.doesNotReject(import(`lucide-react/icons/${tag.icon}`))
+  }
+})
+
+test("tag labels use the locale's title, else the feed title", () => {
+  const { tags } = parse(rawSites)
+  const byId = Object.fromEntries(tags.map((tag) => [tag.id, tag]))
+  assert.equal(tagLabel(byId.news, "ga"), "Nuacht")
+  assert.equal(tagLabel(byId.news, "en"), "News")
+  assert.equal(tagLabel(byId.techmeme, "ga"), "Techmeme")
+  assert.throws(() =>
+    parse(rawSites, [{ ...rawTags[0], translations: { xx: { title: "X" } } }])
+  )
 })
