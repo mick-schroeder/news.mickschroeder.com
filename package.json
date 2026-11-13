@@ -15,7 +15,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
     "typecheck": "astro check",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "check": "pnpm lint && pnpm typecheck && pnpm test"
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "fetch-favicons": "node --experimental-strip-types scripts/fetch-favicons.ts"
   },
   "dependencies": {
     "@astrojs/react": "^7",

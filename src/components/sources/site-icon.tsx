@@ -10,17 +10,23 @@ const sizes = {
 /**
  * A site's favicon on a white tile, so dark logos show in dark mode too.
  * A plain <img>, since static pages render without React on the client.
+ *
+ * Pass `siteId` to use a locally cached favicon from public/favicons/.
+ * Falls back to Google's favicon service when siteId is omitted.
  */
 export function SiteIcon({
   url,
+  siteId,
   size = "sm",
   className,
 }: {
   url: string
+  siteId?: string
   size?: keyof typeof sizes
   className?: string
 }) {
   const { box, px } = sizes[size]
+  const src = siteId ? `/favicons/${siteId}.png` : favicon(url)
   return (
     <span
       className={cn(
@@ -30,7 +36,7 @@ export function SiteIcon({
       )}
     >
       <img
-        src={favicon(url)}
+        src={src}
         alt=""
         width={px}
         height={px}

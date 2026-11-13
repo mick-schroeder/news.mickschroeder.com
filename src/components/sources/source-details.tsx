@@ -45,7 +45,7 @@ export function SourceDetails({
     <Card className="min-w-0">
       <CardHeader className="items-center">
         <div className="flex min-w-0 items-center gap-4">
-          <SiteIcon url={source.url} size="lg" />
+          <SiteIcon url={source.url} siteId={source.id} size="lg" />
           <div className="min-w-0 space-y-1">
             <CardTitle className="text-xl leading-tight font-bold tracking-tight break-words sm:text-2xl">
               <h1>{source.title}</h1>
@@ -133,7 +133,7 @@ export function SimilarSites({
               href={localePath(locale, `sources/${site.id}/`)}
               className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
             >
-              <SiteIcon url={site.url} size="sm" className="size-8" />
+              <SiteIcon url={site.url} siteId={site.id} size="sm" className="size-8" />
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-medium">
                   {site.title}

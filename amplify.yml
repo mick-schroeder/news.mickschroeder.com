@@ -10,6 +10,7 @@ frontend:
     build:
       commands:
         - pnpm check
+        - pnpm fetch-favicons
         - pnpm build
   artifacts:
     baseDirectory: dist

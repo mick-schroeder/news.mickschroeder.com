@@ -51,6 +51,7 @@ export function TagTable({
                       <SiteIcon
                         key={source.id}
                         url={source.url}
+                        siteId={source.id}
                         className="ring-2 ring-background"
                       />
                     ))}

@@ -67,7 +67,7 @@ const rows = [0, 1].map((row) =>
                   tabindex={copy ? -1 : undefined}
                   class="block rounded-xl outline-none transition-transform focus-visible:ring-3 focus-visible:ring-ring motion-safe:hover:-translate-y-0.5"
                 >
-                  <SiteIcon url={site.url} size="md" />
+                  <SiteIcon url={site.url} siteId={site.id} size="md" />
                   <span class="sr-only">{site.title}</span>
                 </a>
               </li>
@@ -78,19 +78,3 @@ const rows = [0, 1].map((row) =>
     ))}
   </div>
 </section>
-
-<script>
-  // Google serves a 16px globe when it has no icon; drop those tiles.
-  for (const img of document.querySelectorAll<HTMLImageElement>(
-    "[data-marquee-tile] img"
-  )) {
-    const check = () => {
-      if (img.naturalWidth <= 16) img.closest("li")!.hidden = true
-    }
-    if (img.complete) check()
-    else {
-      img.addEventListener("load", check, { once: true })
-      img.addEventListener("error", check, { once: true })
-    }
-  }
-</script>
