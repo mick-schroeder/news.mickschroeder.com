@@ -4,20 +4,14 @@ import ExternalLink from "@/components/external-link.astro"
 import { TierBadge } from "@/components/tier-badge"
 import { localizedPaths, type Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { getTags } from "@/lib/catalog"
 import { defaultFeedUrl } from "@/lib/feed"
 import { localePath } from "@/lib/paths"
-import { facets, tiers } from "@/lib/sites"
+import { tiers } from "@/lib/sites"
 
 export const getStaticPaths = localizedPaths
 
 const { locale }: { locale: Locale } = Astro.props
 const t = translations[locale]
-const { seenOn } = facets(await getTags())
-const updated = new Date().toLocaleDateString(
-  locale === "ga" ? "ga-IE" : "en-IE",
-  { day: "numeric", month: "long", year: "numeric" }
-)
 const repo = "https://github.com/mick-schroeder"
 const link = "text-foreground underline hover:text-primary transition-colors"
 
@@ -27,34 +21,32 @@ const copy = {
       "News Shuffle takes you to a random news site. Pick topics, places and tiers, then shuffle.",
     sourcesTitle: "Where the sites come from",
     sources:
-      "Every night, the list is rebuilt from the sites these news aggregators link to:",
+      "Every night, an algorithm rebuilds the list by scanning popular and influential sites around the web — the ones that consistently surface what people are reading and talking about.",
     judgedTitle: "How sites are judged",
     judged:
-      "Each new site is judged once by an AI model (Claude): whether it is news, a one-line description, its tags and a tier. Sites known for misinformation are left out. A site no aggregator has listed for three months is retired.",
+      "Each new site passes through an AI editor: is it news, what is it about, how far does its reach extend. Sites known for misinformation are excluded. A site that disappears from the web for long enough is quietly retired.",
     tiersTitle: "Tiers",
     tiers:
-      "Tiers run from S, the sites that set the news agenda, down to E, sites not rated yet. They are an AI judgment of reach and influence, not of quality or viewpoint.",
-    dataTitle: "Data and code",
-    data: "The list is open data:",
+      "Tiers run from S, the sites that set the news agenda, down to E, sites not yet fully rated. They reflect reach and influence, not quality or viewpoint. Sites assigned F are excluded from the shuffle entirely.",
+    dataTitle: "Open source",
+    api: "API:",
     code: "Code:",
-    updated: `List updated ${updated}.`,
   },
   ga: {
     intro:
       "Tugann News Shuffle chuig suíomh nuachta randamach thú. Roghnaigh ábhair, áiteanna agus grádanna, ansin cas.",
     sourcesTitle: "Cá as a dtagann na suíomhanna",
     sources:
-      "Gach oíche, atógtar an liosta ó na suíomhanna a nascann na comhbhailitheoirí nuachta seo leo:",
+      "Gach oíche, atógtar an liosta le halgartam trí na suíomhanna is coitianta agus is mó tionchar ar an ngréasán a scanadh — na cinn a thagann aníos go leanúnach nuair atá daoine ag léamh agus ag caint.",
     judgedTitle: "Conas a mheastar na suíomhanna",
     judged:
-      "Meastar gach suíomh nua uair amháin le samhail AI (Claude): an nuacht é, cur síos aon líne, a chlibeanna agus a ghrád. Fágtar amach suíomhanna atá ar eolas as mífhaisnéis. Scortar suíomh nach bhfuil liostaithe ag aon chomhbhailitheoir le trí mhí.",
+      "Téann gach suíomh nua trí eagarthóir AI: an nuacht é, cad é a bhfuil sé faoi, cé chomh fada is a shíneann a réim. Fágtar amach suíomhanna atá ar eolas as mífhaisnéis. Scortar suíomh a imíonn ón ngréasán ar feadh i bhfad.",
     tiersTitle: "Grádanna",
     tiers:
-      "Téann na grádanna ó S, na suíomhanna a leagann clár na nuachta amach, síos go E, suíomhanna nach bhfuil grádaithe fós. Breithiúnas AI ar fhairsinge agus ar thionchar atá iontu, ní ar cháilíocht ná ar dhearcadh.",
-    dataTitle: "Sonraí agus cód",
-    data: "Is sonraí oscailte an liosta:",
+      "Téann na grádanna ó S, na suíomhanna a leagann clár na nuachta amach, síos go E, suíomhanna nach bhfuil grádaithe go hiomlán fós. Léiríonn siad faidhrsinge agus tionchar, ní cáilíocht ná dearcadh. Fágtar suíomhanna le grád F as an gcascairt ar fad.",
+    dataTitle: "Foinse oscailte",
+    api: "API:",
     code: "Cód:",
-    updated: `Nuashonraíodh an liosta ${updated}.`,
   },
 }[locale]
 const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
@@ -77,21 +69,6 @@ const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
   <div class="max-w-2xl space-y-3 leading-relaxed text-muted-foreground">
     <h2 class={heading}>{copy.sourcesTitle}</h2>
     <p>{copy.sources}</p>
-    <ul class="flex flex-wrap gap-x-4 gap-y-1">
-      {seenOn.map((tag) => (
-        <li>
-          {tag.url ? (
-            <ExternalLink href={tag.url} class={link} locale={locale}>
-              {tag.title}
-            </ExternalLink>
-          ) : (
-            <a href={localePath(locale, `tags/${tag.id}/`)} class={link}>
-              {tag.title}
-            </a>
-          )}
-        </li>
-      ))}
-    </ul>
 
     <h2 class={heading}>{copy.judgedTitle}</h2>
     <p>{copy.judged}</p>
@@ -105,12 +82,17 @@ const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
           </a>
         </li>
       ))}
+      <li>
+        <span class="grid size-7 shrink-0 place-items-center rounded-md text-sm font-black bg-tier-f text-tier-f-foreground" title="Excluded from shuffle">
+          <span aria-hidden="true">F</span>
+        </span>
+      </li>
     </ul>
     <p>{copy.tiers}</p>
 
     <h2 class={heading}>{copy.dataTitle}</h2>
     <p>
-      {copy.data}{" "}
+      {copy.api}{" "}
       <ExternalLink
         href={`${defaultFeedUrl}/sources.json`}
         class={link}
@@ -147,6 +129,5 @@ const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
       </ExternalLink>
       .
     </p>
-    <p class="pt-4 text-sm">{copy.updated}</p>
   </div>
 </BrowsePage>

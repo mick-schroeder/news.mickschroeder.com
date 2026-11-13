@@ -83,6 +83,8 @@
   --color-tier-d-foreground: var(--tier-d-foreground);
   --color-tier-e: var(--tier-e);
   --color-tier-e-foreground: var(--tier-e-foreground);
+  --color-tier-f: var(--tier-f);
+  --color-tier-f-foreground: var(--tier-f-foreground);
 }
 
 :root {
@@ -133,6 +135,8 @@
   --tier-d-foreground: var(--color-sky-800);
   --tier-e: var(--color-violet-200);
   --tier-e-foreground: var(--color-violet-800);
+  --tier-f: var(--color-fuchsia-200);
+  --tier-f-foreground: var(--color-fuchsia-800);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -169,6 +173,8 @@
     --tier-d-foreground: var(--color-sky-200);
     --tier-e: var(--color-violet-800);
     --tier-e-foreground: var(--color-violet-200);
+    --tier-f: var(--color-fuchsia-800);
+    --tier-f-foreground: var(--color-fuchsia-200);
 
   }
 }
