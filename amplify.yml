@@ -3,9 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm install 22
-        - nvm use 22
+        # Version from .nvmrc
+        - nvm install
+        - nvm use
         - corepack enable
+        - pnpm config set store-dir .pnpm-store
         - pnpm install --frozen-lockfile
     build:
       commands:
@@ -16,3 +18,7 @@ frontend:
     baseDirectory: dist
     files:
       - '**/*'
+  cache:
+    paths:
+      - .pnpm-store/**/*
+      - public/favicons/**/*

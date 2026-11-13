@@ -2,7 +2,9 @@
  * Downloads favicons for all sites into public/favicons/{siteId}.png.
  *
  * Run before builds when the feed changes:
- *   node --experimental-strip-types scripts/fetch-favicons.ts
+ *   node --experimental-strip-types scripts/fetch-favicons.ts [--refresh]
+ *
+ * Keeps favicons already on disk unless --refresh is passed.
  *
  * Skips any site whose favicon Google returns as the 16×16 "unknown" globe.
  */
@@ -25,10 +27,14 @@ function pngWidth(buf: Uint8Array): number {
   return new DataView(buf.buffer, buf.byteOffset).getUint32(16, false)
 }
 
+// --refresh re-downloads favicons already on disk.
+const refresh = process.argv.includes("--refresh")
+
 async function downloadFavicon(
   id: string,
   url: string
-): Promise<"saved" | "globe" | "error"> {
+): Promise<"saved" | "cached" | "globe" | "error"> {
+  if (!refresh && existsSync(path.join(OUT_DIR, `${id}.png`))) return "cached"
   const hostname = new URL(url).hostname
   try {
     const res = await fetch(googleFaviconUrl(hostname))
@@ -49,6 +55,7 @@ async function main() {
   if (!existsSync(OUT_DIR)) await mkdir(OUT_DIR, { recursive: true })
 
   let saved = 0
+  let cached = 0
   let skipped = 0
   let errors = 0
 
@@ -58,6 +65,8 @@ async function main() {
     if (result === "saved") {
       saved++
       process.stdout.write(`  ✓ ${site.id}\n`)
+    } else if (result === "cached") {
+      cached++
     } else if (result === "globe") {
       skipped++
       process.stdout.write(`  – ${site.id} (globe, skipped)\n`)
@@ -67,7 +76,9 @@ async function main() {
     }
   }
 
-  console.log(`\nDone: ${saved} saved, ${skipped} globes skipped, ${errors} errors`)
+  console.log(
+    `\nDone: ${saved} saved, ${cached} cached, ${skipped} globes skipped, ${errors} errors`
+  )
 }
 
 main().catch((err) => {

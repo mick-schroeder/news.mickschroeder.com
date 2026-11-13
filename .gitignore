@@ -30,3 +30,6 @@ output/
 .playwright-cli/
 
 TODO.txt
+
+# pnpm store (Amplify cache)
+.pnpm-store/
