@@ -3,6 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        # Drop restored cache files outside cache.paths
+        - git clean -xdf -e .pnpm-store -e public/favicons
         # Version from .nvmrc
         - nvm install
         - nvm use
