@@ -1,12 +1,12 @@
-import { ExternalLink, Globe } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { favicon, hostOf, type Site, type Tag } from "@/lib/sites"
+import { hostOf, type Site, type Tag } from "@/lib/sites"
 import { tagLabel } from "@/lib/tag-display"
 import { translations, type Locale } from "@/i18n/ui"
 import { TagIcon } from "@/components/tag-icon"
 import { TierBadge } from "@/components/tier-badge"
+import { SiteIcon } from "@/components/sources/site-icon"
 import {
   Item,
   ItemContent,
@@ -44,17 +44,7 @@ export function SiteCard({
     >
       <div className="flex w-full min-w-0 items-center gap-3.5">
         <ItemMedia>
-          <Avatar size="lg" className="bg-white p-1.5 ring-1 ring-black/10">
-            <AvatarImage
-              src={favicon(site.url)}
-              alt=""
-              referrerPolicy="no-referrer"
-              className="rounded-none object-contain"
-            />
-            <AvatarFallback>
-              <Globe className="size-5" />
-            </AvatarFallback>
-          </Avatar>
+          <SiteIcon site={site} size="md" className="size-10 p-1.5 text-lg" />
         </ItemMedia>
         <ItemContent className="min-w-0">
           <ItemTitle className="block w-full truncate text-base">
@@ -127,20 +117,11 @@ export function HistoryCard({
           "w-full justify-start rounded-t-[inherit] border-0 text-left hover:bg-transparent focus-visible:ring-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring active:not-aria-[haspopup]:translate-y-0 motion-reduce:transition-none dark:hover:bg-transparent"
         )}
       >
-        <Avatar
-          size="sm"
-          className="size-4.5 shrink-0 rounded-xs border border-border/60 bg-white p-0.5 opacity-80 transition-opacity group-hover:opacity-100 after:rounded-xs"
-        >
-          <AvatarImage
-            src={favicon(site.url)}
-            alt=""
-            referrerPolicy="no-referrer"
-            className="rounded-xs object-contain grayscale group-focus-within:grayscale-0 group-hover:grayscale-0"
-          />
-          <AvatarFallback className="rounded-xs text-[8px]">
-            <Globe className="size-2.5" />
-          </AvatarFallback>
-        </Avatar>
+        <SiteIcon
+          site={site}
+          size="xs"
+          className="opacity-80 grayscale transition group-focus-within:grayscale-0 group-hover:opacity-100 group-hover:grayscale-0"
+        />
         <span className="truncate text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
           {site.title}
         </span>

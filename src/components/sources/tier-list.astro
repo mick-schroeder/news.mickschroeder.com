@@ -2,155 +2,69 @@
 import { getRelativeLocaleUrl } from "astro:i18n"
 import { tierColors } from "@/components/tier-badge"
 import { format, translations, type Locale } from "@/i18n/ui"
-import { byTier, type Site, type Tag } from "@/lib/sites"
-import { tagLabel } from "@/lib/tag-display"
+import { byTier, type Site } from "@/lib/sites"
 import { cn } from "@/lib/utils"
 import { SiteIcon } from "./site-icon"
 
 interface Props {
   locale: Locale
   sites: Site[]
-  /** Tags to filter by in place. Each is also a link to its page. */
-  filters?: Tag[]
 }
 
-const { locale, sites, filters } = Astro.props
+const { locale, sites } = Astro.props
 const t = translations[locale]
 const sitePath = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
-const chip =
-  "inline-flex h-7 items-center rounded-full border border-border px-3 text-xs font-medium transition-colors hover:bg-muted aria-[current=true]:border-foreground aria-[current=true]:bg-foreground aria-[current=true]:text-background"
 ---
 
-<div class="space-y-4" data-tier-list>
-  {filters && (
-    <nav aria-label={t.filterByTag}>
-      <ul class="flex flex-wrap gap-1.5">
-        <li>
-          <a
-            href={getRelativeLocaleUrl(locale, "sources/")}
-            data-filter=""
-            aria-current="true"
-            class={chip}
-          >
-            {t.filterAll}
-          </a>
-        </li>
-        {filters.map((tag) => (
-          <li>
+<div class="rounded-2xl border border-border bg-card">
+  {byTier(sites).map(({ tier, sites }) => (
+    <section
+      id={`tier-${tier.toLowerCase()}`}
+      class="group/row flex scroll-mt-24 border-b border-border"
+      aria-label={format(t.tierLabel, { tier })}
+      data-tier-row
+    >
+      <div
+        class={cn(
+          "flex w-14 shrink-0 flex-col items-center justify-center gap-0.5 p-2 text-center sm:w-20",
+          tierColors[tier]
+        )}
+        aria-hidden="true"
+      >
+        <span class="text-3xl leading-none font-black sm:text-4xl">{tier}</span>
+      </div>
+      <ul class="flex min-h-20 min-w-0 flex-1 flex-wrap content-start gap-1.5 p-2 sm:gap-2 sm:p-3">
+        {sites.map((site) => (
+          <li class="relative">
             <a
-              href={getRelativeLocaleUrl(locale, `tags/${tag.id}/`)}
-              data-filter={tag.id}
-              class={chip}
+              href={sitePath(site.id)}
+              class="group/tile block rounded-xl outline-none transition-transform focus-visible:ring-3 focus-visible:ring-ring motion-safe:hover:-translate-y-0.5"
             >
-              {tagLabel(tag, locale)}
+              <SiteIcon site={site} size="md" />
+              <span class="sr-only">{site.title}</span>
+              <span
+                class="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 -translate-x-1/2 rounded-md bg-foreground px-2 py-1 text-xs font-medium whitespace-nowrap text-background opacity-0 transition-opacity group-hover/tile:opacity-100 group-focus-visible/tile:opacity-100"
+                aria-hidden="true"
+              >
+                {site.title}
+              </span>
             </a>
           </li>
         ))}
       </ul>
-    </nav>
-  )}
-  <div class="rounded-2xl border border-border bg-card">
-    {byTier(sites).map(({ tier, sites }) => (
-      <section
-        id={`tier-${tier.toLowerCase()}`}
-        class="group/row flex scroll-mt-24 border-b border-border"
-        aria-label={format(t.tierLabel, { tier })}
-        data-tier-row
-      >
-        <div
-          class={cn(
-            "flex w-14 shrink-0 flex-col items-center justify-center gap-0.5 p-2 text-center sm:w-20",
-            tierColors[tier]
-          )}
-          aria-hidden="true"
-        >
-          <span class="text-3xl leading-none font-black sm:text-4xl">
-            {tier}
-          </span>
-        </div>
-        <ul class="flex min-h-20 min-w-0 flex-1 flex-wrap content-start gap-1.5 p-2 sm:gap-2 sm:p-3">
-          {sites.map((site) => (
-            <li data-tags={site.tags.join(" ")} class="relative">
-              <a
-                href={sitePath(site.id)}
-                class="group/tile block rounded-xl outline-none transition-transform focus-visible:ring-3 focus-visible:ring-ring motion-safe:hover:-translate-y-0.5"
-              >
-                <SiteIcon url={site.url} siteId={site.id} size="md" />
-                <span class="sr-only">{site.title}</span>
-                <span
-                  class="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 -translate-x-1/2 rounded-md bg-foreground px-2 py-1 text-xs font-medium whitespace-nowrap text-background opacity-0 transition-opacity group-hover/tile:opacity-100 group-focus-visible/tile:opacity-100"
-                  aria-hidden="true"
-                >
-                  {site.title}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))}
-    <p class="p-6 text-center text-sm text-muted-foreground" data-empty hidden>
-      {t.noMatchesTitle}
-    </p>
-  </div>
+    </section>
+  ))}
 </div>
 
 <style>
-  /* Round and close off whichever rows are visible after filtering. */
-  [data-tier-row]:nth-child(1 of [data-tier-row]:not([hidden])) > :first-child {
+  /* Round the tier column into the card's corners; no overflow clip, so tooltips show. */
+  [data-tier-row]:first-child > :first-child {
     border-top-left-radius: calc(var(--radius-2xl) - 1px);
   }
-  [data-tier-row]:nth-last-child(1 of [data-tier-row]:not([hidden])) {
+  [data-tier-row]:last-child {
     border-bottom: 0;
   }
-  [data-tier-row]:nth-last-child(1 of [data-tier-row]:not([hidden]))
-    > :first-child {
+  [data-tier-row]:last-child > :first-child {
     border-bottom-left-radius: calc(var(--radius-2xl) - 1px);
   }
 </style>
-
-<script>
-  // Filters the tier list in place; without JS the chips open tag pages.
-  for (const list of document.querySelectorAll<HTMLElement>(
-    "[data-tier-list]"
-  )) {
-    const chips = list.querySelectorAll<HTMLAnchorElement>("[data-filter]")
-    const rows = list.querySelectorAll<HTMLElement>("[data-tier-row]")
-    const empty = list.querySelector<HTMLElement>("[data-empty]")!
-
-    const apply = (tag: string) => {
-      for (const chip of chips) {
-        chip.setAttribute("aria-current", String(chip.dataset.filter === tag))
-      }
-      let shown = 0
-      for (const row of rows) {
-        let inRow = 0
-        for (const item of row.querySelectorAll<HTMLElement>("[data-tags]")) {
-          const match = !tag || item.dataset.tags!.split(" ").includes(tag)
-          item.hidden = !match
-          if (match) inRow++
-        }
-        row.hidden = !inRow
-        shown += inRow
-      }
-      empty.hidden = shown > 0
-    }
-
-    for (const chip of chips) {
-      chip.addEventListener("click", (event) => {
-        if (event.metaKey || event.ctrlKey || event.shiftKey) return
-        event.preventDefault()
-        const tag = chip.dataset.filter!
-        const url = new URL(location.href)
-        if (tag) url.searchParams.set("tag", tag)
-        else url.searchParams.delete("tag")
-        history.replaceState(null, "", url)
-        apply(tag)
-      })
-    }
-
-    const initial = new URLSearchParams(location.search).get("tag")
-    if (initial && [...chips].some((chip) => chip.dataset.filter === initial))
-      apply(initial)
-  }
-</script>

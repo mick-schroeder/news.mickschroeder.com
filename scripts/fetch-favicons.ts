@@ -1,84 +1,92 @@
 /**
- * Downloads favicons for all sites into public/favicons/{siteId}.png.
+ * Caches site favicons in public/favicons/{id}.png for the build.
  *
- * Run before builds when the feed changes:
  *   node --experimental-strip-types scripts/fetch-favicons.ts [--refresh]
  *
- * Keeps favicons already on disk unless --refresh is passed.
- *
- * Skips any site whose favicon Google returns as the 16×16 "unknown" globe.
+ * Fetches missing icons and ones older than MAX_AGE_DAYS (all with --refresh),
+ * and deletes icons of sites no longer in the feed or the icon service.
+ * Failed downloads keep the old icon; a site with none shows a monogram.
  */
-import { mkdir, writeFile } from "node:fs/promises"
-import { existsSync } from "node:fs"
+import { mkdir, readdir, rename, rm, stat, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { fetchFeed } from "../src/lib/feed.ts"
 
-const ROOT = fileURLToPath(new URL("..", import.meta.url))
-const OUT_DIR = path.join(ROOT, "public", "favicons")
+const OUT_DIR = fileURLToPath(new URL("../public/favicons/", import.meta.url))
+const MAX_AGE_DAYS = 30
+const MAX_BYTES = 100_000
+const TIMEOUT_MS = 10_000
+const PNG_SIGNATURE = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]
 
-const googleFaviconUrl = (hostname: string) =>
-  `https://www.google.com/s2/favicons?domain=${encodeURIComponent(hostname)}&sz=64`
-
-/** Read PNG width from the IHDR chunk (no dependencies). */
-function pngWidth(buf: Uint8Array): number {
-  // PNG: 8-byte sig + IHDR: 4 (len) + 4 ("IHDR") + 4 (width) + ...
-  if (buf.length < 24) return 0
-  return new DataView(buf.buffer, buf.byteOffset).getUint32(16, false)
-}
-
-// --refresh re-downloads favicons already on disk.
 const refresh = process.argv.includes("--refresh")
 
-async function downloadFavicon(
-  id: string,
-  url: string
-): Promise<"saved" | "cached" | "globe" | "error"> {
-  if (!refresh && existsSync(path.join(OUT_DIR, `${id}.png`))) return "cached"
-  const hostname = new URL(url).hostname
+const iconUrl = (siteUrl: string) =>
+  `https://www.google.com/s2/favicons?domain=${encodeURIComponent(new URL(siteUrl).hostname)}&sz=64`
+
+const isPng = (bytes: Uint8Array) =>
+  PNG_SIGNATURE.every((byte, i) => bytes[i] === byte)
+
+async function ageDays(file: string) {
   try {
-    const res = await fetch(googleFaviconUrl(hostname))
+    return (Date.now() - (await stat(file)).mtimeMs) / 86_400_000
+  } catch {
+    return Infinity
+  }
+}
+
+/** PNG bytes, "none" when the service has no icon (404), or "error". */
+async function download(
+  siteUrl: string
+): Promise<Uint8Array | "none" | "error"> {
+  try {
+    const res = await fetch(iconUrl(siteUrl), {
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    })
+    if (res.status === 404) return "none"
     if (!res.ok) return "error"
     const bytes = new Uint8Array(await res.arrayBuffer())
-    if (pngWidth(bytes) <= 16) return "globe"
-    await writeFile(path.join(OUT_DIR, `${id}.png`), bytes)
-    return "saved"
+    return isPng(bytes) && bytes.length <= MAX_BYTES ? bytes : "error"
   } catch {
     return "error"
   }
 }
 
 async function main() {
-  const dataUrl = process.env.DATA_URL
-  const { sites } = await fetchFeed(dataUrl)
+  const { sites } = await fetchFeed(process.env.DATA_URL || undefined)
+  await mkdir(OUT_DIR, { recursive: true })
 
-  if (!existsSync(OUT_DIR)) await mkdir(OUT_DIR, { recursive: true })
+  const counts = { fetched: 0, cached: 0, none: 0, errors: 0, removed: 0 }
 
-  let saved = 0
-  let cached = 0
-  let skipped = 0
-  let errors = 0
-
-  // Sequential to avoid rate-limiting Google's favicon service.
+  // Sequential to stay polite to the icon service.
   for (const site of sites) {
-    const result = await downloadFavicon(site.id, site.url)
-    if (result === "saved") {
-      saved++
-      process.stdout.write(`  ✓ ${site.id}\n`)
-    } else if (result === "cached") {
-      cached++
-    } else if (result === "globe") {
-      skipped++
-      process.stdout.write(`  – ${site.id} (globe, skipped)\n`)
-    } else {
-      errors++
-      process.stderr.write(`  ✗ ${site.id} (error)\n`)
+    const file = path.join(OUT_DIR, `${site.id}.png`)
+    if (!refresh && (await ageDays(file)) < MAX_AGE_DAYS) {
+      counts.cached++
+      continue
+    }
+    const result = await download(site.url)
+    if (result === "none" || result === "error") {
+      if (result === "none") await rm(file, { force: true })
+      counts[result === "none" ? "none" : "errors"]++
+      console.warn(`  ${result === "none" ? "–" : "✗"} ${site.id} (${result})`)
+      continue
+    }
+    // Write then rename, so an interrupted run never leaves a partial file.
+    await writeFile(`${file}.tmp`, result)
+    await rename(`${file}.tmp`, file)
+    counts.fetched++
+  }
+
+  // feed.ts rejects tiny or malformed feeds, so this can't empty the folder.
+  const ids = new Set(sites.map((site) => `${site.id}.png`))
+  for (const name of await readdir(OUT_DIR)) {
+    if (!ids.has(name)) {
+      await rm(path.join(OUT_DIR, name), { force: true })
+      counts.removed++
     }
   }
 
-  console.log(
-    `\nDone: ${saved} saved, ${cached} cached, ${skipped} globes skipped, ${errors} errors`
-  )
+  console.log("favicons:", counts)
 }
 
 main().catch((err) => {

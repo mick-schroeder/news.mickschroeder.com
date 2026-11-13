@@ -61,8 +61,7 @@ test("the feed is rejected when it doesn't add up", () => {
 
 test("every chip tag has a display entry", () => {
   const missing = rawTags
-    .filter((tag: { id: string; kind: string }) => tag.kind !== "tier")
-    .filter((tag: { id: string }) => tag.id !== "sponsor")
+    .filter((tag: { kind: string }) => !["tier", "sponsor"].includes(tag.kind))
     .filter((tag: { id: string }) => !(tag.id in tagDisplay))
     .map((tag: { id: string }) => tag.id)
   assert.deepEqual(missing, [], `Add to tag-display.ts: ${missing}`)

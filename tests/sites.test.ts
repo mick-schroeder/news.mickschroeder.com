@@ -7,8 +7,9 @@ import {
   defaultFilters,
   directoryOrder,
   facets,
-  favicon,
   filterSites,
+  iconPath,
+  monogram,
   neighbours,
   parseFilters,
   pickSite,
@@ -134,9 +135,16 @@ test("neighbours wrap around the ends", () => {
   assert.deepEqual(neighbours([1], 0), { previous: 1, next: 1 })
 })
 
-test("Google favicon uses the hostname only", () => {
-  assert.equal(
-    favicon("https://example.com/path?q=1"),
-    "https://www.google.com/s2/favicons?domain=example.com&sz=64"
-  )
+test("icons are local paths", () => {
+  assert.equal(iconPath("bbc"), "/favicons/bbc.png")
+})
+
+test("monogram takes the first letter or digit, with a stable color", () => {
+  const wired = monogram({ id: "wired", title: "Wired" })
+  assert.equal(wired.letter, "W")
+  assert.deepEqual(monogram({ id: "wired", title: "Wired" }), wired)
+  assert.equal(monogram({ id: "x", title: "“404 Media”" }).letter, "4")
+  assert.equal(monogram({ id: "x", title: "étude" }).letter, "É")
+  assert.equal(monogram({ id: "x", title: "…" }).letter, "?")
+  assert.match(wired.color, /^bg-[a-z]+-700$/)
 })

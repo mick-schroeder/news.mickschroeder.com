@@ -132,7 +132,7 @@
   {
     "id": "sponsor",
     "title": "Sponsor",
-    "kind": "tag",
+    "kind": "sponsor",
     "description": "Sponsor websites."
   }
 ]

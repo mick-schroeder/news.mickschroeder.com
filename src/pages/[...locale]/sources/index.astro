@@ -1,5 +1,6 @@
 ---
 import BrowsePage from "@/components/sources/browse-page.astro"
+import { TagChips } from "@/components/sources/tag-chips"
 import TierList from "@/components/sources/tier-list.astro"
 import { getSites, getTags } from "@/lib/catalog"
 import { browsableTags } from "@/lib/sites"
@@ -12,7 +13,7 @@ export const getStaticPaths = localizedPaths
 const { locale }: { locale: Locale } = Astro.props
 const t = translations[locale]
 const sites = await getSites()
-const filters = browsableTags(await getTags())
+const tags = browsableTags(await getTags())
 ---
 
 <BrowsePage
@@ -29,5 +30,6 @@ const filters = browsableTags(await getTags())
   <p slot="description" class="text-muted-foreground">
     {t.allSourcesDescription}
   </p>
-  <TierList locale={locale} sites={sites} filters={filters} />
+  <TagChips locale={locale} tags={tags} label={t.tags} />
+  <TierList locale={locale} sites={sites} />
 </BrowsePage>

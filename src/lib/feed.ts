@@ -10,6 +10,7 @@ export const tagKinds = [
   "language",
   "aggregator",
   "tier",
+  "sponsor",
 ] as const
 
 const slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/)
@@ -34,7 +35,11 @@ export const siteSchema = z.object({
 })
 
 export type Tag = z.infer<typeof tagSchema>
-export type Site = Omit<z.infer<typeof siteSchema>, "tier"> & { tier: Tier }
+export type Site = Omit<z.infer<typeof siteSchema>, "tier"> & {
+  tier: Tier
+  /** Set by the catalog when public/favicons/{id}.png exists. */
+  icon?: boolean
+}
 
 const urlKey = (value: string) => {
   const url = new URL(value)

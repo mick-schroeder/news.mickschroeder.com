@@ -43,6 +43,7 @@ const kindIcons: Record<Tag["kind"], TagIconName> = {
   language: "BookOpen",
   aggregator: "Layers",
   tier: "Tag",
+  sponsor: "Tag",
 }
 
 export const tagIconName = (tag: Tag) =>

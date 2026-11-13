@@ -122,21 +122,21 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  /* Standard tier list colours: soft fills in light mode. */
-  --tier-s: var(--color-red-200);
-  --tier-s-foreground: var(--color-red-800);
-  --tier-a: var(--color-orange-200);
-  --tier-a-foreground: var(--color-orange-800);
+  /* Tier list colours, the same in both themes; black text on each. */
+  --tier-s: var(--color-red-400);
+  --tier-s-foreground: #000000;
+  --tier-a: var(--color-orange-300);
+  --tier-a-foreground: #000000;
   --tier-b: var(--color-yellow-200);
-  --tier-b-foreground: var(--color-yellow-800);
-  --tier-c: var(--color-green-200);
-  --tier-c-foreground: var(--color-green-800);
-  --tier-d: var(--color-sky-200);
-  --tier-d-foreground: var(--color-sky-800);
-  --tier-e: var(--color-violet-200);
-  --tier-e-foreground: var(--color-violet-800);
-  --tier-f: var(--color-fuchsia-200);
-  --tier-f-foreground: var(--color-fuchsia-800);
+  --tier-b-foreground: #000000;
+  --tier-c: var(--color-green-300);
+  --tier-c-foreground: #000000;
+  --tier-d: var(--color-cyan-300);
+  --tier-d-foreground: #000000;
+  --tier-e: var(--color-indigo-400);
+  --tier-e-foreground: #000000;
+  --tier-f: var(--color-fuchsia-400);
+  --tier-f-foreground: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -160,22 +160,6 @@
     --primary-foreground: #ffffff;
     --destructive: #b02336;
     color-scheme: dark;
-    /* Deep, muted fills in dark mode. */
-    --tier-s: var(--color-red-800);
-    --tier-s-foreground: var(--color-red-200);
-    --tier-a: var(--color-orange-800);
-    --tier-a-foreground: var(--color-orange-200);
-    --tier-b: var(--color-yellow-800);
-    --tier-b-foreground: var(--color-yellow-200);
-    --tier-c: var(--color-green-800);
-    --tier-c-foreground: var(--color-green-200);
-    --tier-d: var(--color-sky-800);
-    --tier-d-foreground: var(--color-sky-200);
-    --tier-e: var(--color-violet-800);
-    --tier-e-foreground: var(--color-violet-200);
-    --tier-f: var(--color-fuchsia-800);
-    --tier-f-foreground: var(--color-fuchsia-200);
-
   }
 }
 

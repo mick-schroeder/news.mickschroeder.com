@@ -20,13 +20,10 @@ export const defaultFilters: Filters = {
 
 export const tierRank = (tier: Tier) => tiers.indexOf(tier)
 
-// Tags with their own UI instead of a chip.
-const hiddenTags = new Set(["sponsor"])
-
 /** Chip groups for the shuffle controls, in feed order. */
 export function facets(tags: Tag[]) {
   const of = (...kinds: Tag["kind"][]) =>
-    tags.filter((tag) => kinds.includes(tag.kind) && !hiddenTags.has(tag.id))
+    tags.filter((tag) => kinds.includes(tag.kind))
   return {
     topics: of("tag"),
     regions: of("region", "language"),
@@ -158,7 +155,30 @@ export function parseFilters(raw: string | null, tags: Tag[]): Filters {
 export const hostOf = (url: string) =>
   new URL(url).hostname.replace(/^www\./, "")
 
-export const favicon = (url: string) =>
-  `https://www.google.com/s2/favicons?domain=${encodeURIComponent(new URL(url).hostname)}&sz=64`
+/** Cached favicon path; only exists when `site.icon` is true. */
+export const iconPath = (id: string) => `/favicons/${id}.png`
+
+// Literal class names, so Tailwind generates them. White text passes AA on each.
+const monogramColors = [
+  "bg-red-700",
+  "bg-orange-700",
+  "bg-amber-700",
+  "bg-lime-700",
+  "bg-emerald-700",
+  "bg-cyan-700",
+  "bg-blue-700",
+  "bg-violet-700",
+  "bg-fuchsia-700",
+  "bg-rose-700",
+]
+
+/** Letter and stable color for a site without a favicon. */
+export function monogram(site: Pick<Site, "id" | "title">) {
+  const letter =
+    site.title.match(/[\p{L}\p{N}]/u)?.[0]?.toLocaleUpperCase() ?? "?"
+  let hash = 0
+  for (const char of site.id) hash = (hash * 31 + char.charCodeAt(0)) >>> 0
+  return { letter, color: monogramColors[hash % monogramColors.length] }
+}
 
 export const shufflePath = "/redirect/"

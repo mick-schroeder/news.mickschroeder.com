@@ -50,8 +50,7 @@ export function TagTable({
                     {examples.map((source) => (
                       <SiteIcon
                         key={source.id}
-                        url={source.url}
-                        siteId={source.id}
+                        site={source}
                         className="ring-2 ring-background"
                       />
                     ))}
