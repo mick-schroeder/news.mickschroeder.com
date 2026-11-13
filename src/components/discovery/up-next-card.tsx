@@ -14,18 +14,23 @@ import {
 } from "@/components/ui/empty"
 import { translations, type Locale } from "@/i18n/ui"
 import { localePath } from "@/lib/paths"
+import { facets, type Site, type Tag } from "@/lib/sites"
 import type { useDiscovery } from "./use-discovery"
 
 type UpNextCardProps = {
   locale: Locale
+  tags: Tag[]
   discovery: ReturnType<typeof useDiscovery>
 }
 
-export function UpNextCard({ locale, discovery }: UpNextCardProps) {
+export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
   const t = translations[locale]
+  const { topics, regions } = facets(tags)
+  const cardTags = (site: Site) =>
+    [...topics, ...regions].filter((tag) => site.tags.includes(tag.id))
   const deck = useRef<HTMLElement>(null)
   const {
-    interests,
+    filters,
     loadFailed,
     site: frontSite,
     historySites,
@@ -35,8 +40,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
     showPrevious,
     showHistorySite,
   } = discovery
-  const loading = !interests && !loadFailed
-  const hasInterests = Boolean(interests?.length)
+  const loading = !filters && !loadFailed
   const showSkeleton = loading || transitioning
   const showPeeks = showSkeleton && !frontSite
   const visibleHistory = frontSite ? historySites.slice(0, historyDepth) : []
@@ -84,7 +88,7 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
       >
         {visibleHistory.map((site, index) => (
           <HistoryCard
-            key={site.url}
+            key={site.id}
             site={site}
             index={index}
             depth={stackDepth}
@@ -96,9 +100,10 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
           <SiteCardSkeleton showPeeks={showPeeks} />
         ) : frontSite ? (
           <SiteCard
-            key={frontSite.url}
+            key={frontSite.id}
             site={frontSite}
-            opensInNewTab={t.opensInNewTab}
+            tags={cardTags(frontSite)}
+            locale={locale}
             detailsHref={localePath(locale, `sources/${frontSite.id}/`)}
           />
         ) : null}
@@ -149,18 +154,10 @@ export function UpNextCard({ locale, discovery }: UpNextCardProps) {
               <Shuffle strokeWidth={3} className="size-6" aria-hidden="true" />
             </EmptyMedia>
             <EmptyTitle className="font-semibold">
-              {loadFailed
-                ? t.catalogError
-                : hasInterests
-                  ? t.noMatchesTitle
-                  : t.choose}
+              {loadFailed ? t.catalogError : t.noMatchesTitle}
             </EmptyTitle>
             <EmptyDescription>
-              {loadFailed
-                ? t.reloadHint
-                : hasInterests
-                  ? t.noMatchesHint
-                  : t.ready}
+              {loadFailed ? t.reloadHint : t.noMatchesHint}
             </EmptyDescription>
           </EmptyHeader>
         </Empty>

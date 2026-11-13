@@ -1,13 +1,18 @@
 ---
 import ShuffleRedirect from "@/components/shuffle-redirect.astro"
-import { tagPages } from "@/data/catalog"
+import { getTags } from "@/lib/catalog"
+import { browsableTags } from "@/lib/sites"
 import { defaultLocale, locales, type Locale } from "@/i18n/locales"
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const tags = browsableTags(await getTags())
   return locales.flatMap((locale) =>
-    tagPages.map(({ tag, slug }) => ({
-      params: { locale: locale === defaultLocale ? undefined : locale, slug },
-      props: { locale, tag },
+    tags.map((tag) => ({
+      params: {
+        locale: locale === defaultLocale ? undefined : locale,
+        slug: tag.id,
+      },
+      props: { locale, tag: tag.id },
     }))
   )
 }
@@ -15,4 +20,4 @@ export function getStaticPaths() {
 const { locale, tag }: { locale: Locale; tag: string } = Astro.props
 ---
 
-<ShuffleRedirect locale={locale} tags={[tag]} />
+<ShuffleRedirect locale={locale} tag={tag} />

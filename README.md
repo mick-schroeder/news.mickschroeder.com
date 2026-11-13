@@ -21,11 +21,14 @@ pnpm install
 pnpm dev
 ```
 
-## Maintain the source catalog
+## Data
 
-```sh
-pnpm catalog:review
-```
+Sites and tags come from [popular-news-sites](https://github.com/mick-schroeder/popular-news-sites)
+at build time (`data.news.mickschroeder.com`). If the feed can't be fetched or
+doesn't validate, the build fails.
+
+To build against a local run of the data repo, serve its `out/` folder (the
+`data-preview` launch entry) and set `DATA_URL=http://localhost:4400`.
 
 ## Release
 

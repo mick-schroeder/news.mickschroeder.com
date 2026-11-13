@@ -16,15 +16,17 @@ import { translations } from "@/i18n/ui"
 
 import { defaultLocale, locales, type Locale } from "@/i18n/locales"
 import { getRelativeLocaleUrl } from "astro:i18n"
+import { getTags } from "@/lib/catalog"
 
 interface Props {
   /** Fixed language, e.g. for /ga/tags/…/redirect/. Otherwise the last one used. */
   locale?: Locale
-  /** Shuffle within these interests instead of the visitor's saved ones. */
-  tags?: string[]
+  /** Shuffle sites with this tag instead of the visitor's saved filters. */
+  tag?: string
 }
 
-const { locale, tags } = Astro.props
+const { locale, tag } = Astro.props
+const tags = await getTags()
 
 const homeUrls = Object.fromEntries(
   locales.map((locale) => [locale, getRelativeLocaleUrl(locale)])
@@ -39,7 +41,8 @@ const destinationRow = "min-h-18 flex-nowrap"
   <main
     data-home-urls={JSON.stringify(homeUrls)}
     data-locale={locale}
-    data-tags={tags && JSON.stringify(tags)}
+    data-tag={tag}
+    data-tags={JSON.stringify(tags)}
     class="redirect-page page-width max-w-lg min-h-[60vh] py-16"
   >
     <Card>
@@ -108,7 +111,7 @@ const destinationRow = "min-h-18 flex-nowrap"
             hidden
           >
             <a
-              id="choose-interests"
+              id="choose-filters"
               href="/"
               class={buttonVariants({ variant: "outline" })}
             >
@@ -135,16 +138,15 @@ const destinationRow = "min-h-18 flex-nowrap"
 </Layout>
 
 <script>
-  import { tags } from "@/data/interest-tags"
-  import { loadCatalog } from "@/lib/load-catalog"
   import {
     addToHistory,
+    loadSites,
+    readFilters,
     readHistory,
-    readInterests,
     readStorage,
     storageKeys,
   } from "@/lib/browser-storage"
-  import { filterWebsites, pickWebsite } from "@/lib/discovery"
+  import { filterSites, pickSite, type Site } from "@/lib/sites"
   import { resolveLocale } from "@/i18n/locales"
   import { translations } from "@/i18n/ui"
 
@@ -152,7 +154,7 @@ const destinationRow = "min-h-18 flex-nowrap"
   const title = document.getElementById("redirect-title")!
   const loading = document.getElementById("redirect-loading")!
   const empty = document.getElementById("redirect-empty")!
-  const setup = document.querySelector<HTMLAnchorElement>("#choose-interests")!
+  const setup = document.querySelector<HTMLAnchorElement>("#choose-filters")!
   const destination = document.querySelector<HTMLAnchorElement>(
     "#redirect-destination"
   )!
@@ -183,16 +185,15 @@ const destinationRow = "min-h-18 flex-nowrap"
     empty.hidden = true
     retry.hidden = true
 
-    const interests: string[] = page.dataset.tags
-      ? JSON.parse(page.dataset.tags)
-      : readInterests(tags)
-    let site
+    const tag = page.dataset.tag
+    let site: Site | undefined
     try {
-      if (interests.length) {
-        const websites = await loadCatalog(controller.signal)
-        if (controller.signal.aborted) return
-        site = pickWebsite(filterWebsites(websites, interests), readHistory())
-      }
+      const sites = await loadSites(controller.signal)
+      if (controller.signal.aborted) return
+      const pool = tag
+        ? sites.filter((candidate) => candidate.tags.includes(tag))
+        : filterSites(sites, readFilters(JSON.parse(page.dataset.tags!)))
+      site = pickSite(pool, readHistory())
     } catch {
       if (controller.signal.aborted) return
       loading.hidden = true
@@ -205,7 +206,7 @@ const destinationRow = "min-h-18 flex-nowrap"
     if (!site) {
       loading.hidden = true
       empty.hidden = false
-      title.textContent = interests.length ? t.empty : t.ready
+      title.textContent = t.empty
       setup.textContent = t.choose
       setup.href = JSON.parse(page.dataset.homeUrls!)[locale]
       return
@@ -214,12 +215,12 @@ const destinationRow = "min-h-18 flex-nowrap"
     const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches
     timer = window.setTimeout(
       () => {
-        siteName.textContent = site.name
+        siteName.textContent = site.title
         siteUrl.textContent = site.url
         destination.href = site.url
         loading.hidden = true
         destination.hidden = false
-        addToHistory(site.url)
+        addToHistory(site.id)
         timer = window.setTimeout(
           () => location.replace(site.url),
           reducedMotion ? 0 : 250

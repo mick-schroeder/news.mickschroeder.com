@@ -3,7 +3,7 @@ import { ButtonGroup } from "@/components/ui/button-group"
 import { Check, Copy } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { translations, type Locale } from "@/i18n/ui"
-import { shufflePath } from "@/lib/discovery"
+import { shufflePath } from "@/lib/sites"
 import { cn } from "@/lib/utils"
 
 export function ShuffleBookmark({

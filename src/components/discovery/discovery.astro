@@ -5,11 +5,13 @@ import { DiscoveryControls } from "./discovery-controls"
 import SourcesSection from "./sources-section.astro"
 import AdUnit from "@/components/ad-unit.astro"
 import { googleTagsEnabled } from "@/lib/google-config"
+import { getTags } from "@/lib/catalog"
 interface Props {
   locale: Locale
 }
 const { locale } = Astro.props
 const t = translations[locale]
+const tags = await getTags()
 ---
 
 <main
@@ -25,7 +27,7 @@ const t = translations[locale]
       {t.description}
     </p>
   </section>
-  <DiscoveryControls client:load locale={locale} />
+  <DiscoveryControls client:load locale={locale} tags={tags} />
   <noscript>
     <style is:inline>
       #discovery-controls {

@@ -3,36 +3,53 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Layout from "@/layouts/main.astro"
 import { PageBreadcrumb } from "@/components/sources/page-breadcrumb"
-import { SourceDetails } from "@/components/sources/source-details"
-import { hostOf } from "@/components/sources/source-tables"
+import {
+  SimilarSites,
+  SourceDetails,
+} from "@/components/sources/source-details"
 import { buttonVariants } from "@/components/ui/button"
-import { getSources } from "@/data/catalog"
+import { getSites, getTags } from "@/lib/catalog"
 import { defaultLocale, locales, type Locale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
-import { neighbours, type Source } from "@/lib/source-pages"
+import {
+  hostOf,
+  neighbours,
+  similarSites,
+  type Site,
+  type Tag,
+} from "@/lib/sites"
 import { cn } from "@/lib/utils"
 
-export function getStaticPaths() {
-  const sources = getSources()
+export async function getStaticPaths() {
+  const sites = await getSites()
+  const tags = await getTags()
   return locales.flatMap((locale) =>
-    sources.map((source, index) => ({
+    sites.map((source, index) => ({
       params: {
         locale: locale === defaultLocale ? undefined : locale,
         id: source.id,
       },
-      props: { locale, source, ...neighbours(sources, index) },
+      props: {
+        locale,
+        source,
+        tags,
+        similar: similarSites(source, sites, tags),
+        ...neighbours(sites, index),
+      },
     }))
   )
 }
 
 interface Props {
   locale: Locale
-  source: Source
-  previous: Source
-  next: Source
+  source: Site
+  tags: Tag[]
+  similar: Site[]
+  previous: Site
+  next: Site
 }
 
-const { locale, source, previous, next } = Astro.props
+const { locale, source, tags, similar, previous, next } = Astro.props
 const t = translations[locale]
 const sourceUrl = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
 const host = hostOf(source.url)
@@ -41,8 +58,11 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
 
 <Layout
   locale={locale}
-  title={`${source.name} | News Shuffle`}
-  description={format(t.sourceDescription, { name: source.name, host })}
+  title={`${source.title} | News Shuffle`}
+  description={
+    source.description ||
+    format(t.sourceDescription, { name: source.title, host })
+  }
   languageSuffix={`sources/${source.id}/`}
 >
   <!-- Same width as the header and footer on every page, so ads only use the
@@ -59,7 +79,7 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
         crumbs={[
           { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
           { label: t.sources, href: getRelativeLocaleUrl(locale, "sources/") },
-          { label: source.name },
+          { label: source.title },
         ]}
       />
 
@@ -72,12 +92,12 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
           data-source-nav
           class={cn(arrow, "justify-self-start")}
           aria-label={t.previous}
-          title={previous.name}
+          title={previous.title}
         >
           <ChevronLeft aria-hidden="true" />
         </a>
         <div class="order-last col-span-2 min-w-0 sm:order-none sm:col-span-1">
-          <SourceDetails source={source} locale={locale} />
+          <SourceDetails source={source} tags={tags} locale={locale} />
         </div>
         <a
           href={sourceUrl(next.id)}
@@ -85,11 +105,12 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
           data-source-nav
           class={cn(arrow, "justify-self-end")}
           aria-label={t.next}
-          title={next.name}
+          title={next.title}
         >
           <ChevronRight aria-hidden="true" />
         </a>
       </div>
+      <SimilarSites sites={similar} locale={locale} />
     </div>
   </main>
 </Layout>

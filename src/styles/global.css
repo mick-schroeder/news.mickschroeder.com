@@ -71,6 +71,18 @@
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+  --color-tier-s: var(--tier-s);
+  --color-tier-s-foreground: var(--tier-s-foreground);
+  --color-tier-a: var(--tier-a);
+  --color-tier-a-foreground: var(--tier-a-foreground);
+  --color-tier-b: var(--tier-b);
+  --color-tier-b-foreground: var(--tier-b-foreground);
+  --color-tier-c: var(--tier-c);
+  --color-tier-c-foreground: var(--tier-c-foreground);
+  --color-tier-d: var(--tier-d);
+  --color-tier-d-foreground: var(--tier-d-foreground);
+  --color-tier-e: var(--tier-e);
+  --color-tier-e-foreground: var(--tier-e-foreground);
 }
 
 :root {
@@ -108,6 +120,19 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Standard tier list colours: soft fills in light mode. */
+  --tier-s: var(--color-red-200);
+  --tier-s-foreground: var(--color-red-800);
+  --tier-a: var(--color-orange-200);
+  --tier-a-foreground: var(--color-orange-800);
+  --tier-b: var(--color-yellow-200);
+  --tier-b-foreground: var(--color-yellow-800);
+  --tier-c: var(--color-green-200);
+  --tier-c-foreground: var(--color-green-800);
+  --tier-d: var(--color-sky-200);
+  --tier-d-foreground: var(--color-sky-800);
+  --tier-e: var(--color-violet-200);
+  --tier-e-foreground: var(--color-violet-800);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -131,6 +156,20 @@
     --primary-foreground: #ffffff;
     --destructive: #b02336;
     color-scheme: dark;
+    /* Deep, muted fills in dark mode. */
+    --tier-s: var(--color-red-800);
+    --tier-s-foreground: var(--color-red-200);
+    --tier-a: var(--color-orange-800);
+    --tier-a-foreground: var(--color-orange-200);
+    --tier-b: var(--color-yellow-800);
+    --tier-b-foreground: var(--color-yellow-200);
+    --tier-c: var(--color-green-800);
+    --tier-c-foreground: var(--color-green-200);
+    --tier-d: var(--color-sky-800);
+    --tier-d-foreground: var(--color-sky-200);
+    --tier-e: var(--color-violet-800);
+    --tier-e-foreground: var(--color-violet-200);
+
   }
 }
 

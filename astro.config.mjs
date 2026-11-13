@@ -53,7 +53,7 @@ export default defineConfig({
         const path = new URL(url).pathname
         if (path.endsWith("/redirect/")) return false
         return locales.some((locale) =>
-          ["/", "/sources/", "/tags/"].some(
+          ["/", "/sources/", "/tags/", "/about/"].some(
             (page) =>
               path === prefix(locale) + page ||
               (page !== "/" && path.startsWith(prefix(locale) + page))

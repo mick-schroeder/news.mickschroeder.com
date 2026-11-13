@@ -3,13 +3,13 @@ import ExternalLink from "@/components/external-link.astro"
 ---
 
 <p>
-  News Shuffle stores your interests, language and last shuffled site in this
-  browser. You can remove those preferences by clearing this site’s data in your
-  browser settings.
+  News Shuffle stores your shuffle filters, language and recently opened sites
+  in this browser. You can remove those preferences by clearing this site’s data
+  in your browser settings.
 </p>
 <p>
-  Your browser requests the Up Next icon from Google, using the queued site’s
-  hostname. Google receives the request and its connection details. See{" "}
+  Your browser requests site icons from Google, using each site’s hostname.
+  Google receives the request and its connection details. See{" "}
   <ExternalLink
     class="text-foreground underline hover:text-primary transition-colors"
     href="https://policies.google.com/privacy"
@@ -23,7 +23,7 @@ import ExternalLink from "@/components/external-link.astro"
   When Google Analytics and Google AdSense are enabled, we use Analytics to
   measure page visits and use of the Shuffle button. Google can receive
   cookieless measurements while consent is denied. Shuffle events contain
-  neither your selected interests nor the destination URL.
+  neither your selected filters nor the destination URL.
 </p>
 <p>
   Google and its advertising partners may use cookies to serve ads based on

@@ -2,10 +2,13 @@ import { ExternalLink, Globe } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { favicon, type Website } from "@/lib/discovery"
+import { favicon, hostOf, type Site, type Tag } from "@/lib/sites"
+import { tagLabel } from "@/lib/tag-display"
+import { translations, type Locale } from "@/i18n/ui"
+import { TagIcon } from "@/components/tag-icon"
+import { TierBadge } from "@/components/tier-badge"
 import {
   Item,
-  ItemActions,
   ItemContent,
   ItemDescription,
   ItemMedia,
@@ -19,14 +22,16 @@ import {
 
 export function SiteCard({
   site,
-  opensInNewTab,
+  tags,
+  locale,
   detailsHref,
 }: {
-  site: Website
-  opensInNewTab: string
+  site: Site
+  tags: Tag[]
+  locale: Locale
   detailsHref: string
 }) {
-  const hostname = new URL(site.url).hostname.replace(/^www\./, "")
+  const t = translations[locale]
 
   // The whole card opens the site; the title opens its details page instead.
   return (
@@ -37,44 +42,64 @@ export function SiteCard({
         "has-[a[data-site]:hover]:bg-muted motion-reduce:transition-none"
       )}
     >
-      <ItemMedia>
-        <Avatar size="lg">
-          <AvatarImage
-            src={favicon(site.url)}
-            alt=""
-            referrerPolicy="no-referrer"
-            className="object-contain"
-          />
-          <AvatarFallback>
-            <Globe className="size-5" />
-          </AvatarFallback>
-        </Avatar>
-      </ItemMedia>
-      <ItemContent className="min-w-0">
-        <ItemTitle className="block w-full truncate">
-          <a
-            href={detailsHref}
-            className="relative z-10 underline decoration-muted-foreground/40 underline-offset-4 outline-none hover:decoration-current focus-visible:decoration-current"
-          >
-            {site.name}
-          </a>
-        </ItemTitle>
-        <ItemDescription className="block truncate text-xs">
-          {hostname}
-        </ItemDescription>
-      </ItemContent>
-      <ItemActions className="text-muted-foreground">
+      <div className="flex w-full min-w-0 items-center gap-3.5">
+        <ItemMedia>
+          <Avatar size="lg" className="bg-white p-1.5 ring-1 ring-black/10">
+            <AvatarImage
+              src={favicon(site.url)}
+              alt=""
+              referrerPolicy="no-referrer"
+              className="rounded-none object-contain"
+            />
+            <AvatarFallback>
+              <Globe className="size-5" />
+            </AvatarFallback>
+          </Avatar>
+        </ItemMedia>
+        <ItemContent className="min-w-0">
+          <ItemTitle className="block w-full truncate text-base">
+            <a
+              href={detailsHref}
+              className="relative z-10 underline decoration-muted-foreground/40 underline-offset-4 outline-none hover:decoration-current focus-visible:decoration-current"
+            >
+              {site.title}
+            </a>
+          </ItemTitle>
+          <ItemDescription className="block truncate text-xs">
+            {hostOf(site.url)}
+          </ItemDescription>
+        </ItemContent>
+        <TierBadge tier={site.tier} locale={locale} />
+      </div>
+      <p
+        lang="en"
+        className="line-clamp-2 min-h-10 w-full text-sm leading-5 text-pretty text-muted-foreground"
+      >
+        {site.description}
+      </p>
+      <div className="flex w-full min-w-0 items-center gap-2">
+        <ul className="flex min-w-0 flex-1 gap-1.5 overflow-hidden">
+          {tags.map((tag) => (
+            <li
+              key={tag.id}
+              className="inline-flex h-6 shrink-0 items-center gap-1 rounded-full border border-border px-2 text-xs text-muted-foreground"
+            >
+              <TagIcon tag={tag} className="size-3" aria-hidden="true" />
+              {tagLabel(tag, locale)}
+            </li>
+          ))}
+        </ul>
         <a
           href={site.url}
           target="_blank"
           rel="noopener noreferrer"
           data-site
-          aria-label={`${site.name} (${opensInNewTab})`}
-          className="rounded-[inherit] outline-none after:absolute after:inset-0 after:rounded-[inherit] focus-visible:after:ring-[3px] focus-visible:after:ring-ring/50"
+          aria-label={`${site.title} (${t.opensInNewTab})`}
+          className="rounded-[inherit] text-muted-foreground outline-none after:absolute after:inset-0 after:rounded-[inherit] focus-visible:after:ring-[3px] focus-visible:after:ring-ring/50"
         >
           <ExternalLink className="size-4" aria-hidden="true" />
         </a>
-      </ItemActions>
+      </div>
     </Item>
   )
 }
@@ -85,7 +110,7 @@ export function HistoryCard({
   depth,
   onSelect,
 }: {
-  site: Website
+  site: Site
   index: number
   depth: number
   onSelect: () => void
@@ -104,7 +129,7 @@ export function HistoryCard({
       >
         <Avatar
           size="sm"
-          className="size-4.5 shrink-0 rounded-xs border border-border/60 bg-background/80 p-0.5 opacity-80 transition-opacity group-hover:opacity-100 after:rounded-xs"
+          className="size-4.5 shrink-0 rounded-xs border border-border/60 bg-white p-0.5 opacity-80 transition-opacity group-hover:opacity-100 after:rounded-xs"
         >
           <AvatarImage
             src={favicon(site.url)}
@@ -117,7 +142,7 @@ export function HistoryCard({
           </AvatarFallback>
         </Avatar>
         <span className="truncate text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-          {site.name}
+          {site.title}
         </span>
       </Button>
     </HistoryCardFrame>

@@ -9,6 +9,18 @@
         "dev"
       ],
       "port": 4321
+    },
+    {
+      "name": "data-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4400",
+        "--directory",
+        "../popular-news-sites/out"
+      ],
+      "port": 4400
     }
   ]
 }

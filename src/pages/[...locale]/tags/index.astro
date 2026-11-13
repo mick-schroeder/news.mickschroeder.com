@@ -1,7 +1,8 @@
 ---
 import BrowsePage from "@/components/sources/browse-page.astro"
-import { InterestTable } from "@/components/sources/source-tables"
-import { getSources, tagPages } from "@/data/catalog"
+import { TagTable } from "@/components/sources/tag-table"
+import { getSites, getTags } from "@/lib/catalog"
+import { browsableTags } from "@/lib/sites"
 import { localizedPaths, type Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { localePath } from "@/lib/paths"
@@ -10,28 +11,28 @@ export const getStaticPaths = localizedPaths
 
 const { locale }: { locale: Locale } = Astro.props
 const t = translations[locale]
-const sources = getSources()
-const rows = tagPages.map(({ tag, slug }) => ({
+const sites = await getSites()
+const rows = browsableTags(await getTags()).map((tag) => ({
   tag,
   locale,
-  href: localePath(locale, `tags/${slug}/`),
-  examples: sources.filter((s) => s.tags.includes(tag)).slice(0, 5),
+  href: localePath(locale, `tags/${tag.id}/`),
+  examples: sites.filter((s) => s.tags.includes(tag.id)).slice(0, 5),
 }))
 ---
 
 <BrowsePage
   locale={locale}
-  title={`${t.allInterests} | News Shuffle`}
-  heading={t.allInterests}
-  description={t.allInterestsDescription}
+  title={`${t.tags} | News Shuffle`}
+  heading={t.tags}
+  description={t.tagsDescription}
   languageSuffix="tags/"
   crumbs={[
     { label: "News Shuffle", href: localePath(locale) },
-    { label: t.allInterests },
+    { label: t.tags },
   ]}
 >
   <p slot="description" class="text-muted-foreground">
-    {t.allInterestsDescription}
+    {t.tagsDescription}
   </p>
-  <InterestTable rows={rows} />
+  <TagTable rows={rows} />
 </BrowsePage>

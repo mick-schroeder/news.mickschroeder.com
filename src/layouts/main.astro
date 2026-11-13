@@ -86,7 +86,14 @@ const showGoogleTags = googleTagsEnabled && !noindex
           href={getRelativeLocaleUrl(locale, "tags/")}
           class="underline hover:text-primary transition-colors"
         >
-          {t.allInterests}
+          {t.tags}
+        </a>
+        <span aria-hidden="true"> · </span>
+        <a
+          href={getRelativeLocaleUrl(locale, "about/")}
+          class="underline hover:text-primary transition-colors"
+        >
+          {t.about}
         </a>
         <span aria-hidden="true"> · </span>
         <a

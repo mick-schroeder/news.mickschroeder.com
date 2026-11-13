@@ -1,42 +1,47 @@
 import { useEffect, useState } from "react"
-import { tags } from "@/data/interest-tags"
-import { loadCatalog } from "@/lib/load-catalog"
 import { shuffleEvent } from "@/lib/analytics"
 import {
   addToHistory,
+  loadSites,
+  readFilters,
   readHistory,
-  readInterests,
-  writeInterests,
+  writeFilters,
 } from "@/lib/browser-storage"
-import { filterWebsites, pickWebsite, type Website } from "@/lib/discovery"
+import {
+  filterSites,
+  pickSite,
+  type Filters,
+  type Site,
+  type Tag,
+} from "@/lib/sites"
 
 const transitionDelay = 250
 
-export function useDiscovery() {
-  const [websites, setWebsites] = useState<Website[]>([])
+export function useDiscovery(tags: Tag[]) {
+  const [sites, setSites] = useState<Site[]>([])
   const [loadFailed, setLoadFailed] = useState(false)
-  const [interests, setInterests] = useState<string[]>()
+  const [filters, setFilters] = useState<Filters>()
   const [history, setHistory] = useState<string[]>([])
-  const [site, setSite] = useState<Website>()
-  const [pendingSite, setPendingSite] = useState<Website>()
+  const [site, setSite] = useState<Site>()
+  const [pendingSite, setPendingSite] = useState<Site>()
 
   useEffect(() => {
     const controller = new AbortController()
-    loadCatalog(controller.signal)
-      .then((catalog) => {
+    loadSites(controller.signal)
+      .then((loaded) => {
         if (controller.signal.aborted) return
-        const savedInterests = readInterests(tags)
-        const visits = readHistory()
-        setWebsites(catalog)
-        setInterests(savedInterests)
-        setHistory(visits)
-        setSite(pickWebsite(filterWebsites(catalog, savedInterests), visits))
+        const saved = readFilters(tags)
+        const seen = readHistory()
+        setSites(loaded)
+        setFilters(saved)
+        setHistory(seen)
+        setSite(pickSite(filterSites(loaded, saved), seen))
       })
       .catch(() => {
         if (!controller.signal.aborted) setLoadFailed(true)
       })
     return () => controller.abort()
-  }, [])
+  }, [tags])
 
   useEffect(() => {
     if (!pendingSite) return
@@ -47,37 +52,39 @@ export function useDiscovery() {
     return () => window.clearTimeout(timer)
   }, [pendingSite])
 
-  function selectInterests(selected: string[]) {
-    const pool = filterWebsites(websites, selected)
-    setInterests(selected)
+  const byId = (id: string) => sites.find((candidate) => candidate.id === id)
+  const pool = filters ? filterSites(sites, filters) : []
+
+  function changeFilters(changed: Filters) {
+    const nextPool = filterSites(sites, changed)
+    setFilters(changed)
     setPendingSite(undefined)
-    if (!pool.some((candidate) => candidate.url === site?.url)) {
-      setSite(pickWebsite(pool, history))
+    if (!nextPool.some((candidate) => candidate.id === site?.id)) {
+      setSite(pickSite(nextPool, history))
     }
-    writeInterests(selected)
+    writeFilters(changed)
   }
 
-  function next(visits = history) {
-    if (!site || !interests || pendingSite) return
-    const pool = filterWebsites(websites, interests)
-    const otherSites = pool.filter((candidate) => candidate.url !== site.url)
-    setPendingSite(pickWebsite(otherSites.length ? otherSites : pool, visits))
+  function next(seen = history) {
+    if (!site || pendingSite) return
+    const others = pool.filter((candidate) => candidate.id !== site.id)
+    setPendingSite(pickSite(others.length ? others : pool, seen))
   }
 
   function shuffle() {
     if (!site || pendingSite) return
     window.open(site.url, "_blank", "noopener,noreferrer")
     window.dispatchEvent(new Event(shuffleEvent))
-    const visits = addToHistory(site.url)
-    setHistory(visits)
-    next(visits)
+    const seen = addToHistory(site.id)
+    setHistory(seen)
+    next(seen)
   }
 
   function showPrevious() {
     if (!site || pendingSite) return false
     const previous = history
-      .slice(history.indexOf(site.url) + 1)
-      .map((url) => websites.find((candidate) => candidate.url === url))
+      .slice(history.indexOf(site.id) + 1)
+      .map(byId)
       .find((candidate) => candidate !== undefined)
     setPendingSite(previous)
     return Boolean(previous)
@@ -85,19 +92,19 @@ export function useDiscovery() {
 
   return {
     loadFailed,
-    interests,
+    filters,
     site,
     historySites: history
-      .map((url) => websites.find((candidate) => candidate.url === url))
-      .filter((candidate): candidate is Website =>
-        Boolean(candidate && candidate.url !== site?.url)
+      .map(byId)
+      .filter((candidate): candidate is Site =>
+        Boolean(candidate && candidate.id !== site?.id)
       ),
     transitioning: Boolean(pendingSite),
-    selectInterests,
+    changeFilters,
     next: () => next(),
     shuffle,
     showPrevious,
-    showHistorySite: (candidate: Website) => {
+    showHistorySite: (candidate: Site) => {
       if (!pendingSite) setPendingSite(candidate)
     },
   }

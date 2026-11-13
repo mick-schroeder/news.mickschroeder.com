@@ -1,9 +1,8 @@
 ---
 import BrowsePage from "@/components/sources/browse-page.astro"
-import { InterestBadges } from "@/components/sources/interest-badges"
-import SourceList from "@/components/sources/source-list.astro"
-import { getSources } from "@/data/catalog"
-import { tags } from "@/data/interest-tags"
+import TierList from "@/components/sources/tier-list.astro"
+import { getSites, getTags } from "@/lib/catalog"
+import { browsableTags } from "@/lib/sites"
 import { localizedPaths, type Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { localePath } from "@/lib/paths"
@@ -12,6 +11,8 @@ export const getStaticPaths = localizedPaths
 
 const { locale }: { locale: Locale } = Astro.props
 const t = translations[locale]
+const sites = await getSites()
+const filters = browsableTags(await getTags())
 ---
 
 <BrowsePage
@@ -28,6 +29,5 @@ const t = translations[locale]
   <p slot="description" class="text-muted-foreground">
     {t.allSourcesDescription}
   </p>
-  <InterestBadges locale={locale} tags={tags} label={t.allInterests} />
-  <SourceList locale={locale} sources={getSources()} />
+  <TierList locale={locale} sites={sites} filters={filters} />
 </BrowsePage>

@@ -1,6 +1,9 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n"
 import { translations, type Locale } from "@/i18n/ui"
+import { getSites } from "@/lib/catalog"
+import { SiteIcon } from "@/components/sources/site-icon"
+import { filterSites } from "@/lib/sites"
 
 interface Props {
   locale: Locale
@@ -9,37 +12,16 @@ interface Props {
 const { locale } = Astro.props
 const t = translations[locale]
 
-// Verified 128 × 128 PNGs from Google's favicon endpoint, served locally.
-const rows = [
-  [
-    "bbc.com",
-    "nytimes.com",
-    "thejournal.ie",
-    "reuters.com",
-    "arstechnica.com",
-    "npr.org",
-    "ft.com",
-    "businesspost.ie",
-    "lemonde.fr",
-    "dw.com",
-    "propublica.org",
-    "theverge.com",
-  ],
-  [
-    "apnews.com",
-    "theguardian.com",
-    "nature.com",
-    "breakingnews.ie",
-    "theatlantic.com",
-    "economist.com",
-    "nbcnews.com",
-    "belfasttelegraph.co.uk",
-    "scmp.com",
-    "engadget.com",
-    "france24.com",
-    "cnbc.com",
-  ],
-]
+// The headliners, alternating between two rows.
+const headliners = filterSites(await getSites(), {
+  topics: [],
+  regions: [],
+  seenOn: [],
+  lowestTier: "A",
+})
+const rows = [0, 1].map((row) =>
+  headliners.filter((_, index) => index % 2 === row)
+)
 ---
 
 <section class="discovery-section-grid" aria-labelledby="sources-title">
@@ -58,37 +40,57 @@ const rows = [
     </p>
   </div>
 
-  <div
-    class="grid min-w-0 gap-2 overflow-hidden mask-x-from-85%"
-    aria-hidden="true"
-  >
+  <!-- Each row runs twice for a seamless loop; the copy is hidden from
+       assistive tech and the tab order. Hover or focus pauses it. -->
+  <div class="grid min-w-0 gap-2 overflow-hidden mask-x-from-85%">
     {rows.map((row, index) => (
       <div
         class:list={[
-          "flex w-max",
+          "flex w-max hover:[animation-play-state:paused] has-focus-visible:[animation-play-state:paused]",
           index === 0
             ? "motion-safe:animate-source-marquee-reverse"
             : "motion-safe:animate-source-marquee",
         ]}
+        style={{ animationDuration: "70s" }}
       >
-        {[0, 1].map(() => (
-          <div class="flex gap-2 pr-2">
-            {row.map((domain) => (
-              <div class="grid size-12 shrink-0 place-items-center rounded-xl border border-border bg-card sm:size-14">
-                <img
-                  src={`/icons/sources/${domain}.png`}
-                  alt=""
-                  width="32"
-                  height="32"
-                  loading="lazy"
-                  decoding="async"
-                  class="size-8 rounded-sm"
-                />
-              </div>
+        {[false, true].map((copy) => (
+          <ul
+            class="flex gap-2 py-1 pr-2"
+            aria-label={copy ? undefined : t.sources}
+            aria-hidden={copy ? "true" : undefined}
+          >
+            {row.map((site) => (
+              <li data-marquee-tile>
+                <a
+                  href={getRelativeLocaleUrl(locale, `sources/${site.id}/`)}
+                  title={site.title}
+                  tabindex={copy ? -1 : undefined}
+                  class="block rounded-xl outline-none transition-transform focus-visible:ring-3 focus-visible:ring-ring motion-safe:hover:-translate-y-0.5"
+                >
+                  <SiteIcon url={site.url} size="md" />
+                  <span class="sr-only">{site.title}</span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         ))}
       </div>
     ))}
   </div>
 </section>
+
+<script>
+  // Google serves a 16px globe when it has no icon; drop those tiles.
+  for (const img of document.querySelectorAll<HTMLImageElement>(
+    "[data-marquee-tile] img"
+  )) {
+    const check = () => {
+      if (img.naturalWidth <= 16) img.closest("li")!.hidden = true
+    }
+    if (img.complete) check()
+    else {
+      img.addEventListener("load", check, { once: true })
+      img.addEventListener("error", check, { once: true })
+    }
+  }
+</script>

@@ -1,0 +1,261 @@
+[
+  {
+    "id": "mickschroeder",
+    "title": "Mick Schroeder",
+    "url": "https://mickschroeder.com",
+    "description": "Personal site of Mick Schroeder, added by hand to the list.",
+    "tier": "E",
+    "tags": ["sponsor"]
+  },
+  {
+    "id": "axios",
+    "title": "Axios",
+    "url": "https://www.axios.com/",
+    "description": "Short-form news on politics, business, technology and media.",
+    "tier": "A",
+    "tags": [
+      "american",
+      "news",
+      "politics",
+      "brutalist-report",
+      "techmeme",
+      "memeorandum",
+      "mediagazer",
+      "drudge-report",
+      "popular"
+    ]
+  },
+  {
+    "id": "bbc",
+    "title": "BBC News",
+    "url": "https://www.bbc.co.uk/news",
+    "description": "UK and international news from the British Broadcasting Corporation.",
+    "tier": "S",
+    "tags": [
+      "british",
+      "news",
+      "newzit",
+      "brutalist-report",
+      "drudge-report",
+      "popular"
+    ]
+  },
+  {
+    "id": "bloomberg",
+    "title": "Bloomberg",
+    "url": "https://www.bloomberg.com/",
+    "description": "Business, financial markets and world news.",
+    "tier": "A",
+    "tags": [
+      "american",
+      "business",
+      "news",
+      "techmeme",
+      "memeorandum",
+      "mediagazer",
+      "drudge-report",
+      "popular"
+    ]
+  },
+  {
+    "id": "breitbart",
+    "title": "Breitbart",
+    "url": "https://www.breitbart.com/",
+    "description": "Conservative news and commentary site focused on US politics.",
+    "tier": "B",
+    "tags": ["american", "politics", "news", "newzit", "drudge-report"]
+  },
+  {
+    "id": "espn",
+    "title": "ESPN",
+    "url": "https://www.espn.com/",
+    "description": "Sports news, scores and analysis covering US and international sports.",
+    "tier": "A",
+    "tags": ["american", "sports", "newzit", "brutalist-report", "popular"]
+  },
+  {
+    "id": "foxnews",
+    "title": "Fox News",
+    "url": "https://www.foxnews.com/",
+    "description": "US cable news channel website covering national news, politics and opinion.",
+    "tier": "S",
+    "tags": [
+      "american",
+      "news",
+      "politics",
+      "newzit",
+      "brutalist-report",
+      "memeorandum",
+      "mediagazer",
+      "drudge-report",
+      "popular"
+    ]
+  },
+  {
+    "id": "kotaku",
+    "title": "Kotaku",
+    "url": "https://kotaku.com/",
+    "description": "Video game news, reviews and culture coverage.",
+    "tier": "B",
+    "tags": ["american", "gaming", "brutalist-report", "mediagazer"]
+  },
+  {
+    "id": "dailymail",
+    "title": "MailOnline",
+    "url": "https://www.dailymail.com/home/index.html",
+    "description": "Website of the Daily Mail covering UK and world news, celebrity and sport.",
+    "tier": "A",
+    "tags": [
+      "british",
+      "news",
+      "newzit",
+      "memeorandum",
+      "drudge-report",
+      "popular"
+    ]
+  },
+  {
+    "id": "politico",
+    "title": "Politico",
+    "url": "https://www.politico.com/",
+    "description": "Political news covering US government, campaigns and policy.",
+    "tier": "B",
+    "tags": [
+      "american",
+      "politics",
+      "brutalist-report",
+      "techmeme",
+      "memeorandum",
+      "mediagazer",
+      "drudge-report"
+    ]
+  },
+  {
+    "id": "reuters",
+    "title": "Reuters",
+    "url": "https://www.reuters.com/",
+    "description": "International news agency covering world news, business, markets and politics.",
+    "tier": "S",
+    "tags": [
+      "british",
+      "news",
+      "business",
+      "techmeme",
+      "memeorandum",
+      "mediagazer",
+      "drudge-report",
+      "popular"
+    ]
+  },
+  {
+    "id": "rte",
+    "title": "RTÉ",
+    "url": "https://www.rte.ie/",
+    "description": "Irish public broadcaster's site with news, sport and entertainment.",
+    "tier": "A",
+    "tags": ["irish", "news", "popular"]
+  },
+  {
+    "id": "techcrunch",
+    "title": "TechCrunch",
+    "url": "https://techcrunch.com/",
+    "description": "Covers technology startups, venture capital, and the tech industry.",
+    "tier": "A",
+    "tags": ["american", "tech", "newzit", "techmeme", "mediagazer", "popular"]
+  },
+  {
+    "id": "irishtimes",
+    "title": "The Irish Times",
+    "url": "https://www.irishtimes.com/",
+    "description": "Irish national newspaper covering news, politics, business, sport and culture.",
+    "tier": "A",
+    "tags": ["irish", "news", "popular"]
+  },
+  {
+    "id": "nytimes",
+    "title": "The New York Times",
+    "url": "https://www.nytimes.com/",
+    "description": "American newspaper covering national and international news, politics, business, culture and sports.",
+    "tier": "S",
+    "tags": [
+      "american",
+      "news",
+      "newzit",
+      "brutalist-report",
+      "techmeme",
+      "memeorandum",
+      "mediagazer",
+      "drudge-report",
+      "popular"
+    ]
+  },
+  {
+    "id": "theverge",
+    "title": "The Verge",
+    "url": "https://www.theverge.com/",
+    "description": "Covers technology, science, gadgets and digital culture.",
+    "tier": "B",
+    "tags": [
+      "american",
+      "tech",
+      "newzit",
+      "brutalist-report",
+      "techmeme",
+      "mediagazer"
+    ]
+  },
+  {
+    "id": "thejournal",
+    "title": "TheJournal.ie",
+    "url": "https://www.thejournal.ie/",
+    "description": "Irish digital news outlet covering national and international news.",
+    "tier": "B",
+    "tags": ["irish", "news"]
+  },
+  {
+    "id": "politics",
+    "title": "Politics.co.uk",
+    "url": "https://politics.co.uk",
+    "description": "British political news and analysis from Westminster.",
+    "tier": "C",
+    "tags": ["news", "british", "newzit"]
+  },
+  {
+    "id": "amgreatness",
+    "title": "American Greatness",
+    "url": "https://amgreatness.com/",
+    "description": "Conservative political news and commentary in the United States.",
+    "tier": "D",
+    "tags": ["american", "politics", "memeorandum"]
+  },
+  {
+    "id": "zerohedge",
+    "title": "Zero Hedge",
+    "url": "https://www.zerohedge.com/",
+    "description": "Financial and political news blog known for contrarian commentary on markets and geopolitics.",
+    "tier": "F",
+    "tags": ["business", "american", "politics", "brutalist-report"]
+  },
+  {
+    "id": "rte-nuacht",
+    "title": "Nuacht RTÉ",
+    "url": "https://www.rte.ie/news/nuacht/",
+    "tags": ["news", "irish", "gaeilge"]
+  },
+  {
+    "id": "phys",
+    "title": "Phys.org",
+    "url": "https://phys.org/",
+    "description": "Science, physics, technology and research news from universities and institutions.",
+    "tier": "B",
+    "tags": ["science", "brutalist-report"]
+  },
+  {
+    "id": "advocate",
+    "title": "Advocate",
+    "url": "https://www.advocate.com/",
+    "description": "News and culture coverage for the LGBTQ community.",
+    "tier": "C",
+    "tags": ["american", "culture", "memeorandum"]
+  }
+]
