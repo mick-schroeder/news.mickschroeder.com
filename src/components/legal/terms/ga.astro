@@ -1,11 +1,12 @@
 ---
 import ExternalLink from "@/components/external-link.astro"
+import { site } from "@/lib/site"
 ---
 
 <p>
-  Cuireann Mick Schroeder, LLC News Shuffle ar fáil chun cabhrú leat foinsí
-  nuachta agus léitheoireachta a aimsiú. Cuirtear an tseirbhís ar fáil mar atá
-  agus d’fhéadfadh na foinsí athrú.
+  Cuireann {site.owner} {site.name} ar fáil chun cabhrú leat foinsí nuachta agus
+  léitheoireachta a aimsiú. Cuirtear an tseirbhís ar fáil mar atá agus
+  d’fhéadfadh na foinsí athrú.
 </p>
 <p>
   Nuair a leanann tú nasc, osclaíonn tú suíomh atá faoi chúram foilsitheora
@@ -15,7 +16,7 @@ import ExternalLink from "@/components/external-link.astro"
 <p>
   Tá cód an tionscadail faoi{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://opensource.org/license/mit"
     locale="ga"
   >
@@ -23,7 +24,7 @@ import ExternalLink from "@/components/external-link.astro"
   </ExternalLink>
   . Mura luaitear a mhalairt, tá an t-ábhar neamhchóid faoi{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://creativecommons.org/licenses/by-nc/4.0/"
     locale="ga"
   >

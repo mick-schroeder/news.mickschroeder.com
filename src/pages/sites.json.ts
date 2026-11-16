@@ -1,5 +1,4 @@
+import type { APIRoute } from "astro"
 import { getSites } from "@/lib/catalog"
 
-export async function GET() {
-  return Response.json(await getSites())
-}
+export const GET: APIRoute = async () => Response.json(await getSites())

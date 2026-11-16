@@ -1,7 +1,7 @@
 // @ts-check
 
 import tailwindcss from "@tailwindcss/vite"
-import { defineConfig, envField } from "astro/config"
+import { defineConfig, envField, fontProviders } from "astro/config"
 import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
 import { defaultLocale, locales } from "./src/i18n/locales.ts"
@@ -20,11 +20,52 @@ export default defineConfig({
     locales,
     routing: { prefixDefaultLocale: false },
   },
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Geist",
+      cssVariable: "--font-geist",
+      options: {
+        variants: [
+          {
+            weight: "100 900",
+            style: "normal",
+            src: [
+              "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2",
+            ],
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Manufacturing Consent",
+      cssVariable: "--font-manufacturing-consent",
+      fallbacks: ["serif"],
+      options: {
+        variants: [
+          {
+            weight: 400,
+            style: "normal",
+            src: [
+              "@fontsource/manufacturing-consent/files/manufacturing-consent-latin-400-normal.woff2",
+            ],
+          },
+        ],
+      },
+    },
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
   env: {
     schema: {
+      // http://localhost:4400 reads the data repo's out/ folder.
+      DATA_URL: envField.string({
+        context: "server",
+        access: "public",
+        optional: true,
+      }),
       GOOGLE_TAGS_ENABLED: envField.boolean({
         context: "server",
         access: "public",

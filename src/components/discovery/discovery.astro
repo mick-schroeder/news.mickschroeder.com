@@ -1,15 +1,13 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n"
-import { translations, type Locale } from "@/i18n/ui"
+import { resolveLocale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
 import { DiscoveryControls } from "./discovery-controls"
 import SourcesSection from "./sources-section.astro"
 import AdUnit from "@/components/ad-unit.astro"
 import { googleTagsEnabled } from "@/lib/google-config"
 import { getTags } from "@/lib/catalog"
-interface Props {
-  locale: Locale
-}
-const { locale } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const tags = await getTags()
 ---
@@ -45,7 +43,7 @@ const tags = await getTags()
     </div>
   </noscript>
   {googleTagsEnabled && <AdUnit />}
-  <SourcesSection locale={locale} />
+  <SourcesSection />
 </main>
 <script>
   import { storageKeys, writeStorage } from "@/lib/browser-storage"

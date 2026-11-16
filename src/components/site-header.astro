@@ -1,0 +1,50 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n"
+import BrandLogo from "@/components/brand-logo.astro"
+import LanguagePicker from "@/components/language-picker.astro"
+import { resolveLocale } from "@/i18n/locales"
+import { site } from "@/lib/site"
+
+interface Props {
+  languageSuffix: string
+}
+
+const { languageSuffix } = Astro.props
+const home = getRelativeLocaleUrl(resolveLocale(Astro.currentLocale))
+---
+
+<header class="page-width mb-8 max-w-5xl sm:mb-10">
+  <div class="grid grid-cols-1 items-center justify-items-center gap-3 border-b border-border py-5 sm:grid-cols-[1fr_auto_1fr] sm:py-7">
+    <time
+      id="masthead-date"
+      class="hidden text-sm text-muted-foreground sm:block sm:justify-self-start"
+    ></time>
+    <a
+      class="group inline-flex items-center gap-3 text-foreground transition-opacity hover:opacity-90"
+      href={home}
+    >
+      <BrandLogo />
+      <span class="font-masthead text-4xl leading-none sm:text-6xl">
+        {site.name}
+      </span>
+    </a>
+    <div class="sm:justify-self-end">
+      <LanguagePicker languageSuffix={languageSuffix} />
+    </div>
+  </div>
+</header>
+
+<script>
+  // Static pages can't know today's date, so the browser fills it in.
+  const date = document.querySelector<HTMLTimeElement>("#masthead-date")
+  if (date) {
+    const now = new Date()
+    date.dateTime = now.toISOString().slice(0, 10)
+    date.textContent = now.toLocaleDateString(document.documentElement.lang, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    })
+  }
+</script>

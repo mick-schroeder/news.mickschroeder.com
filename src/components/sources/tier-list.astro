@@ -1,17 +1,18 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n"
 import { tierColors } from "@/components/tier-badge"
-import { format, translations, type Locale } from "@/i18n/ui"
+import { resolveLocale } from "@/i18n/locales"
+import { format, translations } from "@/i18n/ui"
 import { byTier, type Site } from "@/lib/sites"
 import { cn } from "@/lib/utils"
 import { SiteIcon } from "./site-icon"
 
 interface Props {
-  locale: Locale
   sites: Site[]
 }
 
-const { locale, sites } = Astro.props
+const { sites } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const sitePath = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
 ---

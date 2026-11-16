@@ -36,7 +36,7 @@ const t = translations[locale ?? defaultLocale]
 const destinationRow = "min-h-18 flex-nowrap"
 ---
 
-<Layout locale={locale} title={t.redirecting} noindex>
+<Layout title={t.redirecting} noindex languageSuffix="">
   <meta slot="head" name="referrer" content="no-referrer" />
   <main
     data-home-urls={JSON.stringify(homeUrls)}

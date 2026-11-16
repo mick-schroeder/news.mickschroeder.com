@@ -1,18 +1,19 @@
 ---
 import ExternalLink from "@/components/external-link.astro"
+import { site } from "@/lib/site"
 ---
 
 <p>
-  Stórálann News Shuffle do scagairí, an teanga agus na suíomhanna a osclaíodh
-  le déanaí sa bhrabhsálaí seo. Is féidir na sainroghanna sin a bhaint trí
-  shonraí an tsuímh seo a ghlanadh i socruithe an bhrabhsálaí.
+  Stórálann {site.name} do scagairí, an teanga agus na suíomhanna a osclaíodh le
+  déanaí sa bhrabhsálaí seo. Is féidir na sainroghanna sin a bhaint trí shonraí
+  an tsuímh seo a ghlanadh i socruithe an bhrabhsálaí.
 </p>
 <p>
   Iarrann do bhrabhsálaí deilbhíní na suíomhanna ar Google agus úsáideann sé
   óstainm gach suímh san iarratas. Faigheann Google an t-iarratas agus sonraí an
   naisc. Féach ar{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://policies.google.com/privacy"
     locale="ga"
   >
@@ -33,7 +34,7 @@ import ExternalLink from "@/components/external-link.astro"
   do rogha a athrú faoi shocruithe príobháideachais agus fianán ag bun gach
   leathanaigh. Féach ar{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://policies.google.com/technologies/partner-sites"
     locale="ga"
   >
@@ -41,7 +42,7 @@ import ExternalLink from "@/components/external-link.astro"
   </ExternalLink>{" "}
   agus ar{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://adssettings.google.com/"
     locale="ga"
   >
@@ -55,10 +56,7 @@ import ExternalLink from "@/components/external-link.astro"
 </p>
 <p>
   Má tá ceist agat, seol ríomhphost chuig{" "}
-  <a
-    class="text-foreground underline hover:text-primary transition-colors"
-    href="mailto:privacy@mickschroeder.com"
-  >
+  <a class="link text-foreground" href="mailto:privacy@mickschroeder.com">
     privacy@mickschroeder.com
   </a>
   .

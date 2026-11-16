@@ -1,23 +1,27 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import ShuffleRedirect from "@/components/shuffle-redirect.astro"
 import { getTags } from "@/lib/catalog"
 import { browsableTags } from "@/lib/sites"
-import { defaultLocale, locales, type Locale } from "@/i18n/locales"
+import { localeParam, locales, resolveLocale } from "@/i18n/locales"
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const tags = browsableTags(await getTags())
   return locales.flatMap((locale) =>
     tags.map((tag) => ({
       params: {
-        locale: locale === defaultLocale ? undefined : locale,
+        locale: localeParam(locale),
         slug: tag.id,
       },
-      props: { locale, tag: tag.id },
+      props: { tag: tag.id },
     }))
   )
-}
+}) satisfies GetStaticPaths
 
-const { locale, tag }: { locale: Locale; tag: string } = Astro.props
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { tag } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 ---
 
 <ShuffleRedirect locale={locale} tag={tag} />

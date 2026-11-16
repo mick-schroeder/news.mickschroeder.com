@@ -4,12 +4,12 @@ import BrowsePage from "@/components/sources/browse-page.astro"
 import { TagTable } from "@/components/sources/tag-table"
 import { getSites, getTags } from "@/lib/catalog"
 import { browsableTags } from "@/lib/sites"
-import { localizedPaths, type Locale } from "@/i18n/locales"
+import { localizedPaths, resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 
 export const getStaticPaths = localizedPaths
 
-const { locale }: { locale: Locale } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const sites = await getSites()
 const rows = browsableTags(await getTags()).map((tag) => ({
@@ -21,15 +21,9 @@ const rows = browsableTags(await getTags()).map((tag) => ({
 ---
 
 <BrowsePage
-  locale={locale}
-  title={`${t.tags} | News Shuffle`}
-  heading={t.tags}
+  title={t.tags}
   description={t.tagsDescription}
-  languageSuffix="tags/"
-  crumbs={[
-    { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
-    { label: t.tags },
-  ]}
+  crumbs={[{ label: t.tags }]}
 >
   <p slot="description" class="text-muted-foreground">
     {t.tagsDescription}

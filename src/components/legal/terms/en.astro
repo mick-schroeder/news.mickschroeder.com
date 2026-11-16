@@ -1,11 +1,11 @@
 ---
 import ExternalLink from "@/components/external-link.astro"
+import { site } from "@/lib/site"
 ---
 
 <p>
-  Mick Schroeder, LLC provides News Shuffle to help you discover news and other
-  reading. The service is provided as is and its selection of sources may
-  change.
+  {site.owner} provides {site.name} to help you discover news and other reading.
+  The service is provided as is and its selection of sources may change.
 </p>
 <p>
   Following a source link opens a website operated by another publisher. That
@@ -15,7 +15,7 @@ import ExternalLink from "@/components/external-link.astro"
 <p>
   The project’s code uses the{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://opensource.org/license/mit"
     locale="en"
   >
@@ -23,7 +23,7 @@ import ExternalLink from "@/components/external-link.astro"
   </ExternalLink>
   . Unless otherwise noted, non-code content is licensed under{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://creativecommons.org/licenses/by-nc/4.0/"
     locale="en"
   >

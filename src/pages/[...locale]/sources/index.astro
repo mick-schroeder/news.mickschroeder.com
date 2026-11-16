@@ -1,35 +1,28 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n"
 import BrowsePage from "@/components/sources/browse-page.astro"
 import { TagChips } from "@/components/sources/tag-chips"
 import TierList from "@/components/sources/tier-list.astro"
 import { getSites, getTags } from "@/lib/catalog"
 import { browsableTags } from "@/lib/sites"
-import { localizedPaths, type Locale } from "@/i18n/locales"
+import { localizedPaths, resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 
 export const getStaticPaths = localizedPaths
 
-const { locale }: { locale: Locale } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const sites = await getSites()
 const tags = browsableTags(await getTags())
 ---
 
 <BrowsePage
-  locale={locale}
-  title={`${t.sources} | News Shuffle`}
-  heading={t.sources}
+  title={t.sources}
   description={t.allSourcesDescription}
-  languageSuffix="sources/"
-  crumbs={[
-    { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
-    { label: t.sources },
-  ]}
+  crumbs={[{ label: t.sources }]}
 >
   <p slot="description" class="text-muted-foreground">
     {t.allSourcesDescription}
   </p>
   <TagChips locale={locale} tags={tags} label={t.tags} />
-  <TierList locale={locale} sites={sites} />
+  <TierList sites={sites} />
 </BrowsePage>

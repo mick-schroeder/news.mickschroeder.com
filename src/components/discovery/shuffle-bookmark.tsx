@@ -3,6 +3,7 @@ import { ButtonGroup } from "@/components/ui/button-group"
 import { Check, Copy } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { translations, type Locale } from "@/i18n/ui"
+import { site } from "@/lib/site"
 import { shufflePath } from "@/lib/sites"
 import { cn } from "@/lib/utils"
 
@@ -100,7 +101,7 @@ export function ShuffleBookmark({
               draggable="false"
               className="pointer-events-none size-5 grayscale"
             />
-            News Shuffle
+            {site.name}
           </a>
           <p id="bookmark-drag-hint" className="text-xs text-muted-foreground">
             {t.dragBookmark}

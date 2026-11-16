@@ -1,17 +1,18 @@
 ---
 import ExternalLink from "@/components/external-link.astro"
+import { site } from "@/lib/site"
 ---
 
 <p>
-  News Shuffle stores your shuffle filters, language and recently opened sites
-  in this browser. You can remove those preferences by clearing this site’s data
-  in your browser settings.
+  {site.name} stores your shuffle filters, language and recently opened sites in
+  this browser. You can remove those preferences by clearing this site’s data in
+  your browser settings.
 </p>
 <p>
   Your browser requests site icons from Google, using each site’s hostname.
   Google receives the request and its connection details. See{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://policies.google.com/privacy"
     locale="en"
   >
@@ -31,7 +32,7 @@ import ExternalLink from "@/components/external-link.astro"
   you see a consent message, use Privacy and cookie settings at the bottom of
   each page to change or withdraw your choice. Learn{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://policies.google.com/technologies/partner-sites"
     locale="en"
   >
@@ -39,7 +40,7 @@ import ExternalLink from "@/components/external-link.astro"
   </ExternalLink>{" "}
   or adjust personalised ads in{" "}
   <ExternalLink
-    class="text-foreground underline hover:text-primary transition-colors"
+    class="link text-foreground"
     href="https://adssettings.google.com/"
     locale="en"
   >
@@ -53,10 +54,7 @@ import ExternalLink from "@/components/external-link.astro"
 </p>
 <p>
   For questions, email{" "}
-  <a
-    class="text-foreground underline hover:text-primary transition-colors"
-    href="mailto:privacy@mickschroeder.com"
-  >
+  <a class="link text-foreground" href="mailto:privacy@mickschroeder.com">
     privacy@mickschroeder.com
   </a>
   .

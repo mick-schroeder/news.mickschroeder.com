@@ -1,30 +1,30 @@
 ---
 import "@/styles/global.css"
-import SiteHead from "@/components/site-head.astro"
 import GoogleTags from "@/components/google-tags.astro"
-import BrandLogo from "@/components/brand-logo.astro"
-import ExternalLink from "@/components/external-link.astro"
-import LanguagePicker from "@/components/language-picker.astro"
-import { getRelativeLocaleUrl } from "astro:i18n"
-import { defaultLocale } from "@/i18n/locales"
+import SiteFooter from "@/components/site-footer.astro"
+import SiteHead from "@/components/site-head.astro"
+import SiteHeader from "@/components/site-header.astro"
+import { localeSuffix, resolveLocale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
 import { googleTagsEnabled } from "@/lib/google-config"
-import { translations, type Locale } from "@/i18n/ui"
+import { site } from "@/lib/site"
 
 interface Props {
-  locale?: Locale
+  /** Page name; the site name is appended. Omit on the home page. */
   title?: string
   description?: string
   noindex?: boolean
+  /** Path the language picker keeps, e.g. "tags/". Defaults to this page. */
   languageSuffix?: string
 }
-const {
-  locale = defaultLocale,
-  noindex = false,
-  languageSuffix = "",
-} = Astro.props
+
+const { noindex = false, languageSuffix = localeSuffix(Astro.url.pathname) } =
+  Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
-const currentPath = getRelativeLocaleUrl(locale)
-const title = Astro.props.title ?? t.title
+const title = Astro.props.title
+  ? `${Astro.props.title} | ${site.name}`
+  : t.title
 const showGoogleTags = googleTagsEnabled && !noindex
 ---
 
@@ -32,9 +32,8 @@ const showGoogleTags = googleTagsEnabled && !noindex
 <html lang={locale}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <SiteHead
-      locale={locale}
       title={title}
       noindex={noindex}
       description={Astro.props.description}
@@ -50,97 +49,10 @@ const showGoogleTags = googleTagsEnabled && !noindex
     >
       {t.skip}
     </a>
-    <header class="page-width mb-8 max-w-5xl sm:mb-10">
-      <div class="grid grid-cols-1 items-center justify-items-center gap-3 border-b border-border py-5 sm:grid-cols-[1fr_auto_1fr] sm:py-7">
-        <time
-          id="masthead-date"
-          class="hidden text-sm text-muted-foreground sm:block sm:justify-self-start"
-        ></time>
-        <a
-          class="group inline-flex items-center gap-3 text-foreground transition-opacity hover:opacity-90"
-          href={currentPath}
-        >
-          <BrandLogo />
-          <span class="font-masthead text-4xl leading-none sm:text-6xl">News Shuffle</span>
-        </a>
-        <div class="sm:justify-self-end">
-          <LanguagePicker locale={locale} languageSuffix={languageSuffix} />
-        </div>
-      </div>
-    </header>
-    <script>
-      const date = document.getElementById("masthead-date")
-      if (date) {
-        const now = new Date()
-        date.dateTime = now.toISOString().slice(0, 10)
-        date.textContent = now.toLocaleDateString(document.documentElement.lang, {
-          weekday: "long",
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })
-      }
-    </script>
+    <SiteHeader languageSuffix={languageSuffix} />
     <div id="main-content" tabindex="-1" class="focus:outline-none">
       <slot />
     </div>
-    <footer class="page-width mt-12 max-w-5xl border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
-      <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
-        <b class="text-foreground">News Shuffle™</b> © 2021-2026{" "}
-        <ExternalLink
-          href="https://www.mickschroeder.com/"
-          class="underline hover:text-primary transition-colors"
-          locale={locale}
-        >
-          Mick Schroeder, LLC
-        </ExternalLink>
-        <span aria-hidden="true"> · </span>
-        <a
-          href={getRelativeLocaleUrl(locale, "sources/")}
-          class="underline hover:text-primary transition-colors"
-        >
-          {t.sources}
-        </a>
-        <span aria-hidden="true"> · </span>
-        <a
-          href={getRelativeLocaleUrl(locale, "tags/")}
-          class="underline hover:text-primary transition-colors"
-        >
-          {t.tags}
-        </a>
-        <span aria-hidden="true"> · </span>
-        <a
-          href={getRelativeLocaleUrl(locale, "about/")}
-          class="underline hover:text-primary transition-colors"
-        >
-          {t.about}
-        </a>
-        <span aria-hidden="true"> · </span>
-        <a
-          href={getRelativeLocaleUrl(locale, "privacy/")}
-          class="underline hover:text-primary transition-colors"
-        >
-          {t.privacy}
-        </a>
-        <span aria-hidden="true"> · </span>
-        <a
-          href={getRelativeLocaleUrl(locale, "terms/")}
-          class="underline hover:text-primary transition-colors"
-        >
-          {t.terms}
-        </a>
-        {showGoogleTags && (
-          <span id="privacy-choices" class="contents" hidden>
-            <span aria-hidden="true"> · </span>
-            <button
-              type="button"
-              class="underline hover:text-primary transition-colors"
-            >
-              {t.privacyChoices}
-            </button>
-          </span>
-        )}
-      </p>
-    </footer>
+    <SiteFooter privacyChoices={showGoogleTags} />
   </body>
 </html>

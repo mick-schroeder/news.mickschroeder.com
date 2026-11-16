@@ -1,37 +1,43 @@
 ---
+import { Font } from "astro:assets"
 import { adsenseClient } from "@/lib/google-config"
 import { getRelativeLocaleUrl } from "astro:i18n"
-import { defaultLocale, languages, locales, type Locale } from "@/i18n/locales"
+import {
+  defaultLocale,
+  languages,
+  locales,
+  resolveLocale,
+} from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
+import { site } from "@/lib/site"
 
 interface Props {
-  locale: Locale
   title: string
   noindex: boolean
   description?: string
   languageSuffix?: string
 }
 
-const { locale, title, noindex, languageSuffix = "" } = Astro.props
+const { title, noindex, languageSuffix = "" } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const description = Astro.props.description ?? t.description
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const rootUrl = new URL("/", Astro.site)
-const shareImage = new URL(
-  locale === "ga" ? "/news-shuffle-share-ga.jpg" : "/news-shuffle-share.jpg",
-  Astro.site
-)
+const shareImage = new URL(languages[locale].shareImage, Astro.site)
 const siteData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "News Shuffle",
-  alternateName: "Mick Schroeder's News Shuffle",
+  name: site.name,
+  alternateName: translations[defaultLocale].title,
   url: rootUrl.href,
   inLanguage: locales,
 }
 ---
 
 <title>{title}</title>
+<Font cssVariable="--font-geist" preload />
+<Font cssVariable="--font-manufacturing-consent" preload />
 <link rel="icon" type="image/png" sizes="64x64" href="/icons/favicon-64.png" />
 <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
 <link
@@ -63,7 +69,7 @@ const siteData = {
     />
   )}
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="News Shuffle" />
+  <meta property="og:site_name" content={site.name} />
   <meta property="og:locale" content={languages[locale].socialLocale} />
   {locales
     .filter((code) => code !== locale)

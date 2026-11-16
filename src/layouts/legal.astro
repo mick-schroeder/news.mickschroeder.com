@@ -1,26 +1,17 @@
 ---
 import Layout from "@/layouts/main.astro"
-import type { Locale } from "@/i18n/ui"
+import type { Locale } from "@/i18n/locales"
 
 interface Props {
-  locale: Locale
   contentLocale: Locale
   heading: string
   description: string
-  languageSuffix: string
 }
 
-const { locale, contentLocale, heading, description, languageSuffix } =
-  Astro.props
+const { contentLocale, heading, description } = Astro.props
 ---
 
-<Layout
-  locale={locale}
-  title={`${heading} | News Shuffle`}
-  description={description}
-  noindex
-  languageSuffix={languageSuffix}
->
+<Layout title={heading} description={description} noindex>
   <main class="page-width min-h-[60vh] max-w-2xl space-y-6 py-12 text-sm leading-relaxed text-muted-foreground">
     <header>
       <h1 class="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">

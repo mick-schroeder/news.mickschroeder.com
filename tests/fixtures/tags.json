@@ -107,10 +107,7 @@
     "kind": "tier",
     "icon": "tag",
     "description": "Tier S or A.",
-    "tiers": [
-      "S",
-      "A"
-    ]
+    "tiers": ["S", "A"]
   },
   {
     "id": "news",

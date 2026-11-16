@@ -1,11 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
-@import "@fontsource/manufacturing-consent";
 
 @utility page-width {
   @apply mx-auto w-full px-4 sm:px-6;
+}
+
+@utility link {
+  @apply underline transition-colors hover:text-primary;
 }
 
 @utility discovery-section-grid {
@@ -33,8 +35,8 @@
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: 'Geist Variable', sans-serif;
-  --font-masthead: 'Manufacturing Consent', serif;
+  --font-sans: var(--font-geist);
+  --font-masthead: var(--font-manufacturing-consent);
   --color-sidebar: var(--sidebar);
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -173,7 +175,7 @@
     @apply font-sans;
   }
   body {
-    @apply antialiased bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     min-width: 320px;
     min-height: 100svh;
   }

@@ -1,4 +1,5 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
 import { ExternalLink, Shuffle } from "lucide-react"
 import BrowsePage from "@/components/sources/browse-page.astro"
@@ -6,31 +7,28 @@ import { TagChips } from "@/components/sources/tag-chips"
 import TierList from "@/components/sources/tier-list.astro"
 import { buttonVariants } from "@/components/ui/button"
 import { getSites, getTags } from "@/lib/catalog"
-import { browsableTags, hostOf, tagLabel, type Tag } from "@/lib/sites"
-import { defaultLocale, locales, type Locale } from "@/i18n/locales"
+import { browsableTags, hostOf, tagLabel } from "@/lib/sites"
+import { localeParam, locales, resolveLocale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
 import { cn } from "@/lib/utils"
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const tags = browsableTags(await getTags())
   return locales.flatMap((locale) =>
     tags.map((tag) => ({
       params: {
-        locale: locale === defaultLocale ? undefined : locale,
+        locale: localeParam(locale),
         slug: tag.id,
       },
-      props: { locale, tag, tags },
+      props: { tag, tags },
     }))
   )
-}
+}) satisfies GetStaticPaths
 
-interface Props {
-  locale: Locale
-  tag: Tag
-  tags: Tag[]
-}
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
-const { locale, tag, tags } = Astro.props
+const { tag, tags } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const slug = tag.id
 const t = translations[locale]
 const label = tagLabel(tag, locale)
@@ -40,13 +38,9 @@ const sources = (await getSites()).filter((source) =>
 ---
 
 <BrowsePage
-  locale={locale}
-  title={`${label} | News Shuffle`}
-  heading={label}
+  title={label}
   description={format(t.tagDescription, { label })}
-  languageSuffix={`tags/${slug}/`}
   crumbs={[
-    { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
     { label: t.tags, href: getRelativeLocaleUrl(locale, "tags/") },
     { label },
   ]}
@@ -76,5 +70,5 @@ const sources = (await getSites()).filter((source) =>
     </a>
   )}
   <TagChips locale={locale} tags={tags} current={tag.id} label={t.tags} />
-  <TierList locale={locale} sites={sources} />
+  <TierList sites={sources} />
 </BrowsePage>

@@ -1,136 +1,23 @@
+import { site } from "@/lib/site"
 import type { Locale } from "./locales"
+import en from "./en"
+import ga from "./ga"
 export type { Locale } from "./locales"
 
-const en = {
-  title: "Mick Schroeder's News Shuffle",
-  description: "Discover news sites by topic, place and tier.",
-  headline: "Shuffle to the news.",
-  skip: "Skip to content",
-  language: "Language",
-  filters: "Your shuffle",
-  filtersHint: "Pick what to include. An empty row means anything goes.",
-  topics: "Topics",
-  where: "Where",
-  seenOn: "Seen on",
-  tiers: "Tiers",
-  tiersHint: "S to {tier}",
-  resetFilters: "Reset filters",
-  tier: "Tier",
-  similarSites: "Similar sites",
-  tierLabel: "Tier {tier}",
-  upNext: "Up next",
-  shuffle: "Open",
-  opensInNewTab: "opens in a new tab",
-  refresh: "New pick",
-  empty: "No sites match. Try other filters.",
-  catalogError: "Couldn’t load the sites.",
-  retry: "Try again",
-  noMatchesTitle: "No matching sites",
-  noMatchesHint: "Try more tiers or fewer filters below.",
-  reloadHint: "Refresh the page to try again.",
-  choose: "Choose filters",
-  noscript: "Enable JavaScript to shuffle.",
-  browse: "Browse all sites",
-  browseTags: "Browse all tags",
-  sources: "Sources",
-  sourcesHint: "A selection of sites you might discover.",
-  bookmark: "Shuffle bookmark",
-  bookmarkHint: "Save this link to shuffle with your saved filters.",
-  copyBookmark: "Copy bookmark link",
-  copyBookmarkHint: "Copy the link and save it as a bookmark.",
-  dragBookmark: "Drag to your bookmarks bar.",
-  bookmarkCopied: "Link copied.",
-  copyBookmarkError: "Couldn’t copy the link.",
-  redirecting: "Opening a site…",
-  notFound: "Page not found",
-  home: "Back to News Shuffle",
-  about: "About",
-  privacy: "Privacy",
-  privacyDescription: "How News Shuffle uses browser data.",
-  privacyChoices: "Privacy and cookie settings",
-  terms: "Terms",
-  termsDescription: "Terms for using News Shuffle.",
-  allSourcesDescription:
-    "Every site News Shuffle can take you to, ranked from S to E.",
-  tags: "Tags",
-  tagsDescription: "Browse News Shuffle sites by tag.",
-  sourceDescription:
-    "{name} ({host}) on News Shuffle. Visit the site or browse similar sources.",
-  tagDescription: "{label} sites on News Shuffle.",
-  visit: "Visit",
-  shuffleTag: "Shuffle {label}",
-  previous: "Previous",
-  next: "Next",
-}
+type Strings = Record<keyof typeof en, string>
 
-export const translations = {
-  en,
-  ga: {
-    title: "News Shuffle as Gaeilge | Mick Schroeder",
-    description: "Aimsigh suíomhanna nuachta de réir ábhair, áite agus gráid.",
-    headline: "Nuacht. Casadh nua.",
-    skip: "Léim chuig an ábhar",
-    language: "Teanga",
-    filters: "Do mheascán",
-    filtersHint:
-      "Roghnaigh cad atá le cur san áireamh. Má fhágtar sraith folamh, glactar le gach rud.",
-    topics: "Ábhair",
-    where: "Cén áit",
-    seenOn: "Le feiceáil ar",
-    tiers: "Grádanna",
-    tiersHint: "S go {tier}",
-    resetFilters: "Athshocraigh na scagairí",
-    tier: "Grád",
-    similarSites: "Suíomhanna cosúla",
-    tierLabel: "Grád {tier}",
-    upNext: "An chéad suíomh eile",
-    shuffle: "Oscail",
-    opensInNewTab: "osclaítear i gcluaisín nua",
-    refresh: "Rogha nua",
-    empty:
-      "Níl aon suíomh ag teacht leis na roghanna. Bain triail as scagairí eile.",
-    catalogError: "Níorbh fhéidir na suíomhanna a lódáil.",
-    retry: "Bain triail eile as",
-    noMatchesTitle: "Níl aon suíomh ag teacht leis na roghanna",
-    noMatchesHint: "Bain triail as níos mó grádanna nó níos lú scagairí thíos.",
-    reloadHint: "Athlódáil an leathanach chun triail eile a bhaint as.",
-    choose: "Roghnaigh scagairí",
-    noscript: "Cumasaigh JavaScript chun suíomh a roghnú go randamach.",
-    browse: "Brabhsáil gach suíomh",
-    browseTags: "Brabhsáil gach clib",
-    sources: "Foinsí",
-    sourcesHint: "Rogha de na suíomhanna a d’fhéadfá aimsiú.",
-    bookmark: "Leabharmharc Shuffle",
-    bookmarkHint:
-      "Sábháil an nasc seo chun suíomh a roghnú de réir do scagairí sábháilte.",
-    copyBookmark: "Cóipeáil nasc an leabharmhairc",
-    copyBookmarkHint: "Cóipeáil an nasc agus sábháil mar leabharmharc é.",
-    dragBookmark: "Tarraing go barra na leabharmharcanna é.",
-    bookmarkCopied: "Cóipeáladh an nasc.",
-    copyBookmarkError: "Níorbh fhéidir an nasc a chóipeáil.",
-    redirecting: "Suíomh á oscailt…",
-    notFound: "Níor aimsíodh an leathanach",
-    home: "Ar ais chuig News Shuffle",
-    about: "Eolas",
-    privacy: "Príobháideachas",
-    privacyDescription:
-      "An chaoi a n-úsáideann News Shuffle sonraí brabhsálaí.",
-    privacyChoices: "Socruithe príobháideachais agus fianán",
-    terms: "Téarmaí",
-    termsDescription: "Téarmaí úsáide News Shuffle.",
-    allSourcesDescription:
-      "Gach suíomh ar féidir le News Shuffle tú a thabhairt chuige, rangaithe ó S go E.",
-    tags: "Clibeanna",
-    tagsDescription: "Brabhsáil suíomhanna News Shuffle de réir clibe.",
-    sourceDescription:
-      "{name} ({host}) ar News Shuffle. Tabhair cuairt ar an suíomh nó brabhsáil foinsí cosúla.",
-    tagDescription: "Suíomhanna {label} ar News Shuffle.",
-    visit: "Tabhair cuairt",
-    shuffleTag: "Suíomh randamach: {label}",
-    previous: "Roimhe seo",
-    next: "Ar aghaidh",
-  },
-} satisfies Record<Locale, Record<keyof typeof en, string>>
+const withSite = (strings: Strings) =>
+  Object.fromEntries(
+    Object.entries(strings).map(([key, value]) => [
+      key,
+      value.replaceAll("{site}", site.name),
+    ])
+  ) as Strings
+
+export const translations: Record<Locale, Strings> = {
+  en: withSite(en),
+  ga: withSite(ga),
+}
 
 /** Fills {placeholders} in a translation string. */
 export function format(

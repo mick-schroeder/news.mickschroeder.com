@@ -1,10 +1,10 @@
 import { defineCollection } from "astro:content"
+import { DATA_URL } from "astro:env/server"
 import { z } from "astro/zod"
 import { fetchFeed, siteSchema, tagSchema } from "./lib/feed"
 
-// DATA_URL=http://localhost:4400 reads the data repo's out/ folder.
 let feed: ReturnType<typeof fetchFeed> | undefined
-const loadFeed = () => (feed ??= fetchFeed(process.env.DATA_URL || undefined))
+const loadFeed = () => (feed ??= fetchFeed(DATA_URL || undefined))
 
 export const collections = {
   tags: defineCollection({

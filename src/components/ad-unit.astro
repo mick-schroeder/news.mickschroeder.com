@@ -1,10 +1,14 @@
 ---
 import { adsenseClient, adsenseSlot } from "@/lib/google-config"
+import { resolveLocale } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
+
+const locale = resolveLocale(Astro.currentLocale)
 ---
 
 {adsenseSlot && (
   <aside
-    aria-label="Advertisement"
+    aria-label={translations[locale].advertisement}
     class="col-span-full border-t border-border py-8"
   >
     <ins

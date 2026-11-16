@@ -1,13 +1,17 @@
 ---
 import LegalLayout from "@/layouts/legal.astro"
 import type EnglishCopy from "@/components/legal/terms/en.astro"
-import { translations, type Locale } from "@/i18n/ui"
-
-import { defaultLocale, localizedPaths } from "@/i18n/locales"
+import { translations } from "@/i18n/ui"
+import {
+  defaultLocale,
+  localizedPaths,
+  resolveLocale,
+  type Locale,
+} from "@/i18n/locales"
 
 export const getStaticPaths = localizedPaths
 
-const { locale }: { locale: Locale } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const documents = import.meta.glob<{ default: typeof EnglishCopy }>(
   "../../components/legal/terms/*.astro",
@@ -19,11 +23,9 @@ const Copy = documents[path(contentLocale)].default
 ---
 
 <LegalLayout
-  locale={locale}
   contentLocale={contentLocale}
   heading={t.terms}
   description={t.termsDescription}
-  languageSuffix="terms/"
 >
   <Copy />
 </LegalLayout>

@@ -3,78 +3,37 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import BrowsePage from "@/components/sources/browse-page.astro"
 import ExternalLink from "@/components/external-link.astro"
 import { TierBadge } from "@/components/tier-badge"
-import { localizedPaths, type Locale } from "@/i18n/locales"
+import { localizedPaths, resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { defaultFeedUrl } from "@/lib/feed"
 import { tiers } from "@/lib/sites"
+import { site } from "@/lib/site"
 
 export const getStaticPaths = localizedPaths
 
-const { locale }: { locale: Locale } = Astro.props
+const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
-const repo = "https://github.com/mick-schroeder"
-const link = "text-foreground underline hover:text-primary transition-colors"
-
-const copy = {
-  en: {
-    intro:
-      "News Shuffle takes you to a random news site. Pick topics, places and tiers, then shuffle.",
-    sourcesTitle: "Where the sites come from",
-    sources:
-      "Every night, an algorithm rebuilds the list by scanning popular and influential sites around the web — the ones that consistently surface what people are reading and talking about.",
-    judgedTitle: "How sites are judged",
-    judged:
-      "Each new site passes through an AI editor: is it news, what is it about, how far does its reach extend. Sites known for misinformation are excluded. A site that disappears from the web for long enough is quietly retired.",
-    tiersTitle: "Tiers",
-    tiers:
-      "Tiers run from S, the sites that set the news agenda, down to E, sites not yet fully rated. They reflect reach and influence, not quality or viewpoint. Sites assigned F are excluded from the shuffle entirely.",
-    dataTitle: "Open source",
-    api: "API:",
-    code: "Code:",
-  },
-  ga: {
-    intro:
-      "Tugann News Shuffle chuig suíomh nuachta randamach thú. Roghnaigh ábhair, áiteanna agus grádanna, ansin cas.",
-    sourcesTitle: "Cá as a dtagann na suíomhanna",
-    sources:
-      "Gach oíche, atógtar an liosta le halgartam trí na suíomhanna is coitianta agus is mó tionchar ar an ngréasán a scanadh — na cinn a thagann aníos go leanúnach nuair atá daoine ag léamh agus ag caint.",
-    judgedTitle: "Conas a mheastar na suíomhanna",
-    judged:
-      "Téann gach suíomh nua trí eagarthóir AI: an nuacht é, cad é a bhfuil sé faoi, cé chomh fada is a shíneann a réim. Fágtar amach suíomhanna atá ar eolas as mífhaisnéis. Scortar suíomh a imíonn ón ngréasán ar feadh i bhfad.",
-    tiersTitle: "Grádanna",
-    tiers:
-      "Téann na grádanna ó S, na suíomhanna a leagann clár na nuachta amach, síos go E, suíomhanna nach bhfuil grádaithe go hiomlán fós. Léiríonn siad faidhrsinge agus tionchar, ní cáilíocht ná dearcadh. Fágtar suíomhanna le grád F as an gcascairt ar fad.",
-    dataTitle: "Foinse oscailte",
-    api: "API:",
-    code: "Cód:",
-  },
-}[locale]
+const link = "link text-foreground"
 const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
 ---
 
 <BrowsePage
-  locale={locale}
-  title={`${t.about} | News Shuffle`}
-  heading={t.about}
-  description={copy.intro}
-  languageSuffix="about/"
-  crumbs={[
-    { label: "News Shuffle", href: getRelativeLocaleUrl(locale) },
-    { label: t.about },
-  ]}
+  title={t.about}
+  description={t.aboutIntro}
+  crumbs={[{ label: t.about }]}
 >
   <p slot="description" class="max-w-2xl text-muted-foreground">
-    {copy.intro}
+    {t.aboutIntro}
   </p>
   <div class="max-w-2xl space-y-3 leading-relaxed text-muted-foreground">
-    <h2 class={heading}>{copy.sourcesTitle}</h2>
-    <p>{copy.sources}</p>
+    <h2 class={heading}>{t.aboutSourcesTitle}</h2>
+    <p>{t.aboutSources}</p>
 
-    <h2 class={heading}>{copy.judgedTitle}</h2>
-    <p>{copy.judged}</p>
+    <h2 class={heading}>{t.aboutJudgedTitle}</h2>
+    <p>{t.aboutJudged}</p>
 
-    <h2 class={heading}>{copy.tiersTitle}</h2>
-    <ul class="flex gap-1.5" aria-label={copy.tiersTitle}>
+    <h2 class={heading}>{t.tiers}</h2>
+    <ul class="flex gap-1.5" aria-label={t.tiers}>
       {tiers.map((tier) => (
         <li>
           <a
@@ -87,49 +46,33 @@ const heading = "mt-8 text-lg font-bold tracking-tight text-foreground"
       <li>
         <span
           class="grid size-7 shrink-0 place-items-center rounded-md text-sm font-black bg-tier-f text-tier-f-foreground"
-          title="Excluded from shuffle"
+          title={t.tierExcluded}
         >
           <span aria-hidden="true">F</span>
         </span>
       </li>
     </ul>
-    <p>{copy.tiers}</p>
+    <p>{t.aboutTiers}</p>
 
-    <h2 class={heading}>{copy.dataTitle}</h2>
+    <h2 class={heading}>{t.aboutOpenSource}</h2>
     <p>
-      {copy.api}{" "}
-      <ExternalLink
-        href={`${defaultFeedUrl}/sources.json`}
-        class={link}
-        locale={locale}
-      >
+      {t.aboutApi}{" "}
+      <ExternalLink href={`${defaultFeedUrl}/sources.json`} class={link}>
         sources.json
       </ExternalLink>
       ,{" "}
-      <ExternalLink
-        href={`${defaultFeedUrl}/tags.json`}
-        class={link}
-        locale={locale}
-      >
+      <ExternalLink href={`${defaultFeedUrl}/tags.json`} class={link}>
         tags.json
       </ExternalLink>
       .
     </p>
     <p>
-      {copy.code}{" "}
-      <ExternalLink
-        href={`${repo}/popular-news-sites`}
-        class={link}
-        locale={locale}
-      >
+      {t.aboutCode}{" "}
+      <ExternalLink href={`${site.github}/popular-news-sites`} class={link}>
         popular-news-sites
       </ExternalLink>
       ,{" "}
-      <ExternalLink
-        href={`${repo}/news.mickschroeder.com`}
-        class={link}
-        locale={locale}
-      >
+      <ExternalLink href={`${site.github}/news.mickschroeder.com`} class={link}>
         news.mickschroeder.com
       </ExternalLink>
       .

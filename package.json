@@ -2,6 +2,14 @@
   "name": "news.mickschroeder.com",
   "type": "module",
   "version": "0.0.1",
+  "description": "Shuffle to a random news site, filtered by topic, place and tier.",
+  "homepage": "https://news.mickschroeder.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mick-schroeder/news.mickschroeder.com.git"
+  },
+  "license": "MIT",
+  "author": "Mick Schroeder, LLC",
   "private": true,
   "engines": {
     "node": ">=22.23.4"
@@ -11,11 +19,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
     "lint": "eslint .",
-    "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
     "typecheck": "astro check",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "fetch-favicons": "node --experimental-strip-types scripts/fetch-favicons.ts"
   },
   "dependencies": {
@@ -41,8 +50,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^10",
+    "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.2",
