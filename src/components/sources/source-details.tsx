@@ -37,6 +37,7 @@ import { translations } from "@/i18n/ui"
 import { facets, hostOf, type Site, type Tag } from "@/lib/sites"
 import { cn } from "@/lib/utils"
 import { SiteIcon } from "./site-icon"
+import { HostLink } from "./host-link"
 import { TagChips } from "./tag-chips"
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const
@@ -66,13 +67,14 @@ export function SourceDetails({
     <Card className="min-w-0">
       <CardHeader className="items-center">
         <div className="flex min-w-0 items-center gap-4">
-          <SiteIcon site={source} size="lg" />
+          <SiteIcon site={source} size="md" />
           <div className="min-w-0 space-y-1">
-            <CardTitle className="text-xl leading-tight font-bold tracking-tight break-words sm:text-2xl">
+            {/* Title and host styled like the home page Up next card. */}
+            <CardTitle className="text-lg leading-snug font-medium break-words sm:text-xl">
               <h1>{source.title}</h1>
             </CardTitle>
-            <CardDescription className="truncate">
-              {hostOf(source.url)}
+            <CardDescription>
+              <HostLink url={source.url} locale={locale} />
             </CardDescription>
           </div>
         </div>
@@ -100,10 +102,10 @@ export function SourceDetails({
             {source.description}
           </p>
         ) : (
-          <Empty className="h-26 gap-2 border p-4">
-            <EmptyHeader className="flex-row">
-              <EmptyMedia className="mb-0 text-muted-foreground">
-                <FileText className="size-4" aria-hidden="true" />
+          <Empty className="gap-2 border p-4">
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <FileText aria-hidden="true" />
               </EmptyMedia>
               <EmptyDescription>{t.noDescription}</EmptyDescription>
             </EmptyHeader>
@@ -233,7 +235,7 @@ export function SimilarSites({
             <Item
               variant="outline"
               size="sm"
-              className="flex-nowrap bg-card"
+              className="flex-nowrap"
               render={
                 <a href={getRelativeLocaleUrl(locale, `sources/${site.id}/`)} />
               }

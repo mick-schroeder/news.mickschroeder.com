@@ -1,10 +1,11 @@
 import { ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { hostOf, tagLabel, type Site, type Tag } from "@/lib/sites"
+import { tagLabel, type Site, type Tag } from "@/lib/sites"
 import { translations, type Locale } from "@/i18n/ui"
 import { TagIcon } from "@/components/tag-icon"
 import { TierBadge } from "@/components/tier-badge"
+import { HostLink } from "@/components/sources/host-link"
 import { SiteIcon } from "@/components/sources/site-icon"
 import {
   Item,
@@ -55,7 +56,14 @@ export function SiteCard({
             </a>
           </ItemTitle>
           <ItemDescription className="block truncate text-xs">
-            {hostOf(site.url)}
+            {/* Wrapped, so ItemDescription's always-underlined link style skips it. */}
+            <span>
+              <HostLink
+                url={site.url}
+                locale={locale}
+                className="relative z-10"
+              />
+            </span>
           </ItemDescription>
         </ItemContent>
         <TierBadge tier={site.tier} locale={locale} />

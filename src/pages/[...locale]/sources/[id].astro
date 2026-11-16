@@ -63,7 +63,7 @@ const host = hostOf(source.url)
 >
   <!-- Same width as the header and footer on every page, so ads only use the
        outer margins. -->
-  <main class="page-width space-y-6 pt-4 sm:pt-8">
+  <main class="page-width space-y-6 pt-2 sm:pt-4">
     <!-- Full page width, where the browse pages put it. -->
     <PageBreadcrumb
       locale={locale}
@@ -72,8 +72,16 @@ const host = hostOf(source.url)
         { label: source.title },
       ]}
     />
-    <div class="mx-auto max-w-3xl space-y-6">
+    <div class="mx-auto max-w-3xl space-y-6 pt-2 sm:pt-4">
+      <!-- Same controls above and below; the top set never moves. -->
       <div class="flex flex-col gap-4">
+        <SourceNav
+          source={source}
+          previous={previous}
+          next={next}
+          random={random}
+          locale={locale}
+        />
         <SourceDetails source={source} tags={tags} locale={locale} />
         <SourceNav
           source={source}
@@ -101,20 +109,21 @@ const host = hostOf(source.url)
 
   // Random gets a fresh pick per click once the id list loads; until then it
   // keeps the build-time pick.
-  const random = document.querySelector<HTMLAnchorElement>(
+  const randoms = document.querySelectorAll<HTMLAnchorElement>(
     "[data-random-source]"
   )
-  if (random) {
-    const current = random.dataset.randomSource!
+  if (randoms.length) {
+    const current = randoms[0].dataset.randomSource!
     const ids = fetch("/source-ids.json")
       .then((response) => response.json() as Promise<string[]>)
       .catch(() => [])
-    random.addEventListener("click", async (event) => {
-      const others = (await ids).filter((id) => id !== current)
-      if (!others.length) return
-      event.preventDefault()
-      const id = others[Math.floor(Math.random() * others.length)]
-      location.href = location.pathname.replace(`/${current}/`, `/${id}/`)
-    })
+    for (const random of randoms)
+      random.addEventListener("click", async (event) => {
+        const others = (await ids).filter((id) => id !== current)
+        if (!others.length) return
+        event.preventDefault()
+        const id = others[Math.floor(Math.random() * others.length)]
+        location.href = location.pathname.replace(`/${current}/`, `/${id}/`)
+      })
   }
 </script>
