@@ -50,16 +50,37 @@ const showGoogleTags = googleTagsEnabled && !noindex
     >
       {t.skip}
     </a>
-    <header class="page-width flex max-w-5xl items-center justify-between gap-4 py-6 sm:py-8">
-      <a
-        class="group inline-flex items-center gap-3 text-lg font-bold tracking-tight text-foreground transition-opacity hover:opacity-90"
-        href={currentPath}
-      >
-        <BrandLogo />
-        <span>News Shuffle</span>
-      </a>
-      <LanguagePicker locale={locale} languageSuffix={languageSuffix} />
+    <header class="page-width mb-8 max-w-5xl sm:mb-10">
+      <div class="grid grid-cols-1 items-center justify-items-center gap-3 border-b border-border py-5 sm:grid-cols-[1fr_auto_1fr] sm:py-7">
+        <time
+          id="masthead-date"
+          class="hidden text-sm text-muted-foreground sm:block sm:justify-self-start"
+        ></time>
+        <a
+          class="group inline-flex items-center gap-3 text-foreground transition-opacity hover:opacity-90"
+          href={currentPath}
+        >
+          <BrandLogo />
+          <span class="font-masthead text-4xl leading-none sm:text-6xl">News Shuffle</span>
+        </a>
+        <div class="sm:justify-self-end">
+          <LanguagePicker locale={locale} languageSuffix={languageSuffix} />
+        </div>
+      </div>
     </header>
+    <script>
+      const date = document.getElementById("masthead-date")
+      if (date) {
+        const now = new Date()
+        date.dateTime = now.toISOString().slice(0, 10)
+        date.textContent = now.toLocaleDateString(document.documentElement.lang, {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })
+      }
+    </script>
     <div id="main-content" tabindex="-1" class="focus:outline-none">
       <slot />
     </div>

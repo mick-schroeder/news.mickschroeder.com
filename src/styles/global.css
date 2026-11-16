@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource/manufacturing-consent";
 
 @utility page-width {
   @apply mx-auto w-full px-4 sm:px-6;
@@ -33,6 +34,7 @@
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: 'Geist Variable', sans-serif;
+  --font-masthead: 'Manufacturing Consent', serif;
   --color-sidebar: var(--sidebar);
   --color-ring: var(--ring);
   --color-input: var(--input);

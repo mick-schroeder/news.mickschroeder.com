@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "Mick Schroeder's News Shuffle",
-  "short_name": "News Shuffle",
+  "name": "News Shuffle",
+  "short_name": "News",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
