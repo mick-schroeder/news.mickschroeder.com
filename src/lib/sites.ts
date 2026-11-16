@@ -74,20 +74,40 @@ export const directoryOrder = (sites: Site[]) =>
 /** Sites grouped by tier, best first; empty tiers left out. */
 export function byTier(sites: Site[]) {
   const ordered = directoryOrder(sites)
-  return tiers
-    .map((tier) => ({
-      tier,
-      sites: ordered.filter((site) => site.tier === tier),
-    }))
-    .filter((group) => group.sites.length)
+  return tiers.map((tier) => ({
+    tier,
+    sites: ordered.filter((site) => site.tier === tier),
+  }))
 }
 
-/** Sites sharing topics and region, nearest tier first. */
+export const hashOf = (text: string) => {
+  let hash = 2166136261
+  for (const char of text)
+    hash = Math.imul(hash ^ char.charCodeAt(0), 16777619) >>> 0
+  return hash
+}
+
+/** Deterministic random numbers in [0, 1) from a seed (mulberry32). */
+export function seededRandom(seed: number) {
+  return () => {
+    seed = (seed + 0x6d2b79f5) >>> 0
+    let t = seed
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+/**
+ * Sites sharing topics and region: a per-site random pick from the best
+ * matches, so neighbouring pages don't repeat the same list.
+ */
 export function similarSites(
   site: Site,
   sites: Site[],
   tags: Tag[],
-  limit = 6
+  limit = 6,
+  exclude: readonly string[] = []
 ) {
   const { topics, regions } = facets(tags)
   const ids = (list: Tag[]) => new Set(list.map((tag) => tag.id))
@@ -97,22 +117,31 @@ export function similarSites(
     other.tags.filter((tag) => within.has(tag) && site.tags.includes(tag))
       .length
 
-  return sites
-    .filter((other) => other.id !== site.id)
+  const random = seededRandom(hashOf(site.id))
+  const pool = sites
+    .filter((other) => other.id !== site.id && !exclude.includes(other.id))
     .map((other) => ({
       other,
       topics: shared(other, topicIds),
+      // Jitter lets near-equal matches swap places between pages.
       score:
         shared(other, topicIds) * 3 +
         shared(other, regionIds) * 2 -
-        Math.abs(tierRank(other.tier) - tierRank(site.tier)),
+        Math.abs(tierRank(other.tier) - tierRank(site.tier)) +
+        random() * 3,
     }))
     .filter(({ topics }) => topics > 0)
-    .sort(
-      (a, b) =>
-        b.score - a.score || a.other.title.localeCompare(b.other.title, "en")
-    )
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit * 4)
+
+  // Random sample from the pool, then best match first.
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1))
+    ;[pool[i], pool[j]] = [pool[j], pool[i]]
+  }
+  return pool
     .slice(0, limit)
+    .sort((a, b) => b.score - a.score)
     .map(({ other }) => other)
 }
 

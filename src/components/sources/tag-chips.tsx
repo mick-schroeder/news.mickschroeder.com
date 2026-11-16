@@ -10,11 +10,14 @@ export function TagChips({
   tags,
   current,
   label,
+  variant = "outline",
 }: {
   locale: Locale
   tags: Tag[]
   current?: string
   label?: string
+  /** Badge style for tags that aren't current. */
+  variant?: "outline" | "secondary"
 }) {
   return (
     <ul className="flex min-w-0 flex-wrap gap-1.5" aria-label={label}>
@@ -23,7 +26,7 @@ export function TagChips({
         return (
           <li key={tag.id}>
             <Badge
-              variant={active ? "default" : "outline"}
+              variant={active ? "default" : variant}
               className="h-7 gap-1.5 px-2.5"
               render={
                 <a

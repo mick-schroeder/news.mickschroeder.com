@@ -1,47 +1,57 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import Layout from "@/layouts/main.astro"
 import { PageBreadcrumb } from "@/components/sources/page-breadcrumb"
 import {
   SimilarSites,
   SourceDetails,
+  SourceNav,
 } from "@/components/sources/source-details"
-import { buttonVariants } from "@/components/ui/button"
 import { getSites, getTags } from "@/lib/catalog"
 import { localeParam, locales, resolveLocale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
-import { hostOf, neighbours, similarSites } from "@/lib/sites"
-import { cn } from "@/lib/utils"
+import {
+  hashOf,
+  hostOf,
+  neighbours,
+  pickSite,
+  seededRandom,
+  similarSites,
+} from "@/lib/sites"
 
 export const getStaticPaths = (async () => {
   const sites = await getSites()
   const tags = await getTags()
   return locales.flatMap((locale) =>
-    sites.map((source, index) => ({
-      params: {
-        locale: localeParam(locale),
-        id: source.id,
-      },
-      props: {
-        source,
-        tags,
-        similar: similarSites(source, sites, tags),
-        ...neighbours(sites, index),
-      },
-    }))
+    sites.map((source, index) => {
+      const { previous, next } = neighbours(sites, index)
+      const skip = [source.id, previous.id, next.id]
+      return {
+        params: {
+          locale: localeParam(locale),
+          id: source.id,
+        },
+        props: {
+          source,
+          tags,
+          // Prev/next already have their own buttons.
+          similar: similarSites(source, sites, tags, 6, skip),
+          random: pickSite(sites, skip, seededRandom(hashOf(`${source.id}~`)))!,
+          previous,
+          next,
+        },
+      }
+    })
   )
 }) satisfies GetStaticPaths
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
-const { source, tags, similar, previous, next } = Astro.props
+const { source, tags, similar, previous, next, random } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
-const sourceUrl = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
 const host = hostOf(source.url)
-const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
 ---
 
 <Layout
@@ -53,42 +63,25 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
 >
   <!-- Same width as the header and footer on every page, so ads only use the
        outer margins. -->
-  <main class="page-width pt-4 sm:pt-8">
+  <main class="page-width space-y-6 pt-4 sm:pt-8">
+    <!-- Full page width, where the browse pages put it. -->
+    <PageBreadcrumb
+      locale={locale}
+      crumbs={[
+        { label: t.sources, href: getRelativeLocaleUrl(locale, "sources/") },
+        { label: source.title },
+      ]}
+    />
     <div class="mx-auto max-w-3xl space-y-6">
-      <PageBreadcrumb
-        locale={locale}
-        crumbs={[
-          { label: t.sources, href: getRelativeLocaleUrl(locale, "sources/") },
-          { label: source.title },
-        ]}
-      />
-
-      <!-- Arrows stay put whatever the card's height: above it on phones, level
-         with its header beside it on wider screens. -->
-      <div class="grid grid-cols-2 items-start gap-3 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:gap-4 [&>a]:sm:mt-9">
-        <a
-          href={sourceUrl(previous.id)}
-          rel="prev"
-          data-astro-prefetch
-          class={cn(arrow, "justify-self-start")}
-          aria-label={t.previous}
-          title={previous.title}
-        >
-          <ChevronLeft aria-hidden="true" />
-        </a>
-        <div class="order-last col-span-2 min-w-0 sm:order-none sm:col-span-1">
-          <SourceDetails source={source} tags={tags} locale={locale} />
-        </div>
-        <a
-          href={sourceUrl(next.id)}
-          rel="next"
-          data-astro-prefetch
-          class={cn(arrow, "justify-self-end")}
-          aria-label={t.next}
-          title={next.title}
-        >
-          <ChevronRight aria-hidden="true" />
-        </a>
+      <div class="flex flex-col gap-4">
+        <SourceDetails source={source} tags={tags} locale={locale} />
+        <SourceNav
+          source={source}
+          previous={previous}
+          next={next}
+          random={random}
+          locale={locale}
+        />
       </div>
       <SimilarSites sites={similar} locale={locale} />
     </div>
@@ -105,4 +98,23 @@ const arrow = buttonVariants({ variant: "outline", size: "icon-lg" })
     const rel = { ArrowLeft: "prev", ArrowRight: "next" }[event.key]
     document.querySelector<HTMLAnchorElement>(`a[rel="${rel}"]`)?.click()
   })
+
+  // Random gets a fresh pick per click once the id list loads; until then it
+  // keeps the build-time pick.
+  const random = document.querySelector<HTMLAnchorElement>(
+    "[data-random-source]"
+  )
+  if (random) {
+    const current = random.dataset.randomSource!
+    const ids = fetch("/source-ids.json")
+      .then((response) => response.json() as Promise<string[]>)
+      .catch(() => [])
+    random.addEventListener("click", async (event) => {
+      const others = (await ids).filter((id) => id !== current)
+      if (!others.length) return
+      event.preventDefault()
+      const id = others[Math.floor(Math.random() * others.length)]
+      location.href = location.pathname.replace(`/${current}/`, `/${id}/`)
+    })
+  }
 </script>

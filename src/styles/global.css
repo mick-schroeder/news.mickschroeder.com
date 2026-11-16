@@ -178,6 +178,8 @@
   }
   html {
     @apply font-sans;
+    /* Short and long pages keep the same width, so nothing shifts sideways. */
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-page text-foreground antialiased;

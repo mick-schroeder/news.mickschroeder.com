@@ -45,6 +45,19 @@ const sources = (await getSites()).filter((source) =>
     { label },
   ]}
 >
+  {tag.url && (
+    <a
+      slot="description"
+      href={tag.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1 text-sm font-medium text-foreground underline-offset-4 hover:underline"
+    >
+      {hostOf(tag.url)}
+      <span class="sr-only">({t.opensInNewTab})</span>
+      <ExternalLink class="size-3.5" aria-hidden="true" />
+    </a>
+  )}
   <p slot="description" class="text-muted-foreground" lang="en">
     {tag.description}
   </p>
@@ -56,19 +69,6 @@ const sources = (await getSites()).filter((source) =>
     <Shuffle data-icon="inline-start" strokeWidth={3} aria-hidden="true" />
     {format(t.shuffleTag, { label })}
   </a>
-  {tag.url && (
-    <a
-      slot="actions"
-      href={tag.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      class={buttonVariants({ variant: "outline", size: "lg" })}
-    >
-      {hostOf(tag.url)}
-      <span class="sr-only">({t.opensInNewTab})</span>
-      <ExternalLink data-icon="inline-end" aria-hidden="true" />
-    </a>
-  )}
   <TagChips locale={locale} tags={tags} current={tag.id} label={t.tags} />
   <TierList sites={sources} />
 </BrowsePage>

@@ -27,11 +27,12 @@ export function PageBreadcrumb({
   ]
   return (
     <Breadcrumb>
-      <BreadcrumbList>
+      {/* One line on every page; the current page truncates instead of wrapping. */}
+      <BreadcrumbList className="flex-nowrap">
         {trail.map((crumb, index) => (
           <Fragment key={crumb.label}>
             {index > 0 && <BreadcrumbSeparator />}
-            <BreadcrumbItem className="min-w-0">
+            <BreadcrumbItem className={crumb.href ? "shrink-0" : "min-w-0"}>
               {crumb.href ? (
                 <BreadcrumbLink href={crumb.href}>{crumb.label}</BreadcrumbLink>
               ) : (

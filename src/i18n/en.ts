@@ -55,11 +55,13 @@ export default {
   tags: "Tags",
   tagsDescription: "Browse {site} sites by tag.",
   sourceDescription:
-    "{name} ({host}) on {site}. Visit the site or browse similar sources.",
+    "{name} ({host}) on {site}. Open the site or browse similar sources.",
   tagDescription: "{label} sites on {site}.",
-  visit: "Visit",
+  open: "Open",
   shuffleTag: "Shuffle {label}",
   previous: "Previous",
+  randomSource: "Random source",
+  noDescription: "No description yet.",
   next: "Next",
 
   aboutIntro:

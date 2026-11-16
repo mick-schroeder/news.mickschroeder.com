@@ -1,6 +1,13 @@
 import { getRelativeLocaleUrl } from "astro:i18n"
-import { ExternalLink } from "lucide-react"
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  FileText,
+  Shuffle,
+} from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
+import { ButtonGroup } from "@/components/ui/button-group"
 import {
   Card,
   CardAction,
@@ -9,6 +16,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+} from "@/components/ui/empty"
 import { Separator } from "@/components/ui/separator"
 import { TierBadge } from "@/components/tier-badge"
 import type { Locale } from "@/i18n/locales"
@@ -20,7 +41,7 @@ import { TagChips } from "./tag-chips"
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const
 
-/** A source: identity and Visit up top, description, then its tags. */
+/** A source: identity and tier up top, description, then its tags. */
 export function SourceDetails({
   source,
   tags,
@@ -38,7 +59,7 @@ export function SourceDetails({
   const rows = [
     { label: t.topics, tags: own(topics) },
     { label: t.where, tags: own(regions) },
-    { label: t.seenOn, tags: own(seenOn) },
+    { label: t.seenOn, tags: own(seenOn), variant: "secondary" as const },
   ].filter((row) => row.tags.length)
 
   return (
@@ -57,51 +78,134 @@ export function SourceDetails({
         </div>
         <CardAction className="self-center">
           <a
-            href={source.url}
-            {...external}
-            data-slot="button"
-            className={cn(buttonVariants({ size: "lg" }), "font-bold")}
+            href={`${getRelativeLocaleUrl(locale, "sources/")}#tier-${source.tier.toLowerCase()}`}
+            className="inline-flex rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
           >
-            {t.visit}
-            <span className="sr-only">({t.opensInNewTab})</span>
-            <ExternalLink data-icon="inline-end" aria-hidden="true" />
+            <TierBadge
+              tier={source.tier}
+              locale={locale}
+              className="size-11 rounded-lg text-xl"
+            />
           </a>
         </CardAction>
       </CardHeader>
-      {source.description && (
-        <CardContent>
-          <p lang="en" className="text-base leading-relaxed text-pretty">
+      {/* Same height whatever the text, so the controls below stay put. */}
+      <CardContent className="min-h-26">
+        {source.description ? (
+          <p
+            lang="en"
+            className="line-clamp-4 text-base leading-relaxed text-pretty"
+            title={source.description}
+          >
             {source.description}
           </p>
-        </CardContent>
-      )}
+        ) : (
+          <Empty className="h-26 gap-2 border p-4">
+            <EmptyHeader className="flex-row">
+              <EmptyMedia className="mb-0 text-muted-foreground">
+                <FileText className="size-4" aria-hidden="true" />
+              </EmptyMedia>
+              <EmptyDescription>{t.noDescription}</EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        )}
+      </CardContent>
       <Separator />
       <CardContent>
         <dl className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center">
-          <dt className="text-xs font-semibold text-muted-foreground">
-            {t.tier}
-          </dt>
-          <dd>
-            <a
-              href={`${getRelativeLocaleUrl(locale, "sources/")}#tier-${source.tier.toLowerCase()}`}
-              className="inline-flex rounded-md underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/50"
-            >
-              <TierBadge tier={source.tier} locale={locale} />
-            </a>
-          </dd>
           {rows.map((row) => (
             <div key={row.label} className="contents">
               <dt className="text-xs font-semibold text-muted-foreground">
                 {row.label}
               </dt>
               <dd className="min-w-0">
-                <TagChips locale={locale} tags={row.tags} label={row.label} />
+                <TagChips
+                  locale={locale}
+                  tags={row.tags}
+                  label={row.label}
+                  variant={row.variant}
+                />
               </dd>
             </div>
           ))}
         </dl>
       </CardContent>
     </Card>
+  )
+}
+
+/**
+ * Previous, Open, random and next as one group. Links styled with
+ * buttonVariants, not <Button render>, which would give them role="button".
+ */
+export function SourceNav({
+  source,
+  previous,
+  next,
+  random,
+  locale,
+}: {
+  source: Site
+  previous: Site
+  next: Site
+  /** Fallback pick; a script swaps in a fresh one per click. */
+  random: Site
+  locale: Locale
+}) {
+  const t = translations[locale]
+  const href = (site: Site) =>
+    getRelativeLocaleUrl(locale, `sources/${site.id}/`)
+  // Secondary, like the shuffle button beside Open on the home page.
+  const icon = buttonVariants({ variant: "secondary", size: "icon-lg" })
+  return (
+    <ButtonGroup className="mx-auto" aria-label={source.title}>
+      <a
+        href={href(previous)}
+        rel="prev"
+        data-astro-prefetch
+        data-slot="button"
+        className={icon}
+        aria-label={t.previous}
+        title={previous.title}
+      >
+        <ChevronLeft aria-hidden="true" />
+      </a>
+      <a
+        href={source.url}
+        {...external}
+        data-slot="button"
+        className={cn(buttonVariants({ size: "lg" }), "w-32 font-bold")}
+      >
+        {t.open}
+        <span className="sr-only">({t.opensInNewTab})</span>
+        <ExternalLink
+          className="size-4"
+          strokeWidth={2.75}
+          aria-hidden="true"
+        />
+      </a>
+      <a
+        href={href(random)}
+        data-random-source={source.id}
+        data-slot="button"
+        className={icon}
+        aria-label={t.randomSource}
+        title={t.randomSource}
+      >
+        <Shuffle strokeWidth={3} className="size-5" aria-hidden="true" />
+      </a>
+      <a
+        href={href(next)}
+        rel="next"
+        data-astro-prefetch
+        data-slot="button"
+        className={icon}
+        aria-label={t.next}
+        title={next.title}
+      >
+        <ChevronRight aria-hidden="true" />
+      </a>
+    </ButtonGroup>
   )
 }
 
@@ -126,21 +230,31 @@ export function SimilarSites({
       <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {sites.map((site) => (
           <li key={site.id}>
-            <a
-              href={getRelativeLocaleUrl(locale, `sources/${site.id}/`)}
-              className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
+            <Item
+              variant="outline"
+              size="sm"
+              className="flex-nowrap bg-card"
+              render={
+                <a href={getRelativeLocaleUrl(locale, `sources/${site.id}/`)} />
+              }
             >
-              <SiteIcon site={site} size="sm" className="size-8" />
-              <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-medium">
-                  {site.title}
-                </span>
-                <span className="block truncate text-xs text-muted-foreground">
+              <ItemMedia>
+                <SiteIcon site={site} size="sm" className="size-8" />
+              </ItemMedia>
+              <ItemContent className="min-w-0 gap-0">
+                <ItemTitle className="w-full truncate">{site.title}</ItemTitle>
+                <ItemDescription className="truncate text-xs">
                   {hostOf(site.url)}
-                </span>
-              </span>
-              <TierBadge tier={site.tier} locale={locale} />
-            </a>
+                </ItemDescription>
+              </ItemContent>
+              <ItemActions>
+                <TierBadge tier={site.tier} locale={locale} />
+                <ChevronRight
+                  className="size-4 text-muted-foreground"
+                  aria-hidden="true"
+                />
+              </ItemActions>
+            </Item>
           </li>
         ))}
       </ul>

@@ -61,9 +61,11 @@ export default {
   sourceDescription:
     "{name} ({host}) ar {site}. Tabhair cuairt ar an suíomh nó brabhsáil foinsí cosúla.",
   tagDescription: "Suíomhanna {label} ar {site}.",
-  visit: "Tabhair cuairt",
+  open: "Oscail",
   shuffleTag: "Suíomh randamach: {label}",
   previous: "Roimhe seo",
+  randomSource: "Foinse randamach",
+  noDescription: "Níl cur síos ann fós.",
   next: "Ar aghaidh",
 
   aboutIntro:
