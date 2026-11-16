@@ -13,8 +13,8 @@ const { languageSuffix } = Astro.props
 const home = getRelativeLocaleUrl(resolveLocale(Astro.currentLocale))
 ---
 
-<header class="page-width mb-8 max-w-5xl sm:mb-10">
-  <div class="grid grid-cols-1 items-center justify-items-center gap-3 border-b border-border py-5 sm:grid-cols-[1fr_auto_1fr] sm:py-7">
+<header class="page-width mb-4 sm:mb-5">
+  <div class="grid grid-cols-1 items-center justify-items-center gap-3 border-b-4 border-double border-border py-5 sm:grid-cols-[1fr_auto_1fr] sm:py-7">
     <time
       id="masthead-date"
       class="hidden text-sm text-muted-foreground sm:block sm:justify-self-start"

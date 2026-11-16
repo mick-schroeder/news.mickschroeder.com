@@ -49,10 +49,12 @@ const showGoogleTags = googleTagsEnabled && !noindex
     >
       {t.skip}
     </a>
-    <SiteHeader languageSuffix={languageSuffix} />
-    <div id="main-content" tabindex="-1" class="focus:outline-none">
-      <slot />
+    <div class="mx-auto max-w-4xl bg-background pt-2 sm:my-10 sm:pt-4">
+      <SiteHeader languageSuffix={languageSuffix} />
+      <div id="main-content" tabindex="-1" class="focus:outline-none">
+        <slot />
+      </div>
+      <SiteFooter privacyChoices={showGoogleTags} />
     </div>
-    <SiteFooter privacyChoices={showGoogleTags} />
   </body>
 </html>

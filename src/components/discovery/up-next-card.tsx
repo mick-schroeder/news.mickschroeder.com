@@ -72,7 +72,7 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
   return (
     <section
       ref={deck}
-      className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-4 lg:max-w-none"
+      className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-4"
       style={{
         minHeight: `calc(${historyDepth * historyStep + siteCardHeight}px + 4.5rem)`,
       }}

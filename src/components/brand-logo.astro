@@ -26,7 +26,7 @@ const faces = [
   @media (prefers-reduced-motion: no-preference) {
     .brand-card-flipper {
       transform-style: preserve-3d;
-      animation: shuffle-flip 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation: shuffle-flip 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
   }
 
@@ -39,20 +39,21 @@ const faces = [
     transform: rotateY(180deg);
   }
 
+  /* One 2s flip, then a 10s rest. */
   @keyframes shuffle-flip {
     0% {
       transform: perspective(400px) rotateY(0deg) translateY(0) scale(1);
     }
-    6% {
+    2% {
       transform: perspective(400px) rotateY(-20deg) translateY(-2px) scale(0.96);
     }
-    22% {
+    8% {
       transform: perspective(400px) rotateY(180deg) translateY(-7px) scale(1.1);
     }
-    38% {
+    14% {
       transform: perspective(400px) rotateY(360deg) translateY(-1px) scale(1.02);
     }
-    46% {
+    17% {
       transform: perspective(400px) rotateY(360deg) translateY(0) scale(1);
     }
     100% {
@@ -62,7 +63,7 @@ const faces = [
 
   @media (prefers-reduced-motion: no-preference) {
     :global(a:hover) .brand-card-flipper {
-      animation-duration: 2s;
+      animation-duration: 4s;
     }
   }
 </style>

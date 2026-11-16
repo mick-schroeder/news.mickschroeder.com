@@ -15,13 +15,13 @@ const tags = await getTags()
 <main
   id="discovery"
   data-locale={locale}
-  class="page-width grid max-w-5xl grid-cols-1 items-start gap-8 pt-8 lg:grid-cols-2 lg:pt-14"
+  class="page-width grid grid-cols-1 items-start gap-4"
 >
-  <section class="min-w-0">
-    <h1 class="text-balance text-5xl font-extrabold tracking-tighter leading-[0.92] text-foreground sm:text-6xl lg:text-7xl">
+  <section class="min-w-0 text-center">
+    <h1 class="font-headline text-balance text-4xl font-semibold tracking-tight leading-none text-foreground sm:text-5xl lg:text-6xl">
       {t.headline}
     </h1>
-    <p class="mt-5 max-w-md text-lg text-muted-foreground sm:text-xl">
+    <p class="mx-auto mt-2 max-w-md text-base text-muted-foreground sm:text-lg">
       {t.description}
     </p>
   </section>

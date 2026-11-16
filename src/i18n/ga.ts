@@ -73,9 +73,9 @@ export default {
     "Gach oíche, atógtar an liosta le halgartam trí na suíomhanna is coitianta agus is mó tionchar ar an ngréasán a scanadh — na cinn a thagann aníos go leanúnach nuair atá daoine ag léamh agus ag caint.",
   aboutJudgedTitle: "Conas a mheastar na suíomhanna",
   aboutJudged:
-    "Téann gach suíomh nua trí eagarthóir AI: an nuacht é, cad é a bhfuil sé faoi, cé chomh fada is a shíneann a réim. Fágtar amach suíomhanna atá ar eolas as mífhaisnéis. Scortar suíomh a imíonn ón ngréasán ar feadh i bhfad.",
+    "Téann gach suíomh nua trí eagarthóir AI: an nuacht é, an i mBéarla atá sé, cad é a bhfuil sé faoi, cé chomh fada is a shíneann a réim. Scortar suíomh a imíonn ón ngréasán ar feadh i bhfad.",
   aboutTiers:
-    "Téann na grádanna ó S, na suíomhanna a leagann clár na nuachta amach, síos go E, suíomhanna nach bhfuil grádaithe go hiomlán fós. Léiríonn siad faidhrsinge agus tionchar, ní cáilíocht ná dearcadh. Fágtar suíomhanna le grád F as an gcascairt ar fad.",
+    "Téann na grádanna ó S, na suíomhanna a leagann clár na nuachta amach, síos go E, suíomhanna nach bhfuil grádaithe go hiomlán fós. Léiríonn siad fairsinge agus tionchar, ní dearcadh. Fágtar suíomhanna le grád F, atá ar eolas as mífhaisnéis nó scéalta cumtha, as an gcascairt ar fad.",
   aboutOpenSource: "Foinse oscailte",
   aboutApi: "API:",
   aboutCode: "Cód:",

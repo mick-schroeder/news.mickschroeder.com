@@ -21,7 +21,7 @@ const links = pages.map((page) => ({
 const years = `${site.since}-${new Date().getFullYear()}`
 ---
 
-<footer class="page-width mt-12 max-w-5xl border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
+<footer class="page-width mt-12 border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
   <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
     <b class="text-foreground">{site.name}™</b> © {years}
     <ExternalLink href={site.ownerUrl} class="link">

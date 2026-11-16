@@ -63,7 +63,7 @@ const urlKey = (value: string) => {
   return url.hostname.replace(/^www\./, "") + url.pathname.replace(/\/+$/, "")
 }
 
-/** Validates the published feed and drops tier F. Throws on anything off. */
+/** Validates the published feed, drops tier F and tags no site uses. Throws on anything off. */
 export function parseFeed(
   rawSites: unknown,
   rawTags: unknown,
@@ -93,10 +93,9 @@ export function parseFeed(
     if (unknown) throw new Error(`${site.id} has unknown tag: ${unknown}`)
   }
 
-  return {
-    sites: sites.filter((site): site is Site => site.tier !== "F"),
-    tags,
-  }
+  const kept = sites.filter((site): site is Site => site.tier !== "F")
+  const used = new Set(kept.flatMap((site) => site.tags))
+  return { sites: kept, tags: tags.filter((tag) => used.has(tag.id)) }
 }
 
 export const defaultFeedUrl = "https://data.news.mickschroeder.com"

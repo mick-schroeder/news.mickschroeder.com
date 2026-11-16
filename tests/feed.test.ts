@@ -13,12 +13,20 @@ const parse = (sites: unknown, tags: unknown = rawTags) =>
   parseFeed(sites, tags, { minSites: 1 })
 
 test("the fixture parses and tier F is dropped", () => {
-  const { sites, tags } = parse(rawSites)
-  assert.equal(tags.length, rawTags.length)
+  const { sites } = parse(rawSites)
   assert.ok(rawSites.some((site: { tier: string }) => site.tier === "F"))
   assert.equal(
     sites.length,
     rawSites.filter((site: { tier: string }) => site.tier !== "F").length
+  )
+})
+
+test("tags no kept site uses are dropped", () => {
+  const [site] = rawSites.filter((each: { tier: string }) => each.tier !== "F")
+  const { tags } = parse([{ ...site, tags: ["news"] }])
+  assert.deepEqual(
+    tags.map((tag) => tag.id),
+    ["news"]
   )
 })
 

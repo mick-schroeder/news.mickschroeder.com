@@ -54,6 +54,23 @@ export default defineConfig({
         ],
       },
     },
+    {
+      provider: fontProviders.local(),
+      name: "Newsreader",
+      cssVariable: "--font-newsreader",
+      fallbacks: ["serif"],
+      options: {
+        variants: [
+          {
+            weight: "200 800",
+            style: "normal",
+            src: [
+              "@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2",
+            ],
+          },
+        ],
+      },
+    },
   ],
   vite: {
     plugins: [tailwindcss()],

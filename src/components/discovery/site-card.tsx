@@ -62,7 +62,7 @@ export function SiteCard({
       </div>
       <p
         lang="en"
-        className="line-clamp-2 min-h-10 w-full text-sm leading-5 text-pretty text-muted-foreground"
+        className="line-clamp-3 min-h-15 w-full text-sm leading-5 text-pretty text-muted-foreground"
       >
         {site.description}
       </p>

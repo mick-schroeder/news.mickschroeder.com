@@ -69,9 +69,9 @@ export default {
     "Every night, an algorithm rebuilds the list by scanning popular and influential sites around the web — the ones that consistently surface what people are reading and talking about.",
   aboutJudgedTitle: "How sites are judged",
   aboutJudged:
-    "Each new site passes through an AI editor: is it news, what is it about, how far does its reach extend. Sites known for misinformation are excluded. A site that disappears from the web for long enough is quietly retired.",
+    "Each new site passes through an AI editor: is it news, is it in English, what is it about, how far does its reach extend. A site that disappears from the web for long enough is quietly retired.",
   aboutTiers:
-    "Tiers run from S, the sites that set the news agenda, down to E, sites not yet fully rated. They reflect reach and influence, not quality or viewpoint. Sites assigned F are excluded from the shuffle entirely.",
+    "Tiers run from S, the sites that set the news agenda, down to E, sites not yet fully rated. They reflect reach and influence, not viewpoint. Sites rated F, known for misinformation or made-up stories, are left out of the shuffle entirely.",
   aboutOpenSource: "Open source",
   aboutApi: "API:",
   aboutCode: "Code:",
