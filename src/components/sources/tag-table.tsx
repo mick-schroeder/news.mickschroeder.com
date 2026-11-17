@@ -2,8 +2,8 @@ import { ChevronRight } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { TagIcon } from "@/components/tag-icon"
-import { tagLabel, type Site, type Tag } from "@/lib/sites"
-import { SiteIcon } from "./site-icon"
+import { tagLabel, type Source, type Tag } from "@/lib/sources"
+import { SourceIcon } from "./source-icon"
 
 // Line the table up with the card's padding.
 const tableEdges = "[&_td:first-child]:pl-6 [&_td:last-child]:pr-6"
@@ -11,14 +11,14 @@ const tableEdges = "[&_td:first-child]:pl-6 [&_td:last-child]:pr-6"
 const rowLink =
   "font-medium text-foreground outline-none after:absolute after:inset-0 focus-visible:after:rounded-md focus-visible:after:ring-2 focus-visible:after:ring-ring"
 
-/** Tags as table rows, each with a few of its sites' icons. */
+/** Tags as table rows, each with a few of its sources' icons. */
 export function TagTable({
   rows,
 }: {
   rows: {
     tag: Tag
     href: string
-    examples: Site[]
+    examples: Source[]
   }[]
 }) {
   return (
@@ -46,9 +46,9 @@ export function TagTable({
                     aria-hidden="true"
                   >
                     {examples.map((source) => (
-                      <SiteIcon
+                      <SourceIcon
                         key={source.id}
-                        site={source}
+                        source={source}
                         className="ring-2 ring-background"
                       />
                     ))}

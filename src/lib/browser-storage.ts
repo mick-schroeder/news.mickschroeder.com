@@ -1,11 +1,11 @@
-import { parseFilters, type Filters, type Site, type Tag } from "./sites.ts"
+import { parseFilters, type Filters, type Source, type Tag } from "./sources.ts"
 
-export const storageKeys = {
-  filters: "news-shuffle.preferences.v2",
+const storageKeys = {
+  filters: "news-shuffle.preferences.v3",
   history: "news-shuffle.history.v2",
 } as const
 
-export function readStorage(key: string): string | null {
+function readStorage(key: string): string | null {
   try {
     return localStorage.getItem(key)
   } catch {
@@ -13,7 +13,7 @@ export function readStorage(key: string): string | null {
   }
 }
 
-export function writeStorage(key: string, value: string): boolean {
+function writeStorage(key: string, value: string): boolean {
   try {
     localStorage.setItem(key, value)
     return true
@@ -36,7 +36,7 @@ export function writeFilters(filters: Filters) {
   window.dispatchEvent(new CustomEvent(filtersEvent, { detail: filters }))
 }
 
-/** Recently opened site ids, newest first. */
+/** Recently opened source ids, newest first. */
 export function readHistory(): string[] {
   try {
     const parsed = JSON.parse(readStorage(storageKeys.history) ?? "[]")
@@ -58,9 +58,9 @@ export function addToHistory(id: string, maxItems = 7): string[] {
   return updated
 }
 
-/** The shuffle's site list, built from the feed at build time. */
-export async function loadSites(signal: AbortSignal): Promise<Site[]> {
-  const response = await fetch("/sites.json", { signal })
-  if (!response.ok) throw new Error(`/sites.json: HTTP ${response.status}`)
+/** The shuffle's source list, built from the data at build time. */
+export async function loadSources(signal: AbortSignal): Promise<Source[]> {
+  const response = await fetch("/sources.json", { signal })
+  if (!response.ok) throw new Error(`/sources.json: HTTP ${response.status}`)
   return response.json()
 }

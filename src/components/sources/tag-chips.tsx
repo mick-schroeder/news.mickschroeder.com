@@ -2,7 +2,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import { Badge } from "@/components/ui/badge"
 import { TagIcon } from "@/components/tag-icon"
 import type { Locale } from "@/i18n/locales"
-import { tagLabel, type Tag } from "@/lib/sites"
+import { tagLabel, type Tag } from "@/lib/sources"
 
 /** Tags as links to their pages. */
 export function TagChips({

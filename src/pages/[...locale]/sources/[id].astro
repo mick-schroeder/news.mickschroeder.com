@@ -5,28 +5,28 @@ import Layout from "@/layouts/main.astro"
 import { PageBreadcrumb } from "@/components/sources/page-breadcrumb"
 import { ShareButtons } from "@/components/sources/share-buttons"
 import {
-  SimilarSites,
+  SimilarSources,
   SourceDetails,
   SourceNav,
 } from "@/components/sources/source-details"
-import { getSites, getTags } from "@/lib/catalog"
+import { getSources, getTags } from "@/lib/catalog"
 import { localeParam, locales, resolveLocale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
 import {
   hashOf,
   hostOf,
   neighbours,
-  pickSite,
+  pickSource,
   seededRandom,
-  similarSites,
-} from "@/lib/sites"
+  similarSources,
+} from "@/lib/sources"
 
 export const getStaticPaths = (async () => {
-  const sites = await getSites()
+  const sources = await getSources()
   const tags = await getTags()
   return locales.flatMap((locale) =>
-    sites.map((source, index) => {
-      const { previous, next } = neighbours(sites, index)
+    sources.map((source, index) => {
+      const { previous, next } = neighbours(sources, index)
       const skip = [source.id, previous.id, next.id]
       return {
         params: {
@@ -37,8 +37,12 @@ export const getStaticPaths = (async () => {
           source,
           tags,
           // Prev/next already have their own buttons.
-          similar: similarSites(source, sites, tags, 6, skip),
-          random: pickSite(sites, skip, seededRandom(hashOf(`${source.id}~`)))!,
+          similar: similarSources(source, sources, tags, 6, skip),
+          random: pickSource(
+            sources,
+            skip,
+            seededRandom(hashOf(`${source.id}~`))
+          )!,
           previous,
           next,
         },
@@ -96,10 +100,10 @@ const host = hostOf(source.url)
         <ShareButtons
           client:idle
           locale={locale}
-          site={{ id: source.id, title: source.title }}
+          source={{ id: source.id, title: source.title }}
         />
       </div>
-      <SimilarSites sites={similar} locale={locale} />
+      <SimilarSources sources={similar} locale={locale} />
     </div>
   </main>
 </Layout>

@@ -12,7 +12,6 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button"
 import type { Locale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
-import { site as brand } from "@/lib/site"
 
 const canShare = () => typeof navigator.share === "function"
 const enc = encodeURIComponent
@@ -54,10 +53,10 @@ const networks = [
 /** The device's share sheet where there is one, then links to each network. */
 export function ShareButtons({
   locale,
-  site,
+  source,
 }: {
   locale: Locale
-  site: { id: string; title: string }
+  source: { id: string; title: string }
 }) {
   const t = translations[locale]
   const native = useSyncExternalStore(
@@ -66,10 +65,10 @@ export function ShareButtons({
     () => false
   )
   const url = new URL(
-    getRelativeLocaleUrl(locale, `sources/${site.id}/`),
+    getRelativeLocaleUrl(locale, `sources/${source.id}/`),
     import.meta.env.SITE
   ).href
-  const text = format(t.shareText, { title: site.title, site: brand.name })
+  const text = format(t.shareText, { title: source.title })
   const link = buttonVariants({ variant: "outline", size: "icon-sm" })
 
   return (

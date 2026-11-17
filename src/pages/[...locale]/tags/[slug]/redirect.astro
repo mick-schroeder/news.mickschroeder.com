@@ -2,7 +2,7 @@
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import ShuffleRedirect from "@/components/shuffle-redirect.astro"
 import { getTags } from "@/lib/catalog"
-import { browsableTags } from "@/lib/sites"
+import { browsableTags } from "@/lib/sources"
 import { localeParam, locales, resolveLocale } from "@/i18n/locales"
 
 export const getStaticPaths = (async () => {

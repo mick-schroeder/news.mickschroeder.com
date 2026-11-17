@@ -5,7 +5,7 @@ import { ShuffleSettings } from "@/components/shuffle-settings"
 import { SiteNav } from "@/components/site-nav"
 import { resolveLocale } from "@/i18n/locales"
 import { getTags } from "@/lib/catalog"
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 
 const locale = resolveLocale(Astro.currentLocale)
 const home = getRelativeLocaleUrl(locale)
@@ -24,7 +24,7 @@ const tags = await getTags()
     >
       <BrandLogo />
       <span class="font-masthead text-4xl leading-none sm:text-6xl">
-        {site.name}
+        {brand.name}
       </span>
     </a>
     <div class="sm:justify-self-end">

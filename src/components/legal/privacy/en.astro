@@ -1,15 +1,15 @@
 ---
 import ExternalLink from "@/components/external-link.astro"
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 ---
 
 <p>
-  {site.name} stores your shuffle filters and recently opened sites in this
+  {brand.name} stores your shuffle filters and recently opened sources in this
   browser. You can remove those preferences by clearing this site’s data in your
   browser settings.
 </p>
 <p>
-  Your browser requests site icons from Google, using each site’s hostname.
+  Your browser requests source icons from Google, using each source’s hostname.
   Google receives the request and its connection details. See{" "}
   <ExternalLink
     class="link"

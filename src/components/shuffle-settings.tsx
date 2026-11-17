@@ -18,7 +18,7 @@ import {
   readFilters,
   writeFilters,
 } from "@/lib/browser-storage"
-import type { Filters, Tag } from "@/lib/sites"
+import type { Filters, Tag } from "@/lib/sources"
 
 /** Gear in the masthead that opens the Your shuffle filters. */
 export function ShuffleSettings({

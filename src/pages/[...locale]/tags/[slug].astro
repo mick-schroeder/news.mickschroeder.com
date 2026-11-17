@@ -7,8 +7,8 @@ import { HostLink } from "@/components/sources/host-link"
 import { TagChips } from "@/components/sources/tag-chips"
 import TierList from "@/components/sources/tier-list.astro"
 import { buttonVariants } from "@/components/ui/button"
-import { getSites, getTags } from "@/lib/catalog"
-import { browsableTags, tagLabel } from "@/lib/sites"
+import { getSources, getTags } from "@/lib/catalog"
+import { browsableTags, tagLabel } from "@/lib/sources"
 import { localeParam, locales, resolveLocale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
 
@@ -32,7 +32,7 @@ const locale = resolveLocale(Astro.currentLocale)
 const slug = tag.id
 const t = translations[locale]
 const label = tagLabel(tag)
-const sources = (await getSites()).filter((source) =>
+const sources = (await getSources()).filter((source) =>
   source.tags.includes(tag.id)
 )
 ---
@@ -62,5 +62,5 @@ const sources = (await getSites()).filter((source) =>
     {format(t.shuffleTag, { label })}
   </a>
   <TagChips locale={locale} tags={tags} current={tag.id} label={t.tags} />
-  <TierList sites={sources} />
+  <TierList sources={sources} />
 </BrowsePage>

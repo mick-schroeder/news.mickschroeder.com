@@ -10,12 +10,13 @@ import {
   defaultFilters,
   facets,
   tagLabel,
+  tagsByFacet,
   tierRank,
   tiers,
   type Filters,
   type Tag,
   type Tier,
-} from "@/lib/sites"
+} from "@/lib/sources"
 import { cn } from "@/lib/utils"
 
 function FacetRow({
@@ -123,7 +124,7 @@ function TierSlider({
   )
 }
 
-/** Topics, places, aggregators and lowest tier for the shuffle. */
+/** Topics, regions, feeds and lowest tier for the shuffle. */
 export function FilterPanel({
   locale,
   tags,
@@ -136,35 +137,24 @@ export function FilterPanel({
   onChange: (filters: Filters) => void
 }) {
   const t = translations[locale]
-  const groups = facets(tags)
+  const groups = tagsByFacet(tags)
   const set = (patch: Partial<Filters>) =>
     filters && onChange({ ...filters, ...patch })
   const isDefault = JSON.stringify(filters) === JSON.stringify(defaultFilters)
 
   return (
     <FieldGroup className="min-w-0 gap-5">
-      <FacetRow
-        id="filter-topics"
-        label={t.topics}
-        tags={groups.topics}
-        selected={filters?.topics}
-        onChange={(topics) => set({ topics })}
-      />
-      <FacetRow
-        id="filter-where"
-        label={t.where}
-        tags={groups.regions}
-        selected={filters?.regions}
-        onChange={(regions) => set({ regions })}
-      />
-      <FacetRow
-        id="filter-seen-on"
-        label={t.seenOn}
-        tags={groups.seenOn}
-        selected={filters?.seenOn}
-        onChange={(seenOn) => set({ seenOn })}
-        icons={false}
-      />
+      {facets.map((facet) => (
+        <FacetRow
+          key={facet}
+          id={`filter-${facet}`}
+          label={t[facet]}
+          tags={groups[facet]}
+          selected={filters?.[facet]}
+          onChange={(ids) => set({ [facet]: ids })}
+          icons={facet !== "feed"}
+        />
+      ))}
       <TierSlider
         locale={locale}
         lowestTier={filters?.lowestTier ?? defaultFilters.lowestTier}

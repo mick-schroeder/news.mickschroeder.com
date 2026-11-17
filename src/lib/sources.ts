@@ -1,82 +1,77 @@
-import { tiers, type Site, type Tag, type Tier } from "./feed.ts"
+import {
+  facets,
+  tiers,
+  type Facet,
+  type Source,
+  type Tag,
+  type Tier,
+} from "./data.ts"
 
-export type { Site, Tag, Tier } from "./feed.ts"
-export { tagLabel, tiers } from "./feed.ts"
+export type { Facet, Source, Tag, Tier } from "./data.ts"
+export { facets, tagLabel, tiers } from "./data.ts"
 
-export type Filters = {
-  topics: string[]
-  regions: string[]
-  seenOn: string[]
+export type Filters = Record<Facet, string[]> & {
   /** Lowest tier included, e.g. B means S, A and B. */
   lowestTier: Tier
 }
 
 export const defaultFilters: Filters = {
-  topics: ["news"],
-  regions: [],
-  seenOn: [],
+  topic: ["news"],
+  region: [],
+  feed: [],
   lowestTier: "B",
 }
 
 export const tierRank = (tier: Tier) => tiers.indexOf(tier)
 
-/** Chip groups for the shuffle controls, in feed order. */
-export function facets(tags: Tag[]) {
-  const of = (...kinds: Tag["kind"][]) =>
-    tags.filter((tag) => kinds.includes(tag.kind))
-  return {
-    topics: of("tag"),
-    regions: of("region", "language"),
-    seenOn: of("aggregator"),
-  }
-}
+/** Tags by facet, in data order. */
+export const tagsByFacet = (tags: Tag[]) =>
+  Object.fromEntries(
+    facets.map((facet) => [facet, tags.filter((tag) => tag.kind === facet)])
+  ) as Record<Facet, Tag[]>
 
-/** Tags with a browse page: every facet tag. */
-export const browsableTags = (tags: Tag[]) => {
-  const { topics, regions, seenOn } = facets(tags)
-  return [...topics, ...regions, ...seenOn]
-}
+/** Tags with a browse page: every facet tag, in facet order. */
+export const browsableTags = (tags: Tag[]) =>
+  Object.values(tagsByFacet(tags)).flat()
 
-const matchesAny = (site: Site, wanted: string[]) =>
-  !wanted.length || wanted.some((tag) => site.tags.includes(tag))
+const matchesAny = (source: Source, wanted: string[]) =>
+  !wanted.length || wanted.some((tag) => source.tags.includes(tag))
 
 /** Any match within a facet, all facets must match; empty means any. */
-export function filterSites(sites: Site[], filters: Filters) {
+export function filterSources(sources: Source[], filters: Filters) {
   const lowest = tierRank(filters.lowestTier)
-  return sites.filter(
-    (site) =>
-      tierRank(site.tier) <= lowest &&
-      matchesAny(site, filters.topics) &&
-      matchesAny(site, filters.regions) &&
-      matchesAny(site, filters.seenOn)
+  return sources.filter(
+    (source) =>
+      tierRank(source.tier) <= lowest &&
+      facets.every((facet) => matchesAny(source, filters[facet]))
   )
 }
 
-/** A random site, avoiding recent ids while any are left. */
-export function pickSite(
-  sites: Site[],
+/** A random source, avoiding recent ids while any are left. */
+export function pickSource(
+  sources: Source[],
   history: readonly string[] = [],
   random = Math.random
-): Site | undefined {
-  const fresh = sites.filter((site) => !history.includes(site.id))
-  const pool = fresh.length ? fresh : sites
+): Source | undefined {
+  const fresh = sources.filter((source) => !history.includes(source.id))
+  const pool = fresh.length ? fresh : sources
   return pool[Math.floor(random() * pool.length)]
 }
 
 /** Tier, then title. The order of the directory and prev/next. */
-export const directoryOrder = (sites: Site[]) =>
-  [...sites].sort(
+export const directoryOrder = (sources: Source[]) =>
+  [...sources].sort(
     (a, b) =>
       tierRank(a.tier) - tierRank(b.tier) ||
       a.title.localeCompare(b.title, "en")
   )
 
-/** Sites grouped by tier, best first; empty tiers left out. */
-export function byTier(sites: Site[]) {
-  const ordered = directoryOrder(sites)
+/** Sources grouped by tier, best first; empty tiers left out. */
+export function byTier(sources: Source[]) {
+  const ordered = directoryOrder(sources)
   return tiers.map((tier) => ({
     tier,
-    sites: ordered.filter((site) => site.tier === tier),
+    sources: ordered.filter((source) => source.tier === tier),
   }))
 }
 
@@ -99,27 +94,27 @@ export function seededRandom(seed: number) {
 }
 
 /**
- * Sites sharing topics and region: a per-site random pick from the best
+ * Sources sharing topics and region: a per-source random pick from the best
  * matches, so neighbouring pages don't repeat the same list.
  */
-export function similarSites(
-  site: Site,
-  sites: Site[],
+export function similarSources(
+  source: Source,
+  sources: Source[],
   tags: Tag[],
   limit = 6,
   exclude: readonly string[] = []
 ) {
-  const { topics, regions } = facets(tags)
+  const { topic, region } = tagsByFacet(tags)
   const ids = (list: Tag[]) => new Set(list.map((tag) => tag.id))
-  const topicIds = ids(topics)
-  const regionIds = ids(regions)
-  const shared = (other: Site, within: Set<string>) =>
-    other.tags.filter((tag) => within.has(tag) && site.tags.includes(tag))
+  const topicIds = ids(topic)
+  const regionIds = ids(region)
+  const shared = (other: Source, within: Set<string>) =>
+    other.tags.filter((tag) => within.has(tag) && source.tags.includes(tag))
       .length
 
-  const random = seededRandom(hashOf(site.id))
-  const pool = sites
-    .filter((other) => other.id !== site.id && !exclude.includes(other.id))
+  const random = seededRandom(hashOf(source.id))
+  const pool = sources
+    .filter((other) => other.id !== source.id && !exclude.includes(other.id))
     .map((other) => ({
       other,
       topics: shared(other, topicIds),
@@ -127,7 +122,7 @@ export function similarSites(
       score:
         shared(other, topicIds) * 3 +
         shared(other, regionIds) * 2 -
-        Math.abs(tierRank(other.tier) - tierRank(site.tier)) +
+        Math.abs(tierRank(other.tier) - tierRank(source.tier)) +
         random() * 3,
     }))
     .filter(({ topics }) => topics > 0)
@@ -169,9 +164,9 @@ export function parseFilters(raw: string | null, tags: Tag[]): Filters {
   try {
     const saved = JSON.parse(raw) ?? {}
     return {
-      topics: ids(saved.topics),
-      regions: ids(saved.regions),
-      seenOn: ids(saved.seenOn),
+      ...(Object.fromEntries(
+        facets.map((facet) => [facet, ids(saved[facet])])
+      ) as Record<Facet, string[]>),
       lowestTier: tiers.includes(saved.lowestTier)
         ? saved.lowestTier
         : defaultFilters.lowestTier,
@@ -184,7 +179,7 @@ export function parseFilters(raw: string | null, tags: Tag[]): Filters {
 export const hostOf = (url: string) =>
   new URL(url).hostname.replace(/^www\./, "")
 
-/** Cached favicon path; only exists when `site.icon` is true. */
+/** Cached favicon path; only exists when `source.icon` is true. */
 export const iconPath = (id: string) => `/favicons/${id}.png`
 
 // Literal class names, so Tailwind generates them. White text passes AA on each.
@@ -201,11 +196,12 @@ const monogramColors = [
   "bg-rose-700",
 ]
 
-/** Letter and stable color for a site without a favicon. */
-export function monogram(site: Pick<Site, "id">) {
-  const letter = site.id.match(/[\p{L}\p{N}]/u)?.[0]?.toLocaleUpperCase() ?? "?"
+/** Letter and stable color for a source without a favicon. */
+export function monogram(source: Pick<Source, "id">) {
+  const letter =
+    source.id.match(/[\p{L}\p{N}]/u)?.[0]?.toLocaleUpperCase() ?? "?"
   let hash = 0
-  for (const char of site.id) hash = (hash * 31 + char.charCodeAt(0)) >>> 0
+  for (const char of source.id) hash = (hash * 31 + char.charCodeAt(0)) >>> 0
   return { letter, color: monogramColors[hash % monogramColors.length] }
 }
 

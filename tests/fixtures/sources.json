@@ -21,8 +21,7 @@
       "techmeme",
       "memeorandum",
       "mediagazer",
-      "drudge-report",
-      "popular"
+      "drudge-report"
     ]
   },
   {
@@ -31,14 +30,7 @@
     "url": "https://www.bbc.co.uk/news",
     "description": "UK and international news from the British Broadcasting Corporation.",
     "tier": "S",
-    "tags": [
-      "british",
-      "news",
-      "newzit",
-      "brutalist-report",
-      "drudge-report",
-      "popular"
-    ]
+    "tags": ["british", "news", "newzit", "brutalist-report", "drudge-report"]
   },
   {
     "id": "bloomberg",
@@ -53,8 +45,7 @@
       "techmeme",
       "memeorandum",
       "mediagazer",
-      "drudge-report",
-      "popular"
+      "drudge-report"
     ]
   },
   {
@@ -71,7 +62,7 @@
     "url": "https://www.espn.com/",
     "description": "Sports news, scores and analysis covering US and international sports.",
     "tier": "A",
-    "tags": ["american", "sports", "newzit", "brutalist-report", "popular"]
+    "tags": ["american", "sports", "newzit", "brutalist-report"]
   },
   {
     "id": "foxnews",
@@ -87,8 +78,7 @@
       "brutalist-report",
       "memeorandum",
       "mediagazer",
-      "drudge-report",
-      "popular"
+      "drudge-report"
     ]
   },
   {
@@ -105,14 +95,7 @@
     "url": "https://www.dailymail.com/home/index.html",
     "description": "Website of the Daily Mail covering UK and world news, celebrity and sport.",
     "tier": "A",
-    "tags": [
-      "british",
-      "news",
-      "newzit",
-      "memeorandum",
-      "drudge-report",
-      "popular"
-    ]
+    "tags": ["british", "news", "newzit", "memeorandum", "drudge-report"]
   },
   {
     "id": "politico",
@@ -143,8 +126,7 @@
       "techmeme",
       "memeorandum",
       "mediagazer",
-      "drudge-report",
-      "popular"
+      "drudge-report"
     ]
   },
   {
@@ -153,7 +135,7 @@
     "url": "https://www.rte.ie/",
     "description": "Irish public broadcaster's site with news, sport and entertainment.",
     "tier": "A",
-    "tags": ["irish", "news", "popular"]
+    "tags": ["irish", "news"]
   },
   {
     "id": "techcrunch",
@@ -161,7 +143,7 @@
     "url": "https://techcrunch.com/",
     "description": "Covers technology startups, venture capital, and the tech industry.",
     "tier": "A",
-    "tags": ["american", "tech", "newzit", "techmeme", "mediagazer", "popular"]
+    "tags": ["american", "tech", "newzit", "techmeme", "mediagazer"]
   },
   {
     "id": "irishtimes",
@@ -169,7 +151,7 @@
     "url": "https://www.irishtimes.com/",
     "description": "Irish national newspaper covering news, politics, business, sport and culture.",
     "tier": "A",
-    "tags": ["irish", "news", "popular"]
+    "tags": ["irish", "news"]
   },
   {
     "id": "nytimes",
@@ -185,8 +167,7 @@
       "techmeme",
       "memeorandum",
       "mediagazer",
-      "drudge-report",
-      "popular"
+      "drudge-report"
     ]
   },
   {

@@ -1,9 +1,9 @@
 import { ExternalLink } from "lucide-react"
 import { translations, type Locale } from "@/i18n/ui"
-import { hostOf } from "@/lib/sites"
+import { hostOf } from "@/lib/sources"
 import { cn } from "@/lib/utils"
 
-/** A site's host, opening the site in a new tab. */
+/** A source's host, opening the source in a new tab. */
 export function HostLink({
   url,
   locale,

@@ -3,8 +3,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Content: CC BY-NC 4.0](https://img.shields.io/badge/Content-CC%20BY--NC%204.0-blue.svg)](CONTENT_LICENSE.md)
 
-Shuffle to a random news site. Pick topics, places and tiers, then open the
-queued site or ask for a new pick. Save the shuffle bookmark to shuffle with
+Shuffle to a random news source. Pick topics, regions and tiers, then open the
+queued source or ask for a new pick. Save the shuffle bookmark to shuffle with
 your filters from anywhere.
 
 Built with [Astro](https://astro.build/), [React](https://react.dev/),
@@ -17,7 +17,7 @@ Requires Node (see `.nvmrc`) and pnpm.
 
 ```sh
 pnpm install
-pnpm fetch-favicons   # optional: cache site icons in public/favicons/
+pnpm fetch-favicons   # optional: cache source icons in public/favicons/
 pnpm dev
 ```
 
@@ -35,10 +35,22 @@ and only load in production builds on the live domain.
 
 ## Data
 
-Sites and tags come from
+Sources and tags come from
 [popular-news-sites](https://github.com/mick-schroeder/popular-news-sites)
-at build time (`data.news.mickschroeder.com`). The feed is validated in
-`src/lib/feed.ts`; if it can't be fetched or doesn't validate, the build fails.
+at build time (`data.news.mickschroeder.com`). The data is validated in
+`src/lib/data.ts`; if it can't be fetched or doesn't validate, the build fails.
+
+| Term   | Meaning                                     | Example               |
+| ------ | ------------------------------------------- | --------------------- |
+| Source | A news website the shuffle can open         | nytimes.com           |
+| Tag    | A label on a source, of one kind below      |                       |
+| Topic  | Tag kind: what a source covers              | news, politics        |
+| Region | Tag kind: where a source is based; optional | british, american     |
+| Feed   | Tag kind: a feed that listed the source     | Newzit, Drudge Report |
+| Tier   | A source's rank, S (best) to F              | B                     |
+
+Topic, region and feed are the facets: each is a tag `kind`, a filter key and a
+UI label in `en.ts`, with no mapping between them.
 
 To build against a local run of the data repo, serve its `out/` folder and set
 `DATA_URL=http://localhost:4400`.
@@ -58,9 +70,9 @@ src/
     en.ts              All UI text
     locales.ts         Supported languages (English)
   lib/
-    site.ts            Site name, owner and links
-    feed.ts            Feed schema and loader
-    sites.ts           Filtering, shuffling and sorting
+    brand.ts           App name, owner and links
+    data.ts            Data schema and loader
+    sources.ts         Filtering, shuffling and sorting
 design/                Sources for the social share images
 scripts/               Build helpers
 tests/                 Unit tests (node --test)
@@ -68,9 +80,9 @@ tests/                 Unit tests (node --test)
 
 ## Conventions
 
-- **Text** lives in `src/i18n/en.ts`, never in components. Write `{site}` for
-  the site name.
-- **Brand** details live in `src/lib/site.ts`.
+- **Text** lives in `src/i18n/en.ts`, never in components. Write `{brand}` for
+  the app name.
+- **Brand** details live in `src/lib/brand.ts`.
 - **Pages** read their language from `Astro.currentLocale`. React components
   take a `locale` prop.
 - **UI** uses the shadcn components in `src/components/ui` and their variants.

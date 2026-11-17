@@ -4,14 +4,11 @@ import { z } from "astro/zod"
 export const tiers = ["S", "A", "B", "C", "D", "E", "F"] as const
 export type Tier = (typeof tiers)[number]
 
-export const tagKinds = [
-  "tag",
-  "region",
-  "language",
-  "aggregator",
-  "tier",
-  "sponsor",
-] as const
+/** Tag kinds the shuffle filters on, in panel order. */
+export const facets = ["topic", "region", "feed"] as const
+export type Facet = (typeof facets)[number]
+
+const tagKinds = [...facets, "language", "sponsor"] as const
 
 const slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/)
 
@@ -22,15 +19,15 @@ export const tagSchema = z.object({
   /** Lucide icon name. */
   icon: slug.optional(),
   description: z.string(),
-  /** The aggregator's own site, for aggregator tags. */
+  /** The feed's own site, for feed tags. */
   url: z.url({ protocol: /^https$/ }).optional(),
 })
 
-export const siteSchema = z.object({
+export const sourceSchema = z.object({
   id: slug,
   title: z.string().trim().min(1),
   url: z.url({ protocol: /^https$/ }),
-  // Hand-seeded sites may not be judged yet: unknown tier, no description.
+  // Hand-seeded sources may not be judged yet: unknown tier, no description.
   description: z.string().default(""),
   tier: z.enum(tiers).default("E"),
   tags: z.array(slug).min(1),
@@ -43,7 +40,7 @@ export type Tag = z.infer<typeof tagSchema> & {
 export type IconNode = [string, Record<string, string>][]
 
 export const tagLabel = (tag: Tag) => tag.title
-export type Site = z.infer<typeof siteSchema> & {
+export type Source = z.infer<typeof sourceSchema> & {
   /** Set by the catalog when public/favicons/{id}.png exists. */
   icon?: boolean
 }
@@ -53,16 +50,18 @@ const urlKey = (value: string) => {
   return url.hostname.replace(/^www\./, "") + url.pathname.replace(/\/+$/, "")
 }
 
-/** Validates the published feed and drops tags no site uses. Throws on anything off. */
-export function parseFeed(
-  rawSites: unknown,
+/** Validates the published data and drops tags no source uses. Throws on anything off. */
+export function parseData(
+  rawSources: unknown,
   rawTags: unknown,
-  { minSites = 100 } = {}
-): { sites: Site[]; tags: Tag[] } {
+  { minSources = 100 } = {}
+): { sources: Source[]; tags: Tag[] } {
   const tags = z.array(tagSchema).min(1).parse(rawTags)
-  const sites = z.array(siteSchema).parse(rawSites)
-  if (sites.length < minSites) {
-    throw new Error(`Feed has ${sites.length} sites, expected ${minSites}+`)
+  const sources = z.array(sourceSchema).parse(rawSources)
+  if (sources.length < minSources) {
+    throw new Error(
+      `Data has ${sources.length} sources, expected ${minSources}+`
+    )
   }
 
   const tagIds = new Set<string>()
@@ -73,21 +72,21 @@ export function parseFeed(
 
   const ids = new Set<string>()
   const urls = new Set<string>()
-  for (const site of sites) {
-    if (ids.has(site.id)) throw new Error(`Duplicate site id: ${site.id}`)
-    ids.add(site.id)
-    const key = urlKey(site.url)
-    if (urls.has(key)) throw new Error(`Duplicate site URL: ${site.url}`)
+  for (const source of sources) {
+    if (ids.has(source.id)) throw new Error(`Duplicate source id: ${source.id}`)
+    ids.add(source.id)
+    const key = urlKey(source.url)
+    if (urls.has(key)) throw new Error(`Duplicate source URL: ${source.url}`)
     urls.add(key)
-    const unknown = site.tags.find((tag) => !tagIds.has(tag))
-    if (unknown) throw new Error(`${site.id} has unknown tag: ${unknown}`)
+    const unknown = source.tags.find((tag) => !tagIds.has(tag))
+    if (unknown) throw new Error(`${source.id} has unknown tag: ${unknown}`)
   }
 
-  const used = new Set(sites.flatMap((site) => site.tags))
-  return { sites, tags: tags.filter((tag) => used.has(tag.id)) }
+  const used = new Set(sources.flatMap((source) => source.tags))
+  return { sources, tags: tags.filter((tag) => used.has(tag.id)) }
 }
 
-export const defaultFeedUrl = "https://data.news.mickschroeder.com"
+export const defaultDataUrl = "https://data.news.mickschroeder.com"
 
 async function fetchJson(url: string) {
   const response = await fetch(url)
@@ -95,11 +94,11 @@ async function fetchJson(url: string) {
   return response.json()
 }
 
-/** Fetches and parses both feed files. */
-export async function fetchFeed(base = defaultFeedUrl) {
-  const [sites, tags] = await Promise.all([
+/** Fetches and parses both data files. */
+export async function fetchData(base = defaultDataUrl) {
+  const [sources, tags] = await Promise.all([
     fetchJson(`${base}/sources.json`),
     fetchJson(`${base}/tags.json`),
   ])
-  return parseFeed(sites, tags)
+  return parseData(sources, tags)
 }

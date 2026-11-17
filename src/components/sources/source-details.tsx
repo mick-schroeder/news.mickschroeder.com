@@ -34,9 +34,15 @@ import { Separator } from "@/components/ui/separator"
 import { TierBadge } from "@/components/tier-badge"
 import type { Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { facets, hostOf, type Site, type Tag } from "@/lib/sites"
+import {
+  facets,
+  hostOf,
+  tagsByFacet,
+  type Source,
+  type Tag,
+} from "@/lib/sources"
 import { cn } from "@/lib/utils"
-import { SiteIcon } from "./site-icon"
+import { SourceIcon } from "./source-icon"
 import { HostLink } from "./host-link"
 import { TagChips } from "./tag-chips"
 
@@ -48,7 +54,7 @@ export function SourceDetails({
   tags,
   locale,
 }: {
-  source: Site
+  source: Source
   /** All tags; the source's own are picked out by kind. */
   tags: Tag[]
   locale: Locale
@@ -56,18 +62,20 @@ export function SourceDetails({
   const t = translations[locale]
   const own = (list: Tag[]) =>
     list.filter((tag) => source.tags.includes(tag.id))
-  const { topics, regions, seenOn } = facets(tags)
-  const rows = [
-    { label: t.topics, tags: own(topics) },
-    { label: t.where, tags: own(regions) },
-    { label: t.seenOn, tags: own(seenOn), variant: "secondary" as const },
-  ].filter((row) => row.tags.length)
+  const groups = tagsByFacet(tags)
+  const rows = facets
+    .map((facet) => ({
+      label: t[facet],
+      tags: own(groups[facet]),
+      variant: facet === "feed" ? ("secondary" as const) : undefined,
+    }))
+    .filter((row) => row.tags.length)
 
   return (
     <Card className="min-w-0">
       <CardHeader className="items-center">
         <div className="flex min-w-0 items-center gap-4">
-          <SiteIcon site={source} size="md" />
+          <SourceIcon source={source} size="md" />
           <div className="min-w-0 space-y-1">
             {/* Title and host styled like the home page Up next card. */}
             <CardTitle className="text-lg leading-snug font-medium break-words sm:text-xl">
@@ -147,16 +155,16 @@ export function SourceNav({
   random,
   locale,
 }: {
-  source: Site
-  previous: Site
-  next: Site
+  source: Source
+  previous: Source
+  next: Source
   /** Fallback pick; a script swaps in a fresh one per click. */
-  random: Site
+  random: Source
   locale: Locale
 }) {
   const t = translations[locale]
-  const href = (site: Site) =>
-    getRelativeLocaleUrl(locale, `sources/${site.id}/`)
+  const href = (source: Source) =>
+    getRelativeLocaleUrl(locale, `sources/${source.id}/`)
   // Secondary, like the shuffle button beside Open on the home page.
   const icon = buttonVariants({ variant: "secondary", size: "icon-lg" })
   return (
@@ -208,42 +216,46 @@ export function SourceNav({
 }
 
 /** Links to similar sources, each with its tier. */
-export function SimilarSites({
-  sites,
+export function SimilarSources({
+  sources,
   locale,
 }: {
-  sites: Site[]
+  sources: Source[]
   locale: Locale
 }) {
   const t = translations[locale]
-  if (!sites.length) return null
+  if (!sources.length) return null
   return (
     <section aria-labelledby="similar-title" className="space-y-3">
       <h2 id="similar-title" className="heading-section">
-        {t.similarSites}
+        {t.similarSources}
       </h2>
       <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        {sites.map((site) => (
-          <li key={site.id}>
+        {sources.map((source) => (
+          <li key={source.id}>
             <Item
               variant="outline"
               size="sm"
               className="flex-nowrap"
               render={
-                <a href={getRelativeLocaleUrl(locale, `sources/${site.id}/`)} />
+                <a
+                  href={getRelativeLocaleUrl(locale, `sources/${source.id}/`)}
+                />
               }
             >
               <ItemMedia>
-                <SiteIcon site={site} size="sm" className="size-8" />
+                <SourceIcon source={source} size="sm" className="size-8" />
               </ItemMedia>
               <ItemContent className="min-w-0 gap-0">
-                <ItemTitle className="w-full truncate">{site.title}</ItemTitle>
+                <ItemTitle className="w-full truncate">
+                  {source.title}
+                </ItemTitle>
                 <ItemDescription className="truncate text-xs">
-                  {hostOf(site.url)}
+                  {hostOf(source.url)}
                 </ItemDescription>
               </ItemContent>
               <ItemActions>
-                <TierBadge tier={site.tier} locale={locale} />
+                <TierBadge tier={source.tier} locale={locale} />
                 <ChevronRight
                   className="size-4 text-muted-foreground"
                   aria-hidden="true"

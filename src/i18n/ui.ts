@@ -1,20 +1,20 @@
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 import type { Locale } from "./locales"
 import en from "./en"
 export type { Locale } from "./locales"
 
 type Strings = Record<keyof typeof en, string>
 
-const withSite = (strings: Strings) =>
+const withBrand = (strings: Strings) =>
   Object.fromEntries(
     Object.entries(strings).map(([key, value]) => [
       key,
-      value.replaceAll("{site}", site.name),
+      value.replaceAll("{brand}", brand.name),
     ])
   ) as Strings
 
 export const translations: Record<Locale, Strings> = {
-  en: withSite(en),
+  en: withBrand(en),
 }
 
 /** Fills {placeholders} in a translation string. */

@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro"
-import { getSites } from "@/lib/catalog"
+import { getSources } from "@/lib/catalog"
 
 /** Source ids for the detail page's random button. */
 export const GET: APIRoute = async () =>
-  Response.json((await getSites()).map((site) => site.id))
+  Response.json((await getSources()).map((source) => source.id))

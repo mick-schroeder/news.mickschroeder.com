@@ -1,5 +1,5 @@
 import { format, translations, type Locale } from "@/i18n/ui"
-import type { Tier } from "@/lib/sites"
+import type { Tier } from "@/lib/sources"
 import { cn } from "@/lib/utils"
 
 export const tierColors: Record<Tier, string> = {

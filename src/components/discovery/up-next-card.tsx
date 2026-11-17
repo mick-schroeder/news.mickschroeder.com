@@ -2,9 +2,9 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import { useEffect, useEffectEvent, useRef } from "react"
 import { ExternalLink, Shuffle } from "lucide-react"
 import { historyDepth, historyStep } from "./history-card-style"
-import { HistoryCard, SiteCard } from "./site-card"
-import { siteCardHeight } from "./site-card-frame"
-import { SiteCardSkeleton } from "./site-card-skeleton"
+import { HistoryCard, SourceCard } from "./source-card"
+import { sourceCardHeight } from "./source-card-frame"
+import { SourceCardSkeleton } from "./source-card-skeleton"
 import { Button } from "@/components/ui/button"
 import {
   Empty,
@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/empty"
 import { translations, type Locale } from "@/i18n/ui"
 import { openFiltersEvent } from "@/lib/browser-storage"
-import { facets, type Site, type Tag } from "@/lib/sites"
+import { tagsByFacet, type Source, type Tag } from "@/lib/sources"
 import type { useDiscovery } from "./use-discovery"
 
 type UpNextCardProps = {
@@ -27,29 +27,31 @@ type UpNextCardProps = {
 
 export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
   const t = translations[locale]
-  const { topics, regions } = facets(tags)
-  const cardTags = (site: Site) =>
-    [...topics, ...regions].filter((tag) => site.tags.includes(tag.id))
+  const { topic, region } = tagsByFacet(tags)
+  const cardTags = (source: Source) =>
+    [...topic, ...region].filter((tag) => source.tags.includes(tag.id))
   const deck = useRef<HTMLElement>(null)
   const {
     filters,
     loadFailed,
-    site: frontSite,
-    historySites,
+    source: frontSource,
+    historySources,
     transitioning,
     next,
     shuffle,
     showPrevious,
-    showHistorySite,
+    showHistorySource,
   } = discovery
   const loading = !filters && !loadFailed
   const showSkeleton = loading || transitioning
-  const showPeeks = showSkeleton && !frontSite
-  const visibleHistory = frontSite ? historySites.slice(0, historyDepth) : []
+  const showPeeks = showSkeleton && !frontSource
+  const visibleHistory = frontSource
+    ? historySources.slice(0, historyDepth)
+    : []
   const stackDepth = showPeeks ? historyDepth : visibleHistory.length
 
   const handleArrowKey = useEffectEvent((event: KeyboardEvent) => {
-    if (showSkeleton || !frontSite || event.defaultPrevented) return
+    if (showSkeleton || !frontSource || event.defaultPrevented) return
     if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
 
     const focused = document.activeElement
@@ -76,7 +78,7 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
       ref={deck}
       className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-4"
       style={{
-        minHeight: `calc(${historyDepth * historyStep + siteCardHeight}px + 4.5rem)`,
+        minHeight: `calc(${historyDepth * historyStep + sourceCardHeight}px + 4.5rem)`,
       }}
       aria-labelledby="queue-title"
     >
@@ -88,40 +90,40 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
         aria-busy={showSkeleton}
         style={{ paddingTop: stackDepth * historyStep }}
       >
-        {visibleHistory.map((site, index) => (
+        {visibleHistory.map((source, index) => (
           <HistoryCard
-            key={site.id}
-            site={site}
+            key={source.id}
+            source={source}
             index={index}
             depth={stackDepth}
-            onSelect={() => showHistorySite(site)}
+            onSelect={() => showHistorySource(source)}
           />
         ))}
 
         {showSkeleton ? (
-          <SiteCardSkeleton showPeeks={showPeeks} />
-        ) : frontSite ? (
-          <SiteCard
-            key={frontSite.id}
-            site={frontSite}
-            tags={cardTags(frontSite)}
+          <SourceCardSkeleton showPeeks={showPeeks} />
+        ) : frontSource ? (
+          <SourceCard
+            key={frontSource.id}
+            source={frontSource}
+            tags={cardTags(frontSource)}
             locale={locale}
             detailsHref={getRelativeLocaleUrl(
               locale,
-              `sources/${frontSite.id}/`
+              `sources/${frontSource.id}/`
             )}
           />
         ) : null}
       </div>
 
       <div className="mx-auto flex h-10 w-full max-w-52 justify-center gap-2">
-        {(frontSite || showSkeleton) && (
+        {(frontSource || showSkeleton) && (
           <>
             <Button
               type="button"
               size="lg"
               className="flex-1 motion-reduce:transition-none"
-              disabled={loading || !frontSite}
+              disabled={loading || !frontSource}
               aria-disabled={transitioning || undefined}
               onClick={shuffle}
             >
@@ -136,7 +138,7 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
               className="shrink-0 motion-reduce:transition-none"
               aria-label={t.refresh}
               title={t.refresh}
-              disabled={loading || !frontSite}
+              disabled={loading || !frontSource}
               aria-disabled={transitioning || undefined}
               onClick={next}
             >
@@ -145,7 +147,7 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
           </>
         )}
       </div>
-      {!frontSite && !showSkeleton && (
+      {!frontSource && !showSkeleton && (
         <Empty
           className="absolute inset-0 border-0 bg-transparent p-4"
           role="status"

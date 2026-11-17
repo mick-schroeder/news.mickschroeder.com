@@ -1,4 +1,4 @@
-import { iconPath, monogram, type Site } from "@/lib/sites"
+import { iconPath, monogram, type Source } from "@/lib/sources"
 import { cn } from "@/lib/utils"
 
 const sizes = {
@@ -9,23 +9,23 @@ const sizes = {
 }
 
 /**
- * A site's cached favicon on a white tile, so dark logos show in dark mode.
- * Sites without one get a colored letter tile instead.
+ * A source's cached favicon on a white tile, so dark logos show in dark mode.
+ * Sources without one get a colored letter tile instead.
  * A plain <img>, since static pages render without React on the client.
  */
-export function SiteIcon({
-  site,
+export function SourceIcon({
+  source,
   size = "sm",
   className,
 }: {
-  site: Pick<Site, "id" | "title" | "icon">
+  source: Pick<Source, "id" | "title" | "icon">
   size?: keyof typeof sizes
   className?: string
 }) {
   const { box, text, px } = sizes[size]
 
-  if (!site.icon) {
-    const { letter, color } = monogram(site)
+  if (!source.icon) {
+    const { letter, color } = monogram(source)
     return (
       <span
         className={cn(
@@ -51,7 +51,7 @@ export function SiteIcon({
       )}
     >
       <img
-        src={iconPath(site.id)}
+        src={iconPath(source.id)}
         alt=""
         width={px}
         height={px}

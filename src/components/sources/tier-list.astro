@@ -3,22 +3,23 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import { tierColors } from "@/components/tier-badge"
 import { resolveLocale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
-import { byTier, type Site } from "@/lib/sites"
+import { byTier, type Source } from "@/lib/sources"
 import { cn } from "@/lib/utils"
-import { SiteIcon } from "./site-icon"
+import { SourceIcon } from "./source-icon"
 
 interface Props {
-  sites: Site[]
+  sources: Source[]
 }
 
-const { sites } = Astro.props
+const { sources } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
-const sitePath = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
+const sourcePath = (id: string) =>
+  getRelativeLocaleUrl(locale, `sources/${id}/`)
 ---
 
 <div class="rounded-4xl bg-card shadow-md ring-1 ring-foreground/5 dark:ring-foreground/10">
-  {byTier(sites).map(({ tier, sites }) => (
+  {byTier(sources).map(({ tier, sources }) => (
     <section
       id={`tier-${tier.toLowerCase()}`}
       class="group/row flex scroll-mt-24 border-b border-border"
@@ -35,19 +36,19 @@ const sitePath = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
         <span class="text-3xl leading-none font-black sm:text-4xl">{tier}</span>
       </div>
       <ul class="flex min-h-20 min-w-0 flex-1 flex-wrap content-start gap-1.5 p-2 sm:gap-2 sm:p-3">
-        {sites.map((site) => (
+        {sources.map((source) => (
           <li class="relative">
             <a
-              href={sitePath(site.id)}
+              href={sourcePath(source.id)}
               class="group/tile block rounded-xl outline-none transition-transform focus-visible:ring-3 focus-visible:ring-ring motion-safe:hover:-translate-y-0.5"
             >
-              <SiteIcon site={site} size="md" />
-              <span class="sr-only">{site.title}</span>
+              <SourceIcon source={source} size="md" />
+              <span class="sr-only">{source.title}</span>
               <span
                 class="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 hidden -translate-x-1/2 rounded-md bg-foreground px-2 py-1 text-xs font-medium whitespace-nowrap text-background group-hover/tile:block group-focus-visible/tile:block"
                 aria-hidden="true"
               >
-                {site.title}
+                {source.title}
               </span>
             </a>
           </li>

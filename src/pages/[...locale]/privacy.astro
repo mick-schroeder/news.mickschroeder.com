@@ -8,7 +8,7 @@ import {
   resolveLocale,
   type Locale,
 } from "@/i18n/locales"
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 
 export const getStaticPaths = localizedPaths
 
@@ -29,7 +29,7 @@ const Copy = documents[path(contentLocale)].default
   description={t.privacyDescription}
 >
   <p slot="byline" class="mt-1 font-semibold text-foreground">
-    {site.owner}
+    {brand.owner}
   </p>
   <Copy />
 </LegalLayout>

@@ -21,7 +21,7 @@ import { getTags } from "@/lib/catalog"
 interface Props {
   /** Page language; the default when unset. */
   locale?: Locale
-  /** Shuffle sites with this tag instead of the visitor's saved filters. */
+  /** Shuffle sources with this tag instead of the visitor's saved filters. */
   tag?: string
 }
 
@@ -84,11 +84,11 @@ const destinationRow = "min-h-18 flex-nowrap"
               </ItemMedia>
               <ItemContent className="min-w-0">
                 <ItemTitle
-                  id="redirect-site-name"
+                  id="redirect-source-name"
                   className="line-clamp-none wrap-anywhere"
                 />
                 <ItemDescription
-                  id="redirect-site-url"
+                  id="redirect-source-url"
                   className="line-clamp-none wrap-anywhere"
                 />
               </ItemContent>
@@ -140,11 +140,11 @@ const destinationRow = "min-h-18 flex-nowrap"
 <script>
   import {
     addToHistory,
-    loadSites,
+    loadSources,
     readFilters,
     readHistory,
   } from "@/lib/browser-storage"
-  import { filterSites, pickSite, type Site } from "@/lib/sites"
+  import { filterSources, pickSource, type Source } from "@/lib/sources"
   import { resolveLocale } from "@/i18n/locales"
   import { translations } from "@/i18n/ui"
 
@@ -156,8 +156,8 @@ const destinationRow = "min-h-18 flex-nowrap"
   const destination = document.querySelector<HTMLAnchorElement>(
     "#redirect-destination"
   )!
-  const siteName = document.getElementById("redirect-site-name")!
-  const siteUrl = document.getElementById("redirect-site-url")!
+  const sourceName = document.getElementById("redirect-source-name")!
+  const sourceUrl = document.getElementById("redirect-source-url")!
   const retry = document.getElementById("redirect-retry")!
   let timer: number | undefined
   let request: AbortController | undefined
@@ -182,14 +182,14 @@ const destinationRow = "min-h-18 flex-nowrap"
     retry.hidden = true
 
     const tag = page.dataset.tag
-    let site: Site | undefined
+    let source: Source | undefined
     try {
-      const sites = await loadSites(controller.signal)
+      const sources = await loadSources(controller.signal)
       if (controller.signal.aborted) return
       const pool = tag
-        ? sites.filter((candidate) => candidate.tags.includes(tag))
-        : filterSites(sites, readFilters(JSON.parse(page.dataset.tags!)))
-      site = pickSite(pool, readHistory())
+        ? sources.filter((candidate) => candidate.tags.includes(tag))
+        : filterSources(sources, readFilters(JSON.parse(page.dataset.tags!)))
+      source = pickSource(pool, readHistory())
     } catch {
       if (controller.signal.aborted) return
       loading.hidden = true
@@ -199,7 +199,7 @@ const destinationRow = "min-h-18 flex-nowrap"
       return
     }
 
-    if (!site) {
+    if (!source) {
       loading.hidden = true
       empty.hidden = false
       title.textContent = t.empty
@@ -211,14 +211,14 @@ const destinationRow = "min-h-18 flex-nowrap"
     const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches
     timer = window.setTimeout(
       () => {
-        siteName.textContent = site.title
-        siteUrl.textContent = site.url
-        destination.href = site.url
+        sourceName.textContent = source.title
+        sourceUrl.textContent = source.url
+        destination.href = source.url
         loading.hidden = true
         destination.hidden = false
-        addToHistory(site.id)
+        addToHistory(source.id)
         timer = window.setTimeout(
-          () => location.replace(site.url),
+          () => location.replace(source.url),
           reducedMotion ? 0 : 250
         )
       },

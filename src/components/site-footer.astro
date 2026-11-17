@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import ExternalLink from "@/components/external-link.astro"
 import { resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 
 interface Props {
   /** Shows the button that reopens Google's consent message. */
@@ -19,14 +19,14 @@ const links = pages.map((page) => ({
   label: t[page],
   href: getRelativeLocaleUrl(locale, `${page}/`),
 }))
-const years = `${site.since}-${new Date().getFullYear()}`
+const years = `${brand.since}-${new Date().getFullYear()}`
 ---
 
 <footer class="page-width mt-12 border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
   <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
-    <b class="text-foreground">{site.name}™</b> © {years}
-    <ExternalLink href={site.ownerUrl} class="link">
-      {site.owner}
+    <b class="text-foreground">{brand.name}™</b> © {years}
+    <ExternalLink href={brand.ownerUrl} class="link">
+      {brand.owner}
     </ExternalLink>
     {links.map(({ label, href }) => (
       <>

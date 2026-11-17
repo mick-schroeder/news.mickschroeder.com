@@ -2,18 +2,17 @@
 import { getRelativeLocaleUrl } from "astro:i18n"
 import { resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { getSites } from "@/lib/catalog"
-import { SiteIcon } from "@/components/sources/site-icon"
-import { filterSites } from "@/lib/sites"
+import { getSources } from "@/lib/catalog"
+import { SourceIcon } from "@/components/sources/source-icon"
+import { defaultFilters, filterSources } from "@/lib/sources"
 
 const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 
 // The headliners, alternating between two rows.
-const headliners = filterSites(await getSites(), {
-  topics: [],
-  regions: [],
-  seenOn: [],
+const headliners = filterSources(await getSources(), {
+  ...defaultFilters,
+  topic: [],
   lowestTier: "A",
 })
 const rows = [0, 1].map((row) =>
@@ -53,16 +52,16 @@ const rows = [0, 1].map((row) =>
             aria-label={copy ? undefined : t.sources}
             aria-hidden={copy ? "true" : undefined}
           >
-            {row.map((site) => (
+            {row.map((source) => (
               <li data-marquee-tile>
                 <a
-                  href={getRelativeLocaleUrl(locale, `sources/${site.id}/`)}
-                  title={site.title}
+                  href={getRelativeLocaleUrl(locale, `sources/${source.id}/`)}
+                  title={source.title}
                   tabindex={copy ? -1 : undefined}
                   class="block rounded-xl outline-none transition-transform focus-visible:ring-3 focus-visible:ring-ring motion-safe:hover:-translate-y-0.5"
                 >
-                  <SiteIcon site={site} size="md" />
-                  <span class="sr-only">{site.title}</span>
+                  <SourceIcon source={source} size="md" />
+                  <span class="sr-only">{source.title}</span>
                 </a>
               </li>
             ))}

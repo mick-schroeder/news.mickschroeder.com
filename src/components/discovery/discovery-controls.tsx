@@ -2,7 +2,7 @@ import { ShuffleBookmark } from "./shuffle-bookmark"
 import { UpNextCard } from "./up-next-card"
 import { useDiscovery } from "./use-discovery"
 import type { Locale } from "@/i18n/ui"
-import type { Tag } from "@/lib/sites"
+import type { Tag } from "@/lib/sources"
 
 export function DiscoveryControls({
   locale,

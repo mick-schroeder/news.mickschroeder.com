@@ -8,8 +8,8 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { translations, type Locale } from "@/i18n/ui"
-import { site } from "@/lib/site"
-import { shufflePath } from "@/lib/sites"
+import { brand } from "@/lib/brand"
+import { shufflePath } from "@/lib/sources"
 import { cn } from "@/lib/utils"
 
 export function ShuffleBookmark({
@@ -102,7 +102,7 @@ export function ShuffleBookmark({
               draggable="false"
               className="pointer-events-none size-5 grayscale"
             />
-            {site.name}
+            {brand.name}
           </a>
           <p id="bookmark-drag-hint" className="text-xs text-muted-foreground">
             {t.dragBookmark}

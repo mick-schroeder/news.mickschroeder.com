@@ -3,9 +3,9 @@ import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { historyCardStyle } from "./history-card-style"
 
-export const siteCardHeight = 172
+export const sourceCardHeight = 172
 
-export const siteCardClassName =
+export const sourceCardClassName =
   "relative z-40 h-[172px] flex-col flex-nowrap items-start gap-3 bg-card text-card-foreground"
 
 export const historyCardRow =

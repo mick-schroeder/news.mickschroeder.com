@@ -4,10 +4,10 @@ import { Item, ItemContent, ItemMedia } from "@/components/ui/item"
 import {
   HistoryCardFrame,
   historyCardRow,
-  siteCardClassName,
-} from "./site-card-frame"
+  sourceCardClassName,
+} from "./source-card-frame"
 
-export function SiteCardSkeleton({ showPeeks }: { showPeeks: boolean }) {
+export function SourceCardSkeleton({ showPeeks }: { showPeeks: boolean }) {
   return (
     <div
       aria-hidden="true"
@@ -22,7 +22,7 @@ export function SiteCardSkeleton({ showPeeks }: { showPeeks: boolean }) {
             </div>
           </HistoryCardFrame>
         ))}
-      <Item variant="outline" className={siteCardClassName}>
+      <Item variant="outline" className={sourceCardClassName}>
         <div className="flex w-full items-center gap-3.5">
           <ItemMedia>
             <Skeleton className="size-10 rounded-full" />

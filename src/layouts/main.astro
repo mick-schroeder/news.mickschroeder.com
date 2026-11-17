@@ -7,10 +7,10 @@ import SiteHeader from "@/components/site-header.astro"
 import { resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { googleTagsEnabled } from "@/lib/google-config"
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 
 interface Props {
-  /** Page name; the site name is appended. Omit on the home page. */
+  /** Page name; the brand name is appended. Omit on the home page. */
   title?: string
   description?: string
   noindex?: boolean
@@ -20,7 +20,7 @@ const { noindex = false } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const title = Astro.props.title
-  ? `${Astro.props.title} | ${site.name}`
+  ? `${Astro.props.title} | ${brand.name}`
   : t.title
 const showGoogleTags = googleTagsEnabled && !noindex
 ---

@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { getRelativeLocaleUrl } from "astro:i18n"
 import type { Locale } from "@/i18n/locales"
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -22,7 +22,7 @@ export function PageBreadcrumb({
   crumbs: Crumb[]
 }) {
   const trail = [
-    { label: site.name, href: getRelativeLocaleUrl(locale) },
+    { label: brand.name, href: getRelativeLocaleUrl(locale) },
     ...crumbs,
   ]
   return (

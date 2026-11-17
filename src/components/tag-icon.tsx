@@ -1,5 +1,5 @@
 import { Icon, type LucideProps } from "lucide-react"
-import type { Tag } from "@/lib/sites"
+import type { Tag } from "@/lib/sources"
 
 export function TagIcon({ tag, ...props }: { tag: Tag } & LucideProps) {
   if (!tag.iconNode) return null

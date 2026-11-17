@@ -5,9 +5,9 @@ import ExternalLink from "@/components/external-link.astro"
 import { TierBadge } from "@/components/tier-badge"
 import { localizedPaths, resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { defaultFeedUrl } from "@/lib/feed"
-import { tiers } from "@/lib/sites"
-import { site } from "@/lib/site"
+import { defaultDataUrl } from "@/lib/data"
+import { tiers } from "@/lib/sources"
+import { brand } from "@/lib/brand"
 
 export const getStaticPaths = localizedPaths
 
@@ -49,22 +49,25 @@ const heading = "heading-section mt-8"
     <h2 class={heading}>{t.aboutOpenSource}</h2>
     <p>
       {t.aboutApi}{" "}
-      <ExternalLink href={`${defaultFeedUrl}/sources.json`} class={link}>
+      <ExternalLink href={`${defaultDataUrl}/sources.json`} class={link}>
         sources.json
       </ExternalLink>
       ,{" "}
-      <ExternalLink href={`${defaultFeedUrl}/tags.json`} class={link}>
+      <ExternalLink href={`${defaultDataUrl}/tags.json`} class={link}>
         tags.json
       </ExternalLink>
       .
     </p>
     <p>
       {t.aboutCode}{" "}
-      <ExternalLink href={`${site.github}/popular-news-sites`} class={link}>
+      <ExternalLink href={`${brand.github}/popular-news-sites`} class={link}>
         popular-news-sites
       </ExternalLink>
       ,{" "}
-      <ExternalLink href={`${site.github}/news.mickschroeder.com`} class={link}>
+      <ExternalLink
+        href={`${brand.github}/news.mickschroeder.com`}
+        class={link}
+      >
         news.mickschroeder.com
       </ExternalLink>
       .

@@ -3,7 +3,7 @@ import { Font } from "astro:assets"
 import { adsenseClient } from "@/lib/google-config"
 import { languages, resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
-import { site } from "@/lib/site"
+import { brand } from "@/lib/brand"
 
 interface Props {
   title: string
@@ -21,7 +21,7 @@ const shareImage = new URL(languages[locale].shareImage, Astro.site)
 const siteData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: site.name,
+  name: brand.name,
   alternateName: t.title,
   url: rootUrl.href,
   inLanguage: locale,
@@ -46,7 +46,7 @@ const siteData = {
   <meta name="google-adsense-account" content={adsenseClient} />
   <link rel="canonical" href={canonical} />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content={site.name} />
+  <meta property="og:site_name" content={brand.name} />
   <meta property="og:locale" content={languages[locale].socialLocale} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />

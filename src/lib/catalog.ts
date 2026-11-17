@@ -1,20 +1,20 @@
 import { existsSync, readdirSync } from "node:fs"
 import path from "node:path"
 import { getCollection } from "astro:content"
-import { tagSchema, type IconNode } from "./feed.ts"
-import { directoryOrder, type Site, type Tag } from "./sites.ts"
+import { tagSchema, type IconNode } from "./data.ts"
+import { directoryOrder, type Source, type Tag } from "./sources.ts"
 
 // Filled by scripts/fetch-favicons.ts before the build.
 const iconDir = path.join(process.cwd(), "public", "favicons")
 const icons = new Set(existsSync(iconDir) ? readdirSync(iconDir) : [])
 const hasIcon = (id: string) => icons.has(`${id}.png`)
 
-/** All sites in directory order. F is already dropped by the loader. */
-export const getSites = async () =>
+/** All sources in directory order. F is already dropped by the loader. */
+export const getSources = async () =>
   directoryOrder(
-    (await getCollection("sites")).map((entry) => {
-      const site = entry.data as Site
-      return { ...site, icon: hasIcon(site.id) }
+    (await getCollection("sources")).map((entry) => {
+      const source = entry.data as Source
+      return { ...source, icon: hasIcon(source.id) }
     })
   )
 
@@ -27,7 +27,7 @@ const iconNode = async (name: string): Promise<IconNode> => {
   }
 }
 
-/** All tags in feed order. */
+/** All tags in data order. */
 export const getTags = async (): Promise<Tag[]> =>
   Promise.all(
     (await getCollection("tags"))
