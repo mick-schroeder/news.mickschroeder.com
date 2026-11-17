@@ -1,7 +1,7 @@
 import { parseFilters, type Filters, type Source, type Tag } from "./sources.ts"
 
 const storageKeys = {
-  filters: "news-shuffle.preferences.v3",
+  filters: "news-shuffle.preferences.v4",
   history: "news-shuffle.history.v2",
 } as const
 
@@ -22,14 +22,13 @@ function writeStorage(key: string, value: string): boolean {
   }
 }
 
-export const readFilters = (tags: Tag[]) =>
-  parseFilters(readStorage(storageKeys.filters), tags)
+/** Saved filters as stored, for useSyncExternalStore. */
+export const readFiltersRaw = () => readStorage(storageKeys.filters)
+
+export const readFilters = (tags: Tag[]) => parseFilters(readFiltersRaw(), tags)
 
 /** Fired on window with the new filters whenever they change. */
 export const filtersEvent = "news-shuffle:filters"
-
-/** Fired on window to open the Your shuffle menu. */
-export const openFiltersEvent = "news-shuffle:open-filters"
 
 export function writeFilters(filters: Filters) {
   writeStorage(storageKeys.filters, JSON.stringify(filters))
@@ -58,9 +57,14 @@ export function addToHistory(id: string, maxItems = 7): string[] {
   return updated
 }
 
-/** The shuffle's source list, built from the data at build time. */
-export async function loadSources(signal: AbortSignal): Promise<Source[]> {
-  const response = await fetch("/sources.json", { signal })
-  if (!response.ok) throw new Error(`/sources.json: HTTP ${response.status}`)
-  return response.json()
+let sources: Promise<Source[]> | undefined
+
+/** The shuffle's source list, built from the data at build time. Fetched once. */
+export function loadSources(): Promise<Source[]> {
+  sources ??= fetch("/sources.json").then((response) => {
+    if (!response.ok) throw new Error(`/sources.json: HTTP ${response.status}`)
+    return response.json()
+  })
+  sources.catch(() => (sources = undefined))
+  return sources
 }

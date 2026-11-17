@@ -25,10 +25,10 @@ const read = (name: string) =>
 const { sources, tags } = parseData(read("sources.json"), read("tags.json"), {
   minSources: 1,
 })
-const any: Filters = { topic: [], region: [], feed: [], lowestTier: "F" }
+const any: Filters = { topic: [], region: [], feed: [], tier: [] }
 const ids = (list: { id: string }[]) => list.map((source) => source.id).sort()
 
-test("empty filters down to tier F match every source", () => {
+test("empty filters match every source", () => {
   assert.deepEqual(filterSources(sources, any), sources)
 })
 
@@ -61,10 +61,15 @@ test("any match within a facet, every facet must match", () => {
   assert.ok(feed.every((source) => source.tags.includes("techmeme")))
 })
 
-test("the lowest tier limits the shuffle; E only shows at the bottom", () => {
-  const top = filterSources(sources, { ...any, lowestTier: "A" })
+test("only the chosen tiers are shuffled", () => {
+  const top = filterSources(sources, { ...any, tier: ["S", "A"] })
   assert.ok(top.every((source) => ["S", "A"].includes(source.tier)))
-  const known = filterSources(sources, { ...any, lowestTier: "B" })
+  const middle = filterSources(sources, { ...any, tier: ["B", "C"] })
+  assert.ok(middle.length)
+  assert.ok(middle.every((source) => ["B", "C"].includes(source.tier)))
+  const gap = filterSources(sources, { ...any, tier: ["S", "C"] })
+  assert.ok(gap.every((source) => ["S", "C"].includes(source.tier)))
+  const known = filterSources(sources, { ...any, tier: ["S", "A", "B"] })
   assert.ok(known.some((source) => source.tier === "B"))
   assert.ok(known.every((source) => source.tier !== "E"))
   assert.ok(filterSources(sources, any).some((source) => source.tier === "E"))
@@ -121,12 +126,12 @@ test("first visit gets defaults; saved filters drop unknown ids", () => {
   assert.deepEqual(parseFilters("broken", tags), defaultFilters)
   assert.deepEqual(
     parseFilters(
-      '{"topic":["tech","tech","gone",3],"region":["irish"],"lowestTier":"Z"}',
+      '{"topic":["tech","tech","gone",3],"region":["irish"],"tier":["B","S","Z","B"]}',
       tags
     ),
-    { topic: ["tech"], region: ["irish"], feed: [], lowestTier: "B" }
+    { topic: ["tech"], region: ["irish"], feed: [], tier: ["S", "B"] }
   )
-  assert.deepEqual(parseFilters('{"topic":[],"lowestTier":"F"}', tags), any)
+  assert.deepEqual(parseFilters('{"topic":[],"tier":"S"}', tags), any)
 })
 
 test("neighbours wrap around the ends", () => {

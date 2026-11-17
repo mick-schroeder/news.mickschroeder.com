@@ -27,7 +27,7 @@ export function useDiscovery(tags: Tag[]) {
 
   useEffect(() => {
     const controller = new AbortController()
-    loadSources(controller.signal)
+    loadSources()
       .then((loaded) => {
         if (controller.signal.aborted) return
         const saved = readFilters(tags)
@@ -55,7 +55,7 @@ export function useDiscovery(tags: Tag[]) {
   const byId = (id: string) => sources.find((candidate) => candidate.id === id)
   const pool = filters ? filterSources(sources, filters) : []
 
-  // Filters are edited in the header's Your shuffle menu.
+  // Filters are edited in the filter sentence and the feed menu.
   useEffect(() => {
     const onChange = (event: Event) => {
       const changed = (event as CustomEvent<Filters>).detail

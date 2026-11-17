@@ -15,8 +15,13 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 import { translations, type Locale } from "@/i18n/ui"
-import { openFiltersEvent } from "@/lib/browser-storage"
-import { tagsByFacet, type Source, type Tag } from "@/lib/sources"
+import { writeFilters } from "@/lib/browser-storage"
+import {
+  defaultFilters,
+  tagsByFacet,
+  type Source,
+  type Tag,
+} from "@/lib/sources"
 import type { useDiscovery } from "./use-discovery"
 
 type UpNextCardProps = {
@@ -167,11 +172,9 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
             <EmptyContent>
               <Button
                 variant="outline"
-                onClick={() =>
-                  window.dispatchEvent(new Event(openFiltersEvent))
-                }
+                onClick={() => writeFilters(defaultFilters)}
               >
-                {t.choose}
+                {t.resetFilters}
               </Button>
             </EmptyContent>
           )}

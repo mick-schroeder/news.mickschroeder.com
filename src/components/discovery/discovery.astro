@@ -3,6 +3,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import { resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { DiscoveryControls } from "./discovery-controls"
+import { FilterSentence } from "./filter-sentence"
 import SourcesSection from "./sources-section.astro"
 import AdUnit from "@/components/ad-unit.astro"
 import { Card } from "@/components/ui/card"
@@ -14,6 +15,7 @@ const tags = await getTags()
 ---
 
 <main id="discovery" class="page-width grid grid-cols-1 items-start gap-4">
+  <FilterSentence client:load locale={locale} tags={tags} />
   <section class="min-w-0 text-center">
     <h1 class="font-headline text-balance text-4xl font-semibold tracking-tight leading-none text-foreground sm:text-5xl lg:text-6xl">
       {t.headline}

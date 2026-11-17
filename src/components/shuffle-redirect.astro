@@ -184,7 +184,7 @@ const destinationRow = "min-h-18 flex-nowrap"
     const tag = page.dataset.tag
     let source: Source | undefined
     try {
-      const sources = await loadSources(controller.signal)
+      const sources = await loadSources()
       if (controller.signal.aborted) return
       const pool = tag
         ? sources.filter((candidate) => candidate.tags.includes(tag))

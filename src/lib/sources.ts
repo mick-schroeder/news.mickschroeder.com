@@ -10,16 +10,13 @@ import {
 export type { Facet, Source, Tag, Tier } from "./data.ts"
 export { facets, tagLabel, tiers } from "./data.ts"
 
-export type Filters = Record<Facet, string[]> & {
-  /** Lowest tier included, e.g. B means S, A and B. */
-  lowestTier: Tier
-}
+export type Filters = Record<Facet, string[]> & { tier: Tier[] }
 
 export const defaultFilters: Filters = {
   topic: ["news"],
   region: [],
   feed: [],
-  lowestTier: "B",
+  tier: ["S", "A", "B"],
 }
 
 export const tierRank = (tier: Tier) => tiers.indexOf(tier)
@@ -39,10 +36,9 @@ const matchesAny = (source: Source, wanted: string[]) =>
 
 /** Any match within a facet, all facets must match; empty means any. */
 export function filterSources(sources: Source[], filters: Filters) {
-  const lowest = tierRank(filters.lowestTier)
   return sources.filter(
     (source) =>
-      tierRank(source.tier) <= lowest &&
+      (!filters.tier.length || filters.tier.includes(source.tier)) &&
       facets.every((facet) => matchesAny(source, filters[facet]))
   )
 }
@@ -147,6 +143,9 @@ export function neighbours<T>(items: T[], index: number) {
   return { previous: at(-1), next: at(1) }
 }
 
+const parseTiers = (value: unknown): Tier[] =>
+  Array.isArray(value) ? tiers.filter((tier) => value.includes(tier)) : []
+
 /** Saved filters, keeping only known tag ids. Null means a first visit. */
 export function parseFilters(raw: string | null, tags: Tag[]): Filters {
   if (raw === null) return defaultFilters
@@ -167,9 +166,7 @@ export function parseFilters(raw: string | null, tags: Tag[]): Filters {
       ...(Object.fromEntries(
         facets.map((facet) => [facet, ids(saved[facet])])
       ) as Record<Facet, string[]>),
-      lowestTier: tiers.includes(saved.lowestTier)
-        ? saved.lowestTier
-        : defaultFilters.lowestTier,
+      tier: parseTiers(saved.tier),
     }
   } catch {
     return defaultFilters
