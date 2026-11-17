@@ -180,11 +180,7 @@ export function SourceNav({
       >
         {t.open}
         <span className="sr-only">({t.opensInNewTab})</span>
-        <ExternalLink
-          className="size-4"
-          strokeWidth={2.75}
-          aria-hidden="true"
-        />
+        <ExternalLink data-icon="inline-end" aria-hidden="true" />
       </a>
       <a
         href={href(random)}
@@ -194,7 +190,7 @@ export function SourceNav({
         aria-label={t.randomSource}
         title={t.randomSource}
       >
-        <Shuffle strokeWidth={3} className="size-5" aria-hidden="true" />
+        <Shuffle aria-hidden="true" />
       </a>
       <a
         href={href(next)}

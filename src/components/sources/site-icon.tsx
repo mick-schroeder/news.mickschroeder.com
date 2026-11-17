@@ -45,7 +45,7 @@ export function SiteIcon({
   return (
     <span
       className={cn(
-        "grid shrink-0 place-items-center overflow-hidden bg-white ring-1 ring-black/10",
+        "grid shrink-0 place-items-center overflow-hidden bg-white ring-1 ring-black/10 dark:bg-stone-200 dark:brightness-90",
         box,
         className
       )}

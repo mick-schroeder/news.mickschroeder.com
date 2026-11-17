@@ -1,5 +1,5 @@
 import { ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { tagLabel, type Site, type Tag } from "@/lib/sites"
 import { translations, type Locale } from "@/i18n/ui"
@@ -77,12 +77,15 @@ export function SiteCard({
       <div className="flex w-full min-w-0 items-center gap-2">
         <ul className="flex min-w-0 flex-1 gap-1.5 overflow-hidden">
           {tags.map((tag) => (
-            <li
-              key={tag.id}
-              className="inline-flex h-6 shrink-0 items-center gap-1 rounded-full border border-border px-2 text-xs text-muted-foreground"
-            >
-              <TagIcon tag={tag} className="size-3" aria-hidden="true" />
-              {tagLabel(tag, locale)}
+            <li key={tag.id} className="shrink-0">
+              <Badge variant="outline" className="text-muted-foreground">
+                <TagIcon
+                  tag={tag}
+                  data-icon="inline-start"
+                  aria-hidden="true"
+                />
+                {tagLabel(tag, locale)}
+              </Badge>
             </li>
           ))}
         </ul>
@@ -114,14 +117,12 @@ export function HistoryCard({
 }) {
   return (
     <HistoryCardFrame index={index} depth={depth}>
-      <Button
+      <button
         type="button"
-        variant="ghost"
-        size="sm"
         onClick={onSelect}
         className={cn(
           historyCardRow,
-          "w-full justify-start rounded-t-[inherit] border-0 text-left hover:bg-transparent focus-visible:ring-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring active:not-aria-[haspopup]:translate-y-0 motion-reduce:transition-none dark:hover:bg-transparent"
+          "w-full rounded-t-[inherit] text-left outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring"
         )}
       >
         <SiteIcon
@@ -132,7 +133,7 @@ export function HistoryCard({
         <span className="truncate text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
           {site.title}
         </span>
-      </Button>
+      </button>
     </HistoryCardFrame>
   )
 }

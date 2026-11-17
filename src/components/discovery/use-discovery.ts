@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { shuffleEvent } from "@/lib/analytics"
 import {
   addToHistory,
+  filtersEvent,
   loadSites,
   readFilters,
   readHistory,
-  writeFilters,
 } from "@/lib/browser-storage"
 import {
   filterSites,
@@ -55,15 +55,20 @@ export function useDiscovery(tags: Tag[]) {
   const byId = (id: string) => sites.find((candidate) => candidate.id === id)
   const pool = filters ? filterSites(sites, filters) : []
 
-  function changeFilters(changed: Filters) {
-    const nextPool = filterSites(sites, changed)
-    setFilters(changed)
-    setPendingSite(undefined)
-    if (!nextPool.some((candidate) => candidate.id === site?.id)) {
-      setSite(pickSite(nextPool, history))
+  // Filters are edited in the header's Your shuffle menu.
+  useEffect(() => {
+    const onChange = (event: Event) => {
+      const changed = (event as CustomEvent<Filters>).detail
+      const nextPool = filterSites(sites, changed)
+      setFilters(changed)
+      setPendingSite(undefined)
+      if (!nextPool.some((candidate) => candidate.id === site?.id)) {
+        setSite(pickSite(nextPool, history))
+      }
     }
-    writeFilters(changed)
-  }
+    window.addEventListener(filtersEvent, onChange)
+    return () => window.removeEventListener(filtersEvent, onChange)
+  })
 
   function next(seen = history) {
     if (!site || pendingSite) return
@@ -100,7 +105,6 @@ export function useDiscovery(tags: Tag[]) {
         Boolean(candidate && candidate.id !== site?.id)
       ),
     transitioning: Boolean(pendingSite),
-    changeFilters,
     next: () => next(),
     shuffle,
     showPrevious,

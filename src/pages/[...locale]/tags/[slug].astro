@@ -66,7 +66,7 @@ const sources = (await getSites()).filter((source) =>
     href={getRelativeLocaleUrl(locale, `tags/${slug}/redirect/`)}
     class={cn(buttonVariants({ size: "lg" }), "font-bold")}
   >
-    <Shuffle data-icon="inline-start" strokeWidth={3} aria-hidden="true" />
+    <Shuffle data-icon="inline-start" aria-hidden="true" />
     {format(t.shuffleTag, { label })}
   </a>
   <TagChips locale={locale} tags={tags} current={tag.id} label={t.tags} />

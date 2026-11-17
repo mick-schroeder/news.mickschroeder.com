@@ -9,6 +9,7 @@ export const tierColors: Record<Tier, string> = {
   C: "bg-tier-c text-tier-c-foreground",
   D: "bg-tier-d text-tier-d-foreground",
   E: "bg-tier-e text-tier-e-foreground",
+  F: "bg-tier-f text-tier-f-foreground",
 }
 
 /** A tier letter on its tier-list colour. */

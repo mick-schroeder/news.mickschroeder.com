@@ -44,7 +44,7 @@ const sitePath = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
               <SiteIcon site={site} size="md" />
               <span class="sr-only">{site.title}</span>
               <span
-                class="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 -translate-x-1/2 rounded-md bg-foreground px-2 py-1 text-xs font-medium whitespace-nowrap text-background opacity-0 transition-opacity group-hover/tile:opacity-100 group-focus-visible/tile:opacity-100"
+                class="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 hidden -translate-x-1/2 rounded-md bg-foreground px-2 py-1 text-xs font-medium whitespace-nowrap text-background group-hover/tile:block group-focus-visible/tile:block"
                 aria-hidden="true"
               >
                 {site.title}

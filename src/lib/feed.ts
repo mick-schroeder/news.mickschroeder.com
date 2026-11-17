@@ -1,8 +1,8 @@
 import { z } from "astro/zod"
 import { locales, type Locale } from "../i18n/locales.ts"
 
-/** Tiers the site shows, best first. F is dropped at load. */
-export const tiers = ["S", "A", "B", "C", "D", "E"] as const
+/** Tiers, best first. */
+export const tiers = ["S", "A", "B", "C", "D", "E", "F"] as const
 export type Tier = (typeof tiers)[number]
 
 export const tagKinds = [
@@ -39,7 +39,7 @@ export const siteSchema = z.object({
   url: z.url({ protocol: /^https$/ }),
   // Hand-seeded sites may not be judged yet: unknown tier, no description.
   description: z.string().default(""),
-  tier: z.enum([...tiers, "F"]).default("E"),
+  tier: z.enum(tiers).default("E"),
   tags: z.array(slug).min(1),
 })
 
@@ -52,8 +52,7 @@ export type IconNode = [string, Record<string, string>][]
 /** Tag title in the locale, falling back to the feed title. */
 export const tagLabel = (tag: Tag, locale: Locale) =>
   tag.translations?.[locale]?.title ?? tag.title
-export type Site = Omit<z.infer<typeof siteSchema>, "tier"> & {
-  tier: Tier
+export type Site = z.infer<typeof siteSchema> & {
   /** Set by the catalog when public/favicons/{id}.png exists. */
   icon?: boolean
 }
@@ -63,7 +62,7 @@ const urlKey = (value: string) => {
   return url.hostname.replace(/^www\./, "") + url.pathname.replace(/\/+$/, "")
 }
 
-/** Validates the published feed, drops tier F and tags no site uses. Throws on anything off. */
+/** Validates the published feed and drops tags no site uses. Throws on anything off. */
 export function parseFeed(
   rawSites: unknown,
   rawTags: unknown,
@@ -93,9 +92,8 @@ export function parseFeed(
     if (unknown) throw new Error(`${site.id} has unknown tag: ${unknown}`)
   }
 
-  const kept = sites.filter((site): site is Site => site.tier !== "F")
-  const used = new Set(kept.flatMap((site) => site.tags))
-  return { sites: kept, tags: tags.filter((tag) => used.has(tag.id)) }
+  const used = new Set(sites.flatMap((site) => site.tags))
+  return { sites, tags: tags.filter((tag) => used.has(tag.id)) }
 }
 
 export const defaultFeedUrl = "https://data.news.mickschroeder.com"

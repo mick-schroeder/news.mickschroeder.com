@@ -26,8 +26,16 @@ export function writeStorage(key: string, value: string): boolean {
 export const readFilters = (tags: Tag[]) =>
   parseFilters(readStorage(storageKeys.filters), tags)
 
-export const writeFilters = (filters: Filters) =>
+/** Fired on window with the new filters whenever they change. */
+export const filtersEvent = "news-shuffle:filters"
+
+/** Fired on window to open the Your shuffle menu. */
+export const openFiltersEvent = "news-shuffle:open-filters"
+
+export function writeFilters(filters: Filters) {
   writeStorage(storageKeys.filters, JSON.stringify(filters))
+  window.dispatchEvent(new CustomEvent(filtersEvent, { detail: filters }))
+}
 
 /** Recently opened site ids, newest first. */
 export function readHistory(): string[] {

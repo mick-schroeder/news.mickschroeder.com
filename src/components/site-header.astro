@@ -2,7 +2,9 @@
 import { getRelativeLocaleUrl } from "astro:i18n"
 import BrandLogo from "@/components/brand-logo.astro"
 import LanguagePicker from "@/components/language-picker.astro"
+import { SiteNav } from "@/components/site-nav"
 import { resolveLocale } from "@/i18n/locales"
+import { getTags } from "@/lib/catalog"
 import { site } from "@/lib/site"
 
 interface Props {
@@ -10,11 +12,13 @@ interface Props {
 }
 
 const { languageSuffix } = Astro.props
-const home = getRelativeLocaleUrl(resolveLocale(Astro.currentLocale))
+const locale = resolveLocale(Astro.currentLocale)
+const home = getRelativeLocaleUrl(locale)
+const tags = await getTags()
 ---
 
 <header class="page-width mb-4 sm:mb-5">
-  <div class="grid grid-cols-1 items-center justify-items-center gap-3 border-b-4 border-double border-border py-5 sm:grid-cols-[1fr_auto_1fr] sm:py-7">
+  <div class="grid grid-cols-1 items-center justify-items-center gap-3 pt-5 pb-3 sm:grid-cols-[1fr_auto_1fr] sm:pt-7 sm:pb-4">
     <time
       id="masthead-date"
       class="hidden text-sm text-muted-foreground sm:block sm:justify-self-start"
@@ -31,6 +35,14 @@ const home = getRelativeLocaleUrl(resolveLocale(Astro.currentLocale))
     <div class="sm:justify-self-end">
       <LanguagePicker languageSuffix={languageSuffix} />
     </div>
+  </div>
+  <div class="border-y border-b-4 border-double border-border py-1.5">
+    <SiteNav
+      client:load
+      locale={locale}
+      tags={tags}
+      path={Astro.url.pathname}
+    />
   </div>
 </header>
 

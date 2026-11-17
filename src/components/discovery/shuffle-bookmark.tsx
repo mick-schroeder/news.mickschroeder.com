@@ -63,9 +63,9 @@ export function ShuffleBookmark({
               onClick={copyBookmark}
             >
               {copyResult === "copied" ? (
-                <Check className="size-4 text-primary" aria-hidden="true" />
+                <Check className="text-primary" aria-hidden="true" />
               ) : (
-                <Copy className="size-4" aria-hidden="true" />
+                <Copy aria-hidden="true" />
               )}
             </Button>
           </ButtonGroup>

@@ -8,12 +8,14 @@ import { SiteCardSkeleton } from "./site-card-skeleton"
 import { Button } from "@/components/ui/button"
 import {
   Empty,
+  EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty"
 import { translations, type Locale } from "@/i18n/ui"
+import { openFiltersEvent } from "@/lib/browser-storage"
 import { facets, type Site, type Tag } from "@/lib/sites"
 import type { useDiscovery } from "./use-discovery"
 
@@ -123,13 +125,9 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
               aria-disabled={transitioning || undefined}
               onClick={shuffle}
             >
-              <span>{t.shuffle}</span>
+              {t.shuffle}
               <span className="sr-only">({t.opensInNewTab})</span>
-              <ExternalLink
-                className="size-4"
-                strokeWidth={2.75}
-                aria-hidden="true"
-              />
+              <ExternalLink data-icon="inline-end" aria-hidden="true" />
             </Button>
             <Button
               type="button"
@@ -142,7 +140,7 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
               aria-disabled={transitioning || undefined}
               onClick={next}
             >
-              <Shuffle strokeWidth={3} className="size-5" aria-hidden="true" />
+              <Shuffle aria-hidden="true" />
             </Button>
           </>
         )}
@@ -153,8 +151,8 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
           role="status"
         >
           <EmptyHeader>
-            <EmptyMedia className="mb-0 text-muted-foreground">
-              <Shuffle strokeWidth={3} className="size-6" aria-hidden="true" />
+            <EmptyMedia variant="icon">
+              <Shuffle aria-hidden="true" />
             </EmptyMedia>
             <EmptyTitle className="font-semibold">
               {loadFailed ? t.catalogError : t.noMatchesTitle}
@@ -163,6 +161,18 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
               {loadFailed ? t.reloadHint : t.noMatchesHint}
             </EmptyDescription>
           </EmptyHeader>
+          {!loadFailed && (
+            <EmptyContent>
+              <Button
+                variant="outline"
+                onClick={() =>
+                  window.dispatchEvent(new Event(openFiltersEvent))
+                }
+              >
+                {t.choose}
+              </Button>
+            </EmptyContent>
+          )}
         </Empty>
       )}
     </section>

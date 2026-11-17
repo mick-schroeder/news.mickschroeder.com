@@ -126,6 +126,7 @@ function TierSlider({
   )
 }
 
+/** Topics, places, aggregators and lowest tier for the shuffle. */
 export function FilterPanel({
   locale,
   tags,
@@ -144,53 +145,39 @@ export function FilterPanel({
   const isDefault = JSON.stringify(filters) === JSON.stringify(defaultFilters)
 
   return (
-    <section className="discovery-section-grid" aria-labelledby="filters-title">
-      <div className="space-y-1">
-        <h2 id="filters-title" className="discovery-section-title">
-          {t.filters}
-        </h2>
-        <p className="discovery-section-subtitle">{t.filtersHint}</p>
-        <p className="pt-2 text-sm">
-          <a
-            href={getRelativeLocaleUrl(locale, "tags/")}
-            className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-          >
-            {t.browseTags}
-          </a>
-        </p>
-      </div>
-      <div className="min-w-0 space-y-5">
-        <FacetRow
-          id="filter-topics"
-          label={t.topics}
-          locale={locale}
-          tags={groups.topics}
-          selected={filters?.topics}
-          onChange={(topics) => set({ topics })}
-        />
-        <FacetRow
-          id="filter-where"
-          label={t.where}
-          locale={locale}
-          tags={groups.regions}
-          selected={filters?.regions}
-          onChange={(regions) => set({ regions })}
-        />
-        <FacetRow
-          id="filter-seen-on"
-          label={t.seenOn}
-          locale={locale}
-          tags={groups.seenOn}
-          selected={filters?.seenOn}
-          onChange={(seenOn) => set({ seenOn })}
-          icons={false}
-        />
-        <TierSlider
-          locale={locale}
-          lowestTier={filters?.lowestTier ?? defaultFilters.lowestTier}
-          disabled={!filters}
-          onChange={(lowestTier) => set({ lowestTier })}
-        />
+    <div className="min-w-0 space-y-5">
+      <FacetRow
+        id="filter-topics"
+        label={t.topics}
+        locale={locale}
+        tags={groups.topics}
+        selected={filters?.topics}
+        onChange={(topics) => set({ topics })}
+      />
+      <FacetRow
+        id="filter-where"
+        label={t.where}
+        locale={locale}
+        tags={groups.regions}
+        selected={filters?.regions}
+        onChange={(regions) => set({ regions })}
+      />
+      <FacetRow
+        id="filter-seen-on"
+        label={t.seenOn}
+        locale={locale}
+        tags={groups.seenOn}
+        selected={filters?.seenOn}
+        onChange={(seenOn) => set({ seenOn })}
+        icons={false}
+      />
+      <TierSlider
+        locale={locale}
+        lowestTier={filters?.lowestTier ?? defaultFilters.lowestTier}
+        disabled={!filters}
+        onChange={(lowestTier) => set({ lowestTier })}
+      />
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <Button
           type="button"
           variant="ghost"
@@ -201,7 +188,13 @@ export function FilterPanel({
         >
           {t.resetFilters}
         </Button>
+        <a
+          href={getRelativeLocaleUrl(locale, "tags/")}
+          className="text-sm font-medium text-foreground underline underline-offset-4 hover:text-primary"
+        >
+          {t.browseTags}
+        </a>
       </div>
-    </section>
+    </div>
   )
 }

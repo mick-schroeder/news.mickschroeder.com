@@ -24,10 +24,10 @@ const read = (name: string) =>
 const { sites, tags } = parseFeed(read("sources.json"), read("tags.json"), {
   minSites: 1,
 })
-const any: Filters = { topics: [], regions: [], seenOn: [], lowestTier: "E" }
+const any: Filters = { topics: [], regions: [], seenOn: [], lowestTier: "F" }
 const ids = (list: { id: string }[]) => list.map((site) => site.id).sort()
 
-test("empty filters down to tier E match every site", () => {
+test("empty filters down to tier F match every site", () => {
   assert.deepEqual(filterSites(sites, any), sites)
 })
 
@@ -96,7 +96,7 @@ test("shuffle avoids recent ids until none are left", () => {
 test("directory order is tier, then title", () => {
   const ordered = directoryOrder(sites)
   assert.equal(ordered[0].tier, "S")
-  assert.equal(ordered.at(-1)?.tier, "E")
+  assert.equal(ordered.at(-1)?.tier, "F")
   const groups = byTier(sites)
   assert.deepEqual(
     groups.map((group) => group.tier),
@@ -121,12 +121,12 @@ test("first visit gets defaults; saved filters drop unknown ids", () => {
   assert.deepEqual(parseFilters("broken", tags), defaultFilters)
   assert.deepEqual(
     parseFilters(
-      '{"topics":["tech","tech","gone",3],"regions":["irish"],"lowestTier":"F"}',
+      '{"topics":["tech","tech","gone",3],"regions":["irish"],"lowestTier":"Z"}',
       tags
     ),
     { topics: ["tech"], regions: ["irish"], seenOn: [], lowestTier: "B" }
   )
-  assert.deepEqual(parseFilters('{"topics":[],"lowestTier":"E"}', tags), any)
+  assert.deepEqual(parseFilters('{"topics":[],"lowestTier":"F"}', tags), any)
 })
 
 test("neighbours wrap around the ends", () => {

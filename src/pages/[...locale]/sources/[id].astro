@@ -3,6 +3,7 @@ import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
 import Layout from "@/layouts/main.astro"
 import { PageBreadcrumb } from "@/components/sources/page-breadcrumb"
+import { ShareButtons } from "@/components/sources/share-buttons"
 import {
   SimilarSites,
   SourceDetails,
@@ -89,6 +90,13 @@ const host = hostOf(source.url)
           next={next}
           random={random}
           locale={locale}
+        />
+      </div>
+      <div class="flex justify-center">
+        <ShareButtons
+          client:idle
+          locale={locale}
+          site={{ id: source.id, title: source.title }}
         />
       </div>
       <SimilarSites sites={similar} locale={locale} />

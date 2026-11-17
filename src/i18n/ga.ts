@@ -7,6 +7,8 @@ export default {
   skip: "Léim chuig an ábhar",
   language: "Teanga",
   filters: "Do mheascán",
+  navMain: "Príomhnascanna",
+  navShuffle: "Meascán",
   filtersHint:
     "Roghnaigh cad atá le cur san áireamh. Má fhágtar sraith folamh, glactar le gach rud.",
   topics: "Ábhair",
@@ -18,17 +20,21 @@ export default {
   tier: "Grád",
   similarSites: "Suíomhanna cosúla",
   tierLabel: "Grád {tier}",
-  tierExcluded: "Fágtha as an gcascairt",
   upNext: "An chéad suíomh eile",
   shuffle: "Oscail",
   opensInNewTab: "osclaítear i gcluaisín nua",
+  share: "Comhroinn",
+  shareOn: "Comhroinn ar {network}",
+  shareByEmail: "Comhroinn trí ríomhphost",
+  shareText: "{title} ar {site}",
   refresh: "Rogha nua",
   empty:
     "Níl aon suíomh ag teacht leis na roghanna. Bain triail as scagairí eile.",
   catalogError: "Níorbh fhéidir na suíomhanna a lódáil.",
   retry: "Bain triail eile as",
   noMatchesTitle: "Níl aon suíomh ag teacht leis na roghanna",
-  noMatchesHint: "Bain triail as níos mó grádanna nó níos lú scagairí thíos.",
+  noMatchesHint:
+    "Bain triail as níos mó grádanna nó níos lú scagairí faoi Do mheascán.",
   reloadHint: "Athlódáil an leathanach chun triail eile a bhaint as.",
   choose: "Roghnaigh scagairí",
   noscript: "Cumasaigh JavaScript chun suíomh a roghnú go randamach.",
@@ -55,7 +61,7 @@ export default {
   terms: "Téarmaí",
   termsDescription: "Téarmaí úsáide {site}.",
   allSourcesDescription:
-    "Gach suíomh ar féidir le {site} tú a thabhairt chuige, rangaithe ó S go E.",
+    "Gach suíomh ar féidir le {site} tú a thabhairt chuige, rangaithe ó S go F.",
   tags: "Clibeanna",
   tagsDescription: "Brabhsáil suíomhanna {site} de réir clibe.",
   sourceDescription:
@@ -77,7 +83,7 @@ export default {
   aboutJudged:
     "Téann gach suíomh nua trí eagarthóir AI: an nuacht é, an i mBéarla atá sé, cad é a bhfuil sé faoi, cé chomh fada is a shíneann a réim. Scortar suíomh a imíonn ón ngréasán ar feadh i bhfad.",
   aboutTiers:
-    "Téann na grádanna ó S, na suíomhanna a leagann clár na nuachta amach, síos go E, suíomhanna nach bhfuil grádaithe go hiomlán fós. Léiríonn siad fairsinge agus tionchar, ní dearcadh. Fágtar suíomhanna le grád F, atá ar eolas as mífhaisnéis nó scéalta cumtha, as an gcascairt ar fad.",
+    "Téann na grádanna ó S, na suíomhanna a leagann clár na nuachta amach, síos go E, suíomhanna nach bhfuil grádaithe go hiomlán fós, agus F, suíomhanna atá ar eolas as mífhaisnéis nó scéalta cumtha. Léiríonn siad fairsinge agus tionchar, ní dearcadh.",
   aboutOpenSource: "Foinse oscailte",
   aboutApi: "API:",
   aboutCode: "Cód:",
