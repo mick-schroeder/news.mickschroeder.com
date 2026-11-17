@@ -202,7 +202,7 @@
   }
 }
 
-/* Pages crossfade into each other; the source card morphs between sources. */
+/* Pages crossfade into each other; shared cards and icons move between them. */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
@@ -212,6 +212,82 @@
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 150ms;
+}
+
+/* A card's icon flies with its card between pages. Going to the previous or
+   next source, it travels inside the card instead. */
+.card-icon {
+  view-transition-name: var(--icon-name);
+  view-transition-class: icon;
+}
+
+:root[data-motion] .card-icon {
+  view-transition-name: none;
+}
+
+/* A card with a match on both sides morphs; the icons inside fly. */
+::view-transition-group(.card),
+::view-transition-group(.icon) {
+  animation-duration: 360ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* A card with no match leaves, and the next comes up off the deck. */
+::view-transition-old(.card):only-child {
+  animation: card-out 200ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(.card):only-child {
+  animation: card-in 360ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
+}
+
+:root[data-motion="next"]::view-transition-old(.card):only-child {
+  animation-name: card-toss-left;
+  animation-duration: 260ms;
+}
+
+:root[data-motion="back"]::view-transition-old(.card):only-child {
+  animation-name: card-toss-right;
+  animation-duration: 260ms;
+}
+
+:root[data-motion="back"]::view-transition-new(.card):only-child {
+  animation-name: card-drop;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.94);
+  }
+}
+
+@keyframes card-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+
+@keyframes card-out {
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes card-toss-left {
+  to {
+    opacity: 0;
+    transform: translateX(-36%) translateY(6px) rotate(-7deg);
+  }
+}
+
+@keyframes card-toss-right {
+  to {
+    opacity: 0;
+    transform: translateX(36%) translateY(6px) rotate(7deg);
+  }
 }
 
 ::selection {

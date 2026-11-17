@@ -1,21 +1,21 @@
 [
   {
     "id": "american",
-    "title": "American",
+    "title": "America",
     "kind": "region",
     "icon": "flag",
     "description": "Based in the United States or mainly covering it."
   },
   {
     "id": "british",
-    "title": "British",
+    "title": "Britain",
     "kind": "region",
     "icon": "flag",
     "description": "Based in Great Britain (England, Scotland or Wales) or mainly covering it."
   },
   {
     "id": "irish",
-    "title": "Irish",
+    "title": "Ireland",
     "kind": "region",
     "icon": "flag",
     "description": "Based anywhere on the island of Ireland, the North included, or mainly covering it."

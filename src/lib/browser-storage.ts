@@ -48,7 +48,7 @@ export function readHistory(): string[] {
   return []
 }
 
-export function addToHistory(id: string, maxItems = 7): string[] {
+export function addToHistory(id: string, maxItems = 24): string[] {
   const updated = [id, ...readHistory().filter((seen) => seen !== id)].slice(
     0,
     maxItems

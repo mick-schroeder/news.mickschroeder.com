@@ -36,6 +36,7 @@ export function ShuffleBookmark({
     <section
       className="discovery-section-grid"
       aria-labelledby="bookmark-title"
+      data-needs-js
     >
       <div className="space-y-1">
         <h2 id="bookmark-title" className="heading-section">

@@ -1,7 +1,7 @@
 import { ChevronDown, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TagIcon } from "@/components/tag-icon"
-import { tierColors } from "@/components/tier-badge"
+import { TierBadge } from "@/components/tier-badge"
 import { format, translations, type Locale } from "@/i18n/ui"
 import {
   defaultFilters,
@@ -10,15 +10,19 @@ import {
   tagsByFacet,
   tiers,
   type Tag,
-  type Tier,
 } from "@/lib/sources"
 import { cn } from "@/lib/utils"
 import { FilterMenu, summary } from "./filter-menu"
 import { useFilters, useSources } from "./use-filters"
 
+// Inline word trigger; the dotted underline marks a menu.
+const wordTrigger =
+  "h-auto gap-[0.15em] rounded-md px-[0.15em] py-0 font-headline text-[length:inherit] leading-[inherit] font-semibold tracking-[inherit] text-foreground decoration-primary decoration-dotted decoration-[0.06em] underline-offset-[0.16em] [&_svg:not([class*='size-'])]:size-[0.45em]"
 const menuButton = (
-  <Button variant="outline" size="sm" className="font-medium" />
+  <Button variant="ghost" className={cn(wordTrigger, "underline")} />
 )
+// Chips can't carry an underline, so their row gets a dotted rule instead.
+const tierButton = <Button variant="ghost" className={wordTrigger} />
 
 const tagItems = (tags: Tag[]) =>
   tags.map((tag) => ({
@@ -30,21 +34,6 @@ const tagItems = (tags: Tag[]) =>
       </>
     ),
   }))
-
-function TierChip({ tier, className }: { tier: Tier; className?: string }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={cn(
-        "grid size-5 shrink-0 place-items-center rounded-md text-xs font-black",
-        tierColors[tier],
-        className
-      )}
-    >
-      {tier}
-    </span>
-  )
-}
 
 /** "Show me news from anywhere ranked S A B": the shuffle's filters as a sentence. */
 export function FilterSentence({
@@ -65,73 +54,71 @@ export function FilterSentence({
     !filters || JSON.stringify(filters) === JSON.stringify(defaultFilters)
   const tierItems = tiers.map((tier) => ({
     id: tier,
-    label: (
-      <>
-        <TierChip tier={tier} />
-        {format(t.tierLabel, { tier })}
-      </>
-    ),
+    label: <TierBadge tier={tier} locale={locale} size="sm" />,
   }))
 
   return (
     <section
       aria-label={t.yourShuffle}
-      className="mb-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 border-b border-border pb-4 text-base text-muted-foreground sm:mb-6"
+      className="flex flex-col items-center gap-3 pt-2 pb-4 text-center sm:pt-6 sm:pb-8"
     >
-      <span>{t.showMe}</span>
-      <FilterMenu
-        trigger={menuButton}
-        label={t.topic}
-        anyLabel={t.everything}
-        items={tagItems(topic)}
-        selected={filters?.topic}
-        onChange={(ids) => update({ topic: ids })}
+      <p className="max-w-3xl font-headline text-3xl leading-snug font-medium tracking-tight text-balance text-muted-foreground sm:text-5xl sm:leading-tight">
+        <span>{t.showMe}</span>
+        <FilterMenu
+          trigger={menuButton}
+          label={t.topic}
+          anyLabel={t.everything}
+          items={tagItems(topic)}
+          selected={filters?.topic}
+          onChange={(ids) => update({ topic: ids })}
+        >
+          {summary(topic, filters?.topic, t.everything, t.and, true)}
+          <ChevronDown data-icon="inline-end" aria-hidden="true" />
+        </FilterMenu>
+        <span>{t.from}</span>
+        <FilterMenu
+          trigger={menuButton}
+          label={t.region}
+          anyLabel={t.anywhere}
+          items={tagItems(region)}
+          selected={filters?.region}
+          onChange={(ids) => update({ region: ids })}
+        >
+          {summary(region, filters?.region, t.anywhere, t.and)}
+          <ChevronDown data-icon="inline-end" aria-hidden="true" />
+        </FilterMenu>
+        <span>{t.ranked}</span>
+        <FilterMenu
+          trigger={tierButton}
+          label={t.tiers}
+          anyLabel={t.anyTier}
+          items={tierItems}
+          selected={filters?.tier}
+          onChange={(ids) => update({ tier: ids })}
+        >
+          {chosenTiers.length ? (
+            <>
+              <span className="flex -space-x-[0.1em] border-b-[0.06em] border-dotted border-primary pb-[0.08em]">
+                {chosenTiers.map((tier) => (
+                  <TierBadge
+                    key={tier}
+                    tier={tier}
+                    locale={locale}
+                    className="size-[1.7em] font-sans text-[0.5em] ring-[0.15em] ring-background"
+                  />
+                ))}
+              </span>
+            </>
+          ) : (
+            t.anyTier
+          )}
+          <ChevronDown data-icon="inline-end" aria-hidden="true" />
+        </FilterMenu>
+      </p>
+      <span
+        className="flex h-8 items-center gap-1 text-sm text-muted-foreground"
+        aria-live="polite"
       >
-        {summary(topic, filters?.topic, t.everything, t.and, true)}
-        <ChevronDown data-icon="inline-end" aria-hidden="true" />
-      </FilterMenu>
-      <span>{t.from}</span>
-      <FilterMenu
-        trigger={menuButton}
-        label={t.region}
-        anyLabel={t.anywhere}
-        items={tagItems(region)}
-        selected={filters?.region}
-        onChange={(ids) => update({ region: ids })}
-      >
-        {summary(region, filters?.region, t.anywhere, t.and)}
-        <ChevronDown data-icon="inline-end" aria-hidden="true" />
-      </FilterMenu>
-      <span>{t.ranked}</span>
-      <FilterMenu
-        trigger={menuButton}
-        label={t.tiers}
-        anyLabel={t.anyTier}
-        items={tierItems}
-        selected={filters?.tier}
-        onChange={(ids) => update({ tier: ids })}
-      >
-        {chosenTiers.length ? (
-          <>
-            <span className="flex -space-x-1.5">
-              {chosenTiers.map((tier) => (
-                <TierChip
-                  key={tier}
-                  tier={tier}
-                  className="ring-2 ring-background"
-                />
-              ))}
-            </span>
-            <span className="sr-only">
-              {`${t.tiers}: ${chosenTiers.join(", ")}`}
-            </span>
-          </>
-        ) : (
-          t.anyTier
-        )}
-        <ChevronDown data-icon="inline-end" aria-hidden="true" />
-      </FilterMenu>
-      <span className="flex items-center gap-1 text-sm" aria-live="polite">
         {count !== undefined &&
           format(count === 1 ? t.matchOne : t.matchCount, { count })}
         {!isDefault && (

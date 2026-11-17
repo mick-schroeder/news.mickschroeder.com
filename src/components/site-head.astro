@@ -29,6 +29,42 @@ const siteData = {
 ---
 
 <title>{title}</title>
+<script is:inline>
+  // Links with data-motion pick how the card moves into the next page.
+  ;(() => {
+    const key = "news-shuffle.motion"
+    const session = (action) => {
+      try {
+        return action(sessionStorage)
+      } catch {
+        return null
+      }
+    }
+    addEventListener(
+      "click",
+      (event) => {
+        if (event.button || event.metaKey || event.ctrlKey || event.shiftKey)
+          return
+        const link = event.target.closest?.("a[data-motion]")
+        if (!link) return
+        document.documentElement.dataset.motion = link.dataset.motion
+        session((store) => store.setItem(key, link.dataset.motion))
+      },
+      true
+    )
+    addEventListener("pageshow", (event) => {
+      if (event.persisted) delete document.documentElement.dataset.motion
+    })
+    addEventListener("pagereveal", (event) => {
+      const motion = session((store) => store.getItem(key))
+      session((store) => store.removeItem(key))
+      if (!event.viewTransition || !motion) return
+      const root = document.documentElement
+      root.dataset.motion = motion
+      event.viewTransition.finished.finally(() => delete root.dataset.motion)
+    })
+  })()
+</script>
 <Font cssVariable="--font-geist" preload />
 <Font cssVariable="--font-manufacturing-consent" preload />
 <Font cssVariable="--font-newsreader" preload />

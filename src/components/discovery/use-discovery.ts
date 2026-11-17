@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { shuffleEvent } from "@/lib/analytics"
 import {
   addToHistory,
@@ -15,15 +15,38 @@ import {
   type Tag,
 } from "@/lib/sources"
 
-const transitionDelay = 250
+/** Cards in the deck: the top card and the ones under it. */
+export const deckSize = 3
+
+/** How the top card left, so the deck can animate it. */
+export type DeckMove = "skip-left" | "skip-right" | "open" | "recall" | "deal"
+
+// One move per animation; also rate limits the shuffle.
+const moveGap = 280
+
+/** Tops the deck up to deckSize, avoiding cards already in it and seen ones. */
+function fill(deck: Source[], pool: Source[], seen: readonly string[]) {
+  const next = [...deck]
+  while (next.length < deckSize) {
+    const held = next.map((source) => source.id)
+    const free = pool.filter((source) => !held.includes(source.id))
+    const pick = pickSource(free, seen)
+    if (!pick) break
+    next.push(pick)
+  }
+  return next
+}
 
 export function useDiscovery(tags: Tag[]) {
   const [sources, setSources] = useState<Source[]>([])
   const [loadFailed, setLoadFailed] = useState(false)
   const [filters, setFilters] = useState<Filters>()
   const [history, setHistory] = useState<string[]>([])
-  const [source, setSource] = useState<Source>()
-  const [pendingSource, setPendingSource] = useState<Source>()
+  const [deck, setDeck] = useState<Source[]>([])
+  const [move, setMove] = useState<DeckMove>("deal")
+  // Bumped when the whole deck is reshuffled, e.g. on a filter change.
+  const [deal, setDeal] = useState(0)
+  const lastMove = useRef(0)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -35,7 +58,7 @@ export function useDiscovery(tags: Tag[]) {
         setSources(loaded)
         setFilters(saved)
         setHistory(seen)
-        setSource(pickSource(filterSources(loaded, saved), seen))
+        setDeck(fill([], filterSources(loaded, saved), seen))
       })
       .catch(() => {
         if (!controller.signal.aborted) setLoadFailed(true)
@@ -43,73 +66,91 @@ export function useDiscovery(tags: Tag[]) {
     return () => controller.abort()
   }, [tags])
 
-  useEffect(() => {
-    if (!pendingSource) return
-    const timer = window.setTimeout(() => {
-      setSource(pendingSource)
-      setPendingSource(undefined)
-    }, transitionDelay)
-    return () => window.clearTimeout(timer)
-  }, [pendingSource])
-
   const byId = (id: string) => sources.find((candidate) => candidate.id === id)
   const pool = filters ? filterSources(sources, filters) : []
+  const top = deck.at(0)
 
   // Filters are edited in the filter sentence and the feed menu.
   useEffect(() => {
     const onChange = (event: Event) => {
       const changed = (event as CustomEvent<Filters>).detail
-      const nextPool = filterSources(sources, changed)
       setFilters(changed)
-      setPendingSource(undefined)
-      if (!nextPool.some((candidate) => candidate.id === source?.id)) {
-        setSource(pickSource(nextPool, history))
-      }
+      setMove("deal")
+      setDeal((count) => count + 1)
+      setDeck(fill([], filterSources(sources, changed), history))
     }
     window.addEventListener(filtersEvent, onChange)
     return () => window.removeEventListener(filtersEvent, onChange)
   })
 
-  function next(seen = history) {
-    if (!source || pendingSource) return
-    const others = pool.filter((candidate) => candidate.id !== source.id)
-    setPendingSource(pickSource(others.length ? others : pool, seen))
+  /** Applies a move unless one just ran. */
+  function play(kind: DeckMove, update: () => void) {
+    const now = performance.now()
+    if (now - lastMove.current < moveGap) return false
+    lastMove.current = now
+    setMove(kind)
+    update()
+    return true
+  }
+
+  function next(direction: "left" | "right" = "left") {
+    if (!top) return false
+    return play(direction === "left" ? "skip-left" : "skip-right", () =>
+      // In a small pool the skipped card can come back at the bottom.
+      setDeck((current) => {
+        const rest = fill(current.slice(1), pool, history)
+        return rest.length ? rest : current
+      })
+    )
   }
 
   function shuffle() {
-    if (!source || pendingSource) return
-    window.open(source.url, "_blank", "noopener,noreferrer")
+    if (!top) return
+    const opened = play("open", () => {
+      const seen = addToHistory(top.id)
+      setHistory(seen)
+      setDeck((current) => fill(current.slice(1), pool, seen))
+    })
+    if (!opened) return
+    window.open(top.url, "_blank", "noopener,noreferrer")
     window.dispatchEvent(new Event(shuffleEvent))
-    const seen = addToHistory(source.id)
-    setHistory(seen)
-    next(seen)
+  }
+
+  /** Puts a source back on top of the deck. */
+  function recall(source: Source) {
+    return play("recall", () =>
+      setDeck((current) =>
+        [source, ...current.filter((card) => card.id !== source.id)].slice(
+          0,
+          deckSize
+        )
+      )
+    )
   }
 
   function showPrevious() {
-    if (!source || pendingSource) return false
+    const index = top ? history.indexOf(top.id) : -1
     const previous = history
-      .slice(history.indexOf(source.id) + 1)
+      .slice(index + 1)
       .map(byId)
       .find((candidate) => candidate !== undefined)
-    setPendingSource(previous)
-    return Boolean(previous)
+    return Boolean(previous && recall(previous))
   }
 
   return {
     loadFailed,
-    filters,
-    source,
+    loading: !filters && !loadFailed,
+    deck,
+    deal,
+    move,
     historySources: history
       .map(byId)
       .filter((candidate): candidate is Source =>
-        Boolean(candidate && candidate.id !== source?.id)
+        Boolean(candidate && candidate.id !== top?.id)
       ),
-    transitioning: Boolean(pendingSource),
-    next: () => next(),
+    next,
     shuffle,
     showPrevious,
-    showHistorySource: (candidate: Source) => {
-      if (!pendingSource) setPendingSource(candidate)
-    },
+    showHistorySource: recall,
   }
 }

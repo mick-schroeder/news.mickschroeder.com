@@ -7,5 +7,12 @@ export const getStaticPaths = localizedPaths
 ---
 
 <Layout>
+  <link
+    slot="head"
+    rel="preload"
+    href="/sources.json"
+    as="fetch"
+    crossorigin="anonymous"
+  />
   <Discovery />
 </Layout>

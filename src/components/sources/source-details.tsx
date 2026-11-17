@@ -9,13 +9,11 @@ import {
 import { buttonVariants } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+  TextureCard,
+  TextureCardContent,
+  TextureCardHeader,
+  TextureSeparator,
+} from "@/components/ui/texture-card"
 import {
   Item,
   ItemActions,
@@ -30,7 +28,6 @@ import {
   EmptyHeader,
   EmptyMedia,
 } from "@/components/ui/empty"
-import { Separator } from "@/components/ui/separator"
 import { TierBadge } from "@/components/tier-badge"
 import type { Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
@@ -42,8 +39,15 @@ import {
   type Tag,
 } from "@/lib/sources"
 import { cn } from "@/lib/utils"
-import { SourceIcon } from "./source-icon"
+import {
+  cardIconClass,
+  cardIconMotion,
+  cardMotion,
+  iconMotion,
+  SourceIcon,
+} from "./source-icon"
 import { HostLink } from "./host-link"
+import { labelBody, labelHost, labelTitle } from "./label-type"
 import { TagChips } from "./tag-chips"
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const
@@ -72,39 +76,46 @@ export function SourceDetails({
     .filter((row) => row.tags.length)
 
   return (
-    <Card className="min-w-0">
-      <CardHeader className="items-center">
-        <div className="flex min-w-0 items-center gap-4">
-          <SourceIcon source={source} size="md" />
-          <div className="min-w-0 space-y-1">
-            {/* Title and host styled like the home page Up next card. */}
-            <CardTitle className="text-lg leading-snug font-medium break-words sm:text-xl">
-              <h1>{source.title}</h1>
-            </CardTitle>
-            <CardDescription>
-              <HostLink url={source.url} locale={locale} />
-            </CardDescription>
-          </div>
-        </div>
-        <CardAction className="self-center">
-          <a
-            href={`${getRelativeLocaleUrl(locale, "sources/")}#tier-${source.tier.toLowerCase()}`}
-            className="inline-flex rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+    <TextureCard className="min-w-0" style={cardMotion(source.id)}>
+      {/* Set like the shuffle card: label title, tracked host, a rule. */}
+      <TextureCardHeader className="flex items-center gap-4 pb-5">
+        <SourceIcon
+          source={source}
+          size="md"
+          className={cn("size-14 shrink-0 rounded-2xl p-2", cardIconClass)}
+          style={cardIconMotion(source.id)}
+        />
+        <div className="min-w-0 flex-1 space-y-2">
+          <h1
+            className={cn(
+              labelTitle,
+              "text-[1.625rem] break-words sm:text-[2rem]"
+            )}
           >
-            <TierBadge
-              tier={source.tier}
+            {source.title}
+          </h1>
+          <p className={cn(labelHost, "text-muted-foreground")}>
+            <HostLink
+              url={source.url}
               locale={locale}
-              className="size-11 rounded-lg text-xl"
+              className="[&_svg]:size-3"
             />
-          </a>
-        </CardAction>
-      </CardHeader>
+          </p>
+        </div>
+        <a
+          href={`${getRelativeLocaleUrl(locale, "sources/")}#tier-${source.tier.toLowerCase()}`}
+          className="inline-flex shrink-0 rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+        >
+          <TierBadge tier={source.tier} locale={locale} size="lg" />
+        </a>
+      </TextureCardHeader>
+      <TextureSeparator className="mx-6" />
       {/* Same height whatever the text, so the controls below stay put. */}
-      <CardContent className="min-h-26">
+      <TextureCardContent className="min-h-26 py-5">
         {source.description ? (
           <p
             lang="en"
-            className="line-clamp-4 text-base leading-relaxed text-pretty"
+            className={cn(labelBody, "line-clamp-4 text-base")}
             title={source.description}
           >
             {source.description}
@@ -119,9 +130,9 @@ export function SourceDetails({
             </EmptyHeader>
           </Empty>
         )}
-      </CardContent>
-      <Separator />
-      <CardContent>
+      </TextureCardContent>
+      <TextureSeparator className="mx-6" />
+      <TextureCardContent className="pt-5 pb-6">
         <dl className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center">
           {rows.map((row) => (
             <div key={row.label} className="contents">
@@ -139,8 +150,8 @@ export function SourceDetails({
             </div>
           ))}
         </dl>
-      </CardContent>
-    </Card>
+      </TextureCardContent>
+    </TextureCard>
   )
 }
 
@@ -172,6 +183,7 @@ export function SourceNav({
       <a
         href={href(previous)}
         rel="prev"
+        data-motion="back"
         data-astro-prefetch
         data-slot="button"
         className={icon}
@@ -193,6 +205,7 @@ export function SourceNav({
       <a
         href={href(random)}
         data-random-source={source.id}
+        data-motion="next"
         data-slot="button"
         className={icon}
         aria-label={t.randomSource}
@@ -203,6 +216,7 @@ export function SourceNav({
       <a
         href={href(next)}
         rel="next"
+        data-motion="next"
         data-astro-prefetch
         data-slot="button"
         className={icon}
@@ -244,7 +258,12 @@ export function SimilarSources({
               }
             >
               <ItemMedia>
-                <SourceIcon source={source} size="sm" className="size-8" />
+                <SourceIcon
+                  source={source}
+                  size="sm"
+                  className="size-8"
+                  style={iconMotion(source.id)}
+                />
               </ItemMedia>
               <ItemContent className="min-w-0 gap-0">
                 <ItemTitle className="w-full truncate">

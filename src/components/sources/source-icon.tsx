@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react"
 import { iconPath, monogram, type Source } from "@/lib/sources"
 import { cn } from "@/lib/utils"
 
@@ -8,6 +9,20 @@ const sizes = {
   lg: { box: "size-16 rounded-2xl p-2.5", text: "text-3xl", px: 48 },
 }
 
+/** Shared names let a source's card and icon move between views. */
+export const cardMotion = (id: string): CSSProperties => ({
+  viewTransitionName: `card-${id}`,
+  viewTransitionClass: "card",
+})
+export const iconMotion = (id: string): CSSProperties => ({
+  viewTransitionName: `icon-${id}`,
+  viewTransitionClass: "icon",
+})
+/** For the icon inside a card; global.css decides when it flies on its own. */
+export const cardIconMotion = (id: string) =>
+  ({ "--icon-name": `icon-${id}` }) as CSSProperties
+export const cardIconClass = "card-icon"
+
 /**
  * A source's cached favicon on a white tile, so dark logos show in dark mode.
  * Sources without one get a colored letter tile instead.
@@ -17,10 +32,12 @@ export function SourceIcon({
   source,
   size = "sm",
   className,
+  style,
 }: {
   source: Pick<Source, "id" | "title" | "icon">
   size?: keyof typeof sizes
   className?: string
+  style?: CSSProperties
 }) {
   const { box, text, px } = sizes[size]
 
@@ -35,6 +52,7 @@ export function SourceIcon({
           color,
           className
         )}
+        style={style}
         aria-hidden="true"
       >
         {letter}
@@ -49,6 +67,7 @@ export function SourceIcon({
         box,
         className
       )}
+      style={style}
     >
       <img
         src={iconPath(source.id)}
