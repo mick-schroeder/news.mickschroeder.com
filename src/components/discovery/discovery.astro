@@ -5,6 +5,7 @@ import { translations } from "@/i18n/ui"
 import { DiscoveryControls } from "./discovery-controls"
 import SourcesSection from "./sources-section.astro"
 import AdUnit from "@/components/ad-unit.astro"
+import { Card } from "@/components/ui/card"
 import { googleTagsEnabled } from "@/lib/google-config"
 import { getTags } from "@/lib/catalog"
 const locale = resolveLocale(Astro.currentLocale)
@@ -12,11 +13,7 @@ const t = translations[locale]
 const tags = await getTags()
 ---
 
-<main
-  id="discovery"
-  data-locale={locale}
-  class="page-width grid grid-cols-1 items-start gap-4"
->
+<main id="discovery" class="page-width grid grid-cols-1 items-start gap-4">
   <section class="min-w-0 text-center">
     <h1 class="font-headline text-balance text-4xl font-semibold tracking-tight leading-none text-foreground sm:text-5xl lg:text-6xl">
       {t.headline}
@@ -32,23 +29,13 @@ const tags = await getTags()
         display: none;
       }
     </style>
-    <div class="col-span-full space-y-4 rounded-xl border border-border bg-card p-6 text-sm text-card-foreground">
+    <Card className="col-span-full px-6 text-sm">
       <p>{t.noscript}</p>
-      <a
-        href={getRelativeLocaleUrl(locale, "sources/")}
-        class="inline-block font-semibold text-foreground underline"
-      >
+      <a href={getRelativeLocaleUrl(locale, "sources/")} class="link">
         {t.browse}
       </a>
-    </div>
+    </Card>
   </noscript>
   {googleTagsEnabled && <AdUnit />}
   <SourcesSection />
 </main>
-<script>
-  import { storageKeys, writeStorage } from "@/lib/browser-storage"
-
-  const locale =
-    document.querySelector<HTMLElement>("#discovery")?.dataset.locale
-  if (locale) writeStorage(storageKeys.locale, locale)
-</script>

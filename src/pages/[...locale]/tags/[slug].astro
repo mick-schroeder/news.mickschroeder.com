@@ -1,16 +1,16 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
-import { ExternalLink, Shuffle } from "lucide-react"
+import { Shuffle } from "lucide-react"
 import BrowsePage from "@/components/sources/browse-page.astro"
+import { HostLink } from "@/components/sources/host-link"
 import { TagChips } from "@/components/sources/tag-chips"
 import TierList from "@/components/sources/tier-list.astro"
 import { buttonVariants } from "@/components/ui/button"
 import { getSites, getTags } from "@/lib/catalog"
-import { browsableTags, hostOf, tagLabel } from "@/lib/sites"
+import { browsableTags, tagLabel } from "@/lib/sites"
 import { localeParam, locales, resolveLocale } from "@/i18n/locales"
 import { format, translations } from "@/i18n/ui"
-import { cn } from "@/lib/utils"
 
 export const getStaticPaths = (async () => {
   const tags = browsableTags(await getTags())
@@ -31,7 +31,7 @@ const { tag, tags } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const slug = tag.id
 const t = translations[locale]
-const label = tagLabel(tag, locale)
+const label = tagLabel(tag)
 const sources = (await getSites()).filter((source) =>
   source.tags.includes(tag.id)
 )
@@ -46,17 +46,9 @@ const sources = (await getSites()).filter((source) =>
   ]}
 >
   {tag.url && (
-    <a
-      slot="description"
-      href={tag.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-1 text-sm font-medium text-foreground underline-offset-4 hover:underline"
-    >
-      {hostOf(tag.url)}
-      <span class="sr-only">({t.opensInNewTab})</span>
-      <ExternalLink className="size-3.5" aria-hidden="true" />
-    </a>
+    <p slot="description" class="text-sm text-muted-foreground">
+      <HostLink url={tag.url} locale={locale} />
+    </p>
   )}
   <p slot="description" class="text-muted-foreground" lang="en">
     {tag.description}
@@ -64,7 +56,7 @@ const sources = (await getSites()).filter((source) =>
   <a
     slot="actions"
     href={getRelativeLocaleUrl(locale, `tags/${slug}/redirect/`)}
-    class={cn(buttonVariants({ size: "lg" }), "font-bold")}
+    class={buttonVariants({ size: "lg" })}
   >
     <Shuffle data-icon="inline-start" aria-hidden="true" />
     {format(t.shuffleTag, { label })}

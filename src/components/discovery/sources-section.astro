@@ -23,15 +23,12 @@ const rows = [0, 1].map((row) =>
 
 <section class="discovery-section-grid" aria-labelledby="sources-title">
   <div class="space-y-1">
-    <h2 id="sources-title" class="discovery-section-title">
+    <h2 id="sources-title" class="heading-section">
       {t.sources}
     </h2>
     <p class="discovery-section-subtitle">{t.sourcesHint}</p>
     <p class="pt-2 text-sm">
-      <a
-        href={getRelativeLocaleUrl(locale, "sources/")}
-        class="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-      >
+      <a href={getRelativeLocaleUrl(locale, "sources/")} class="link">
         {t.browse}
       </a>
     </p>

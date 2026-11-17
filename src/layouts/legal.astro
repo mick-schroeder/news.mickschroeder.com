@@ -14,12 +14,10 @@ const { contentLocale, heading, description } = Astro.props
 <Layout title={heading} description={description} noindex>
   <main class="page-width min-h-[60vh] max-w-2xl space-y-6 py-12 text-sm leading-relaxed text-muted-foreground">
     <header>
-      <h1 class="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-        {heading}
-      </h1>
+      <h1 class="heading-page">{heading}</h1>
       <slot name="byline" />
     </header>
-    <div lang={contentLocale} class="contents">
+    <div lang={contentLocale} class="space-y-4">
       <slot />
     </div>
   </main>

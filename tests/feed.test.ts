@@ -70,13 +70,8 @@ test("every tag has a Lucide icon", async () => {
   }
 })
 
-test("tag labels use the locale's title, else the feed title", () => {
+test("tag labels are the feed title", () => {
   const { tags } = parse(rawSites)
   const byId = Object.fromEntries(tags.map((tag) => [tag.id, tag]))
-  assert.equal(tagLabel(byId.news, "ga"), "Nuacht")
-  assert.equal(tagLabel(byId.news, "en"), "News")
-  assert.equal(tagLabel(byId.techmeme, "ga"), "Techmeme")
-  assert.throws(() =>
-    parse(rawSites, [{ ...rawTags[0], translations: { xx: { title: "X" } } }])
-  )
+  assert.equal(tagLabel(byId.news), "News")
 })

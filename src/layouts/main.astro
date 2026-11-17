@@ -4,7 +4,7 @@ import GoogleTags from "@/components/google-tags.astro"
 import SiteFooter from "@/components/site-footer.astro"
 import SiteHead from "@/components/site-head.astro"
 import SiteHeader from "@/components/site-header.astro"
-import { localeSuffix, resolveLocale } from "@/i18n/locales"
+import { resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { googleTagsEnabled } from "@/lib/google-config"
 import { site } from "@/lib/site"
@@ -14,12 +14,9 @@ interface Props {
   title?: string
   description?: string
   noindex?: boolean
-  /** Path the language picker keeps, e.g. "tags/". Defaults to this page. */
-  languageSuffix?: string
 }
 
-const { noindex = false, languageSuffix = localeSuffix(Astro.url.pathname) } =
-  Astro.props
+const { noindex = false } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const title = Astro.props.title
@@ -37,7 +34,6 @@ const showGoogleTags = googleTagsEnabled && !noindex
       title={title}
       noindex={noindex}
       description={Astro.props.description}
-      languageSuffix={languageSuffix}
     />
     <slot name="head" />
     {showGoogleTags && <GoogleTags />}
@@ -50,7 +46,7 @@ const showGoogleTags = googleTagsEnabled && !noindex
       {t.skip}
     </a>
     <div class="mx-auto max-w-4xl bg-background pt-2 sm:my-10 sm:pt-4">
-      <SiteHeader languageSuffix={languageSuffix} />
+      <SiteHeader />
       <div id="main-content" tabindex="-1" class="focus:outline-none">
         <slot />
       </div>

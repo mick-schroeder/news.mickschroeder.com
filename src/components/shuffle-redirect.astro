@@ -19,7 +19,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 import { getTags } from "@/lib/catalog"
 
 interface Props {
-  /** Fixed language, e.g. for /ga/tags/…/redirect/. Otherwise the last one used. */
+  /** Page language; the default when unset. */
   locale?: Locale
   /** Shuffle sites with this tag instead of the visitor's saved filters. */
   tag?: string
@@ -36,7 +36,7 @@ const t = translations[locale ?? defaultLocale]
 const destinationRow = "min-h-18 flex-nowrap"
 ---
 
-<Layout title={t.redirecting} noindex languageSuffix="">
+<Layout title={t.redirecting} noindex>
   <meta slot="head" name="referrer" content="no-referrer" />
   <main
     data-home-urls={JSON.stringify(homeUrls)}
@@ -143,8 +143,6 @@ const destinationRow = "min-h-18 flex-nowrap"
     loadSites,
     readFilters,
     readHistory,
-    readStorage,
-    storageKeys,
   } from "@/lib/browser-storage"
   import { filterSites, pickSite, type Site } from "@/lib/sites"
   import { resolveLocale } from "@/i18n/locales"
@@ -173,9 +171,7 @@ const destinationRow = "min-h-18 flex-nowrap"
     cancelRedirect()
     const controller = new AbortController()
     request = controller
-    const locale = resolveLocale(
-      page.dataset.locale ?? readStorage(storageKeys.locale)
-    )
+    const locale = resolveLocale(page.dataset.locale)
     const t = translations[locale]
     document.documentElement.lang = locale
     document.title = t.redirecting

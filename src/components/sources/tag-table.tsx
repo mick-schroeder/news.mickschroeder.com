@@ -18,7 +18,6 @@ export function TagTable({
   rows: {
     tag: Tag
     href: string
-    locale: "en" | "ga"
     examples: Site[]
   }[]
 }) {
@@ -26,7 +25,7 @@ export function TagTable({
     <Card className="py-2">
       <Table className={tableEdges}>
         <TableBody>
-          {rows.map(({ tag, href, locale, examples }) => {
+          {rows.map(({ tag, href, examples }) => {
             return (
               <TableRow key={tag.id} className="relative">
                 <TableCell className="py-3">
@@ -37,7 +36,7 @@ export function TagTable({
                       aria-hidden="true"
                     />
                     <a href={href} className={rowLink}>
-                      {tagLabel(tag, locale)}
+                      {tagLabel(tag)}
                     </a>
                   </span>
                 </TableCell>

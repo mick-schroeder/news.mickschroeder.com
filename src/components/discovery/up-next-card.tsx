@@ -120,7 +120,7 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
             <Button
               type="button"
               size="lg"
-              className="flex-1 font-bold motion-reduce:transition-none"
+              className="flex-1 motion-reduce:transition-none"
               disabled={loading || !frontSite}
               aria-disabled={transitioning || undefined}
               onClick={shuffle}

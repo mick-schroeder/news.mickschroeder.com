@@ -84,7 +84,7 @@ export function SiteCard({
                   data-icon="inline-start"
                   aria-hidden="true"
                 />
-                {tagLabel(tag, locale)}
+                {tagLabel(tag)}
               </Badge>
             </li>
           ))}

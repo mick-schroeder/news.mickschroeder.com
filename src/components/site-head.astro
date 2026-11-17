@@ -1,13 +1,7 @@
 ---
 import { Font } from "astro:assets"
 import { adsenseClient } from "@/lib/google-config"
-import { getRelativeLocaleUrl } from "astro:i18n"
-import {
-  defaultLocale,
-  languages,
-  locales,
-  resolveLocale,
-} from "@/i18n/locales"
+import { languages, resolveLocale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { site } from "@/lib/site"
 
@@ -15,10 +9,9 @@ interface Props {
   title: string
   noindex: boolean
   description?: string
-  languageSuffix?: string
 }
 
-const { title, noindex, languageSuffix = "" } = Astro.props
+const { title, noindex } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
 const description = Astro.props.description ?? t.description
@@ -29,9 +22,9 @@ const siteData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: site.name,
-  alternateName: translations[defaultLocale].title,
+  alternateName: t.title,
   url: rootUrl.href,
-  inLanguage: locales,
+  inLanguage: locale,
 }
 ---
 
@@ -52,34 +45,9 @@ const siteData = {
   <meta name="description" content={description} />
   <meta name="google-adsense-account" content={adsenseClient} />
   <link rel="canonical" href={canonical} />
-  {!noindex &&
-    locales.map((code) => (
-      <link
-        rel="alternate"
-        hreflang={code}
-        href={new URL(getRelativeLocaleUrl(code, languageSuffix), Astro.site)}
-      />
-    ))}
-  {!noindex && (
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={
-        new URL(getRelativeLocaleUrl(defaultLocale, languageSuffix), Astro.site)
-      }
-    />
-  )}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={site.name} />
   <meta property="og:locale" content={languages[locale].socialLocale} />
-  {locales
-    .filter((code) => code !== locale)
-    .map((code) => (
-      <meta
-        property="og:locale:alternate"
-        content={languages[code].socialLocale}
-      />
-    ))}
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />

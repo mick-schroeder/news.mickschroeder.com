@@ -17,7 +17,7 @@ const t = translations[locale]
 const sitePath = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
 ---
 
-<div class="rounded-2xl border border-border bg-card">
+<div class="rounded-4xl bg-card shadow-md ring-1 ring-foreground/5 dark:ring-foreground/10">
   {byTier(sites).map(({ tier, sites }) => (
     <section
       id={`tier-${tier.toLowerCase()}`}
@@ -58,14 +58,14 @@ const sitePath = (id: string) => getRelativeLocaleUrl(locale, `sources/${id}/`)
 </div>
 
 <style>
-  /* Round the tier column into the card's corners; no overflow clip, so tooltips show. */
+  /* Round the tier column into the card's corners; no overflow clip, so labels show. */
   [data-tier-row]:first-child > :first-child {
-    border-top-left-radius: calc(var(--radius-2xl) - 1px);
+    border-top-left-radius: var(--radius-4xl);
   }
   [data-tier-row]:last-child {
     border-bottom: 0;
   }
   [data-tier-row]:last-child > :first-child {
-    border-bottom-left-radius: calc(var(--radius-2xl) - 1px);
+    border-bottom-left-radius: var(--radius-4xl);
   }
 </style>

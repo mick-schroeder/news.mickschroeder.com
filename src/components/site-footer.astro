@@ -13,7 +13,8 @@ interface Props {
 const { privacyChoices } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const t = translations[locale]
-const pages = ["sources", "tags", "about", "privacy", "terms"] as const
+// Sources, Tags and About are in the header.
+const pages = ["privacy", "terms"] as const
 const links = pages.map((page) => ({
   label: t[page],
   href: getRelativeLocaleUrl(locale, `${page}/`),

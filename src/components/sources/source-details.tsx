@@ -176,7 +176,7 @@ export function SourceNav({
         href={source.url}
         {...external}
         data-slot="button"
-        className={cn(buttonVariants({ size: "lg" }), "w-32 font-bold")}
+        className={cn(buttonVariants({ size: "lg" }), "w-32")}
       >
         {t.open}
         <span className="sr-only">({t.opensInNewTab})</span>
@@ -219,10 +219,7 @@ export function SimilarSites({
   if (!sites.length) return null
   return (
     <section aria-labelledby="similar-title" className="space-y-3">
-      <h2
-        id="similar-title"
-        className="text-lg font-bold tracking-tight text-foreground"
-      >
+      <h2 id="similar-title" className="heading-section">
         {t.similarSites}
       </h2>
       <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">

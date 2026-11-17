@@ -4,7 +4,6 @@ export default {
   description: "Discover news sites by topic, place and tier.",
   headline: "Shuffle to the news.",
   skip: "Skip to content",
-  language: "Language",
   filters: "Your shuffle",
   navMain: "Main",
   navShuffle: "Shuffle",

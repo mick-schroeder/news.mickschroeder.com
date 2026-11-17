@@ -47,16 +47,16 @@ To build against a local run of the data repo, serve its `out/` folder and set
 
 ```
 src/
-  pages/[...locale]/   Pages, built once per language (/ and /ga/)
+  pages/[...locale]/   Pages (English only; the locale routing stays for later)
   layouts/             Page shell: head, masthead, footer
   components/
-    discovery/         Home page shuffle controls (the only React island)
+    discovery/         Home page shuffle controls
     sources/           Source and tag directory pages
-    legal/             Privacy and terms copy, one file per language
+    legal/             Privacy and terms copy
     ui/                shadcn/ui components
   i18n/
-    en.ts, ga.ts       All UI text, one file per language
-    locales.ts         Supported languages
+    en.ts              All UI text
+    locales.ts         Supported languages (English)
   lib/
     site.ts            Site name, owner and links
     feed.ts            Feed schema and loader
@@ -68,8 +68,8 @@ tests/                 Unit tests (node --test)
 
 ## Conventions
 
-- **Text** lives in `src/i18n/en.ts` and `ga.ts`, never in components. Write
-  `{site}` for the site name. Missing keys in a language fail the type check.
+- **Text** lives in `src/i18n/en.ts`, never in components. Write `{site}` for
+  the site name.
 - **Brand** details live in `src/lib/site.ts`.
 - **Pages** read their language from `Astro.currentLocale`. React components
   take a `locale` prop.
@@ -82,7 +82,7 @@ tests/                 Unit tests (node --test)
 1. Add it to `languages` in `src/i18n/locales.ts`.
 2. Add `src/i18n/{code}.ts` and register it in `src/i18n/ui.ts`.
 3. Optionally add legal copy in `src/components/legal/*/{code}.astro`
-   (English is used otherwise) and tag titles in the data feed.
+   (English is used otherwise).
 
 ## License
 

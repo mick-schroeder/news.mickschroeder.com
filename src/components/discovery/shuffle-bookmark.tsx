@@ -1,7 +1,12 @@
 import { useState } from "react"
-import { ButtonGroup } from "@/components/ui/button-group"
 import { Check, Copy } from "lucide-react"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group"
 import { translations, type Locale } from "@/i18n/ui"
 import { site } from "@/lib/site"
 import { shufflePath } from "@/lib/sites"
@@ -33,42 +38,38 @@ export function ShuffleBookmark({
       aria-labelledby="bookmark-title"
     >
       <div className="space-y-1">
-        <h2 id="bookmark-title" className="discovery-section-title">
+        <h2 id="bookmark-title" className="heading-section">
           {t.bookmark}
         </h2>
         <p className="discovery-section-subtitle">{t.bookmarkHint}</p>
       </div>
       <div className="grid gap-4 text-center sm:grid-cols-2 sm:gap-0">
         <div className="min-w-0 space-y-2 sm:px-5">
-          <ButtonGroup className="mx-auto w-full max-w-xs">
-            <a
-              href={shufflePath}
-              data-slot="button"
-              title={bookmarkUrl}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "min-w-0 flex-1 justify-start text-left font-mono text-xs"
-              )}
-            >
-              <span className="truncate">{bookmarkUrl}</span>
-            </a>
-            <Button
-              type="button"
-              variant="outline"
-              size="icon-lg"
-              aria-label={t.copyBookmark}
-              title={t.copyBookmark}
+          <InputGroup className="mx-auto max-w-xs">
+            <InputGroupInput
+              readOnly
+              value={bookmarkUrl}
+              aria-label={t.bookmark}
               aria-describedby="bookmark-copy-hint"
-              disabled={!ready}
-              onClick={copyBookmark}
-            >
-              {copyResult === "copied" ? (
-                <Check className="text-primary" aria-hidden="true" />
-              ) : (
-                <Copy aria-hidden="true" />
-              )}
-            </Button>
-          </ButtonGroup>
+              className="font-mono text-xs"
+              onFocus={(event) => event.currentTarget.select()}
+            />
+            <InputGroupAddon align="inline-end">
+              <InputGroupButton
+                size="icon-xs"
+                aria-label={t.copyBookmark}
+                title={t.copyBookmark}
+                disabled={!ready}
+                onClick={copyBookmark}
+              >
+                {copyResult === "copied" ? (
+                  <Check className="text-primary" aria-hidden="true" />
+                ) : (
+                  <Copy aria-hidden="true" />
+                )}
+              </InputGroupButton>
+            </InputGroupAddon>
+          </InputGroup>
           <p id="bookmark-copy-hint" className="text-xs text-muted-foreground">
             {t.copyBookmarkHint}
           </p>

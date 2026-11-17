@@ -1,5 +1,6 @@
 import { getRelativeLocaleUrl } from "astro:i18n"
 import { Button } from "@/components/ui/button"
+import { FieldGroup, FieldLegend, FieldSet } from "@/components/ui/field"
 import { Slider } from "@/components/ui/slider"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { TagIcon } from "@/components/tag-icon"
@@ -17,12 +18,9 @@ import {
 } from "@/lib/sites"
 import { cn } from "@/lib/utils"
 
-const rowLabel = "text-xs font-semibold text-muted-foreground"
-
 function FacetRow({
   id,
   label,
-  locale,
   tags,
   selected,
   onChange,
@@ -30,17 +28,16 @@ function FacetRow({
 }: {
   id: string
   label: string
-  locale: Locale
   tags: Tag[]
   selected: string[] | undefined
   onChange: (ids: string[]) => void
   icons?: boolean
 }) {
   return (
-    <div className="space-y-2">
-      <h3 id={id} className={rowLabel}>
+    <FieldSet>
+      <FieldLegend id={id} variant="label" className="mb-2">
         {label}
-      </h3>
+      </FieldLegend>
       <ToggleGroup
         aria-labelledby={id}
         className="w-full flex-wrap"
@@ -62,11 +59,11 @@ function FacetRow({
             {icons && (
               <TagIcon tag={tag} data-icon="inline-start" aria-hidden="true" />
             )}
-            <span>{tagLabel(tag, locale)}</span>
+            <span>{tagLabel(tag)}</span>
           </ToggleGroupItem>
         ))}
       </ToggleGroup>
-    </div>
+    </FieldSet>
   )
 }
 
@@ -86,10 +83,10 @@ function TierSlider({
   const rank = tierRank(lowestTier)
   const valueText = format(t.tiersHint, { tier: lowestTier })
   return (
-    <div className="max-w-sm space-y-2">
-      <h3 id="filter-tiers" className={rowLabel}>
+    <FieldSet className="max-w-sm">
+      <FieldLegend id="filter-tiers" variant="label" className="mb-2">
         {t.tiers}
-      </h3>
+      </FieldLegend>
       <Slider
         min={0}
         max={tiers.length - 1}
@@ -122,7 +119,7 @@ function TierSlider({
           </li>
         ))}
       </ol>
-    </div>
+    </FieldSet>
   )
 }
 
@@ -145,11 +142,10 @@ export function FilterPanel({
   const isDefault = JSON.stringify(filters) === JSON.stringify(defaultFilters)
 
   return (
-    <div className="min-w-0 space-y-5">
+    <FieldGroup className="min-w-0 gap-5">
       <FacetRow
         id="filter-topics"
         label={t.topics}
-        locale={locale}
         tags={groups.topics}
         selected={filters?.topics}
         onChange={(topics) => set({ topics })}
@@ -157,7 +153,6 @@ export function FilterPanel({
       <FacetRow
         id="filter-where"
         label={t.where}
-        locale={locale}
         tags={groups.regions}
         selected={filters?.regions}
         onChange={(regions) => set({ regions })}
@@ -165,7 +160,6 @@ export function FilterPanel({
       <FacetRow
         id="filter-seen-on"
         label={t.seenOn}
-        locale={locale}
         tags={groups.seenOn}
         selected={filters?.seenOn}
         onChange={(seenOn) => set({ seenOn })}
@@ -190,11 +184,11 @@ export function FilterPanel({
         </Button>
         <a
           href={getRelativeLocaleUrl(locale, "tags/")}
-          className="text-sm font-medium text-foreground underline underline-offset-4 hover:text-primary"
+          className="text-sm link"
         >
           {t.browseTags}
         </a>
       </div>
-    </div>
+    </FieldGroup>
   )
 }

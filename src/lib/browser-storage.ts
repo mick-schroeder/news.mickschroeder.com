@@ -3,7 +3,6 @@ import { parseFilters, type Filters, type Site, type Tag } from "./sites.ts"
 export const storageKeys = {
   filters: "news-shuffle.preferences.v2",
   history: "news-shuffle.history.v2",
-  locale: "news-shuffle.locale",
 } as const
 
 export function readStorage(key: string): string | null {

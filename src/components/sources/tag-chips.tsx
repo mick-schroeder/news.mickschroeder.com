@@ -36,7 +36,7 @@ export function TagChips({
               }
             >
               <TagIcon tag={tag} data-icon="inline-start" aria-hidden="true" />
-              {tagLabel(tag, locale)}
+              {tagLabel(tag)}
             </Badge>
           </li>
         )

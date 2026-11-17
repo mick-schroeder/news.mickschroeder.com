@@ -119,10 +119,6 @@ export default defineConfig({
           )
         )
       },
-      i18n: {
-        defaultLocale,
-        locales: Object.fromEntries(locales.map((locale) => [locale, locale])),
-      },
     }),
   ],
 })

@@ -14,7 +14,6 @@ const t = translations[locale]
 const sites = await getSites()
 const rows = browsableTags(await getTags()).map((tag) => ({
   tag,
-  locale,
   href: getRelativeLocaleUrl(locale, `tags/${tag.id}/`),
   examples: sites.filter((s) => s.tags.includes(tag.id)).slice(0, 5),
 }))

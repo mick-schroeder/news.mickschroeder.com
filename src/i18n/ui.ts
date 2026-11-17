@@ -1,7 +1,6 @@
 import { site } from "@/lib/site"
 import type { Locale } from "./locales"
 import en from "./en"
-import ga from "./ga"
 export type { Locale } from "./locales"
 
 type Strings = Record<keyof typeof en, string>
@@ -16,7 +15,6 @@ const withSite = (strings: Strings) =>
 
 export const translations: Record<Locale, Strings> = {
   en: withSite(en),
-  ga: withSite(ga),
 }
 
 /** Fills {placeholders} in a translation string. */

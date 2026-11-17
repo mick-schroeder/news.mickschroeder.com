@@ -6,16 +6,23 @@
   @apply mx-auto w-full px-4 sm:px-8;
 }
 
+/* Inline text link, as in shadcn typography. */
 @utility link {
-  @apply underline transition-colors hover:text-primary;
+  @apply font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary;
+}
+
+/* Page title, one per page. */
+@utility heading-page {
+  @apply text-3xl font-semibold tracking-tight text-balance text-foreground sm:text-4xl;
+}
+
+/* Section title within a page. */
+@utility heading-section {
+  @apply text-xl font-semibold tracking-tight text-foreground;
 }
 
 @utility discovery-section-grid {
   @apply col-span-full grid min-w-0 grid-cols-1 items-start gap-6 border-t border-border py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10;
-}
-
-@utility discovery-section-title {
-  @apply text-xl font-bold tracking-tight text-foreground;
 }
 
 @utility discovery-section-subtitle {

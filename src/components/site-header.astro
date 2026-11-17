@@ -1,17 +1,12 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n"
 import BrandLogo from "@/components/brand-logo.astro"
-import LanguagePicker from "@/components/language-picker.astro"
+import { ShuffleSettings } from "@/components/shuffle-settings"
 import { SiteNav } from "@/components/site-nav"
 import { resolveLocale } from "@/i18n/locales"
 import { getTags } from "@/lib/catalog"
 import { site } from "@/lib/site"
 
-interface Props {
-  languageSuffix: string
-}
-
-const { languageSuffix } = Astro.props
 const locale = resolveLocale(Astro.currentLocale)
 const home = getRelativeLocaleUrl(locale)
 const tags = await getTags()
@@ -33,16 +28,11 @@ const tags = await getTags()
       </span>
     </a>
     <div class="sm:justify-self-end">
-      <LanguagePicker languageSuffix={languageSuffix} />
+      <ShuffleSettings client:load locale={locale} tags={tags} />
     </div>
   </div>
   <div class="border-y border-b-4 border-double border-border py-1.5">
-    <SiteNav
-      client:load
-      locale={locale}
-      tags={tags}
-      path={Astro.url.pathname}
-    />
+    <SiteNav client:load locale={locale} path={Astro.url.pathname} />
   </div>
 </header>
 

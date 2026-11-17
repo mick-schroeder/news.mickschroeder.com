@@ -1,5 +1,4 @@
 import { z } from "astro/zod"
-import { locales, type Locale } from "../i18n/locales.ts"
 
 /** Tiers, best first. */
 export const tiers = ["S", "A", "B", "C", "D", "E", "F"] as const
@@ -25,12 +24,6 @@ export const tagSchema = z.object({
   description: z.string(),
   /** The aggregator's own site, for aggregator tags. */
   url: z.url({ protocol: /^https$/ }).optional(),
-  translations: z
-    .partialRecord(
-      z.enum(locales),
-      z.object({ title: z.string().trim().min(1) })
-    )
-    .optional(),
 })
 
 export const siteSchema = z.object({
@@ -49,9 +42,7 @@ export type Tag = z.infer<typeof tagSchema> & {
 }
 export type IconNode = [string, Record<string, string>][]
 
-/** Tag title in the locale, falling back to the feed title. */
-export const tagLabel = (tag: Tag, locale: Locale) =>
-  tag.translations?.[locale]?.title ?? tag.title
+export const tagLabel = (tag: Tag) => tag.title
 export type Site = z.infer<typeof siteSchema> & {
   /** Set by the catalog when public/favicons/{id}.png exists. */
   icon?: boolean
