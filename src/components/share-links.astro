@@ -1,0 +1,67 @@
+---
+import { Mail } from "lucide-react"
+import {
+  siBluesky,
+  siFacebook,
+  siReddit,
+  siThreads,
+  siWhatsapp,
+  siX,
+} from "simple-icons"
+import { CopyLinkButton } from "@/components/copy-link-button"
+import { buttonVariants } from "@/components/ui/button"
+
+interface Props {
+  title: string
+  url: string
+}
+
+const { title, url } = Astro.props
+const u = encodeURIComponent(url)
+const t = encodeURIComponent(title)
+const both = encodeURIComponent(`${title} ${url}`)
+const sites = [
+  { icon: siReddit, href: `https://www.reddit.com/submit?url=${u}&title=${t}` },
+  {
+    icon: siFacebook,
+    href: `https://www.facebook.com/sharer/sharer.php?u=${u}`,
+  },
+  { icon: siX, href: `https://x.com/intent/post?url=${u}&text=${t}` },
+  { icon: siBluesky, href: `https://bsky.app/intent/compose?text=${both}` },
+  { icon: siThreads, href: `https://www.threads.net/intent/post?text=${both}` },
+  { icon: siWhatsapp, href: `https://wa.me/?text=${both}` },
+]
+const button = buttonVariants({ variant: "outline", size: "icon-lg" })
+---
+
+<ul class="flex flex-wrap gap-2">
+  {sites.map(({ icon, href }) => (
+    <li>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener"
+        class={button}
+        title={`Share on ${icon.title}`}
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d={icon.path} />
+        </svg>
+        <span class="sr-only">Share on {icon.title}</span>
+      </a>
+    </li>
+  ))}
+  <li>
+    <a
+      href={`mailto:?subject=${t}&body=${u}`}
+      class={button}
+      title="Share by email"
+    >
+      <Mail aria-hidden="true" />
+      <span class="sr-only">Share by email</span>
+    </a>
+  </li>
+  <li>
+    <CopyLinkButton client:idle url={url} />
+  </li>
+</ul>

@@ -1,48 +1,38 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n"
-import ExternalLink from "@/components/external-link.astro"
-import { resolveLocale } from "@/i18n/locales"
-import { translations } from "@/i18n/ui"
-import { brand } from "@/lib/brand"
+import { OWNER, SITE_TITLE } from "@/consts"
 
-interface Props {
-  /** Shows the button that reopens Google's consent message. */
-  privacyChoices: boolean
-}
-
-const { privacyChoices } = Astro.props
-const locale = resolveLocale(Astro.currentLocale)
-const t = translations[locale]
-// Sources, Tags and About are in the header.
-const pages = ["privacy", "terms"] as const
-const links = pages.map((page) => ({
-  label: t[page],
-  href: getRelativeLocaleUrl(locale, `${page}/`),
-}))
-const years = `${brand.since}-${new Date().getFullYear()}`
+const year = new Date().getFullYear()
 ---
 
-<footer class="page-width mt-12 border-t border-border py-10 text-xs text-muted-foreground sm:py-12">
-  <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
-    <b class="text-foreground">{brand.name}™</b> © {years}
-    <ExternalLink href={brand.ownerUrl} class="link">
-      {brand.owner}
-    </ExternalLink>
-    {links.map(({ label, href }) => (
-      <>
-        <span aria-hidden="true"> · </span>
-        <a href={href} class="link">
-          {label}
-        </a>
-      </>
-    ))}
-    {privacyChoices && (
-      <span id="privacy-choices" class="contents" hidden>
-        <span aria-hidden="true"> · </span>
-        <button type="button" class="link">
-          {t.privacyChoices}
-        </button>
-      </span>
-    )}
-  </p>
+<footer class="mx-auto mt-16 w-full max-w-5xl px-4 sm:px-8">
+  <nav class="flex flex-wrap justify-center gap-1 border-t-4 border-b border-double border-foreground/25 py-1.5 text-sm text-muted-foreground [&>*]:rounded-md [&>*]:px-3 [&>*]:py-1 [&>*]:hover:text-foreground">
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <button id="privacy-choices" type="button" hidden>
+      Privacy and cookie settings
+    </button>
+  </nav>
+  <div class="flex flex-col items-center gap-1 py-6 text-center">
+    <a href="/" class="font-logo text-2xl leading-none">
+      {SITE_TITLE}
+    </a>
+    <p class="text-xs text-muted-foreground">
+      © 2021–{year}{" "}
+      <a href={OWNER.url} class="hover:text-foreground">
+        {OWNER.name}
+      </a>
+    </p>
+  </div>
 </footer>
+
+<script>
+  // Reopens Google's consent message, on pages that load AdSense.
+  const button = document.getElementById("privacy-choices")!
+  if (document.querySelector("script[src*='adsbygoogle']")) {
+    button.hidden = false
+    button.addEventListener("click", () => {
+      const fc = ((window as any).googlefc ??= { callbackQueue: [] })
+      fc.callbackQueue.push(() => fc.showRevocationMessage())
+    })
+  }
+</script>

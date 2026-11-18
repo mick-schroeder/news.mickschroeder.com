@@ -1,7 +1,6 @@
-dist/
-.astro/
 node_modules/
 coverage/
 .pnpm-store/
-public/favicons/
 pnpm-lock.yaml
+package-lock.json
+yarn.lock

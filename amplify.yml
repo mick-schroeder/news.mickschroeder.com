@@ -4,7 +4,7 @@ frontend:
     preBuild:
       commands:
         # Drop restored cache files outside cache.paths
-        - git clean -xdf -e .pnpm-store -e public/favicons
+        - git clean -xdf -e .pnpm-store
         # Version from .nvmrc
         - nvm install
         - nvm use
@@ -14,7 +14,6 @@ frontend:
     build:
       commands:
         - pnpm check
-        - pnpm fetch-favicons
         - pnpm build
   artifacts:
     baseDirectory: dist
@@ -23,4 +22,3 @@ frontend:
   cache:
     paths:
       - .pnpm-store/**/*
-      - public/favicons/**/*

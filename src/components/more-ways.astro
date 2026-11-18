@@ -1,0 +1,158 @@
+---
+import { GripVertical, Shuffle } from "lucide-react"
+import BentoCard from "@/components/bento-card.astro"
+import { SourceIcon } from "@/components/source-icon"
+import { TagIcon } from "@/components/tag-icon"
+import { buttonVariants } from "@/components/ui/button"
+import { CODE_URL, DATA_API, EXTENSION_URL } from "@/consts"
+import type { Source, Tag } from "@/lib/shuffle"
+
+interface Props {
+  sources: Omit<Source, "similar">[]
+  tags: Tag[]
+}
+
+const { sources, tags } = Astro.props
+const topics = tags.filter((tag) => tag.kind === "topic")
+// Sources come sorted by tier, so the first rows are the top ranked.
+const rows = [0, 1, 2].map((row) => sources.slice(row * 24, row * 24 + 24))
+const sample = JSON.stringify(
+  sources
+    .slice(0, 4)
+    .map(({ id, title, url, tier, tags }) => ({ id, title, url, tier, tags })),
+  null,
+  2
+)
+const fadeX =
+  "[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+const fadeY =
+  "[mask-image:linear-gradient(to_bottom,transparent,black_20%,black_70%,transparent)]"
+---
+
+<section aria-labelledby="more" class="mx-auto mt-20 max-w-4xl">
+  <h2 id="more" class="mb-4 text-2xl font-medium">
+    More from News Shuffle
+  </h2>
+  <div class="grid gap-4 sm:grid-cols-3">
+    <BentoCard
+      wide
+      href="/sources/"
+      title={`${sources.length} sources`}
+      description="Every one ranked S to F in the tier list."
+    >
+      <div class:list={["flex h-full flex-col justify-center gap-3", fadeX]}>
+        {rows.map((row, index) => (
+          <div
+            class:list={[
+              "flex w-max animate-marquee gap-3 motion-reduce:animate-none",
+              index % 2 && "[animation-direction:reverse]",
+            ]}
+          >
+            {[...row, ...row].map((source) => (
+              <SourceIcon source={source} className="size-8" />
+            ))}
+          </div>
+        ))}
+      </div>
+    </BentoCard>
+
+    <BentoCard
+      href={EXTENSION_URL}
+      title="Browser extension"
+      description="For Chrome. One click from your toolbar to a random website."
+    >
+      <div class="absolute inset-x-4 top-4 bottom-0 rounded-t-lg border border-b-0 bg-background">
+        <div class="flex items-center gap-2 border-b px-3 py-2">
+          <span class="flex gap-1">
+            <span class="size-2 rounded-full bg-muted-foreground/30"></span>
+            <span class="size-2 rounded-full bg-muted-foreground/30"></span>
+            <span class="size-2 rounded-full bg-muted-foreground/30"></span>
+          </span>
+          <span class="h-5 flex-1 rounded-full bg-muted"></span>
+          <span class="relative flex size-6">
+            <span class="absolute inset-0 animate-ping rounded-md bg-primary/40 motion-reduce:hidden"></span>
+            <span class="relative flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <Shuffle
+                className="size-3.5"
+                strokeWidth={3}
+                aria-hidden="true"
+              />
+            </span>
+          </span>
+        </div>
+        <div class="space-y-2 p-3">
+          <div class="h-2 w-3/4 rounded bg-muted"></div>
+          <div class="h-2 w-1/2 rounded bg-muted"></div>
+          <div class="h-2 w-2/3 rounded bg-muted"></div>
+        </div>
+      </div>
+    </BentoCard>
+
+    <BentoCard
+      title="Bookmark it"
+      description="Drag Shuffle news to your bookmarks bar for a random source with your filters."
+    >
+      <div class="flex h-full items-center justify-center">
+        <a
+          href="/redirect/"
+          rel="nofollow"
+          class={buttonVariants({
+            size: "lg",
+            className: "cursor-grab active:cursor-grabbing",
+          })}
+        >
+          <GripVertical data-icon="inline-start" aria-hidden="true" />
+          Shuffle news
+        </a>
+      </div>
+    </BentoCard>
+
+    <BentoCard
+      wide
+      title="Shuffle a topic"
+      description="Each one opens a random source on that topic."
+    >
+      <div class="flex h-full flex-wrap content-center justify-center gap-2 p-4">
+        {topics.map((tag) => (
+          <a
+            href={`/tags/${tag.id}/redirect/`}
+            rel="nofollow"
+            class={buttonVariants({ variant: "outline" })}
+          >
+            <TagIcon tag={tag} data-icon="inline-start" />
+            {tag.title}
+          </a>
+        ))}
+      </div>
+    </BentoCard>
+
+    <BentoCard
+      wide
+      href={DATA_API}
+      title="Data API"
+      description="Every source, tag and tier as public JSON. No key needed."
+    >
+      <div class:list={["h-full", fadeY]}>
+        <pre class="animate-marquee-up px-4 font-mono text-xs leading-relaxed text-muted-foreground motion-reduce:animate-none"><code>{sample}{"\n"}{sample}</code></pre>
+      </div>
+    </BentoCard>
+
+    <BentoCard
+      href={CODE_URL}
+      title="Open source"
+      description="The site and its data are on GitHub."
+    >
+      <div class="flex h-full items-center justify-center">
+        <!-- GitHub's mark -->
+        <svg
+          viewBox="0 0 24 24"
+          class="size-20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+        </svg>
+      </div>
+    </BentoCard>
+  </div>
+</section>

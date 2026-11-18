@@ -1,19 +1,17 @@
 ---
-import Layout from "@/layouts/main.astro"
 import { buttonVariants } from "@/components/ui/button"
-import { defaultLocale } from "@/i18n/locales"
-import { translations } from "@/i18n/ui"
-
-const t = translations[defaultLocale]
+import Layout from "@/layouts/main.astro"
 ---
 
-<Layout title={t.notFound} description={t.notFound} noindex>
-  <main class="page-width min-h-[60vh] max-w-2xl space-y-6 py-16">
-    <h1 class="heading-page">{t.notFound}</h1>
-    <div>
-      <a href="/" class={buttonVariants({ size: "lg" })}>
-        {t.home}
-      </a>
-    </div>
-  </main>
+<Layout
+  title="Page not found | News Shuffle"
+  description="Page not found."
+  noindex
+>
+  <div class="mx-auto max-w-xl py-16 text-center">
+    <h1 class="mb-6 text-4xl font-semibold">Page not found</h1>
+    <a href="/" class={buttonVariants({ variant: "outline" })}>
+      Back to News Shuffle
+    </a>
+  </div>
 </Layout>

@@ -1,114 +1,60 @@
 ---
-import { adsenseClient, ga4MeasurementId } from "@/lib/google-config"
-import { shuffleEvent } from "@/lib/analytics"
+import { ADSENSE_CLIENT_ID, GA4_MEASUREMENT_ID } from "astro:env/server"
 
-const productionOrigin = Astro.site!.origin
+interface Props {
+  /** Pages without content, like redirects, must not show ads. */
+  ads: boolean
+}
 
-// Consent is required by default in the EEA, the UK and Switzerland. Google's
-// certified consent message (AdSense > Privacy & messaging) updates it.
-const consentRegions = [
-  // EU
-  "AT",
-  "BE",
-  "BG",
-  "HR",
-  "CY",
-  "CZ",
-  "DK",
-  "EE",
-  "FI",
-  "FR",
-  "DE",
-  "GR",
-  "HU",
-  "IE",
-  "IT",
-  "LV",
-  "LT",
-  "LU",
-  "MT",
-  "NL",
-  "PL",
-  "PT",
-  "RO",
-  "SK",
-  "SI",
-  "ES",
-  "SE",
-  // EEA, UK and Switzerland
-  "IS",
-  "LI",
-  "NO",
-  "GB",
-  "CH",
-]
+// EEA, Britain and Switzerland; Google's consent message asks there.
+const consentRegions =
+  "AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH".split(
+    " "
+  )
+const production = import.meta.env.PROD
+const ga4 = production ? GA4_MEASUREMENT_ID : undefined
+const adsense = production && Astro.props.ads ? ADSENSE_CLIENT_ID : undefined
 ---
 
-<script
-  is:inline
-  define:vars={{
-    productionOrigin,
-    adsenseClient,
-    ga4MeasurementId,
-    shuffleEvent,
-    consentRegions,
-  }}
->
-  if (location.origin === productionOrigin) {
-    window.dataLayer = window.dataLayer || []
-    window.gtag = function () {
-      // gtag needs the arguments object itself, not an array.
-      // eslint-disable-next-line prefer-rest-params
-      window.dataLayer.push(arguments)
-    }
-    window.gtag("consent", "default", {
-      ad_storage: "granted",
-      ad_user_data: "granted",
-      ad_personalization: "granted",
-      analytics_storage: "granted",
-    })
-    window.gtag("consent", "default", {
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      analytics_storage: "denied",
-      region: consentRegions,
-      wait_for_update: 500,
-    })
-    window.gtag("js", new Date())
-    window.gtag("config", ga4MeasurementId, {
-      allow_google_signals: false,
-    })
-    window.addEventListener(shuffleEvent, () => {
-      window.gtag("event", "shuffle")
-    })
-
-    // Lets visitors reopen Google's consent message to change their choice.
-    window.googlefc = window.googlefc || {}
-    window.googlefc.callbackQueue = window.googlefc.callbackQueue || []
-    document.addEventListener("DOMContentLoaded", () => {
-      const privacyChoices = document.getElementById("privacy-choices")
-      if (!privacyChoices) return
-      privacyChoices.hidden = false
-      privacyChoices.querySelector("button")?.addEventListener("click", () => {
-        window.googlefc.callbackQueue.push(() =>
-          window.googlefc.showRevocationMessage()
-        )
-      })
-    })
-
-    const ads = document.createElement("script")
-    ads.async = true
-    ads.crossOrigin = "anonymous"
-    ads.src =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" +
-      adsenseClient
-    document.head.append(ads)
-
-    const analytics = document.createElement("script")
-    analytics.async = true
-    analytics.src =
-      "https://www.googletagmanager.com/gtag/js?id=" + ga4MeasurementId
-    document.head.append(analytics)
+{(ga4 || adsense) && <script is:inline define:vars={{ consentRegions }}>
+  window.dataLayer = window.dataLayer || []
+  window.gtag = function () {
+    dataLayer.push(arguments)
   }
-</script>
+  const consent = (value) => ({
+    ad_storage: value,
+    ad_user_data: value,
+    ad_personalization: value,
+    analytics_storage: value,
+  })
+  gtag("consent", "default", consent("granted"))
+  gtag("consent", "default", {
+    ...consent("denied"),
+    region: consentRegions,
+    wait_for_update: 500,
+  })
+</script>}
+{ga4 && (
+  <>
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`}
+    />
+    <script is:inline define:vars={{ ga4 }}>
+      gtag("js", new Date())
+      gtag("config", ga4)
+    </script>
+  </>
+)}
+{adsense && (
+  <>
+    <meta name="google-adsense-account" content={adsense} />
+    <script
+      is:inline
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense}`}
+      crossorigin="anonymous"
+    />
+  </>
+)}

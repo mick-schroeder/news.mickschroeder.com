@@ -1,0 +1,33 @@
+---
+import MoreWays from "@/components/more-ways.astro"
+import { Shuffle } from "@/components/shuffle"
+import { Skeleton } from "@/components/ui/skeleton"
+import Layout from "@/layouts/main.astro"
+import { getSources, getTags, getTiers } from "@/lib/data"
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts"
+
+const sources = (await getSources()).map(({ similar: _, ...source }) => source)
+const tags = await getTags()
+const tiers = await getTiers()
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <h1 class="sr-only">{SITE_TITLE}</h1>
+  <Shuffle client:only="react" sources={sources} tags={tags} tiers={tiers}>
+    <div slot="fallback" class="mx-auto flex max-w-4xl flex-col gap-6 pt-2">
+      <Skeleton className="mx-auto h-10 w-4/5" />
+      <Skeleton className="mx-auto -mt-3 h-5 w-40" />
+      <Skeleton className="mx-auto h-72 w-full max-w-xl rounded-xl" />
+    </div>
+  </Shuffle>
+  <noscript>
+    <p class="mx-auto max-w-xl text-muted-foreground">
+      Shuffling needs JavaScript. You can still{" "}
+      <a href="/sources/" class="underline">
+        browse every source
+      </a>
+      .
+    </p>
+  </noscript>
+  <MoreWays sources={sources} tags={tags} />
+</Layout>

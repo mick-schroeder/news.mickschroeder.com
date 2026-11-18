@@ -1,56 +1,21 @@
 ---
-import "@/styles/global.css"
-import GoogleTags from "@/components/google-tags.astro"
+import BaseHead, { type Props as HeadProps } from "@/components/base-head.astro"
 import SiteFooter from "@/components/site-footer.astro"
-import SiteHead from "@/components/site-head.astro"
 import SiteHeader from "@/components/site-header.astro"
-import { resolveLocale } from "@/i18n/locales"
-import { translations } from "@/i18n/ui"
-import { googleTagsEnabled } from "@/lib/google-config"
-import { brand } from "@/lib/brand"
+import "@/styles/global.css"
 
-interface Props {
-  /** Page name; the brand name is appended. Omit on the home page. */
-  title?: string
-  description?: string
-  noindex?: boolean
-}
-
-const { noindex = false } = Astro.props
-const locale = resolveLocale(Astro.currentLocale)
-const t = translations[locale]
-const title = Astro.props.title
-  ? `${Astro.props.title} | ${brand.name}`
-  : t.title
-const showGoogleTags = googleTagsEnabled && !noindex
+export type Props = HeadProps
 ---
 
-<!doctype html>
-<html lang={locale}>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <SiteHead
-      title={title}
-      noindex={noindex}
-      description={Astro.props.description}
-    />
-    <slot name="head" />
-    {showGoogleTags && <GoogleTags />}
+    <BaseHead {...Astro.props} />
   </head>
-  <body>
-    <a
-      class="fixed top-3 left-3 z-50 -translate-y-[160%] rounded-lg border bg-card px-4 py-2.5 text-foreground transition-transform focus:translate-y-0 motion-reduce:transition-none"
-      href="#main-content"
-    >
-      {t.skip}
-    </a>
-    <div class="mx-auto max-w-4xl bg-background pt-2 sm:my-10 sm:pt-4">
-      <SiteHeader />
-      <div id="main-content" tabindex="-1" class="focus:outline-none">
-        <slot />
-      </div>
-      <SiteFooter privacyChoices={showGoogleTags} />
-    </div>
+  <body class="flex min-h-svh flex-col">
+    <SiteHeader />
+    <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-8">
+      <slot />
+    </main>
+    <SiteFooter />
   </body>
 </html>

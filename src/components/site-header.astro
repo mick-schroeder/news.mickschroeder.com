@@ -1,52 +1,65 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n"
-import BrandLogo from "@/components/brand-logo.astro"
-import { FeedPicker } from "@/components/feed-picker"
-import { SiteNav } from "@/components/site-nav"
-import { resolveLocale } from "@/i18n/locales"
-import { getTags } from "@/lib/catalog"
-import { brand } from "@/lib/brand"
+import { Shuffle } from "lucide-react"
+import { ModeToggle } from "@/components/mode-toggle"
+import { SITE_TITLE } from "@/consts"
 
-const locale = resolveLocale(Astro.currentLocale)
-const home = getRelativeLocaleUrl(locale)
-const tags = await getTags()
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/sources/", label: "Sources" },
+  { href: "/tags/", label: "Tags" },
+  { href: "/about/", label: "About" },
+]
+const path = Astro.url.pathname
 ---
 
-<header class="page-width mb-3 sm:mb-4">
-  <div class="grid grid-cols-1 items-center justify-items-center gap-3 pt-4 pb-2 sm:grid-cols-[1fr_auto_1fr] sm:pt-5 sm:pb-3">
+<header class="mx-auto w-full max-w-5xl px-4 sm:px-8">
+  <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-4 sm:py-6">
     <time
       id="masthead-date"
-      class="hidden text-sm text-muted-foreground sm:block sm:justify-self-start"
+      class="hidden text-sm text-muted-foreground sm:block"
     ></time>
-    <a
-      class="group inline-flex items-center gap-3 text-foreground transition-opacity hover:opacity-90"
-      href={home}
-    >
-      <BrandLogo />
-      <span class="font-masthead text-4xl leading-none sm:text-6xl">
-        {brand.name}
+    <a href="/" class="col-start-2 flex items-center gap-2.5 sm:gap-3">
+      <span class="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground sm:size-11">
+        <Shuffle
+          className="size-4 sm:size-6"
+          strokeWidth={3}
+          aria-hidden="true"
+        />
+      </span>
+      <span class="font-logo text-3xl leading-none whitespace-nowrap sm:text-6xl">
+        {SITE_TITLE}
       </span>
     </a>
-    <div class="sm:justify-self-end">
-      <FeedPicker client:load locale={locale} tags={tags} />
+    <div class="justify-self-end">
+      <ModeToggle client:load />
     </div>
   </div>
-  <div class="border-b-4 border-double border-border py-1.5">
-    <SiteNav client:load locale={locale} path={Astro.url.pathname} />
-  </div>
+  <nav class="flex justify-center gap-1 border-t border-b-4 border-double border-foreground/25 py-1.5 text-sm">
+    {links.map(({ href, label }) => (
+      <a
+        href={href}
+        aria-current={
+          (href === "/" ? path === "/" : path.startsWith(href))
+            ? "page"
+            : undefined
+        }
+        class="rounded-md px-3 py-1 text-muted-foreground hover:text-foreground aria-[current=page]:font-medium aria-[current=page]:text-foreground"
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
 </header>
 
 <script>
   // Static pages can't know today's date, so the browser fills it in.
-  const date = document.querySelector<HTMLTimeElement>("#masthead-date")
-  if (date) {
-    const now = new Date()
-    date.dateTime = now.toISOString().slice(0, 10)
-    date.textContent = now.toLocaleDateString(document.documentElement.lang, {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    })
-  }
+  const date = document.getElementById("masthead-date") as HTMLTimeElement
+  const now = new Date()
+  date.dateTime = now.toISOString().slice(0, 10)
+  date.textContent = now.toLocaleDateString("en", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })
 </script>

@@ -1,5 +1,6 @@
 ---
-import ShuffleRedirect from "@/components/shuffle-redirect.astro"
+import Redirect from "@/components/redirect.astro"
+import { getSources } from "@/lib/data"
 ---
 
-<ShuffleRedirect />
+<Redirect title="Shuffle" sources={await getSources()} savedFilters />

@@ -1,0 +1,134 @@
+---
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import ShareLinks from "@/components/share-links.astro"
+import { SourceCard } from "@/components/source-card"
+import { SourceIcon } from "@/components/source-icon"
+import { TierBadge, tierColors } from "@/components/tier-badge"
+import { buttonVariants } from "@/components/ui/button"
+import Layout from "@/layouts/main.astro"
+import { breadcrumbs, sourcePage } from "@/lib/json-ld"
+import { getSources, getTags, getTiers } from "@/lib/data"
+import type { InferGetStaticPropsType } from "astro"
+import { ExternalLink, Shuffle } from "lucide-react"
+
+export async function getStaticPaths() {
+  const sources = await getSources()
+  return sources.map((source) => ({
+    params: { id: source.id },
+    props: { source, sources },
+  }))
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { source, sources } = Astro.props
+const tags = await getTags()
+const tiers = await getTiers()
+const tierOf = (id: string) => tiers.find((tier) => tier.id === id)!
+const tier = tierOf(source.tier)
+const similar = source.similar
+  .map((id) => sources.find((other) => other.id === id))
+  .filter((other) => other !== undefined)
+const host = (url: string) => new URL(url).hostname.replace(/^www\./, "")
+const site = Astro.site!
+const page = new URL(Astro.url.pathname, site)
+const url = page.href
+const crumbs = [
+  { name: "Home", url: site },
+  { name: "Sources", url: new URL("/sources/", site) },
+  { name: source.title, url: page },
+]
+---
+
+<Layout
+  title={`${source.title} | News Shuffle`}
+  description={source.description}
+  jsonLd={[sourcePage(site, page, source), breadcrumbs(crumbs)]}
+>
+  <div class="mx-auto max-w-xl">
+    <PageBreadcrumb items={crumbs} />
+  </div>
+  <div class="mx-auto max-w-xl space-y-12">
+    <SourceCard
+      source={source}
+      tier={tier}
+      tags={tags.filter((tag) => source.tags.includes(tag.id))}
+      heading="h1"
+    >
+      <a href="/" class={buttonVariants({ size: "xl", className: "flex-1" })}>
+        <Shuffle data-icon="inline-start" aria-hidden="true" />
+        Shuffle
+      </a>
+      <a
+        href={source.url}
+        target="_blank"
+        rel="noopener"
+        class={buttonVariants({ variant: "outline", size: "xl" })}
+      >
+        Open
+        <ExternalLink data-icon="inline-end" aria-hidden="true" />
+        <span class="sr-only">(opens in a new tab)</span>
+      </a>
+    </SourceCard>
+
+    <section class="flex items-start gap-4">
+      <span
+        class:list={[
+          "flex size-16 shrink-0 items-center justify-center rounded-xl text-4xl font-black text-black",
+          tierColors[tier.id],
+        ]}
+        aria-hidden="true"
+      >
+        {tier.id}
+      </span>
+      <div class="space-y-1">
+        <h2 class="text-2xl font-medium">
+          Ranked {tier.id}: {tier.title}
+        </h2>
+        <p class="text-muted-foreground">{tier.description}</p>
+        <a
+          href={`/sources/#tier-${tier.id.toLowerCase()}`}
+          class="text-sm underline underline-offset-4"
+        >
+          See the tier list
+        </a>
+      </div>
+    </section>
+
+    {similar.length > 0 && (
+      <section>
+        <h2 class="mb-4 text-2xl font-medium">Similar sources</h2>
+        <ul class="grid gap-2 sm:grid-cols-2">
+          {similar.map((other) => (
+            <li>
+              <a
+                href={`/sources/${other.id}/`}
+                class="flex items-center gap-3 rounded-xl p-3 ring-1 ring-foreground/10 transition-colors hover:bg-muted"
+              >
+                <SourceIcon source={other} className="size-10" />
+                <span class="min-w-0 flex-1">
+                  <span class="block truncate font-medium">{other.title}</span>
+                  <span class="block truncate text-sm text-muted-foreground">
+                    {host(other.url)}
+                  </span>
+                </span>
+                <TierBadge tier={tierOf(other.tier)} className="size-7" />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a
+          href="/sources/"
+          class={buttonVariants({ variant: "outline", className: "mt-4" })}
+        >
+          See all {sources.length} sources
+        </a>
+      </section>
+    )}
+
+    <section class="border-t pt-8">
+      <h2 class="mb-3 text-lg font-medium">Share {source.title}</h2>
+      <ShareLinks title={`${source.title} on News Shuffle`} url={url} />
+    </section>
+  </div>
+</Layout>

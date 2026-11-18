@@ -1,0 +1,52 @@
+---
+import { TagIcon } from "@/components/tag-icon"
+import Layout from "@/layouts/main.astro"
+import { getTags } from "@/lib/data"
+
+const tags = await getTags()
+const kinds = [
+  { kind: "topic", title: "Topics" },
+  { kind: "region", title: "Regions" },
+  { kind: "feed", title: "Feeds" },
+  { kind: "language", title: "Languages" },
+  { kind: "sponsor", title: "Sponsors" },
+]
+const groups = kinds
+  .map((group) => ({
+    ...group,
+    tags: tags.filter((tag) => tag.kind === group.kind),
+  }))
+  .filter((group) => group.tags.length)
+---
+
+<Layout
+  title="Tags | News Shuffle"
+  description="Browse News Shuffle sources by tag."
+>
+  <h1 class="mb-8 text-4xl font-semibold">Tags</h1>
+  <div class="space-y-8">
+    {groups.map((group) => (
+      <section>
+        <h2 class="mb-3 text-2xl font-medium">{group.title}</h2>
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {group.tags.map((tag) => (
+            <li>
+              <a
+                href={`/tags/${tag.id}/`}
+                class="block rounded-lg border p-3 hover:bg-muted"
+              >
+                <span class="flex items-center gap-2 font-medium">
+                  <TagIcon tag={tag} className="size-4" />
+                  {tag.title}
+                </span>
+                <span class="block text-sm text-muted-foreground">
+                  {tag.description}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Layout>

@@ -1,0 +1,59 @@
+---
+import { ArrowUpRight } from "lucide-react"
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { cn } from "@/lib/utils"
+
+interface Props {
+  title: string
+  description: string
+  /** Makes the whole card a link. */
+  href?: string
+  wide?: boolean
+}
+
+const { title, description, href, wide } = Astro.props
+const external = href?.startsWith("http")
+---
+
+<Card
+  className={cn(
+    "relative transition-shadow duration-300 hover:ring-foreground/20 hover:shadow-lg",
+    wide && "sm:col-span-2",
+    href && "has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring"
+  )}
+>
+  <div class="relative mx-(--card-spacing) h-44 overflow-hidden rounded-lg bg-muted/50 ring-1 ring-foreground/5">
+    <div class="relative size-full transition-transform duration-500 ease-out group-hover/card:scale-[1.04] motion-reduce:transform-none">
+      <slot />
+    </div>
+  </div>
+  <CardHeader>
+    <CardTitle className="text-2xl font-semibold tracking-tight">
+      {href ? (
+        <a
+          href={href}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener" : undefined}
+          class="after:absolute after:inset-0 focus-visible:outline-none"
+        >
+          {title}
+          {external && <span class="sr-only">(opens in a new tab)</span>}
+        </a>
+      ) : (
+        title
+      )}
+      {href && (
+        <ArrowUpRight
+          className="ml-1.5 inline size-5 align-[-0.1em] text-muted-foreground transition-transform duration-300 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 group-hover/card:text-foreground"
+          aria-hidden="true"
+        />
+      )}
+    </CardTitle>
+    <CardDescription className="text-base">{description}</CardDescription>
+  </CardHeader>
+</Card>

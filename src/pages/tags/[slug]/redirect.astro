@@ -1,0 +1,21 @@
+---
+import type { InferGetStaticPropsType } from "astro"
+import Redirect from "@/components/redirect.astro"
+import { getSources, getTags } from "@/lib/data"
+
+export async function getStaticPaths() {
+  return (await getTags()).map((tag) => ({
+    params: { slug: tag.id },
+    props: { tag },
+  }))
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { tag } = Astro.props
+const sources = (await getSources()).filter((source) =>
+  source.tags.includes(tag.id)
+)
+---
+
+<Redirect title={`Shuffle ${tag.title}`} sources={sources} />

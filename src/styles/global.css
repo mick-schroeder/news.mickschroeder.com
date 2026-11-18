@@ -1,51 +1,48 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+@import "@fontsource/manufacturing-consent";
+@import "@fontsource-variable/newsreader";
 
-@utility page-width {
-  @apply mx-auto w-full px-4 sm:px-8;
-}
+@custom-variant dark (&:is(.dark *));
 
-/* Inline text link, as in shadcn typography. */
-@utility link {
-  @apply font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary;
-}
-
-/* Page title, one per page. */
-@utility heading-page {
-  @apply text-3xl font-semibold tracking-tight text-balance text-foreground sm:text-4xl;
-}
-
-/* Section title within a page. */
-@utility heading-section {
-  @apply text-xl font-semibold tracking-tight text-foreground;
-}
-
-@utility discovery-section-grid {
-  @apply col-span-full grid min-w-0 grid-cols-1 items-start gap-6 border-t border-border py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10;
-}
-
-@utility discovery-section-subtitle {
-  @apply max-w-md text-sm leading-relaxed text-muted-foreground;
-}
-
-@theme {
-  --animate-source-marquee: source-marquee 36s linear infinite;
-  --animate-source-marquee-reverse: source-marquee 36s linear infinite reverse;
-
-  @keyframes source-marquee {
+@theme inline {
+  --font-logo: "Manufacturing Consent", serif;
+  --color-tier-s: var(--tier-s);
+  --color-tier-a: var(--tier-a);
+  --color-tier-b: var(--tier-b);
+  --color-tier-c: var(--tier-c);
+  --color-tier-d: var(--tier-d);
+  --color-tier-e: var(--tier-e);
+  --color-tier-f: var(--tier-f);
+  --font-heading: "Newsreader Variable", serif;
+  --animate-marquee: marquee 120s linear infinite;
+  --animate-marquee-up: marquee-up 30s linear infinite;
+  @keyframes marquee {
     to {
       transform: translateX(-50%);
     }
   }
-}
-
-@theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-geist);
-  --font-masthead: var(--font-manufacturing-consent);
-  --font-headline: var(--font-newsreader);
+  @keyframes marquee-up {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+  --font-sans: "Inter Variable", sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -64,7 +61,6 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --color-page: var(--page);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -72,225 +68,111 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-tier-s: var(--tier-s);
-  --color-tier-s-foreground: var(--tier-s-foreground);
-  --color-tier-a: var(--tier-a);
-  --color-tier-a-foreground: var(--tier-a-foreground);
-  --color-tier-b: var(--tier-b);
-  --color-tier-b-foreground: var(--tier-b-foreground);
-  --color-tier-c: var(--tier-c);
-  --color-tier-c-foreground: var(--tier-c-foreground);
-  --color-tier-d: var(--tier-d);
-  --color-tier-d-foreground: var(--tier-d-foreground);
-  --color-tier-e: var(--tier-e);
-  --color-tier-e-foreground: var(--tier-e-foreground);
-  --color-tier-f: var(--tier-f);
-  --color-tier-f-foreground: var(--tier-f-foreground);
 }
 
 :root {
-  /* Behind the sheet; --background is the sheet itself. */
-  --page: var(--color-stone-50);
-  --background: var(--color-stone-50);
-  --foreground: var(--color-stone-950);
-  --muted-foreground: var(--color-stone-500);
-  --border: var(--color-stone-200);
-  /* The one accent: a single green, darker in light mode for contrast. */
-  --primary: var(--color-emerald-700);
-  --primary-foreground: var(--color-white);
-  --card: var(--color-white);
-  --card-foreground: var(--color-stone-950);
-  --popover: var(--color-white);
-  --popover-foreground: var(--color-stone-950);
-  --secondary: var(--color-stone-100);
-  --secondary-foreground: var(--color-stone-900);
-  --muted: var(--color-stone-100);
-  --accent: var(--color-stone-100);
-  --accent-foreground: var(--color-stone-900);
-  --input: var(--color-stone-200);
-  --ring: var(--color-stone-400);
-  --destructive: var(--color-red-600);
-  --radius: 0.625rem;
-  color-scheme: light;
-  --chart-1: var(--color-stone-300);
-  --chart-2: var(--color-stone-500);
-  --chart-3: var(--color-stone-600);
-  --chart-4: var(--color-stone-700);
-  --chart-5: var(--color-stone-800);
-  --sidebar: var(--color-stone-50);
-  --sidebar-foreground: var(--color-stone-950);
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--color-stone-100);
-  --sidebar-accent-foreground: var(--color-stone-900);
-  --sidebar-border: var(--color-stone-200);
-  --sidebar-ring: var(--color-stone-400);
-  /* Tier list colours, the same in both themes; black text on each. */
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  /* Brand green, the one accent. */
+  --primary: oklch(0.508 0.118 165.612);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.375rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.508 0.118 165.612);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  /* Tier list fills, black text on each. */
+  --tier-foreground: oklch(0 0 0);
   --tier-s: var(--color-red-400);
-  --tier-s-foreground: var(--color-black);
   --tier-a: var(--color-orange-300);
-  --tier-a-foreground: var(--color-black);
   --tier-b: var(--color-yellow-300);
-  --tier-b-foreground: var(--color-black);
   --tier-c: var(--color-green-300);
-  --tier-c-foreground: var(--color-black);
   --tier-d: var(--color-cyan-300);
-  --tier-d-foreground: var(--color-black);
   --tier-e: var(--color-indigo-400);
-  --tier-e-foreground: var(--color-black);
   --tier-f: var(--color-fuchsia-400);
-  --tier-f-foreground: var(--color-black);
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --page: var(--color-black);
-    --background: var(--color-black);
-    --foreground: var(--color-stone-100);
-    --muted-foreground: var(--color-stone-400);
-    --border: var(--color-stone-800);
-    --card: var(--color-stone-950);
-    --card-foreground: var(--color-stone-100);
-    --popover: var(--color-stone-950);
-    --popover-foreground: var(--color-stone-100);
-    --secondary: var(--color-stone-900);
-    --secondary-foreground: var(--color-stone-100);
-    --muted: var(--color-stone-900);
-    --accent: var(--color-stone-900);
-    --accent-foreground: var(--color-stone-100);
-    --input: var(--color-stone-800);
-    --ring: var(--color-stone-600);
-    --primary: #009a49;
-    --primary-foreground: var(--color-white);
-    --destructive: #b02336;
-    color-scheme: dark;
-  }
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  /* Brand green, lighter with dark text, as shadcn inverts primary. */
+  --primary: oklch(0.696 0.17 162.48);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.696 0.17 162.48);
+  --sidebar-primary-foreground: oklch(0.205 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  /* Tier fills a step deeper, so they don't glare on dark. */
+  --tier-s: var(--color-red-500);
+  --tier-a: var(--color-orange-400);
+  --tier-b: var(--color-yellow-400);
+  --tier-c: var(--color-green-400);
+  --tier-d: var(--color-cyan-400);
+  --tier-e: var(--color-indigo-400);
+  --tier-f: var(--color-fuchsia-400);
+  color-scheme: dark;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  body {
+    @apply bg-background text-foreground;
+  }
   html {
     @apply font-sans;
-    /* Short and long pages keep the same width, so nothing shifts sideways. */
-    scrollbar-gutter: stable;
   }
-  body {
-    @apply bg-page text-foreground antialiased;
-    min-width: 320px;
-    min-height: 100svh;
+  h1,
+  h2,
+  h3 {
+    @apply font-heading tracking-tight;
   }
-  :focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 3px;
-  }
-  button:not(:disabled) {
-    cursor: pointer;
-  }
-}
-
-/* Pages crossfade into each other; shared cards and icons move between them. */
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition {
-    navigation: auto;
-  }
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 150ms;
-}
-
-/* A card's icon flies with its card between pages. Going to the previous or
-   next source, it travels inside the card instead. */
-.card-icon {
-  view-transition-name: var(--icon-name);
-  view-transition-class: icon;
-}
-
-:root[data-motion] .card-icon {
-  view-transition-name: none;
-}
-
-/* A card with a match on both sides morphs; the icons inside fly. */
-::view-transition-group(.card),
-::view-transition-group(.icon) {
-  animation-duration: 360ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* A card with no match leaves, and the next comes up off the deck. */
-::view-transition-old(.card):only-child {
-  animation: card-out 200ms cubic-bezier(0.4, 0, 1, 1) both;
-}
-
-::view-transition-new(.card):only-child {
-  animation: card-in 360ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
-}
-
-:root[data-motion="next"]::view-transition-old(.card):only-child {
-  animation-name: card-toss-left;
-  animation-duration: 260ms;
-}
-
-:root[data-motion="back"]::view-transition-old(.card):only-child {
-  animation-name: card-toss-right;
-  animation-duration: 260ms;
-}
-
-:root[data-motion="back"]::view-transition-new(.card):only-child {
-  animation-name: card-drop;
-}
-
-@keyframes card-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.94);
-  }
-}
-
-@keyframes card-drop {
-  from {
-    opacity: 0;
-    transform: translateY(-10px) scale(1.03);
-  }
-}
-
-@keyframes card-out {
-  to {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-}
-
-@keyframes card-toss-left {
-  to {
-    opacity: 0;
-    transform: translateX(-36%) translateY(6px) rotate(-7deg);
-  }
-}
-
-@keyframes card-toss-right {
-  to {
-    opacity: 0;
-    transform: translateX(36%) translateY(6px) rotate(7deg);
-  }
-}
-
-::selection {
-  background: var(--primary);
-  color: var(--primary-foreground);
 }
