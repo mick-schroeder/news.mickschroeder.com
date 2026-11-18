@@ -90,7 +90,7 @@ export function UpNextCard({ locale, tags, discovery }: UpNextCardProps) {
       ref={section}
       id={deckId}
       data-needs-js
-      className="mx-auto flex w-full max-w-lg flex-col items-center gap-6"
+      className="mx-auto flex w-full max-w-lg flex-col items-center gap-4"
       aria-labelledby="queue-title"
       aria-busy={loading}
     >

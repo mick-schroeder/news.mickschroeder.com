@@ -10,7 +10,7 @@ import type { Locale } from "@/i18n/locales"
 import { translations } from "@/i18n/ui"
 import { cn } from "@/lib/utils"
 
-const pages = ["", "sources/", "tags/", "about/"] as const
+const pages = ["", "sources/", "about/"] as const
 
 /** The main links, centred under the masthead. */
 export function SiteNav({
@@ -23,9 +23,8 @@ export function SiteNav({
 }) {
   const t = translations[locale]
   const labels = {
-    "": t.navShuffle,
+    "": t.navHome,
     "sources/": t.sources,
-    "tags/": t.tags,
     "about/": t.about,
   }
   return (

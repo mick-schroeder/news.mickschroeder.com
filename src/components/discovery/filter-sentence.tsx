@@ -60,9 +60,9 @@ export function FilterSentence({
   return (
     <section
       aria-label={t.yourShuffle}
-      className="flex flex-col items-center gap-3 pt-2 pb-4 text-center sm:pt-6 sm:pb-8"
+      className="flex flex-col items-center gap-3 pt-2 pb-4 text-center"
     >
-      <p className="max-w-3xl font-headline text-3xl leading-snug font-medium tracking-tight text-balance text-muted-foreground sm:text-5xl sm:leading-tight">
+      <p className="font-headline text-3xl leading-snug font-medium tracking-tight text-balance text-muted-foreground sm:text-4xl sm:leading-tight">
         <span>{t.showMe}</span>
         <FilterMenu
           trigger={menuButton}

@@ -1,4 +1,4 @@
-import { ChevronDown, Layers } from "lucide-react"
+import { ChevronDown, Newspaper } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FilterMenu } from "@/components/discovery/filter-menu"
 import { useFilters } from "@/components/discovery/use-filters"
@@ -29,7 +29,7 @@ export function FeedPicker({ locale, tags }: { locale: Locale; tags: Tag[] }) {
       onChange={(ids) => update({ feed: ids })}
       align="end"
     >
-      <Layers data-icon="inline-start" aria-hidden="true" />
+      <Newspaper data-icon="inline-start" aria-hidden="true" />
       {label}
       <ChevronDown data-icon="inline-end" aria-hidden="true" />
     </FilterMenu>
