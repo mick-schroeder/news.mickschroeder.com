@@ -1,7 +1,8 @@
 ---
-import { TierBadge } from "@/components/tier-badge"
+import { ExternalLink } from "@/components/external-link"
+import Prose from "@/layouts/prose.astro"
 import { dataset } from "@/lib/json-ld"
-import Layout from "@/layouts/main.astro"
+import { TierBadge } from "@/components/tier-badge"
 import { getTiers } from "@/lib/data"
 import { CODE_URL, DATA_API, DATA_CODE_URL } from "@/consts"
 
@@ -9,59 +10,56 @@ const tiers = await getTiers()
 const files = ["sources.json", "tags.json", "tiers.json"]
 ---
 
-<Layout
-  title="About | News Shuffle"
+<Prose
+  title="About"
   description="News Shuffle takes you to a random news source."
   jsonLd={[dataset(Astro.site!)]}
 >
-  <article class="mx-auto max-w-2xl space-y-4 leading-relaxed text-muted-foreground [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-medium [&_h2]:text-foreground">
-    <h1 class="text-4xl font-semibold text-foreground">About</h1>
-    <p>
-      News Shuffle takes you to a random news source. Pick topics, regions,
-      feeds and tiers, then shuffle.
-    </p>
+  <p>
+    News Shuffle takes you to a random news source. Pick topics, regions, feeds
+    and tiers, then shuffle.
+  </p>
 
-    <h2>Where the sources come from</h2>
-    <p>
-      Every night, the list is rebuilt from news feeds like Newzit, Techmeme and
-      the Drudge Report, which consistently surface what people are reading and
-      talking about.
-    </p>
+  <h2>Where the sources come from</h2>
+  <p>
+    Every night, the list is rebuilt from news feeds like Newzit, Techmeme and
+    the Drudge Report, which consistently surface what people are reading and
+    talking about.
+  </p>
 
-    <h2>How sources are judged</h2>
-    <p>
-      Each new source passes through an AI editor: is it news, is it in English,
-      what is it about, how far does its reach extend. A source no feed has
-      listed for three months is retired.
-    </p>
+  <h2>How sources are judged</h2>
+  <p>
+    Each new source passes through an AI editor: is it news, is it in English,
+    what is it about, how far does its reach extend. A source no feed has listed
+    for three months is retired.
+  </p>
 
-    <h2>Tiers</h2>
-    <p>
-      Every source gets a tier for its reach and influence, not its viewpoint.
-    </p>
-    <ul class="space-y-3">
-      {tiers.map((tier) => (
-        <li class="flex items-start gap-3">
-          <TierBadge tier={tier} className="size-7" />
-          <span>
-            <a href={`/sources/#tier-${tier.id.toLowerCase()}`}>{tier.title}</a>
-            . {tier.description}
-          </span>
-        </li>
-      ))}
-    </ul>
+  <h2>Tiers</h2>
+  <p>
+    Every source gets a tier for its reach and influence, not its viewpoint.
+  </p>
+  <ul class="space-y-3">
+    {tiers.map((tier) => (
+      <li class="flex items-start gap-3">
+        <TierBadge tier={tier} className="size-7" />
+        <span>
+          <a href={`/sources/#tier-${tier.id.toLowerCase()}`}>{tier.title}</a>.{" "}
+          {tier.description}
+        </span>
+      </li>
+    ))}
+  </ul>
 
-    <h2>Open source</h2>
-    <p>
-      Data API:{" "}
-      {files.map((file, index) => (
-        <>
-          {index > 0 && ", "}
-          <a href={`${DATA_API}/${file}`}>{file}</a>
-        </>
-      ))}
-      . Code: <a href={DATA_CODE_URL}>popular-news-sites</a>,{" "}
-      <a href={CODE_URL}>news.mickschroeder.com</a>.
-    </p>
-  </article>
-</Layout>
+  <h2>Open source</h2>
+  <p>
+    Data API:{" "}
+    {files.map((file, index) => (
+      <>
+        {index > 0 && ", "}
+        <ExternalLink href={`${DATA_API}/${file}`}>{file}</ExternalLink>
+      </>
+    ))}
+    . Code: <ExternalLink href={DATA_CODE_URL}>popular-news-sites</ExternalLink>
+    , <ExternalLink href={CODE_URL}>news.mickschroeder.com</ExternalLink>.
+  </p>
+</Prose>

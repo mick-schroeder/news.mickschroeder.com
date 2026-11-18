@@ -1,19 +1,34 @@
 ---
 import BaseHead, { type Props as HeadProps } from "@/components/base-head.astro"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
 import SiteFooter from "@/components/site-footer.astro"
 import SiteHeader from "@/components/site-header.astro"
+import { breadcrumbs } from "@/lib/json-ld"
 import "@/styles/global.css"
 
-export type Props = HeadProps
+export interface Props extends HeadProps {
+  /** Breadcrumbs after Home; the last is this page. */
+  crumbs?: { name: string; path: string }[]
+}
+
+const { crumbs, jsonLd = [], ...head } = Astro.props
+const trail = crumbs && [
+  { name: "Home", url: Astro.site! },
+  ...crumbs.map(({ name, path }) => ({ name, url: new URL(path, Astro.site) })),
+]
 ---
 
 <html lang="en">
   <head>
-    <BaseHead {...Astro.props} />
+    <BaseHead
+      {...head}
+      jsonLd={trail ? [...jsonLd, breadcrumbs(trail)] : jsonLd}
+    />
   </head>
   <body class="flex min-h-svh flex-col">
     <SiteHeader />
     <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-8">
+      {trail && <PageBreadcrumb items={trail} />}
       <slot />
     </main>
     <SiteFooter />

@@ -113,7 +113,6 @@ export function Shuffle({
             source={current}
             tier={tiers.find((tier) => tier.id === current.tier)!}
             tags={tags.filter((tag) => current.tags.includes(tag.id))}
-            linkTitle
           >
             <Button size="xl" className="flex-1" onClick={pickAgain}>
               <ShuffleIcon data-icon="inline-start" aria-hidden="true" />

@@ -1,5 +1,6 @@
 ---
 import SourceList from "@/components/source-list.astro"
+import PageHeader from "@/components/page-header.astro"
 import Layout from "@/layouts/main.astro"
 import { getSources, getTiers } from "@/lib/data"
 import { itemList } from "@/lib/json-ld"
@@ -16,10 +17,11 @@ const items = sources.map((source) => ({
   title="Sources | News Shuffle"
   description="Every source News Shuffle can take you to, by tier."
   jsonLd={[itemList(items)]}
+  crumbs={[{ name: "Sources", path: "/sources/" }]}
 >
-  <h1 class="mb-2 text-4xl font-semibold">Sources</h1>
-  <p class="mb-8 text-lg text-muted-foreground">
-    All {sources.length} sources, best tier first.
-  </p>
+  <PageHeader
+    title="Sources"
+    description={`All ${sources.length} sources, best tier first.`}
+  />
   <SourceList sources={sources} tiers={tiers} />
 </Layout>

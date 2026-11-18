@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets"
 import GoogleTags from "@/components/google-tags.astro"
 import { publisher, toJsonLd, website } from "@/lib/json-ld"
 import { SITE_TITLE } from "@/consts"
@@ -26,6 +27,9 @@ const image = new URL("/news-shuffle-share.jpg", Astro.site)
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title}</title>
+<Font cssVariable="--font-inter" preload />
+<Font cssVariable="--font-newsreader" preload />
+<Font cssVariable="--font-manufacturing-consent" preload />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

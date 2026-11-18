@@ -1,12 +1,13 @@
 ---
-import { PageBreadcrumb } from "@/components/page-breadcrumb"
 import ShareLinks from "@/components/share-links.astro"
-import { SourceCard } from "@/components/source-card"
+import { ExternalLink as LinkOut } from "@/components/external-link"
+import { TagIcon } from "@/components/tag-icon"
+import { badgeVariants } from "@/components/ui/badge"
 import { SourceIcon } from "@/components/source-icon"
-import { TierBadge, tierColors } from "@/components/tier-badge"
+import { TierBadge } from "@/components/tier-badge"
 import { buttonVariants } from "@/components/ui/button"
 import Layout from "@/layouts/main.astro"
-import { breadcrumbs, sourcePage } from "@/lib/json-ld"
+import { sourcePage } from "@/lib/json-ld"
 import { getSources, getTags, getTiers } from "@/lib/data"
 import type { InferGetStaticPropsType } from "astro"
 import { ExternalLink, Shuffle } from "lucide-react"
@@ -26,6 +27,19 @@ const tags = await getTags()
 const tiers = await getTiers()
 const tierOf = (id: string) => tiers.find((tier) => tier.id === id)!
 const tier = tierOf(source.tier)
+const sourceTags = tags.filter((tag) => source.tags.includes(tag.id))
+const kinds = [
+  { kind: "topic", label: ["Topic", "Topics"] },
+  { kind: "region", label: ["Region", "Regions"] },
+  { kind: "feed", label: ["Feed", "Feeds"] },
+  { kind: "language", label: ["Language", "Languages"] },
+  { kind: "sponsor", label: ["Sponsor", "Sponsors"] },
+]
+  .map(({ kind, label }) => {
+    const kindTags = sourceTags.filter((tag) => tag.kind === kind)
+    return { kind, label: label[kindTags.length > 1 ? 1 : 0], tags: kindTags }
+  })
+  .filter((group) => group.tags.length > 0)
 const similar = source.similar
   .map((id) => sources.find((other) => other.id === id))
   .filter((other) => other !== undefined)
@@ -33,72 +47,110 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "")
 const site = Astro.site!
 const page = new URL(Astro.url.pathname, site)
 const url = page.href
-const crumbs = [
-  { name: "Home", url: site },
-  { name: "Sources", url: new URL("/sources/", site) },
-  { name: source.title, url: page },
-]
 ---
 
 <Layout
   title={`${source.title} | News Shuffle`}
   description={source.description}
-  jsonLd={[sourcePage(site, page, source), breadcrumbs(crumbs)]}
+  jsonLd={[sourcePage(site, page, source)]}
+  crumbs={[
+    { name: "Sources", path: "/sources/" },
+    { name: source.title, path: Astro.url.pathname },
+  ]}
 >
-  <div class="mx-auto max-w-xl">
-    <PageBreadcrumb items={crumbs} />
-  </div>
-  <div class="mx-auto max-w-xl space-y-12">
-    <SourceCard
-      source={source}
-      tier={tier}
-      tags={tags.filter((tag) => source.tags.includes(tag.id))}
-      heading="h1"
-    >
-      <a href="/" class={buttonVariants({ size: "xl", className: "flex-1" })}>
-        <Shuffle data-icon="inline-start" aria-hidden="true" />
-        Shuffle
-      </a>
-      <a
-        href={source.url}
-        target="_blank"
-        rel="noopener"
-        class={buttonVariants({ variant: "outline", size: "xl" })}
-      >
-        Open
-        <ExternalLink data-icon="inline-end" aria-hidden="true" />
-        <span class="sr-only">(opens in a new tab)</span>
-      </a>
-    </SourceCard>
-
-    <section class="flex items-start gap-4">
-      <span
-        class:list={[
-          "flex size-16 shrink-0 items-center justify-center rounded-xl text-4xl font-black text-black",
-          tierColors[tier.id],
-        ]}
-        aria-hidden="true"
-      >
-        {tier.id}
-      </span>
-      <div class="space-y-1">
-        <h2 class="text-2xl font-medium">
-          Ranked {tier.id}: {tier.title}
-        </h2>
-        <p class="text-muted-foreground">{tier.description}</p>
+  <!-- Source, tier and share on the left; similar sources beside on wide screens. -->
+  <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <div>
+      <!-- Same layout as the home card: icon, name and website, tier. -->
+      <div class="flex items-center gap-4">
+        <SourceIcon source={source} className="size-16" />
+        <div class="min-w-0 flex-1">
+          <h1 class="text-4xl font-semibold">{source.title}</h1>
+          <LinkOut
+            href={source.url}
+            className="text-muted-foreground hover:text-foreground hover:underline"
+          >
+            {host(source.url)}
+          </LinkOut>
+        </div>
+        <TierBadge tier={tier} className="size-11 text-lg" />
+      </div>
+      <p class="mt-6 text-lg text-pretty text-foreground/80">
+        {source.description}
+      </p>
+      <div class="mt-6 flex gap-2">
         <a
-          href={`/sources/#tier-${tier.id.toLowerCase()}`}
-          class="text-sm underline underline-offset-4"
+          href="/"
+          class={buttonVariants({
+            size: "xl",
+            className: "flex-1 sm:flex-none sm:px-8",
+          })}
         >
-          See the tier list
+          <Shuffle data-icon="inline-start" aria-hidden="true" />
+          Shuffle
+        </a>
+        <a
+          href={source.url}
+          target="_blank"
+          rel="noopener"
+          class={buttonVariants({ variant: "outline", size: "xl" })}
+        >
+          Open
+          <ExternalLink data-icon="inline-end" aria-hidden="true" />
+          <span class="sr-only">(opens in a new tab)</span>
         </a>
       </div>
-    </section>
+
+      <dl class="mt-10 divide-y border-y">
+        <div class="grid gap-2 py-4 sm:grid-cols-[8rem_1fr]">
+          <dt class="text-sm text-muted-foreground">Tier</dt>
+          <dd class="flex items-start gap-3">
+            <TierBadge tier={tier} className="size-7" />
+            <span>
+              <a
+                href={`/sources/#tier-${tier.id.toLowerCase()}`}
+                class="font-medium hover:underline"
+              >
+                {tier.title}
+              </a>
+              <span class="block text-sm text-muted-foreground">
+                {tier.description}
+              </span>
+            </span>
+          </dd>
+        </div>
+        {kinds.map((group) => (
+          <div class="grid gap-2 py-4 sm:grid-cols-[8rem_1fr]">
+            <dt class="text-sm text-muted-foreground">{group.label}</dt>
+            <dd>
+              <ul class="flex flex-wrap gap-1.5">
+                {group.tags.map((tag) => (
+                  <li>
+                    <a
+                      href={`/tags/${tag.id}/`}
+                      class={badgeVariants({ variant: "secondary" })}
+                    >
+                      <TagIcon tag={tag} data-icon="inline-start" />
+                      {tag.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <section class="mt-10">
+        <h2 class="mb-3 text-lg font-medium">Share {source.title}</h2>
+        <ShareLinks title={`${source.title} on News Shuffle`} url={url} />
+      </section>
+    </div>
 
     {similar.length > 0 && (
-      <section>
-        <h2 class="mb-4 text-2xl font-medium">Similar sources</h2>
-        <ul class="grid gap-2 sm:grid-cols-2">
+      <aside>
+        <h2 class="mb-3 text-lg font-medium">Similar sources</h2>
+        <ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
           {similar.map((other) => (
             <li>
               <a
@@ -123,12 +175,7 @@ const crumbs = [
         >
           See all {sources.length} sources
         </a>
-      </section>
+      </aside>
     )}
-
-    <section class="border-t pt-8">
-      <h2 class="mb-3 text-lg font-medium">Share {source.title}</h2>
-      <ShareLinks title={`${source.title} on News Shuffle`} url={url} />
-    </section>
   </div>
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import { TagIcon } from "@/components/tag-icon"
+import PageHeader from "@/components/page-header.astro"
 import Layout from "@/layouts/main.astro"
 import { getTags } from "@/lib/data"
 
@@ -22,8 +23,9 @@ const groups = kinds
 <Layout
   title="Tags | News Shuffle"
   description="Browse News Shuffle sources by tag."
+  crumbs={[{ name: "Tags", path: "/tags/" }]}
 >
-  <h1 class="mb-8 text-4xl font-semibold">Tags</h1>
+  <PageHeader title="Tags" />
   <div class="space-y-8">
     {groups.map((group) => (
       <section>

@@ -23,7 +23,7 @@ export function TierBadge({
   return (
     <Avatar className={className} title={`${label}. ${tier.description}`}>
       <AvatarFallback
-        className={cn("font-bold text-black", tierColors[tier.id])}
+        className={cn("font-sans font-bold text-black", tierColors[tier.id])}
       >
         <span aria-hidden="true">{tier.id}</span>
         <span className="sr-only">{label}</span>

@@ -1,14 +1,44 @@
 // @ts-check
 
 import tailwindcss from "@tailwindcss/vite"
-import { defineConfig, envField } from "astro/config"
+import { defineConfig, envField, fontProviders } from "astro/config"
 import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
 
+const site = "https://news.mickschroeder.com"
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://news.mickschroeder.com",
+  site,
   trailingSlash: "always",
+  prefetch: { prefetchAll: true },
+  // Downloaded from Fontsource at build time and served from this site.
+  fonts: [
+    {
+      name: "Inter",
+      cssVariable: "--font-inter",
+      provider: fontProviders.fontsource(),
+      weights: ["100 900"],
+      styles: ["normal"],
+      fallbacks: ["sans-serif"],
+    },
+    {
+      name: "Newsreader",
+      cssVariable: "--font-newsreader",
+      provider: fontProviders.fontsource(),
+      weights: ["200 800"],
+      styles: ["normal"],
+      fallbacks: ["serif"],
+    },
+    {
+      name: "Manufacturing Consent",
+      cssVariable: "--font-manufacturing-consent",
+      provider: fontProviders.fontsource(),
+      weights: [400],
+      styles: ["normal"],
+      fallbacks: ["serif"],
+    },
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

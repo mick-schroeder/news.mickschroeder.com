@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { ExternalLink } from "@/components/external-link"
 import { SourceIcon } from "@/components/source-icon"
 import { TagIcon } from "@/components/tag-icon"
 import { TierBadge } from "@/components/tier-badge"
@@ -18,21 +19,15 @@ export function SourceCard({
   source,
   tier,
   tags,
-  heading = "h2",
-  linkTitle = false,
   children,
 }: {
   source: Omit<Source, "similar">
   tier: TierInfo
   /** The source's tags. */
   tags: Tag[]
-  heading?: "h1" | "h2"
-  /** Links the title to the source's page. */
-  linkTitle?: boolean
   /** Actions, in the footer. */
   children?: ReactNode
 }) {
-  const Heading = heading
   const host = new URL(source.url).hostname.replace(/^www\./, "")
   return (
     <Card>
@@ -41,20 +36,20 @@ export function SourceCard({
           <SourceIcon source={source} className="size-12" />
           <div className="min-w-0">
             <CardTitle className="text-2xl font-semibold tracking-tight">
-              <Heading>
-                {linkTitle ? (
-                  <a
-                    href={`/sources/${source.id}/`}
-                    className="hover:underline"
-                  >
-                    {source.title}
-                  </a>
-                ) : (
-                  source.title
-                )}
-              </Heading>
+              <h2>
+                <a href={`/sources/${source.id}/`} className="hover:underline">
+                  {source.title}
+                </a>
+              </h2>
             </CardTitle>
-            <CardDescription>{host}</CardDescription>
+            <CardDescription>
+              <ExternalLink
+                href={source.url}
+                className="hover:text-foreground hover:underline"
+              >
+                {host}
+              </ExternalLink>
+            </CardDescription>
           </div>
         </div>
         <CardAction>

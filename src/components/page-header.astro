@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+---
+
+<div class="mb-8 space-y-2">
+  <h1 class="flex items-center gap-3 text-4xl font-semibold">
+    <slot name="icon" />
+    {title}
+  </h1>
+  {description && <p class="text-lg text-muted-foreground">{description}</p>}
+  <slot />
+</div>

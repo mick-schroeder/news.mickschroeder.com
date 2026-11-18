@@ -1,4 +1,5 @@
 ---
+import { ExternalLink } from "@/components/external-link"
 import { OWNER, SITE_TITLE } from "@/consts"
 
 const year = new Date().getFullYear()
@@ -18,9 +19,9 @@ const year = new Date().getFullYear()
     </a>
     <p class="text-xs text-muted-foreground">
       © 2021–{year}{" "}
-      <a href={OWNER.url} class="hover:text-foreground">
+      <ExternalLink href={OWNER.url} className="hover:text-foreground">
         {OWNER.name}
-      </a>
+      </ExternalLink>
     </p>
   </div>
 </footer>

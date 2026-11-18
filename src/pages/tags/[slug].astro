@@ -1,13 +1,14 @@
 ---
+import { ExternalLink } from "@/components/external-link"
 import type { InferGetStaticPropsType } from "astro"
-import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import PageHeader from "@/components/page-header.astro"
 import SourceList from "@/components/source-list.astro"
 import { TagIcon } from "@/components/tag-icon"
 import { buttonVariants } from "@/components/ui/button"
 import { Shuffle } from "lucide-react"
 import Layout from "@/layouts/main.astro"
 import { getSources, getTags, getTiers } from "@/lib/data"
-import { breadcrumbs, itemList } from "@/lib/json-ld"
+import { itemList } from "@/lib/json-ld"
 
 export async function getStaticPaths() {
   return (await getTags()).map((tag) => ({
@@ -27,40 +28,35 @@ const items = sources.map((source) => ({
   name: source.title,
   url: new URL(`/sources/${source.id}/`, Astro.site),
 }))
-const crumbs = [
-  { name: "Home", url: Astro.site! },
-  { name: "Tags", url: new URL("/tags/", Astro.site) },
-  { name: tag.title, url: new URL(Astro.url.pathname, Astro.site) },
-]
 ---
 
 <Layout
   title={`${tag.title} | News Shuffle`}
   description={tag.description}
-  jsonLd={[itemList(items), breadcrumbs(crumbs)]}
+  jsonLd={[itemList(items)]}
+  crumbs={[
+    { name: "Tags", path: "/tags/" },
+    { name: tag.title, path: Astro.url.pathname },
+  ]}
 >
-  <PageBreadcrumb items={crumbs} />
-  <div class="mb-8 space-y-4">
-    <div>
-      <h1 class="mb-2 flex items-center gap-3 text-4xl font-semibold">
-        <TagIcon tag={tag} className="size-8" />
-        {tag.title}
-      </h1>
-      <p class="text-lg text-muted-foreground">{tag.description}</p>
-      {tag.url && (
-        <a href={tag.url} class="text-sm underline underline-offset-4">
-          {new URL(tag.url).hostname}
-        </a>
-      )}
-    </div>
+  <PageHeader title={tag.title} description={tag.description}>
+    <TagIcon slot="icon" tag={tag} className="size-8" />
+    {tag.url && (
+      <ExternalLink
+        href={tag.url}
+        className="block text-sm underline underline-offset-4"
+      >
+        {new URL(tag.url).hostname}
+      </ExternalLink>
+    )}
     <a
       href={`/tags/${tag.id}/redirect/`}
       rel="nofollow"
-      class={buttonVariants({ size: "xl" })}
+      class={buttonVariants({ size: "xl", className: "mt-2" })}
     >
       <Shuffle data-icon="inline-start" aria-hidden="true" />
       Shuffle {tag.title}
     </a>
-  </div>
+  </PageHeader>
   <SourceList sources={sources} tiers={tiers} />
 </Layout>
