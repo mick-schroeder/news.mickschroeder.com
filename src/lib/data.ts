@@ -1,6 +1,5 @@
 import { getCollection } from "astro:content"
-import { icons } from "lucide"
-import type { IconNode } from "lucide-react"
+import { icons, type IconNode } from "lucide"
 import * as flags from "country-flag-icons/string/3x2"
 import type { Flag, Source, Tag, TierInfo } from "@/lib/shuffle"
 

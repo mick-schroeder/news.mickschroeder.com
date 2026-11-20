@@ -1,6 +1,6 @@
 export type TierInfo = { id: string; title: string; description: string }
 
-import type { IconNode } from "lucide-react"
+import type { IconNode } from "lucide"
 import type { TagColor } from "@/lib/tag-colors"
 import type { TagKind } from "@/lib/tag-kinds"
 
