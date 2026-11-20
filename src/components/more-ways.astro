@@ -4,7 +4,7 @@ import BentoCard from "@/components/bento-card.astro"
 import { SourceIcon } from "@/components/source-icon"
 import { TagIcon } from "@/components/tag-icon"
 import { buttonVariants } from "@/components/ui/button"
-import { DATA_URL } from "astro:env/server"
+import { DATA_API_URL } from "@/consts"
 import { CODE_URL, EXTENSION_URL } from "@/consts"
 import type { Source, Tag } from "@/lib/shuffle"
 import { tagFill } from "@/lib/tag-colors"
@@ -135,7 +135,7 @@ const fadeY =
 
     <BentoCard
       wide
-      href={DATA_URL}
+      href={DATA_API_URL}
       title="Data API"
       description="Every source, tag and tier as public JSON. No key needed."
     >

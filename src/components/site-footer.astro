@@ -47,8 +47,10 @@ const links = [
   if (document.querySelector("script[src*='adsbygoogle']")) {
     button.hidden = false
     button.addEventListener("click", () => {
-      const fc = ((window as any).googlefc ??= { callbackQueue: [] })
-      fc.callbackQueue.push(() => fc.showRevocationMessage())
+      window.googlefc ??= { callbackQueue: [] }
+      window.googlefc.callbackQueue.push(() =>
+        window.googlefc?.showRevocationMessage?.()
+      )
     })
   }
 </script>

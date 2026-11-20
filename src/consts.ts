@@ -10,3 +10,4 @@ export const EXTENSION_URL =
 export const GITHUB_URL = "https://github.com/mick-schroeder"
 export const CODE_URL = `${GITHUB_URL}/news.mickschroeder.com`
 export const DATA_CODE_URL = `${GITHUB_URL}/popular-news-sites`
+export const DATA_API_URL = "https://data.news.mickschroeder.com"
