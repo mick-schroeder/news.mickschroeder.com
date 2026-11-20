@@ -5,6 +5,8 @@ import { defineConfig, envField, fontProviders } from "astro/config"
 import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
 
+import mdx from "@astrojs/mdx"
+
 const site = "https://news.mickschroeder.com"
 
 // https://astro.build/config
@@ -43,9 +45,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
-    react(),
-    // Redirect pages are noindex.
+    react(), // Redirect pages are noindex.
     sitemap({ filter: (page) => !page.endsWith("/redirect/") }),
+    mdx(),
   ],
   env: {
     schema: {

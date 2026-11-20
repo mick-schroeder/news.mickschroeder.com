@@ -1,21 +1,15 @@
 ---
-import { TagIcon } from "@/components/tag-icon"
+import TagTile from "@/components/tag-tile.astro"
 import PageHeader from "@/components/page-header.astro"
 import Layout from "@/layouts/main.astro"
 import { getTags } from "@/lib/data"
+import { tagKinds } from "@/lib/tag-kinds"
 
 const tags = await getTags()
-const kinds = [
-  { kind: "topic", title: "Topics" },
-  { kind: "region", title: "Regions" },
-  { kind: "feed", title: "Feeds" },
-  { kind: "language", title: "Languages" },
-  { kind: "sponsor", title: "Sponsors" },
-]
-const groups = kinds
-  .map((group) => ({
-    ...group,
-    tags: tags.filter((tag) => tag.kind === group.kind),
+const groups = tagKinds
+  .map((kind) => ({
+    title: kind.plural,
+    tags: tags.filter((tag) => tag.kind === kind.id),
   }))
   .filter((group) => group.tags.length)
 ---
@@ -30,21 +24,19 @@ const groups = kinds
     {groups.map((group) => (
       <section>
         <h2 class="mb-3 text-2xl font-medium">{group.title}</h2>
-        <ul class="grid gap-3 sm:grid-cols-2">
+        <ul class="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {group.tags.map((tag) => (
             <li>
-              <a
+              <TagTile
+                tag={tag}
                 href={`/tags/${tag.id}/`}
-                class="block rounded-lg border p-3 hover:bg-muted"
+                title={tag.description}
+                class="aspect-[3/2] rounded-xl p-4"
               >
-                <span class="flex items-center gap-2 font-medium">
-                  <TagIcon tag={tag} className="size-4" />
+                <span class="font-heading text-2xl font-medium sm:text-3xl">
                   {tag.title}
                 </span>
-                <span class="block text-sm text-muted-foreground">
-                  {tag.description}
-                </span>
-              </a>
+              </TagTile>
             </li>
           ))}
         </ul>

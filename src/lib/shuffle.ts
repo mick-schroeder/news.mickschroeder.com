@@ -1,16 +1,23 @@
 export type TierInfo = { id: string; title: string; description: string }
 
 import type { IconNode } from "lucide-react"
+import type { TagColor } from "@/lib/tag-colors"
+import type { TagKind } from "@/lib/tag-kinds"
 
 export type Tag = {
   id: string
   title: string
-  kind: "topic" | "region" | "feed" | "language" | "sponsor"
+  kind: TagKind
   description: string
   url?: string
+  color?: TagColor
   /** Lucide icon data, looked up from the tag's icon name at build. */
   iconNode?: IconNode
+  /** Country flag SVG, looked up from the tag's country at build. */
+  flag?: Flag
 }
+
+export type Flag = { viewBox: string; body: string }
 
 export type Source = {
   id: string
@@ -24,7 +31,7 @@ export type Source = {
 }
 
 /** Tag kinds the shuffle filters on. */
-export const facets = ["topic", "region", "feed"] as const
+export const facets = ["topic", "region", "feed"] as const satisfies TagKind[]
 export type Facet = (typeof facets)[number]
 
 /** Empty means any. */

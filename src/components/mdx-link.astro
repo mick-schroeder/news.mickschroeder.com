@@ -1,0 +1,19 @@
+---
+import { ExternalLink } from "@/components/external-link"
+
+interface Props {
+  href: string
+}
+
+const { href } = Astro.props
+---
+
+{href.startsWith("http") ? (
+  <ExternalLink href={href}>
+    <slot />
+  </ExternalLink>
+) : (
+  <a href={href}>
+    <slot />
+  </a>
+)}

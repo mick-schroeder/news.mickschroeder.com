@@ -1,19 +1,8 @@
 ---
-import { iconTile } from "@/components/source-icon"
-import { buttonVariants } from "@/components/ui/button"
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty"
-import { Skeleton } from "@/components/ui/skeleton"
-import { Spinner } from "@/components/ui/spinner"
+import { Redirect, RedirectCard } from "@/components/redirect-card"
 import Layout from "@/layouts/main.astro"
+import { getTiers } from "@/lib/data"
 import type { Source } from "@/lib/shuffle"
-import { cn } from "@/lib/utils"
 
 interface Props {
   title: string
@@ -30,123 +19,27 @@ const data = sources.map(({ title, url, icon, tier, tags }) => ({
   tier,
   tags,
 }))
+const tiers = await getTiers()
 ---
 
 <Layout title={title} description={title} noindex>
-  <div class="flex min-h-[60svh] items-center justify-center">
-    <Empty
-      id="redirect"
-      data-sources={JSON.stringify(data)}
-      data-saved-filters={savedFilters}
-      className="w-full max-w-md flex-none bg-card ring-1 ring-foreground/10"
+  <div class="flex min-h-[60svh] flex-col items-center justify-center">
+    <Redirect
+      client:only="react"
+      sources={data}
+      tiers={tiers}
+      savedFilters={savedFilters}
     >
-      <div id="redirect-picked" class="contents">
-        <EmptyHeader>
-          <EmptyMedia>
-            <Spinner className="size-8 text-primary" aria-hidden="true" />
-          </EmptyMedia>
-          <EmptyTitle className="font-heading text-3xl font-semibold">
-            <h1>Redirecting…</h1>
-          </EmptyTitle>
-        </EmptyHeader>
-        <EmptyContent className="gap-4">
-          <div
-            aria-live="polite"
-            class="flex w-full items-center gap-3 rounded-xl p-3 text-left ring-1 ring-foreground/10"
-          >
-            <Skeleton
-              id="redirect-skeleton"
-              className="size-10 rounded-[22%]"
-            />
-            <img
-              id="redirect-icon"
-              alt=""
-              class={cn(iconTile, "size-10")}
-              hidden
-            />
-            <span class="min-w-0 flex-1 space-y-1">
-              <span id="redirect-title" class="block truncate font-medium">
-                <Skeleton className="h-5 w-32" />
-              </span>
-              <span
-                id="redirect-host"
-                class="block truncate text-sm text-muted-foreground"
-              >
-                <Skeleton className="h-4 w-20" />
-              </span>
-            </span>
-            <span
-              id="redirect-tier"
-              class="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-bold text-black"
-            ></span>
-          </div>
-          <EmptyDescription>
-            If you don't wish to wait,{" "}
-            <a id="redirect-link" href="/" class="break-all">
-              go now
-            </a>
-          </EmptyDescription>
-        </EmptyContent>
-      </div>
-      <div id="redirect-empty" class="contents" hidden>
-        <EmptyHeader>
-          <EmptyTitle className="font-heading text-3xl font-semibold">
-            <h1>No sources match</h1>
-          </EmptyTitle>
-          <EmptyDescription>Try more tiers or fewer filters.</EmptyDescription>
-        </EmptyHeader>
-        <EmptyContent>
-          <a href="/" class={buttonVariants()}>
-            Change your filters
-          </a>
-        </EmptyContent>
-      </div>
-      <noscript>
-        <EmptyDescription>
-          Shuffling needs JavaScript. <a href="/">Go home</a>.
-        </EmptyDescription>
-      </noscript>
-    </Empty>
+      <RedirectCard slot="fallback" loading />
+    </Redirect>
+    <noscript>
+      <p class="mt-4 text-muted-foreground">
+        Shuffling needs JavaScript.{" "}
+        <a href="/" class="underline">
+          Go home
+        </a>
+        .
+      </p>
+    </noscript>
   </div>
 </Layout>
-
-<script>
-  import { tierColors } from "@/components/tier-badge"
-  import { matches, pickSource, readFilters, type Source } from "@/lib/shuffle"
-
-  // Long enough to see where you're going, and to slow down rapid repeats.
-  const pause = 1200
-
-  const page = document.getElementById("redirect")!
-  const sources: Pick<Source, "title" | "url" | "icon" | "tier" | "tags">[] =
-    JSON.parse(page.dataset.sources!)
-  const known = new Set(
-    sources.flatMap((source) => [source.tier, ...source.tags])
-  )
-  const pool =
-    page.dataset.savedFilters === "true"
-      ? sources.filter((source) => matches(source, readFilters(known)))
-      : sources
-  const source = pickSource(pool)
-
-  if (source) {
-    const icon = document.getElementById("redirect-icon") as HTMLImageElement
-    icon.src = source.icon
-    icon.hidden = false
-    document.getElementById("redirect-skeleton")!.remove()
-    document.getElementById("redirect-title")!.textContent = source.title
-    document.getElementById("redirect-host")!.textContent = new URL(
-      source.url
-    ).hostname.replace(/^www\./, "")
-    const link = document.getElementById("redirect-link") as HTMLAnchorElement
-    link.href = source.url
-    link.textContent = source.url
-    const tier = document.getElementById("redirect-tier")!
-    tier.textContent = source.tier
-    tier.classList.replace("bg-muted", tierColors[source.tier])
-    setTimeout(() => location.replace(source.url), pause)
-  } else {
-    document.getElementById("redirect-picked")!.hidden = true
-    document.getElementById("redirect-empty")!.hidden = false
-  }
-</script>

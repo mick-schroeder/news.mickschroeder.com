@@ -6,6 +6,8 @@ import { TagIcon } from "@/components/tag-icon"
 import { buttonVariants } from "@/components/ui/button"
 import { CODE_URL, DATA_API, EXTENSION_URL } from "@/consts"
 import type { Source, Tag } from "@/lib/shuffle"
+import { tagFill } from "@/lib/tag-colors"
+import { cn } from "@/lib/utils"
 
 interface Props {
   sources: Omit<Source, "similar">[]
@@ -96,10 +98,10 @@ const fadeY =
         <a
           href="/redirect/"
           rel="nofollow"
-          class={buttonVariants({
-            size: "lg",
-            className: "cursor-grab active:cursor-grabbing",
-          })}
+          class={cn(
+            buttonVariants({ size: "lg" }),
+            "cursor-grab active:cursor-grabbing"
+          )}
         >
           <GripVertical data-icon="inline-start" aria-hidden="true" />
           Shuffle news
@@ -117,7 +119,11 @@ const fadeY =
           <a
             href={`/tags/${tag.id}/redirect/`}
             rel="nofollow"
-            class={buttonVariants({ variant: "outline" })}
+            data-tag-color={tag.color}
+            class={cn(
+              buttonVariants({ variant: tag.color ? "default" : "outline" }),
+              tag.color && tagFill
+            )}
           >
             <TagIcon tag={tag} data-icon="inline-start" />
             {tag.title}

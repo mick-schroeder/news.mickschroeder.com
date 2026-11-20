@@ -1,7 +1,8 @@
 import { getCollection } from "astro:content"
 import { icons } from "lucide"
 import type { IconNode } from "lucide-react"
-import type { Source, Tag, TierInfo } from "@/lib/shuffle"
+import * as flags from "country-flag-icons/string/3x2"
+import type { Flag, Source, Tag, TierInfo } from "@/lib/shuffle"
 
 /** Tiers, best first. */
 export async function getTiers(): Promise<TierInfo[]> {
@@ -22,14 +23,23 @@ function iconNode(name: string) {
   return node as IconNode
 }
 
+/** A country's 3:2 flag, split into viewBox and contents. */
+function flag(country: string): Flag {
+  const svg = flags[country as keyof typeof flags]
+  const match = svg?.match(/viewBox="([^"]+)"[^>]*>([\s\S]*)<\/svg>/)
+  if (!match) throw new Error(`Unknown flag: ${country}`)
+  return { viewBox: match[1], body: match[2] }
+}
+
 /** Tags in display order. */
 export async function getTags(): Promise<Tag[]> {
   return (await getCollection("tags"))
     .sort((a, b) => a.data.order - b.data.order)
-    .map(({ id, data: { icon, ...data } }) => ({
+    .map(({ id, data: { icon, country, ...data } }) => ({
       id,
       ...data,
       ...(icon && { iconNode: iconNode(icon) }),
+      ...(country && { flag: flag(country) }),
     }))
 }
 

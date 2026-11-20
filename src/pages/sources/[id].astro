@@ -1,16 +1,17 @@
 ---
 import ShareLinks from "@/components/share-links.astro"
-import { ExternalLink as LinkOut } from "@/components/external-link"
-import { TagIcon } from "@/components/tag-icon"
-import { badgeVariants } from "@/components/ui/badge"
+import { ExternalLink } from "@/components/external-link"
+import { TagBadge } from "@/components/tag-badge"
 import { SourceIcon } from "@/components/source-icon"
 import { TierBadge } from "@/components/tier-badge"
 import { buttonVariants } from "@/components/ui/button"
 import Layout from "@/layouts/main.astro"
 import { sourcePage } from "@/lib/json-ld"
+import { cn, hostOf } from "@/lib/utils"
 import { getSources, getTags, getTiers } from "@/lib/data"
+import { tagKinds } from "@/lib/tag-kinds"
 import type { InferGetStaticPropsType } from "astro"
-import { ExternalLink, Shuffle } from "lucide-react"
+import { Shuffle } from "lucide-react"
 
 export async function getStaticPaths() {
   const sources = await getSources()
@@ -28,22 +29,18 @@ const tiers = await getTiers()
 const tierOf = (id: string) => tiers.find((tier) => tier.id === id)!
 const tier = tierOf(source.tier)
 const sourceTags = tags.filter((tag) => source.tags.includes(tag.id))
-const kinds = [
-  { kind: "topic", label: ["Topic", "Topics"] },
-  { kind: "region", label: ["Region", "Regions"] },
-  { kind: "feed", label: ["Feed", "Feeds"] },
-  { kind: "language", label: ["Language", "Languages"] },
-  { kind: "sponsor", label: ["Sponsor", "Sponsors"] },
-]
-  .map(({ kind, label }) => {
-    const kindTags = sourceTags.filter((tag) => tag.kind === kind)
-    return { kind, label: label[kindTags.length > 1 ? 1 : 0], tags: kindTags }
+const groups = tagKinds
+  .map((kind) => {
+    const kindTags = sourceTags.filter((tag) => tag.kind === kind.id)
+    return {
+      label: kindTags.length > 1 ? kind.plural : kind.singular,
+      tags: kindTags,
+    }
   })
   .filter((group) => group.tags.length > 0)
 const similar = source.similar
   .map((id) => sources.find((other) => other.id === id))
   .filter((other) => other !== undefined)
-const host = (url: string) => new URL(url).hostname.replace(/^www\./, "")
 const site = Astro.site!
 const page = new URL(Astro.url.pathname, site)
 const url = page.href
@@ -66,12 +63,12 @@ const url = page.href
         <SourceIcon source={source} className="size-16" />
         <div class="min-w-0 flex-1">
           <h1 class="text-4xl font-semibold">{source.title}</h1>
-          <LinkOut
+          <ExternalLink
             href={source.url}
             className="text-muted-foreground hover:text-foreground hover:underline"
           >
-            {host(source.url)}
-          </LinkOut>
+            {hostOf(source.url)}
+          </ExternalLink>
         </div>
         <TierBadge tier={tier} className="size-11 text-lg" />
       </div>
@@ -81,24 +78,20 @@ const url = page.href
       <div class="mt-6 flex gap-2">
         <a
           href="/"
-          class={buttonVariants({
-            size: "xl",
-            className: "flex-1 sm:flex-none sm:px-8",
-          })}
+          class={cn(
+            buttonVariants({ size: "xl" }),
+            "flex-1 sm:flex-none sm:px-8"
+          )}
         >
           <Shuffle data-icon="inline-start" aria-hidden="true" />
           Shuffle
         </a>
-        <a
+        <ExternalLink
           href={source.url}
-          target="_blank"
-          rel="noopener"
-          class={buttonVariants({ variant: "outline", size: "xl" })}
+          button={{ variant: "outline", size: "xl" }}
         >
           Open
-          <ExternalLink data-icon="inline-end" aria-hidden="true" />
-          <span class="sr-only">(opens in a new tab)</span>
-        </a>
+        </ExternalLink>
       </div>
 
       <dl class="mt-10 divide-y border-y">
@@ -119,20 +112,14 @@ const url = page.href
             </span>
           </dd>
         </div>
-        {kinds.map((group) => (
+        {groups.map((group) => (
           <div class="grid gap-2 py-4 sm:grid-cols-[8rem_1fr]">
             <dt class="text-sm text-muted-foreground">{group.label}</dt>
             <dd>
               <ul class="flex flex-wrap gap-1.5">
                 {group.tags.map((tag) => (
                   <li>
-                    <a
-                      href={`/tags/${tag.id}/`}
-                      class={badgeVariants({ variant: "secondary" })}
-                    >
-                      <TagIcon tag={tag} data-icon="inline-start" />
-                      {tag.title}
-                    </a>
+                    <TagBadge tag={tag} />
                   </li>
                 ))}
               </ul>
@@ -161,7 +148,7 @@ const url = page.href
                 <span class="min-w-0 flex-1">
                   <span class="block truncate font-medium">{other.title}</span>
                   <span class="block truncate text-sm text-muted-foreground">
-                    {host(other.url)}
+                    {hostOf(other.url)}
                   </span>
                 </span>
                 <TierBadge tier={tierOf(other.tier)} className="size-7" />
@@ -171,7 +158,7 @@ const url = page.href
         </ul>
         <a
           href="/sources/"
-          class={buttonVariants({ variant: "outline", className: "mt-4" })}
+          class={cn(buttonVariants({ variant: "outline" }), "mt-4")}
         >
           See all {sources.length} sources
         </a>

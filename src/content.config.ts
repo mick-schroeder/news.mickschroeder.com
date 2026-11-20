@@ -1,6 +1,8 @@
 import { defineCollection, reference } from "astro:content"
 import { DATA_URL } from "astro:env/server"
 import { z } from "astro/zod"
+import { tagColorNames } from "@/lib/tag-colors"
+import { tagKinds } from "@/lib/tag-kinds"
 
 const fetchJson = async (file: string) => {
   const response = await fetch(`${DATA_URL}/${file}`)
@@ -22,10 +24,16 @@ const tags = defineCollection({
   schema: z.object({
     order: z.number(),
     title: z.string(),
-    kind: z.enum(["topic", "region", "feed", "language", "sponsor"]),
+    kind: z.enum(tagKinds.map((kind) => kind.id)),
     description: z.string(),
     /** Lucide icon name. */
     icon: z.string().optional(),
+    color: z.enum(tagColorNames).optional(),
+    /** ISO 3166-1 alpha-2, shown as a flag. */
+    country: z
+      .string()
+      .regex(/^[A-Z]{2}$/)
+      .optional(),
     url: z.url().optional(),
   }),
 })

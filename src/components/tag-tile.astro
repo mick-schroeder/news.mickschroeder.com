@@ -1,0 +1,39 @@
+---
+import { TagIcon } from "@/components/tag-icon"
+import type { Tag } from "@/lib/shuffle"
+
+interface Props {
+  tag: Tag
+  /** Makes the whole tile a link. */
+  href?: string
+  title?: string
+  class?: string
+}
+
+const { tag, href, title, class: className } = Astro.props
+const Element = href ? "a" : "div"
+---
+
+<Element
+  href={href}
+  title={title}
+  data-tag-color={tag.color}
+  class:list={[
+    "relative flex flex-col justify-end overflow-hidden",
+    tag.color ? "bg-(--tag) text-white" : "bg-muted",
+    href &&
+      (tag.color
+        ? "transition-colors hover:bg-(--tag-hover)"
+        : "transition-colors hover:bg-muted/80"),
+    className,
+  ]}
+>
+  <TagIcon
+    tag={tag}
+    className={`absolute top-1/2 -right-[14%] h-[125%] w-auto -translate-y-1/2 -rotate-12 ${tag.flag ? "opacity-50" : "opacity-25"}`}
+    strokeWidth={1.25}
+  />
+  <div class="relative">
+    <slot />
+  </div>
+</Element>

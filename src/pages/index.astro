@@ -1,6 +1,7 @@
 ---
 import MoreWays from "@/components/more-ways.astro"
 import { Shuffle } from "@/components/shuffle"
+import { SourceCard } from "@/components/source-card"
 import { Skeleton } from "@/components/ui/skeleton"
 import Layout from "@/layouts/main.astro"
 import { getSources, getTags, getTiers } from "@/lib/data"
@@ -17,7 +18,12 @@ const tiers = await getTiers()
     <div slot="fallback" class="mx-auto flex max-w-4xl flex-col gap-6 pt-2">
       <Skeleton className="mx-auto h-10 w-4/5" />
       <Skeleton className="mx-auto -mt-3 h-5 w-40" />
-      <Skeleton className="mx-auto h-72 w-full max-w-xl rounded-xl" />
+      <div class="mx-auto w-full max-w-xl">
+        <SourceCard loading>
+          <Skeleton className="h-11 flex-1 rounded-lg" />
+          <Skeleton className="h-11 w-24 rounded-lg" />
+        </SourceCard>
+      </div>
     </div>
   </Shuffle>
   <noscript>

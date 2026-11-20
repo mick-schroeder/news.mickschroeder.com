@@ -1,13 +1,10 @@
-import { useState } from "react"
-import {
-  ChevronDown,
-  ExternalLink,
-  RotateCcw,
-  Shuffle as ShuffleIcon,
-} from "lucide-react"
+import { useState, type MouseEvent } from "react"
+import { ChevronDown, RotateCcw, Shuffle as ShuffleIcon } from "lucide-react"
 import { FilterSentence, TagMenu } from "@/components/filter-sentence"
 import { SourceCard } from "@/components/source-card"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { ExternalLink } from "@/components/external-link"
+import { Button } from "@/components/ui/button"
+import { usePick } from "@/hooks/use-pick"
 import {
   Empty,
   EmptyContent,
@@ -33,6 +30,8 @@ declare global {
   }
 }
 
+type Pick = Omit<Source, "similar">
+
 /** The home page: filters, a random matching source, and buttons to open it or pick again. */
 export function Shuffle({
   sources,
@@ -48,25 +47,54 @@ export function Shuffle({
     readFilters(new Set([...tags, ...tiers].map((item) => item.id)))
   )
   const matching = sources.filter((source) => matches(source, filters))
-  const [current, setCurrent] = useState(() => pickSource(matching))
+  // First pick skips the minimum; the page's fallback skeleton already showed.
+  const [card, pick] = usePick(() => pickSource(matching), 0)
+  const current = card.status === "empty" ? undefined : card.source
+  const loading = card.status === "loading"
   const feeds = tags.filter((tag) => tag.kind === "feed")
   const isDefault = JSON.stringify(filters) === JSON.stringify(defaultFilters)
 
   function update(next: Filters) {
     writeFilters(next)
     setFilters(next)
-    setCurrent(pickSource(sources.filter((source) => matches(source, next))))
+    pick(pickSource(sources.filter((source) => matches(source, next))))
   }
 
   function pickAgain() {
+    if (loading) return
     const others = matching.filter((source) => source !== current)
-    setCurrent(pickSource(others.length ? others : matching))
+    pick(pickSource(others.length ? others : matching))
   }
 
-  function open() {
+  function open(event: MouseEvent) {
+    if (loading) return event.preventDefault()
     window.gtag?.("event", "shuffle")
     pickAgain()
   }
+
+  // Kept mounted across picks, so focus stays put.
+  const actions = (source: Pick) => (
+    <>
+      <Button
+        size="xl"
+        className="flex-1"
+        disabled={loading}
+        focusableWhenDisabled
+        onClick={pickAgain}
+      >
+        <ShuffleIcon data-icon="inline-start" aria-hidden="true" />
+        Shuffle
+      </Button>
+      <ExternalLink
+        href={source.url}
+        button={{ variant: "outline", size: "xl" }}
+        aria-disabled={loading}
+        onClick={open}
+      >
+        Open
+      </ExternalLink>
+    </>
+  )
 
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-6 pt-2">
@@ -109,27 +137,16 @@ export function Shuffle({
 
       <div className="mx-auto w-full max-w-xl space-y-6">
         {current ? (
-          <SourceCard
-            source={current}
-            tier={tiers.find((tier) => tier.id === current.tier)!}
-            tags={tags.filter((tag) => current.tags.includes(tag.id))}
-          >
-            <Button size="xl" className="flex-1" onClick={pickAgain}>
-              <ShuffleIcon data-icon="inline-start" aria-hidden="true" />
-              Shuffle
-            </Button>
-            <a
-              href={current.url}
-              target="_blank"
-              rel="noopener"
-              onClick={open}
-              className={buttonVariants({ variant: "outline", size: "xl" })}
+          <div aria-busy={loading}>
+            <SourceCard
+              source={current}
+              tier={tiers.find((tier) => tier.id === current.tier)}
+              tags={tags.filter((tag) => current.tags.includes(tag.id))}
+              loading={loading}
             >
-              Open
-              <ExternalLink data-icon="inline-end" aria-hidden="true" />
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-          </SourceCard>
+              {actions(current)}
+            </SourceCard>
+          </div>
         ) : (
           <Empty className="border">
             <EmptyHeader>

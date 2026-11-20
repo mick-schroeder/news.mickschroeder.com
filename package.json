@@ -27,6 +27,8 @@
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.10",
+    "@astrojs/mdx": "^8.1.6",
     "@astrojs/react": "^7",
     "@astrojs/sitemap": "^3.7.5",
     "@base-ui/react": "^1.9.0",
@@ -36,6 +38,7 @@
     "astro": "^7.4.8",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
+    "country-flag-icons": "^1.6.20",
     "lucide": "1.68.0",
     "lucide-react": "1.68.0",
     "react": "^19.3.1",
@@ -48,6 +51,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9",
     "@eslint/js": "^10",
+    "@tailwindcss/typography": "^0.5.20",
     "eslint": "^10",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",

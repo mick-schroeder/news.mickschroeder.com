@@ -1,5 +1,5 @@
-import { useRef, useState, useSyncExternalStore, type ReactNode } from "react"
-import { ChevronDown, Shuffle, X } from "lucide-react"
+import { useRef, useState, type ReactNode } from "react"
+import { ChevronDown, Shuffle } from "lucide-react"
 import { TagIcon } from "@/components/tag-icon"
 import { TierBadge } from "@/components/tier-badge"
 import { AvatarGroup } from "@/components/ui/avatar"
@@ -21,9 +21,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  Popover,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Slider } from "@/components/ui/slider"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { useIsMobile } from "@/hooks/use-mobile"
 import type { Facet, Filters, Tag, TierInfo } from "@/lib/shuffle"
+import { tagInk } from "@/lib/tag-colors"
 import { cn } from "@/lib/utils"
 
 type Part = "topic" | "region" | "tier"
@@ -38,7 +47,7 @@ const parts = {
 
 // A word in the sentence that opens a picker; the dotted underline marks it.
 const word =
-  "h-auto gap-[0.15em] px-[0.15em] py-0 font-heading text-[length:inherit] leading-[inherit] font-semibold text-foreground decoration-primary decoration-dotted decoration-[0.06em] underline-offset-[0.16em] aria-expanded:bg-primary/10 aria-expanded:decoration-solid [&_svg:not([class*='size-'])]:size-[0.45em]"
+  "h-auto gap-[0.15em] px-[0.15em] py-0 font-heading text-[length:inherit] leading-[inherit] font-semibold text-foreground decoration-primary decoration-dotted decoration-[0.06em] underline-offset-[0.16em] aria-expanded:bg-primary/10 aria-expanded:decoration-solid aria-pressed:bg-primary/10 aria-pressed:decoration-solid [&_svg:not([class*='size-'])]:size-[0.45em]"
 
 const chevron = (
   <ChevronDown
@@ -47,20 +56,6 @@ const chevron = (
     className="transition-transform in-aria-expanded:rotate-180"
   />
 )
-
-const phoneQuery = "(max-width: 39.99rem)"
-
-/** True below the sm breakpoint; client only, no server snapshot. */
-function usePhone() {
-  return useSyncExternalStore(
-    (onChange) => {
-      const query = window.matchMedia(phoneQuery)
-      query.addEventListener("change", onChange)
-      return () => query.removeEventListener("change", onChange)
-    },
-    () => window.matchMedia(phoneQuery).matches
-  )
-}
 
 /** "news", "news and tech", "news +2"; the any label when empty. */
 function summary(tags: Tag[], ids: string[], any: string, lower = false) {
@@ -118,7 +113,11 @@ export function TagMenu({
               checked={selected.includes(tag.id)}
               onCheckedChange={(on) => toggle(tag.id, on)}
             >
-              <TagIcon tag={tag} />
+              <TagIcon
+                tag={tag}
+                data-tag-color={tag.color}
+                className={tag.color && tagInk}
+              />
               {tag.title}
             </DropdownMenuCheckboxItem>
           ))}
@@ -169,7 +168,11 @@ function TagChips({
       </ToggleGroupItem>
       {tags.map((tag) => (
         <ToggleGroupItem key={tag.id} value={tag.id} className={chip}>
-          <TagIcon tag={tag} />
+          <TagIcon
+            tag={tag}
+            data-tag-color={tag.color}
+            className={tag.color && tagInk}
+          />
           {tag.title}
         </ToggleGroupItem>
       ))}
@@ -234,16 +237,15 @@ export function FilterSentence({
   filters: Filters
   onChange: (filters: Filters) => void
 }) {
-  // The part outlives closing, so the sheet keeps its picker while it slides away.
+  // The part outlives closing, so the drawer keeps its picker while it slides away.
   const [part, setPart] = useState<Part>("topic")
   const [isOpen, setIsOpen] = useState(false)
-  const open = isOpen ? part : null
   const words = useRef<Partial<Record<Part, HTMLButtonElement | null>>>({})
-  const phone = usePhone()
+  const mobile = useIsMobile()
 
-  function close() {
-    setIsOpen(false)
-    if (!phone) words.current[part]?.focus()
+  function setOpen(which: Part, next: boolean) {
+    if (next) setPart(which)
+    setIsOpen(next)
   }
   const ofKind = (kind: Facet) => tags.filter((tag) => tag.kind === kind)
 
@@ -273,42 +275,14 @@ export function FilterSentence({
       )
     )
 
-  /** The sentence; in the sheet, words switch the picker instead of closing it. */
-  const sentence = (inSheet: boolean) => {
-    const pick = (which: Part) => (
-      <Button
-        ref={
-          inSheet
-            ? undefined
-            : (node: HTMLButtonElement | null) => {
-                words.current[which] = node
-              }
-        }
-        variant="ghost"
-        className={cn(word, which !== "tier" && "underline")}
-        aria-expanded={open === which}
-        aria-controls={open === which ? "filter-picker" : undefined}
-        aria-label={
-          which === "tier"
-            ? `Tiers ${shown.map((tier) => tier.id).join(", ")}`
-            : undefined
-        }
-        onClick={() => {
-          if (!inSheet && open === which) return close()
-          setPart(which)
-          setIsOpen(true)
-        }}
-      >
-        {label(which)}
-        {chevron}
-      </Button>
-    )
-    return (
-      <>
-        Show me {pick("topic")} from {pick("region")} ranked {pick("tier")}
-      </>
-    )
-  }
+  const wordProps = (which: Part) => ({
+    variant: "ghost" as const,
+    className: cn(word, which !== "tier" && "underline"),
+    "aria-label":
+      which === "tier"
+        ? `Tiers ${shown.map((tier) => tier.id).join(", ")}`
+        : undefined,
+  })
 
   const picker = (which: Part) =>
     which === "tier" ? (
@@ -327,50 +301,58 @@ export function FilterSentence({
       />
     )
 
-  return (
-    <div
-      className="flex flex-col gap-4"
-      onKeyDown={(event) => {
-        if (event.key === "Escape" && open && !phone) close()
-      }}
+  // On desktop each word opens a popover; on mobile the same click opens the drawer.
+  const popoverWord = (which: Part) => (
+    <Popover
+      open={!mobile && isOpen && part === which}
+      onOpenChange={(next) => setOpen(which, next)}
     >
-      {/* While the tray is open, hold two lines so a rewrap doesn't move it. */}
-      <div
-        className={cn(
-          "font-heading text-3xl leading-snug sm:text-4xl sm:leading-tight",
-          open && !phone && "min-h-[2lh]"
-        )}
+      <PopoverTrigger
+        ref={(node: HTMLButtonElement | null) => {
+          words.current[which] = node
+        }}
+        render={<Button {...wordProps(which)} />}
       >
-        <p className="text-center font-medium tracking-tight text-balance text-muted-foreground">
-          {sentence(false)}
-        </p>
-      </div>
+        {label(which)}
+        {chevron}
+      </PopoverTrigger>
+      <PopoverContent className="w-[min(42rem,calc(100vw-2rem))] gap-3 p-4">
+        <PopoverHeader>
+          <PopoverTitle className="text-muted-foreground">
+            {parts[which].label}
+          </PopoverTitle>
+        </PopoverHeader>
+        {picker(which)}
+      </PopoverContent>
+    </Popover>
+  )
 
-      {open && !phone && (
-        <section
-          id="filter-picker"
-          aria-label={parts[open].label}
-          className="mx-auto w-full max-w-2xl animate-in rounded-xl border bg-card p-4 duration-200 fade-in-0 slide-in-from-top-2"
-        >
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-sm font-medium text-muted-foreground">
-              {parts[open].label}
-            </h2>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              aria-label="Close"
-              onClick={close}
-            >
-              <X aria-hidden="true" />
-            </Button>
-          </div>
-          {picker(open)}
-        </section>
-      )}
+  // In the drawer, words switch the picker.
+  const drawerWord = (which: Part) => (
+    <Button
+      {...wordProps(which)}
+      aria-pressed={part === which}
+      onClick={() => setPart(which)}
+    >
+      {label(which)}
+      {chevron}
+    </Button>
+  )
+
+  const sentence = (word: (which: Part) => ReactNode) => (
+    <>
+      Show me {word("topic")} from {word("region")} ranked {word("tier")}
+    </>
+  )
+
+  return (
+    <div className="flex flex-col gap-4">
+      <p className="text-center font-heading text-3xl leading-snug font-medium tracking-tight text-balance text-muted-foreground sm:text-4xl sm:leading-tight">
+        {sentence(popoverWord)}
+      </p>
 
       <Drawer
-        open={phone && open !== null}
+        open={mobile && isOpen}
         onOpenChange={(next) => !next && setIsOpen(false)}
         showSwipeHandle
       >
@@ -380,12 +362,10 @@ export function FilterSentence({
         >
           <DrawerHeader>
             <DrawerTitle className="text-center text-xl leading-snug font-medium tracking-tight text-balance text-muted-foreground">
-              {sentence(true)}
+              {sentence(drawerWord)}
             </DrawerTitle>
           </DrawerHeader>
-          <div id="filter-picker" className="p-4">
-            {picker(part)}
-          </div>
+          <div className="p-4">{picker(part)}</div>
           <DrawerFooter>
             <DrawerClose render={<Button size="xl" />}>Done</DrawerClose>
           </DrawerFooter>

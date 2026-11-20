@@ -1,4 +1,4 @@
-import { DATA_API, OWNER, SITE_DESCRIPTION, SITE_TITLE } from "@/consts"
+import { OWNER, SITE_DESCRIPTION, SITE_TITLE } from "@/consts"
 import type { Source } from "@/lib/shuffle"
 
 type Node = Record<string, unknown>
@@ -62,24 +62,6 @@ export const sourcePage = (
     logo: source.icon,
     description: source.description,
   },
-})
-
-/** The data API, for Google Dataset Search. */
-export const dataset = (site: URL): Node => ({
-  "@type": "Dataset",
-  name: "News Shuffle sources",
-  description:
-    "Popular news websites, each with a description, topic, region and feed tags, and a tier from S (agenda setters) to F (unreliable). Rebuilt every night from news feeds.",
-  url: new URL("/about/", site).href,
-  license: "https://opensource.org/license/mit",
-  isAccessibleForFree: true,
-  creator: { "@id": id(site, "publisher") },
-  keywords: ["news", "news websites", "media", "news sources"],
-  distribution: ["sources", "tags", "tiers"].map((file) => ({
-    "@type": "DataDownload",
-    encodingFormat: "application/json",
-    contentUrl: `${DATA_API}/${file}.json`,
-  })),
 })
 
 export const toJsonLd = (nodes: Node[]) =>

@@ -1,6 +1,7 @@
 ---
 import { Shuffle } from "lucide-react"
 import { ModeToggle } from "@/components/mode-toggle"
+import { SiteNav } from "@/components/site-nav"
 import { SITE_TITLE } from "@/consts"
 
 const links = [
@@ -34,21 +35,12 @@ const path = Astro.url.pathname
       <ModeToggle client:load />
     </div>
   </div>
-  <nav class="flex justify-center gap-1 border-t border-b-4 border-double border-foreground/25 py-1.5 text-sm">
-    {links.map(({ href, label }) => (
-      <a
-        href={href}
-        aria-current={
-          (href === "/" ? path === "/" : path.startsWith(href))
-            ? "page"
-            : undefined
-        }
-        class="rounded-md px-3 py-1 text-muted-foreground hover:text-foreground aria-[current=page]:font-medium aria-[current=page]:text-foreground"
-      >
-        {label}
-      </a>
-    ))}
-  </nav>
+  <SiteNav
+    label="Main"
+    links={links}
+    path={path}
+    className="border-t border-b-4 border-double border-foreground/25 py-1.5"
+  />
 </header>
 
 <script>

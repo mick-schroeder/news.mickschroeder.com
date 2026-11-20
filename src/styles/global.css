@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -181,4 +182,65 @@
   h3 {
     @apply font-heading tracking-tight;
   }
+}
+
+/* Tag colours: --tag fills with white text (700s keep 4.5:1), --tag-hover darkens it, --tag-ink colours icons on the page. */
+[data-tag-color="red"] {
+  --tag: var(--color-red-700);
+}
+[data-tag-color="orange"] {
+  --tag: var(--color-orange-700);
+}
+[data-tag-color="amber"] {
+  --tag: var(--color-amber-700);
+}
+[data-tag-color="yellow"] {
+  --tag: var(--color-yellow-700);
+}
+[data-tag-color="lime"] {
+  --tag: var(--color-lime-700);
+}
+[data-tag-color="green"] {
+  --tag: var(--color-green-700);
+}
+[data-tag-color="emerald"] {
+  --tag: var(--color-emerald-700);
+}
+[data-tag-color="teal"] {
+  --tag: var(--color-teal-700);
+}
+[data-tag-color="cyan"] {
+  --tag: var(--color-cyan-700);
+}
+[data-tag-color="sky"] {
+  --tag: var(--color-sky-700);
+}
+[data-tag-color="blue"] {
+  --tag: var(--color-blue-700);
+}
+[data-tag-color="indigo"] {
+  --tag: var(--color-indigo-700);
+}
+[data-tag-color="violet"] {
+  --tag: var(--color-violet-700);
+}
+[data-tag-color="purple"] {
+  --tag: var(--color-purple-700);
+}
+[data-tag-color="fuchsia"] {
+  --tag: var(--color-fuchsia-700);
+}
+[data-tag-color="pink"] {
+  --tag: var(--color-pink-700);
+}
+[data-tag-color="rose"] {
+  --tag: var(--color-rose-700);
+}
+[data-tag-color] {
+  --tag-hover: color-mix(in oklch, var(--tag), black 15%);
+  --tag-ink: var(--tag);
+}
+.dark [data-tag-color],
+.dark[data-tag-color] {
+  --tag-ink: color-mix(in oklch, var(--tag), white 35%);
 }
