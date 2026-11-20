@@ -14,6 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { Spinner } from "@/components/ui/spinner"
 import { minLoadingMs, usePick } from "@/hooks/use-pick"
 import {
+  getDefaultFilters,
   matches,
   pickSource,
   readFilters,
@@ -109,7 +110,7 @@ export function Redirect({
   const [pick] = usePick(() => {
     if (!savedFilters) return pickSource(sources)
     const known = new Set(sources.flatMap((s) => [s.tier, ...s.tags]))
-    const filters = readFilters(known)
+    const filters = readFilters(known, getDefaultFilters(tiers))
     return pickSource(sources.filter((source) => matches(source, filters)))
   }, minLoadingMs)
 

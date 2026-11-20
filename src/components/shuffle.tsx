@@ -13,7 +13,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 import {
-  defaultFilters,
+  getDefaultFilters,
   matches,
   pickSource,
   readFilters,
@@ -37,8 +37,9 @@ export function Shuffle({
   tiers: TierInfo[]
 }) {
   // Rendered with client:only, so localStorage is available here.
+  const defaults = getDefaultFilters(tiers)
   const [filters, setFilters] = useState(() =>
-    readFilters(new Set([...tags, ...tiers].map((item) => item.id)))
+    readFilters(new Set([...tags, ...tiers].map((item) => item.id)), defaults)
   )
   const matching = sources.filter((source) => matches(source, filters))
   // First pick skips the minimum; the page's fallback skeleton already showed.
@@ -46,7 +47,7 @@ export function Shuffle({
   const current = card.status === "empty" ? undefined : card.source
   const loading = card.status === "loading"
   const feeds = tags.filter((tag) => tag.kind === "feed")
-  const isDefault = JSON.stringify(filters) === JSON.stringify(defaultFilters)
+  const isDefault = JSON.stringify(filters) === JSON.stringify(defaults)
 
   function update(next: Filters) {
     writeFilters(next)
@@ -122,7 +123,7 @@ export function Shuffle({
             size="icon-sm"
             aria-label="Reset filters"
             title="Reset filters"
-            onClick={() => update(defaultFilters)}
+            onClick={() => update(defaults)}
           >
             <RotateCcw aria-hidden="true" />
           </Button>
@@ -150,7 +151,7 @@ export function Shuffle({
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
-              <Button variant="outline" onClick={() => update(defaultFilters)}>
+              <Button variant="outline" onClick={() => update(defaults)}>
                 Reset filters
               </Button>
             </EmptyContent>

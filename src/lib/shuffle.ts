@@ -37,11 +37,14 @@ export type Facet = (typeof facets)[number]
 /** Empty means any. */
 export type Filters = Record<Facet | "tier", string[]>
 
-export const defaultFilters: Filters = {
-  topic: ["news"],
-  region: [],
-  feed: [],
-  tier: ["S", "A", "B"],
+/** Default filters derived from the actual tier list; selects the top 3 tiers. */
+export function getDefaultFilters(tiers: Pick<TierInfo, "id">[]): Filters {
+  return {
+    topic: ["news"],
+    region: [],
+    feed: [],
+    tier: tiers.slice(0, 3).map((t) => t.id),
+  }
 }
 
 const any = (wanted: string[], has: (value: string) => boolean) =>
@@ -70,16 +73,16 @@ export function pickSource<T>(
 const storageKey = "filters"
 
 /** Saved filters, ignoring values no longer in the data. */
-export function readFilters(known: Set<string>): Filters {
+export function readFilters(known: Set<string>, defaults: Filters): Filters {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) ?? "null")
-    if (!saved) return defaultFilters
+    if (!saved) return defaults
     // A saved list with nothing left that's known falls back to the default.
     const keep = (key: keyof Filters) => {
       const values: unknown = saved[key]
-      if (!Array.isArray(values)) return defaultFilters[key]
+      if (!Array.isArray(values)) return defaults[key]
       const kept = values.filter((value) => known.has(value))
-      return values.length > 0 && kept.length === 0 ? defaultFilters[key] : kept
+      return values.length > 0 && kept.length === 0 ? defaults[key] : kept
     }
     return {
       topic: keep("topic"),
@@ -88,7 +91,7 @@ export function readFilters(known: Set<string>): Filters {
       tier: keep("tier"),
     }
   } catch {
-    return defaultFilters
+    return defaults
   }
 }
 
