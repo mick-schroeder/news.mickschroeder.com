@@ -1,0 +1,20 @@
+# News Shuffle
+
+> Shuffle to a random news site, filtered by topic, region, feed and tier.
+
+News Shuffle lists popular news websites. Each source has a short description, tags for topic, region, feed and language, and a tier from S to F for reach and influence — not viewpoint. The list is rebuilt every night from news feeds.
+
+## Data API
+
+Public JSON, no key needed, MIT licensed.
+
+- [sources.json](https://data.news.mickschroeder.com/sources.json): every source with id, title, url, description, tier, tags, icon and similar sources
+- [tags.json](https://data.news.mickschroeder.com/tags.json): tags with kind and description
+- [tiers.json](https://data.news.mickschroeder.com/tiers.json): tiers with title and description
+- [Data code](https://github.com/mick-schroeder/popular-news-sites) and [site code](https://github.com/mick-schroeder/news.mickschroeder.com) on GitHub
+
+## Pages
+
+- [Sources](https://news.mickschroeder.com/sources/): every source by tier
+- [Tags](https://news.mickschroeder.com/tags/): tags by kind
+- [About](https://news.mickschroeder.com/about/): how sources are found and judged

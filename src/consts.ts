@@ -7,7 +7,6 @@ export const OWNER = {
 }
 export const EXTENSION_URL =
   "https://chromewebstore.google.com/detail/web-shuffle/lgokgkophalfnnapghjjckmeoboepfdj"
-export const DATA_API = "https://data.news.mickschroeder.com"
 export const GITHUB_URL = "https://github.com/mick-schroeder"
 export const CODE_URL = `${GITHUB_URL}/news.mickschroeder.com`
 export const DATA_CODE_URL = `${GITHUB_URL}/popular-news-sites`

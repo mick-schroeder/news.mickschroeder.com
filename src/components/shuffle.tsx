@@ -24,12 +24,6 @@ import {
   type TierInfo,
 } from "@/lib/shuffle"
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void
-  }
-}
-
 type Pick = Omit<Source, "similar">
 
 /** The home page: filters, a random matching source, and buttons to open it or pick again. */
