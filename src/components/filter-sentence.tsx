@@ -2,7 +2,12 @@ import { useRef, useState, type ReactNode } from "react"
 import { ChevronDown, Shuffle } from "lucide-react"
 import { TagIcon } from "@/components/tag-icon"
 import { TierBadge } from "@/components/tier-badge"
-import { AvatarGroup } from "@/components/ui/avatar"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+} from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
   Drawer,
@@ -32,7 +37,7 @@ import { Slider } from "@/components/ui/slider"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { useIsMobile } from "@/hooks/use-mobile"
 import type { Facet, Filters, Tag, TierInfo } from "@/lib/shuffle"
-import { tagInk } from "@/lib/tag-colors"
+import { tagFill, tagInk } from "@/lib/tag-colors"
 import { cn } from "@/lib/utils"
 
 type Part = "topic" | "region" | "tier"
@@ -45,9 +50,13 @@ const parts = {
   tier: { label: "Tiers", any: "", chip: "" },
 } satisfies Record<Part, { label: string; any: string; chip: string }>
 
-// A word in the sentence that opens a picker; the dotted underline marks it.
+// A word in the sentence that opens a picker.
 const word =
-  "h-auto gap-[0.15em] px-[0.15em] py-0 font-heading text-[length:inherit] leading-[inherit] font-semibold text-foreground decoration-primary decoration-dotted decoration-[0.06em] underline-offset-[0.16em] aria-expanded:bg-primary/10 aria-expanded:decoration-solid aria-pressed:bg-primary/10 aria-pressed:decoration-solid [&_svg:not([class*='size-'])]:size-[0.45em]"
+  "group/word h-auto gap-[0.15em] px-[0.15em] py-0 font-heading text-[length:inherit] leading-[inherit] font-semibold text-foreground hover:bg-transparent aria-expanded:bg-transparent dark:hover:bg-transparent [&_svg:not([class*='size-'])]:size-[0.45em]"
+
+// Marker band behind the lower half of the label marks it as a picker.
+const band =
+  "inline-flex items-center rounded-[0.08em] bg-linear-to-b from-transparent from-55% to-band to-55% px-[0.05em] transition-colors group-hover/word:to-band-strong group-aria-expanded/word:to-band-strong group-aria-pressed/word:to-band-strong"
 
 const chevron = (
   <ChevronDown
@@ -57,14 +66,67 @@ const chevron = (
   />
 )
 
-/** "news", "news and tech", "news +2"; the any label when empty. */
-function summary(tags: Tag[], ids: string[], any: string, lower = false) {
-  const names = tags
-    .filter((tag) => ids.includes(tag.id))
-    .map((tag) => (lower ? tag.title.toLowerCase() : tag.title))
-  if (names.length === 2) return `${names[0]} and ${names[1]}`
-  if (names.length > 2) return `${names[0]} +${names.length - 1}`
-  return names[0] ?? any
+// Avatars sized to the sentence, centred on its text.
+const group =
+  "-space-x-[0.2em] self-center *:data-[slot=avatar]:size-[1.7em] *:data-[slot=avatar]:text-[0.5em]"
+
+// Most avatars shown; past that the last one becomes a count.
+const MAX_AVATARS = 4
+
+/** A tag as a round avatar: its flag, or its icon on its colour. */
+function TagAvatar({ tag }: { tag: Tag }) {
+  return (
+    <Avatar title={tag.title}>
+      <AvatarFallback
+        data-tag-color={tag.color}
+        className={cn("overflow-hidden", tag.color && tagFill)}
+      >
+        <TagIcon
+          tag={tag}
+          className={
+            tag.flag ? "size-[150%] max-w-none [clip-path:none]" : "size-[55%]"
+          }
+        />
+      </AvatarFallback>
+    </Avatar>
+  )
+}
+
+/** One tag by name, several as avatars; the any label when empty. */
+function TagSummary({
+  tags,
+  ids,
+  any,
+  lower,
+}: {
+  tags: Tag[]
+  ids: string[]
+  any: string
+  lower: boolean
+}) {
+  const picked = tags.filter((tag) => ids.includes(tag.id))
+  if (!picked.length) return any
+  if (picked.length === 1)
+    return lower ? picked[0].title.toLowerCase() : picked[0].title
+  const extra = picked.length - MAX_AVATARS
+  return (
+    <>
+      {/* Zero-width text gives the word a text baseline, like the others. */}
+      {"\u200b"}
+      <AvatarGroup className={group}>
+        {picked
+          .slice(0, extra > 0 ? MAX_AVATARS - 1 : MAX_AVATARS)
+          .map((tag) => (
+            <TagAvatar key={tag.id} tag={tag} />
+          ))}
+        {extra > 0 && (
+          <AvatarGroupCount className="size-[1.7em] font-sans text-[0.5em] font-semibold">
+            +{extra + 1}
+          </AvatarGroupCount>
+        )}
+      </AvatarGroup>
+    </>
+  )
 }
 
 /** Multi-select tag menu; nothing selected means any. */
@@ -241,10 +303,16 @@ export function FilterSentence({
   const [part, setPart] = useState<Part>("topic")
   const [isOpen, setIsOpen] = useState(false)
   const words = useRef<Partial<Record<Part, HTMLButtonElement | null>>>({})
+  const line = useRef<HTMLParagraphElement>(null)
+  // Sentence height at open, so the popover holds still as words change.
+  const held = useRef(0)
   const mobile = useIsMobile()
 
   function setOpen(which: Part, next: boolean) {
-    if (next) setPart(which)
+    if (next) {
+      setPart(which)
+      held.current = line.current?.offsetHeight ?? 0
+    }
     setIsOpen(next)
   }
   const ofKind = (kind: Facet) => tags.filter((tag) => tag.kind === kind)
@@ -257,31 +325,44 @@ export function FilterSentence({
 
   const label = (which: Part) =>
     which === "tier" ? (
-      <AvatarGroup className="-space-x-[0.2em] border-b-[0.06em] border-dotted border-primary pb-[0.08em]">
-        {shown.map((tier) => (
-          <TierBadge
-            key={tier.id}
-            tier={tier}
-            className="size-[1.7em] font-sans text-[0.5em]"
-          />
-        ))}
-      </AvatarGroup>
+      <>
+        {/* Zero-width text gives the word a text baseline, like the others. */}
+        {"\u200b"}
+        <AvatarGroup className={group}>
+          {shown.map((tier) => (
+            <TierBadge key={tier.id} tier={tier} className="font-sans" />
+          ))}
+        </AvatarGroup>
+      </>
     ) : (
-      summary(
-        ofKind(which),
-        filters[which],
-        parts[which].any,
-        which === "topic"
-      )
+      <TagSummary
+        tags={ofKind(which)}
+        ids={filters[which]}
+        any={parts[which].any}
+        lower={which === "topic"}
+      />
     )
+
+  // Under the sentence's top edge at its held height, whichever word opened it.
+  const anchor = {
+    getBoundingClientRect: () => {
+      const box = line.current!.getBoundingClientRect()
+      return new DOMRect(box.x, box.y, box.width, held.current || box.height)
+    },
+  }
 
   const wordProps = (which: Part) => ({
     variant: "ghost" as const,
-    className: cn(word, which !== "tier" && "underline"),
+    className: word,
     "aria-label":
       which === "tier"
         ? `Tiers ${shown.map((tier) => tier.id).join(", ")}`
-        : undefined,
+        : filters[which].length > 1
+          ? `${parts[which].label} ${ofKind(which)
+              .filter((tag) => filters[which].includes(tag.id))
+              .map((tag) => tag.title)
+              .join(", ")}`
+          : undefined,
   })
 
   const picker = (which: Part) =>
@@ -313,10 +394,13 @@ export function FilterSentence({
         }}
         render={<Button {...wordProps(which)} />}
       >
-        {label(which)}
+        <span className={band}>{label(which)}</span>
         {chevron}
       </PopoverTrigger>
-      <PopoverContent className="w-[min(42rem,calc(100vw-2rem))] gap-3 p-4">
+      <PopoverContent
+        anchor={anchor}
+        className="w-[min(42rem,calc(100vw-2rem))] gap-3 p-4"
+      >
         <PopoverHeader>
           <PopoverTitle className="text-muted-foreground">
             {parts[which].label}
@@ -334,7 +418,7 @@ export function FilterSentence({
       aria-pressed={part === which}
       onClick={() => setPart(which)}
     >
-      {label(which)}
+      <span className={band}>{label(which)}</span>
       {chevron}
     </Button>
   )
@@ -347,7 +431,10 @@ export function FilterSentence({
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-center font-heading text-3xl leading-snug font-medium tracking-tight text-balance text-muted-foreground sm:text-4xl sm:leading-tight">
+      <p
+        ref={line}
+        className="text-center font-heading text-3xl leading-snug font-medium tracking-tight text-balance text-muted-foreground sm:text-4xl sm:leading-tight"
+      >
         {sentence(popoverWord)}
       </p>
 

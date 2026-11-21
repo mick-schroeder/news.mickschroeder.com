@@ -64,7 +64,8 @@ export function Shuffle({
   function open(event: MouseEvent) {
     if (loading) return event.preventDefault()
     window.gtag?.("event", "shuffle")
-    pickAgain()
+    // After the click, so the link still holds this source's URL when it navigates.
+    setTimeout(pickAgain)
   }
 
   // Kept mounted across picks, so focus stays put.

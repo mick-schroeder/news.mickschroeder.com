@@ -21,6 +21,8 @@
   --color-tier-d: var(--tier-d);
   --color-tier-e: var(--tier-e);
   --color-tier-f: var(--tier-f);
+  --color-band: var(--band);
+  --color-band-strong: var(--band-strong);
   --font-heading: var(--font-newsreader);
   --animate-marquee: marquee 120s linear infinite;
   --animate-marquee-up: marquee-up 30s linear infinite;
@@ -92,6 +94,9 @@
   --tier-d: var(--color-cyan-300);
   --tier-e: var(--color-indigo-400);
   --tier-f: var(--color-fuchsia-400);
+  /* Marker band under the filter words. */
+  --band: var(--color-emerald-300);
+  --band-strong: var(--color-emerald-400);
   color-scheme: light;
 }
 
@@ -123,6 +128,8 @@
   --tier-d: var(--color-cyan-400);
   --tier-e: var(--color-indigo-400);
   --tier-f: var(--color-fuchsia-400);
+  --band: var(--color-emerald-800);
+  --band-strong: var(--color-emerald-700);
   color-scheme: dark;
 }
 

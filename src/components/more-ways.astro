@@ -4,6 +4,7 @@ import BentoCard from "@/components/bento-card.astro"
 import { SourceIcon } from "@/components/source-icon"
 import { TagIcon } from "@/components/tag-icon"
 import { buttonVariants } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
 import { DATA_API_URL } from "@/consts"
 import { CODE_URL, EXTENSION_URL } from "@/consts"
 import type { Source, Tag } from "@/lib/shuffle"
@@ -32,7 +33,8 @@ const fadeY =
   "[mask-image:linear-gradient(to_bottom,transparent,black_20%,black_70%,transparent)]"
 ---
 
-<section aria-labelledby="more" class="mx-auto mt-20 max-w-4xl">
+<section aria-labelledby="more" class="mx-auto mt-10 max-w-4xl">
+  <Separator className="mb-10" />
   <h2 id="more" class="mb-4 text-2xl font-medium">
     More from News Shuffle
   </h2>
